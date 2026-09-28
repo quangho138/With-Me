@@ -8,6 +8,7 @@ import '../Components/WithMeScaffold.dart';
 import '../Exercise/AmbientAudio.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/NatureVideo.dart';
+import '../../Repositories/exercise_repository.dart';
 import '../Theme/WithMeTheme.dart';
 
 /// The two patterns the design names.
@@ -79,6 +80,7 @@ class _BreathingScreenState extends State<BreathingScreen>
   late BreathSession _session;
   late final Ticker _ticker;
   final _audio = AmbientAudio();
+  final ExerciseRepository _exercises = LocalExerciseRepository();
   Duration _lastTick = Duration.zero;
   double _volume = .55;
   bool _muted = false;
@@ -97,8 +99,25 @@ class _BreathingScreenState extends State<BreathingScreen>
       if (_session.complete) {
         _ticker.stop();
         _syncAudio();
+        _recordCompletion();
       }
     });
+  }
+
+  /// Saves the finished session for progress. A save that fails (no
+  /// database, as in widget tests) must never interrupt the exercise.
+  void _recordCompletion() {
+    unawaited(
+      _exercises
+          .recordCompleted(ExerciseSession(
+            completedAt: DateTime.now(),
+            exercise: 'breathing',
+            pattern: _pattern.tab.replaceAll(' · ', '-'),
+            cycles: widget.cycles,
+            sound: widget.sound,
+          ))
+          .catchError((Object _) {}),
+    );
   }
 
   void _makeSession() {

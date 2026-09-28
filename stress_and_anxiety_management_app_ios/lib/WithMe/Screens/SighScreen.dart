@@ -6,6 +6,7 @@ import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/SighAudio.dart';
+import '../../Repositories/exercise_repository.dart';
 import '../Theme/WithMeTheme.dart';
 
 class SighScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _SighScreenState extends State<SighScreen>
   ];
   int _cycles = 3;
   final _audio = SighAudio();
+  final ExerciseRepository _exercises = LocalExerciseRepository();
   bool _muted = false;
   bool _audioFailed = false;
   void _syncAudio() {
@@ -57,6 +59,16 @@ class _SighScreenState extends State<SighScreen>
       if (_session.complete) {
         _ticker.stop();
         _syncAudio();
+        // Saved for progress. A failed save never interrupts the exercise.
+        unawaited(
+          _exercises
+              .recordCompleted(ExerciseSession(
+                completedAt: DateTime.now(),
+                exercise: 'physiological_sigh',
+                cycles: _cycles,
+              ))
+              .catchError((Object _) {}),
+        );
       }
     });
   }
