@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/check_in_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeControls.dart';
@@ -24,9 +24,8 @@ import 'YourDayScreen.dart';
 /// Continue stays disabled until the page is answered; back always works. The five-part self-reflection that used to close it
 /// (`image24`) is now the Check In section on its own - see `CheckInScreen`.
 ///
-/// Answers land in the existing tables on the way out — `insertMood`,
-/// `insertControlGauge` and `insertStressor`. The date format those queries
-/// rely on (`YYYY-MM-DD`) is handled inside `DatabaseHelper`.
+/// Answers are saved on the way out through `CheckInRepository`
+/// (lib/Repositories), which owns the tables and the date format.
 class DailyCheckInScreen extends StatefulWidget {
   const DailyCheckInScreen({super.key, this.initialStep = 0})
       : assert(initialStep >= 0 && initialStep < pageCount);
@@ -64,7 +63,7 @@ class DailyCheckInScreen extends StatefulWidget {
 
 class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   final _answers = CheckInAnswers();
-  final _db = DatabaseHelper();
+  final CheckInRepository _checkIns = LocalCheckInRepository();
   final _customStressor = TextEditingController();
 
   /// Where this visit began. The signs page cannot open on its own - it
@@ -133,31 +132,30 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     );
   }
 
-  Future<void> _save() async {
-    final today = DateTime.now();
-
-    if (_answers.mood != null) {
-      await _db.insertMood(today, _moodLabel(_answers.mood!));
-    }
-    if (_answers.stress != null) {
-      // The gauge stores how in-control the day felt, so invert the stress
-      // rating: 1 stress is 5 control.
-      await _db.insertControlGauge(today, 6 - _answers.stress!);
-    }
-    if (_answers.area != null) {
-      // Signs share the stressor's detail column - there is no signs table -
-      // and only the chosen dimension's count; the others were never shown.
-      final dimension = _answers.signDimension;
-      final detail = [
-        ..._answers.stressors,
-        if (dimension != null) ..._answers.signs[dimension]!,
-      ];
-      await _db.insertStressor(
-        today,
-        _answers.area!,
-        detail: detail.isEmpty ? null : detail.join(', '),
-      );
-    }
+  /// Saves every answer through the check-in repository, including the
+  /// pages that used to be thrown away (motivation, intention, strategy,
+  /// action, rating). Unanswered pages stay null and change nothing.
+  Future<void> _save() {
+    final a = _answers;
+    final dimension = a.signDimension;
+    return _checkIns.save(CheckInEntry(
+      day: DateTime.now(),
+      mood: a.mood == null ? null : _moodLabel(a.mood!),
+      stress: a.stress,
+      motivation: a.motivation,
+      area: a.area,
+      // Signs share the stressor's detail column, and only the chosen
+      // dimension's signs count; the others were never shown.
+      stressorDetail: [
+        ...a.stressors,
+        if (dimension != null) ...a.signs[dimension]!,
+      ],
+      readiness: a.readiness,
+      intention: a.intention,
+      strategy: a.strategy,
+      action: a.action,
+      rating: a.rating > 0 ? a.rating : null,
+    ));
   }
 
   /// The four faces on the greeting, as stored.

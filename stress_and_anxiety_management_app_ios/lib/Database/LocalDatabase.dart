@@ -23,6 +23,19 @@ class DatabaseHelper {
 
   Future<Database> get database => _opening ??= _open();
 
+  /// Version 4 saves the rest of the daily check-in (check_in_details),
+  /// records finished exercises (exercise_sessions), and allows one stressor
+  /// row per day. Bump this and extend _onUpgrade for any later change.
+  static const int schemaVersion = 4;
+
+  /// The create and upgrade steps, exposed so tests can build a real
+  /// database with them and check both paths end at the same schema.
+  @visibleForTesting
+  static Future<void> Function(Database, int) get createSchema => _onCreate;
+  @visibleForTesting
+  static Future<void> Function(Database, int, int) get upgradeSchema =>
+      _onUpgrade;
+
   Future<Database> _open() async {
     try {
       final db = await _initDatabase();
@@ -47,7 +60,7 @@ class DatabaseHelper {
       return await web.openDatabase(
         'reflections.db',
         options: OpenDatabaseOptions(
-          version: 3,
+          version: schemaVersion,
           onCreate: _onCreate,
           onUpgrade: _onUpgrade,
         ),
@@ -59,13 +72,13 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 3, // incremented version to ensure users table exists
+      version: schemaVersion,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
   }
 
-  Future<void> _onCreate(Database db, int version) async {
+  static Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE reflections(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -120,9 +133,63 @@ class DatabaseHelper {
         name TEXT
       )
         ''');
+
+    await _createVersion4(db);
   }
 
-  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+  /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
+  /// _onUpgrade (existing installs) so both end at the same schema.
+  /// IF NOT EXISTS makes it safe to run twice.
+  static Future<void> _createVersion4(Database db) async {
+    // The check-in pages that had no table: motivation, intention to change,
+    // the chosen strategy and action, and the strategy's star rating.
+    // One row per day, like moods and control_gauge.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS check_in_details(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL UNIQUE,
+        motivation INTEGER,
+        readiness REAL,
+        intention TEXT,
+        strategy TEXT,
+        action TEXT,
+        rating INTEGER,
+        updatedAt TEXT NOT NULL
+      )
+    ''');
+
+    // One row per finished breathing or sigh session.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS exercise_sessions(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL,
+        exercise TEXT NOT NULL,
+        pattern TEXT,
+        cycles INTEGER,
+        sound TEXT,
+        completedAt TEXT NOT NULL
+      )
+    ''');
+
+    // Editing a check-in used to add a second stressor row for the same day.
+    // Keep the newest row per day, then let the database allow only one, so
+    // insertStressor's "replace" really replaces.
+    await db.execute('''
+      DELETE FROM stressors WHERE id NOT IN (
+        SELECT MAX(id) FROM stressors GROUP BY substr(date, 1, 10)
+      )
+    ''');
+    await db.execute(
+      'CREATE UNIQUE INDEX IF NOT EXISTS stressors_one_per_day '
+      'ON stressors(date)',
+    );
+  }
+
+  static Future<void> _onUpgrade(
+    Database db,
+    int oldVersion,
+    int newVersion,
+  ) async {
     if (oldVersion < 2) {
       await db.execute('ALTER TABLE reflections ADD COLUMN date TEXT');
       // Database upgraded: Added "date" column
@@ -144,6 +211,9 @@ class DatabaseHelper {
           name TEXT
         )
       ''');
+    }
+    if (oldVersion < 4) {
+      await _createVersion4(db);
     }
   }
 
@@ -200,9 +270,36 @@ class DatabaseHelper {
     return await db.delete('reflections');
   }
 
+  /// "Delete my account" in Settings. The dialog promises to clear
+  /// everything on this device, so this empties every table, not only
+  /// reflections and the name (which is all it used to do).
   Future<void> deleteAllData() async {
-    await clearReflections();
-    await deleteUserName();
+    final db = await database;
+    await wipeAllTables(db);
+    userNameNotifier.value = null;
+  }
+
+  /// Every table that holds user data. Add new tables here; a test fails if
+  /// one is missing.
+  static const List<String> userDataTables = [
+    'reflections',
+    'moods',
+    'control_gauge',
+    'stressors',
+    'users',
+    'user',
+    'check_in_details',
+    'exercise_sessions',
+  ];
+
+  /// Empties every user data table in one transaction: all or nothing.
+  @visibleForTesting
+  static Future<void> wipeAllTables(Database db) async {
+    await db.transaction((txn) async {
+      for (final table in userDataTables) {
+        await txn.delete(table);
+      }
+    });
   }
 
   Future<List<Map<String, dynamic>>> getReflections() async {
