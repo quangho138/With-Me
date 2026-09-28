@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeControls.dart';
@@ -22,8 +22,6 @@ class TriggersSignsScreen extends StatefulWidget {
 }
 
 class _TriggersSignsScreenState extends State<TriggersSignsScreen> {
-  final _db = DatabaseHelper();
-
   List<Slice> _triggers = const [];
   List<Slice> _signs = const [];
 
@@ -42,7 +40,7 @@ class _TriggersSignsScreenState extends State<TriggersSignsScreen> {
 
     Map<String, Map<String, dynamic>> rows;
     try {
-      rows = await _db.getStressorsBetween(
+      rows = await AppRepositories.checkIns.stressorsBetween(
         today.subtract(const Duration(days: _days - 1)),
         today,
       );

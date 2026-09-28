@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/check_in_repository.dart';
 import '../Components/WithMeCalendar.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeControls.dart';
@@ -33,8 +34,6 @@ class MonthlyCalendarScreen extends StatefulWidget {
 }
 
 class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
-  final _db = DatabaseHelper();
-
   late DateTime _month = DateTime(DateTime.now().year, DateTime.now().month, 1);
   DateTime? _selected;
   Map<int, DayMark> _marks = const {};
@@ -44,8 +43,8 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
   void initState() {
     super.initState();
     _load();
-    _db
-        .getUserName()
+    AppRepositories.users
+        .displayName()
         .then((n) {
           if (mounted) setState(() => _name = n);
         })
@@ -89,9 +88,10 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
     Map<String, int> gauges;
     Map<String, Map<String, dynamic>> stressors;
     try {
-      moods = await _db.getMoodsBetween(first, last);
-      gauges = await _db.getControlGaugesBetween(first, last);
-      stressors = await _db.getStressorsBetween(first, last);
+      final checkIns = AppRepositories.checkIns;
+      moods = await checkIns.moodsBetween(first, last);
+      gauges = await checkIns.controlLevelsBetween(first, last);
+      stressors = await checkIns.stressorsBetween(first, last);
     } catch (_) {
       // A device that cannot open its database should still show the empty
       // state rather than throw. sqflite has no web implementation, so this
@@ -102,7 +102,7 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
     }
 
     for (var day = 1; day <= days; day++) {
-      final key = DatabaseHelper.dateKey(
+      final key = dayKey(
         DateTime(_month.year, _month.month, day),
       );
       final mood = moods[key];

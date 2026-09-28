@@ -8,6 +8,7 @@ import '../Components/WithMeScaffold.dart';
 import '../Exercise/AmbientAudio.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/NatureVideo.dart';
+import '../../Repositories/app_repositories.dart';
 import '../../Repositories/exercise_repository.dart';
 import '../Theme/WithMeTheme.dart';
 
@@ -80,7 +81,6 @@ class _BreathingScreenState extends State<BreathingScreen>
   late BreathSession _session;
   late final Ticker _ticker;
   final _audio = AmbientAudio();
-  final ExerciseRepository _exercises = LocalExerciseRepository();
   Duration _lastTick = Duration.zero;
   double _volume = .55;
   bool _muted = false;
@@ -108,7 +108,7 @@ class _BreathingScreenState extends State<BreathingScreen>
   /// database, as in widget tests) must never interrupt the exercise.
   void _recordCompletion() {
     unawaited(
-      _exercises
+      AppRepositories.exercises
           .recordCompleted(ExerciseSession(
             completedAt: DateTime.now(),
             exercise: 'breathing',

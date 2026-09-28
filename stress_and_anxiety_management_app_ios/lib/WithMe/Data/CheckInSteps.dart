@@ -235,7 +235,7 @@ const List<(String, String, Color)> kRestExercises = [
 
 /// Everything the user picked during one check-in.
 ///
-/// Persisted through the existing `DatabaseHelper` — mood, control gauge,
+/// Persisted through `CheckInRepository` (lib/Repositories) — mood, control gauge,
 /// stressor and reflection all already have tables.
 class CheckInAnswers {
   int? mood;

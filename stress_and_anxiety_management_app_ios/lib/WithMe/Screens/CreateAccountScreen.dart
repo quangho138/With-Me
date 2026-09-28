@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Mascot/MascotExpression.dart';
@@ -26,7 +26,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
-  final _db = DatabaseHelper();
 
   bool _agreed = false;
   bool _busy = false;
@@ -56,14 +55,17 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     setState(() => _busy = true);
 
     try {
-      if (await _db.emailExists(email)) {
+      if (await AppRepositories.users.emailExists(email)) {
         if (!mounted) return;
         setState(() => _busy = false);
         _say('That email already has an account.');
         return;
       }
-      await _db.insertUser(email, password);
-      await _db.saveUserName(name);
+      await AppRepositories.users.signUp(
+        email: email,
+        password: password,
+        name: name,
+      );
     } catch (_) {
       // sqflite has no web implementation, and a device can fail to open its
       // database too. Either way the button has to come back and say so

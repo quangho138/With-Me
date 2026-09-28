@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/check_in_repository.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeControls.dart';
@@ -30,8 +31,6 @@ class ProgressScreen extends StatefulWidget {
 }
 
 class _ProgressScreenState extends State<ProgressScreen> {
-  final _db = DatabaseHelper();
-
   int _range = 0;
   List<double> _stress = const [];
   List<double> _mood = const [];
@@ -58,8 +57,8 @@ class _ProgressScreenState extends State<ProgressScreen> {
     Map<String, int> gauges;
     Map<String, String> moods;
     try {
-      gauges = await _db.getControlGaugesBetween(from, today);
-      moods = await _db.getMoodsBetween(from, today);
+      gauges = await AppRepositories.checkIns.controlLevelsBetween(from, today);
+      moods = await AppRepositories.checkIns.moodsBetween(from, today);
     } catch (_) {
       // A device that cannot open its database should still show the empty
       // state rather than throw. sqflite has no web implementation, so this
@@ -74,7 +73,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
 
     for (var back = days - 1; back >= 0; back -= step) {
       final key =
-          DatabaseHelper.dateKey(today.subtract(Duration(days: back)));
+          dayKey(today.subtract(Duration(days: back)));
       final gauge = gauges[key];
       final m = moods[key];
       if (gauge != null) stress.add((6 - gauge).toDouble());

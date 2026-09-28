@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeControls.dart';
@@ -25,8 +25,6 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  final _db = DatabaseHelper();
-
   int _tab = 0;
   List<Slice> _slices = const [];
 
@@ -42,7 +40,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     Map<String, Map<String, dynamic>> rows;
     try {
-      rows = await _db.getStressorsBetween(
+      rows = await AppRepositories.checkIns.stressorsBetween(
         today.subtract(const Duration(days: 29)),
         today,
       );

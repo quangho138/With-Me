@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
@@ -20,7 +20,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final _db = DatabaseHelper();
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _checkInTime = TextEditingController(text: '8:00 AM');
@@ -36,18 +35,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _load() async {
     String? name;
-    var reflections = const <Map<String, dynamic>>[];
     var checkIns = 0;
+    var exercises = 0;
 
     try {
-      name = await _db.getUserName();
-      reflections = await _db.getReflections();
+      name = await AppRepositories.users.displayName();
       final today = DateTime.now();
-      final moods = await _db.getMoodsBetween(
-        today.subtract(const Duration(days: 89)),
-        today,
-      );
+      final from = today.subtract(const Duration(days: 89));
+      final moods = await AppRepositories.checkIns.moodsBetween(from, today);
       checkIns = moods.length;
+      // Real finished exercises now that they are recorded (stage 1).
+      final sessions =
+          await AppRepositories.exercises.sessionsBetween(from, today);
+      exercises = sessions.length;
     } catch (_) {
       // A device that cannot open its database should still show the empty
       // state rather than throw. sqflite has no web implementation, so this
@@ -58,9 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _name.text = name ?? '';
       _checkIns = checkIns;
-      // No exercise table exists yet, so this counts logged reflections —
-      // the closest signal the database actually holds.
-      _exercises = reflections.length;
+      _exercises = exercises;
     });
   }
 
@@ -75,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _save() async {
     var saved = true;
     try {
-      await _db.saveUserName(_name.text.trim());
+      await AppRepositories.users.saveDisplayName(_name.text.trim());
     } catch (_) {
       saved = false;
     }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Theme/WithMeTheme.dart';
@@ -58,7 +58,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
 
     if (confirmed != true) return;
-    await DatabaseHelper().deleteAllData();
+    try {
+      await AppRepositories.users.deleteAccountAndData();
+    } catch (_) {
+      // Say so instead of pretending: the data is still on the device.
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Couldn't delete your data. Try again.")),
+      );
+      return;
+    }
     if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const WelcomeScreen()),
