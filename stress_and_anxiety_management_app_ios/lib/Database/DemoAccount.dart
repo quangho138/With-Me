@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-import 'LocalDatabase.dart';
+import '../Repositories/app_repositories.dart';
+import '../Repositories/check_in_repository.dart';
+import '../Repositories/reflection_repository.dart';
 
 /// A sign-in and a week of check-ins, so the app can be shown with something
 /// in it.
@@ -27,13 +29,13 @@ class DemoAccount {
   /// left empty so a check-in can be done live, and a day that already has a
   /// mood - a real entry - is never touched.
   static Future<void> ensure() async {
-    final db = DatabaseHelper();
+    final users = AppRepositories.users;
+    final checkIns = AppRepositories.checkIns;
 
-    if (!await db.emailExists(email)) {
-      await db.insertUser(email, password);
-    }
-    if (await db.getUserName() == null) {
-      await db.saveUserName(name);
+    if (!await users.emailExists(email)) {
+      await users.signUp(email: email, password: password, name: name);
+    } else if (await users.displayName() == null) {
+      await users.saveDisplayName(name);
     }
 
     final now = DateTime.now();
@@ -48,19 +50,25 @@ class DemoAccount {
         entry.hour,
         entry.minute,
       );
-      if (await db.getMood(date) != null) continue;
+      if (await checkIns.moodOn(date) != null) continue;
 
-      await db.insertMood(date, entry.mood);
-      await db.insertControlGauge(date, entry.control);
-      await db.insertStressor(date, entry.area, detail: entry.signs);
-      await db.insertReflection(
+      await checkIns.save(CheckInEntry(
+        day: date,
+        mood: entry.mood,
+        // The demo lists control levels; the check-in takes stress, which
+        // the repository turns back into control (6 - stress).
+        stress: 6 - entry.control,
+        area: entry.area,
+        stressorDetail: entry.signs.split(', '),
+      ));
+      await AppRepositories.reflections.replaceForDay(Reflection(
         who: entry.leanedOn,
         what: entry.note,
         when: 'Late morning, once the list was written down.',
         where: entry.area,
         why: 'It is the part I keep putting off.',
         date: date,
-      );
+      ));
     }
   }
 

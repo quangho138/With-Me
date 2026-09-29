@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/WithMeCards.dart';
@@ -63,7 +64,6 @@ class DailyCheckInScreen extends StatefulWidget {
 
 class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   final _answers = CheckInAnswers();
-  final CheckInRepository _checkIns = LocalCheckInRepository();
   final _customStressor = TextEditingController();
 
   /// Where this visit began. The signs page cannot open on its own - it
@@ -138,7 +138,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Future<void> _save() {
     final a = _answers;
     final dimension = a.signDimension;
-    return _checkIns.save(CheckInEntry(
+    return AppRepositories.checkIns.save(CheckInEntry(
       day: DateTime.now(),
       mood: a.mood == null ? null : _moodLabel(a.mood!),
       stress: a.stress,

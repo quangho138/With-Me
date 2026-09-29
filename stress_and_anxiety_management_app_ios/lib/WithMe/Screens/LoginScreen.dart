@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Mascot/MascotExpression.dart';
@@ -28,7 +28,6 @@ class WithMeLoginScreen extends StatefulWidget {
 class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
-  final _db = DatabaseHelper();
   bool _busy = false;
 
   @override
@@ -41,9 +40,12 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
   Future<void> _login() async {
     setState(() => _busy = true);
 
-    Map<String, dynamic>? user;
+    var matched = false;
     try {
-      user = await _db.getUser(_email.text.trim(), _password.text);
+      matched = await AppRepositories.users.signIn(
+        _email.text.trim(),
+        _password.text,
+      );
     } catch (_) {
       // See the note in CreateAccountScreen: the button has to come back.
       if (!mounted) return;
@@ -59,7 +61,7 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
     if (!mounted) return;
     setState(() => _busy = false);
 
-    if (user == null) {
+    if (!matched) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('That email and password do not match.')),
       );

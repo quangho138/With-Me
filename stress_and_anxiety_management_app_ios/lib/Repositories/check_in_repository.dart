@@ -66,6 +66,10 @@ class CheckInDetails {
   final int? rating;
 }
 
+/// The day key ('YYYY-MM-DD') every daily table uses, for a date.
+/// Screens use this instead of reaching into the database helper.
+String dayKey(DateTime date) => DatabaseHelper.dateKey(date);
+
 /// Saving and reading daily check-ins. Screens use this instead of calling
 /// the database themselves.
 abstract class CheckInRepository {
@@ -75,6 +79,26 @@ abstract class CheckInRepository {
 
   /// The newer check-in answers for one day, or null if none were saved.
   Future<CheckInDetails?> detailsOn(DateTime day);
+
+  // --- Reads for the calendar, progress, dashboard and day screens -------
+  // Each covers a span in one query, keyed by day key, both ends included.
+
+  /// Mood word per day.
+  Future<Map<String, String>> moodsBetween(DateTime from, DateTime to);
+
+  /// Control level (1-5, higher is more in control) per day.
+  Future<Map<String, int>> controlLevelsBetween(DateTime from, DateTime to);
+
+  /// The stressor row per day: 'category' and 'detail'.
+  Future<Map<String, Map<String, dynamic>>> stressorsBetween(
+    DateTime from,
+    DateTime to,
+  );
+
+  /// One day's mood, control level and stressor row (each may be null).
+  Future<String?> moodOn(DateTime day);
+  Future<int?> controlLevelOn(DateTime day);
+  Future<Map<String, dynamic>?> stressorOn(DateTime day);
 }
 
 class LocalCheckInRepository implements CheckInRepository {
@@ -149,6 +173,67 @@ class LocalCheckInRepository implements CheckInRepository {
         });
       }
     });
+  }
+
+  @override
+  Future<Map<String, String>> moodsBetween(DateTime from, DateTime to) async {
+    final rows = await _between('moods', from, to);
+    return {for (final r in rows) r['date'] as String: r['mood'] as String};
+  }
+
+  @override
+  Future<Map<String, int>> controlLevelsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final rows = await _between('control_gauge', from, to);
+    return {for (final r in rows) r['date'] as String: r['level'] as int};
+  }
+
+  @override
+  Future<Map<String, Map<String, dynamic>>> stressorsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final rows = await _between('stressors', from, to);
+    return {for (final r in rows) (r['date'] as String).substring(0, 10): r};
+  }
+
+  @override
+  Future<String?> moodOn(DateTime day) async =>
+      (await _on('moods', day))?['mood'] as String?;
+
+  @override
+  Future<int?> controlLevelOn(DateTime day) async =>
+      (await _on('control_gauge', day))?['level'] as int?;
+
+  @override
+  Future<Map<String, dynamic>?> stressorOn(DateTime day) => _on('stressors', day);
+
+  /// All rows of a daily table from one day to another, both included.
+  Future<List<Map<String, dynamic>>> _between(
+    String table,
+    DateTime from,
+    DateTime to,
+  ) async {
+    final db = await _open();
+    return db.query(
+      table,
+      where: 'date >= ? AND date <= ?',
+      whereArgs: [dayKey(from), dayKey(to)],
+    );
+  }
+
+  /// The one row a daily table holds for a day, or null.
+  Future<Map<String, dynamic>?> _on(String table, DateTime day) async {
+    final db = await _open();
+    final rows = await db.query(
+      table,
+      where: 'date = ?',
+      whereArgs: [dayKey(day)],
+      limit: 1,
+    );
+    return rows.isEmpty ? null : rows.first;
   }
 
   @override

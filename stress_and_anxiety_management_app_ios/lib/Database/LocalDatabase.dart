@@ -293,7 +293,7 @@ class DatabaseHelper {
   ];
 
   /// Empties every user data table in one transaction: all or nothing.
-  @visibleForTesting
+  /// Used by UserRepository.deleteAccountAndData.
   static Future<void> wipeAllTables(Database db) async {
     await db.transaction((txn) async {
       for (final table in userDataTables) {

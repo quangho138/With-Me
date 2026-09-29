@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
@@ -21,8 +21,6 @@ class LogsScreen extends StatefulWidget {
 }
 
 class _LogsScreenState extends State<LogsScreen> {
-  final _db = DatabaseHelper();
-
   int _tab = 0;
   List<Map<String, dynamic>> _rows = const [];
   bool _loaded = false;
@@ -37,7 +35,7 @@ class _LogsScreenState extends State<LogsScreen> {
   @override
   void initState() {
     super.initState();
-    _db.getReflections().catchError((_) {
+    AppRepositories.reflections.all().catchError((_) {
       return const <Map<String, dynamic>>[];
     }).then((rows) {
       // Newest first, as the design lists them: Today, Yesterday, Sept 10.

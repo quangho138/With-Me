@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/reflection_repository.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
@@ -26,8 +27,6 @@ class CheckInScreen extends StatefulWidget {
 }
 
 class _CheckInScreenState extends State<CheckInScreen> {
-  final _db = DatabaseHelper();
-
   /// Category -> chosen question. Keys are those of [kReflectionPrompts].
   final Map<String, String?> _choices = {
     for (final key in kReflectionPrompts.keys) key: null,
@@ -53,7 +52,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
   Future<void> _loadToday() async {
     List<Map<String, dynamic>> rows;
     try {
-      rows = await _db.getReflectionsByDate(DateTime.now());
+      rows = await AppRepositories.reflections.on(DateTime.now());
     } catch (_) {
       return; // Nothing to prefill; the page still works.
     }
@@ -86,15 +85,15 @@ class _CheckInScreenState extends State<CheckInScreen> {
     setState(() => _saving = true);
     final today = DateTime.now();
     try {
-      await _db.deleteReflectionsByDate(today);
-      await _db.insertReflection(
+      // One step: today's earlier entry is replaced, never lost or doubled.
+      await AppRepositories.reflections.replaceForDay(Reflection(
         who: _choices['Who?']!,
         what: _choices['What?']!,
         when: _choices['When?']!,
         where: _choices['Where?']!,
         why: _choices['Why?']!,
         date: today,
-      );
+      ));
     } catch (_) {
       if (!mounted) return;
       setState(() => _saving = false);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeScaffold.dart';
@@ -20,8 +20,6 @@ class DayDetailScreen extends StatefulWidget {
 }
 
 class _DayDetailScreenState extends State<DayDetailScreen> {
-  final _db = DatabaseHelper();
-
   String? _mood;
   int? _gauge;
   Map<String, dynamic>? _stressor;
@@ -44,10 +42,11 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
     // read does fail, the screen still has to say something rather than
     // render an empty page.
     try {
-      mood = await _db.getMood(widget.date);
-      gauge = await _db.getControlGauge(widget.date);
-      stressor = await _db.getStressor(widget.date);
-      reflections = await _db.getReflectionsByDate(widget.date);
+      final checkIns = AppRepositories.checkIns;
+      mood = await checkIns.moodOn(widget.date);
+      gauge = await checkIns.controlLevelOn(widget.date);
+      stressor = await checkIns.stressorOn(widget.date);
+      reflections = await AppRepositories.reflections.on(widget.date);
     } catch (_) {
       // Fall through to the empty state.
     }

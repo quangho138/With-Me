@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Database/LocalDatabase.dart';
+import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Mascot/WithMeAvatar.dart';
@@ -31,8 +31,8 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
   @override
   void initState() {
     super.initState();
-    DatabaseHelper()
-        .getUserName()
+    AppRepositories.users
+        .displayName()
         .then((name) {
           if (mounted) setState(() => _name = name);
         })

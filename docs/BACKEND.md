@@ -38,3 +38,37 @@ AI provenance:
 2. What was kept: the existing tables and date format, the calendar's rules, the repository shape from the project's repository-starter doc.
 3. What was checked: Claude read every screen that saves data to find what was dropped. Flutter could not run in Claude's workspace, so the tests are first run by Quang.
 4. What it got wrong or left open: an SQL "upsert" would be shorter but older Android phones do not support it, so the repository updates then inserts. Screens other than the check-in still call the database directly; moving them is stage 2.
+
+## Stage 2: the data layer (branch backend/data-layer)
+
+Problem: about 14 screens each talked to the database themselves, so any change to how data is stored meant editing many UI files, and none of it could be tested on its own.
+
+What changed:
+
+- Every screen now gets data from lib/Repositories through one place, AppRepositories:
+  - CheckInRepository: saving (stage 1) plus the reads the calendar, progress, dashboard, triggers and day screens use.
+  - ReflectionRepository: the five W's journal ("Check In"). Never leaves the phone.
+  - UserRepository: sign up, sign in, display name, delete account and data.
+  - ExerciseRepository: finished exercises (stage 1).
+- Screens changed only where they called the database: the same data, asked for through a repository. No layout changes.
+- Small fixes that came with it:
+  - Sign-up saves the account and the name together (before, a failure between the two left half an account).
+  - Saving today's reflection replaces the old one in one step (before, a failure could delete it without saving the new one).
+  - The profile's "exercises" count now counts real finished exercises. Before, it counted journal entries because nothing else was saved.
+  - "Delete my account" now tells the user if it fails, instead of failing silently.
+  - The demo account seeds its week through the repositories too.
+- The old DatabaseHelper methods are still there but no screen uses them. They can be removed later.
+
+Success criteria, in test/backend/data_layer_test.dart:
+
+1. No file under lib/WithMe imports the database (checked by scanning the code).
+2. Each repository returns what the screens relied on, on a real in-memory database with synthetic data.
+3. Sign-up saves account and name together; a day's reflection is replaced, never doubled.
+
+Why this matters for stage 3: login moves to hashed passwords and later a server by changing UserRepository only. AppRepositories is the one line to switch.
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the repositories, screen changes, tests and this section.
+2. What was kept: every screen's layout and behavior, the old query logic (moved, not rewritten), the repository shape from the project's repository-starter doc.
+3. What was checked: every DatabaseHelper call in lib/WithMe was found and replaced; a test enforces it stays that way. Tests first run by Quang.
+4. What it got wrong or left open: reads keep returning the same map shapes the screens already used, rather than cleaner typed objects, to avoid touching UI code; that can improve later. Passwords are still plain text until stage 3.
