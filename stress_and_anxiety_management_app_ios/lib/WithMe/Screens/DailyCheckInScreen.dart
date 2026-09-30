@@ -1,15 +1,13 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
 import '../Components/ScenicKit.dart';
-import '../Components/WithMeCards.dart';
 import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
 import '../Data/CheckInSteps.dart';
-import '../Mascot/MascotExpression.dart';
 import '../Mascot/RealMascot.dart';
-import '../Mascot/WithMeAvatar.dart';
 import '../Theme/WithMeTheme.dart';
 import 'SettingsScreen.dart';
 import 'YourDayScreen.dart';
@@ -21,6 +19,9 @@ import 'YourDayScreen.dart';
 /// which stressors, a choice of body / feelings / mind / behaviour, the one
 /// page for whichever was chosen, the intention-to-change dial, strategies
 /// and the strategy detail.
+///
+/// Every page shares the V2 reference's scenic look - see `ScenicKit` - with
+/// the rendered companion reacting to each answer.
 ///
 /// Continue stays disabled until the page is answered; back always works. The five-part self-reflection that used to close it
 /// (`image24`) is now the Check In section on its own - see `CheckInScreen`.
@@ -38,6 +39,9 @@ class DailyCheckInScreen extends StatefulWidget {
   static const String route = '/daily-check-in';
 
   static const int pageCount = 10;
+
+  /// The page that depends on where the stress is coming from.
+  static const int stressorPage = 4;
 
   /// The page that depends on the body / feelings / mind / behaviour choice.
   static const int signsPage = 6;
@@ -64,12 +68,14 @@ class DailyCheckInScreen extends StatefulWidget {
 
 class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   final _answers = CheckInAnswers();
-  final _customStressor = TextEditingController();
 
-  /// Where this visit began. The signs page cannot open on its own - it
-  /// needs the choice before it - so asking for it starts one page earlier.
-  late final int _start = widget.initialStep == DailyCheckInScreen.signsPage
-      ? DailyCheckInScreen.signsPage - 1
+  /// Where this visit began. The stressor and signs pages cannot open on
+  /// their own - each needs the choice before it (the area, or body /
+  /// feelings / mind / behaviour) - so asking for either starts one page
+  /// earlier.
+  late final int _start = widget.initialStep == DailyCheckInScreen.signsPage ||
+          widget.initialStep == DailyCheckInScreen.stressorPage
+      ? widget.initialStep - 1
       : widget.initialStep;
 
   late int _index = _start;
@@ -78,12 +84,6 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   bool _forward = true;
 
   static const int _pageCount = DailyCheckInScreen.pageCount;
-
-  @override
-  void dispose() {
-    _customStressor.dispose();
-    super.dispose();
-  }
 
   void _next() {
     if (_index == _pageCount - 1) {
@@ -163,73 +163,126 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // The first four pages are the V2 reference screens 2-5, on the beach.
-    if (_index < 4) return _scenic(context);
+    // Every page sits on the beach, in the V2 reference's language: cream
+    // speech bubble, sage tiles, the rendered companion, the teal pill.
+    return Scaffold(
+      body: ScenicBackdrop(
+        scene: 'sunset',
+        child: LayoutBuilder(
+          builder: (context, box) {
+            final h = box.maxHeight;
+            final w = box.maxWidth;
+            final insets = MediaQuery.paddingOf(context);
+            // Phone proportions on a tablet or a landscape window: the
+            // bubble and pill keep to a column rather than stretching.
+            final side = math.max(w * 0.07, (w - 480) / 2);
+            final pillSide = math.max(w * 0.1, (w - 420) / 2);
 
-    return WithMeScaffold(
-      onBack: _back,
-      action: WithMeButton(
-        label: _actionLabel,
-        onPressed: _answered ? _next : null,
-      ),
-      scrollable: false,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: WithMeSpace.lg),
-          // One step at a time rather than a PageView: the page shell measures
-          // its content so a short device scrolls instead of overflowing, and
-          // a viewport cannot be measured.
-          Expanded(
-            child: AnimatedSwitcher(
-              duration: WithMeMotion.medium,
-              switchInCurve: WithMeMotion.ease,
-              switchOutCurve: WithMeMotion.ease,
-              transitionBuilder: (child, animation) => SlideTransition(
-                position: Tween<Offset>(
-                  begin: Offset(_forward ? 0.12 : -0.12, 0),
-                  end: Offset.zero,
-                ).animate(animation),
-                child: FadeTransition(opacity: animation, child: child),
+            return CustomMultiChildLayout(
+              delegate: _ScenicPageLayout(
+                insets: insets,
+                // The area grid and everything after it are tall, so the
+                // companion sits smaller there, as on the reference.
+                maxMascot: _index >= 3 ? h * 0.36 : h * 0.45,
               ),
-              child: KeyedSubtree(
-                key: ValueKey(_index),
-                child: _StepMood(expression: _reaction, child: _step(_index)),
-              ),
-            ),
-          ),
-        ],
+              children: [
+                // Painted first, so on a short screen the bubble overlaps
+                // the companion rather than the other way round.
+                LayoutId(
+                  id: _ScenicSlot.mascot,
+                  child: LayoutBuilder(
+                    builder: (context, slot) => Align(
+                      alignment: Alignment.bottomCenter,
+                      child: RealMascot(
+                        pose: _realPose,
+                        height: slot.maxHeight,
+                      ),
+                    ),
+                  ),
+                ),
+                LayoutId(
+                  id: _ScenicSlot.header,
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 8),
+                      ScenicBack(onTap: _back),
+                      Expanded(
+                        child: Center(
+                          child: _index == 0
+                              ? const SizedBox.shrink()
+                              : ScenicProgress(
+                                  value: (_index + 1) / _pageCount,
+                                  width: math.min(w * 0.36, 180),
+                                ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 48,
+                        child: _index == 0 ? _settingsGear(context) : null,
+                      ),
+                    ],
+                  ),
+                ),
+                LayoutId(
+                  id: _ScenicSlot.content,
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.symmetric(horizontal: side),
+                    child: AnimatedSwitcher(
+                      duration: WithMeMotion.medium,
+                      layoutBuilder: (current, previous) => Stack(
+                        alignment: Alignment.topCenter,
+                        children: [...previous, ?current],
+                      ),
+                      transitionBuilder: (child, animation) => FadeTransition(
+                        opacity: animation,
+                        child: SlideTransition(
+                          position: Tween<Offset>(
+                            begin: Offset(_forward ? 0.08 : -0.08, 0),
+                            end: Offset.zero,
+                          ).animate(animation),
+                          child: child,
+                        ),
+                      ),
+                      child: KeyedSubtree(
+                        key: ValueKey(_index),
+                        child: _scenicContent(),
+                      ),
+                    ),
+                  ),
+                ),
+                LayoutId(
+                  id: _ScenicSlot.action,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: pillSide),
+                    child: ScenicPill(
+                      label: _actionLabel,
+                      height: 60,
+                      onPressed: _answered ? _next : null,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 
-  /// Pages 4 to 9 - the first four are built by [_scenic].
-  Widget _step(int index) => switch (index) {
-        4 => _StressorStep(
-            answers: _answers,
-            custom: _customStressor,
-            onChanged: _touch,
-          ),
-        5 => _SignsIntroStep(answers: _answers, onChanged: _touch),
-        6 => _SignsStep(
-            dimension: _answers.signDimension ?? SignDimension.body,
-            answers: _answers,
-            onChanged: _touch,
-          ),
-        7 => _IntentionStep(answers: _answers, onChanged: _touch),
-        8 => _StrategyStep(answers: _answers, onChanged: _touch),
-        _ => _StrategyDetailStep(answers: _answers, onChanged: _touch),
-      };
-
-  // ---------------------------------------------------------------------------
-  // The V2 pages - reference screens 2 to 5
-  // ---------------------------------------------------------------------------
-
-  /// The rendered companion's pose for pages 0 to 3. Each page opens on the
-  /// pose the reference shows, then answers move it: hard ones make it sad,
+  /// The rendered companion's pose. Each page opens on the pose the
+  /// reference shows, then answers move it: hard ones make it sad,
   /// middling ones get a smirk, good ones a happy hop. The reference's own
   /// example answers (stress 4, motivation 3) land on its pictured poses.
+  /// Naming a stressor or a sign gets thoughtful concern rather than a
+  /// frown.
   RealPose get _realPose {
+    RealPose scale(int? v) {
+      if (v == null || v < 1) return RealPose.idle;
+      if (v <= 2) return RealPose.sad;
+      if (v == 3) return RealPose.smirk;
+      return RealPose.happy;
+    }
+
     final a = _answers;
     switch (_index) {
       case 0:
@@ -255,120 +308,44 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           2 => RealPose.smirk,
           _ => RealPose.excited,
         };
-      default:
+      case 3:
         return a.area == null ? RealPose.think : RealPose.sad;
+      case 4:
+        return a.stressors.isEmpty ? RealPose.idle : RealPose.think;
+      // Body, feelings, mind or behaviour is neither good nor bad news.
+      case 5:
+        return a.signDimension == null ? RealPose.idle : RealPose.smirk;
+      case 6:
+        return (a.signs[a.signDimension]?.isEmpty ?? true)
+            ? RealPose.idle
+            : RealPose.think;
+      case 7:
+        return scale(
+          a.readiness == null ? null : ReadinessGauge.levelOf(a.readiness!) + 1,
+        );
+      case 8:
+        return a.strategy == null ? RealPose.idle : RealPose.happy;
+      default:
+        return scale(a.rating);
     }
   }
 
-  Widget _scenic(BuildContext context) {
-    return Scaffold(
-      body: ScenicBackdrop(
-        scene: 'sunset',
-        child: LayoutBuilder(
-          builder: (context, box) {
-            final h = box.maxHeight;
-            final w = box.maxWidth;
-            // The area grid is tall, so the companion sits smaller there,
-            // as on the reference.
-            final mascot = _index == 3 ? h * 0.36 : h * 0.45;
-
-            return Stack(
-              children: [
-                // Sitting on the rock, behind the Continue pill.
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  bottom: h * 0.07,
-                  child: Center(
-                    child: RealMascot(pose: _realPose, height: mascot),
-                  ),
-                ),
-                SafeArea(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SizedBox(
-                        height: 44,
-                        child: Row(
-                          children: [
-                            const SizedBox(width: 8),
-                            ScenicBack(onTap: _back),
-                            Expanded(
-                              child: Center(
-                                child: _index == 0
-                                    ? const SizedBox.shrink()
-                                    : ScenicProgress(
-                                        value: (_index + 1) / _pageCount,
-                                        width: w * 0.36,
-                                      ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 48,
-                              child: _index == 0 ? _settingsGear(context) : null,
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: w * 0.07),
-                        child: AnimatedSwitcher(
-                          duration: WithMeMotion.medium,
-                          transitionBuilder: (child, animation) =>
-                              FadeTransition(
-                            opacity: animation,
-                            child: SlideTransition(
-                              position: Tween<Offset>(
-                                begin: Offset(_forward ? 0.08 : -0.08, 0),
-                                end: Offset.zero,
-                              ).animate(animation),
-                              child: child,
-                            ),
-                          ),
-                          child: KeyedSubtree(
-                            key: ValueKey(_index),
-                            child: _scenicContent(),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: w * 0.1),
-                        child: ScenicPill(
-                          label: 'Continue',
-                          height: 60,
-                          onPressed: _answered ? _next : null,
-                        ),
-                      ),
-                      SizedBox(height: h * 0.025),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-
   Widget _settingsGear(BuildContext context) => Semantics(
-        button: true,
-        label: 'Settings',
-        excludeSemantics: true,
-        child: GestureDetector(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const SettingsScreen()),
-          ),
-          child: const Icon(
-            Icons.settings_rounded,
-            color: Colors.white,
-            size: 26,
-            shadows: [Shadow(color: Color(0x66000000), blurRadius: 6)],
-          ),
-        ),
-      );
+    button: true,
+    label: 'Settings',
+    excludeSemantics: true,
+    child: GestureDetector(
+      onTap: () => Navigator.of(
+        context,
+      ).push(MaterialPageRoute(builder: (_) => const SettingsScreen())),
+      child: const Icon(
+        Icons.settings_rounded,
+        color: Colors.white,
+        size: 26,
+        shadows: [Shadow(color: Color(0x66000000), blurRadius: 6)],
+      ),
+    ),
+  );
 
   Widget _scenicContent() {
     final a = _answers;
@@ -425,7 +402,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
             ],
           ),
         );
-      default:
+      case 3:
         const areas = [
           ('Home', Icons.home_rounded, Color(0xFF3E9C52)),
           ('Work', Icons.work_rounded, Color(0xFF1C7C84)),
@@ -433,12 +410,12 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           ('Social', Icons.groups_rounded, Color(0xFFEA6A58)),
         ];
         Widget tile(int i) => AreaTile(
-              label: areas[i].$1,
-              icon: areas[i].$2,
-              color: areas[i].$3,
-              selected: a.area == areas[i].$1,
-              onTap: () => _touch(() => a.area = areas[i].$1),
-            );
+          label: areas[i].$1,
+          icon: areas[i].$2,
+          color: areas[i].$3,
+          selected: a.area == areas[i].$1,
+          onTap: () => _touch(() => a.area = areas[i].$1),
+        );
         return SpeechBubble(
           tailAt: 0.62,
           padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
@@ -448,74 +425,56 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                 'Where is most of your\nstress coming from\nright now?',
               ),
               const SizedBox(height: 16),
-              Row(children: [
-                Expanded(child: tile(0)),
-                const SizedBox(width: 12),
-                Expanded(child: tile(1)),
-              ]),
+              Row(
+                children: [
+                  Expanded(child: tile(0)),
+                  const SizedBox(width: 12),
+                  Expanded(child: tile(1)),
+                ],
+              ),
               const SizedBox(height: 12),
-              Row(children: [
-                Expanded(child: tile(2)),
-                const SizedBox(width: 12),
-                Expanded(child: tile(3)),
-              ]),
+              Row(
+                children: [
+                  Expanded(child: tile(2)),
+                  const SizedBox(width: 12),
+                  Expanded(child: tile(3)),
+                ],
+              ),
             ],
           ),
         );
+      case 4:
+        return _StressorStep(answers: _answers, onChanged: _touch);
+      case 5:
+        return _SignsIntroStep(answers: _answers, onChanged: _touch);
+      case 6:
+        return _SignsStep(
+          dimension: _answers.signDimension ?? SignDimension.body,
+          answers: _answers,
+          onChanged: _touch,
+        );
+      case 7:
+        return _IntentionStep(answers: _answers, onChanged: _touch);
+      case 8:
+        return _StrategyStep(answers: _answers, onChanged: _touch);
+      default:
+        return _StrategyDetailStep(answers: _answers, onChanged: _touch);
     }
-  }
-
-  /// How the mascot feels about the current page's answer. Idle - alive but
-  /// waiting - until something is picked; then hard answers make it sad,
-  /// middling ones get a smirk, good ones a happy hop. Naming a stressor or a
-  /// sign gets gentle concern rather than a frown.
-  MascotExpression get _reaction {
-    MascotExpression scale(int? v, {bool highIsGood = true}) {
-      if (v == null || v < 1) return MascotExpression.idle;
-      final good = highIsGood ? v >= 4 : v <= 2;
-      final bad = highIsGood ? v <= 2 : v >= 4;
-      return good
-          ? MascotExpression.happy
-          : bad
-              ? MascotExpression.sad
-              : MascotExpression.smirk;
-    }
-
-    final a = _answers;
-    return switch (_index) {
-      // Pages 0-3 use the rendered companion - see [_realPose].
-      0 || 1 || 2 || 3 => MascotExpression.idle,
-      4 => a.stressors.isEmpty
-          ? MascotExpression.idle
-          : MascotExpression.concerned,
-      // Body, feelings, mind or behaviour is neither good nor bad news.
-      5 => a.signDimension == null
-          ? MascotExpression.idle
-          : MascotExpression.smirk,
-      6 => (a.signs[a.signDimension]?.isEmpty ?? true)
-          ? MascotExpression.idle
-          : MascotExpression.concerned,
-      7 => scale(a.readiness == null
-          ? null
-          : ReadinessGauge.levelOf(a.readiness!) + 1),
-      8 => a.strategy == null ? MascotExpression.idle : MascotExpression.happy,
-      _ => scale(a.rating),
-    };
   }
 
   /// Whether the current page has what it asks for. Continue waits on it.
   bool get _answered => switch (_index) {
-        0 => _answers.mood != null,
-        1 => _answers.stress != null,
-        2 => _answers.motivation != null,
-        3 => _answers.area != null,
-        4 => _answers.stressors.isNotEmpty,
-        5 => _answers.signDimension != null,
-        6 => _answers.signs[_answers.signDimension]?.isNotEmpty ?? false,
-        7 => _answers.readiness != null,
-        8 => _answers.strategy != null && _answers.action != null,
-        _ => _answers.rating > 0,
-      };
+    0 => _answers.mood != null,
+    1 => _answers.stress != null,
+    2 => _answers.motivation != null,
+    3 => _answers.area != null,
+    4 => _answers.stressors.isNotEmpty,
+    5 => _answers.signDimension != null,
+    6 => _answers.signs[_answers.signDimension]?.isNotEmpty ?? false,
+    7 => _answers.readiness != null,
+    8 => _answers.strategy != null && _answers.action != null,
+    _ => _answers.rating > 0,
+  };
 
   String get _actionLabel =>
       _index == _pageCount - 1 ? 'Finish check-in' : 'Continue';
@@ -523,109 +482,249 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   void _touch(VoidCallback change) => setState(change);
 }
 
+// --- The scenic page shell ----------------------------------------------------
+
+enum _ScenicSlot { mascot, header, content, action }
+
+/// Lays out a check-in page: back / progress header, the bubble, the
+/// Continue pill, and the companion in whatever room is left between them.
+///
+/// The companion is sized to that room, up to [maxMascot], so it stays in
+/// view on a short phone instead of being covered; below a floor it stops
+/// shrinking and the bubble scrolls instead.
+class _ScenicPageLayout extends MultiChildLayoutDelegate {
+  _ScenicPageLayout({required this.insets, required this.maxMascot});
+
+  final EdgeInsets insets;
+  final double maxMascot;
+
+  static const double _headerHeight = 44;
+  static const double _pillHeight = 60;
+
+  /// How far the companion's head may tuck up under the bubble's tail.
+  static const double _tuck = 24;
+
+  @override
+  void performLayout(Size size) {
+    final w = size.width;
+    final h = size.height;
+
+    layoutChild(
+      _ScenicSlot.header,
+      BoxConstraints.tight(Size(w, _headerHeight)),
+    );
+    positionChild(_ScenicSlot.header, Offset(0, insets.top));
+    final contentTop = insets.top + _headerHeight + 10;
+
+    layoutChild(
+      _ScenicSlot.action,
+      BoxConstraints.tightFor(width: w, height: _pillHeight),
+    );
+    final pillTop = h - insets.bottom - h * 0.025 - _pillHeight;
+    positionChild(_ScenicSlot.action, Offset(0, pillTop));
+
+    // Always leave the companion at least this much of itself above the
+    // pill, and let the bubble scroll if that means it has to.
+    final minMascotShown = h * 0.14;
+    final mascotBottom = h - h * 0.07;
+    final contentMax = (pillTop - minMascotShown - contentTop).clamp(
+      0.0,
+      double.infinity,
+    );
+    final content = layoutChild(
+      _ScenicSlot.content,
+      BoxConstraints(maxWidth: w, maxHeight: contentMax),
+    );
+    positionChild(_ScenicSlot.content, Offset(0, contentTop));
+
+    final room = mascotBottom - (contentTop + content.height) + _tuck;
+    final floor = (mascotBottom - pillTop) + minMascotShown;
+    final mascot = room.clamp(floor, maxMascot < floor ? floor : maxMascot);
+    layoutChild(_ScenicSlot.mascot, BoxConstraints.tight(Size(w, mascot)));
+    positionChild(_ScenicSlot.mascot, Offset(0, mascotBottom - mascot));
+  }
+
+  @override
+  bool shouldRelayout(_ScenicPageLayout old) =>
+      old.insets != insets || old.maxMascot != maxMascot;
+}
+
+// --- Scenic building blocks for pages 4 to 9 ---------------------------------
+
+/// Body copy inside a bubble.
+const TextStyle _bubbleBody = TextStyle(
+  fontFamily: WithMeText.ui,
+  fontSize: 16,
+  height: 1.3,
+  fontWeight: FontWeight.w600,
+  color: ScenicColors.ink,
+);
+
+/// A white field on the cream bubble, ringed like the number choices.
+final BoxBorder _fieldRing = Border.all(color: ScenicColors.ring, width: 1.4);
+
+/// The deeper tone of a category colour, for a marker that carries a white
+/// glyph - the pastels are too pale to hold one.
+Color _deep(Color c) {
+  if (c == WithMeColors.mint) return const Color(0xFF3E9C8C);
+  if (c == WithMeColors.peach) return const Color(0xFFEE9A3E);
+  if (c == WithMeColors.coral) return const Color(0xFFE0604A);
+  if (c == WithMeColors.pink) return const Color(0xFFD2557F);
+  if (c == WithMeColors.teal) return const Color(0xFF1C7C84);
+  if (c == WithMeColors.slate) return const Color(0xFF8A9A93);
+  return c;
+}
+
+/// A glyph for each stressor and sign, so a grid of six reads at a glance.
+const Map<String, IconData> _optionIcons = {
+  // Work
+  'Colleagues': Icons.groups_rounded,
+  'Boss': Icons.person_rounded,
+  'Employees': Icons.badge_rounded,
+  'Workload': Icons.inventory_2_rounded,
+  'Time mgmt': Icons.schedule_rounded,
+  'Environment': Icons.apartment_rounded,
+  // Home
+  'Partner': Icons.favorite_rounded,
+  'Family': Icons.family_restroom_rounded,
+  'In-laws': Icons.people_alt_rounded,
+  'Financial': Icons.payments_rounded,
+  'Domestic duties': Icons.cleaning_services_rounded,
+  'Sickness': Icons.medical_services_rounded,
+  // School
+  'Homework': Icons.menu_book_rounded,
+  'Exam pressure': Icons.quiz_rounded,
+  'Organization': Icons.checklist_rounded,
+  'Bullying': Icons.report_rounded,
+  'Performance': Icons.trending_up_rounded,
+  // Social
+  'Social media': Icons.phone_iphone_rounded,
+  'Traffic': Icons.traffic_rounded,
+  'Isolation': Icons.person_outline_rounded,
+  'Friends': Icons.diversity_3_rounded,
+  'Disputes': Icons.forum_rounded,
+  'Sports performance': Icons.sports_soccer_rounded,
+  // Body
+  'Tension': Icons.compress_rounded,
+  'Headaches': Icons.sick_rounded,
+  'Sleep issues': Icons.bedtime_rounded,
+  'Low energy': Icons.battery_1_bar_rounded,
+  'Stomach issues': Icons.lunch_dining_rounded,
+  // Feelings
+  'Anxious': Icons.bolt_rounded,
+  'Overwhelmed': Icons.waves_rounded,
+  'Frustrated': Icons.sentiment_dissatisfied_rounded,
+  'Sad': Icons.water_drop_rounded,
+  'Angry': Icons.local_fire_department_rounded,
+  // Mind
+  'Racing thoughts': Icons.speed_rounded,
+  "Can't focus": Icons.center_focus_weak_rounded,
+  'Negative thoughts': Icons.cloud_rounded,
+  'Worrying': Icons.psychology_alt_rounded,
+  'Self-doubt': Icons.help_rounded,
+  // Behaviour
+  'Avoiding tasks': Icons.block_rounded,
+  'Procrastinating': Icons.hourglass_bottom_rounded,
+  'Overeating': Icons.fastfood_rounded,
+  'Withdrawing': Icons.door_front_door_rounded,
+  'Overworking': Icons.work_history_rounded,
+  'Other': Icons.more_horiz_rounded,
+};
+
+/// A centred, multi-select grid of small scenic tiles: three across, or two
+/// where three would be too cramped to read and tap.
+class _ChoiceGrid extends StatelessWidget {
+  const _ChoiceGrid({
+    required this.options,
+    required this.chosen,
+    required this.onToggle,
+  });
+
+  final List<StepOption> options;
+  final Set<String> chosen;
+  final ValueChanged<String> onToggle;
+
+  static const double _gap = 10;
+
+  /// The narrowest a tile may be before the grid drops to two columns.
+  static const double _minTile = 84;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, box) {
+        final columns = (box.maxWidth - 2 * _gap) / 3 >= _minTile ? 3 : 2;
+        final tile = (box.maxWidth - (columns - 1) * _gap) / columns;
+
+        return Wrap(
+          alignment: WrapAlignment.center,
+          spacing: _gap,
+          runSpacing: _gap,
+          children: [
+            for (final option in options)
+              SizedBox(
+                width: tile,
+                child: ScenicChoiceTile(
+                  label: option.label,
+                  color: _deep(option.color),
+                  icon: _optionIcons[option.label],
+                  selected: chosen.contains(option.label),
+                  onTap: () => onToggle(option.label),
+                  height: 92,
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
 // --- image11 - image14 ------------------------------------------------------
 
 class _StressorStep extends StatelessWidget {
-  const _StressorStep({
-    required this.answers,
-    required this.custom,
-    required this.onChanged,
-  });
+  const _StressorStep({required this.answers, required this.onChanged});
 
   final CheckInAnswers answers;
-  final TextEditingController custom;
   final void Function(VoidCallback) onChanged;
 
   @override
   Widget build(BuildContext context) {
-    final area = answers.area;
-    final options = kStressorsByArea[area];
+    // The area page always comes first, so there is always an area here.
+    final area = answers.area ?? 'Home';
 
-    if (options == null) {
-      return Column(
+    return SpeechBubble(
+      tailAt: 0.62,
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const QuestionCard(question: "What's weighing on you?"),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(controller: custom, hint: 'Add a custom stressor...'),
-          const Spacer(),
-          const Center(
-            child: _StepMascot(size: 71),
+          BubbleText(
+            'Which stressors affect\nyou ${_phrase(area)}?',
+            size: 24,
           ),
-          const Spacer(),
-        ],
-      );
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        QuestionCard(
-          question: 'Which stressors affect you ${_phrase(area!)}?',
-        ),
-        const SizedBox(height: WithMeSpace.lg),
-        for (var row = 0; row < 2; row++) ...[
-          if (row > 0) const SizedBox(height: kTriTileGutter),
-          Row(
-            children: [
-              for (var col = 0; col < 3; col++) ...[
-                if (col > 0) const SizedBox(width: kTriTileGutter),
-                Expanded(
-                  child: Builder(builder: (_) {
-                    final option = options[row * 3 + col];
-                    final on = answers.stressors.contains(option.label);
-                    return OptionGridCard(
-                      label: option.label,
-                      tint: option.color,
-                      selected: on,
-                      compact: true,
-                      onTap: () => onChanged(() {
-                        on
-                            ? answers.stressors.remove(option.label)
-                            : answers.stressors.add(option.label);
-                      }),
-                    );
-                  }),
-                ),
-              ],
-            ],
-          ),
-        ],
-        const SizedBox(height: WithMeSpace.lg),
-        WithMeField(controller: custom, hint: 'Add a custom stressor...'),
-        const SizedBox(height: WithMeSpace.md),
-        // The design pairs "Save custom" with a second Continue here; the
-        // bottom-pinned action already continues, so this one only saves.
-        SizedBox(
-          width: (WithMeSpace.contentWidth - WithMeSpace.md) / 2,
-          child: WithMeButton(
-            label: 'Save custom',
-            filled: false,
-            height: 51,
-            onPressed: () => onChanged(() {
-              final text = custom.text.trim();
-              if (text.isEmpty) return;
-              answers.stressors.add(text);
-              custom.clear();
+          const SizedBox(height: 16),
+          _ChoiceGrid(
+            options: kStressorsByArea[area]!,
+            chosen: answers.stressors,
+            onToggle: (label) => onChanged(() {
+              answers.stressors.contains(label)
+                  ? answers.stressors.remove(label)
+                  : answers.stressors.add(label);
             }),
           ),
-        ),
-        const Spacer(),
-        const Center(
-          child: _StepMascot(size: 71),
-        ),
-        const Spacer(),
-      ],
+        ],
+      ),
     );
   }
 
   static String _phrase(String area) => switch (area) {
-        'Work' => 'at work',
-        'Home' => 'at home',
-        'School' => 'at school',
-        'Social' => 'socially',
-        _ => 'right now',
-      };
+    'Work' => 'at work',
+    'Home' => 'at home',
+    'School' => 'at school',
+    'Social' => 'socially',
+    _ => 'right now',
+  };
 }
 
 // --- image15 ----------------------------------------------------------------
@@ -636,59 +735,73 @@ class _SignsIntroStep extends StatelessWidget {
   final CheckInAnswers answers;
   final void Function(VoidCallback) onChanged;
 
+  static String _name(SignDimension d) => switch (d) {
+    SignDimension.body => 'Body',
+    SignDimension.feelings => 'Feelings',
+    SignDimension.mind => 'Mind',
+    SignDimension.behaviour => 'Behavior',
+  };
+
+  static IconData _icon(SignDimension d) => switch (d) {
+    SignDimension.body => Icons.accessibility_new_rounded,
+    SignDimension.feelings => Icons.favorite_rounded,
+    SignDimension.mind => Icons.psychology_rounded,
+    SignDimension.behaviour => Icons.directions_walk_rounded,
+  };
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        WithMeCard(
-          // Measured 340 x 128 on image15.
-          minHeight: 128,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+    // A choice, not a list: whichever is picked decides the one page that
+    // follows ("How is stress showing up in your body?").
+    Widget card(SignDimension d) => ScenicChoiceTile(
+      label: _name(d),
+      color: _deep(d.color),
+      icon: _icon(d),
+      selected: answers.signDimension == d,
+      onTap: () => onChanged(() => answers.signDimension = d),
+      height: 112,
+      markerSize: 50,
+      fontSize: 19,
+      showCheck: false,
+    );
+
+    const dims = SignDimension.values;
+    return SpeechBubble(
+      tailAt: 0.62,
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const BubbleText('What are the signs?', size: 24),
+          const SizedBox(height: 8),
+          const _Formula(
+            lead: 'Stressor = ',
+            parts: ['body reaction', ' + ', 'situation'],
+          ),
+          const SizedBox(height: 2),
+          const _Formula(
+            lead: 'Anxiety = ',
+            parts: ['anticipation', ' + ', 'event'],
+            trail: ' (real or imagined)',
+          ),
+          const SizedBox(height: 16),
+          Row(
             children: [
-              _Formula(
-                lead: 'Stressor = ',
-                parts: ['body reaction', ' + ', 'situation'],
-              ),
-              const Divider(height: WithMeSpace.lg, color: WithMeColors.slate),
-              _Formula(
-                lead: 'Anxiety = ',
-                parts: ['anticipation', ' + ', 'event'],
-                trail: ' (real or imagined)',
-              ),
+              Expanded(child: card(dims[0])),
+              const SizedBox(width: 12),
+              Expanded(child: card(dims[1])),
             ],
           ),
-        ),
-        // image15 draws these as left-aligned pills, one already picked -
-        // measured 172 x ~50, 15 pt radius, 10 apart, 36 below the card.
-        const SizedBox(height: 36),
-        for (final dimension in SignDimension.values) ...[
-          Align(
-            alignment: Alignment.centerLeft,
-            // A choice, not a list: whichever is picked decides the one
-            // page that follows ("How is stress showing up in your body?").
-            child: _SignChoice(
-              dimension: dimension,
-              selected: answers.signDimension == dimension,
-              onTap: () =>
-                  onChanged(() => answers.signDimension = dimension),
-            ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(child: card(dims[2])),
+              const SizedBox(width: 12),
+              Expanded(child: card(dims[3])),
+            ],
           ),
-          const SizedBox(height: 10),
         ],
-        const SizedBox(height: WithMeSpace.lg),
-        Text(
-          'What are the signs?',
-          textAlign: TextAlign.center,
-          style: WithMeText.question.copyWith(fontSize: 22),
-        ),
-        const Spacer(),
-        const Center(
-          child: _StepMascot(size: 66),
-        ),
-        const Spacer(),
-      ],
+      ),
     );
   }
 }
@@ -702,15 +815,16 @@ class _Formula extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bold = WithMeText.option.copyWith(
+    final bold = _bubbleBody.copyWith(
       fontWeight: FontWeight.w700,
-      color: WithMeColors.teal,
+      color: ScenicColors.pillBottom,
     );
 
     return RichText(
       textAlign: TextAlign.center,
+      textScaler: MediaQuery.textScalerOf(context),
       text: TextSpan(
-        style: WithMeText.option,
+        style: _bubbleBody.copyWith(fontSize: 14.5),
         children: [
           TextSpan(text: lead),
           for (var i = 0; i < parts.length; i++)
@@ -739,27 +853,29 @@ class _SignsStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final chosen = answers.signs[dimension]!;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        QuestionCard(question: dimension.question),
-        const SizedBox(height: WithMeSpace.lg),
-        for (final option in dimension.options)
-          Padding(
-            padding: const EdgeInsets.only(bottom: kOptionRowGap),
-            child: OptionRow(
-              label: option.label,
-              dot: option.color,
-              selected: chosen.contains(option.label),
-              onTap: () => onChanged(() {
-                chosen.contains(option.label)
-                    ? chosen.remove(option.label)
-                    : chosen.add(option.label);
-              }),
-            ),
+    return SpeechBubble(
+      tailAt: 0.62,
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          BubbleText(dimension.question, size: 24),
+          const SizedBox(height: 6),
+          const Text(
+            'Pick all that fit.',
+            textAlign: TextAlign.center,
+            style: _bubbleBody,
           ),
-        const Spacer(),
-      ],
+          const SizedBox(height: 14),
+          _ChoiceGrid(
+            options: dimension.options,
+            chosen: chosen,
+            onToggle: (label) => onChanged(() {
+              chosen.contains(label) ? chosen.remove(label) : chosen.add(label);
+            }),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -786,49 +902,55 @@ class _IntentionStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final readiness = answers.readiness;
-    final level =
-        readiness == null ? null : ReadinessGauge.levelOf(readiness);
+    final level = readiness == null ? null : ReadinessGauge.levelOf(readiness);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        const QuestionCard(question: 'Intention to change', minHeight: 64),
-        const SizedBox(height: WithMeSpace.lg),
-        Text(
-          'How ready do you feel to do something differently today?',
-          textAlign: TextAlign.center,
-          style: WithMeText.body.copyWith(color: WithMeColors.ink),
-        ),
-        const SizedBox(height: WithMeSpace.md),
-        Center(
-          child: ReadinessGauge(
-            value: readiness,
-            onChanged: (v) => onChanged(() {
-              answers.readiness = v;
-              answers.intention =
-                  ReadinessGauge.levels[ReadinessGauge.levelOf(v)];
-            }),
+    return SpeechBubble(
+      tailAt: 0.62,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const BubbleText('Intention to change', size: 24),
+          const SizedBox(height: 8),
+          const Text(
+            'How ready do you feel to do something differently today?',
+            textAlign: TextAlign.center,
+            style: _bubbleBody,
           ),
-        ),
-        const SizedBox(height: WithMeSpace.sm),
-        Text(
-          level == null ? 'Drag the needle' : ReadinessGauge.levels[level],
-          textAlign: TextAlign.center,
-          style: level == null
-              ? WithMeText.caption
-              : WithMeText.option.copyWith(
-                  fontWeight: FontWeight.w700,
-                  color: WithMeColors.teal,
-                ),
-        ),
-        const SizedBox(height: WithMeSpace.md),
-        ReassuranceCard(text: _notes[level ?? 2]),
-        const Spacer(),
-        const Center(
-          child: _StepMascot(size: 90),
-        ),
-        const Spacer(),
-      ],
+          const SizedBox(height: 14),
+          Center(
+            child: ReadinessGauge(
+              value: readiness,
+              onChanged: (v) => onChanged(() {
+                answers.readiness = v;
+                answers.intention =
+                    ReadinessGauge.levels[ReadinessGauge.levelOf(v)];
+              }),
+            ),
+          ),
+          const SizedBox(height: 8),
+          ChunkyText(
+            level == null ? 'Drag the needle' : ReadinessGauge.levels[level],
+            weight: 0.6,
+            style: TextStyle(
+              fontFamily: WithMeText.ui,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: level == null
+                  ? ScenicColors.ink.withValues(alpha: 0.6)
+                  : ScenicColors.pillBottom,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            _notes[level ?? 2],
+            textAlign: TextAlign.center,
+            style: _bubbleBody.copyWith(
+              fontSize: 15,
+              color: ScenicColors.ink.withValues(alpha: 0.8),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -854,10 +976,7 @@ class _StrategyStepState extends State<_StrategyStep> {
   List<String> get _actions {
     final strategy = widget.answers.strategy;
     if (strategy == null) return const [];
-    return [
-      ...?kActionsByStrategy[strategy],
-      ...?_customActions[strategy],
-    ];
+    return [...?kActionsByStrategy[strategy], ...?_customActions[strategy]];
   }
 
   Future<void> _addCustom() async {
@@ -867,10 +986,8 @@ class _StrategyStepState extends State<_StrategyStep> {
     final saved = await showDialog<bool>(
       context: context,
       barrierColor: const Color(0x73143A38),
-      builder: (context) => _CustomStrategyDialog(
-        strategy: strategy,
-        action: action,
-      ),
+      builder: (context) =>
+          _CustomStrategyDialog(strategy: strategy, action: action),
     );
 
     if (saved == true) {
@@ -895,56 +1012,66 @@ class _StrategyStepState extends State<_StrategyStep> {
   Widget build(BuildContext context) {
     final answers = widget.answers;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          'Select strategies and actions',
-          textAlign: TextAlign.center,
-          style: WithMeText.title,
-        ),
-        const SizedBox(height: WithMeSpace.lg),
-        WithMeDropdown(
-          label: 'Stress management strategy',
-          value: answers.strategy,
-          items: _strategies,
-          onChanged: (v) => widget.onChanged(() {
-            answers.strategy = v;
-            answers.action = null;
-          }),
-        ),
-        const SizedBox(height: WithMeSpace.lg),
-        WithMeDropdown(
-          label: 'Stress management action',
-          value: answers.action,
-          items: _actions,
-          onChanged: (v) => widget.onChanged(() => answers.action = v),
-        ),
-        const SizedBox(height: WithMeSpace.lg),
-        WithMeCard(
-          child: Column(
-            children: [
-              Text('Pick a rate of effectiveness', style: WithMeText.option),
-              const SizedBox(height: WithMeSpace.md),
-              StarRating(
-                value: answers.rating,
-                onChanged: (v) => widget.onChanged(() => answers.rating = v),
-              ),
-            ],
+    return SpeechBubble(
+      tailAt: 0.62,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const BubbleText('Select strategies\nand actions', size: 24),
+          const SizedBox(height: 16),
+          WithMeDropdown(
+            label: 'Stress management strategy',
+            value: answers.strategy,
+            items: _strategies,
+            fill: Colors.white,
+            border: _fieldRing,
+            onChanged: (v) => widget.onChanged(() {
+              answers.strategy = v;
+              answers.action = null;
+            }),
           ),
-        ),
-        const SizedBox(height: WithMeSpace.md),
-        GestureDetector(
-          onTap: _addCustom,
-          behavior: HitTestBehavior.opaque,
-          child: Text(
-            '+ Add custom strategy & action',
+          const SizedBox(height: 12),
+          WithMeDropdown(
+            label: 'Stress management action',
+            value: answers.action,
+            items: _actions,
+            fill: Colors.white,
+            border: _fieldRing,
+            onChanged: (v) => widget.onChanged(() => answers.action = v),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Pick a rate of effectiveness',
             textAlign: TextAlign.center,
-            style: WithMeText.body.copyWith(color: WithMeColors.teal),
+            style: _bubbleBody,
           ),
-        ),
-        const Spacer(),
-      ],
+          const SizedBox(height: 6),
+          StarRating(
+            value: answers.rating,
+            size: 32,
+            onChanged: (v) => widget.onChanged(() => answers.rating = v),
+          ),
+          const SizedBox(height: 12),
+          Semantics(
+            button: true,
+            child: GestureDetector(
+              onTap: _addCustom,
+              behavior: HitTestBehavior.opaque,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Text(
+                  '+ Add custom strategy & action',
+                  textAlign: TextAlign.center,
+                  style: _bubbleBody.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: ScenicColors.pillBottom,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -959,44 +1086,37 @@ class _CustomStrategyDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      backgroundColor: WithMeColors.creamLight,
+      backgroundColor: ScenicColors.bubble,
       insetPadding: const EdgeInsets.symmetric(horizontal: WithMeSpace.xl),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(WithMeSpace.radiusLg),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       child: Padding(
         padding: const EdgeInsets.all(WithMeSpace.xl),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Add custom strategy & action', style: WithMeText.title.copyWith(fontSize: 19)),
+            const BubbleText('Add custom strategy\n& action', size: 21),
             const SizedBox(height: WithMeSpace.lg),
             _DialogField(controller: strategy, hint: 'Custom strategy'),
             const SizedBox(height: WithMeSpace.md),
             _DialogField(controller: action, hint: 'Custom action'),
             const SizedBox(height: WithMeSpace.lg),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: Text(
-                    'Cancel',
-                    style: WithMeText.option.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: WithMeColors.inkSoft,
-                    ),
+                Expanded(
+                  child: ScenicPill(
+                    label: 'Cancel',
+                    light: true,
+                    height: 46,
+                    onPressed: () => Navigator.of(context).pop(false),
                   ),
                 ),
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
-                  child: Text(
-                    'Add',
-                    style: WithMeText.option.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: WithMeColors.teal,
-                    ),
+                const SizedBox(width: WithMeSpace.md),
+                Expanded(
+                  child: ScenicPill(
+                    label: 'Add',
+                    height: 46,
+                    onPressed: () => Navigator.of(context).pop(true),
                   ),
                 ),
               ],
@@ -1019,21 +1139,26 @@ class _DialogField extends StatelessWidget {
     return TextField(
       controller: controller,
       style: WithMeText.option,
-      cursorColor: WithMeColors.teal,
+      cursorColor: ScenicColors.pillBottom,
       decoration: InputDecoration(
         hintText: hint,
+        filled: true,
+        fillColor: Colors.white,
         hintStyle: WithMeText.option.copyWith(color: WithMeColors.inkFaint),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: WithMeSpace.lg,
           vertical: WithMeSpace.md,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusSm),
-          borderSide: const BorderSide(color: WithMeColors.slate),
+          borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+          borderSide: const BorderSide(color: ScenicColors.ring, width: 1.4),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusSm),
-          borderSide: const BorderSide(color: WithMeColors.teal, width: 1.6),
+          borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+          borderSide: const BorderSide(
+            color: ScenicColors.pillBottom,
+            width: 1.8,
+          ),
         ),
       ),
     );
@@ -1052,55 +1177,68 @@ class _StrategyDetailStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final now = DateTime.now();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text('Strategy details', textAlign: TextAlign.center, style: WithMeText.title),
-        const SizedBox(height: WithMeSpace.lg),
-        WithMeCard(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Date · ${now.day} ${_month(now.month)} ${now.year}',
-                style: WithMeText.body.copyWith(color: WithMeColors.ink),
+    return SpeechBubble(
+      tailAt: 0.62,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const BubbleText('Strategy details', size: 24),
+          const SizedBox(height: 14),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: ScenicColors.tile,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.9),
+                width: 1.4,
               ),
-              const SizedBox(height: 6),
-              _Line('Strategy', answers.strategy ?? '-'),
-              const SizedBox(height: 4),
-              _Line('Action', answers.action ?? '-'),
-            ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Date · ${now.day} ${_month(now.month)} ${now.year}',
+                  style: _bubbleBody,
+                ),
+                const SizedBox(height: 6),
+                _Line('Strategy', answers.strategy ?? '-'),
+                const SizedBox(height: 4),
+                _Line('Action', answers.action ?? '-'),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: WithMeSpace.md),
-        WithMeCard(
-          child: Column(
-            children: [
-              Text(
-                'Rate this strategy',
-                style: WithMeText.option.copyWith(fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(height: WithMeSpace.md),
-              StarRating(
-                value: answers.rating,
-                onChanged: (v) => onChanged(() => answers.rating = v),
-              ),
-            ],
+          const SizedBox(height: 16),
+          const Text(
+            'Rate this strategy',
+            textAlign: TextAlign.center,
+            style: _bubbleBody,
           ),
-        ),
-        const Spacer(),
-        const Center(
-          child: _StepMascot(size: 78),
-        ),
-        const Spacer(),
-      ],
+          const SizedBox(height: 6),
+          StarRating(
+            value: answers.rating,
+            size: 34,
+            onChanged: (v) => onChanged(() => answers.rating = v),
+          ),
+        ],
+      ),
     );
   }
 
   static String _month(int m) => const [
-        'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December',
-      ][m - 1];
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ][m - 1];
 }
 
 class _Line extends StatelessWidget {
@@ -1110,103 +1248,16 @@ class _Line extends StatelessWidget {
   final String value;
 
   @override
-  Widget build(BuildContext context) => RichText(
-        text: TextSpan(
-          style: WithMeText.option.copyWith(
-            fontWeight: FontWeight.w700,
-            color: WithMeColors.teal,
-          ),
-          children: [
-            TextSpan(text: '$label · '),
-            TextSpan(text: value),
-          ],
-        ),
-      );
-}
-
-/// Hands the current page's [_DailyCheckInScreenState._reaction] down to
-/// whichever mascot the page draws, without threading it through every
-/// step's constructor.
-class _StepMood extends InheritedWidget {
-  const _StepMood({required this.expression, required super.child});
-
-  final MascotExpression expression;
-
-  static MascotExpression of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_StepMood>()?.expression ??
-      MascotExpression.idle;
-
-  @override
-  bool updateShouldNotify(_StepMood old) => old.expression != expression;
-}
-
-/// The mascot on a check-in page, reacting to the answer.
-class _StepMascot extends StatelessWidget {
-  const _StepMascot({required this.size});
-
-  final double size;
-
-  @override
-  Widget build(BuildContext context) =>
-      WithMeAvatar(size: size, expression: _StepMood.of(context));
-}
-
-/// One of body / feelings / mind / behaviour on the signs page (`image15`).
-class _SignChoice extends StatelessWidget {
-  const _SignChoice({
-    required this.dimension,
-    required this.selected,
-    required this.onTap,
-  });
-
-  final SignDimension dimension;
-  final bool selected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      selected: selected,
-      label: dimension.label,
-      excludeSemantics: true,
-      child: GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: AnimatedContainer(
-          duration: WithMeMotion.fast,
-          width: 172,
-          height: 50,
-          padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
-          decoration: BoxDecoration(
-            color: selected ? WithMeColors.teal : WithMeColors.cream,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: WithMeSpace.cardShadow,
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 26,
-                height: 26,
-                decoration: BoxDecoration(
-                  color: dimension.color,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              const SizedBox(width: WithMeSpace.md),
-              Text(
-                dimension.label,
-                style: WithMeText.option.copyWith(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.4,
-                  color: selected ? Colors.white : WithMeColors.ink,
-                ),
-              ),
-            ],
-          ),
-        ),
+  Widget build(BuildContext context) => Text.rich(
+    TextSpan(
+      style: _bubbleBody.copyWith(
+        fontWeight: FontWeight.w700,
+        color: ScenicColors.pillBottom,
       ),
-    );
-  }
+      children: [
+        TextSpan(text: '$label · '),
+        TextSpan(text: value),
+      ],
+    ),
+  );
 }

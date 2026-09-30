@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../Theme/WithMeTheme.dart';
@@ -575,6 +576,8 @@ class WithMeField extends StatelessWidget {
     this.obscure = false,
     this.keyboardType,
     this.onChanged,
+    this.fill,
+    this.border,
   });
 
   final String? label;
@@ -583,6 +586,11 @@ class WithMeField extends StatelessWidget {
   final bool obscure;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
+
+  /// Field colour - cream unless it sits on something cream already, like a
+  /// scenic speech bubble.
+  final Color? fill;
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -597,8 +605,9 @@ class WithMeField extends StatelessWidget {
           height: kSettingsRowHeight,
           padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
           decoration: BoxDecoration(
-            color: WithMeColors.cream,
+            color: fill ?? WithMeColors.cream,
             borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+            border: border,
             boxShadow: WithMeSpace.cardShadow,
           ),
           child: Center(
@@ -635,6 +644,8 @@ class WithMeDropdown extends StatelessWidget {
     required this.items,
     required this.onChanged,
     this.hint,
+    this.fill,
+    this.border,
   });
 
   final String? label;
@@ -642,6 +653,10 @@ class WithMeDropdown extends StatelessWidget {
   final List<String> items;
   final ValueChanged<String?> onChanged;
   final String? hint;
+
+  /// As on [WithMeField].
+  final Color? fill;
+  final BoxBorder? border;
 
   @override
   Widget build(BuildContext context) {
@@ -656,8 +671,9 @@ class WithMeDropdown extends StatelessWidget {
           height: kSettingsRowHeight,
           padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
           decoration: BoxDecoration(
-            color: WithMeColors.cream,
+            color: fill ?? WithMeColors.cream,
             borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+            border: border,
             boxShadow: WithMeSpace.cardShadow,
           ),
           child: DropdownButtonHideUnderline(
@@ -949,7 +965,12 @@ class _GaugePainter extends CustomPainter {
 /// Three flat bands - mint, peach, coral - round a pale dial face, with the
 /// needle as the answer: drag or tap anywhere on it. Null [value] means not
 /// answered yet; the needle then rests upright and faded.
-class ReadinessGauge extends StatelessWidget {
+///
+/// The needle's tip always sits on the band track, and a touch is read as
+/// an angle round the track's own centre, so the needle stays under the
+/// finger and can never swing past either end. Both are worked out from the
+/// size the dial is actually laid out at, not the size it asked for.
+class ReadinessGauge extends StatefulWidget {
   const ReadinessGauge({
     super.key,
     required this.value,
@@ -960,6 +981,8 @@ class ReadinessGauge extends StatelessWidget {
   /// 0 (not ready) to 1 (very ready), or null before the first touch.
   final double? value;
   final ValueChanged<double> onChanged;
+
+  /// The widest the dial draws; it shrinks to fit a narrower parent.
   final double size;
 
   static const List<String> levels = [
@@ -979,49 +1002,134 @@ class ReadinessGauge extends StatelessWidget {
   // centre under a 0.72 R dial face that fades out downward.
   static const double _drop = 0.54;
 
-  double get _radius => size / 2;
-  double get _height => _radius * (1 + _drop) + 4;
+  /// Height for a dial [width] wide.
+  static double heightFor(double width) => width / 2 * (1 + _drop) + 8;
 
-  void _track(Offset local) {
-    final centre = Offset(size / 2, _radius * (1 + _drop));
-    final d = local - centre;
-    // Straight left is 0, straight up is 0.5, straight right is 1. A touch
-    // below the pivot pins to whichever end it is nearer.
-    final angle = math.atan2(-d.dy, d.dx).clamp(0.0, math.pi);
-    onChanged(1 - angle / math.pi);
+  /// The value a point on a dial of [size] stands for.
+  ///
+  /// Measured round the bands' centre - the track the needle's tip runs on -
+  /// so the tip follows the pointer. Straight left is 0, straight up is 0.5,
+  /// straight right is 1; anything below the track's ends pins to whichever
+  /// end is on that side.
+  static double valueAt(Offset local, Size size) {
+    final g = _DialGeometry(size);
+    final d = local - g.bandCentre;
+    var angle = math.atan2(-d.dy, d.dx);
+    if (angle < 0) angle = d.dx < 0 ? math.pi : 0;
+    return (1 - angle / math.pi).clamp(0.0, 1.0);
+  }
+
+  @override
+  State<ReadinessGauge> createState() => _ReadinessGaugeState();
+}
+
+class _ReadinessGaugeState extends State<ReadinessGauge> {
+  /// While a drag is under way the needle follows the pointer directly;
+  /// easing it would leave it trailing behind the finger.
+  bool _dragging = false;
+
+  void _setDragging(bool on) {
+    if (_dragging != on) setState(() => _dragging = on);
   }
 
   @override
   Widget build(BuildContext context) {
-    final v = value;
+    final v = widget.value;
     // Screen readers step a level at a time, and Flutter requires the
     // values either side to be announced alongside the current one.
     final up = ((v ?? 0.5) + 0.2).clamp(0.0, 1.0);
     final down = ((v ?? 0.5) - 0.2).clamp(0.0, 1.0);
-    return Semantics(
-      slider: true,
-      label: 'How ready you feel to change',
-      value: v == null ? 'Not set' : levels[levelOf(v)],
-      increasedValue: levels[levelOf(up)],
-      decreasedValue: levels[levelOf(down)],
-      onIncrease: () => onChanged(up),
-      onDecrease: () => onChanged(down),
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTapDown: (e) => _track(e.localPosition),
-        onPanStart: (e) => _track(e.localPosition),
-        onPanUpdate: (e) => _track(e.localPosition),
-        child: TweenAnimationBuilder<double>(
-          tween: Tween(end: v ?? 0.5),
-          duration: WithMeMotion.fast,
-          curve: WithMeMotion.ease,
-          builder: (context, shown, _) => CustomPaint(
-            size: Size(size, _height),
-            painter: _ReadinessPainter(shown, answered: v != null),
+    const levels = ReadinessGauge.levels;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = math.min(widget.size, constraints.maxWidth);
+        final size = Size(width, ReadinessGauge.heightFor(width));
+        void track(Offset local) =>
+            widget.onChanged(ReadinessGauge.valueAt(local, size));
+
+        return Semantics(
+          slider: true,
+          label: 'How ready you feel to change',
+          value: v == null ? 'Not set' : levels[ReadinessGauge.levelOf(v)],
+          increasedValue: levels[ReadinessGauge.levelOf(up)],
+          decreasedValue: levels[ReadinessGauge.levelOf(down)],
+          onIncrease: () => widget.onChanged(up),
+          onDecrease: () => widget.onChanged(down),
+          child: RawGestureDetector(
+            behavior: HitTestBehavior.opaque,
+            gestures: {
+              _EagerPanGestureRecognizer:
+                  GestureRecognizerFactoryWithHandlers<
+                    _EagerPanGestureRecognizer
+                  >(_EagerPanGestureRecognizer.new, (r) {
+                    r
+                      ..onDown = (e) {
+                        _setDragging(true);
+                        track(e.localPosition);
+                      }
+                      ..onUpdate = (e) {
+                        track(e.localPosition);
+                      }
+                      ..onEnd = (_) {
+                        _setDragging(false);
+                      }
+                      ..onCancel = () {
+                        _setDragging(false);
+                      };
+                  }),
+            },
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(end: v ?? 0.5),
+              duration: _dragging ? Duration.zero : WithMeMotion.fast,
+              curve: WithMeMotion.ease,
+              builder: (context, shown, _) => CustomPaint(
+                size: size,
+                painter: _ReadinessPainter(shown, answered: v != null),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
+  }
+}
+
+/// A pan that claims the pointer as soon as it lands, so a scrolling page
+/// round the dial cannot take a drag that starts on it. Touch, mouse and
+/// stylus alike.
+class _EagerPanGestureRecognizer extends PanGestureRecognizer {
+  @override
+  void addAllowedPointer(PointerDownEvent event) {
+    super.addAllowedPointer(event);
+    resolvePointer(event.pointer, GestureDisposition.accepted);
+  }
+}
+
+/// Where the dial's parts sit inside a box of a given size. Shared by the
+/// painter and the touch mapping so the two can never disagree.
+class _DialGeometry {
+  _DialGeometry(Size size)
+    : outer = size.width / 2,
+      bandCentre = Offset(size.width / 2, size.width / 2);
+
+  /// Outer radius of the bands.
+  final double outer;
+
+  /// Centre of the band arcs.
+  final Offset bandCentre;
+
+  double get inner => outer * 0.64;
+
+  /// Middle of the band - the line the needle's tip runs along.
+  double get track => (outer + inner) / 2;
+
+  Offset get pivot => bandCentre + Offset(0, outer * ReadinessGauge._drop);
+
+  /// The needle's tip for [value], on the track.
+  Offset tip(double value) {
+    final angle = math.pi + math.pi * value.clamp(0.0, 1.0);
+    return bandCentre + Offset(math.cos(angle), math.sin(angle)) * track;
   }
 }
 
@@ -1041,10 +1149,11 @@ class _ReadinessPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final outer = size.width / 2;
-    final bandCentre = Offset(size.width / 2, outer);
-    final pivot = bandCentre + Offset(0, outer * ReadinessGauge._drop);
-    final inner = outer * 0.64;
+    final g = _DialGeometry(size);
+    final outer = g.outer;
+    final bandCentre = g.bandCentre;
+    final pivot = g.pivot;
+    final inner = g.inner;
 
     for (final (from, to, color) in _bands) {
       final path = Path()
@@ -1091,8 +1200,7 @@ class _ReadinessPainter extends CustomPainter {
             ),
     );
 
-    final angle = math.pi + math.pi * value;
-    final tip = pivot + Offset(math.cos(angle), math.sin(angle)) * outer * 0.92;
+    final tip = g.tip(value);
     final ink = WithMeColors.tealInk.withValues(alpha: answered ? 1 : 0.3);
     canvas.drawLine(
       pivot,
@@ -1102,6 +1210,14 @@ class _ReadinessPainter extends CustomPainter {
         ..strokeWidth = 5
         ..strokeCap = StrokeCap.round,
     );
+    // A knob on the track marks the reading and gives the finger a target.
+    canvas.drawCircle(tip, 9, Paint()..color = ink);
+    canvas.drawCircle(
+      tip,
+      4,
+      Paint()..color = WithMeColors.cream.withValues(alpha: answered ? 1 : 0.6),
+    );
+    canvas.drawCircle(pivot, 6, Paint()..color = ink);
   }
 
   @override

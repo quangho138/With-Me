@@ -33,6 +33,10 @@ class ChunkyText extends StatelessWidget {
   Widget build(BuildContext context) {
     final colour = style.color ?? ScenicColors.ink;
     return Stack(
+      // Given more width than it needs, keep centred text centred.
+      alignment: textAlign == TextAlign.center
+          ? Alignment.topCenter
+          : AlignmentDirectional.topStart,
       children: [
         ExcludeSemantics(
           child: Text(
@@ -72,6 +76,8 @@ class ScenicColors {
   static const Color pillBottom = Color(0xFF0E6E70);
   static const Color bubble = Color(0xFFFFF9EE);
   static const Color tile = Color(0xFFE6EFEA);
+  static const Color tileSelected = Color(0xFFD3ECE6);
+  static const Color tilePressed = Color(0xFFDCE8E2);
   static const Color ring = Color(0xFFD9DEDA);
   static const Color coral = Color(0xFFEE6A55);
 }
@@ -261,12 +267,18 @@ class BubbleText extends StatelessWidget {
   final String text;
   final double size;
 
+  /// The phone width the sizes are set for. Narrower phones get slightly
+  /// smaller type, so the hand-broken lines stay whole.
+  static const double _designWidth = 390;
+
   @override
   Widget build(BuildContext context) => ChunkyText(
     text,
     style: TextStyle(
       fontFamily: WithMeText.ui,
-      fontSize: size,
+      fontSize:
+          size *
+          (MediaQuery.sizeOf(context).width / _designWidth).clamp(0.8, 1.0),
       height: 1.25,
       fontWeight: FontWeight.w700,
       color: ScenicColors.ink,
@@ -370,56 +382,69 @@ class NumberChoice extends StatelessWidget {
   final ValueChanged<int> onChanged;
   final int count;
 
+  static const double _circle = 56;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        for (var i = 1; i <= count; i++)
-          Semantics(
-            button: true,
-            selected: value == i,
-            label: '$i',
-            excludeSemantics: true,
-            child: GestureDetector(
-              onTap: () => onChanged(i),
-              behavior: HitTestBehavior.opaque,
-              child: AnimatedContainer(
-                duration: WithMeMotion.fast,
-                width: 56,
-                height: 56,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: value == i ? ScenicColors.pillBottom : Colors.white,
-                  border: Border.all(
-                    color: value == i
-                        ? ScenicColors.pillBottom
-                        : ScenicColors.ring,
-                    width: 1.6,
-                  ),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0x1A000000),
-                      blurRadius: 4,
-                      offset: Offset(0, 2),
+    return LayoutBuilder(
+      builder: (context, box) {
+        // Full size wherever they fit; on a narrow phone they shrink rather
+        // than run off the bubble.
+        final d = count * _circle <= box.maxWidth
+            ? _circle
+            : (box.maxWidth - (count - 1) * 4) / count;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            for (var i = 1; i <= count; i++)
+              Semantics(
+                button: true,
+                selected: value == i,
+                label: '$i',
+                excludeSemantics: true,
+                child: GestureDetector(
+                  onTap: () => onChanged(i),
+                  behavior: HitTestBehavior.opaque,
+                  child: AnimatedContainer(
+                    duration: WithMeMotion.fast,
+                    width: d,
+                    height: d,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: value == i
+                          ? ScenicColors.pillBottom
+                          : Colors.white,
+                      border: Border.all(
+                        color: value == i
+                            ? ScenicColors.pillBottom
+                            : ScenicColors.ring,
+                        width: 1.6,
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x1A000000),
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: ChunkyText(
-                  '$i',
-                  weight: 0.7,
-                  style: TextStyle(
-                    fontFamily: WithMeText.ui,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                    color: value == i ? Colors.white : ScenicColors.ink,
+                    child: ChunkyText(
+                      '$i',
+                      weight: 0.7,
+                      style: TextStyle(
+                        fontFamily: WithMeText.ui,
+                        fontSize: 25 * d / _circle,
+                        fontWeight: FontWeight.w700,
+                        color: value == i ? Colors.white : ScenicColors.ink,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-      ],
+          ],
+        );
+      },
     );
   }
 }
@@ -667,51 +692,246 @@ class AreaTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return ScenicTile(
+      label: label,
+      selected: selected,
+      onTap: onTap,
+      height: 120,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 54, color: color),
+          const SizedBox(height: 6),
+          ChunkyText(
+            label,
+            weight: 0.7,
+            style: const TextStyle(
+              fontFamily: WithMeText.ui,
+              fontSize: 21,
+              fontWeight: FontWeight.w700,
+              color: ScenicColors.ink,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The pale green tile the stress-area grid is built from, shared by every
+/// scenic choice: pale sage at rest, a deeper tint ringed in teal when
+/// chosen, and a slight press while a finger or pointer is down.
+class ScenicTile extends StatefulWidget {
+  const ScenicTile({
+    super.key,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+    required this.child,
+    this.height,
+    this.radius = 16,
+  });
+
+  /// Announced to screen readers; the child is excluded from semantics.
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+  final Widget child;
+
+  /// Fixed height, or null to size to [child].
+  final double? height;
+  final double radius;
+
+  @override
+  State<ScenicTile> createState() => _ScenicTileState();
+}
+
+class _ScenicTileState extends State<ScenicTile> {
+  bool _pressed = false;
+
+  void _press(bool down) {
+    if (_pressed != down) setState(() => _pressed = down);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final selected = widget.selected;
     return Semantics(
       button: true,
       selected: selected,
-      label: label,
+      label: widget.label,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: widget.onTap,
+        onTapDown: (_) => _press(true),
+        onTapUp: (_) => _press(false),
+        onTapCancel: () => _press(false),
         behavior: HitTestBehavior.opaque,
-        child: AnimatedContainer(
+        child: AnimatedScale(
+          scale: _pressed ? 0.95 : 1,
           duration: WithMeMotion.fast,
-          height: 120,
-          decoration: BoxDecoration(
-            color: selected ? const Color(0xFFD3ECE6) : ScenicColors.tile,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
+          child: AnimatedContainer(
+            duration: WithMeMotion.fast,
+            height: widget.height,
+            decoration: BoxDecoration(
               color: selected
-                  ? ScenicColors.pillBottom
-                  : Colors.white.withValues(alpha: 0.9),
-              width: selected ? 2.4 : 1.4,
-            ),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x1A000000),
-                blurRadius: 6,
-                offset: Offset(0, 2),
+                  ? ScenicColors.tileSelected
+                  : _pressed
+                  ? ScenicColors.tilePressed
+                  : ScenicColors.tile,
+              borderRadius: BorderRadius.circular(widget.radius),
+              border: Border.all(
+                color: selected
+                    ? ScenicColors.pillBottom
+                    : Colors.white.withValues(alpha: 0.9),
+                width: selected ? 2.4 : 1.4,
               ),
-            ],
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, size: 54, color: color),
-              const SizedBox(height: 6),
-              ChunkyText(
-                label,
-                weight: 0.7,
-                style: const TextStyle(
-                  fontFamily: WithMeText.ui,
-                  fontSize: 21,
-                  fontWeight: FontWeight.w700,
-                  color: ScenicColors.ink,
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x1A000000),
+                  blurRadius: 6,
+                  offset: Offset(0, 2),
                 ),
-              ),
-            ],
+              ],
+            ),
+            child: widget.child,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A coloured disc with a white glyph - the marker on the smaller scenic
+/// choice tiles. Picked, the glyph turns into a tick.
+class ScenicMarker extends StatelessWidget {
+  const ScenicMarker({
+    super.key,
+    required this.color,
+    this.icon,
+    this.size = 44,
+    this.checked = false,
+  });
+
+  final Color color;
+  final IconData? icon;
+  final double size;
+  final bool checked;
+
+  @override
+  Widget build(BuildContext context) {
+    final glyph = checked ? Icons.check_rounded : icon;
+    return AnimatedContainer(
+      duration: WithMeMotion.fast,
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: checked ? ScenicColors.pillBottom : color,
+        border: Border.all(color: Colors.white, width: 2),
+      ),
+      child: glyph == null
+          ? null
+          : Icon(glyph, size: size * 0.56, color: Colors.white),
+    );
+  }
+}
+
+/// A smaller choice tile - a marker over a one- or two-line label. The
+/// body / feelings / mind / behaviour cards, and every six-up grid of
+/// stressors and signs.
+class ScenicChoiceTile extends StatelessWidget {
+  const ScenicChoiceTile({
+    super.key,
+    required this.label,
+    required this.color,
+    required this.selected,
+    required this.onTap,
+    this.icon,
+    this.height = 96,
+    this.markerSize = 34,
+    this.fontSize = 15,
+    this.showCheck = true,
+  });
+
+  final String label;
+  final Color color;
+  final IconData? icon;
+  final bool selected;
+  final VoidCallback onTap;
+  final double height;
+  final double markerSize;
+  final double fontSize;
+
+  /// Multi-select tiles swap their marker's glyph for a tick when chosen.
+  final bool showCheck;
+
+  /// [fontSize], or smaller if that is what it takes for the longest word
+  /// to fit on a line - a word broken mid-way ("Homewor-k") reads badly.
+  double _fitWords(BuildContext context, double width) {
+    if (!width.isFinite) return fontSize;
+    final scaler = MediaQuery.textScalerOf(context);
+    var widest = 0.0;
+    for (final word in label.split(' ')) {
+      final painter = TextPainter(
+        text: TextSpan(
+          text: word,
+          style: TextStyle(
+            fontFamily: WithMeText.ui,
+            fontSize: fontSize,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+        textScaler: scaler,
+      )..layout();
+      // Headroom for the outline stroke and any inherited letter spacing.
+      widest = math.max(widest, painter.width * 1.1 + 2);
+      painter.dispose();
+    }
+    return widest <= width ? fontSize : fontSize * width / widest;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScenicTile(
+      label: label,
+      selected: selected,
+      onTap: onTap,
+      height: height,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ScenicMarker(
+              color: color,
+              icon: icon,
+              size: markerSize,
+              checked: showCheck && selected,
+            ),
+            const SizedBox(height: 6),
+            Flexible(
+              child: LayoutBuilder(
+                builder: (context, box) {
+                  final style = TextStyle(
+                    fontFamily: WithMeText.ui,
+                    fontSize: _fitWords(context, box.maxWidth),
+                    height: 1.15,
+                    fontWeight: FontWeight.w700,
+                    color: ScenicColors.ink,
+                  );
+                  return ChunkyText(
+                    label,
+                    weight: 0.5,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: style,
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
