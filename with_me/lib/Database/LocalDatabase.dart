@@ -1,0 +1,543 @@
+import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
+import 'WebFactory.dart';
+
+class DatabaseHelper {
+  static final DatabaseHelper _instance = DatabaseHelper._internal();
+  factory DatabaseHelper() => _instance;
+  DatabaseHelper._internal();
+
+  /// The one open in flight or done. Caching the future rather than the
+  /// database matters: two callers arriving before the first open finishes
+  /// used to each start their own, and the second one threw. In the browser
+  /// the first open loads a WebAssembly engine and takes seconds, so a
+  /// sign-in during it failed with "Couldn't read your account".
+  static Future<Database>? _opening;
+
+  // --- ValueNotifier to notify username changes ---
+  final ValueNotifier<String?> userNameNotifier = ValueNotifier(null);
+
+  Future<Database> get database => _opening ??= _open();
+
+  /// Version 4 saves the rest of the daily check-in (check_in_details),
+  /// records finished exercises (exercise_sessions), and allows one stressor
+  /// row per day. Bump this and extend _onUpgrade for any later change.
+  static const int schemaVersion = 4;
+
+  /// The create and upgrade steps, exposed so tests can build a real
+  /// database with them and check both paths end at the same schema.
+  @visibleForTesting
+  static Future<void> Function(Database, int) get createSchema => _onCreate;
+  @visibleForTesting
+  static Future<void> Function(Database, int, int) get upgradeSchema =>
+      _onUpgrade;
+
+  Future<Database> _open() async {
+    try {
+      final db = await _initDatabase();
+      // Read straight off `db`: going through getUserName() would await
+      // `database`, which is this future, and never complete.
+      final result = await db.query('user', limit: 1);
+      userNameNotifier.value =
+          result.isNotEmpty ? result.first['name'] as String? : null;
+      return db;
+    } catch (_) {
+      // Let the next caller try again instead of handing out a failure.
+      _opening = null;
+      rethrow;
+    }
+  }
+
+  Future<Database> _initDatabase() async {
+    // In the browser there is no documents directory; the WebAssembly engine
+    // keeps the file in IndexedDB under this name instead.
+    final web = webDatabaseFactory();
+    if (web != null) {
+      return await web.openDatabase(
+        'with_me.db',
+        options: OpenDatabaseOptions(
+          version: schemaVersion,
+          onCreate: _onCreate,
+          onUpgrade: _onUpgrade,
+        ),
+      );
+    }
+
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, 'with_me.db');
+
+    return await openDatabase(
+      path,
+      version: schemaVersion,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
+  }
+
+  static Future<void> _onCreate(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE reflections(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        who TEXT NOT NULL,
+        what TEXT NOT NULL,
+        when_question TEXT NOT NULL,
+        where_question TEXT NOT NULL,
+        why_question TEXT NOT NULL,
+        date TEXT NOT NULL,
+        createdAt TEXT NOT NULL
+      )
+    ''');
+    // Database and table created successfully
+
+    await db.execute('''
+    CREATE TABLE moods(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT NOT NULL UNIQUE,
+      mood TEXT NOT NULL,
+      createdAt TEXT NOT NULL
+    )
+    ''');
+
+    await db.execute('''
+    CREATE TABLE control_gauge(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT NOT NULL UNIQUE,
+      level INTEGER NOT NULL
+    )
+    ''');
+
+    await db.execute('''
+    CREATE TABLE IF NOT EXISTS stressors(
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT NOT NULL,
+      category TEXT NOT NULL,
+      detail TEXT
+    )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
+      )
+    ''');
+
+    print('Database and tables created!');
+    await db.execute('''CREATE TABLE user(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT
+      )
+        ''');
+
+    await _createVersion4(db);
+  }
+
+  /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
+  /// _onUpgrade (existing installs) so both end at the same schema.
+  /// IF NOT EXISTS makes it safe to run twice.
+  static Future<void> _createVersion4(Database db) async {
+    // The check-in pages that had no table: motivation, intention to change,
+    // the chosen strategy and action, and the strategy's star rating.
+    // One row per day, like moods and control_gauge.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS check_in_details(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL UNIQUE,
+        motivation INTEGER,
+        readiness REAL,
+        intention TEXT,
+        strategy TEXT,
+        action TEXT,
+        rating INTEGER,
+        updatedAt TEXT NOT NULL
+      )
+    ''');
+
+    // One row per finished breathing or sigh session.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS exercise_sessions(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        date TEXT NOT NULL,
+        exercise TEXT NOT NULL,
+        pattern TEXT,
+        cycles INTEGER,
+        sound TEXT,
+        completedAt TEXT NOT NULL
+      )
+    ''');
+
+    // Editing a check-in used to add a second stressor row for the same day.
+    // Keep the newest row per day, then let the database allow only one, so
+    // insertStressor's "replace" really replaces.
+    await db.execute('''
+      DELETE FROM stressors WHERE id NOT IN (
+        SELECT MAX(id) FROM stressors GROUP BY substr(date, 1, 10)
+      )
+    ''');
+    await db.execute(
+      'CREATE UNIQUE INDEX IF NOT EXISTS stressors_one_per_day '
+      'ON stressors(date)',
+    );
+  }
+
+  static Future<void> _onUpgrade(
+    Database db,
+    int oldVersion,
+    int newVersion,
+  ) async {
+    if (oldVersion < 2) {
+      await db.execute('ALTER TABLE reflections ADD COLUMN date TEXT');
+      // Database upgraded: Added "date" column
+    }
+    if (oldVersion < 3) {
+      await db.execute('''
+        CREATE TABLE IF NOT EXISTS users(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          email TEXT NOT NULL UNIQUE,
+          password TEXT NOT NULL
+        )
+      ''');
+      print('Database upgraded: Added users table.');
+    }
+    if (oldVersion < 3) {
+      await db.execute('''
+        CREATE TABLE user(
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT
+        )
+      ''');
+    }
+    if (oldVersion < 4) {
+      await _createVersion4(db);
+    }
+  }
+
+  // --- User methods ---
+  Future<int> saveUserName(String name) async {
+    final db = await database;
+    await db.delete('user'); // keep only one user
+    final id = await db.insert('user', {'name': name});
+    userNameNotifier.value = name; // notify listeners immediately
+    return id;
+  }
+
+  Future<String?> getUserName() async {
+    final db = await database;
+    final result = await db.query('user', limit: 1);
+    if (result.isNotEmpty) return result.first['name'] as String?;
+    return null;
+  }
+
+  Future<void> deleteUserName() async {
+    final db = await database;
+    await db.delete('user');
+    userNameNotifier.value = null; // notify listeners immediately
+  }
+
+  // Reflection methods remain unchanged
+  // --- Keep your existing reflection methods as-is ---
+  Future<int> insertReflection({
+    required String who,
+    required String what,
+    required String when,
+    required String where,
+    required String why,
+    required DateTime date,
+  }) async {
+    final db = await database;
+    return await db.insert(
+      'reflections',
+      {
+        'who': who,
+        'what': what,
+        'when_question': when,
+        'where_question': where,
+        'why_question': why,
+        'date': date.toIso8601String(),
+        'createdAt': DateTime.now().toIso8601String(),
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<int> clearReflections() async {
+    final db = await database;
+    return await db.delete('reflections');
+  }
+
+  /// "Delete my account" in Settings. The dialog promises to clear
+  /// everything on this device, so this empties every table, not only
+  /// reflections and the name (which is all it used to do).
+  Future<void> deleteAllData() async {
+    final db = await database;
+    await wipeAllTables(db);
+    userNameNotifier.value = null;
+  }
+
+  /// Every table that holds user data. Add new tables here; a test fails if
+  /// one is missing.
+  static const List<String> userDataTables = [
+    'reflections',
+    'moods',
+    'control_gauge',
+    'stressors',
+    'users',
+    'user',
+    'check_in_details',
+    'exercise_sessions',
+  ];
+
+  /// Empties every user data table in one transaction: all or nothing.
+  /// Used by UserRepository.deleteAccountAndData.
+  static Future<void> wipeAllTables(Database db) async {
+    await db.transaction((txn) async {
+      for (final table in userDataTables) {
+        await txn.delete(table);
+      }
+    });
+  }
+
+  Future<List<Map<String, dynamic>>> getReflections() async {
+    final db = await database;
+    return await db.query('reflections', orderBy: 'createdAt DESC');
+  }
+
+  Future<List<Map<String, dynamic>>> getReflectionsByDate(DateTime date) async {
+    final db = await database;
+    String isoDate = date.toIso8601String().substring(0, 10);
+    return await db.query(
+      'reflections',
+      where: 'date LIKE ?',
+      whereArgs: ['$isoDate%'],
+      orderBy: 'createdAt DESC',
+    );
+  }
+
+  Future<int> deleteReflectionsByDate(DateTime date) async {
+    final db = await database;
+    String isoDate = date.toIso8601String().substring(0, 10);
+    return await db.delete(
+      'reflections',
+      where: 'date LIKE ?',
+      whereArgs: ['$isoDate%'],
+    );
+  }
+
+  // USER AUTH
+  Future<int> insertUser(String email, String password) async {
+    final db = await database;
+    return await db.insert(
+      'users',
+      {'email': email, 'password': password},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<Map<String, dynamic>?> getUser(String email, String password) async {
+    final db = await database;
+    final result = await db.query(
+      'users',
+      where: 'email = ? AND password = ?',
+      whereArgs: [email, password],
+    );
+    return result.isNotEmpty ? result.first : null;
+  }
+
+  Future<bool> emailExists(String email) async {
+    final db = await database;
+    final result = await db.query(
+      'users',
+      where: 'email = ?',
+      whereArgs: [email],
+    );
+    return result.isNotEmpty;
+  }
+
+  // Mood Selection
+  Future<int> insertMood(DateTime date, String mood) async {
+    final db = await database;
+    return await db.insert(
+      'moods',
+      {
+        'date': date.toIso8601String().substring(0, 10),
+        'mood': mood,
+        'createdAt': DateTime.now().toIso8601String(),
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  // Get mood for a specific date
+  Future<String?> getMood(DateTime date) async {
+    final db = await database;
+    String isoDate = date.toIso8601String().substring(0, 10);
+    final result = await db.query(
+      'moods',
+      where: 'date = ?',
+      whereArgs: [isoDate],
+      limit: 1,
+    );
+    return result.isNotEmpty ? result.first['mood'] as String : null;
+  }
+
+  // Delete mood for a date
+  Future<void> deleteMood(DateTime date) async {
+    final db = await database;
+    await db.delete(
+      'moods',
+      where: 'date LIKE ?',
+      whereArgs: [date.toIso8601String().substring(0, 10) + '%'],
+    );
+  }
+
+  // Control Gauge
+  Future<int> insertControlGauge(DateTime date, int level) async {
+    final db = await database;
+    String isoDate = date.toIso8601String().substring(0, 10);
+    return await db.insert(
+      'control_gauge',
+      {'date': isoDate, 'level': level},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<int?> getControlGauge(DateTime date) async {
+    final db = await database;
+    String isoDate = date.toIso8601String().substring(0, 10);
+    final result = await db.query(
+      'control_gauge',
+      where: 'date = ?',
+      whereArgs: [isoDate],
+      limit: 1,
+    );
+    if (result.isNotEmpty) {
+      return result.first['level'] as int;
+    }
+    return null;
+  }
+
+  // Delete control gauge value for a date
+  Future<int> deleteControlGauge(DateTime date) async {
+    final db = await database;
+    String isoDate = date.toIso8601String().substring(0, 10);
+    return await db.delete(
+      'control_gauge',
+      where: 'date LIKE ?',
+      whereArgs: ['$isoDate%'],
+    );
+  }
+
+  // Stressor activity
+
+  // Insert or update stressor
+  Future<void> insertStressor(DateTime date, String category, {String? detail}) async {
+    final db = await database;
+    await db.insert(
+      'stressors',
+      {
+        'date': date.toIso8601String().substring(0,10),
+        'category': category,
+        'detail': detail,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  // Get stressor by date
+    Future<Map<String, dynamic>?> getStressor(DateTime date) async {
+      final db = await database;
+      final result = await db.query(
+        'stressors',
+        where: 'date LIKE ?',
+        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
+        limit: 1,
+      );
+      return result.isNotEmpty ? result.first : null;
+    }
+
+  // Update detail for stressor
+    Future<void> updateStressorDetail(DateTime date, String detail) async {
+      final db = await database;
+      await db.update(
+        'stressors',
+        {'detail': detail},
+        where: 'date LIKE ?',
+        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
+      );
+    }
+
+  // Delete stressor entry
+    Future<int> deleteStressor(DateTime date) async {
+      final db = await database;
+      return await db.delete(
+        'stressors',
+        where: 'date LIKE ?',
+        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
+      );
+    }
+
+  // --- Range reads ---------------------------------------------------------
+  // The per-date getters above answer one day at a time. The calendar,
+  // dashboard and progress screens each cover a span, and asking day by day
+  // means 30 to 365 round trips to open one screen. These read a span in one
+  // query. Same tables, same YYYY-MM-DD keys - nothing about the schema or
+  // the stored format changes.
+
+  static String _key(DateTime date) => date.toIso8601String().substring(0, 10);
+
+  /// Moods in [from]..[to] inclusive, keyed by YYYY-MM-DD.
+  Future<Map<String, String>> getMoodsBetween(DateTime from, DateTime to) async {
+    final db = await database;
+    final rows = await db.query(
+      'moods',
+      where: 'date >= ? AND date <= ?',
+      whereArgs: [_key(from), _key(to)],
+    );
+    return {
+      for (final row in rows)
+        row['date'] as String: row['mood'] as String,
+    };
+  }
+
+  /// Control-gauge levels in [from]..[to] inclusive, keyed by YYYY-MM-DD.
+  Future<Map<String, int>> getControlGaugesBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final db = await database;
+    final rows = await db.query(
+      'control_gauge',
+      where: 'date >= ? AND date <= ?',
+      whereArgs: [_key(from), _key(to)],
+    );
+    return {
+      for (final row in rows)
+        row['date'] as String: row['level'] as int,
+    };
+  }
+
+  /// Stressor rows in [from]..[to] inclusive, keyed by YYYY-MM-DD.
+  Future<Map<String, Map<String, dynamic>>> getStressorsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final db = await database;
+    final rows = await db.query(
+      'stressors',
+      where: 'date >= ? AND date <= ?',
+      whereArgs: [_key(from), _key(to)],
+    );
+    return {
+      for (final row in rows)
+        (row['date'] as String).substring(0, 10): row,
+    };
+  }
+
+  /// The key the range reads return, for a given date.
+  static String dateKey(DateTime date) => _key(date);
+}

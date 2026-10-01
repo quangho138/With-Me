@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Compare the built screens against the design mockups.
 
-Pairs each golden in `stress_and_anxiety_management_app_ios/test/goldens/`
+Pairs each golden in `with_me/test/goldens/`
 with the mockup its name carries, normalises both to the 390 pt reference
 width, runs the same rectangle detection over each, and reports the
 differences.
@@ -31,7 +31,7 @@ import measure_mockups as mm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-APP = os.path.join(ROOT, "stress_and_anxiety_management_app_ios")
+APP = os.path.join(ROOT, "with_me")
 GOLDENS = os.path.join(APP, "test", "goldens")
 SHEETS = os.path.join(ROOT, "build", "compare")
 
