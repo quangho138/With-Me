@@ -33,7 +33,13 @@ class DemoAccount {
     final checkIns = AppRepositories.checkIns;
 
     if (!await users.emailExists(email)) {
+      // A phone holds one account. If someone made their own here, leave
+      // their data alone rather than mixing a demo week into it.
+      if (await users.hasAccount()) return;
       await users.signUp(email: email, password: password, name: name);
+      // Signing up also signs in; the demo should start at the welcome
+      // screen and be logged into by hand.
+      await users.signOut();
     } else if (await users.displayName() == null) {
       await users.saveDisplayName(name);
     }

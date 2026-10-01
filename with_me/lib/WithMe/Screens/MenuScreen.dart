@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/user_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'AboutScreen.dart';
+import 'CreateAccountScreen.dart';
 import 'HelpScreen.dart';
 import 'MembershipScreen.dart';
 import 'NotificationsScreen.dart';
@@ -114,17 +117,72 @@ class MenuScreen extends StatelessWidget {
             onTap: () => go(const MembershipScreen()),
           ),
           gap(),
-          ScenicRow(
-            label: 'Log out',
-            icon: Icons.logout_rounded,
-            danger: true,
-            onTap: () => Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => const WelcomeScreen()),
-              (_) => false,
-            ),
-          ),
+          // Backend (stage 3): a guest gets "Create an account" (their
+          // data comes along); someone signed in gets a real "Log out".
+          const _AccountRow(),
         ],
       ),
+    );
+  }
+}
+
+/// The last menu row. Without an account it offers to create one, keeping
+/// everything saved so far. Signed in, it logs out: the data stays on the
+/// phone and comes back on the next login.
+class _AccountRow extends StatefulWidget {
+  const _AccountRow();
+
+  @override
+  State<_AccountRow> createState() => _AccountRowState();
+}
+
+class _AccountRowState extends State<_AccountRow> {
+  bool _guest = false;
+
+  @override
+  void initState() {
+    super.initState();
+    AppRepositories.users
+        .session()
+        .then((kind) {
+          if (mounted) setState(() => _guest = kind == SessionKind.guest);
+        })
+        .catchError((_) {});
+  }
+
+  Future<void> _logOut() async {
+    try {
+      await AppRepositories.users.signOut();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Couldn't log out. Try again.")),
+      );
+      return;
+    }
+    if (!mounted) return;
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const WelcomeScreen()),
+      (_) => false,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_guest) {
+      return ScenicRow(
+        label: 'Create an account',
+        icon: Icons.person_add_rounded,
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const CreateAccountScreen()),
+        ),
+      );
+    }
+    return ScenicRow(
+      label: 'Log out',
+      icon: Icons.logout_rounded,
+      danger: true,
+      onTap: _logOut,
     );
   }
 }

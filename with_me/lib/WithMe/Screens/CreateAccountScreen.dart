@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../../Repositories/user_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -54,17 +55,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     setState(() => _busy = true);
 
     try {
-      if (await AppRepositories.users.emailExists(email)) {
-        if (!mounted) return;
-        setState(() => _busy = false);
-        _say('That email already has an account.');
-        return;
-      }
+      // Signing up also signs in. A guest's saved check-ins stay and
+      // become this account's.
       await AppRepositories.users.signUp(
         email: email,
         password: password,
         name: name,
       );
+    } on AccountAlreadyOnPhone {
+      // One account per phone, so two people's data never mix.
+      if (!mounted) return;
+      setState(() => _busy = false);
+      _say('This phone already has an account. Log in instead.');
+      return;
     } catch (_) {
       // sqflite has no web implementation, and a device can fail to open its
       // database too. Either way the button has to come back and say so

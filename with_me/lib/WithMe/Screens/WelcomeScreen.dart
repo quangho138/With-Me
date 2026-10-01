@@ -2,10 +2,12 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../Repositories/app_repositories.dart';
 import '../Components/ScenicKit.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
 import 'CreateAccountScreen.dart';
+import 'HomeScreen.dart';
 import 'LoginScreen.dart';
 
 /// The first screen - V2 reference, screen 1 (`docs/design_v2/`).
@@ -164,6 +166,9 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // Backend (stage 3): shown only on a phone with no
+                      // account. Bhavesh: restyle freely, keep the rule.
+                      const _StartWithoutAccount(),
                       const SizedBox(height: 14),
                       const Text(
                         'A calmer, happier you\nis possible.',
@@ -185,6 +190,81 @@ class WelcomeScreen extends StatelessWidget {
               ],
             );
           },
+        ),
+      ),
+    );
+  }
+}
+
+/// "Start without an account": use the app with everything saved on the
+/// phone and no sign-up. Hidden when the phone already has an account, so
+/// after signing out nobody can get to that person's data this way.
+class _StartWithoutAccount extends StatefulWidget {
+  const _StartWithoutAccount();
+
+  @override
+  State<_StartWithoutAccount> createState() => _StartWithoutAccountState();
+}
+
+class _StartWithoutAccountState extends State<_StartWithoutAccount> {
+  /// Shown only once we know the phone has no account. While checking, or
+  /// if the check fails, it stays hidden.
+  bool _show = false;
+
+  @override
+  void initState() {
+    super.initState();
+    AppRepositories.users
+        .hasAccount()
+        .then((has) {
+          if (mounted) setState(() => _show = !has);
+        })
+        .catchError((_) {});
+  }
+
+  Future<void> _start() async {
+    var started = false;
+    try {
+      started = await AppRepositories.users.startAsGuest();
+    } catch (_) {
+      // Falls through to the message below.
+    }
+    if (!mounted) return;
+    if (!started) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please log in to continue.')),
+      );
+      return;
+    }
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const WithMeHomeScreen()),
+      (_) => false,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_show) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: GestureDetector(
+        onTap: _start,
+        behavior: HitTestBehavior.opaque,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 6),
+          child: Text(
+            'Start without an account',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: WithMeText.ui,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              decoration: TextDecoration.underline,
+              decorationColor: Colors.white,
+              shadows: [Shadow(color: Color(0xAA000000), blurRadius: 6)],
+            ),
+          ),
         ),
       ),
     );

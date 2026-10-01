@@ -44,6 +44,8 @@ dependencies:
   path: ^1.8.3
   table_calendar: ^3.0.9
   sqflite_common_ffi_web: ^1.2.0
+  # Scrambles passwords before they are saved (SHA-256)
+  crypto: ^3.0.3
 
 dev_dependencies:
   flutter_test:

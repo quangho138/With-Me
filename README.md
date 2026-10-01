@@ -19,6 +19,7 @@ It is built for HR Vision Consulting as the Florida International University Com
 - **Calendar and day detail**: every checked-in day is marked, and tapping a day shows what you answered.
 - **Progress and dashboard**: stress and mood trends over 7, 30 and 365 days, and where stress comes from.
 - **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh, with optional nature video and sound.
+- **Accounts**: sign up, log in and stay logged in, or start without an account. One account per phone. Passwords are stored scrambled, never as typed.
 - **Profile and settings**: your name, your check-in and exercise counts, and "Delete my account", which removes everything on the device.
 
 ## How it is built
@@ -103,6 +104,7 @@ flutter test
 ## Data and privacy
 
 - All data is stored on the device. Nothing is sent anywhere yet.
+- Passwords are scrambled with a random salt (PBKDF2, SHA-256) before they are saved.
 - During the course, only made-up test data is used, never real personal data.
 - Planned next: optional accounts with syncing across devices (Supabase). The journal ("Check In") will never leave the device. See `docs/BACKEND.md`.
 
