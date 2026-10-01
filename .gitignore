@@ -12,3 +12,4 @@ with_me/test/failures/
 
 # Local Android SDK path
 local.properties
+with_me/android/build/
