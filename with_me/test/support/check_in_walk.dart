@@ -57,11 +57,14 @@ Future<void> settle(WidgetTester tester) async {
 
 /// Taps the scenic text [label]. ChunkyText draws its label twice - an
 /// outline and a fill - so there are two matches; either will do.
+/// The tap lands on the button under the text, not the text itself, so
+/// Flutter's "tap missed" warning is turned off. The test still checks
+/// that each tap did what it should.
 Future<void> tapLabel(WidgetTester tester, String label) async {
   final found = find.text(label);
   await tester.ensureVisible(found.first);
   await tester.pump();
-  await tester.tap(found.first);
+  await tester.tap(found.first, warnIfMissed: false);
   await tester.pump();
 }
 
@@ -160,13 +163,13 @@ Future<void> walkCheckIn(
   await tapContinue(tester);
 
   // 8 - strategy, action, rating
-  await tester.tap(find.text('Select one...').first);
+  await tester.tap(find.text('Select one...').first, warnIfMissed: false);
   await settle(tester);
-  await tester.tap(find.text('Physical').last);
+  await tester.tap(find.text('Physical').last, warnIfMissed: false);
   await settle(tester);
-  await tester.tap(find.text('Select one...').first);
+  await tester.tap(find.text('Select one...').first, warnIfMissed: false);
   await settle(tester);
-  await tester.tap(find.text('Deep breathing').last);
+  await tester.tap(find.text('Deep breathing').last, warnIfMissed: false);
   await settle(tester);
   final stars = find.byIcon(Icons.star_rounded);
   await tester.ensureVisible(stars.at(3));
