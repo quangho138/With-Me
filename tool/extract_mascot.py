@@ -24,7 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 MEDIA = os.path.join(ROOT, "build", "design_v1", "word", "media")
 DEST = os.path.join(
-    ROOT, "stress_and_anxiety_management_app_ios", "assets", "mascot"
+    ROOT, "with_me", "assets", "mascot"
 )
 
 # Mockups whose mascot sits alone on the gradient, clear of cards and text.

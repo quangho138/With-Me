@@ -1,2 +1,14 @@
-# Extracted design-source artefacts (regenerate from the .docx)
-build/
+# Editors and personal settings
+.idea/
+*.iml
+.vscode/settings.json
+
+# Python tool caches
+__pycache__/
+*.pyc
+
+# Golden test failure images (written by flutter test, not source)
+with_me/test/failures/
+
+# Local Android SDK path
+local.properties

@@ -29,7 +29,7 @@ from PIL import Image, ImageDraw, ImageFilter
 from skimage.registration import phase_cross_correlation
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, "..", "stress_and_anxiety_management_app_ios", "assets", "v2")
+SRC = os.path.join(HERE, "..", "with_me", "assets", "v2")
 OUT = os.path.join(SRC, "app")
 
 # Final frame size. The character shows at up to ~300 pt tall; 900 px covers
