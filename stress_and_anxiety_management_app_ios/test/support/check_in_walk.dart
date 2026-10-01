@@ -213,6 +213,7 @@ Future<void> loadFonts() async {
   await load('Quicksand', [
     for (final w in [400, 500, 600, 700]) 'assets/fonts/Quicksand-$w.ttf',
   ]);
+  await load('Yellowtail', ['assets/fonts/Yellowtail-Regular.ttf']);
   final root = Platform.environment['FLUTTER_ROOT'] ?? 'C:/Users/alexa/flutter';
   final icons = File(
     '$root/bin/cache/artifacts/material_fonts/MaterialIcons-Regular.otf',

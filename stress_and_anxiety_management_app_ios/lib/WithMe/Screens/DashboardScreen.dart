@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
+import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
 import 'TriggersSignsScreen.dart';
 
@@ -79,12 +77,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
-      lockup: false,
+    return ScenicScaffold(
       title: 'Your Insights',
-      action: WithMeButton(
+      // Under the Triggers content, in whatever room is left - never over
+      // the chart, the legend or the tabs.
+      mascot: RealPose.happy,
+      mascotMax: 0.3,
+      action: ScenicPill(
         label: 'Share with someone I trust',
-        filled: false,
+        light: true,
+        height: 54,
         onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Sharing is not wired up in this UI pass.'),
@@ -94,7 +96,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SegmentedTabs(
+          ScenicSegments(
             labels: const ['Triggers', 'Feelings', 'Stress'],
             index: _tab,
             onChanged: (i) {
@@ -108,17 +110,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
               }
             },
           ),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeCard(
+          const SizedBox(height: 14),
+          ScenicPanel(
             child: _slices.isEmpty
-                ? Text(
+                ? const Text(
                     'No check-ins in the last 30 days yet.',
                     textAlign: TextAlign.center,
-                    style: WithMeText.body,
+                    style: kScenicBody,
                   )
                 : Row(
                     children: [
-                      // 128 puts the card at the measured 170 tall.
                       DonutChart(
                         slices: _slices,
                         centreLabel: '30d',
@@ -130,35 +131,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          WithMeCard(
-            radius: WithMeSpace.radiusMd,
-            color: WithMeColors.mint.withValues(alpha: 0.45),
+          const SizedBox(height: 12),
+          ScenicPanel(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const ScenicHeading(
                   "You're making progress!",
-                  style: WithMeText.option.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: WithMeColors.teal,
-                  ),
+                  size: 20,
+                  textAlign: TextAlign.start,
                 ),
-                const SizedBox(height: WithMeSpace.sm),
+                const SizedBox(height: 6),
                 Text(
                   'Awareness is the first step to positive change. '
                   '${_leader()} came up most.',
-                  style: WithMeText.body.copyWith(color: WithMeColors.ink),
+                  style: kScenicBody,
                 ),
               ],
-            ),
-          ),
-          const SizedBox(height: WithMeSpace.lg),
-          const Center(
-            child: WithMeAvatar(
-              size: 78,
-              expression: MascotExpression.encouraging,
             ),
           ),
         ],

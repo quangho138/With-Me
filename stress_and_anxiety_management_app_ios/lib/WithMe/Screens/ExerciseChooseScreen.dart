@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Data/CheckInSteps.dart';
 import '../Theme/WithMeTheme.dart';
 import 'BeforeWeStartScreen.dart';
 import 'BreathingScreen.dart';
 import 'SighScreen.dart';
 
-/// `image25.png` — "Choose an exercise".
-///
-/// Measured: a 70 pt header card at y 106, then four rows at y 188 / 277 /
-/// 366 / 454. The three with a duration are 76 tall; "Other exercises" is 59.
+/// `image25.png` — "Choose an exercise", in the V2 look of the check-in:
+/// the choices are the check-in's sage tiles, ringed teal when picked.
 class ExerciseChooseScreen extends StatefulWidget {
   const ExerciseChooseScreen({super.key});
 
@@ -35,83 +32,95 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => target));
   }
 
+  /// A glyph for each exercise, on the same coloured disc the check-in's
+  /// tiles use.
+  static const List<IconData> _icons = [
+    Icons.spa_rounded,
+    Icons.bedtime_rounded,
+    Icons.center_focus_strong_rounded,
+    Icons.air_rounded,
+  ];
+
+  static const List<Color> _discs = [
+    Color(0xFF3E9C8C),
+    Color(0xFFEE9A3E),
+    Color(0xFFD2557F),
+    Color(0xFF1C7C84),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(label: 'Continue', onPressed: _continue),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          WithMeCard(
-            height: 70,
-            padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
-            child: Center(
-              child: Text('Choose an exercise', style: WithMeText.question),
-            ),
-          ),
-          const SizedBox(height: WithMeSpace.md),
-          for (var i = 0; i < kExercises.length; i++) ...[
-            if (i > 0) const SizedBox(height: WithMeSpace.md),
-            Semantics(
-              button: true,
-              selected: _selected == i,
-              child: InkWell(
+      action: ScenicPill(label: 'Continue', height: 58, onPressed: _continue),
+      child: ScenicPanel(
+        padding: const EdgeInsets.fromLTRB(14, 20, 14, 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const ScenicHeading('Choose an exercise', size: 24),
+            const SizedBox(height: 14),
+            for (var i = 0; i < kExercises.length; i++) ...[
+              if (i > 0) const SizedBox(height: 10),
+              ScenicTile(
+                label: '${kExercises[i].$1}, ${kExercises[i].$2}',
+                selected: _selected == i,
                 onTap: () => setState(() => _selected = i),
-                borderRadius: BorderRadius.circular(16),
-                child: AnimatedContainer(
-                  duration: WithMeMotion.fast,
-                  padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(
-                    color: _selected == i
-                        ? WithMeColors.teal
-                        : WithMeColors.cream,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: WithMeSpace.cardShadow,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 14,
                   ),
                   child: Row(
                     children: [
-                      Container(
-                        width: 12,
-                        height: 12,
-                        decoration: BoxDecoration(
-                          color: kExercises[i].$3,
-                          shape: BoxShape.circle,
-                        ),
+                      ScenicMarker(
+                        color: _discs[i % _discs.length],
+                        icon: _icons[i % _icons.length],
+                        size: 42,
                       ),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            ChunkyText(
                               kExercises[i].$1,
-                              style: WithMeText.option.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: _selected == i
-                                    ? Colors.white
-                                    : WithMeColors.ink,
+                              weight: 0.5,
+                              textAlign: TextAlign.start,
+                              style: const TextStyle(
+                                fontFamily: WithMeText.ui,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                                color: ScenicColors.ink,
                               ),
                             ),
-                            const SizedBox(height: 5),
+                            const SizedBox(height: 3),
                             Text(
                               kExercises[i].$2,
-                              style: WithMeText.caption.copyWith(
-                                color: _selected == i
-                                    ? Colors.white
-                                    : WithMeColors.inkSoft,
+                              style: kScenicBody.copyWith(
+                                fontSize: 13.5,
+                                color: ScenicColors.ink.withValues(alpha: 0.75),
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      AnimatedOpacity(
+                        opacity: _selected == i ? 1 : 0,
+                        duration: WithMeMotion.fast,
+                        child: const Icon(
+                          Icons.check_circle_rounded,
+                          color: ScenicColors.pillBottom,
+                          size: 26,
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

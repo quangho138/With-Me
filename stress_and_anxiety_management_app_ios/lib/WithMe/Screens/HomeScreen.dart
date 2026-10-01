@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/WithMeAvatar.dart';
-import '../Theme/WithMeTheme.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
+import '../Mascot/RealMascot.dart';
 import 'CheckInScreen.dart';
 import 'DashboardScreen.dart';
 import 'ExerciseChooseScreen.dart';
 import 'MenuScreen.dart';
 import 'MonthlyCalendarScreen.dart';
 
-/// `image5.png` — Home.
+/// `image5.png` — Home, in the V2 look of the welcome and the check-in.
 ///
-/// Measured: the welcome card is 342 x 93 at y 294 with a 20 pt radius; the
-/// quick-actions panel holds four 55 pt rows inset 16 from the panel edge
-/// (x 40 against the page's 24), the first filled teal.
+/// The greeting in a cream panel, the four shortcuts as the welcome's pills
+/// - Check in filled, the rest light - and the companion waving hello in
+/// the room below them.
 class WithMeHomeScreen extends StatefulWidget {
   const WithMeHomeScreen({super.key});
 
@@ -49,46 +48,53 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
     final greeting =
         _name == null || _name!.isEmpty ? 'Welcome back!' : 'Welcome back, $_name!';
 
-    return WithMeScaffold(
+    return ScenicScaffold(
+      title: 'Home',
+      leading: _MenuButton(onTap: () => _go(const MenuScreen())),
+      mascot: RealPose.wave,
+      mascotMax: 0.42,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _MenuHeader(onTap: () => _go(const MenuScreen())),
-          const SizedBox(height: WithMeSpace.lg),
-          // Waves hello, then wanders the width of the page - stopping to
-          // wave again, or to plop onto its behind and get back up.
-          const WithMeAvatar(size: 99, behavior: MascotBehavior.roam),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeCard(
-            radius: 20,
-            padding: const EdgeInsets.symmetric(
-              horizontal: WithMeSpace.lg,
-              vertical: WithMeSpace.lg,
-            ),
+          ScenicPanel(
             child: Column(
               children: [
-                Text(
-                  greeting,
-                  style: WithMeText.option.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    color: WithMeColors.teal,
-                  ),
-                ),
+                ScenicHeading(greeting, size: 24),
                 const SizedBox(height: 4),
-                Text(
+                const Text(
                   'What would you like to do?',
-                  style: WithMeText.body.copyWith(color: WithMeColors.ink),
+                  textAlign: TextAlign.center,
+                  style: kScenicBody,
                 ),
               ],
             ),
           ),
-          const SizedBox(height: WithMeSpace.lg),
-          _QuickActions(
-            onCheckIn: () => _go(const CheckInScreen()),
-            onDashboard: () => _go(const DashboardScreen()),
-            onExercises: () => _go(const ExerciseChooseScreen()),
-            onCalendar: () => _go(const MonthlyCalendarScreen()),
+          const SizedBox(height: 18),
+          ScenicPill(
+            label: 'Check In',
+            height: 56,
+            onPressed: () => _go(const CheckInScreen()),
+          ),
+          const SizedBox(height: 12),
+          ScenicPill(
+            label: 'Dashboard',
+            light: true,
+            height: 52,
+            onPressed: () => _go(const DashboardScreen()),
+          ),
+          const SizedBox(height: 12),
+          ScenicPill(
+            label: 'Immediate Exercises',
+            light: true,
+            height: 52,
+            onPressed: () => _go(const ExerciseChooseScreen()),
+          ),
+          const SizedBox(height: 12),
+          ScenicPill(
+            label: 'Monthly Calendar',
+            light: true,
+            height: 52,
+            onPressed: () => _go(const MonthlyCalendarScreen()),
           ),
         ],
       ),
@@ -96,103 +102,30 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
   }
 }
 
-class _MenuHeader extends StatelessWidget {
-  const _MenuHeader({required this.onTap});
+/// The menu button, white over the sky like the check-in's back chevron.
+class _MenuButton extends StatelessWidget {
+  const _MenuButton({required this.onTap});
 
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
+  Widget build(BuildContext context) => Semantics(
+    button: true,
+    label: 'Menu',
+    excludeSemantics: true,
+    child: GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: Row(
-        children: [
-          const Icon(Icons.menu_rounded, size: 26, color: WithMeColors.teal),
-          const SizedBox(width: WithMeSpace.md),
-          Text(
-            'Home',
-            style: WithMeText.title.copyWith(fontSize: 20),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// The peach panel with the four shortcuts.
-class _QuickActions extends StatelessWidget {
-  const _QuickActions({
-    required this.onCheckIn,
-    required this.onDashboard,
-    required this.onExercises,
-    required this.onCalendar,
-  });
-
-  final VoidCallback onCheckIn;
-  final VoidCallback onDashboard;
-  final VoidCallback onExercises;
-  final VoidCallback onCalendar;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(WithMeSpace.lg),
-      decoration: BoxDecoration(
-        color: WithMeColors.peach.withValues(alpha: 0.35),
-        borderRadius: BorderRadius.circular(WithMeSpace.radiusLg),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Center(child: SectionLabel('Quick actions')),
-          const SizedBox(height: WithMeSpace.md),
-          _Action(label: 'CHECK IN', filled: true, onTap: onCheckIn),
-          const SizedBox(height: WithMeSpace.md),
-          _Action(label: 'DASHBOARD', onTap: onDashboard),
-          const SizedBox(height: WithMeSpace.md),
-          _Action(label: 'IMMEDIATE EXERCISES', onTap: onExercises),
-          const SizedBox(height: WithMeSpace.md),
-          _Action(label: 'MONTHLY CALENDAR', onTap: onCalendar),
-        ],
-      ),
-    );
-  }
-}
-
-class _Action extends StatelessWidget {
-  const _Action({
-    required this.label,
-    required this.onTap,
-    this.filled = false,
-  });
-
-  final String label;
-  final VoidCallback onTap;
-  final bool filled;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Container(
-        height: WithMeSpace.rowHeight,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: filled ? WithMeColors.teal : WithMeColors.cream,
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusSm),
-          boxShadow: WithMeSpace.cardShadow,
-        ),
-        child: Text(
-          label,
-          style: WithMeText.option.copyWith(
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.6,
-            color: filled ? Colors.white : WithMeColors.teal,
-          ),
+      child: const SizedBox(
+        width: 44,
+        height: 44,
+        child: Icon(
+          Icons.menu_rounded,
+          size: 28,
+          color: Colors.white,
+          shadows: [Shadow(color: Color(0x66000000), blurRadius: 6)],
         ),
       ),
-    );
-  }
+    ),
+  );
 }

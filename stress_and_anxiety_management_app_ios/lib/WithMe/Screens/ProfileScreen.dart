@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/WithMeAvatar.dart';
-import '../Theme/WithMeTheme.dart';
 
 /// `image4.png` — My Profile.
 ///
-/// A 105 pt identity card, three fields, then two stat tiles and Save.
+/// An identity card, three fields, then two stat tiles and Save - in the
+/// scenic look, over the softened beach.
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -90,63 +89,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
+      title: 'My Profile',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(label: 'Save changes', onPressed: _save),
+      softBackground: true,
+      action: ScenicPill(label: 'Save changes', height: 58, onPressed: _save),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          WithMeCard(
-            height: 105,
-            radius: 20,
-            padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
+          ScenicPanel(
             child: Row(
               children: [
-                const WithMeAvatarBadge(size: 62),
-                const SizedBox(width: WithMeSpace.lg),
+                const ScenicMarker(
+                  color: ScenicColors.pillBottom,
+                  icon: Icons.person_rounded,
+                  size: 56,
+                ),
+                const SizedBox(width: 14),
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      ScenicHeading(
                         _name.text.isEmpty ? 'You' : _name.text,
-                        style: WithMeText.option.copyWith(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w700,
-                          color: WithMeColors.teal,
-                        ),
+                        size: 22,
+                        textAlign: TextAlign.start,
                       ),
                       const SizedBox(height: 2),
-                      Text('With me since today', style: WithMeText.body),
+                      const Text('With me since today', style: kScenicBody),
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(label: 'Name', controller: _name),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(
-            label: 'Email',
-            controller: _email,
-            hint: 'maya@email.com',
-            keyboardType: TextInputType.emailAddress,
+          const SizedBox(height: 12),
+          ScenicPanel(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                WithMeField(
+                  label: 'Name',
+                  controller: _name,
+                  fill: Colors.white,
+                  border: kScenicFieldRing,
+                ),
+                const SizedBox(height: 14),
+                WithMeField(
+                  label: 'Email',
+                  controller: _email,
+                  hint: 'maya@email.com',
+                  keyboardType: TextInputType.emailAddress,
+                  fill: Colors.white,
+                  border: kScenicFieldRing,
+                ),
+                const SizedBox(height: 14),
+                WithMeField(
+                  label: 'Daily check-in time',
+                  controller: _checkInTime,
+                  fill: Colors.white,
+                  border: kScenicFieldRing,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(label: 'Daily check-in time', controller: _checkInTime),
-          const SizedBox(height: WithMeSpace.lg),
-          Row(
-            children: [
-              Expanded(
-                child: StatTile(value: '$_checkIns', caption: 'check-ins'),
-              ),
-              const SizedBox(width: WithMeSpace.md),
-              Expanded(
-                child: StatTile(value: '$_exercises', caption: 'exercises'),
-              ),
-            ],
+          const SizedBox(height: 12),
+          ScenicPanel(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ScenicStatTile(
+                    value: '$_checkIns',
+                    label: 'check-ins',
+                    icon: Icons.favorite_rounded,
+                    iconColor: const Color(0xFFD2557F),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ScenicStatTile(
+                    value: '$_exercises',
+                    label: 'exercises',
+                    icon: Icons.spa_rounded,
+                    iconColor: const Color(0xFF3E9C8C),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

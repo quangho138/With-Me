@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCalendar.dart';
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'DailyCheckInScreen.dart';
 import 'DayDetailScreen.dart';
@@ -133,15 +132,16 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Monthly Calendar',
       action: _todaySelected
-          ? WithMeButton(
+          ? ScenicPill(
               label: "Start today's check-in",
+              height: 58,
               onPressed: () => _openCheckIn(0),
             )
           : null,
-      footnote: const AccentLine('Every step counts'),
+      footnote: const ScenicFootnote('Every step counts'),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -194,22 +194,22 @@ class _TodayCheckIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeCard(
+    return ScenicPanel(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("Today's check-in", style: WithMeText.question),
+          const ScenicHeading("Today's check-in", textAlign: TextAlign.start),
           const SizedBox(height: WithMeSpace.xs),
           Text(
             done
                 ? "You've checked in today. Tap a page to change an answer."
                 : 'Tap a page to start there, or begin from the top below.',
-            style: WithMeText.caption,
+            style: kScenicBody.copyWith(fontSize: 14),
           ),
           const SizedBox(height: WithMeSpace.sm),
           for (var i = 0; i < titles.length; i++) ...[
             if (i > 0)
-              const Divider(height: 1, thickness: 1, color: WithMeColors.slate),
+              const Divider(height: 1, thickness: 1, color: ScenicColors.ring),
             _PageRow(number: i + 1, title: titles[i], onTap: () => onOpen(i)),
           ],
         ],
@@ -243,29 +243,27 @@ class _PageRow extends StatelessWidget {
               height: 26,
               alignment: Alignment.center,
               decoration: const BoxDecoration(
-                color: WithMeColors.mint,
+                color: ScenicColors.pillBottom,
                 shape: BoxShape.circle,
               ),
               child: Text(
                 '$number',
-                style: WithMeText.caption.copyWith(
-                  color: WithMeColors.ink,
+                style: kScenicBody.copyWith(
+                  fontSize: 13,
                   fontWeight: FontWeight.w700,
+                  color: Colors.white,
                 ),
               ),
             ),
             const SizedBox(width: WithMeSpace.md),
             Expanded(
-              child: Text(
-                title,
-                style: WithMeText.body.copyWith(color: WithMeColors.ink),
-              ),
+              child: Text(title, style: kScenicBody),
             ),
             const SizedBox(width: WithMeSpace.sm),
             const Icon(
               Icons.chevron_right_rounded,
               size: 22,
-              color: WithMeColors.teal,
+              color: ScenicColors.pillBottom,
             ),
           ],
         ),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
+import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ExerciseChooseScreen.dart';
 
 /// `image36.png` — "Your day".
 ///
 /// The four things today asked for, each with its state on the right, then
-/// the nudge toward whichever one is still open.
+/// the nudge toward whichever one is still open - on the beach the check-in
+/// began on, with the companion waving below.
 class YourDayScreen extends StatefulWidget {
   const YourDayScreen({super.key});
 
@@ -48,11 +47,13 @@ class _YourDayScreenState extends State<YourDayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Your day',
-      // image36 shows no back chevron — the check-in lands here.
-      action: WithMeButton(
+      mascot: RealPose.wave,
+      mascotMax: 0.36,
+      action: ScenicPill(
         label: 'Do it now',
+        height: 58,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => const ExerciseChooseScreen()),
         ),
@@ -60,16 +61,12 @@ class _YourDayScreenState extends State<YourDayScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          WithMeCard(
-            padding: const EdgeInsets.symmetric(
-              horizontal: WithMeSpace.lg,
-              vertical: WithMeSpace.md,
-            ),
+          ScenicPanel(
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
             child: Column(
               children: [
                 for (var i = 0; i < _tasks.length; i++) ...[
-                  if (i > 0)
-                    const Divider(height: WithMeSpace.lg, color: WithMeColors.slate),
+                  if (i > 0) const SizedBox(height: 8),
                   _TaskRow(
                     task: _tasks[i],
                     onTap: () => setState(() {
@@ -82,19 +79,15 @@ class _YourDayScreenState extends State<YourDayScreen> {
               ],
             ),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          ReassuranceCard(
-            tinted: true,
-            // The design spells the counts out rather than using digits.
-            text: '${_word(_done)} of ${_word(_tasks.length)} done. '
-                'The step you chose this morning is still waiting — two '
-                'minutes is enough.',
-          ),
-          const SizedBox(height: WithMeSpace.lg),
-          const Center(
-            child: WithMeAvatar(
-              size: 95,
-              expression: MascotExpression.encouraging,
+          const SizedBox(height: 12),
+          ScenicPanel(
+            child: Text(
+              // The design spells the counts out rather than using digits.
+              '${_word(_done)} of ${_word(_tasks.length)} done. '
+              'The step you chose this morning is still waiting — two '
+              'minutes is enough.',
+              textAlign: TextAlign.center,
+              style: kScenicBody,
             ),
           ),
         ],
@@ -103,6 +96,8 @@ class _YourDayScreenState extends State<YourDayScreen> {
   }
 }
 
+/// One task on a sage tile: its colour, its name, and its state as a chip -
+/// filled teal when done, coral for the one to do now, outlined for later.
 class _TaskRow extends StatelessWidget {
   const _TaskRow({required this.task, required this.onTap});
 
@@ -111,29 +106,46 @@ class _TaskRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    final (word, fill, ink) = switch (task.state) {
+      _TaskState.done => ('DONE', ScenicColors.pillBottom, Colors.white),
+      _TaskState.now => ('NOW', const Color(0xFFE0604A), Colors.white),
+      _TaskState.later => ('LATER', Colors.white, ScenicColors.ink),
+    };
+    final done = task.state == _TaskState.done;
+
+    return ScenicTile(
+      label: '${task.label}, $word',
+      selected: done,
       onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Row(
-        children: [
-          Container(
-            width: 16,
-            height: 16,
-            decoration: BoxDecoration(color: task.color, shape: BoxShape.circle),
-          ),
-          const SizedBox(width: WithMeSpace.md),
-          Expanded(child: Text(task.label, style: WithMeText.option)),
-          Text(
-            switch (task.state) {
-              _TaskState.done => 'DONE',
-              _TaskState.now => 'NOW',
-              _TaskState.later => 'LATER',
-            },
-            style: WithMeText.sectionLabel.copyWith(
-              color: WithMeColors.inkFaint,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        child: Row(
+          children: [
+            ScenicMarker(
+              color: task.color,
+              size: 30,
+              checked: done,
+              icon: done ? null : Icons.circle_outlined,
             ),
-          ),
-        ],
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(task.label, style: kScenicBody.copyWith(fontSize: 16)),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                color: fill,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: ScenicColors.ring, width: 1.2),
+              ),
+              child: Text(
+                word,
+                style: kScenicLabel.copyWith(fontSize: 12, color: ink),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

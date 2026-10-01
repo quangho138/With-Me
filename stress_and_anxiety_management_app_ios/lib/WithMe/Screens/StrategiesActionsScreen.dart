@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
 import '../Data/CheckInSteps.dart';
 import '../Theme/WithMeTheme.dart';
 import 'DayDetailScreen.dart';
@@ -44,12 +43,13 @@ class StrategiesActionsScreen extends StatelessWidget {
         ),
     ];
 
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Strategies & Actions',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(
+      action: ScenicPill(
         label: 'View entry details',
-        filled: false,
+        light: true,
+        height: 54,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => DayDetailScreen(date: DateTime.now()),
@@ -61,7 +61,7 @@ class StrategiesActionsScreen extends StatelessWidget {
         children: [
           const DateRangeCard(label: 'Last 7 days'),
           const SizedBox(height: WithMeSpace.md),
-          WithMeCard(
+          ScenicPanel(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -74,7 +74,7 @@ class StrategiesActionsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: WithMeSpace.md),
-          WithMeCard(
+          ScenicPanel(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -85,7 +85,7 @@ class StrategiesActionsScreen extends StatelessWidget {
                 Text(
                   'Ratings are not stored yet, so this shows the actions on '
                   'offer rather than how they have gone.',
-                  style: WithMeText.caption,
+                  style: kScenicBody.copyWith(fontSize: 13),
                 ),
               ],
             ),
@@ -102,12 +102,6 @@ class _Heading extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) => Text(
-        text,
-        style: WithMeText.option.copyWith(
-          fontSize: 17,
-          fontWeight: FontWeight.w700,
-          color: WithMeColors.teal,
-        ),
-      );
+  Widget build(BuildContext context) =>
+      ScenicHeading(text, size: 20, textAlign: TextAlign.start);
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../Theme/WithMeTheme.dart';
-import 'WithMeCards.dart';
+import 'ScenicKit.dart';
+import 'ScenicScaffold.dart';
 
 /// What a day was marked with. The legend on `image6.png` names exactly four.
 enum DayMark { checkIn, exercise, feelingBetter, challenging }
@@ -26,11 +27,11 @@ extension DayMarkInfo on DayMark {
       this == DayMark.feelingBetter || this == DayMark.challenging;
 }
 
-/// The month grid (`image6.png`).
+/// The month grid (`image6.png`), on the check-in's cream panel.
 ///
-/// Measured: panel 346 wide, 281 tall, 20 pt radius; the grid is a plain 7 x 6
-/// of square cells with a circular fill behind a marked day and an outlined
-/// circle on today.
+/// A plain 7 x 6 of square cells with a circular fill behind a marked day.
+/// Today is ringed in heavy teal with a bold numeral; a selected day that
+/// is not today gets a thinner dark ring, so the two never read alike.
 class MonthCalendar extends StatelessWidget {
   const MonthCalendar({
     super.key,
@@ -66,12 +67,8 @@ class MonthCalendar extends StatelessWidget {
     final leading = first.weekday % 7;
     final today = DateTime.now();
 
-    return WithMeCard(
-      radius: 20,
-      padding: const EdgeInsets.symmetric(
-        horizontal: WithMeSpace.md,
-        vertical: WithMeSpace.lg,
-      ),
+    return ScenicPanel(
+      padding: const EdgeInsets.fromLTRB(10, 16, 10, 12),
       child: Column(
         children: [
           Row(
@@ -83,14 +80,9 @@ class MonthCalendar extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Text(
+                child: ScenicHeading(
                   '${_months[month.month - 1]} ${month.year}',
-                  textAlign: TextAlign.center,
-                  style: WithMeText.option.copyWith(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w700,
-                    color: WithMeColors.teal,
-                  ),
+                  size: 21,
                 ),
               ),
               _Chevron(
@@ -109,7 +101,7 @@ class MonthCalendar extends StatelessWidget {
                   child: Text(
                     d,
                     textAlign: TextAlign.center,
-                    style: WithMeText.caption.copyWith(fontSize: 12),
+                    style: kScenicLabel.copyWith(fontSize: 13),
                   ),
                 ),
             ],
@@ -163,10 +155,10 @@ class MonthCalendar extends StatelessWidget {
         selected!.day == dayNumber;
 
     final ink = !inMonth
-        ? WithMeColors.inkFaint.withValues(alpha: 0.55)
+        ? WithMeColors.inkFaint.withValues(alpha: 0.7)
         : mark != null && mark.needsLightInk
             ? Colors.white
-            : WithMeColors.ink;
+            : ScenicColors.ink;
 
     return GestureDetector(
       onTap: inMonth && onSelect != null
@@ -174,23 +166,30 @@ class MonthCalendar extends StatelessWidget {
           : null,
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
-        // 31 puts the month panel at the measured 280 tall.
-        height: 31,
+        height: 38,
         child: Center(
           child: Container(
-            width: 28,
-            height: 28,
+            width: 34,
+            height: 34,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: mark?.color,
-              border: isToday || isSelected
-                  ? Border.all(color: WithMeColors.teal, width: 1.6)
-                  : null,
+              color: mark?.color ??
+                  (isSelected ? ScenicColors.tileSelected : null),
+              border: isToday
+                  ? Border.all(color: ScenicColors.pillBottom, width: 2.6)
+                  : isSelected
+                      ? Border.all(color: ScenicColors.ink, width: 1.6)
+                      : null,
             ),
             child: Text(
               '$shown',
-              style: WithMeText.option.copyWith(fontSize: 14, color: ink),
+              style: TextStyle(
+                fontFamily: WithMeText.ui,
+                fontSize: 15,
+                fontWeight: isToday ? FontWeight.w800 : FontWeight.w600,
+                color: ink,
+              ),
             ),
           ),
         ),
@@ -210,9 +209,9 @@ class _Chevron extends StatelessWidget {
         onTap: onTap,
         behavior: HitTestBehavior.opaque,
         child: SizedBox(
-          width: 28,
-          height: 28,
-          child: Icon(icon, size: 20, color: WithMeColors.inkSoft),
+          width: 40,
+          height: 40,
+          child: Icon(icon, size: 28, color: ScenicColors.pillBottom),
         ),
       );
 }
@@ -223,12 +222,7 @@ class CalendarLegend extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeCard(
-      radius: 18,
-      padding: const EdgeInsets.symmetric(
-        horizontal: WithMeSpace.lg,
-        vertical: WithMeSpace.lg,
-      ),
+    return ScenicPanel(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -246,7 +240,7 @@ class CalendarLegend extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: WithMeSpace.md),
-                  Text(mark.label, style: WithMeText.option),
+                  Text(mark.label, style: kScenicBody.copyWith(fontSize: 16)),
                 ],
               ),
             ),

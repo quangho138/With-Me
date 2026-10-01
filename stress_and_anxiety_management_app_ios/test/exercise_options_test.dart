@@ -24,9 +24,9 @@ void main() {
           home: const ExerciseChooseScreen(),
         ),
       );
-      await t.tap(find.text(entry.$1));
+      await t.tap(find.text(entry.$1).first);
       await t.pump();
-      await t.tap(find.text('Continue'));
+      await t.tap(find.text('Continue').first);
       await t.pump();
       await t.pump(const Duration(milliseconds: 400));
       expect(
@@ -34,8 +34,8 @@ void main() {
         entry.$2,
       );
       if (entry.$1 == 'De-stress Your Day') {
-        await t.tap(find.text('None'));
-        await t.tap(find.text('Next'));
+        await t.tap(find.text('None').first);
+        await t.tap(find.text('Next').first);
         await t.pump();
         await t.pump(const Duration(milliseconds: 400));
         expect(find.text('4 · 7 · 8'), findsNothing);
@@ -58,9 +58,9 @@ void main() {
           home: const ExerciseChooseScreen(),
         ),
       );
-      await t.tap(find.text('Physiological Sigh'));
+      await t.tap(find.text('Physiological Sigh').first);
       await t.pump();
-      await t.tap(find.text('Continue'));
+      await t.tap(find.text('Continue').first);
       await t.pump();
       await t.pump(const Duration(milliseconds: 400));
       expect(find.byType(SighScreen), findsOneWidget);

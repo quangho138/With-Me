@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Theme/WithMeTheme.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 
 /// Help.
 ///
@@ -63,51 +62,56 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Help',
       onBack: () => Navigator.of(context).pop(),
+      softBackground: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           for (var i = 0; i < HelpScreen.questions.length; i++) ...[
-            if (i > 0) const SizedBox(height: WithMeSpace.md),
-            GestureDetector(
-              onTap: () => setState(() => _open = _open == i ? null : i),
-              behavior: HitTestBehavior.opaque,
-              child: WithMeCard(
-                radius: WithMeSpace.radiusMd,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            HelpScreen.questions[i].$1,
-                            style: WithMeText.option.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: WithMeColors.teal,
+            if (i > 0) const SizedBox(height: 10),
+            Semantics(
+              button: true,
+              expanded: _open == i,
+              child: GestureDetector(
+                onTap: () => setState(() => _open = _open == i ? null : i),
+                behavior: HitTestBehavior.opaque,
+                child: ScenicPanel(
+                  padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ScenicHeading(
+                              HelpScreen.questions[i].$1,
+                              size: 17,
+                              textAlign: TextAlign.start,
                             ),
                           ),
-                        ),
-                        Icon(
-                          _open == i
-                              ? Icons.expand_less_rounded
-                              : Icons.expand_more_rounded,
-                          size: 22,
-                          color: WithMeColors.inkSoft,
+                          Icon(
+                            _open == i
+                                ? Icons.expand_less_rounded
+                                : Icons.expand_more_rounded,
+                            size: 26,
+                            color: ScenicColors.pillBottom,
+                          ),
+                        ],
+                      ),
+                      if (_open == i) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          HelpScreen.questions[i].$2,
+                          style: kScenicBody.copyWith(
+                            fontSize: 16,
+                            height: 1.45,
+                          ),
                         ),
                       ],
-                    ),
-                    if (_open == i) ...[
-                      const SizedBox(height: WithMeSpace.sm),
-                      Text(
-                        HelpScreen.questions[i].$2,
-                        style:
-                            WithMeText.body.copyWith(color: WithMeColors.ink),
-                      ),
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
