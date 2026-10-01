@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'StrategiesActionsScreen.dart';
 
@@ -89,11 +88,12 @@ class _TriggersSignsScreenState extends State<TriggersSignsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Triggers & Signs',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(
+      action: ScenicPill(
         label: 'Continue',
+        height: 58,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => const StrategiesActionsScreen()),
         ),
@@ -120,23 +120,13 @@ class DateRangeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeCard(
-      radius: WithMeSpace.radiusMd,
-      padding: const EdgeInsets.symmetric(
-        horizontal: WithMeSpace.lg,
-        vertical: WithMeSpace.md,
-      ),
+    return ScenicPanel(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SectionLabel('Date range'),
-          Text(
-            label,
-            style: WithMeText.option.copyWith(
-              fontWeight: FontWeight.w700,
-              color: WithMeColors.teal,
-            ),
-          ),
+          const Text('DATE RANGE', style: kScenicLabel),
+          ScenicHeading(label, size: 17),
         ],
       ),
     );
@@ -151,22 +141,15 @@ class _PieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeCard(
+    return ScenicPanel(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: WithMeText.option.copyWith(
-              fontSize: 17,
-              fontWeight: FontWeight.w700,
-              color: WithMeColors.teal,
-            ),
-          ),
+          ScenicHeading(title, size: 20, textAlign: TextAlign.start),
           const SizedBox(height: WithMeSpace.md),
           if (slices.isEmpty)
-            Center(
-              child: Text('Nothing logged yet.', style: WithMeText.body),
+            const Center(
+              child: Text('Nothing logged yet.', style: kScenicBody),
             )
           else ...[
             Center(child: PieChart(slices: slices)),

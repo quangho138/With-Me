@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
-import '../Components/WithMeScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 
-/// `image35.png` — one day's entry.
+/// `image35.png` — one day's entry, in the scenic look. Reached from a past
+/// date on the calendar and from "View entry details" on the dashboard.
 ///
 /// Mood and stress on one line, the day's note, the chips for what was
 /// tagged, then two small charts side by side and the edit-window notice.
@@ -84,42 +85,39 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
     final d = widget.date;
     final title = '${_weekdays[d.weekday - 1]} ${d.day} ${_months[d.month - 1]}';
 
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: title,
       onBack: () => Navigator.of(context).pop(),
       child: !_loaded
           ? const SizedBox.shrink()
           : !_hasEntry
-              ? WithMeCard(
+              ? const ScenicPanel(
                   child: Text(
                     'Nothing logged on this day.',
                     textAlign: TextAlign.center,
-                    style: WithMeText.body,
+                    style: kScenicBody,
                   ),
                 )
               : Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                WithMeCard(
+                ScenicPanel(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Container(
-                            width: 14,
-                            height: 14,
-                            decoration: const BoxDecoration(
-                              color: WithMeColors.peach,
-                              shape: BoxShape.circle,
-                            ),
+                          const ScenicMarker(
+                            color: Color(0xFFEE9A3E),
+                            icon: Icons.favorite_rounded,
+                            size: 30,
                           ),
-                          const SizedBox(width: WithMeSpace.sm),
-                          Text(
-                            _summary(),
-                            style: WithMeText.option.copyWith(
-                              fontWeight: FontWeight.w700,
-                              color: WithMeColors.teal,
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: ScenicHeading(
+                              _summary(),
+                              size: 19,
+                              textAlign: TextAlign.start,
                             ),
                           ),
                         ],
@@ -128,8 +126,9 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                         const SizedBox(height: WithMeSpace.sm),
                         Text(
                           '"${_note()}"',
-                          style: WithMeText.body.copyWith(
-                            color: WithMeColors.ink,
+                          style: kScenicBody.copyWith(
+                            fontSize: 16,
+                            height: 1.45,
                           ),
                         ),
                       ],
@@ -149,13 +148,12 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child: WithMeCard(
-                        radius: 18,
-                        padding: const EdgeInsets.all(WithMeSpace.md),
+                      child: ScenicPanel(
+                        padding: const EdgeInsets.all(14),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Signs', style: WithMeText.caption),
+                            const Text('Signs', style: kScenicLabel),
                             const SizedBox(height: WithMeSpace.sm),
                             BarChart(
                               values: _signBars(),
@@ -169,13 +167,12 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                     ),
                     const SizedBox(width: WithMeSpace.md),
                     Expanded(
-                      child: WithMeCard(
-                        radius: 18,
-                        padding: const EdgeInsets.all(WithMeSpace.md),
+                      child: ScenicPanel(
+                        padding: const EdgeInsets.all(14),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Strategy', style: WithMeText.caption),
+                            const Text('Strategy', style: kScenicLabel),
                             const SizedBox(height: WithMeSpace.sm),
                             const Center(
                               child: PieChart(
@@ -193,10 +190,25 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                   ],
                 ),
                 const SizedBox(height: WithMeSpace.md),
-                ReassuranceCard(
-                  text: _locked
-                      ? 'Locked — entries can be edited for 24 hours.'
-                      : 'You can still edit this entry today.',
+                ScenicPanel(
+                  child: Row(
+                    children: [
+                      Icon(
+                        _locked ? Icons.lock_rounded : Icons.edit_rounded,
+                        size: 20,
+                        color: ScenicColors.pillBottom,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          _locked
+                              ? 'Locked — entries can be edited for 24 hours.'
+                              : 'You can still edit this entry today.',
+                          style: kScenicBody,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -255,20 +267,12 @@ class _Chip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: WithMeSpace.md,
-          vertical: 6,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-          color: WithMeColors.peach.withValues(alpha: 0.55),
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusPill),
+          color: ScenicColors.tileSelected,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: ScenicColors.pillBottom, width: 1.2),
         ),
-        child: Text(
-          label,
-          style: WithMeText.caption.copyWith(
-            color: WithMeColors.ink,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        child: Text(label, style: kScenicBody.copyWith(fontSize: 14)),
       );
 }

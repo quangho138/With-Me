@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'BreathingScreen.dart';
 
 /// `image30.png` — "Before we start".
 ///
 /// A three-up sound picker and a five-up cycle picker, with the running total
-/// underneath.
+/// underneath - in the V2 look of the check-in: sage tiles for the sounds,
+/// the check-in's number circles for the cycles.
 class BeforeWeStartScreen extends StatefulWidget {
   const BeforeWeStartScreen({
     super.key,
@@ -36,15 +35,25 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   String _sound = 'Waves';
   int _cycles = 5;
 
+  static const Map<String, IconData> _soundIcons = {
+    'Waves': Icons.waves_rounded,
+    'Birds': Icons.flutter_dash_rounded,
+    'Fire': Icons.local_fire_department_rounded,
+    'Forest': Icons.forest_rounded,
+    'Rain': Icons.water_drop_rounded,
+    'None': Icons.volume_off_rounded,
+  };
+
   @override
   Widget build(BuildContext context) {
     final seconds = _cycles * widget.pattern.roundSeconds;
 
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Before we start',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(
+      action: ScenicPill(
         label: 'Next',
+        height: 58,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => BreathingScreen(
@@ -56,98 +65,93 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
           ),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text('Sound choice', style: WithMeText.fieldLabel),
-          const SizedBox(height: WithMeSpace.sm),
-          for (var row = 0; row < 2; row++) ...[
-            if (row > 0) const SizedBox(height: WithMeSpace.md),
-            Row(
-              children: [
-                for (var col = 0; col < 3; col++) ...[
-                  if (col > 0) const SizedBox(width: WithMeSpace.md),
-                  Expanded(
-                    child: _Pill(
-                      label: _sounds[row * 3 + col],
-                      selected: _sound == _sounds[row * 3 + col],
-                      onTap: () =>
-                          setState(() => _sound = _sounds[row * 3 + col]),
+      child: ScenicPanel(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const ScenicHeading('Sound choice'),
+            const SizedBox(height: 12),
+            for (var row = 0; row < 2; row++) ...[
+              if (row > 0) const SizedBox(height: 10),
+              Row(
+                children: [
+                  for (var col = 0; col < 3; col++) ...[
+                    if (col > 0) const SizedBox(width: 10),
+                    Expanded(
+                      child: _SoundTile(
+                        label: _sounds[row * 3 + col],
+                        icon: _soundIcons[_sounds[row * 3 + col]]!,
+                        selected: _sound == _sounds[row * 3 + col],
+                        onTap: () =>
+                            setState(() => _sound = _sounds[row * 3 + col]),
+                      ),
                     ),
-                  ),
+                  ],
                 ],
-              ],
+              ),
+            ],
+            const SizedBox(height: 22),
+            const ScenicHeading('Number of cycles'),
+            const SizedBox(height: 12),
+            NumberChoice(
+              value: _cycles,
+              values: _cycleChoices,
+              onChanged: (v) => setState(() => _cycles = v),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              '$_cycles cycles ≈ $seconds seconds',
+              textAlign: TextAlign.center,
+              style: kScenicBody,
             ),
           ],
-          const SizedBox(height: WithMeSpace.xl),
-          Text('Number of cycles', style: WithMeText.fieldLabel),
-          const SizedBox(height: WithMeSpace.sm),
-          Row(
-            children: [
-              for (var i = 0; i < _cycleChoices.length; i++) ...[
-                if (i > 0) const SizedBox(width: WithMeSpace.sm),
-                Expanded(
-                  child: _Pill(
-                    label: '${_cycleChoices[i]}',
-                    selected: _cycles == _cycleChoices[i],
-                    onTap: () => setState(() => _cycles = _cycleChoices[i]),
-                    circular: true,
-                  ),
-                ),
-              ],
-            ],
-          ),
-          const SizedBox(height: WithMeSpace.md),
-          Text(
-            '$_cycles cycles ≈ $seconds seconds',
-            style: WithMeText.caption,
-          ),
-          const SizedBox(height: WithMeSpace.xl),
-          const Center(
-            child: WithMeAvatar(size: 78, expression: MascotExpression.happy),
-          ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class _Pill extends StatelessWidget {
-  const _Pill({
+/// One sound: a sage tile with the sound's glyph over its name.
+class _SoundTile extends StatelessWidget {
+  const _SoundTile({
     required this.label,
+    required this.icon,
     required this.selected,
     required this.onTap,
-    this.circular = false,
   });
 
   final String label;
+  final IconData icon;
   final bool selected;
   final VoidCallback onTap;
-  final bool circular;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return ScenicTile(
+      label: label,
+      selected: selected,
       onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: AnimatedContainer(
-        duration: WithMeMotion.fast,
-        height: 48,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: selected ? WithMeColors.teal : WithMeColors.cream,
-          borderRadius: BorderRadius.circular(
-            circular ? 24 : WithMeSpace.radiusPill,
+      height: 74,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 26,
+            color: selected ? ScenicColors.pillBottom : ScenicColors.ink,
           ),
-          boxShadow: WithMeSpace.cardShadow,
-        ),
-        child: Text(
-          label,
-          style: WithMeText.option.copyWith(
-            fontWeight: FontWeight.w600,
-            color: selected ? Colors.white : WithMeColors.ink,
+          const SizedBox(height: 4),
+          ChunkyText(
+            label,
+            weight: 0.5,
+            style: const TextStyle(
+              fontFamily: WithMeText.ui,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: ScenicColors.ink,
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
-import '../Theme/WithMeTheme.dart';
 
 /// `image3.png` — "Reset your password".
 ///
@@ -32,44 +29,51 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Reset your password',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(
+      action: ScenicPill(
         label: 'Send reset link',
+        height: 58,
         onPressed: () => setState(() => _sent = true),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const ReassuranceCard(
-            text: "Enter your email and I'll send you a reset link.",
-          ),
-          const SizedBox(height: WithMeSpace.xl),
-          WithMeField(
-            label: 'Email',
-            controller: _email,
-            hint: 'maya@email.com',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: WithMeSpace.xl),
-          const Center(
-            child: WithMeAvatar(size: 95, expression: MascotExpression.happy),
-          ),
-          const SizedBox(height: WithMeSpace.xl),
-          // The mockup shows this panel already filled in; it only makes sense
-          // once the link has actually been requested.
-          if (_sent)
-            WithMeCard(
-              radius: WithMeSpace.radiusMd,
-              color: WithMeColors.mint.withValues(alpha: 0.45),
-              child: Text(
-                'Check your inbox — the link works for 30 minutes.',
-                textAlign: TextAlign.center,
-                style: WithMeText.body.copyWith(color: WithMeColors.ink),
-              ),
+      child: ScenicPanel(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              "Enter your email and I'll send you a reset link.",
+              textAlign: TextAlign.center,
+              style: kScenicBody,
             ),
-        ],
+            const SizedBox(height: 14),
+            WithMeField(
+              label: 'Email',
+              controller: _email,
+              hint: 'maya@email.com',
+              keyboardType: TextInputType.emailAddress,
+              fill: Colors.white,
+              border: kScenicFieldRing,
+            ),
+            // Only once the link has actually been requested.
+            if (_sent) ...[
+              const SizedBox(height: 14),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: ScenicColors.tileSelected,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: ScenicColors.pillBottom, width: 1.4),
+                ),
+                child: const Text(
+                  'Check your inbox — the link works for 30 minutes.',
+                  textAlign: TextAlign.center,
+                  style: kScenicBody,
+                ),
+              ),
+            ],
+          ],
+        ),
       ),
     );
   }

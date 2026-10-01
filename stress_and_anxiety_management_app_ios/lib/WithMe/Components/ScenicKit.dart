@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
@@ -84,24 +85,44 @@ class ScenicColors {
 
 /// A painted background, covering the whole screen.
 class ScenicBackdrop extends StatelessWidget {
-  const ScenicBackdrop({super.key, required this.scene, required this.child});
+  const ScenicBackdrop({
+    super.key,
+    required this.scene,
+    required this.child,
+    this.soften = false,
+  });
 
   /// `welcome` or `sunset`.
   final String scene;
   final Widget child;
 
+  /// Blur the painting and lay a light cream veil over it, for screens that
+  /// are mostly reading - settings, help. Only the painting is touched;
+  /// [child] is drawn on top, sharp.
+  final bool soften;
+
   @override
   Widget build(BuildContext context) {
+    final painting = Image.asset(
+      'assets/v2/app/bg_$scene.webp',
+      fit: BoxFit.cover,
+      alignment: Alignment.center,
+      filterQuality: FilterQuality.medium,
+      gaplessPlayback: true,
+    );
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset(
-          'assets/v2/app/bg_$scene.webp',
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-          filterQuality: FilterQuality.medium,
-          gaplessPlayback: true,
-        ),
+        if (soften) ...[
+          ClipRect(
+            child: ImageFiltered(
+              imageFilter: ui.ImageFilter.blur(sigmaX: 7, sigmaY: 7),
+              child: painting,
+            ),
+          ),
+          ColoredBox(color: ScenicColors.bubble.withValues(alpha: 0.28)),
+        ] else
+          painting,
         child,
       ],
     );
@@ -145,6 +166,7 @@ class ScenicPill extends StatelessWidget {
           child: Container(
             height: height,
             alignment: Alignment.center,
+            padding: EdgeInsets.symmetric(horizontal: height * 0.3),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(height / 2),
               gradient: light
@@ -171,19 +193,22 @@ class ScenicPill extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (leading != null) ...[leading!, const SizedBox(width: 10)],
-                // Flexible, so a long label or large accessibility text
-                // ellipsises instead of overflowing the pill.
+                // Flexible and scaled down to fit, so a long label or large
+                // accessibility text stays whole instead of overflowing the
+                // pill.
                 Flexible(
-                  child: ChunkyText(
-                    label,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    weight: 0.7,
-                    style: TextStyle(
-                      fontFamily: WithMeText.ui,
-                      fontSize: light ? 20 : 23,
-                      fontWeight: FontWeight.w700,
-                      color: light ? ScenicColors.ink : Colors.white,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: ChunkyText(
+                      label,
+                      maxLines: 1,
+                      weight: 0.7,
+                      style: TextStyle(
+                        fontFamily: WithMeText.ui,
+                        fontSize: light ? 20 : 23,
+                        fontWeight: FontWeight.w700,
+                        color: light ? ScenicColors.ink : Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -289,9 +314,13 @@ class BubbleText extends StatelessWidget {
 /// Back chevron in the scenic header: white, with a soft shadow so it holds
 /// up over bright sky.
 class ScenicBack extends StatelessWidget {
-  const ScenicBack({super.key, required this.onTap});
+  const ScenicBack({super.key, required this.onTap, this.onLight = false});
 
   final VoidCallback onTap;
+
+  /// Ink with a white glow instead of white with a shadow, for a softened,
+  /// lighter scene.
+  final bool onLight;
 
   @override
   Widget build(BuildContext context) => Semantics(
@@ -301,14 +330,18 @@ class ScenicBack extends StatelessWidget {
     child: GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: const SizedBox(
+      child: SizedBox(
         width: 40,
         height: 40,
         child: Icon(
           Icons.arrow_back_ios_new_rounded,
           size: 22,
-          color: Colors.white,
-          shadows: [Shadow(color: Color(0x66000000), blurRadius: 6)],
+          color: onLight ? ScenicColors.ink : Colors.white,
+          shadows: [
+            onLight
+                ? const Shadow(color: Color(0xCCFFFFFF), blurRadius: 8)
+                : const Shadow(color: Color(0x66000000), blurRadius: 6),
+          ],
         ),
       ),
     ),
@@ -376,11 +409,16 @@ class NumberChoice extends StatelessWidget {
     required this.value,
     required this.onChanged,
     this.count = 5,
+    this.values,
   });
 
   final int? value;
   final ValueChanged<int> onChanged;
   final int count;
+
+  /// The numbers to offer, when they are not simply 1 to [count] - the
+  /// cycle counts before an exercise, say.
+  final List<int>? values;
 
   static const double _circle = 56;
 
@@ -388,15 +426,17 @@ class NumberChoice extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, box) {
+        final choices = values ?? [for (var i = 1; i <= count; i++) i];
+        final n = choices.length;
         // Full size wherever they fit; on a narrow phone they shrink rather
         // than run off the bubble.
-        final d = count * _circle <= box.maxWidth
+        final d = n * _circle <= box.maxWidth
             ? _circle
-            : (box.maxWidth - (count - 1) * 4) / count;
+            : (box.maxWidth - (n - 1) * 4) / n;
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            for (var i = 1; i <= count; i++)
+            for (final i in choices)
               Semantics(
                 button: true,
                 selected: value == i,

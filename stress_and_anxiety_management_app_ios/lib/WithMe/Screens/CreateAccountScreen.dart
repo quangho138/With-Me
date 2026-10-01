@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
-import '../Theme/WithMeTheme.dart';
+import '../Mascot/RealMascot.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
 
@@ -88,45 +87,57 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Create your account',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(
+      mascot: RealPose.think,
+      mascotMax: 0.28,
+      action: ScenicPill(
         label: 'Create account',
+        height: 58,
         onPressed: _busy ? null : _create,
       ),
-      footnote: GestureDetector(
+      footnote: ScenicFootnote(
+        'Already with us? Log in',
         onTap: () => Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
         ),
-        child: Text(
-          'Already with us? Log in',
-          style: WithMeText.caption.copyWith(color: WithMeColors.inkSoft),
-        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          WithMeField(label: 'Name', controller: _name, hint: 'Maya'),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(
-            label: 'Email',
-            controller: _email,
-            hint: 'maya@email.com',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(label: 'Password', controller: _password, obscure: true),
-          const SizedBox(height: WithMeSpace.lg),
-          _TermsCheck(
-            value: _agreed,
-            onChanged: (v) => setState(() => _agreed = v),
-          ),
-          const SizedBox(height: WithMeSpace.lg),
-          const Center(
-            child: WithMeAvatar(size: 86, expression: MascotExpression.happy),
-          ),
-        ],
+      child: ScenicPanel(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            WithMeField(
+              label: 'Name',
+              controller: _name,
+              hint: 'Maya',
+              fill: Colors.white,
+              border: kScenicFieldRing,
+            ),
+            const SizedBox(height: 14),
+            WithMeField(
+              label: 'Email',
+              controller: _email,
+              hint: 'maya@email.com',
+              keyboardType: TextInputType.emailAddress,
+              fill: Colors.white,
+              border: kScenicFieldRing,
+            ),
+            const SizedBox(height: 14),
+            WithMeField(
+              label: 'Password',
+              controller: _password,
+              obscure: true,
+              fill: Colors.white,
+              border: kScenicFieldRing,
+            ),
+            const SizedBox(height: 16),
+            _TermsCheck(
+              value: _agreed,
+              onChanged: (v) => setState(() => _agreed = v),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -140,33 +151,41 @@ class _TermsCheck extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onChanged(!value),
-      behavior: HitTestBehavior.opaque,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 22,
-            height: 22,
-            decoration: BoxDecoration(
-              color: value ? WithMeColors.teal : WithMeColors.cream,
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(color: WithMeColors.teal, width: 1.6),
+    return Semantics(
+      checked: value,
+      child: GestureDetector(
+        onTap: () => onChanged(!value),
+        behavior: HitTestBehavior.opaque,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              width: 24,
+              height: 24,
+              decoration: BoxDecoration(
+                color: value ? ScenicColors.pillBottom : Colors.white,
+                borderRadius: BorderRadius.circular(7),
+                border: Border.all(color: ScenicColors.pillBottom, width: 1.8),
+              ),
+              child: value
+                  ? const Icon(
+                      Icons.check_rounded,
+                      size: 17,
+                      color: Colors.white,
+                    )
+                  : null,
             ),
-            child: value
-                ? const Icon(Icons.check_rounded, size: 15, color: Colors.white)
-                : null,
-          ),
-          const SizedBox(width: WithMeSpace.md),
-          Expanded(
-            child: Text(
-              'I agree to the Terms and Privacy Policy. With Me is a '
-              'companion, not medical care.',
-              style: WithMeText.body.copyWith(fontSize: 14),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                'I agree to the Terms and Privacy Policy. With Me is a '
+                'companion, not medical care.',
+                style: kScenicBody.copyWith(fontSize: 14),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

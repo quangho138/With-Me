@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/WithMeAvatar.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'AboutScreen.dart';
 import 'HelpScreen.dart';
@@ -15,8 +13,8 @@ import 'WelcomeScreen.dart';
 
 /// `image40.png` — the menu.
 ///
-/// A 94 pt profile card, then eight 55 pt rows on a 9.5 pt gap, closing on
-/// "Small steps, bright futures" in the accent script.
+/// The brand card, then the eight rows - each with its icon in a coloured
+/// disc - on the softened beach, closing on "Small steps, bright futures".
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
 
@@ -31,61 +29,94 @@ class MenuScreen extends StatelessWidget {
           SnackBar(content: Text('$what is not wired up in this UI pass.')),
         );
 
-    return WithMeScaffold(
-      lockup: false,
-      footnote: const AccentLine('Small steps, bright futures'),
+    Widget gap() => const SizedBox(height: 10);
+
+    return ScenicScaffold(
+      title: 'Menu',
+      softBackground: true,
+      footnote: const ScenicFootnote('Small steps, bright futures'),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: WithMeSpace.md),
-          WithMeCard(
-            height: 94,
-            radius: 22,
-            padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
+          ScenicPanel(
             child: Row(
               children: [
-                const WithMeAvatarBadge(size: 54),
-                const SizedBox(width: WithMeSpace.md),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'With Me',
-                      style: WithMeText.wordmark.copyWith(fontSize: 28),
-                    ),
-                    Text('Here. With you.', style: WithMeText.body),
-                  ],
+                const ScenicMarker(
+                  color: ScenicColors.pillBottom,
+                  icon: Icons.spa_rounded,
+                  size: 52,
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'With Me',
+                        style: WithMeText.wordmark.copyWith(
+                          fontSize: 30,
+                          color: ScenicColors.ink,
+                        ),
+                      ),
+                      const Text('Here. With you.', style: kScenicBody),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(label: 'My Profile', onTap: () => go(const ProfileScreen())),
-          const SizedBox(height: 10),
-          MenuRow(
+          const SizedBox(height: 14),
+          ScenicRow(
+            label: 'My Profile',
+            icon: Icons.person_rounded,
+            onTap: () => go(const ProfileScreen()),
+          ),
+          gap(),
+          ScenicRow(
             label: 'Notifications',
+            icon: Icons.notifications_rounded,
+            iconColor: const Color(0xFFEE9A3E),
             onTap: () => go(const NotificationsScreen()),
           ),
-          const SizedBox(height: 10),
-          MenuRow(label: 'Settings', onTap: () => go(const SettingsScreen())),
-          const SizedBox(height: 10),
-          MenuRow(
+          gap(),
+          ScenicRow(
+            label: 'Settings',
+            icon: Icons.settings_rounded,
+            iconColor: const Color(0xFF3E9C8C),
+            onTap: () => go(const SettingsScreen()),
+          ),
+          gap(),
+          ScenicRow(
             label: 'Privacy & data',
+            icon: Icons.lock_rounded,
+            iconColor: const Color(0xFF1C7C84),
             onTap: () => notWired('Privacy & data'),
           ),
-          const SizedBox(height: 10),
-          MenuRow(label: 'About', onTap: () => go(const WithMeAboutScreen())),
-          const SizedBox(height: 10),
-          MenuRow(label: 'Help', onTap: () => go(const HelpScreen())),
-          const SizedBox(height: 10),
-          MenuRow(
+          gap(),
+          ScenicRow(
+            label: 'About',
+            icon: Icons.info_rounded,
+            iconColor: const Color(0xFFD2557F),
+            onTap: () => go(const WithMeAboutScreen()),
+          ),
+          gap(),
+          ScenicRow(
+            label: 'Help',
+            icon: Icons.help_rounded,
+            iconColor: const Color(0xFF3E9C8C),
+            onTap: () => go(const HelpScreen()),
+          ),
+          gap(),
+          ScenicRow(
             label: 'Membership',
+            icon: Icons.workspace_premium_rounded,
+            iconColor: const Color(0xFFEE9A3E),
             onTap: () => go(const MembershipScreen()),
           ),
-          const SizedBox(height: 10),
-          MenuRow(
+          gap(),
+          ScenicRow(
             label: 'Log out',
+            icon: Icons.logout_rounded,
             danger: true,
             onTap: () => Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (_) => const WelcomeScreen()),

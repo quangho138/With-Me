@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../Components/WithMeCards.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Theme/WithMeTheme.dart';
 
 /// `image43.png` — Membership.
 ///
@@ -18,21 +17,21 @@ class MembershipScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    return ScenicScaffold(
       title: 'Membership',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(
+      softBackground: true,
+      action: ScenicPill(
         label: 'Start Plus',
+        height: 58,
         onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Payments are not connected in this UI pass.'),
           ),
         ),
       ),
-      footnote: Text(
+      footnote: const ScenicFootnote(
         'Cancel any time. Your logs stay yours either way.',
-        textAlign: TextAlign.center,
-        style: WithMeText.caption.copyWith(color: WithMeColors.inkSoft),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,14 +42,14 @@ class MembershipScreen extends StatelessWidget {
                 'calendar. No card needed.',
             tinted: true,
           ),
-          const SizedBox(height: WithMeSpace.md),
+          const SizedBox(height: 12),
           _Plan(
             name: r'Companion Plus · $4.99/mo',
             blurb: 'All soundscapes · guided meditations · full insight '
                 'history · PDF summaries to share',
           ),
-          const SizedBox(height: WithMeSpace.lg),
-          const _CardFields(),
+          const SizedBox(height: 12),
+          const ScenicPanel(child: _CardFields()),
         ],
       ),
     );
@@ -66,25 +65,24 @@ class _Plan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeCard(
-      color: tinted
-          ? WithMeColors.mint.withValues(alpha: 0.45)
-          : WithMeColors.cream,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            name,
-            style: WithMeText.option.copyWith(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: WithMeColors.teal,
-            ),
-          ),
-          const SizedBox(height: WithMeSpace.sm),
-          Text(blurb, style: WithMeText.body.copyWith(color: WithMeColors.ink)),
-        ],
+    final body = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ScenicHeading(name, size: 19, textAlign: TextAlign.start),
+        const SizedBox(height: 6),
+        Text(blurb, style: kScenicBody.copyWith(height: 1.4)),
+      ],
+    );
+    if (!tinted) return ScenicPanel(child: body);
+    // The free plan - the one already in use - on the chosen-tile tint.
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: ScenicColors.tileSelected,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: ScenicColors.pillBottom, width: 2),
       ),
+      child: body,
     );
   }
 }
@@ -98,26 +96,26 @@ class _CardFields extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Card', style: WithMeText.fieldLabel),
+        const Text('Card', style: kScenicLabel),
         const SizedBox(height: 6),
         const _Inert(text: '•••• •••• •••• ••••'),
-        const SizedBox(height: WithMeSpace.lg),
+        const SizedBox(height: 14),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Expiry', style: WithMeText.fieldLabel),
+                const Text('Expiry', style: kScenicLabel),
                 const SizedBox(height: 6),
                 const SizedBox(width: 92, child: _Inert(text: 'MM/YY')),
               ],
             ),
-            const SizedBox(width: WithMeSpace.lg),
+            const SizedBox(width: 14),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('CVC', style: WithMeText.fieldLabel),
+                const Text('CVC', style: kScenicLabel),
                 const SizedBox(height: 6),
                 const SizedBox(width: 68, child: _Inert(text: '•••')),
               ],
@@ -138,15 +136,18 @@ class _Inert extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         height: kSettingsRowHeight,
         alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
-          color: WithMeColors.cream,
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
-          boxShadow: WithMeSpace.cardShadow,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: kScenicFieldRing,
         ),
         child: Text(
           text,
-          style: WithMeText.option.copyWith(color: WithMeColors.inkFaint),
+          style: kScenicBody.copyWith(
+            fontSize: 16,
+            color: ScenicColors.ink.withValues(alpha: 0.55),
+          ),
         ),
       );
 }

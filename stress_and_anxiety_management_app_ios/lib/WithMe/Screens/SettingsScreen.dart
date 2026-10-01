@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'WelcomeScreen.dart';
 
@@ -31,25 +31,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: WithMeColors.creamLight,
-        title: Text('Delete my account', style: WithMeText.title.copyWith(fontSize: 19)),
-        content: Text(
+        backgroundColor: ScenicColors.bubble,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        title: const ScenicHeading('Delete my account', size: 21),
+        content: const Text(
           'This clears your check-ins, reflections and name from this device. '
           'It cannot be undone.',
-          style: WithMeText.body.copyWith(color: WithMeColors.ink),
+          style: kScenicBody,
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Cancel', style: WithMeText.option),
+            child: Text('Cancel', style: kScenicBody.copyWith(fontSize: 16)),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(
               'Delete',
-              style: WithMeText.option.copyWith(
+              style: kScenicBody.copyWith(
+                fontSize: 16,
                 color: WithMeColors.danger,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w800,
               ),
             ),
           ),
@@ -77,51 +79,78 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    Widget gap() => const SizedBox(height: 10);
+
+    return ScenicScaffold(
       title: 'Settings',
       onBack: () => Navigator.of(context).pop(),
+      softBackground: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ToggleRow(
+          ScenicToggleRow(
             label: 'Sound effects',
+            icon: Icons.volume_up_rounded,
             value: _sound,
             onChanged: (v) => setState(() => _sound = v),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          ToggleRow(
+          gap(),
+          ScenicToggleRow(
             label: 'Haptics',
+            icon: Icons.vibration_rounded,
+            iconColor: const Color(0xFF3E9C8C),
             value: _haptics,
             onChanged: (v) => setState(() => _haptics = v),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          ToggleRow(
+          gap(),
+          ScenicToggleRow(
             label: 'Voice input',
+            icon: Icons.mic_rounded,
+            iconColor: const Color(0xFFD2557F),
             value: _voice,
             onChanged: (v) => setState(() => _voice = v),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(
-            label: 'Language — English',
+          const SizedBox(height: 16),
+          ScenicRow(
+            label: 'Language',
+            trailing: 'English',
+            icon: Icons.language_rounded,
+            iconColor: const Color(0xFF1C7C84),
             onTap: () => _notWired('Language'),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(label: 'Text size', onTap: () => _notWired('Text size')),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(label: 'Theme — Sunset', onTap: () => _notWired('Theme')),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(
+          gap(),
+          ScenicRow(
+            label: 'Text size',
+            icon: Icons.text_fields_rounded,
+            iconColor: const Color(0xFFEE9A3E),
+            onTap: () => _notWired('Text size'),
+          ),
+          gap(),
+          ScenicRow(
+            label: 'Theme',
+            trailing: 'Sunset',
+            icon: Icons.palette_rounded,
+            iconColor: const Color(0xFFD2557F),
+            onTap: () => _notWired('Theme'),
+          ),
+          const SizedBox(height: 16),
+          ScenicRow(
             label: 'Privacy & data',
+            icon: Icons.lock_rounded,
+            iconColor: const Color(0xFF1C7C84),
             onTap: () => _notWired('Privacy & data'),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(
+          gap(),
+          ScenicRow(
             label: 'Export my data',
+            icon: Icons.download_rounded,
+            iconColor: const Color(0xFF3E9C8C),
             onTap: () => _notWired('Export'),
           ),
-          const SizedBox(height: WithMeSpace.md),
-          MenuRow(
+          gap(),
+          ScenicRow(
             label: 'Delete my account',
+            icon: Icons.delete_rounded,
             danger: true,
             onTap: _deleteAccount,
           ),

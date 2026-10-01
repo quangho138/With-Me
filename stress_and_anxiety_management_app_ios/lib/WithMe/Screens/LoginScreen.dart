@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
-import '../Theme/WithMeTheme.dart';
+import '../Mascot/RealMascot.dart';
 import 'HomeScreen.dart';
 import 'ResetPasswordScreen.dart';
 
@@ -75,35 +74,46 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WithMeScaffold(
+    // Carries on from the welcome: the same beach, the same pills, and the
+    // companion thinking it over below the form.
+    return ScenicScaffold(
       title: 'Welcome back',
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(label: 'Log in', onPressed: _busy ? null : _login),
-      footnote: GestureDetector(
+      mascot: RealPose.think,
+      mascotMax: 0.32,
+      action: ScenicPill(
+        label: 'Log in',
+        height: 58,
+        onPressed: _busy ? null : _login,
+      ),
+      footnote: ScenicFootnote(
+        'Forgot your password?',
         onTap: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => const ResetPasswordScreen()),
         ),
-        child: Text(
-          'Forgot your password?',
-          style: WithMeText.caption.copyWith(color: WithMeColors.inkSoft),
-        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          WithMeField(
-            label: 'Email',
-            controller: _email,
-            hint: 'maya@email.com',
-            keyboardType: TextInputType.emailAddress,
-          ),
-          const SizedBox(height: WithMeSpace.lg),
-          WithMeField(label: 'Password', controller: _password, obscure: true),
-          const SizedBox(height: WithMeSpace.xl),
-          const Center(
-            child: WithMeAvatar(size: 86, expression: MascotExpression.happy),
-          ),
-        ],
+      child: ScenicPanel(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            WithMeField(
+              label: 'Email',
+              controller: _email,
+              hint: 'maya@email.com',
+              keyboardType: TextInputType.emailAddress,
+              fill: Colors.white,
+              border: kScenicFieldRing,
+            ),
+            const SizedBox(height: 14),
+            WithMeField(
+              label: 'Password',
+              controller: _password,
+              obscure: true,
+              fill: Colors.white,
+              border: kScenicFieldRing,
+            ),
+          ],
+        ),
       ),
     );
   }
