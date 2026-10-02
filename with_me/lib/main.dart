@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'Database/DemoAccount.dart';
+import 'Repositories/app_repositories.dart';
+import 'Repositories/user_repository.dart';
 
 import 'WithMe/Screens/AboutScreen.dart';
 import 'WithMe/Screens/BeforeWeStartScreen.dart';
@@ -34,11 +36,26 @@ import 'WithMe/Screens/WelcomeScreen.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Someone who signed in (or chose to go without an account) last time goes
+  // straight to Home. Reading this opens the database, which the first
+  // screen would do anyway. If it fails or is slow (the browser loads its
+  // database engine first), start at the welcome screen.
+  var signedIn = false;
+  try {
+    signedIn = await AppRepositories.users
+            .session()
+            .timeout(const Duration(seconds: 3)) !=
+        SessionKind.none;
+  } catch (e) {
+    debugPrint('Could not read who is signed in: $e');
+  }
+
   // The database is not wiped on launch — the logs have to survive a restart.
   if (DemoAccount.enabled) {
-    // Not awaited: the welcome screen should not wait on a database open.
+    // Not awaited: the welcome screen should not wait on seeding.
     // Signing in takes long enough that the rows are there first, and a
     // failure here must never keep the app from starting.
     unawaited(
@@ -47,7 +64,7 @@ void main() {
       ),
     );
   }
-  runApp(const WithMeApp());
+  runApp(WithMeApp(signedIn: signedIn));
 }
 
 /// With Me.
@@ -57,7 +74,11 @@ void main() {
 /// the entry route is the welcome screen (`image1.png`) rather than the old
 /// HOWRU.LIFE login.
 class WithMeApp extends StatelessWidget {
-  const WithMeApp({super.key});
+  const WithMeApp({super.key, this.signedIn = false});
+
+  /// True when someone is already using the app (signed in or without an
+  /// account), so it opens on Home instead of the welcome screen.
+  final bool signedIn;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +86,14 @@ class WithMeApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'With Me',
       theme: buildWithMeTheme(),
-      initialRoute: WelcomeScreen.route,
+      // One first screen, chosen above. (initialRoute '/home' would put the
+      // welcome screen underneath it, and Back would land there.)
+      onGenerateInitialRoutes: (_) => [
+        MaterialPageRoute(
+          builder: (_) =>
+              signedIn ? const WithMeHomeScreen() : const WelcomeScreen(),
+        ),
+      ],
       routes: {
         // Onboarding — image1 to image4
         WelcomeScreen.route: (_) => const WelcomeScreen(),

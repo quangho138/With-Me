@@ -25,8 +25,10 @@ class DatabaseHelper {
 
   /// Version 4 saves the rest of the daily check-in (check_in_details),
   /// records finished exercises (exercise_sessions), and allows one stressor
-  /// row per day. Bump this and extend _onUpgrade for any later change.
-  static const int schemaVersion = 4;
+  /// row per day. Version 5 stores scrambled passwords instead of plain text
+  /// and remembers who is signed in (session). Bump this and extend
+  /// _onUpgrade for any later change.
+  static const int schemaVersion = 5;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -119,15 +121,8 @@ class DatabaseHelper {
     )
     ''');
 
-    await db.execute('''
-      CREATE TABLE users(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        email TEXT NOT NULL UNIQUE,
-        password TEXT NOT NULL
-      )
-    ''');
+    // The users table is made by _createVersion5 below.
 
-    print('Database and tables created!');
     await db.execute('''CREATE TABLE user(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT
@@ -135,6 +130,7 @@ class DatabaseHelper {
         ''');
 
     await _createVersion4(db);
+    await _createVersion5(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -215,6 +211,36 @@ class DatabaseHelper {
     if (oldVersion < 4) {
       await _createVersion4(db);
     }
+    if (oldVersion < 5) {
+      await _createVersion5(db);
+    }
+  }
+
+  /// Everything version 5 changes. Shared by _onCreate and _onUpgrade.
+  static Future<void> _createVersion5(Database db) async {
+    // The old users table kept passwords as plain text. It is replaced, not
+    // converted: a plain password cannot be trusted once it has been stored,
+    // so people sign up again. Their check-ins and journal are kept.
+    await db.execute('DROP TABLE IF EXISTS users');
+    await db.execute('''
+      CREATE TABLE users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        email TEXT NOT NULL UNIQUE,
+        password_hash TEXT NOT NULL,
+        createdAt TEXT NOT NULL
+      )
+    ''');
+
+    // Who is using the app right now. At most one row (id is always 1):
+    // email set = signed in, email empty = using it without an account,
+    // no row = nobody, so the app opens on the welcome screen.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS session(
+        id INTEGER PRIMARY KEY CHECK (id = 1),
+        email TEXT,
+        startedAt TEXT NOT NULL
+      )
+    ''');
   }
 
   // --- User methods ---
@@ -290,6 +316,7 @@ class DatabaseHelper {
     'user',
     'check_in_details',
     'exercise_sessions',
+    'session',
   ];
 
   /// Empties every user data table in one transaction: all or nothing.
@@ -328,35 +355,7 @@ class DatabaseHelper {
     );
   }
 
-  // USER AUTH
-  Future<int> insertUser(String email, String password) async {
-    final db = await database;
-    return await db.insert(
-      'users',
-      {'email': email, 'password': password},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
-
-  Future<Map<String, dynamic>?> getUser(String email, String password) async {
-    final db = await database;
-    final result = await db.query(
-      'users',
-      where: 'email = ? AND password = ?',
-      whereArgs: [email, password],
-    );
-    return result.isNotEmpty ? result.first : null;
-  }
-
-  Future<bool> emailExists(String email) async {
-    final db = await database;
-    final result = await db.query(
-      'users',
-      where: 'email = ?',
-      whereArgs: [email],
-    );
-    return result.isNotEmpty;
-  }
+  // Sign-up and sign-in live in lib/Repositories/user_repository.dart.
 
   // Mood Selection
   Future<int> insertMood(DateTime date, String mood) async {

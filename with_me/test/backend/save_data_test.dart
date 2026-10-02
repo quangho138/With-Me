@@ -215,7 +215,8 @@ void main() {
     await LocalExerciseRepository(open: () async => db).recordCompleted(
       ExerciseSession(completedAt: DateTime(2026, 9, 28), exercise: 'breathing'),
     );
-    await db.insert('users', {'email': 'test@example.com', 'password': 'synthetic'});
+    await db.insert('users', {'email': 'test@example.com', 'password_hash': 'x', 'createdAt': 'x'});
+    await db.insert('session', {'id': 1, 'email': 'test@example.com', 'startedAt': 'x'});
     await db.insert('user', {'name': 'Test'});
     await db.insert('reflections', {
       'who': 'a', 'what': 'b', 'when_question': 'c', 'where_question': 'd',
