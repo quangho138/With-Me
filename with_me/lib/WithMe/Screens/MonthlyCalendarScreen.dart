@@ -9,7 +9,7 @@ import '../Theme/WithMeTheme.dart';
 import 'DailyCheckInScreen.dart';
 import 'DayDetailScreen.dart';
 
-/// `image6.png` — Monthly Calendar.
+/// `image6.png` — Monthly Calendar, titled "Daily Log" in the app.
 ///
 /// Measured: the month panel is 346 x 281 at y 146 with a 20 pt radius, and
 /// the legend card 346 x 146 at y 441. "Every step counts" closes the screen
@@ -123,6 +123,8 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
   }
 
   static bool _isLow(String mood) {
+    final face = MoodFaceInfo.fromLabel(mood);
+    if (face != null) return face.isLow;
     final m = mood.toLowerCase();
     return m.contains('not good') ||
         m.contains('rough') ||
@@ -133,7 +135,7 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return ScenicScaffold(
-      title: 'Monthly Calendar',
+      title: 'Daily Log',
       action: _todaySelected
           ? ScenicPill(
               label: "Start today's check-in",

@@ -123,12 +123,16 @@ final Map<String, Widget Function()> _screens = {
   // V2 reference screens (docs/design_v2) - compared by eye, not by
   // compare_screens.py, which only knows the V1 document.
   'v2-2-greeting': () => const DailyCheckInScreen(),
-  'v2-3-stress': () => const DailyCheckInScreen(initialStep: 1),
-  'v2-4-motivation': () => const DailyCheckInScreen(initialStep: 2),
-  'v2-5-area': () => const DailyCheckInScreen(initialStep: 3),
+  'perceived-control': () =>
+      const DailyCheckInScreen(initialStep: DailyCheckInScreen.controlPage),
+  'v2-3-stress': () => const DailyCheckInScreen(initialStep: 2),
+  'v2-4-motivation': () => const DailyCheckInScreen(initialStep: 3),
+  'v2-5-area': () =>
+      const DailyCheckInScreen(initialStep: DailyCheckInScreen.areaPage),
   'image24-check-in': () => const CheckInScreen(),
-  'image15-signs-choice': () => const DailyCheckInScreen(initialStep: 5),
-  'intention-to-change': () => const DailyCheckInScreen(initialStep: 7),
+  'image15-signs-choice': () =>
+      const DailyCheckInScreen(initialStep: DailyCheckInScreen.signsPage - 1),
+  'intention-to-change': () => const DailyCheckInScreen(initialStep: 8),
   'image25-exercise-choose': () => const ExerciseChooseScreen(),
   'image26-rest-your-mind': () => const RestYourMindScreen(),
   'image27-breathing-478': () => const BreathingScreen(),
