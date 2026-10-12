@@ -66,8 +66,11 @@ abstract class UserRepository {
   /// redraw.
   ValueListenable<String?> get displayNameListenable;
 
-  /// "Delete my account": removes every piece of the user's data on this
-  /// phone and logs out. (Deleting the online copy comes in stage 2d.)
+  /// "Delete my account": with an account, deletes it online with all its
+  /// rows, then clears the phone and logs out. It needs the internet; when
+  /// offline it throws [AccountException] and deletes nothing, so the
+  /// account is never left online while the phone thinks it is gone.
+  /// Without an account it clears the phone.
   Future<void> deleteAccountAndData();
 }
 
@@ -233,6 +236,9 @@ class AppUserRepository implements UserRepository {
 
   @override
   Future<void> deleteAccountAndData() async {
+    if (await session() == SessionKind.account) {
+      await _auth.deleteAccount(); // throws, and stops here, if it fails
+    }
     final db = await _open();
     await DatabaseHelper.wipeAllTables(db); // includes users and session
     _names.userNameNotifier.value = null;

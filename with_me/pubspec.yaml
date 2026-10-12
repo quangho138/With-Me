@@ -46,6 +46,8 @@ dependencies:
   sqflite_common_ffi_web: ^1.2.0
   # Online accounts and (later) sync. Supabase's official Flutter package.
   supabase_flutter: ^2.8.0
+  # "Export my data": hands the file to the phone's share menu.
+  share_plus: ^10.1.0
 
 dev_dependencies:
   flutter_test:

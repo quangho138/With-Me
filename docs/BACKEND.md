@@ -223,3 +223,28 @@ AI provenance:
 2. What was kept: the local-first design in the project's sync notes, Alex's check-in saving (moved into writeEntry, unchanged), the repository shape.
 3. What was checked: the SQL ran on a local PostgreSQL set up like Supabase, including newest-wins and the server time stamp. Flutter could not run in Claude's workspace; the Dart tests and the two-phone test are first run by Quang.
 4. What it got wrong or left open: when two phones edit the same day, the whole day is taken from the newer edit, not answer by answer. If the "add or discard" check cannot reach the internet right after login, the phone's check-ins are kept and added later.
+
+## Stage 3, step 2d: delete my account and export my data (branch backend/delete-export)
+
+Decisions (Quang):
+- Export is one JSON file, made for importing into With Me or another app later, not for reading raw. It says what it is ("format": "with-me-export") and its layout version, so a future import can trust it.
+
+Delete my account:
+- With an account: deletes the online account first (all its online rows go with it), then clears the phone and logs out. Needs the internet: offline, it says why and deletes nothing, so the account is never left online while the phone thinks it is gone.
+- Without an account: clears the phone, as before.
+- Server: supabase/migrations/20261015000000_delete_account.sql adds delete_my_account(). It only ever deletes the account in the caller's own login (auth.uid()); signed-out visitors cannot call it. security_check.sql proves A deleting their account leaves B untouched.
+
+Export my data (Settings):
+- Syncs first when there is an account (offline is fine), then builds the file from the phone: name and email, every check-in day with every answer, finished exercises, and the journal (it never goes online, but it is the person's). No passwords (none on the phone) and no sync bookkeeping.
+- On a phone the file goes to the share menu (save to Files, send by email...). In the browser it downloads. New package: share_plus.
+
+Success criteria:
+- test/backend/export_test.dart: versioned layout, every answer, exercises, journal and name present, commas kept inside written answers, nothing secret.
+- test/backend/accounts_test.dart: deleting removes the online account (it can no longer log in) and then the phone; offline deletes nothing; a guest's delete never goes online.
+- security_check.sql: "All security checks passed".
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the SQL, code, tests and this section.
+2. What was kept: the Settings layout and dialog, the existing delete flow (now online first).
+3. What was checked: the SQL ran on a local PostgreSQL set up like Supabase; the check passes and fails when delete_my_account is deliberately broken to delete everyone. Dart tests first run by Quang.
+4. What it got wrong or left open: sharing a file in the browser depends on the browser; if it does nothing there, tell Claude. There is no import yet; the file is ready for one.

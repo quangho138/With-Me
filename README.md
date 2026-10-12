@@ -20,7 +20,7 @@ It is built for HR Vision Consulting as the Florida International University Com
 - **Progress and dashboard**: stress and mood trends over 7, 30 and 365 days, and where stress comes from.
 - **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh, with optional nature video and sound.
 - **Accounts**: sign up (with email confirmation), log in and stay logged in, or start without an account. One account per phone. Passwords are checked online and never stored on the phone.
-- **Profile and settings**: your name, your check-in and exercise counts, and "Delete my account", which removes everything on the device.
+- **Profile and settings**: your name, your check-in and exercise counts, "Export my data" (one JSON file, ready to import elsewhere), and "Delete my account", which deletes the account online and everything on the phone.
 
 ## How it is built
 

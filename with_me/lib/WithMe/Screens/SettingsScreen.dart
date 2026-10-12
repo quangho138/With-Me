@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../../Repositories/export_service.dart';
+import '../../Repositories/user_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
@@ -27,6 +32,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
         SnackBar(content: Text('$what is not wired up in this UI pass.')),
       );
 
+  /// Backend (stage 3, 2d): "Export my data" as one JSON file, handed to
+  /// the phone's share menu (in the browser it downloads).
+  Future<void> _export() async {
+    // With an account, catch up with the account first. Offline is fine:
+    // the export is made from what is on the phone.
+    await AppRepositories.sync.syncNow();
+    try {
+      final json = await AppRepositories.export.exportJson();
+      await Share.shareXFiles(
+        [
+          XFile.fromData(
+            utf8.encode(json),
+            name: ExportService.fileName(DateTime.now()),
+            mimeType: 'application/json',
+          ),
+        ],
+        subject: 'My With Me data',
+      );
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Couldn't export your data. Try again.")),
+      );
+    }
+  }
+
   Future<void> _deleteAccount() async {
     final confirmed = await showDialog<bool>(
       context: context,
@@ -35,7 +66,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const ScenicHeading('Delete my account', size: 21),
         content: const Text(
-          'This clears your check-ins, reflections and name from this device. '
+          'This deletes your account and everything in it: your check-ins, '
+          'exercises, journal and name, online and on this phone. '
           'It cannot be undone.',
           style: kScenicBody,
         ),
@@ -62,6 +94,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (confirmed != true) return;
     try {
       await AppRepositories.users.deleteAccountAndData();
+    } on AccountException catch (e) {
+      // Nothing was deleted (for example, no internet). Say why.
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Couldn't delete your account. ${e.problem.message}"),
+        ),
+      );
+      return;
     } catch (_) {
       // Say so instead of pretending: the data is still on the device.
       if (!mounted) return;
@@ -145,7 +186,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             label: 'Export my data',
             icon: Icons.download_rounded,
             iconColor: const Color(0xFF3E9C8C),
-            onTap: () => _notWired('Export'),
+            onTap: _export,
           ),
           gap(),
           ScenicRow(

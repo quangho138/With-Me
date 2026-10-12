@@ -65,6 +65,11 @@ abstract class OnlineAuth {
   /// Forgets the login on this phone. Never throws: being offline must not
   /// stop someone logging out.
   Future<void> signOut();
+
+  /// Deletes the signed-in account online, with everything in it. Throws
+  /// [AccountException] (for example with no internet) and then nothing is
+  /// deleted.
+  Future<void> deleteAccount();
 }
 
 /// The real one, using Supabase. Supabase stores the login on the phone
@@ -140,6 +145,17 @@ class SupabaseOnlineAuth implements OnlineAuth {
     } catch (_) {
       // Offline or already logged out: the login on the phone is cleared
       // either way.
+    }
+  }
+
+  @override
+  Future<void> deleteAccount() async {
+    try {
+      // supabase/migrations/20261015000000_delete_account.sql: deletes only
+      // the account in this login, and its rows with it.
+      await Supabase.instance.client.rpc<void>('delete_my_account');
+    } catch (e) {
+      throw AccountException(problemFor(e));
     }
   }
 
