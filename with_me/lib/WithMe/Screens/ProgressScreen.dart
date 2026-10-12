@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
+import '../Components/ScenicKit.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeControls.dart';
@@ -91,8 +92,14 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
-  /// The four check-in faces, plus the older five words.
-  static double _moodScore(String mood) => switch (mood.toLowerCase()) {
+  /// The five check-in feelings, then the older words.
+  static double _moodScore(String mood) {
+    final face = MoodFaceInfo.fromLabel(mood);
+    if (face != null) return face.score.toDouble();
+    return _oldMoodScore(mood);
+  }
+
+  static double _oldMoodScore(String mood) => switch (mood.toLowerCase()) {
         'not good' || 'rough' => 1,
         'low' => 2,
         'okay' => 3,

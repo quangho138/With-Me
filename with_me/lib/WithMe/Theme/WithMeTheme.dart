@@ -190,7 +190,7 @@ class WithMeText {
   /// are rebuilt.
   static const TextStyle tagline = accent;
 
-  /// Screen title — "Monthly Calendar", "Your Insights", "Settings".
+  /// Screen title — "Daily Log", "Your Insights", "Settings".
   static const TextStyle title = TextStyle(
     fontFamily: ui,
     fontSize: 22,

@@ -36,16 +36,22 @@ void main() {
 
       expect(checkIns.saved, hasLength(1));
       final e = checkIns.saved.single;
-      expect(e.mood, 'Good');
+      expect(e.mood, 'Happy');
+      expect(e.perceivedControl, 3);
       expect(e.stress, 4);
       expect(e.motivation, 3);
       expect(e.area, 'School');
+      // The source page has no written "Other" any more.
+      expect(e.areaOther, isNull);
       expect(e.stressorDetail, [
         'Homework',
         'Exam pressure',
         'Tension',
         'Sleep issues',
       ]);
+      expect(e.stressorOther, 'Group chat');
+      expect(e.signDimension, 'body');
+      expect(e.signOther, 'Jaw clenching');
       expect(e.intention, 'Somewhat ready');
       expect(e.strategy, 'Physical');
       expect(e.action, 'Deep breathing');

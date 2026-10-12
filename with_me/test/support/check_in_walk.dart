@@ -7,6 +7,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'package:with_me/Repositories/app_repositories.dart';
 import 'package:with_me/Repositories/check_in_repository.dart';
+import 'package:with_me/WithMe/Components/ScenicKit.dart';
 import 'package:with_me/WithMe/Components/WithMeControls.dart';
 import 'package:with_me/WithMe/Screens/DailyCheckInScreen.dart';
 import 'package:with_me/WithMe/Screens/YourDayScreen.dart';
@@ -16,12 +17,19 @@ import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 /// every page, shared by the flow test and the capture tool.
 
 /// The local repository, except that [save] keeps the entry for the test
-/// to read rather than writing it.
+/// to read rather than writing it, and [entryOn] hands back [today] (what
+/// was "saved earlier today") instead of reading the database.
 class RecordingCheckIns extends LocalCheckInRepository {
+  RecordingCheckIns({this.today});
+
   final List<CheckInEntry> saved = [];
+  CheckInEntry? today;
 
   @override
   Future<void> save(CheckInEntry entry) async => saved.add(entry);
+
+  @override
+  Future<CheckInEntry?> entryOn(DateTime day) async => today;
 }
 
 /// sqflite and path_provider have no implementation in a widget test; the
@@ -76,6 +84,28 @@ Future<void> tapContinue(
   await settle(tester);
 }
 
+/// Taps step [n] of the perceived-control scale.
+Future<void> tapControl(WidgetTester tester, int n) async {
+  final gauge = find.byKey(const ValueKey('control-gauge'));
+  await tester.ensureVisible(gauge);
+  await tester.pump();
+  final box = tester.getRect(gauge);
+  await tester.tapAt(box.topLeft + ControlScale.pointFor(n, box.size));
+  await settle(tester);
+}
+
+/// Types [text] into the page's written "Other" field.
+Future<void> typeOther(WidgetTester tester, String text) async {
+  final field = find.byType(TextField);
+  await tester.ensureVisible(field);
+  await tester.pump();
+  await tester.enterText(field, text);
+  await tester.pump();
+  // Put the keyboard away, as tapping Continue would.
+  FocusManager.instance.primaryFocus?.unfocus();
+  await tester.pump();
+}
+
 /// The needle's value, read back through the gauge's own widget.
 double? gaugeValue(WidgetTester tester) =>
     tester.widget<ReadinessGauge>(find.byType(ReadinessGauge)).value;
@@ -85,6 +115,8 @@ double? gaugeValue(WidgetTester tester) =>
 Future<void> walkCheckIn(
   WidgetTester tester, {
   Future<void> Function(int page)? capture,
+  String feeling = 'Happy',
+  int control = 3,
 }) async {
   Future<void> shot(int page) async {
     if (capture == null) return;
@@ -101,50 +133,57 @@ Future<void> walkCheckIn(
   );
   await settle(tester);
 
-  // 0 - mood
-  await tapLabel(tester, 'Good');
+  // 0 - the day's feeling
+  await tapLabel(tester, feeling);
   await shot(0);
   await tapContinue(tester);
 
-  // 1 - stress
-  await tapLabel(tester, '4');
+  // 1 - how in control, 1-5
+  await tapControl(tester, control);
   await shot(1);
   await tapContinue(tester);
 
-  // 2 - motivation
-  await tapLabel(tester, '3');
+  // 2 - stress
+  await tapLabel(tester, '4');
   await shot(2);
   await tapContinue(tester);
 
-  // 3 - where from
-  await tapLabel(tester, 'School');
+  // 3 - motivation
+  await tapLabel(tester, '3');
   await shot(3);
   await tapContinue(tester);
 
-  // 4 - which stressors, multi-select
+  // 4 - where from
+  await tapLabel(tester, 'School');
+  await shot(4);
+  await tapContinue(tester);
+
+  // 5 - which stressors, multi-select, and a written one
   await tapLabel(tester, 'Homework');
   await tapLabel(tester, 'Exam pressure');
   await tapLabel(tester, 'Bullying');
   await tapLabel(tester, 'Bullying'); // and off again
-  await shot(4);
-  await tapContinue(tester);
-
-  // 5 - body / feelings / mind / behaviour
-  await tapLabel(tester, 'Mind');
-  await tapLabel(tester, 'Body'); // changing the choice is allowed
+  await typeOther(tester, 'Group chat');
   await shot(5);
   await tapContinue(tester);
 
-  // 6 - the body page, multi-select
+  // 6 - body / feelings / mind / behaviour
+  await tapLabel(tester, 'Mind');
+  await tapLabel(tester, 'Body'); // changing the choice is allowed
+  await shot(6);
+  await tapContinue(tester);
+
+  // 7 - the body page, multi-select, and a written sign
   expect(find.text('How is stress showing up in your body?'), findsWidgets);
   await tapLabel(tester, 'Tension');
   await tapLabel(tester, 'Sleep issues');
   await tapLabel(tester, 'Low energy');
   await tapLabel(tester, 'Low energy');
-  await shot(6);
+  await typeOther(tester, 'Jaw clenching');
+  await shot(7);
   await tapContinue(tester);
 
-  // 7 - the readiness dial: drag well past both ends, then settle mid-way.
+  // 8 - the readiness dial: drag well past both ends, then settle mid-way.
   final gauge = find.byType(ReadinessGauge);
   await tester.ensureVisible(gauge);
   await tester.pump();
@@ -159,10 +198,10 @@ Future<void> walkCheckIn(
   await tester.tapAt(Offset(box.center.dx - 4, box.top + 20));
   await settle(tester);
   expect(find.text('Somewhat ready'), findsWidgets);
-  await shot(7);
+  await shot(8);
   await tapContinue(tester);
 
-  // 8 - strategy, action, rating
+  // 9 - strategy, action, rating
   await tester.tap(find.text('Select one...').first, warnIfMissed: false);
   await settle(tester);
   await tester.tap(find.text('Physical').last, warnIfMissed: false);
@@ -175,12 +214,12 @@ Future<void> walkCheckIn(
   await tester.ensureVisible(stars.at(3));
   await tester.tap(stars.at(3));
   await settle(tester);
-  await shot(8);
+  await shot(9);
   await tapContinue(tester);
 
-  // 9 - the review, carrying the answers over
+  // 10 - the review, carrying the answers over
   expect(find.text('Strategy · '), findsNothing);
-  await shot(9);
+  await shot(10);
   await tapContinue(tester, label: 'Finish check-in');
   for (var i = 0; i < 6; i++) {
     await tester.runAsync(
@@ -192,9 +231,9 @@ Future<void> walkCheckIn(
 }
 
 /// Installs a [RecordingCheckIns] for the length of the test.
-RecordingCheckIns recordCheckIns() {
+RecordingCheckIns recordCheckIns({CheckInEntry? today}) {
   final previous = AppRepositories.checkIns;
-  final recording = RecordingCheckIns();
+  final recording = RecordingCheckIns(today: today);
   AppRepositories.checkIns = recording;
   addTearDown(() => AppRepositories.checkIns = previous);
   return recording;

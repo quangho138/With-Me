@@ -221,9 +221,15 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
     return 'Mood $mood/5 · stress $stress/5';
   }
 
-  /// Out of 5. The check-in now offers four faces (Not good, Okay, Good,
-  /// Great); the older five words still read correctly.
-  static String _moodScore(String mood) => switch (mood.toLowerCase()) {
+  /// Out of 5. The check-in's five feelings score 1 (Angry) to 5
+  /// (Excited); the older words still read correctly.
+  static String _moodScore(String mood) {
+    final face = MoodFaceInfo.fromLabel(mood);
+    if (face != null) return '${face.score}';
+    return _oldMoodScore(mood);
+  }
+
+  static String _oldMoodScore(String mood) => switch (mood.toLowerCase()) {
         'not good' || 'rough' => '1',
         'low' => '2',
         'okay' => '3',

@@ -35,7 +35,7 @@ class WithMeScaffold extends StatelessWidget {
   /// the full-size wordmark instead, and on the menu.
   final bool lockup;
 
-  /// Centred screen title — "Monthly Calendar", "Your Insights", "Settings".
+  /// Centred screen title — "Daily Log", "Your Insights", "Settings".
   final String? title;
 
   /// What the back chevron does. Left null, the chevron still appears

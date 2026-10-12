@@ -73,6 +73,13 @@ void main() {
       expect(schema['check_in_details'], [
         'id', 'date', 'motivation', 'readiness', 'intention', 'strategy',
         'action', 'rating', 'updatedAt',
+        // Version 6.
+        'perceived_control',
+      ]);
+      expect(schema['stressors'], [
+        'id', 'date', 'category', 'detail',
+        // Version 6.
+        'area_other', 'stressor_other', 'sign_dimension', 'sign_other',
       ]);
       expect(schema['exercise_sessions'], [
         'id', 'date', 'exercise', 'pattern', 'cycles', 'sound', 'completedAt',
@@ -102,6 +109,37 @@ void main() {
       await old.close();
       await fresh.close();
     });
+  });
+
+  test('upgrading version 5 adds the version 6 columns and keeps data',
+      () async {
+    final old = await databaseFactoryFfi.openDatabase(
+      inMemoryDatabasePath,
+      options: OpenDatabaseOptions(
+        version: 5,
+        singleInstance: false,
+        onCreate: (db, _) async {
+          await DatabaseHelper.createSchema(db, 5);
+          // Back to the version 5 tables, without the new columns.
+          await db.execute('DROP TABLE check_in_details');
+          await db.execute('CREATE TABLE check_in_details(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL UNIQUE, motivation INTEGER, readiness REAL, intention TEXT, strategy TEXT, action TEXT, rating INTEGER, updatedAt TEXT NOT NULL)');
+          await db.execute('DROP TABLE stressors');
+          await db.execute('CREATE TABLE stressors(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, category TEXT NOT NULL, detail TEXT)');
+          await db.execute('CREATE UNIQUE INDEX stressors_one_per_day ON stressors(date)');
+        },
+      ),
+    );
+    await old.insert('stressors', {'date': '2026-09-20', 'category': 'Work', 'detail': 'Boss'});
+    await old.insert('check_in_details', {'date': '2026-09-20', 'motivation': 3, 'updatedAt': 'x'});
+
+    await DatabaseHelper.upgradeSchema(old, 5, DatabaseHelper.schemaVersion);
+
+    final fresh = await freshDb();
+    expect(await describe(old), await describe(fresh));
+    expect((await old.query('stressors')).single['detail'], 'Boss');
+    expect((await old.query('check_in_details')).single['motivation'], 3);
+    await old.close();
+    await fresh.close();
   });
 
   group('check-in repository', () {
@@ -168,6 +206,143 @@ void main() {
       expect(rows.length, 1);
       expect(rows.single['category'], 'School');
       expect(rows.single['detail'], 'Exams, Deadlines');
+    });
+
+    test('perceived control and the written answers save on their own',
+        () async {
+      await repo.save(CheckInEntry(
+        day: day,
+        mood: 'Indifferent',
+        perceivedControl: 2,
+        stress: 4,
+        area: 'Work',
+        areaOther: 'Moving house, again',
+        stressorDetail: const ['Boss', 'Tension'],
+        stressorOther: 'Long commute',
+        signDimension: 'body',
+        signOther: 'Jaw clenching',
+      ));
+
+      // Control is its own answer: the gauge still holds only the stress
+      // rating turned around.
+      expect((await db.query('control_gauge')).single['level'], 2); // 6 - 4
+      expect((await repo.detailsOn(day))!.perceivedControl, 2);
+      final row = (await db.query('stressors')).single;
+      expect(row['category'], 'Work');
+      // A comma in a written answer does not leak into the detail list.
+      expect(row['detail'], 'Boss, Tension');
+      expect(row['area_other'], 'Moving house, again');
+      expect(row['stressor_other'], 'Long commute');
+      expect(row['sign_dimension'], 'body');
+      expect(row['sign_other'], 'Jaw clenching');
+
+      final back = (await repo.entryOn(day))!;
+      expect(back.mood, 'Indifferent');
+      expect(back.perceivedControl, 2);
+      expect(back.stress, 4);
+      expect(back.area, 'Work');
+      expect(back.areaOther, 'Moving house, again');
+      expect(back.stressorDetail, ['Boss', 'Tension']);
+      expect(back.stressorOther, 'Long commute');
+      expect(back.signDimension, 'body');
+      expect(back.signOther, 'Jaw clenching');
+    });
+
+    test('a written source on its own is saved as Other, not a named area',
+        () async {
+      await repo.save(CheckInEntry(
+        day: day,
+        areaOther: 'Caring for a neighbour',
+        stressorDetail: const ['Worrying'],
+        signDimension: 'mind',
+      ));
+      final row = (await db.query('stressors')).single;
+      expect(row['category'], CheckInEntry.otherArea);
+      expect(row['area_other'], 'Caring for a neighbour');
+
+      final back = (await repo.entryOn(day))!;
+      expect(back.area, isNull);
+      expect(back.areaOther, 'Caring for a neighbour');
+      expect(back.stressorDetail, ['Worrying']);
+    });
+
+    test('saving the same check-in twice leaves one row per table', () async {
+      final entry = CheckInEntry(
+        day: day, mood: 'Happy', perceivedControl: 4, stress: 2,
+        area: 'Home', stressorDetail: const ['Family'], rating: 3,
+      );
+      await repo.save(entry);
+      await repo.save(entry); // a retry
+      for (final t in ['moods', 'control_gauge', 'stressors', 'check_in_details']) {
+        expect((await db.query(t)).length, 1, reason: t);
+      }
+    });
+
+    test('the latest strategy and action come from the latest check-in, '
+        'one pair per check-in', () async {
+      expect(await repo.latestStrategy(), isNull);
+      final earlier = DateTime(2026, 9, 26, 9);
+      await repo.save(CheckInEntry(
+        day: earlier, strategy: 'Physical', action: 'Walking', rating: 3,
+      ));
+      // Today's check-in, finished, then saved again (a retry, or reopened
+      // and finished again with a new choice).
+      await repo.save(CheckInEntry(
+        day: day, strategy: 'Mental', action: 'Reframing', rating: 4,
+      ));
+      await repo.save(CheckInEntry(
+        day: day, strategy: 'Social', action: 'Share how I feel', rating: 4,
+      ));
+      // A later day without a strategy doesn't hide the latest one.
+      await repo.save(CheckInEntry(day: DateTime(2026, 9, 29), mood: 'Happy'));
+
+      final latest = (await repo.latestStrategy())!;
+      expect(latest.strategy, 'Social');
+      expect(latest.action, 'Share how I feel');
+      expect(latest.day, DateTime(2026, 9, 28));
+      final rows = await db.query(
+        'check_in_details',
+        where: 'strategy IS NOT NULL',
+      );
+      expect(rows.length, 2); // one per check-in day
+      expect(
+        rows.where((r) => r['action'] == 'Share how I feel').length,
+        1,
+      );
+    });
+
+    test('strategies and actions per day, for the dashboard pies', () async {
+      await repo.save(CheckInEntry(
+        day: DateTime(2026, 9, 20), strategy: 'Physical', action: 'Walking',
+      ));
+      await repo.save(CheckInEntry(
+        day: day, strategy: 'Social', action: 'Reach out',
+      ));
+      // Finished again the same day with a new choice: still one per day.
+      await repo.save(CheckInEntry(
+        day: day, strategy: 'Social', action: 'Share how I feel',
+      ));
+      await repo.save(CheckInEntry(day: DateTime(2026, 9, 29), mood: 'Sad'));
+      final from = DateTime(2026, 9, 1), to = DateTime(2026, 9, 30);
+      expect(await repo.strategiesBetween(from, to), {
+        '2026-09-20': 'Physical',
+        '2026-09-28': 'Social',
+      });
+      expect(await repo.actionsBetween(from, to), {
+        '2026-09-20': 'Walking',
+        '2026-09-28': 'Share how I feel',
+      });
+    });
+
+    test('a strategy saved without an action reads back with none', () async {
+      await repo.save(CheckInEntry(day: day, strategy: 'Creative'));
+      final latest = (await repo.latestStrategy())!;
+      expect(latest.strategy, 'Creative');
+      expect(latest.action, isNull);
+    });
+
+    test('a day with nothing saved reads back as null', () async {
+      expect(await repo.entryOn(day), isNull);
     });
 
     test('nothing answered saves nothing', () async {

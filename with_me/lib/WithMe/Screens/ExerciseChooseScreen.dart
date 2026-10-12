@@ -61,24 +61,24 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
             const ScenicHeading('Choose an exercise', size: 24),
             const SizedBox(height: 14),
             for (var i = 0; i < kExercises.length; i++) ...[
-              if (i > 0) const SizedBox(height: 10),
+              if (i > 0) const SizedBox(height: 12),
               ScenicTile(
                 label: '${kExercises[i].$1}, ${kExercises[i].$2}',
                 selected: _selected == i,
                 onTap: () => setState(() => _selected = i),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 14,
+                    horizontal: 16,
+                    vertical: 18,
                   ),
                   child: Row(
                     children: [
                       ScenicMarker(
                         color: _discs[i % _discs.length],
                         icon: _icons[i % _icons.length],
-                        size: 42,
+                        size: 50,
                       ),
-                      const SizedBox(width: 14),
+                      const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,16 +89,16 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
                               textAlign: TextAlign.start,
                               style: const TextStyle(
                                 fontFamily: WithMeText.ui,
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w700,
                                 color: ScenicColors.ink,
                               ),
                             ),
-                            const SizedBox(height: 3),
+                            const SizedBox(height: 4),
                             Text(
                               kExercises[i].$2,
                               style: kScenicBody.copyWith(
-                                fontSize: 13.5,
+                                fontSize: 15,
                                 color: ScenicColors.ink.withValues(alpha: 0.75),
                               ),
                             ),
@@ -111,7 +111,7 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
                         child: const Icon(
                           Icons.check_circle_rounded,
                           color: ScenicColors.pillBottom,
-                          size: 26,
+                          size: 30,
                         ),
                       ),
                     ],

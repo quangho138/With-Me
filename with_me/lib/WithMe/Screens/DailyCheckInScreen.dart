@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
@@ -13,12 +14,18 @@ import 'SettingsScreen.dart';
 import 'YourDayScreen.dart';
 
 /// Today's guided check-in — `image7.png` through `image23.png`, opened from
-/// today's date on the monthly calendar.
+/// today's date on the daily log.
 ///
-/// Ten pages: mood, stress, motivation, where the stress is coming from,
-/// which stressors, a choice of body / feelings / mind / behaviour, the one
-/// page for whichever was chosen, the intention-to-change dial, strategies
-/// and the strategy detail.
+/// Eleven pages: the day's feeling, how in control it feels, stress,
+/// motivation, where the stress is coming from, which stressors, a choice
+/// of body / feelings / mind / behaviour, the one page for whichever was
+/// chosen, the intention-to-change dial, strategies and the strategy detail.
+///
+/// The stressor and signs pages each have a written "Other" field. The
+/// stress-source page has none: it needs one of its four areas.
+///
+/// Reopened on a day that already has a check-in, the pages start from
+/// what was saved.
 ///
 /// Every page shares the V2 reference's scenic look - see `ScenicKit` - with
 /// the rendered companion reacting to each answer.
@@ -38,18 +45,25 @@ class DailyCheckInScreen extends StatefulWidget {
 
   static const String route = '/daily-check-in';
 
-  static const int pageCount = 10;
+  static const int pageCount = 11;
+
+  /// "How in control do you feel today?", right after the feeling.
+  static const int controlPage = 1;
+
+  /// Where the stress is coming from.
+  static const int areaPage = 4;
 
   /// The page that depends on where the stress is coming from.
-  static const int stressorPage = 4;
+  static const int stressorPage = 5;
 
   /// The page that depends on the body / feelings / mind / behaviour choice.
-  static const int signsPage = 6;
+  static const int signsPage = 7;
 
   /// Each page's heading, in order - what the calendar lists for today.
   /// Keep it in step with `_step`.
   static List<String> pageTitles(String? name) => [
         "Hi! I'm here with you. How are you feeling today?",
+        'How in control do you feel today?',
         'On a scale of 1 to 5, how would you rate your stress today?',
         'How motivated do you feel to make a positive change today?',
         'Where is most of your stress coming from right now?',
@@ -85,6 +99,33 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
 
   static const int _pageCount = DailyCheckInScreen.pageCount;
 
+  /// Set once the user changes any answer. A saved check-in that arrives
+  /// after that is not applied, so it never overwrites what they just did.
+  bool _touched = false;
+
+  /// True while the finished check-in is being saved, so a second tap on
+  /// "Finish check-in" does not save it twice.
+  bool _saving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSaved();
+  }
+
+  /// Starts the pages from today's saved check-in, if there is one.
+  Future<void> _loadSaved() async {
+    CheckInEntry? saved;
+    try {
+      saved = await AppRepositories.checkIns.entryOn(DateTime.now());
+    } catch (_) {
+      // No database (the browser preview) - start blank.
+      return;
+    }
+    if (saved == null || !mounted || _touched) return;
+    setState(() => _answers.restore(saved!));
+  }
+
   void _next() {
     if (_index == _pageCount - 1) {
       _finish();
@@ -111,8 +152,11 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   }
 
   Future<void> _finish() async {
+    if (_saving) return;
+    _saving = true;
     try {
       await _save();
+      CheckInRepository.saves.value++;
     } catch (_) {
       // The check-in is done either way — losing the write must not trap the
       // user on the last step. sqflite has no web implementation, so the
@@ -141,15 +185,20 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     return AppRepositories.checkIns.save(CheckInEntry(
       day: DateTime.now(),
       mood: a.mood == null ? null : _moodLabel(a.mood!),
+      perceivedControl: a.control,
       stress: a.stress,
       motivation: a.motivation,
       area: a.area,
       // Signs share the stressor's detail column, and only the chosen
-      // dimension's signs count; the others were never shown.
+      // area's stressors and the chosen dimension's signs count; the others
+      // were left behind when the user changed their mind.
       stressorDetail: [
         ...a.stressors,
         if (dimension != null) ...a.signs[dimension]!,
       ],
+      stressorOther: a.stressorOther,
+      signDimension: dimension?.name,
+      signOther: dimension == null ? null : cleanOther(a.signOther[dimension]),
       readiness: a.readiness,
       intention: a.intention,
       strategy: a.strategy,
@@ -158,7 +207,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     ));
   }
 
-  /// The four faces on the greeting, as stored.
+  /// The five faces on the greeting, as stored.
   static String _moodLabel(int index) => MoodFace.values[index].label;
 
   @override
@@ -183,7 +232,9 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                 insets: insets,
                 // The area grid and everything after it are tall, so the
                 // companion sits smaller there, as on the reference.
-                maxMascot: _index >= 3 ? h * 0.36 : h * 0.45,
+                maxMascot: _index >= DailyCheckInScreen.areaPage
+                    ? h * 0.36
+                    : h * 0.45,
               ),
               children: [
                 // Painted first, so on a short screen the bubble overlaps
@@ -286,14 +337,16 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     final a = _answers;
     switch (_index) {
       case 0:
-        return switch (a.mood) {
+        return switch (a.mood == null ? null : MoodFace.values[a.mood!]) {
           null => RealPose.heart,
-          0 => RealPose.sad,
-          1 => RealPose.smirk,
-          2 => RealPose.happy,
-          _ => RealPose.excited,
+          MoodFace.angry || MoodFace.sad => RealPose.sad,
+          MoodFace.indifferent => RealPose.smirk,
+          MoodFace.happy => RealPose.happy,
+          MoodFace.excited => RealPose.excited,
         };
       case 1:
+        return a.control == null ? RealPose.think : scale(a.control);
+      case 2:
         return switch (a.stress) {
           null => RealPose.think,
           1 || 2 => RealPose.happy,
@@ -301,29 +354,27 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           4 => RealPose.think,
           _ => RealPose.sad,
         };
-      case 2:
+      case 3:
         return switch (a.motivation) {
           null => RealPose.idle,
           1 => RealPose.sad,
           2 => RealPose.smirk,
           _ => RealPose.excited,
         };
-      case 3:
-        return a.area == null ? RealPose.think : RealPose.sad;
       case 4:
-        return a.stressors.isEmpty ? RealPose.idle : RealPose.think;
-      // Body, feelings, mind or behaviour is neither good nor bad news.
+        return a.hasSource ? RealPose.sad : RealPose.think;
       case 5:
-        return a.signDimension == null ? RealPose.idle : RealPose.smirk;
+        return a.hasStressors ? RealPose.think : RealPose.idle;
+      // Body, feelings, mind or behaviour is neither good nor bad news.
       case 6:
-        return (a.signs[a.signDimension]?.isEmpty ?? true)
-            ? RealPose.idle
-            : RealPose.think;
+        return a.signDimension == null ? RealPose.idle : RealPose.smirk;
       case 7:
+        return a.hasSigns ? RealPose.think : RealPose.idle;
+      case 8:
         return scale(
           a.readiness == null ? null : ReadinessGauge.levelOf(a.readiness!) + 1,
         );
-      case 8:
+      case 9:
         return a.strategy == null ? RealPose.idle : RealPose.happy;
       default:
         return scale(a.rating);
@@ -351,26 +402,50 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     final a = _answers;
     switch (_index) {
       case 0:
-        // The faces sit at the top of the greeting, above what the
-        // companion says.
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            MoodFacesCard(
-              value: a.mood == null ? null : MoodFace.values[a.mood!],
-              onChanged: (f) => _touch(() => a.mood = f.index),
-            ),
-            const SizedBox(height: 16),
-            const SpeechBubble(
-              tailAt: 0.6,
-              child: BubbleText(
+        // The faces sit under the question, inside the bubble, like the
+        // answers on the pages that follow.
+        return SpeechBubble(
+          tailAt: 0.6,
+          padding: const EdgeInsets.fromLTRB(12, 22, 12, 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const BubbleText(
                 "Hi!\nI'm here with you.\nHow are you\nfeeling today?",
                 size: 27,
               ),
-            ),
-          ],
+              const SizedBox(height: 14),
+              MoodFacesCard(
+                bare: true,
+                value: a.mood == null ? null : MoodFace.values[a.mood!],
+                onChanged: (f) => _touch(() => a.mood = f.index),
+              ),
+            ],
+          ),
         );
       case 1:
+        return SpeechBubble(
+          tailAt: 0.62,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const BubbleText('How in control do\nyou feel today?'),
+              const SizedBox(height: 6),
+              // The reference's instruction line, plus turning the needle.
+              const Text(
+                'Tap or turn the gauge below',
+                textAlign: TextAlign.center,
+                style: _bubbleBody,
+              ),
+              const SizedBox(height: 14),
+              ControlScale(
+                value: a.control,
+                onChanged: (v) => _touch(() => a.control = v),
+              ),
+            ],
+          ),
+        );
+      case 2:
         return SpeechBubble(
           tailAt: 0.62,
           child: Column(
@@ -386,7 +461,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
             ],
           ),
         );
-      case 2:
+      case 3:
         return SpeechBubble(
           tailAt: 0.62,
           child: Column(
@@ -402,7 +477,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
             ],
           ),
         );
-      case 3:
+      case 4:
         const areas = [
           ('Home', Icons.home_rounded, Color(0xFF3E9C52)),
           ('Work', Icons.work_rounded, Color(0xFF1C7C84)),
@@ -414,7 +489,10 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           icon: areas[i].$2,
           color: areas[i].$3,
           selected: a.area == areas[i].$1,
-          onTap: () => _touch(() => a.area = areas[i].$1),
+          // Tapping the chosen area again clears it.
+          onTap: () => _touch(
+            () => a.area = a.area == areas[i].$1 ? null : areas[i].$1,
+          ),
         );
         return SpeechBubble(
           tailAt: 0.62,
@@ -443,19 +521,19 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
             ],
           ),
         );
-      case 4:
-        return _StressorStep(answers: _answers, onChanged: _touch);
       case 5:
-        return _SignsIntroStep(answers: _answers, onChanged: _touch);
+        return _StressorStep(answers: _answers, onChanged: _touch);
       case 6:
+        return _SignsIntroStep(answers: _answers, onChanged: _touch);
+      case 7:
         return _SignsStep(
           dimension: _answers.signDimension ?? SignDimension.body,
           answers: _answers,
           onChanged: _touch,
         );
-      case 7:
-        return _IntentionStep(answers: _answers, onChanged: _touch);
       case 8:
+        return _IntentionStep(answers: _answers, onChanged: _touch);
+      case 9:
         return _StrategyStep(answers: _answers, onChanged: _touch);
       default:
         return _StrategyDetailStep(answers: _answers, onChanged: _touch);
@@ -465,21 +543,174 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   /// Whether the current page has what it asks for. Continue waits on it.
   bool get _answered => switch (_index) {
     0 => _answers.mood != null,
-    1 => _answers.stress != null,
-    2 => _answers.motivation != null,
-    3 => _answers.area != null,
-    4 => _answers.stressors.isNotEmpty,
-    5 => _answers.signDimension != null,
-    6 => _answers.signs[_answers.signDimension]?.isNotEmpty ?? false,
-    7 => _answers.readiness != null,
-    8 => _answers.strategy != null && _answers.action != null,
+    1 => _answers.control != null,
+    2 => _answers.stress != null,
+    3 => _answers.motivation != null,
+    4 => _answers.hasSource,
+    5 => _answers.hasStressors,
+    6 => _answers.signDimension != null,
+    7 => _answers.hasSigns,
+    8 => _answers.readiness != null,
+    9 => _answers.strategy != null && _answers.action != null,
     _ => _answers.rating > 0,
   };
 
   String get _actionLabel =>
       _index == _pageCount - 1 ? 'Finish check-in' : 'Continue';
 
-  void _touch(VoidCallback change) => setState(change);
+  void _touch(VoidCallback change) {
+    _touched = true;
+    setState(change);
+  }
+}
+
+/// Puts a saved check-in back on the pages, so reopening today's check-in
+/// shows what was saved. Only values the pages can show are restored: a
+/// feeling, area or strategy the pages do not offer is left unset.
+extension on CheckInAnswers {
+  void restore(CheckInEntry e) {
+    mood = MoodFaceInfo.fromLabel(e.mood)?.index;
+    control = e.perceivedControl;
+    stress = e.stress;
+    motivation = e.motivation;
+
+    final known = {for (final a in kStressAreas) a.label};
+    area = known.contains(e.area) ? e.area : null;
+    final picked = e.stressorDetail.toSet();
+    if (area != null) {
+      stressorsByArea[area!]!.addAll([
+        for (final o in kStressorsByArea[area]!)
+          if (picked.contains(o.label)) o.label,
+      ]);
+      stressorOtherByArea[area!] = e.stressorOther ?? '';
+    }
+
+    // Which signs page was answered. Check-ins saved before that was
+    // recorded are placed by the signs they hold.
+    SignDimension? dimension;
+    for (final d in SignDimension.values) {
+      if (d.name == e.signDimension) dimension = d;
+    }
+    dimension ??= SignDimension.values
+        .where((d) => d.options.any((o) => picked.contains(o.label)))
+        .firstOrNull;
+    signDimension = dimension;
+    if (dimension != null) {
+      signs[dimension]!.addAll([
+        for (final o in dimension.options)
+          if (picked.contains(o.label)) o.label,
+      ]);
+      signOther[dimension] = e.signOther ?? '';
+    }
+
+    readiness = e.readiness;
+    intention = e.intention;
+    // The dropdowns list only the built-in strategies and actions; a custom
+    // one cannot be shown, so it is left as saved rather than restored.
+    final actions = kActionsByStrategy[e.strategy];
+    if (actions != null) {
+      strategy = e.strategy;
+      action = actions.contains(e.action) ? e.action : null;
+    }
+    rating = e.rating ?? 0;
+  }
+}
+
+/// The written "Other" answer under a page's choices: one line, up to
+/// [kOtherMaxLength] characters. It keeps its own text while the page is
+/// open and reports every change, so going back and forward keeps it.
+class _OtherField extends StatefulWidget {
+  const _OtherField({
+    super.key,
+    required this.initial,
+    required this.hint,
+    required this.onChanged,
+  });
+
+  final String initial;
+  final String hint;
+  final ValueChanged<String> onChanged;
+
+  @override
+  State<_OtherField> createState() => _OtherFieldState();
+}
+
+class _OtherFieldState extends State<_OtherField> {
+  late final TextEditingController _controller = TextEditingController(
+    text: widget.initial,
+  );
+
+  @override
+  void didUpdateWidget(_OtherField old) {
+    super.didUpdateWidget(old);
+    // A saved check-in that loads after the page opened brings its text.
+    // While typing, the two already match and nothing changes.
+    if (widget.initial != _controller.text) {
+      _controller.text = widget.initial;
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 4, bottom: 6),
+          child: Text(
+            'Other',
+            style: _bubbleBody.copyWith(fontWeight: FontWeight.w700),
+          ),
+        ),
+        TextField(
+          controller: _controller,
+          onChanged: widget.onChanged,
+          maxLength: kOtherMaxLength,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
+          maxLines: 1,
+          textInputAction: TextInputAction.done,
+          textCapitalization: TextCapitalization.sentences,
+          style: WithMeText.option,
+          cursorColor: ScenicColors.pillBottom,
+          // Scroll far enough that the field clears the keyboard and the
+          // Continue pill.
+          scrollPadding: const EdgeInsets.only(bottom: 120),
+          decoration: InputDecoration(
+            hintText: widget.hint,
+            semanticCounterText: '',
+            // The count shows only near the limit, so it does not crowd the
+            // page while there is plenty of room.
+            counterText:
+                _controller.text.length >= kOtherMaxLength - 20 ? null : '',
+            filled: true,
+            fillColor: Colors.white,
+            hintStyle: WithMeText.option.copyWith(color: WithMeColors.inkFaint),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: WithMeSpace.lg,
+              vertical: WithMeSpace.md,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+              borderSide: const BorderSide(color: ScenicColors.ring, width: 1.4),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+              borderSide: const BorderSide(
+                color: ScenicColors.pillBottom,
+                width: 1.8,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 // --- The scenic page shell ----------------------------------------------------
@@ -628,7 +859,6 @@ const Map<String, IconData> _optionIcons = {
   'Overeating': Icons.fastfood_rounded,
   'Withdrawing': Icons.door_front_door_rounded,
   'Overworking': Icons.work_history_rounded,
-  'Other': Icons.more_horiz_rounded,
 };
 
 /// A centred, multi-select grid of small scenic tiles: three across, or two
@@ -706,12 +936,19 @@ class _StressorStep extends StatelessWidget {
           const SizedBox(height: 16),
           _ChoiceGrid(
             options: kStressorsByArea[area]!,
-            chosen: answers.stressors,
+            chosen: answers.stressorsByArea[area]!,
             onToggle: (label) => onChanged(() {
-              answers.stressors.contains(label)
-                  ? answers.stressors.remove(label)
-                  : answers.stressors.add(label);
+              final chosen = answers.stressorsByArea[area]!;
+              chosen.contains(label) ? chosen.remove(label) : chosen.add(label);
             }),
+          ),
+          const SizedBox(height: 14),
+          _OtherField(
+            key: ValueKey('other-stressor-$area'),
+            initial: answers.stressorOtherByArea[area]!,
+            hint: 'Another stressor',
+            onChanged: (t) =>
+                onChanged(() => answers.stressorOtherByArea[area] = t),
           ),
         ],
       ),
@@ -862,7 +1099,7 @@ class _SignsStep extends StatelessWidget {
           BubbleText(dimension.question, size: 24),
           const SizedBox(height: 6),
           const Text(
-            'Pick all that fit.',
+            'Pick all that fit, or write your own.',
             textAlign: TextAlign.center,
             style: _bubbleBody,
           ),
@@ -873,6 +1110,14 @@ class _SignsStep extends StatelessWidget {
             onToggle: (label) => onChanged(() {
               chosen.contains(label) ? chosen.remove(label) : chosen.add(label);
             }),
+          ),
+          const SizedBox(height: 14),
+          _OtherField(
+            key: ValueKey('other-signs-${dimension.name}'),
+            initial: answers.signOther[dimension]!,
+            hint: 'Something else',
+            onChanged: (t) =>
+                onChanged(() => answers.signOther[dimension] = t),
           ),
         ],
       ),

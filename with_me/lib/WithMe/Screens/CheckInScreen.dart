@@ -142,6 +142,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
                 hint: entry.key == 'Why?' ? 'Select a question...' : null,
                 fill: Colors.white,
                 border: kScenicFieldRing,
+                height: 60,
                 onChanged: (v) => setState(() => _choices[entry.key] = v),
               ),
               const SizedBox(height: 8),
