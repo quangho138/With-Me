@@ -46,6 +46,7 @@ Database       stores it (SQLite)     lib/Database/
 README.md              this file
 docs/                  design, backend and exercise notes
 tool/                  Python helpers for design captures and mascot art
+supabase/              online tables, security rules and their check (SQL)
 with_me/               the Flutter app
   lib/
     main.dart          app start and routes

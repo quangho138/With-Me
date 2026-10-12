@@ -117,3 +117,34 @@ AI provenance:
 2. What was kept: the repository shape, every screen's layout (one link and one menu row added), the existing sign-in error messages.
 3. What was checked: the hashing steps were compared with Python's built-in PBKDF2 at 20,000 rounds and with the RFC 7914 value. Flutter could not run in Claude's workspace, so the tests are first run by Quang.
 4. What it got wrong or left open: 20,000 rounds is below what servers use, chosen so sign-in stays quick in the browser; the data on the phone itself is not encrypted, so the password guards the app, not the file. Supabase will own passwords later.
+
+## Stage 3, step 2a: online tables and security rules (branch backend/supabase-schema)
+
+Goal: an online copy for people with an account, so their check-ins follow them to a new phone, while one user can never see another user's data.
+
+Decisions (Quang):
+- Supabase project in East US. Automatic security rules (RLS) turned on for every new table.
+- The journal stays on the phone. There is no online table for it.
+- Custom strategy and action text syncs. It is a preference the app does not offer yet, not personal detail. Limited to 200 characters.
+- Team members get their own Supabase login through the organization. The database password and secret key are never shared or committed.
+
+What changed (no app code yet; this is the server side):
+- supabase/migrations/20261012000000_online_tables.sql:
+  - profiles: display name, made automatically at sign-up from the name the app sends.
+  - check_ins: one row per account per day with every check-in answer. Online keeps stress as the person answered (the phone stores 6 - stress).
+  - exercise_sessions: one row per finished exercise. The id is made on the phone, so a repeated upload can never count a session twice.
+  - Every row has updated_at (sync keeps the newest edit) and deleted (so a removal reaches other phones).
+  - Every table: you can only read, add, change or remove rows where user_id is you. Signed-out visitors have no access at all.
+  - Answers outside the app's scales are refused (for example stress must be 1 to 5).
+  - Deleting an account removes all its rows.
+- supabase/tests/security_check.sql: two made-up users; checks every rule above, then rolls back.
+
+Success criteria: security_check.sql ends with "All security checks passed" on the real project.
+
+Not in this step: the app talking to Supabase (2b login, 2c sync), delete and export from the app (2d), Google sign-in (2e).
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the SQL, the check script and this section.
+2. What was kept: the phone's existing answers and scales, the local-first design in sync-design-and-review.md, Supabase's recommended rule form.
+3. What was checked: both files were run on a local PostgreSQL 16 set up like Supabase (auth schema, anon and authenticated roles). The checks passed, and were then shown to fail when a rule was deliberately broken (open reading, open adding, RLS turned off). First run on the real project by Quang.
+4. What it got wrong or left open: the local copy only imitates Supabase's auth schema, so the real run is the true test. Times come from the phone's clock, so a phone with a wrong clock could win a sync it should lose; acceptable for now.
