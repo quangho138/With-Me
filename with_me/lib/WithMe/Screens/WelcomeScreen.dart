@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../../Repositories/user_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
@@ -158,13 +159,26 @@ class WelcomeScreen extends StatelessWidget {
                           height: 22,
                           child: CustomPaint(painter: _GoogleG()),
                         ),
-                        onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Google sign-in is not wired up in this UI pass.',
-                            ),
-                          ),
-                        ),
+                        // Backend (stage 3): opens Google's page; the app
+                        // comes back through the deep link and finishes the
+                        // login (main.dart, OutsideLoginListener).
+                        onPressed: () async {
+                          try {
+                            await AppRepositories.users.startGoogleSignIn();
+                          } on AccountException catch (e) {
+                            if (!context.mounted) return;
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(e.problem.message)),
+                            );
+                          } catch (_) {
+                            if (!context.mounted) return;
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(AccountProblem.unknown.message),
+                              ),
+                            );
+                          }
+                        },
                       ),
                       // Backend (stage 3): shown only on a phone with no
                       // account. Bhavesh: restyle freely, keep the rule.

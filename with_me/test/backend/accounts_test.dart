@@ -231,6 +231,78 @@ void main() {
     }
   });
 
+  group('logins from outside the app (Google, email links)', () {
+    test('Google: first sign-in links the phone and keeps guest data',
+        () async {
+      final seen = <OnlineAuthEvent>[];
+      final sub = users.onlineEvents.listen(seen.add);
+      addTearDown(sub.cancel);
+
+      await users.startAsGuest();
+      await LocalCheckInRepository(open: () async => db)
+          .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+      await users.startGoogleSignIn();
+      online.finishGoogle('g@gmail.test');
+      await Future<void>.delayed(Duration.zero);
+      expect(seen, [OnlineAuthEvent.signedIn]);
+
+      expect(await users.completeOutsideLogin(), isTrue);
+      expect(await users.session(), SessionKind.account);
+      expect((await db.query('users')).single['email'], 'g@gmail.test');
+      expect((await db.query('moods')).length, 1, reason: 'guest data kept');
+      // Handled once: a second report changes nothing.
+      expect(await users.completeOutsideLogin(), isFalse);
+    });
+
+    test('after the login screen, there is nothing left to do', () async {
+      await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+      online.confirm('a@example.com');
+      await users.signIn('a@example.com', 'synthetic');
+      expect(await users.completeOutsideLogin(), isFalse);
+    });
+
+    test("Google cannot log in on another account's phone", () async {
+      await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+      online.confirm('a@example.com');
+      await users.signIn('a@example.com', 'synthetic');
+      online.finishGoogle('other@gmail.test');
+      await expectProblem(
+        users.completeOutsideLogin(),
+        AccountProblem.otherAccountOnPhone,
+      );
+      expect(online.currentUserId, isNull);
+      expect((await db.query('users')).single['email'], 'a@example.com');
+    });
+
+    test('forgot password: link, new password, logged in', () async {
+      await users.signUp(email: 'a@example.com', password: 'old-pass', name: 'A');
+      online.confirm('a@example.com');
+
+      await expectProblem(users.sendPasswordReset('  '), AccountProblem.enterEmail);
+      await users.sendPasswordReset(' A@Example.com');
+      expect(online.resetSentTo, 'a@example.com');
+
+      final seen = <OnlineAuthEvent>[];
+      final sub = users.onlineEvents.listen(seen.add);
+      addTearDown(sub.cancel);
+      online.openResetLink('a@example.com');
+      await Future<void>.delayed(Duration.zero);
+      expect(seen, [OnlineAuthEvent.passwordRecovery]);
+
+      await expectProblem(users.setNewPassword('123'), AccountProblem.weakPassword);
+      await users.setNewPassword('new-pass');
+      expect(await users.session(), SessionKind.account);
+
+      await users.signOut();
+      await expectProblem(
+        users.signIn('a@example.com', 'old-pass'),
+        AccountProblem.wrongPassword,
+      );
+      await users.signIn('a@example.com', 'new-pass');
+      expect(await users.session(), SessionKind.account);
+    });
+  });
+
   test('upgrading version 6 removes phone-only accounts and keeps the rest',
       () async {
     // A version 6 database: users with scrambled passwords, and someone

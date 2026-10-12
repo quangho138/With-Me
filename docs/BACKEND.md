@@ -248,3 +248,38 @@ AI provenance:
 2. What was kept: the Settings layout and dialog, the existing delete flow (now online first).
 3. What was checked: the SQL ran on a local PostgreSQL set up like Supabase; the check passes and fails when delete_my_account is deliberately broken to delete everyone. Dart tests first run by Quang.
 4. What it got wrong or left open: sharing a file in the browser depends on the browser; if it does nothing there, tell Claude. There is no import yet; the file is ready for one.
+
+## Stage 3, step 2e: deep link, forgot password, Google sign-in (branch backend/google-reset)
+
+Decisions (Quang):
+- Google sign-in uses Google's page in a browser sheet (Supabase OAuth), not the phone's native account picker: one Google key, the same code on Android, iOS and web, and it reuses the deep link.
+
+Deep link (com.withme.companion://login-callback):
+- Set up in AndroidManifest.xml (intent filter) and ios/Runner/Info.plist (URL type). Flutter's own deep link router is turned off there, because Supabase reads the link itself.
+- Email confirmation links, reset links and the return from Google open the app. In the browser build the page's own address is used instead.
+- OutsideLoginListener (around the whole app, main.dart) finishes these logins with the same rules and steps as the login screen (AfterLogin.dart): link the phone (refused if it is another account's phone), ask add-or-discard if needed, sync, go Home. Logins made by the app's own screens are not handled twice.
+
+Forgot password:
+- "Reset your password" now sends a real email. Its link opens "Set a new password" (new SetNewPasswordScreen, plain scenic layout for Bhavesh to restyle). Saving logs the person in.
+
+Google:
+- "Continue with Google" on the welcome screen. The first Google sign-in creates the account. supabase/migrations/20261016000000_google_names.sql gives Google accounts a name from Google's "full_name".
+- Future note: Apple's App Store requires "Sign in with Apple" next to Google sign-in. Not needed for the capstone or Android.
+
+Setup outside the code (done in the dashboards, nothing secret in the repo):
+- Google Cloud: an OAuth client of type "Web application" with the authorized redirect URI https://mgahvsbczqcihatdrbyj.supabase.co/auth/v1/callback; test users added while the app is in testing.
+- Supabase, Authentication, Sign In / Providers, Google: client ID and secret pasted there.
+- Supabase, Authentication, URL Configuration, Redirect URLs: com.withme.companion://login-callback and the browser address used for testing (http://localhost:8080).
+
+Success criteria, in test/backend/accounts_test.dart (fake online login):
+1. Google's first sign-in links the phone and keeps guest data; reported once.
+2. After the login screen, an outside login report changes nothing.
+3. Google cannot log in on another account's phone.
+4. Forgot password: empty email refused, link sent, short password refused, new password works and the old one does not.
+Plus security_check.sql: a Google sign-up gets its name. By hand: tap a real confirmation link and a reset link on the emulator; sign in with Google.
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the code, tests, SQL and this section.
+2. What was kept: the welcome, login and reset screens' layouts (buttons now do real work), the login rules from steps 2b and 2c.
+3. What was checked: SQL on a local PostgreSQL set up like Supabase. Flutter could not run in Claude's workspace; Dart tests and the real links are first run by Quang.
+4. What it got wrong or left open: a link opened on a different device than the one that asked for it (for example the email opened on a laptop) confirms the email but cannot log the phone in; the person logs in by hand. The Supabase login events were written from its documentation.
