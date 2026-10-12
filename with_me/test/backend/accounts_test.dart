@@ -191,7 +191,8 @@ void main() {
     expect(await quick.session(), SessionKind.account);
   });
 
-  test('delete my account empties the phone and logs out', () async {
+  test('delete my account removes the online account, then the phone',
+      () async {
     await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
@@ -199,6 +200,35 @@ void main() {
     expect(await users.session(), SessionKind.none);
     expect(await users.hasAccount(), isFalse);
     expect(online.currentUserId, isNull);
+    // The account is gone online: it cannot log in any more.
+    await expectProblem(
+      users.signIn('a@example.com', 'synthetic'),
+      AccountProblem.wrongPassword,
+    );
+  });
+
+  test('offline, delete my account deletes nothing at all', () async {
+    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+    online.confirm('a@example.com');
+    await users.signIn('a@example.com', 'synthetic');
+    await LocalCheckInRepository(open: () async => db)
+        .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+
+    online.offline = true;
+    await expectProblem(users.deleteAccountAndData(), AccountProblem.noInternet);
+    expect(await users.session(), SessionKind.account);
+    expect((await db.query('moods')).length, 1);
+  });
+
+  test('a guest\'s delete clears the phone without going online', () async {
+    await users.startAsGuest();
+    await LocalCheckInRepository(open: () async => db)
+        .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+    online.offline = true;
+    await users.deleteAccountAndData();
+    for (final table in DatabaseHelper.userDataTables) {
+      expect(await db.query(table), isEmpty, reason: table);
+    }
   });
 
   test('upgrading version 6 removes phone-only accounts and keeps the rest',

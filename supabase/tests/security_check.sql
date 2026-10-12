@@ -178,7 +178,34 @@ do $$ begin
 end $$;
 reset role;
 
--- 9. Deleting an account removes all of its rows.
+-- 9. "Delete my account" removes only your own account and its rows.
+do $$ begin perform pg_temp.act_as('00000000-0000-4000-a000-00000000000a'); end $$;
+set local role authenticated;
+do $$ begin perform public.delete_my_account(); end $$;
+reset role;
+do $$ begin
+  if exists (select 1 from auth.users
+             where id = '00000000-0000-4000-a000-00000000000a')
+     or exists (select 1 from public.check_ins
+                where user_id = '00000000-0000-4000-a000-00000000000a')
+  then raise exception 'FAILED: delete my account left A behind'; end if;
+  if not exists (select 1 from auth.users
+                 where id = '00000000-0000-4000-a000-00000000000b')
+     or not exists (select 1 from public.check_ins
+                    where user_id = '00000000-0000-4000-a000-00000000000b')
+  then raise exception 'FAILED: A deleting their account touched B'; end if;
+end $$;
+set local role anon;
+do $$ begin
+  begin
+    perform public.delete_my_account();
+    raise exception 'FAILED: a signed-out visitor can call delete';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;
+
+-- 10. Deleting an account removes all of its rows.
 delete from auth.users where id = '00000000-0000-4000-a000-00000000000b';
 do $$ begin
   if exists (select 1 from public.check_ins

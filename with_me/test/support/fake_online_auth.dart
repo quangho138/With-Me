@@ -71,6 +71,15 @@ class FakeOnlineAuth implements OnlineAuth {
 
   @override
   Future<void> signOut() async => _current = null;
+
+  @override
+  Future<void> deleteAccount() async {
+    if (offline) throw const AccountException(AccountProblem.noInternet);
+    final me = _current;
+    if (me == null) throw const AccountException(AccountProblem.unknown);
+    _accounts.remove(me.email);
+    _current = null;
+  }
 }
 
 class _Account {
