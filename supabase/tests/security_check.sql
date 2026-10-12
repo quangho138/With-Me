@@ -120,6 +120,18 @@ do $$ begin
     raise exception 'FAILED: a stress of 9 was accepted';
   exception when check_violation then null;
   end;
+  begin
+    insert into public.check_ins (day, perceived_control)
+      values ('2026-10-03', 0);
+    raise exception 'FAILED: a control answer of 0 was accepted';
+  exception when check_violation then null;
+  end;
+  begin
+    insert into public.check_ins (day, stressor_other)
+      values ('2026-10-03', repeat('x', 101));
+    raise exception 'FAILED: written text over 100 characters was accepted';
+  exception when check_violation then null;
+  end;
 end $$;
 reset role;
 

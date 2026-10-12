@@ -148,3 +148,40 @@ AI provenance:
 2. What was kept: the phone's existing answers and scales, the local-first design in sync-design-and-review.md, Supabase's recommended rule form.
 3. What was checked: both files were run on a local PostgreSQL 16 set up like Supabase (auth schema, anon and authenticated roles). The checks passed, and were then shown to fail when a rule was deliberately broken (open reading, open adding, RLS turned off). First run on the real project by Quang.
 4. What it got wrong or left open: the local copy only imitates Supabase's auth schema, so the real run is the true test. Times come from the phone's clock, so a phone with a wrong clock could win a sync it should lose; acceptable for now.
+
+## Stage 3, step 2b: log in with Supabase (branch backend/supabase-login)
+
+Goal: real online accounts, so later steps can keep a person's check-ins online and on every phone they use.
+
+Decisions (Quang):
+- Email confirmation on: a new account works after the link in the email is tapped. Until a deep link is set up (planned together with "forgot password"), the link may open a browser page that looks broken; the account is still confirmed, and the person goes back to the app and logs in.
+- The written "Other" answers from Alex's update sync too, like the custom strategy and action (100 characters each).
+
+What changed:
+- Login and sign-up go to Supabase. Passwords are no longer stored on the phone at all; the part 1 password scrambling (PBKDF2) is removed because Supabase does it now.
+- lib/Repositories/online_auth.dart: a small OnlineAuth interface and its Supabase version. Every error becomes one clear message (wrong password, email not confirmed, email already used, password too short, no internet, too many tries).
+- AppUserRepository (replaces LocalUserRepository): same rules as part 1. One account per phone: the phone remembers the account from its first login; another account cannot log in on it (stage 2c will offer to replace the data instead). A guest who signs up, confirms and logs in keeps their check-ins. Logging out keeps the data.
+- Phone database version 7: users only keeps which online account the phone belongs to (user_id, email). Accounts from part 1 existed only on one phone, so they are removed; people sign up again online. Check-ins, journal and name are kept.
+- lib/Config/supabase_config.dart: the project URL and publishable key (safe to commit). The secret key and database password are never in the repo.
+- main.dart starts Supabase before the first screen; it only reads the saved login, so the app still opens offline.
+- Android release builds get the internet permission; macOS gets network access.
+- The browser demo no longer has a login (it would need a real online account). Its sample week is saved as "without an account" data.
+- supabase/migrations/20261013000000_check_in_extras.sql: online columns for Alex's new answers (perceived control, written "Other" answers, which signs page). security_check.sql checks their limits.
+- Screens never use Supabase directly; the data layer test now checks that too.
+
+Success criteria, in test/backend/accounts_test.dart (online side is a fake, no internet):
+1. No password stored on the phone.
+2. Sign-up needs the email confirmed; each failure gives its own message.
+3. Logged-in state is remembered; logging out keeps the data.
+4. One account per phone, including logging in to a different existing account.
+5. A guest keeps their check-ins after signing up and logging in.
+6. Upgrading from version 6 removes phone-only accounts and keeps the rest.
+Plus by hand on the emulator: sign up with a real email, tap the link, log in.
+
+Not in this step: syncing check-ins (2c), deleting the online account and export (2d), Google (2e), forgot password and the deep link.
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the code, tests, SQL and this section.
+2. What was kept: the UserRepository shape (screens barely change), part 1's rules, Alex's check-in work.
+3. What was checked: the SQL ran on a local PostgreSQL set up like Supabase, with the security checks passing. Flutter could not run in Claude's workspace, so the Dart tests and the real login are first run by Quang.
+4. What it got wrong or left open: the Supabase error codes were written from Supabase's documented codes, with a fallback on the message text; if a real error shows "Something went wrong", tell Claude the case so it can be mapped. Removing part 1's password scrambling means that work only lived for one step; it was planned as a stepping stone.

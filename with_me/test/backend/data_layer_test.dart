@@ -7,6 +7,8 @@ import 'package:with_me/Repositories/check_in_repository.dart';
 import 'package:with_me/Repositories/reflection_repository.dart';
 import 'package:with_me/Repositories/user_repository.dart';
 
+import '../support/fake_online_auth.dart';
+
 /// Success criteria for stage 2 ("the data layer"):
 /// 1. No screen talks to the database directly: nothing under lib/WithMe
 ///    imports LocalDatabase or uses DatabaseHelper.
@@ -38,7 +40,8 @@ void main() {
           .where((line) => !line.trimLeft().startsWith('//'))
           .join('\n');
       if (code.contains('LocalDatabase.dart') ||
-          code.contains('DatabaseHelper')) {
+          code.contains('DatabaseHelper') ||
+          code.contains('supabase_flutter')) {
         offenders.add(entity.path);
       }
     }
@@ -51,21 +54,25 @@ void main() {
     late UserRepository users;
     setUp(() async {
       db = await freshDb();
-      users = LocalUserRepository(open: () async => db);
+      users = AppUserRepository(
+        auth: FakeOnlineAuth(confirmEmail: false),
+        open: () async => db,
+      );
     });
     tearDown(() async => db.close());
 
-    test('sign up, then sign in only with the right password', () async {
-      expect(await users.emailExists('test@example.com'), isFalse);
+    test('sign up, then log in only with the right password', () async {
       await users.signUp(
         email: 'test@example.com',
         password: 'synthetic-pass',
         name: 'Test',
       );
-      expect(await users.emailExists('test@example.com'), isTrue);
-      expect(await users.signIn('test@example.com', 'synthetic-pass'), isTrue);
-      expect(await users.signIn('test@example.com', 'wrong'), isFalse);
-      expect(await users.signIn('other@example.com', 'synthetic-pass'), isFalse);
+      expect(await users.hasAccount(), isTrue);
+      await users.signOut();
+      await expectLater(users.signIn('test@example.com', 'wrong'),
+          throwsA(isA<AccountException>()));
+      await users.signIn('test@example.com', 'synthetic-pass');
+      expect(await users.session(), SessionKind.account);
       expect(await users.displayName(), 'Test');
     });
 
@@ -83,7 +90,7 @@ void main() {
     });
 
     test('delete account and data empties everything', () async {
-      await users.signUp(email: 'a@example.com', password: 'x', name: 'A');
+      await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
       await LocalCheckInRepository(open: () async => db)
           .save(CheckInEntry(day: DateTime(2026, 9, 28), mood: 'Good'));
       await users.deleteAccountAndData();

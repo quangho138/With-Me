@@ -27,9 +27,11 @@ class DatabaseHelper {
   /// records finished exercises (exercise_sessions), and allows one stressor
   /// row per day. Version 5 stores scrambled passwords instead of plain text
   /// and remembers who is signed in (session). Version 6 adds the check-in's
-  /// perceived-control answer and the written "Other" answers. Bump this and
+  /// perceived-control answer and the written "Other" answers. Version 7
+  /// moves passwords off the phone: login is checked online (Supabase), and
+  /// users only remembers which account the phone belongs to. Bump this and
   /// extend _onUpgrade for any later change.
-  static const int schemaVersion = 6;
+  static const int schemaVersion = 7;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -133,6 +135,7 @@ class DatabaseHelper {
     await _createVersion4(db);
     await _createVersion5(db);
     await _createVersion6(db);
+    await _createVersion7(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -219,6 +222,29 @@ class DatabaseHelper {
     if (oldVersion < 6) {
       await _createVersion6(db);
     }
+    if (oldVersion < 7) {
+      await _createVersion7(db);
+    }
+  }
+
+  /// Everything version 7 changes. Shared by _onCreate and _onUpgrade.
+  ///
+  /// Passwords leave the phone: Supabase checks them online. users now only
+  /// remembers which online account this phone belongs to. Accounts made
+  /// before this only ever existed on one phone, so they are removed and
+  /// people sign up again online; check-ins, journal and name are kept.
+  /// Whoever was logged in is logged out (a guest stays a guest).
+  static Future<void> _createVersion7(Database db) async {
+    await db.execute('DROP TABLE IF EXISTS users');
+    await db.execute('''
+      CREATE TABLE users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL,
+        linkedAt TEXT NOT NULL
+      )
+    ''');
+    await db.execute('DELETE FROM session WHERE email IS NOT NULL');
   }
 
   /// Everything version 6 adds. Shared by _onCreate and _onUpgrade.

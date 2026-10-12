@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'Config/supabase_config.dart';
 
 import 'Database/DemoAccount.dart';
 import 'Repositories/app_repositories.dart';
@@ -38,6 +41,17 @@ import 'WithMe/Theme/WithMeTheme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Online accounts. This only reads the saved login from the phone; it does
+  // not need the internet, so the app still opens offline.
+  try {
+    await Supabase.initialize(
+      url: SupabaseConfig.url,
+      anonKey: SupabaseConfig.publishableKey,
+    );
+  } catch (e) {
+    debugPrint('Online accounts not available: $e');
+  }
 
   // Someone who signed in (or chose to go without an account) last time goes
   // straight to Home. Reading this opens the database, which the first
