@@ -1,5 +1,6 @@
 import 'check_in_repository.dart';
 import 'exercise_repository.dart';
+import 'online_auth.dart';
 import 'reflection_repository.dart';
 import 'user_repository.dart';
 
@@ -15,5 +16,5 @@ class AppRepositories {
   static CheckInRepository checkIns = LocalCheckInRepository();
   static ExerciseRepository exercises = LocalExerciseRepository();
   static ReflectionRepository reflections = LocalReflectionRepository();
-  static UserRepository users = LocalUserRepository();
+  static UserRepository users = AppUserRepository(auth: SupabaseOnlineAuth());
 }
