@@ -646,11 +646,16 @@ class WithMeDropdown extends StatelessWidget {
     this.hint,
     this.fill,
     this.border,
+    this.height = kSettingsRowHeight,
   });
 
   final String? label;
   final String? value;
   final List<String> items;
+
+  /// The field's height - taller where the page has room for bigger
+  /// targets, like the self-reflection.
+  final double height;
   final ValueChanged<String?> onChanged;
   final String? hint;
 
@@ -668,7 +673,7 @@ class WithMeDropdown extends StatelessWidget {
           const SizedBox(height: 6),
         ],
         Container(
-          height: kSettingsRowHeight,
+          height: height,
           padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.lg),
           decoration: BoxDecoration(
             color: fill ?? WithMeColors.cream,

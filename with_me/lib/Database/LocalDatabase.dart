@@ -26,9 +26,10 @@ class DatabaseHelper {
   /// Version 4 saves the rest of the daily check-in (check_in_details),
   /// records finished exercises (exercise_sessions), and allows one stressor
   /// row per day. Version 5 stores scrambled passwords instead of plain text
-  /// and remembers who is signed in (session). Bump this and extend
-  /// _onUpgrade for any later change.
-  static const int schemaVersion = 5;
+  /// and remembers who is signed in (session). Version 6 adds the check-in's
+  /// perceived-control answer and the written "Other" answers. Bump this and
+  /// extend _onUpgrade for any later change.
+  static const int schemaVersion = 6;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -131,6 +132,7 @@ class DatabaseHelper {
 
     await _createVersion4(db);
     await _createVersion5(db);
+    await _createVersion6(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -213,6 +215,37 @@ class DatabaseHelper {
     }
     if (oldVersion < 5) {
       await _createVersion5(db);
+    }
+    if (oldVersion < 6) {
+      await _createVersion6(db);
+    }
+  }
+
+  /// Everything version 6 adds. Shared by _onCreate and _onUpgrade.
+  ///
+  /// The written "Other" answers get their own columns rather than joining
+  /// the comma-separated stressors.detail list, where a comma in the text
+  /// would split one answer into two.
+  static Future<void> _createVersion6(Database db) async {
+    // ALTER TABLE has no IF NOT EXISTS, so check first: safe to run twice.
+    Future<void> add(String table, String column, String type) async {
+      final columns = await db.rawQuery('PRAGMA table_info($table)');
+      if (columns.any((c) => c['name'] == column)) return;
+      await db.execute('ALTER TABLE $table ADD COLUMN $column $type');
+    }
+
+    // "How in control do you feel today?", 1-5. Kept apart from
+    // control_gauge, which holds the stress rating turned around.
+    await add('check_in_details', 'perceived_control', 'INTEGER');
+    // Other text on the stress-source page, on the chosen area's stressor
+    // page, and on the chosen signs page; and which signs page that was.
+    for (final column in [
+      'area_other',
+      'stressor_other',
+      'sign_dimension',
+      'sign_other',
+    ]) {
+      await add('stressors', column, 'TEXT');
     }
   }
 

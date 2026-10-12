@@ -58,6 +58,10 @@ void main() {
           home: const ExerciseChooseScreen(),
         ),
       );
+      // The larger tiles put the last one below the fold on the default
+      // test screen, as on a short phone.
+      await t.ensureVisible(find.text('Physiological Sigh').first);
+      await t.pump();
       await t.tap(find.text('Physiological Sigh').first);
       await t.pump();
       await t.tap(find.text('Continue').first);

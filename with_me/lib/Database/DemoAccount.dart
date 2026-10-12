@@ -79,21 +79,25 @@ class DemoAccount {
   }
 
   // Written in the voice image45 uses: short, specific, one thought each.
+  // Moods use the check-in's five feelings. The old words were switched by
+  // their place on the 1-5 mood scale, so each day keeps its score: Not
+  // good (1) is Angry, Okay (3) Indifferent, Good (4) Happy, Great (5)
+  // Excited.
   static const List<_Day> _days = [
-    _Day(16, 42, 'Good', 4, 'Work', 'Workload, Time mgmt',
+    _Day(16, 42, 'Happy', 4, 'Work', 'Workload, Time mgmt',
         'Sam, over lunch.',
         'Breathing before the meeting actually helped. Shoulders dropped.'),
-    _Day(21, 10, 'Okay', 3, 'Home', 'Financial',
+    _Day(21, 10, 'Indifferent', 3, 'Home', 'Financial',
         'Nobody - handled it myself.', 'Box breathing, 4 rounds. Slept better.'),
-    _Day(7, 55, 'Not good', 2, 'Work', 'Boss, Colleagues',
+    _Day(7, 55, 'Angry', 2, 'Work', 'Boss, Colleagues',
         'Mum called at the right moment.', 'Hard morning. Logged it anyway.'),
-    _Day(13, 26, 'Great', 5, 'School', 'Exam pressure', 'Study group.',
+    _Day(13, 26, 'Excited', 5, 'School', 'Exam pressure', 'Study group.',
         'Studied in 25-minute blocks instead of one long sit.'),
-    _Day(19, 3, 'Okay', 3, 'Social', 'Social media', 'My sister.',
+    _Day(19, 3, 'Indifferent', 3, 'Social', 'Social media', 'My sister.',
         'Put the phone in a drawer for the evening.'),
-    _Day(8, 38, 'Not good', 2, 'Work', 'Workload', 'Told my manager.',
+    _Day(8, 38, 'Angry', 2, 'Work', 'Workload', 'Told my manager.',
         'Too much on at once. Asked for the deadline to move.'),
-    _Day(22, 14, 'Good', 4, 'Home', 'Domestic duties', 'Ade came round.',
+    _Day(22, 14, 'Happy', 4, 'Home', 'Domestic duties', 'Ade came round.',
         'Cooked properly for the first time this week.'),
   ];
 }
