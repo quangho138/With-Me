@@ -5,9 +5,9 @@
 -- be able to do to the other, then undoes everything (ROLLBACK at the
 -- end), so nothing stays in the database.
 --
--- Result: the last line says "All security checks passed". If a check
--- fails, the run stops with an error that starts with "FAILED:" and says
--- which rule is broken.
+-- Result: one row saying "All security checks passed". If a check fails,
+-- the run stops with an error that starts with "FAILED:" and says which
+-- rule is broken.
 
 begin;
 
@@ -33,7 +33,7 @@ do $$ begin
 end $$;
 
 -- User B saves a check-in and an exercise.
-select pg_temp.act_as('00000000-0000-4000-a000-00000000000b');
+do $$ begin perform pg_temp.act_as('00000000-0000-4000-a000-00000000000b'); end $$;
 set local role authenticated;
 insert into public.check_ins (day, mood, stress, strategy, action)
   values ('2026-10-01', 'Good', 2, 'Physical', 'Walking');
@@ -42,7 +42,7 @@ insert into public.exercise_sessions (id, completed_at, exercise)
 reset role;
 
 -- Now act as user A.
-select pg_temp.act_as('00000000-0000-4000-a000-00000000000a');
+do $$ begin perform pg_temp.act_as('00000000-0000-4000-a000-00000000000a'); end $$;
 set local role authenticated;
 
 -- 2. A can save and read their own check-in. user_id fills itself in.
