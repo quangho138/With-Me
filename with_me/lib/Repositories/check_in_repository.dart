@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../Database/LocalDatabase.dart';
+import 'ids.dart';
 
 /// Everything one daily check-in can hold. Any field can be null: the
 /// check-in can be opened part way through (from the calendar) to change a
@@ -180,70 +181,88 @@ class LocalCheckInRepository implements CheckInRepository {
 
     // One transaction: the whole check-in is saved, or none of it.
     await db.transaction((txn) async {
-      if (entry.mood != null) {
-        await txn.insert(
-          'moods',
-          {'date': day, 'mood': entry.mood, 'createdAt': now},
-          conflictAlgorithm: ConflictAlgorithm.replace,
-        );
-      }
-      if (entry.stress != null) {
-        // The gauge stores how in control the day felt, so the stress rating
-        // is turned around: stress 1 is control 5.
-        await txn.insert(
-          'control_gauge',
-          {'date': day, 'level': 6 - entry.stress!},
-          conflictAlgorithm: ConflictAlgorithm.replace,
-        );
-      }
-      if (entry.area != null || entry.areaOther != null) {
-        // One row per day (version 4), so this replaces an earlier save.
-        await txn.insert(
-          'stressors',
-          {
-            'date': day,
-            'category': entry.area ?? CheckInEntry.otherArea,
-            'detail': entry.stressorDetail.isEmpty
-                ? null
-                : entry.stressorDetail.join(', '),
-            'area_other': entry.areaOther,
-            'stressor_other': entry.stressorOther,
-            'sign_dimension': entry.signDimension,
-            'sign_other': entry.signOther,
-          },
-          conflictAlgorithm: ConflictAlgorithm.replace,
-        );
-      }
-
-      final details = <String, Object?>{
-        if (entry.perceivedControl != null)
-          'perceived_control': entry.perceivedControl,
-        if (entry.motivation != null) 'motivation': entry.motivation,
-        if (entry.readiness != null) 'readiness': entry.readiness,
-        if (entry.intention != null) 'intention': entry.intention,
-        if (entry.strategy != null) 'strategy': entry.strategy,
-        if (entry.action != null) 'action': entry.action,
-        if (entry.rating != null) 'rating': entry.rating,
-      };
-      if (details.isEmpty) return;
-
-      // Update the day's row if there is one, otherwise add it. Done as two
-      // plain steps rather than an SQL upsert, which older Android phones'
-      // SQLite does not support.
-      final updated = await txn.update(
-        'check_in_details',
-        {...details, 'updatedAt': now},
-        where: 'date = ?',
-        whereArgs: [day],
+      await writeEntry(txn, entry, now);
+      // Mark the day for sync to upload (only used with an account).
+      await txn.insert(
+        'sync_days',
+        {'date': day, 'changedAt': nowStamp(), 'pending': 1},
+        conflictAlgorithm: ConflictAlgorithm.replace,
       );
-      if (updated == 0) {
-        await txn.insert('check_in_details', {
-          'date': day,
-          ...details,
-          'updatedAt': now,
-        });
-      }
     });
+  }
+
+  /// Writes the answers that are not null. Answers left null keep whatever
+  /// was saved earlier that day. Shared by [save] and by sync, which writes
+  /// a day downloaded from the account.
+  static Future<void> writeEntry(
+    DatabaseExecutor txn,
+    CheckInEntry entry,
+    String now,
+  ) async {
+    final day = DatabaseHelper.dateKey(entry.day);
+    if (entry.mood != null) {
+      await txn.insert(
+        'moods',
+        {'date': day, 'mood': entry.mood, 'createdAt': now},
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+    if (entry.stress != null) {
+      // The gauge stores how in control the day felt, so the stress rating
+      // is turned around: stress 1 is control 5.
+      await txn.insert(
+        'control_gauge',
+        {'date': day, 'level': 6 - entry.stress!},
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+    if (entry.area != null || entry.areaOther != null) {
+      // One row per day (version 4), so this replaces an earlier save.
+      await txn.insert(
+        'stressors',
+        {
+          'date': day,
+          'category': entry.area ?? CheckInEntry.otherArea,
+          'detail': entry.stressorDetail.isEmpty
+              ? null
+              : entry.stressorDetail.join(', '),
+          'area_other': entry.areaOther,
+          'stressor_other': entry.stressorOther,
+          'sign_dimension': entry.signDimension,
+          'sign_other': entry.signOther,
+        },
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+
+    final details = <String, Object?>{
+      if (entry.perceivedControl != null)
+        'perceived_control': entry.perceivedControl,
+      if (entry.motivation != null) 'motivation': entry.motivation,
+      if (entry.readiness != null) 'readiness': entry.readiness,
+      if (entry.intention != null) 'intention': entry.intention,
+      if (entry.strategy != null) 'strategy': entry.strategy,
+      if (entry.action != null) 'action': entry.action,
+      if (entry.rating != null) 'rating': entry.rating,
+    };
+    if (details.isEmpty) return;
+
+    // Update the day's row if there is one, otherwise add it. Done as two
+    // plain steps rather than an SQL upsert, which older Android phones'
+    // SQLite does not support.
+    final updated = await txn.update(
+      'check_in_details',
+      {...details, 'updatedAt': now},
+      where: 'date = ?',
+      whereArgs: [day],
+    );
+    if (updated == 0) {
+      await txn.insert('check_in_details', {
+        'date': day,
+        ...details,
+        'updatedAt': now,
+      });
+    }
   }
 
   @override

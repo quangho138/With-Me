@@ -104,10 +104,12 @@ flutter test
 
 ## Data and privacy
 
-- All data is stored on the device. Nothing is sent anywhere yet.
+- Without an account, everything stays on the device.
 - Accounts are online (Supabase). Passwords are checked there and never stored on the phone.
+- With an account, check-ins, finished exercises and the name sync to the account, so they follow you to another phone. The newest edit of a day wins. The journal never leaves the phone.
+- Logging out clears the phone. Check-ins come back on the next login; the journal is deleted (the app warns first).
 - During the course, only made-up test data is used, never real personal data.
-- Planned next: optional accounts with syncing across devices (Supabase). The journal ("Check In") will never leave the device. See `docs/BACKEND.md`.
+- Details in `docs/BACKEND.md` and `supabase/`.
 
 ## Working on it
 

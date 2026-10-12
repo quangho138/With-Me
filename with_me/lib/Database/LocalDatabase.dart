@@ -29,9 +29,12 @@ class DatabaseHelper {
   /// and remembers who is signed in (session). Version 6 adds the check-in's
   /// perceived-control answer and the written "Other" answers. Version 7
   /// moves passwords off the phone: login is checked online (Supabase), and
-  /// users only remembers which account the phone belongs to. Bump this and
-  /// extend _onUpgrade for any later change.
-  static const int schemaVersion = 7;
+  /// users only remembers which account the phone belongs to. Version 8
+  /// adds what sync needs: which days and exercises still have to be
+  /// uploaded (sync_days, exercise_sessions.pending) and where the last
+  /// download stopped (sync_state). Bump this and extend _onUpgrade for any
+  /// later change.
+  static const int schemaVersion = 8;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -136,6 +139,7 @@ class DatabaseHelper {
     await _createVersion5(db);
     await _createVersion6(db);
     await _createVersion7(db);
+    await _createVersion8(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -225,6 +229,66 @@ class DatabaseHelper {
     if (oldVersion < 7) {
       await _createVersion7(db);
     }
+    if (oldVersion < 8) {
+      await _createVersion8(db);
+    }
+  }
+
+  /// Everything version 8 adds, for sync. Shared by _onCreate and _onUpgrade
+  /// and safe to run twice.
+  static Future<void> _createVersion8(Database db) async {
+    // One row per day that has check-in answers on this phone: when it was
+    // last changed here, and whether that change still has to be uploaded.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS sync_days(
+        date TEXT PRIMARY KEY,
+        changedAt TEXT NOT NULL,
+        pending INTEGER NOT NULL DEFAULT 1
+      )
+    ''');
+
+    // Small facts sync keeps: where each download stopped, and whether the
+    // name still has to be uploaded.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS sync_state(
+        key TEXT PRIMARY KEY,
+        value TEXT
+      )
+    ''');
+
+    // Each finished exercise gets an id that is the same on every phone and
+    // online, so it is never counted twice, and a "still to upload" mark.
+    final columns = await db.rawQuery('PRAGMA table_info(exercise_sessions)');
+    bool has(String name) => columns.any((c) => c['name'] == name);
+    if (!has('uuid')) {
+      await db.execute('ALTER TABLE exercise_sessions ADD COLUMN uuid TEXT');
+    }
+    if (!has('pending')) {
+      await db.execute(
+        'ALTER TABLE exercise_sessions ADD COLUMN pending INTEGER NOT NULL DEFAULT 1',
+      );
+    }
+    await db.execute('''
+      UPDATE exercise_sessions SET uuid =
+        lower(hex(randomblob(4))) || '-' || lower(hex(randomblob(2))) ||
+        '-4' || substr(lower(hex(randomblob(2))), 2) || '-' ||
+        substr('89ab', 1 + (abs(random()) % 4), 1) ||
+        substr(lower(hex(randomblob(2))), 2) || '-' ||
+        lower(hex(randomblob(6)))
+      WHERE uuid IS NULL
+    ''');
+
+    // Days already saved before sync existed are marked to upload, with an
+    // old time so they never replace a newer edit that is already online.
+    await db.execute('''
+      INSERT OR IGNORE INTO sync_days(date, changedAt, pending)
+      SELECT day, '2000-01-01T00:00:00.000Z', 1 FROM (
+        SELECT date AS day FROM moods
+        UNION SELECT date FROM control_gauge
+        UNION SELECT substr(date, 1, 10) FROM stressors
+        UNION SELECT date FROM check_in_details
+      )
+    ''');
   }
 
   /// Everything version 7 changes. Shared by _onCreate and _onUpgrade.
@@ -376,6 +440,8 @@ class DatabaseHelper {
     'check_in_details',
     'exercise_sessions',
     'session',
+    'sync_days',
+    'sync_state',
   ];
 
   /// Empties every user data table in one transaction: all or nothing.

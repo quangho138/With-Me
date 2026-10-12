@@ -113,7 +113,34 @@ begin
   end;
 end $$;
 
--- 6. Answers outside the app's scales are refused.
+-- 6. Uploading through sync: newest edit wins, and only for yourself.
+do $$ begin
+  perform public.upload_check_ins(
+    '[{"day": "2026-10-01", "mood": "Older", "updated_at": "2000-01-01T00:00:00Z"}]');
+  if (select mood from public.check_ins where day = '2026-10-01') <> 'Okay' then
+    raise exception 'FAILED: an older upload replaced a newer edit';
+  end if;
+  perform public.upload_check_ins(
+    '[{"day": "2026-10-01", "mood": "Newer", "updated_at": "2100-01-01T00:00:00Z"},
+      {"day": "2026-10-05", "mood": "Happy", "updated_at": "2026-10-05T10:00:00Z"}]');
+  if (select mood from public.check_ins where day = '2026-10-01') <> 'Newer' then
+    raise exception 'FAILED: a newer upload did not replace the older edit';
+  end if;
+  if exists (select 1 from public.check_ins
+             where user_id <> '00000000-0000-4000-a000-00000000000a') then
+    raise exception 'FAILED: an upload reached another user';
+  end if;
+  perform public.save_display_name('Renamed A', '2100-01-01T00:00:00Z');
+  if (select display_name from public.profiles) <> 'Renamed A' then
+    raise exception 'FAILED: a newer name was not saved';
+  end if;
+  perform public.save_display_name('Old name', '2000-01-01T00:00:00Z');
+  if (select display_name from public.profiles) <> 'Renamed A' then
+    raise exception 'FAILED: an older name replaced a newer one';
+  end if;
+end $$;
+
+-- 7. Answers outside the app's scales are refused.
 do $$ begin
   begin
     insert into public.check_ins (day, stress) values ('2026-10-03', 9);
@@ -135,7 +162,7 @@ do $$ begin
 end $$;
 reset role;
 
--- 7. Someone signed out gets nothing at all.
+-- 8. Someone signed out gets nothing at all.
 set local role anon;
 do $$ begin
   begin
@@ -143,10 +170,15 @@ do $$ begin
     raise exception 'FAILED: a signed-out visitor can read check-ins';
   exception when insufficient_privilege then null;
   end;
+  begin
+    perform public.upload_check_ins('[]');
+    raise exception 'FAILED: a signed-out visitor can upload';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 reset role;
 
--- 8. Deleting an account removes all of its rows.
+-- 9. Deleting an account removes all of its rows.
 delete from auth.users where id = '00000000-0000-4000-a000-00000000000b';
 do $$ begin
   if exists (select 1 from public.check_ins
