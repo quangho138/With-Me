@@ -83,6 +83,8 @@ void main() {
       ]);
       expect(schema['exercise_sessions'], [
         'id', 'date', 'exercise', 'pattern', 'cycles', 'sound', 'completedAt',
+        // Version 8: the same id here and online, and "still to upload".
+        'uuid', 'pending',
       ]);
       expect(schema.containsKey('index stressors_one_per_day'), isTrue);
       await db.close();

@@ -11,7 +11,7 @@ import '../support/fake_online_auth.dart';
 /// 2. Signing up needs the email confirmed before logging in; wrong
 ///    passwords, unconfirmed emails and no internet each give their own
 ///    message.
-/// 3. The app remembers who is logged in; logging out keeps the data.
+/// 3. The app remembers who is logged in; logging out clears the phone.
 /// 4. One account per phone: another account cannot log in on it.
 /// 5. "Start without an account" only on a phone with no account, and a
 ///    guest who signs up keeps their check-ins.
@@ -102,7 +102,7 @@ void main() {
     }
   });
 
-  test('log out forgets the login and keeps the data', () async {
+  test('log out clears the phone; logging back in works', () async {
     await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
@@ -111,8 +111,13 @@ void main() {
 
     await users.signOut();
     expect(await users.session(), SessionKind.none);
-    expect((await db.query('moods')).length, 1, reason: 'data kept');
+    expect(await users.hasAccount(), isFalse, reason: 'phone is free again');
+    for (final table in DatabaseHelper.userDataTables) {
+      expect(await db.query(table), isEmpty, reason: table);
+    }
+    expect(online.currentUserId, isNull);
 
+    // The check-ins come back through sync (test/backend/sync_test.dart).
     await users.signIn('a@example.com', 'synthetic');
     expect(await users.session(), SessionKind.account);
   });
@@ -121,15 +126,14 @@ void main() {
     await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
-    await users.signOut();
 
-    // Signing up a second account on this phone is refused.
+    // While the phone belongs to A, a second account cannot sign up here.
     await expectProblem(
       users.signUp(email: 'b@example.com', password: 'synthetic', name: 'B'),
       AccountProblem.accountAlreadyOnPhone,
     );
 
-    // So is logging in to a different, existing account.
+    // Nor log in to a different, existing account.
     final otherPhone = await freshDb();
     addTearDown(otherPhone.close);
     final other = AppUserRepository(auth: online, open: () async => otherPhone);
@@ -140,7 +144,6 @@ void main() {
       AccountProblem.otherAccountOnPhone,
     );
     expect(online.currentUserId, isNull, reason: 'logged straight out again');
-    expect(await users.session(), SessionKind.none);
     expect((await db.query('users')).single['email'], 'a@example.com');
   });
 
@@ -161,13 +164,19 @@ void main() {
     expect((await db.query('moods')).single['mood'], 'Indifferent');
   });
 
-  test('with an account, "start without one" is refused', () async {
+  test('"start without an account" only on a phone with no account',
+      () async {
     await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
-    await users.signOut();
     expect(await users.startAsGuest(), isFalse);
-    expect(await users.session(), SessionKind.none);
+    expect(await users.session(), SessionKind.account);
+
+    // Logging out clears the phone, so it is free for a guest again, with
+    // none of the account's data on it.
+    await users.signOut();
+    expect(await users.startAsGuest(), isTrue);
+    expect(await db.query('moods'), isEmpty);
   });
 
   test('without email confirmation, signing up logs straight in', () async {

@@ -185,3 +185,41 @@ AI provenance:
 2. What was kept: the UserRepository shape (screens barely change), part 1's rules, Alex's check-in work.
 3. What was checked: the SQL ran on a local PostgreSQL set up like Supabase, with the security checks passing. Flutter could not run in Claude's workspace, so the Dart tests and the real login are first run by Quang.
 4. What it got wrong or left open: the Supabase error codes were written from Supabase's documented codes, with a fallback on the message text; if a real error shows "Something went wrong", tell Claude the case so it can be mapped. Removing part 1's password scrambling means that work only lived for one step; it was planned as a stepping stone.
+
+## Stage 3, step 2c: sync (branch backend/sync)
+
+Goal: a person's check-ins, exercises and name follow their account to every phone, while the app keeps working offline.
+
+Decisions (Quang):
+- The phone stays the main copy. Screens always read the phone; sync runs in the background, only for people logged in to an account. Guests never sync.
+- Newest edit of a day wins, decided on the server.
+- After logging in: if the phone has check-ins (for example from using it without an account) and the account already has its own, the person chooses "Add them" or "Discard". If the account is empty, they are added without asking.
+- Logging out clears the phone. Check-ins come back on the next login. The journal never goes online, so it is deleted, after a warning. If changes are still waiting (offline), a second warning says they would be lost.
+
+How it works:
+- Phone database version 8: sync_days (each day with answers: when it was changed here, and whether that still has to be uploaded), exercise_sessions.uuid and .pending, sync_state (where each download stopped; whether the name has to be uploaded). Days saved before this are marked to upload, with an old time so they never replace a newer edit already online.
+- Saving a check-in, finishing an exercise or changing the name marks it.
+- SyncService (lib/Repositories/sync_service.dart): uploads marked days, exercises and the name, then downloads whatever the server received since the last download, unless the phone has a newer edit of that day. One run at a time; a request during a run makes it run once more afterwards.
+- When: when the app starts, when it comes back to the front, after each check-in, and right after login.
+- Server (supabase/migrations/20261014000000_sync.sql): synced_at on every table, set by the server's own clock on each write. Downloads ask "what changed since synced_at X", so a phone with a wrong clock, or one that uploads days late, can never make its changes invisible to other phones. upload_check_ins and save_display_name keep the newest edit. Both run as the signed-in user, so the security rules still apply.
+- Offline is fine: marks stay until an upload succeeds.
+
+Success criteria, in test/backend/sync_test.dart (online side is a fake server with the same rules):
+1. A check-in reaches the account and a second phone with every answer.
+2. The newest edit wins on both phones, whichever syncs first.
+3. Offline, changes wait and go up on the next try.
+4. An exercise is uploaded once and arrives on the other phone once.
+5. Guests never sync.
+6. Guest check-ins go up when the account is empty; add and discard both work when it is not.
+7. Logging out clears the phone, journal included; logging back in brings the check-ins back, never the journal.
+8. The name follows the account.
+9. Upgrading the phone database marks existing days and gives exercises ids.
+security_check.sql also checks that an older upload never replaces a newer edit, that uploads only reach your own rows, and that signed-out visitors cannot upload.
+
+Not in this step: deleting the online account and export (2d), Google (2e). Open screens refresh after a download only through the dashboard's existing reload.
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the code, tests, SQL and this section. A second Claude agent reviewed the code for compile errors and test logic; it found one schema test that needed updating, which was fixed.
+2. What was kept: the local-first design in the project's sync notes, Alex's check-in saving (moved into writeEntry, unchanged), the repository shape.
+3. What was checked: the SQL ran on a local PostgreSQL set up like Supabase, including newest-wins and the server time stamp. Flutter could not run in Claude's workspace; the Dart tests and the two-phone test are first run by Quang.
+4. What it got wrong or left open: when two phones edit the same day, the whole day is taken from the newer edit, not answer by answer. If the "add or discard" check cannot reach the internet right after login, the phone's check-ins are kept and added later.

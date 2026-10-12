@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../Components/ScenicChoice.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
@@ -151,6 +152,41 @@ class _AccountRowState extends State<_AccountRow> {
   }
 
   Future<void> _logOut() async {
+    // Backend (stage 3, sync): logging out clears the phone. Check-ins come
+    // back on the next login; the journal never goes online, so say so.
+    final sure = await showScenicChoice(
+      context,
+      title: 'Log out?',
+      body: 'Your check-ins stay in your account and come back when you log '
+          'in. Your journal is only kept on this phone, so it will be '
+          'deleted.',
+      yes: 'Log out',
+      no: 'Cancel',
+      yesIsDanger: true,
+    );
+    if (sure != true || !mounted) return;
+
+    // Upload anything still waiting first.
+    final sync = AppRepositories.sync;
+    await sync.syncNow();
+    var waiting = false;
+    try {
+      waiting = await sync.hasPendingChanges();
+    } catch (_) {}
+    if (waiting && mounted) {
+      final anyway = await showScenicChoice(
+        context,
+        title: 'Not saved online yet',
+        body: "Some changes haven't reached your account yet (no internet). "
+            'If you log out now, they will be lost.',
+        yes: 'Log out anyway',
+        no: 'Stay logged in',
+        yesIsDanger: true,
+      );
+      if (anyway != true) return;
+    }
+    if (!mounted) return;
+
     try {
       await AppRepositories.users.signOut();
     } catch (_) {

@@ -68,12 +68,12 @@ void main() {
         name: 'Test',
       );
       expect(await users.hasAccount(), isTrue);
+      expect(await users.displayName(), 'Test');
       await users.signOut();
       await expectLater(users.signIn('test@example.com', 'wrong'),
           throwsA(isA<AccountException>()));
       await users.signIn('test@example.com', 'synthetic-pass');
       expect(await users.session(), SessionKind.account);
-      expect(await users.displayName(), 'Test');
     });
 
     test('changing the name keeps one name and tells listeners', () async {

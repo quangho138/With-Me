@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../Database/LocalDatabase.dart';
+import 'ids.dart';
 import 'online_auth.dart';
 
 export 'online_auth.dart' show AccountProblem, AccountException, SignUpResult;
@@ -26,8 +27,11 @@ enum SessionKind {
 /// - One account per phone. The phone remembers which account it belongs to
 ///   from the first login; all saved data on the phone is that account's.
 /// - "Start without an account" only works on a phone with no account.
-/// - A guest who signs up and logs in keeps everything saved as a guest.
-/// - Logging out keeps the data on the phone (until sync, stage 2c).
+/// - A guest who signs up and logs in keeps everything saved as a guest
+///   (or chooses to discard it, if the account already has check-ins).
+/// - Logging out clears the phone: check-ins are kept in the account and
+///   come back on the next login; the journal, which never goes online, is
+///   deleted (the app warns first).
 abstract class UserRepository {
   /// True when this phone belongs to an account.
   Future<bool> hasAccount();
@@ -51,7 +55,8 @@ abstract class UserRepository {
   /// phone belongs to an account: that person has to log in instead.
   Future<bool> startAsGuest();
 
-  /// Logs out. The data stays on the phone.
+  /// Logs out and clears everything from the phone, so the next person
+  /// sees nothing. Upload first (SyncService) so nothing is lost.
   Future<void> signOut();
 
   Future<String?> displayName();
@@ -179,9 +184,10 @@ class AppUserRepository implements UserRepository {
 
   @override
   Future<void> signOut() async {
-    await _auth.signOut();
     final db = await _open();
-    await db.delete('session');
+    await DatabaseHelper.wipeAllTables(db);
+    _names.userNameNotifier.value = null;
+    await _auth.signOut();
   }
 
   /// Replaces the one session row. [email] null means guest.
@@ -207,6 +213,17 @@ class AppUserRepository implements UserRepository {
     await db.transaction((txn) async {
       await txn.delete('user');
       await txn.insert('user', {'name': name});
+      // For sync: the name changed here and still has to be uploaded.
+      for (final fact in {
+        'name_changed_at': nowStamp(),
+        'name_pending': '1',
+      }.entries) {
+        await txn.insert(
+          'sync_state',
+          {'key': fact.key, 'value': fact.value},
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      }
     });
     _names.userNameNotifier.value = name;
   }

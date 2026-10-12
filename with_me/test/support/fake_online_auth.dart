@@ -4,7 +4,10 @@ import 'package:with_me/Repositories/online_auth.dart';
 /// Keeps made-up accounts in memory and behaves like the real thing does
 /// with email confirmation turned on.
 class FakeOnlineAuth implements OnlineAuth {
-  FakeOnlineAuth({this.confirmEmail = true});
+  /// [accounts]: pass the same [FakeAccounts] to two fakes to act as two
+  /// phones using the same online accounts.
+  FakeOnlineAuth({this.confirmEmail = true, FakeAccounts? accounts})
+      : _registry = accounts ?? FakeAccounts();
 
   /// True: a new account must confirm its email before logging in.
   final bool confirmEmail;
@@ -12,9 +15,9 @@ class FakeOnlineAuth implements OnlineAuth {
   /// When set, every call fails as if the phone were offline.
   bool offline = false;
 
-  final Map<String, _Account> _accounts = {};
+  final FakeAccounts _registry;
+  Map<String, _Account> get _accounts => _registry._byEmail;
   _Account? _current;
-  var _nextId = 1;
 
   @override
   String? get currentUserId => _current?.id;
@@ -39,7 +42,7 @@ class FakeOnlineAuth implements OnlineAuth {
       throw const AccountException(AccountProblem.weakPassword);
     }
     final account = _Account(
-      '00000000-0000-4000-a000-${(_nextId++).toString().padLeft(12, '0')}',
+      '00000000-0000-4000-a000-${(_registry._nextId++).toString().padLeft(12, '0')}',
       email,
       password,
       confirmed: !confirmEmail,
@@ -76,4 +79,10 @@ class _Account {
   final String email;
   final String password;
   bool confirmed;
+}
+
+/// The online accounts, shared by fakes that stand for different phones.
+class FakeAccounts {
+  final Map<String, _Account> _byEmail = {};
+  var _nextId = 1;
 }

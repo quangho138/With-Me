@@ -2,6 +2,7 @@ import 'check_in_repository.dart';
 import 'exercise_repository.dart';
 import 'online_auth.dart';
 import 'reflection_repository.dart';
+import 'sync_service.dart';
 import 'user_repository.dart';
 
 /// The one place screens get their repositories from.
@@ -17,4 +18,10 @@ class AppRepositories {
   static ExerciseRepository exercises = LocalExerciseRepository();
   static ReflectionRepository reflections = LocalReflectionRepository();
   static UserRepository users = AppUserRepository(auth: SupabaseOnlineAuth());
+
+  /// Keeps the phone and the account in step (stage 3, step 2c).
+  static SyncService sync = SyncService(
+    users: users,
+    online: SupabaseOnlineStore(),
+  );
 }

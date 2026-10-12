@@ -7,6 +7,7 @@ import 'Config/supabase_config.dart';
 
 import 'Database/DemoAccount.dart';
 import 'Repositories/app_repositories.dart';
+import 'Repositories/sync_service.dart';
 import 'Repositories/user_repository.dart';
 
 import 'WithMe/Screens/AboutScreen.dart';
@@ -79,6 +80,10 @@ Future<void> main() async {
     );
   }
   runApp(WithMeApp(signedIn: signedIn));
+
+  // Sync now, when the app comes back to the front, and after each
+  // check-in. It does nothing for guests or while offline.
+  SyncTriggers.start(AppRepositories.sync);
 }
 
 /// With Me.
