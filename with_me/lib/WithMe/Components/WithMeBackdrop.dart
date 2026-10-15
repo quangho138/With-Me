@@ -9,11 +9,7 @@ import '../Theme/WithMeTheme.dart';
 /// 0.75 / 0.95 on all 45 mockups gives colours on a straight line between the
 /// two stops, so there is no midpoint either. See docs/WITH_ME_SPEC_V1.md.
 class WithMeBackdrop extends StatelessWidget {
-  const WithMeBackdrop({
-    super.key,
-    required this.child,
-    this.dimmed = false,
-  });
+  const WithMeBackdrop({super.key, required this.child, this.dimmed = false});
 
   final Widget child;
 

@@ -25,12 +25,12 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void go(Widget screen) => Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => screen));
+    void go(Widget screen) =>
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
 
     void notWired(String what) => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$what is not wired up in this UI pass.')),
-        );
+      SnackBar(content: Text('$what is not wired up in this UI pass.')),
+    );
 
     Widget gap() => const SizedBox(height: 10);
 
@@ -173,9 +173,9 @@ class _AccountRowState extends State<_AccountRow> {
       return ScenicRow(
         label: 'Create an account',
         icon: Icons.person_add_rounded,
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => const CreateAccountScreen()),
-        ),
+        onTap: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const CreateAccountScreen())),
       );
     }
     return ScenicRow(

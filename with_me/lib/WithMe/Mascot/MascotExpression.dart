@@ -38,16 +38,16 @@ enum MascotExpression {
 extension MascotExpressionInfo on MascotExpression {
   /// Human label, matching the concept board's caption strip.
   String get label => switch (this) {
-        MascotExpression.idle => 'Here with you',
-        MascotExpression.happy => 'Happy',
-        MascotExpression.listening => 'Listening',
-        MascotExpression.thinking => 'Thinking',
-        MascotExpression.encouraging => 'Encouraging',
-        MascotExpression.celebrating => 'Celebrating',
-        MascotExpression.concerned => 'Concerned',
-        MascotExpression.sad => 'With you',
-        MascotExpression.smirk => 'Hmm',
-      };
+    MascotExpression.idle => 'Here with you',
+    MascotExpression.happy => 'Happy',
+    MascotExpression.listening => 'Listening',
+    MascotExpression.thinking => 'Thinking',
+    MascotExpression.encouraging => 'Encouraging',
+    MascotExpression.celebrating => 'Celebrating',
+    MascotExpression.concerned => 'Concerned',
+    MascotExpression.sad => 'With you',
+    MascotExpression.smirk => 'Hmm',
+  };
 
   /// Whether this state animates an arm gesture.
   bool get gestures =>

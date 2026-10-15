@@ -42,16 +42,96 @@ enum RealPose {
 /// new frame and plays a reaction - a hop for happy and excited, a slump for
 /// sad, a shrug for smirk.
 ///
-/// Reduced motion (or [animate] false) shows a still of [pose].
+/// While [talking], the poses a page waits in (heart, think, idle) and the
+/// home screen's wave move their mouth through [MouthShape]s. With a [mouthTimeline] (one character
+/// per 1/30 s, made from the recording by tool/make_mouth_timelines.py) the
+/// mouth follows the voice: open on the sounds, closed in the pauses.
+/// Without one it falls back to an uneven rhythm that reads as speech
+/// ([mouthAt]). The other poses are reactions to an answer and keep their
+/// own mouth.
+///
+/// Reduced motion (or [animate] false) shows a still of [pose], mouth closed.
 class RealMascot extends StatefulWidget {
   const RealMascot({
     super.key,
     required this.pose,
     required this.height,
     this.animate = true,
+    this.talking = false,
+    this.mouthTimeline,
   });
 
   final RealPose pose;
+
+  /// Whether the companion is saying something right now. The caller ties
+  /// it to the audio actually playing; see `NarrationMouth`.
+  final bool talking;
+
+  /// The mouth for the line being said, timed from when [talking] turned
+  /// on: one [MouthShape.code] per 1/30 s, then closed. Null uses [mouthAt].
+  final String? mouthTimeline;
+
+  /// The poses with talking mouth art.
+  static const Set<RealPose> canTalk = {
+    RealPose.heart,
+    RealPose.think,
+    RealPose.idle,
+    RealPose.wave,
+  };
+
+  /// The frame [pose]'s mouths are drawn over: its own, or for the wave the
+  /// body under the swinging arm.
+  static String mouthBase(RealPose pose) =>
+      pose == RealPose.wave ? 'wave_body' : pose.name;
+
+  /// The mouth [seconds] into [timeline], at [fps] characters a second.
+  /// Closed before it starts and after it ends.
+  static MouthShape mouthIn(String timeline, double seconds, {int fps = 30}) {
+    final i = (seconds * fps).floor();
+    if (i < 0 || i >= timeline.length) return MouthShape.closed;
+    return MouthShape.fromCode(timeline[i]);
+  }
+
+  /// The mouth [seconds] after talking began, for speech with no timeline:
+  /// uneven syllables through every shape, with the odd short pause,
+  /// repeating every few seconds.
+  static MouthShape mouthAt(double seconds) {
+    final total = _talkCycleMs;
+    var ms = (seconds * 1000).floor() % total;
+    for (final (shape, length) in _talk) {
+      if (ms < length) return shape;
+      ms -= length;
+    }
+    return MouthShape.closed;
+  }
+
+  static const List<(MouthShape, int)> _talk = [
+    (MouthShape.mid, 90),
+    (MouthShape.wide, 120),
+    (MouthShape.ee, 90),
+    (MouthShape.closed, 60),
+    (MouthShape.ah, 140),
+    (MouthShape.oh, 100),
+    (MouthShape.mid, 90),
+    (MouthShape.closed, 150),
+    (MouthShape.mbp, 70),
+    (MouthShape.wide, 110),
+    (MouthShape.fv, 80),
+    (MouthShape.ee, 90),
+    (MouthShape.closed, 70),
+    (MouthShape.oo, 100),
+    (MouthShape.oh, 120),
+    (MouthShape.mid, 60),
+    (MouthShape.closed, 210),
+    (MouthShape.mid, 100),
+    (MouthShape.ah, 120),
+    (MouthShape.ee, 80),
+    (MouthShape.closed, 90),
+    (MouthShape.wide, 100),
+    (MouthShape.mid, 110),
+    (MouthShape.closed, 80),
+  ];
+  static final int _talkCycleMs = _talk.fold(0, (a, b) => a + b.$2);
 
   /// The frame's height; its width follows at 640 : 900.
   final double height;
@@ -63,7 +143,7 @@ class RealMascot extends StatefulWidget {
   static String _asset(String name) => 'assets/v2/app/mascot_$name.webp';
 
   /// Every frame, so a screen can warm the cache before it needs them.
-  static const List<String> frames = [
+  static final List<String> frames = [
     'idle',
     'idle_blink',
     'think',
@@ -76,6 +156,9 @@ class RealMascot extends StatefulWidget {
     'wave_body',
     'wave_body_blink',
     'wave_arm',
+    for (final p in canTalk)
+      for (final m in MouthShape.values)
+        if (m != MouthShape.closed) '${mouthBase(p)}_mouth_${m.name}',
   ];
 
   static Future<void> precache(BuildContext context) => Future.wait([
@@ -94,6 +177,10 @@ class _RealMascotState extends State<RealMascot>
   /// When [RealMascot.pose] last changed, for the reaction.
   double? _changedAt;
 
+  /// When [RealMascot.talking] last turned on, so each line starts its
+  /// mouth from the top of the rhythm.
+  double _talkFrom = 0;
+
   bool get _moving =>
       widget.animate &&
       !(MediaQuery.maybeDisableAnimationsOf(context) ?? false);
@@ -109,6 +196,7 @@ class _RealMascotState extends State<RealMascot>
   void didUpdateWidget(covariant RealMascot old) {
     super.didUpdateWidget(old);
     if (old.pose != widget.pose) _changedAt = _clock.value;
+    if (widget.talking && !old.talking) _talkFrom = _clock.value;
     _syncTicker();
   }
 
@@ -186,6 +274,23 @@ class _RealMascotState extends State<RealMascot>
     gaplessPlayback: true,
   );
 
+  /// The open mouth over [pose] at time [t], or null for its own closed
+  /// one. Laid over the pose and its blink: the overlay only covers the
+  /// mouth.
+  Widget? _mouth(String pose, double t, bool still) {
+    if (still || !widget.talking) return null;
+    final timeline = widget.mouthTimeline;
+    final shape = timeline == null
+        ? RealMascot.mouthAt(t - _talkFrom)
+        : RealMascot.mouthIn(timeline, t - _talkFrom);
+    if (shape == MouthShape.closed) return null;
+    final name = '${pose}_mouth_${shape.name}';
+    return KeyedSubtree(
+      key: ValueKey('mascot-mouth-$name'),
+      child: _frame(name),
+    );
+  }
+
   /// The layers for the current pose at time [t].
   Widget _poseLayers(double t, bool still, double w, double h) {
     final blink = still ? 0.0 : _blinkAt(t);
@@ -196,6 +301,7 @@ class _RealMascotState extends State<RealMascot>
         _frame(base),
         if (blinkFrame != null && blink > 0)
           Opacity(opacity: blink, child: _frame(blinkFrame)),
+        ?_mouth(base, t, still),
       ],
     );
 
@@ -230,6 +336,7 @@ class _RealMascotState extends State<RealMascot>
           fit: StackFit.expand,
           children: [
             _frame('heart'),
+            ?_mouth('heart', t, still),
             // A soft light over the heart the character is holding.
             Positioned(
               left: w * 333 / 640 - w * 0.22,
@@ -316,6 +423,47 @@ class _RealMascotState extends State<RealMascot>
     if (x <= 0 || x >= 1) return 0;
     return math.sin(math.pi * x);
   }
+}
+
+/// The companion's mouth while it talks. Each open shape is an overlay,
+/// `mascot_<pose>_mouth_<name>.webp`, made by tool/prepare_mouth_frames.py;
+/// closed is the pose's own smile.
+enum MouthShape {
+  /// The pose's own smile.
+  closed('.'),
+
+  /// Pressed lips: m, b, p.
+  mbp('m'),
+
+  /// Slightly open.
+  mid('1'),
+
+  /// Wider open.
+  wide('2'),
+
+  /// Tall and open: ah.
+  ah('a'),
+
+  /// Wide and flat, teeth showing: ee.
+  ee('e'),
+
+  /// Round: oh.
+  oh('o'),
+
+  /// A small pucker: oo.
+  oo('u'),
+
+  /// Top teeth on the lip: f, v.
+  fv('f');
+
+  const MouthShape(this.code);
+
+  /// Its character in a mouth timeline.
+  final String code;
+
+  /// The shape for [code]; closed for anything unknown.
+  static MouthShape fromCode(String code) =>
+      values.firstWhere((m) => m.code == code, orElse: () => MouthShape.closed);
 }
 
 class _Reaction {

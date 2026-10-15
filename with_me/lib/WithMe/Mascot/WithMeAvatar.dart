@@ -69,8 +69,9 @@ class WithMeAvatar extends StatefulWidget {
 class _WithMeAvatarState extends State<WithMeAvatar>
     with SingleTickerProviderStateMixin {
   late final Ticker _ticker = createTicker(_tick);
-  late final ValueNotifier<MascotFrame> _frame =
-      ValueNotifier(MascotFrame(_poseAt(0)));
+  late final ValueNotifier<MascotFrame> _frame = ValueNotifier(
+    MascotFrame(_poseAt(0)),
+  );
 
   /// Seconds since the avatar appeared.
   double _t = 0;
@@ -82,7 +83,8 @@ class _WithMeAvatarState extends State<WithMeAvatar>
   double _stage = 0;
 
   bool get _moving =>
-      widget.animate && !(MediaQuery.maybeDisableAnimationsOf(context) ?? false);
+      widget.animate &&
+      !(MediaQuery.maybeDisableAnimationsOf(context) ?? false);
 
   @override
   void didChangeDependencies() {
@@ -188,39 +190,47 @@ class _WithMeAvatarState extends State<WithMeAvatar>
   MascotPose _expressionPose(MascotExpression e, double t, double breath) {
     return switch (e) {
       MascotExpression.idle => const MascotPose(),
-      MascotExpression.happy =>
-        MascotPose(face: MascotFace.happy, lift: -1.5 * breath),
-      MascotExpression.listening =>
-        const MascotPose(headTilt: -0.07, look: Offset(-1.5, 0)),
+      MascotExpression.happy => MascotPose(
+        face: MascotFace.happy,
+        lift: -1.5 * breath,
+      ),
+      MascotExpression.listening => const MascotPose(
+        headTilt: -0.07,
+        look: Offset(-1.5, 0),
+      ),
       MascotExpression.thinking => MascotPose(
-          face: MascotFace.thinking,
-          headTilt: 0.05,
-          rightArm: 0.9,
-          thought: (t * 0.6) % 1.0 + 0.001,
-        ),
+        face: MascotFace.thinking,
+        headTilt: 0.05,
+        rightArm: 0.9,
+        thought: (t * 0.6) % 1.0 + 0.001,
+      ),
       MascotExpression.encouraging => MascotPose(
-          face: MascotFace.wink,
-          rightArm: 2.3 + 0.3 * math.sin(t * 9),
-          headTilt: -0.05,
-        ),
+        face: MascotFace.wink,
+        rightArm: 2.3 + 0.3 * math.sin(t * 9),
+        headTilt: -0.05,
+      ),
       MascotExpression.celebrating => MascotPose(
-          face: MascotFace.joy,
-          leftArm: 2.2 + 0.25 * math.sin(t * 9),
-          rightArm: 2.2 - 0.25 * math.sin(t * 9),
-          lift: -9 * math.sin(t * 5).abs(),
-          sparkle: (t * 0.8) % 1.0 + 0.001,
-        ),
-      MascotExpression.concerned =>
-        const MascotPose(face: MascotFace.sad, headTilt: 0.05),
+        face: MascotFace.joy,
+        leftArm: 2.2 + 0.25 * math.sin(t * 9),
+        rightArm: 2.2 - 0.25 * math.sin(t * 9),
+        lift: -9 * math.sin(t * 5).abs(),
+        sparkle: (t * 0.8) % 1.0 + 0.001,
+      ),
+      MascotExpression.concerned => const MascotPose(
+        face: MascotFace.sad,
+        headTilt: 0.05,
+      ),
       MascotExpression.sad => const MascotPose(
-          face: MascotFace.sad,
-          headTilt: 0.07,
-          squash: 0.1,
-          leftArm: -0.1,
-          rightArm: -0.1,
-        ),
-      MascotExpression.smirk =>
-        const MascotPose(face: MascotFace.smirk, headTilt: -0.08),
+        face: MascotFace.sad,
+        headTilt: 0.07,
+        squash: 0.1,
+        leftArm: -0.1,
+        rightArm: -0.1,
+      ),
+      MascotExpression.smirk => const MascotPose(
+        face: MascotFace.smirk,
+        headTilt: -0.08,
+      ),
     };
   }
 
@@ -231,7 +241,9 @@ class _WithMeAvatarState extends State<WithMeAvatar>
       case MascotExpression.happy:
       case MascotExpression.celebrating:
         final hop = s < 0.5 ? -15 * math.sin(math.pi * s / 0.5) : 0.0;
-        final land = s >= 0.5 && s < 0.7 ? 0.3 * math.sin(math.pi * (s - 0.5) / 0.2) : 0.0;
+        final land = s >= 0.5 && s < 0.7
+            ? 0.3 * math.sin(math.pi * (s - 0.5) / 0.2)
+            : 0.0;
         final arms = s < 0.9 ? 1.7 * math.sin(math.pi * s / 0.9) : 0.0;
         return _copy(
           p,
@@ -243,7 +255,9 @@ class _WithMeAvatarState extends State<WithMeAvatar>
         );
       case MascotExpression.sad:
       case MascotExpression.concerned:
-        final sink = s < 0.4 ? _ease(s / 0.4) : 1 - 0.4 * _ease((s - 0.4) / 0.8);
+        final sink = s < 0.4
+            ? _ease(s / 0.4)
+            : 1 - 0.4 * _ease((s - 0.4) / 0.8);
         return _copy(
           p,
           squash: p.squash + 0.12 * sink,
@@ -315,17 +329,17 @@ class _Routine {
   static const double _centre = 0.5;
 
   List<_Beat> get _beats => [
-        const _Beat.wave(2.8, at: _centre),
-        _Beat.walk(stageFraction * 0.5, from: _centre, to: 1),
-        const _Beat.rest(1.1, at: 1),
-        const _Beat.fall(3.4, at: 1),
-        const _Beat.rest(0.8, at: 1),
-        _Beat.walk(stageFraction, from: 1, to: 0),
-        const _Beat.rest(0.9, at: 0),
-        const _Beat.wave(2.2, at: 0),
-        _Beat.walk(stageFraction * 0.5, from: 0, to: _centre),
-        const _Beat.rest(1.6, at: _centre),
-      ];
+    const _Beat.wave(2.8, at: _centre),
+    _Beat.walk(stageFraction * 0.5, from: _centre, to: 1),
+    const _Beat.rest(1.1, at: 1),
+    const _Beat.fall(3.4, at: 1),
+    const _Beat.rest(0.8, at: 1),
+    _Beat.walk(stageFraction, from: 1, to: 0),
+    const _Beat.rest(0.9, at: 0),
+    const _Beat.wave(2.2, at: 0),
+    _Beat.walk(stageFraction * 0.5, from: 0, to: _centre),
+    const _Beat.rest(1.6, at: _centre),
+  ];
 
   MascotFrame frameAt(
     double t,
@@ -346,19 +360,19 @@ enum _BeatKind { rest, wave, walk, fall }
 
 class _Beat {
   const _Beat.rest(this.duration, {required double at})
-      : kind = _BeatKind.rest,
-        from = at,
-        to = at;
+    : kind = _BeatKind.rest,
+      from = at,
+      to = at;
   const _Beat.wave(this.duration, {required double at})
-      : kind = _BeatKind.wave,
-        from = at,
-        to = at;
+    : kind = _BeatKind.wave,
+      from = at,
+      to = at;
   const _Beat.walk(this.duration, {required this.from, required this.to})
-      : kind = _BeatKind.walk;
+    : kind = _BeatKind.walk;
   const _Beat.fall(this.duration, {required double at})
-      : kind = _BeatKind.fall,
-        from = at,
-        to = at;
+    : kind = _BeatKind.fall,
+      from = at,
+      to = at;
 
   final _BeatKind kind;
   final double duration;
@@ -540,26 +554,25 @@ MascotPose _copy(
   double? stars,
   double? sparkle,
   double? thought,
-}) =>
-    MascotPose(
-      face: face ?? p.face,
-      breath: breath ?? p.breath,
-      blink: blink ?? p.blink,
-      leftArm: leftArm ?? p.leftArm,
-      rightArm: rightArm ?? p.rightArm,
-      lift: lift ?? p.lift,
-      tilt: tilt ?? p.tilt,
-      headTilt: headTilt ?? p.headTilt,
-      squash: squash ?? p.squash,
-      sit: sit ?? p.sit,
-      step: step ?? p.step,
-      stepping: stepping ?? p.stepping,
-      look: look ?? p.look,
-      talk: talk ?? p.talk,
-      stars: stars ?? p.stars,
-      sparkle: sparkle ?? p.sparkle,
-      thought: thought ?? p.thought,
-    );
+}) => MascotPose(
+  face: face ?? p.face,
+  breath: breath ?? p.breath,
+  blink: blink ?? p.blink,
+  leftArm: leftArm ?? p.leftArm,
+  rightArm: rightArm ?? p.rightArm,
+  lift: lift ?? p.lift,
+  tilt: tilt ?? p.tilt,
+  headTilt: headTilt ?? p.headTilt,
+  squash: squash ?? p.squash,
+  sit: sit ?? p.sit,
+  step: step ?? p.step,
+  stepping: stepping ?? p.stepping,
+  look: look ?? p.look,
+  talk: talk ?? p.talk,
+  stars: stars ?? p.stars,
+  sparkle: sparkle ?? p.sparkle,
+  thought: thought ?? p.thought,
+);
 
 /// The circular head-and-shoulders crop used in the header lockup and on the
 /// menu and profile screens. A still - one blink per screen would be a
@@ -581,7 +594,8 @@ class WithMeAvatarBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final face = switch (expression) {
-      MascotExpression.happy || MascotExpression.celebrating => MascotFace.happy,
+      MascotExpression.happy ||
+      MascotExpression.celebrating => MascotFace.happy,
       MascotExpression.sad || MascotExpression.concerned => MascotFace.sad,
       MascotExpression.smirk => MascotFace.smirk,
       MascotExpression.encouraging => MascotFace.wink,

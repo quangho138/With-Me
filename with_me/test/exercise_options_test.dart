@@ -8,9 +8,11 @@ import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 
 void main() {
   test('focus uses exactly three four-second phases', () {
-    expect(BreathPattern.fourFourFour.phases.map((p) => (p.$1,p.$2)).toList(),
-      [('Inhale',4),('Hold',4),('Exhale',4)]);
-    expect(BreathPattern.fourFourFour.roundSeconds,12);
+    expect(
+      BreathPattern.fourFourFour.phases.map((p) => (p.$1, p.$2)).toList(),
+      [('Inhale', 4), ('Hold', 4), ('Exhale', 4)],
+    );
+    expect(BreathPattern.fourFourFour.roundSeconds, 12);
   });
   for (final entry in [
     ('De-stress Your Day', BreathPattern.box),
@@ -40,7 +42,12 @@ void main() {
         await t.pump(const Duration(milliseconds: 400));
         expect(find.text('4 · 7 · 8'), findsNothing);
         expect(find.text('4 · 4 · 4 · 4'), findsOneWidget);
-        expect(t.widget<BreathingScreen>(find.byType(BreathingScreen)).showPatternTabs, isFalse);
+        expect(
+          t
+              .widget<BreathingScreen>(find.byType(BreathingScreen))
+              .showPatternTabs,
+          isFalse,
+        );
         expect(find.text('4 · 4 · 4'), findsNothing);
       }
       await t.pumpWidget(const SizedBox());
@@ -58,6 +65,10 @@ void main() {
           home: const ExerciseChooseScreen(),
         ),
       );
+      // The larger tiles put the last one below the fold on the default
+      // test screen, as on a short phone.
+      await t.ensureVisible(find.text('Physiological Sigh').first);
+      await t.pump();
       await t.tap(find.text('Physiological Sigh').first);
       await t.pump();
       await t.tap(find.text('Continue').first);

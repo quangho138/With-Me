@@ -1,6 +1,7 @@
 import 'check_in_repository.dart';
 import 'exercise_repository.dart';
 import 'reflection_repository.dart';
+import 'settings_repository.dart';
 import 'user_repository.dart';
 
 /// The one place screens get their repositories from.
@@ -16,4 +17,5 @@ class AppRepositories {
   static ExerciseRepository exercises = LocalExerciseRepository();
   static ReflectionRepository reflections = LocalReflectionRepository();
   static UserRepository users = LocalUserRepository();
+  static SettingsRepository settings = LocalSettingsRepository();
 }

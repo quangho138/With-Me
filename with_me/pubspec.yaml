@@ -46,6 +46,7 @@ dependencies:
   sqflite_common_ffi_web: ^1.2.0
   # Scrambles passwords before they are saved (SHA-256)
   crypto: ^3.0.3
+  flutter_tts: ^4.2.5
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +76,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/audio/
+    - assets/audio/checkin/
+    - assets/audio/home/
     - assets/video/
     - assets/logo.png
     - assets/mascot/

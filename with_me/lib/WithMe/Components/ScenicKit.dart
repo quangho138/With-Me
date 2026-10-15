@@ -1,7 +1,9 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../Theme/WithMeTheme.dart';
 
@@ -138,6 +140,7 @@ class ScenicPill extends StatelessWidget {
     this.light = false,
     this.leading,
     this.height = 50,
+    this.fontSize,
   });
 
   final String label;
@@ -149,6 +152,9 @@ class ScenicPill extends StatelessWidget {
   final bool light;
   final Widget? leading;
   final double height;
+
+  /// The label's size; left null, 20 on a light pill and 23 on a filled one.
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +211,7 @@ class ScenicPill extends StatelessWidget {
                       weight: 0.7,
                       style: TextStyle(
                         fontFamily: WithMeText.ui,
-                        fontSize: light ? 20 : 23,
+                        fontSize: fontSize ?? (light ? 20 : 23),
                         fontWeight: FontWeight.w700,
                         color: light ? ScenicColors.ink : Colors.white,
                       ),
@@ -420,183 +426,295 @@ class NumberChoice extends StatelessWidget {
   /// cycle counts before an exercise, say.
   final List<int>? values;
 
-  static const double _circle = 56;
+  /// The most circles on one row. Five choices sit as 3 over 2, so each
+  /// circle can be a full finger-sized target on a phone.
+  static const int perRow = 3;
+
+  static const double _circle = 76;
+  static const double _gap = 16;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, box) {
         final choices = values ?? [for (var i = 1; i <= count; i++) i];
-        final n = choices.length;
+        final across = math.min(perRow, choices.length);
         // Full size wherever they fit; on a narrow phone they shrink rather
         // than run off the bubble.
-        final d = n * _circle <= box.maxWidth
-            ? _circle
-            : (box.maxWidth - (n - 1) * 4) / n;
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        final d = math.min(
+          _circle,
+          (box.maxWidth - (across - 1) * _gap) / across,
+        );
+        final rows = [
+          for (var start = 0; start < choices.length; start += perRow)
+            choices.sublist(start, math.min(start + perRow, choices.length)),
+        ];
+        return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            for (final i in choices)
-              Semantics(
-                button: true,
-                selected: value == i,
-                label: '$i',
-                excludeSemantics: true,
-                child: GestureDetector(
-                  onTap: () => onChanged(i),
-                  behavior: HitTestBehavior.opaque,
-                  child: AnimatedContainer(
-                    duration: WithMeMotion.fast,
-                    width: d,
-                    height: d,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: value == i
-                          ? ScenicColors.pillBottom
-                          : Colors.white,
-                      border: Border.all(
-                        color: value == i
-                            ? ScenicColors.pillBottom
-                            : ScenicColors.ring,
-                        width: 1.6,
-                      ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x1A000000),
-                          blurRadius: 4,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: ChunkyText(
-                      '$i',
-                      weight: 0.7,
-                      style: TextStyle(
-                        fontFamily: WithMeText.ui,
-                        fontSize: 25 * d / _circle,
-                        fontWeight: FontWeight.w700,
-                        color: value == i ? Colors.white : ScenicColors.ink,
-                      ),
-                    ),
-                  ),
-                ),
+            for (var r = 0; r < rows.length; r++) ...[
+              if (r > 0) const SizedBox(height: 14),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (var c = 0; c < rows[r].length; c++) ...[
+                    if (c > 0) const SizedBox(width: _gap),
+                    _circleFor(rows[r][c], d),
+                  ],
+                ],
               ),
+            ],
           ],
         );
       },
     );
   }
+
+  Widget _circleFor(int i, double d) => Semantics(
+    button: true,
+    selected: value == i,
+    label: '$i',
+    excludeSemantics: true,
+    child: GestureDetector(
+      onTap: () => onChanged(i),
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedContainer(
+        duration: WithMeMotion.fast,
+        width: d,
+        height: d,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: value == i ? ScenicColors.pillBottom : Colors.white,
+          border: Border.all(
+            color: value == i ? ScenicColors.pillBottom : ScenicColors.ring,
+            width: 1.8,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x1A000000),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: ChunkyText(
+          '$i',
+          weight: 0.7,
+          style: TextStyle(
+            fontFamily: WithMeText.ui,
+            fontSize: 32 * d / _circle,
+            fontWeight: FontWeight.w700,
+            color: value == i ? Colors.white : ScenicColors.ink,
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
-/// The four mood faces on the greeting: Not good, Okay, Good, Great.
-enum MoodFace { notGood, okay, good, great }
+/// The five feelings on the greeting, in the order they are offered:
+/// Angry, Sad, Indifferent, Happy, Excited. Their words are what the
+/// `moods` table stores and what the dashboard's Feelings chart counts.
+enum MoodFace { angry, sad, indifferent, happy, excited }
 
 extension MoodFaceInfo on MoodFace {
   String get label => switch (this) {
-    MoodFace.notGood => 'Not good',
-    MoodFace.okay => 'Okay',
-    MoodFace.good => 'Good',
-    MoodFace.great => 'Great',
+    MoodFace.angry => 'Angry',
+    MoodFace.sad => 'Sad',
+    MoodFace.indifferent => 'Indifferent',
+    MoodFace.happy => 'Happy',
+    MoodFace.excited => 'Excited',
   };
 
+  /// The face's fill: red, orange, yellow, green and purple, so each of
+  /// the five feelings has a colour of its own.
   Color get light => switch (this) {
-    MoodFace.notGood => const Color(0xFFFF8C8A),
-    MoodFace.okay => const Color(0xFFFFC27A),
-    MoodFace.good => const Color(0xFFFFDE73),
-    MoodFace.great => const Color(0xFF8BE08A),
+    MoodFace.angry => const Color(0xFFFF8A80),
+    MoodFace.sad => const Color(0xFFFFC078),
+    MoodFace.indifferent => const Color(0xFFFFEB80),
+    MoodFace.happy => const Color(0xFF9EE6A2),
+    MoodFace.excited => const Color(0xFFCDB0FF),
   };
 
+  /// A deeper tone of the same colour, for chart bars, slices and key
+  /// dots, where the pale fills would wash out.
   Color get deep => switch (this) {
-    MoodFace.notGood => const Color(0xFFE2524F),
-    MoodFace.okay => const Color(0xFFEE9A3E),
-    MoodFace.good => const Color(0xFFF1BB2C),
-    MoodFace.great => const Color(0xFF45B35A),
+    MoodFace.angry => const Color(0xFFE04848),
+    MoodFace.sad => const Color(0xFFF08A24),
+    MoodFace.indifferent => const Color(0xFFE6C229),
+    MoodFace.happy => const Color(0xFF43A84B),
+    MoodFace.excited => const Color(0xFF8A5CD6),
   };
+
+  /// The feeling's place on the 1-5 mood scale, read left to right along
+  /// the feelings reference's arch: Angry 1 to Excited 5. Used where a mood
+  /// is shown as a number (Progress, the day detail).
+  int get score => index + 1;
+
+  /// Angry and Sad, the bottom of the scale, mark a day as challenging on
+  /// the calendar.
+  bool get isLow => score <= 2;
+
+  /// The feeling a saved word names, or null for anything else.
+  static MoodFace? fromLabel(String? label) {
+    for (final face in MoodFace.values) {
+      if (face.label == label) return face;
+    }
+    return null;
+  }
 }
 
+/// The five feelings as an arch of faces, as on the feelings reference:
+/// Angry and Excited low at the ends, Indifferent at the top. The middle
+/// slot is a little wider so "Indifferent" stays readable on a narrow
+/// phone.
 class MoodFacesCard extends StatelessWidget {
   const MoodFacesCard({
     super.key,
     required this.value,
     required this.onChanged,
+    this.bare = false,
   });
 
   final MoodFace? value;
   final ValueChanged<MoodFace> onChanged;
 
+  /// Leaves out the card's own background, for faces inside a speech
+  /// bubble.
+  final bool bare;
+
+  /// Each slot's share of the width, Angry to Excited.
+  static const List<double> _weights = [0.94, 0.94, 1.24, 0.94, 0.94];
+
+  /// How far each face sits below the top of the arch, in face heights.
+  static const List<double> _drop = [0.9, 0.38, 0, 0.38, 0.9];
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 14, 10, 12),
-      decoration: BoxDecoration(
-        color: ScenicColors.bubble.withValues(alpha: 0.92),
-        borderRadius: BorderRadius.circular(22),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x33000000),
-            blurRadius: 12,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          for (final face in MoodFace.values)
-            Semantics(
-              button: true,
-              selected: value == face,
-              label: face.label,
-              excludeSemantics: true,
-              child: GestureDetector(
-                onTap: () => onChanged(face),
-                behavior: HitTestBehavior.opaque,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AnimatedScale(
-                      scale: value == face ? 1.12 : 1,
-                      duration: WithMeMotion.fast,
-                      child: Container(
-                        padding: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: value == face
-                                ? ScenicColors.pillBottom
-                                : Colors.transparent,
-                            width: 2.5,
-                          ),
-                        ),
-                        child: CustomPaint(
-                          size: const Size(48, 48),
-                          painter: _FacePainter(face),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    ChunkyText(
-                      face.label,
-                      weight: 0.5,
-                      style: const TextStyle(
-                        fontFamily: WithMeText.ui,
-                        fontSize: 14.5,
-                        fontWeight: FontWeight.w700,
-                        color: ScenicColors.ink,
-                      ),
-                    ),
-                  ],
+      padding: bare
+          ? const EdgeInsets.only(top: 4)
+          : const EdgeInsets.fromLTRB(6, 14, 6, 10),
+      decoration: bare
+          ? null
+          : BoxDecoration(
+              color: ScenicColors.bubble.withValues(alpha: 0.92),
+              borderRadius: BorderRadius.circular(22),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0x33000000),
+                  blurRadius: 12,
+                  offset: Offset(0, 4),
                 ),
-              ),
+              ],
             ),
-        ],
+      child: LayoutBuilder(
+        builder: (context, box) {
+          final unit = box.maxWidth / _weights.fold(0.0, (a, b) => a + b);
+          final face = math.min(50.0, unit * 0.94 - 10);
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (final f in MoodFace.values)
+                SizedBox(
+                  width: unit * _weights[f.index],
+                  child: Padding(
+                    padding: EdgeInsets.only(top: face * _drop[f.index]),
+                    child: _FaceChoice(
+                      face: f,
+                      selected: value == f,
+                      size: face,
+                      onTap: () => onChanged(f),
+                    ),
+                  ),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
 }
 
-/// A glossy emoji face, lit from the top left like the reference's.
+class _FaceChoice extends StatelessWidget {
+  const _FaceChoice({
+    required this.face,
+    required this.selected,
+    required this.size,
+    required this.onTap,
+  });
+
+  final MoodFace face;
+  final bool selected;
+  final double size;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: face.label,
+      excludeSemantics: true,
+      child: GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: AnimatedContainer(
+          duration: WithMeMotion.fast,
+          margin: const EdgeInsets.symmetric(horizontal: 1.5),
+          padding: const EdgeInsets.fromLTRB(1, 6, 1, 6),
+          decoration: BoxDecoration(
+            // The selected face sits on a tint of its own colour, ringed in
+            // the teal of the Continue pill, so the choice reads at a glance.
+            color: selected
+                ? face.light.withValues(alpha: 0.55)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: selected ? ScenicColors.pillBottom : Colors.transparent,
+              width: 2,
+            ),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedScale(
+                scale: selected ? 1.05 : 1,
+                duration: WithMeMotion.fast,
+                child: CustomPaint(
+                  size: Size(size, size),
+                  painter: _FacePainter(face),
+                ),
+              ),
+              const SizedBox(height: 5),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: ChunkyText(
+                  face.label,
+                  weight: 0.5,
+                  style: TextStyle(
+                    fontFamily: WithMeText.ui,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    color: selected
+                        ? ScenicColors.pillBottom
+                        : ScenicColors.ink,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A flat emoji face with a dark outline, drawn after the feelings
+/// reference: squeezed eyes and a grimace for Angry, a frown for Sad, a
+/// straight mouth for Indifferent, a smile for Happy, squeezed eyes and an
+/// open grin for Excited.
 class _FacePainter extends CustomPainter {
   _FacePainter(this.face);
 
@@ -610,107 +728,453 @@ class _FacePainter extends CustomPainter {
       c + const Offset(0, 1.5),
       r,
       Paint()
-        ..color = const Color(0x33000000)
+        ..color = const Color(0x26000000)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 2),
     );
+    canvas.drawCircle(c, r, Paint()..color = face.light);
     canvas.drawCircle(
       c,
-      r,
+      r - r * 0.035,
       Paint()
-        ..shader = RadialGradient(
-          center: const Alignment(-0.35, -0.45),
-          radius: 1.0,
-          colors: [face.light, face.deep],
-        ).createShader(Rect.fromCircle(center: c, radius: r)),
-    );
-    // Gloss.
-    canvas.drawOval(
-      Rect.fromCenter(
-        center: c + Offset(-r * 0.25, -r * 0.5),
-        width: r * 0.9,
-        height: r * 0.4,
-      ),
-      Paint()..color = Colors.white.withValues(alpha: 0.35),
+        ..color = const Color(0xFF2E2A26)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = r * 0.07,
     );
 
+    const inkColor = Color(0xFF2E2A26);
     final ink = Paint()
-      ..color = const Color(0xFF6B2E1E).withValues(alpha: 0.85)
+      ..color = inkColor
       ..style = PaintingStyle.stroke
-      ..strokeWidth = r * 0.12
-      ..strokeCap = StrokeCap.round;
-    final eyeY = r * 0.8;
+      ..strokeWidth = r * 0.1
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+    final fill = Paint()..color = inkColor;
+    final eyeY = r * 0.78;
     final eyeDx = r * 0.36;
-    final eye = Paint()..color = const Color(0xFF5A2618).withValues(alpha: 0.9);
+
+    void dotEyes() {
+      canvas.drawCircle(Offset(r - eyeDx, eyeY), r * 0.09, fill);
+      canvas.drawCircle(Offset(r + eyeDx, eyeY), r * 0.09, fill);
+    }
+
+    // ">" and "<", the squeezed-shut eyes.
+    void squeezedEyes() {
+      final w = r * 0.2;
+      final h = r * 0.14;
+      for (final side in [-1.0, 1.0]) {
+        final x = r + side * eyeDx;
+        // Each eye points in towards the nose: ">" on the left, "<" on the
+        // right.
+        canvas.drawPath(
+          Path()
+            ..moveTo(x + side * w, eyeY - h)
+            ..lineTo(x - side * w * 0.6, eyeY)
+            ..lineTo(x + side * w, eyeY + h),
+          ink,
+        );
+      }
+    }
 
     switch (face) {
-      case MoodFace.notGood:
-        canvas.drawCircle(Offset(r - eyeDx, eyeY), r * 0.1, eye);
-        canvas.drawCircle(Offset(r + eyeDx, eyeY), r * 0.1, eye);
-        canvas.drawLine(
-          Offset(r - eyeDx - r * 0.14, eyeY - r * 0.3),
-          Offset(r - eyeDx + r * 0.12, eyeY - r * 0.2),
-          ink,
-        );
-        canvas.drawLine(
-          Offset(r + eyeDx + r * 0.14, eyeY - r * 0.3),
-          Offset(r + eyeDx - r * 0.12, eyeY - r * 0.2),
-          ink,
-        );
+      case MoodFace.angry:
+        squeezedEyes();
+        // An open, downturned grimace.
         canvas.drawPath(
           Path()
-            ..moveTo(r - r * 0.35, r * 1.45)
-            ..quadraticBezierTo(r, r * 1.05, r + r * 0.35, r * 1.45),
-          ink,
+            ..moveTo(r - r * 0.42, r * 1.56)
+            ..quadraticBezierTo(r, r * 0.98, r + r * 0.42, r * 1.56)
+            ..quadraticBezierTo(r, r * 1.36, r - r * 0.42, r * 1.56)
+            ..close(),
+          fill,
         );
-      case MoodFace.okay:
-        canvas.drawCircle(Offset(r - eyeDx, eyeY), r * 0.1, eye);
-        canvas.drawCircle(Offset(r + eyeDx, eyeY), r * 0.1, eye);
+      case MoodFace.sad:
+        dotEyes();
         canvas.drawPath(
           Path()
-            ..moveTo(r - r * 0.32, r * 1.38)
-            ..quadraticBezierTo(r, r * 1.22, r + r * 0.32, r * 1.38),
+            ..moveTo(r - r * 0.34, r * 1.46)
+            ..quadraticBezierTo(r, r * 1.12, r + r * 0.34, r * 1.46),
           ink,
         );
-      case MoodFace.good:
-        canvas.drawCircle(Offset(r - eyeDx, eyeY), r * 0.1, eye);
-        canvas.drawCircle(Offset(r + eyeDx, eyeY), r * 0.1, eye);
+      case MoodFace.indifferent:
+        dotEyes();
+        canvas.drawLine(
+          Offset(r - r * 0.3, r * 1.34),
+          Offset(r + r * 0.3, r * 1.34),
+          ink,
+        );
+      case MoodFace.happy:
+        dotEyes();
         canvas.drawPath(
           Path()
             ..moveTo(r - r * 0.4, r * 1.2)
             ..quadraticBezierTo(r, r * 1.6, r + r * 0.4, r * 1.2),
           ink,
         );
-      case MoodFace.great:
-        final arc = Paint()
-          ..color = ink.color
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = r * 0.11
-          ..strokeCap = StrokeCap.round;
-        for (final dx in [-eyeDx, eyeDx]) {
-          canvas.drawArc(
-            Rect.fromCenter(
-              center: Offset(r + dx, eyeY + r * 0.06),
-              width: r * 0.34,
-              height: r * 0.3,
-            ),
-            math.pi,
-            math.pi,
-            false,
-            arc,
-          );
-        }
+      case MoodFace.excited:
+        squeezedEyes();
         canvas.drawPath(
           Path()
             ..moveTo(r - r * 0.46, r * 1.12)
-            ..quadraticBezierTo(r, r * 1.78, r + r * 0.46, r * 1.12)
+            ..quadraticBezierTo(r, r * 1.8, r + r * 0.46, r * 1.12)
             ..close(),
-          Paint()..color = const Color(0xFF6B2E1E).withValues(alpha: 0.85),
+          fill,
         );
     }
   }
 
   @override
   bool shouldRepaint(_FacePainter old) => old.face != face;
+}
+
+/// "How in control do you feel today?" as a gauge: a half dial of five
+/// numbered wedges, red, orange, yellow, green and purple from left to right,
+/// with a needle turned to the chosen one.
+///
+/// Nothing is chosen, and no needle shows, until the user picks a wedge:
+/// tap it, or drag the needle round the dial. The ‹ › buttons under the
+/// dial, and the arrow keys (Home and End jump to the ends), step one
+/// wedge at a time.
+class ControlScale extends StatefulWidget {
+  const ControlScale({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    this.size = 280,
+  });
+
+  /// 1-5, or null while nothing has been picked.
+  final int? value;
+  final ValueChanged<int> onChanged;
+
+  /// The widest the dial draws; it shrinks to fit a narrower parent.
+  final double size;
+
+  static const int steps = 5;
+
+  /// One colour per wedge, from 1 (least in control) to 5 (most): red,
+  /// orange, yellow, green and purple, the feelings page's colours
+  /// ([MoodFace.light]), used for every 1 to 5 scale.
+  static const List<Color> colors = [
+    Color(0xFFFF8A80),
+    Color(0xFFFFC078),
+    Color(0xFFFFEB80),
+    Color(0xFF9EE6A2),
+    Color(0xFFCDB0FF),
+  ];
+
+  /// The needle and hub colour, from the reference.
+  static const Color needle = Color(0xFF718490);
+
+  /// Height of the dial for a given [width].
+  static double heightFor(double width) => width / 2 + 14;
+
+  /// The wedge (1-5) a point on a dial of [size] falls in. Measured round
+  /// the dial's centre, so the needle follows the finger; a point below the
+  /// centre line pins to the end on its side.
+  static int valueAt(Offset local, Size size) {
+    final centre = Offset(size.width / 2, size.width / 2);
+    final d = local - centre;
+    var angle = math.atan2(-d.dy, d.dx);
+    if (angle < 0) angle = d.dx < 0 ? math.pi : 0;
+    final fromLeft = (math.pi - angle) / math.pi;
+    return (fromLeft * steps).floor().clamp(0, steps - 1) + 1;
+  }
+
+  /// The middle of wedge [n] on a dial of [size] - where its number sits.
+  static Offset pointFor(int n, Size size) {
+    final r = size.width / 2;
+    final angle = math.pi - math.pi * (n - 0.5) / steps;
+    return Offset(r, r) +
+        Offset(math.cos(angle), -math.sin(angle)) * (r * 0.74);
+  }
+
+  @override
+  State<ControlScale> createState() => _ControlScaleState();
+}
+
+class _ControlScaleState extends State<ControlScale> {
+  bool _focusShown = false;
+
+  void _set(int v) {
+    final clamped = v.clamp(1, ControlScale.steps);
+    if (clamped != widget.value) widget.onChanged(clamped);
+  }
+
+  /// One wedge left or right. With nothing picked yet, moving right enters
+  /// at 1 and moving left at 5.
+  void _step(int by) {
+    final v = widget.value;
+    if (v == null) {
+      _set(by > 0 ? 1 : ControlScale.steps);
+    } else {
+      _set(v + by);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final value = widget.value;
+
+    Widget arrow(IconData icon, int by) {
+      final enabled =
+          value == null || (by < 0 ? value > 1 : value < ControlScale.steps);
+      return GestureDetector(
+        onTap: enabled ? () => _step(by) : null,
+        behavior: HitTestBehavior.opaque,
+        child: SizedBox(
+          width: 48,
+          height: 48,
+          child: Icon(
+            icon,
+            size: 34,
+            color: enabled
+                ? ScenicColors.pillBottom
+                : ScenicColors.ink.withValues(alpha: 0.25),
+          ),
+        ),
+      );
+    }
+
+    final dial = LayoutBuilder(
+      builder: (context, box) {
+        final width = math.min(widget.size, box.maxWidth);
+        final size = Size(width, ControlScale.heightFor(width));
+        void track(Offset local) => _set(ControlScale.valueAt(local, size));
+        return Center(
+          child: RawGestureDetector(
+            behavior: HitTestBehavior.opaque,
+            gestures: {
+              _EagerPan: GestureRecognizerFactoryWithHandlers<_EagerPan>(
+                _EagerPan.new,
+                (r) {
+                  r
+                    ..onDown = (e) {
+                      track(e.localPosition);
+                    }
+                    ..onUpdate = (e) {
+                      track(e.localPosition);
+                    };
+                },
+              ),
+            },
+            child: TweenAnimationBuilder<double>(
+              // The needle swings to the chosen wedge's middle.
+              tween: Tween(end: (value ?? 3) - 0.5),
+              duration: WithMeMotion.fast,
+              curve: WithMeMotion.ease,
+              builder: (context, shown, _) => CustomPaint(
+                key: const ValueKey('control-gauge'),
+                size: size,
+                painter: _ControlGaugePainter(
+                  value: value,
+                  needleAt: shown,
+                  textScaler: MediaQuery.textScalerOf(context),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+
+    return Semantics(
+      slider: true,
+      label: 'How in control you feel, 1 to 5',
+      value: value == null ? 'Not chosen' : '$value of 5',
+      increasedValue: '${math.min((value ?? 0) + 1, 5)} of 5',
+      decreasedValue: '${math.max((value ?? 6) - 1, 1)} of 5',
+      onIncrease: () => _step(1),
+      onDecrease: () => _step(-1),
+      child: FocusableActionDetector(
+        onShowFocusHighlight: (show) => setState(() => _focusShown = show),
+        shortcuts: const {
+          SingleActivator(LogicalKeyboardKey.arrowLeft): _StepIntent(-1),
+          SingleActivator(LogicalKeyboardKey.arrowDown): _StepIntent(-1),
+          SingleActivator(LogicalKeyboardKey.arrowRight): _StepIntent(1),
+          SingleActivator(LogicalKeyboardKey.arrowUp): _StepIntent(1),
+          SingleActivator(LogicalKeyboardKey.home): _StepIntent(-5),
+          SingleActivator(LogicalKeyboardKey.end): _StepIntent(5),
+        },
+        actions: {
+          _StepIntent: CallbackAction<_StepIntent>(
+            onInvoke: (intent) {
+              if (intent.by.abs() == ControlScale.steps) {
+                _set(intent.by > 0 ? ControlScale.steps : 1);
+              } else {
+                _step(intent.by);
+              }
+              return null;
+            },
+          ),
+        },
+        child: ExcludeSemantics(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(4, 8, 4, 0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                color: _focusShown
+                    ? ScenicColors.pillBottom
+                    : Colors.transparent,
+                width: 2,
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                dial,
+                // The reading between the step buttons.
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 260),
+                  child: Row(
+                    children: [
+                      arrow(Icons.chevron_left_rounded, -1),
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: ChunkyText(
+                            value == null ? 'Pick a number' : '$value of 5',
+                            weight: 0.6,
+                            style: TextStyle(
+                              fontFamily: WithMeText.ui,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: value == null
+                                  ? ScenicColors.ink.withValues(alpha: 0.6)
+                                  : ScenicColors.pillBottom,
+                            ),
+                          ),
+                        ),
+                      ),
+                      arrow(Icons.chevron_right_rounded, 1),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StepIntent extends Intent {
+  const _StepIntent(this.by);
+
+  final int by;
+}
+
+/// A pan that claims the pointer as soon as it lands, so the scrolling page
+/// round the dial cannot take a drag that starts on it.
+class _EagerPan extends PanGestureRecognizer {
+  @override
+  void addAllowedPointer(PointerDownEvent event) {
+    super.addAllowedPointer(event);
+    resolvePointer(event.pointer, GestureDisposition.accepted);
+  }
+}
+
+/// Paints [ControlScale]: five wedges with their numbers, a pale face
+/// inside them, and - once a wedge is chosen - the needle and hub. Every
+/// wedge keeps its full colour; the chosen one stands out a little.
+class _ControlGaugePainter extends CustomPainter {
+  _ControlGaugePainter({
+    required this.value,
+    required this.needleAt,
+    required this.textScaler,
+  });
+
+  final int? value;
+
+  /// Where the needle points, in wedges from the left (0.5 is the middle of
+  /// wedge 1).
+  final double needleAt;
+  final TextScaler textScaler;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final r = size.width / 2;
+    final c = Offset(r, r);
+    const n = ControlScale.steps;
+    const sweep = math.pi / n;
+    final inner = r * 0.46;
+
+    for (var i = 0; i < n; i++) {
+      final chosen = value == i + 1;
+      final outer = chosen ? r : r * 0.94;
+      final start = math.pi + sweep * i;
+      final color = ControlScale.colors[i];
+      final path = Path()
+        ..addArc(Rect.fromCircle(center: c, radius: outer), start, sweep)
+        ..arcTo(
+          Rect.fromCircle(center: c, radius: inner),
+          start + sweep,
+          -sweep,
+          false,
+        )
+        ..close();
+      canvas.drawPath(path, Paint()..color = color);
+      // A thin cream seam between wedges.
+      canvas.drawPath(
+        path,
+        Paint()
+          ..color = ScenicColors.bubble
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+      );
+
+      final label = TextPainter(
+        text: TextSpan(
+          text: '${i + 1}',
+          style: TextStyle(
+            fontFamily: WithMeText.ui,
+            fontSize: r * (chosen ? 0.17 : 0.14),
+            fontWeight: FontWeight.w700,
+            color: const Color(0xFF1A1A1A),
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+        textScaler: textScaler,
+      )..layout();
+      final at = ControlScale.pointFor(i + 1, size);
+      label.paint(canvas, at - Offset(label.width / 2, label.height / 2));
+    }
+
+    // The pale face inside the wedges, as on the reference.
+    canvas.drawArc(
+      Rect.fromCircle(center: c, radius: inner - 1),
+      math.pi,
+      math.pi,
+      true,
+      Paint()..color = const Color(0xFFE5E2E2),
+    );
+
+    final hub = Paint()..color = ControlScale.needle;
+    if (value != null) {
+      // A tapered needle from the hub towards the chosen wedge.
+      final angle = math.pi + sweep * needleAt;
+      final dir = Offset(math.cos(angle), math.sin(angle));
+      final side = Offset(-dir.dy, dir.dx);
+      final length = r * 0.66;
+      final base = r * 0.07;
+      canvas.drawPath(
+        Path()
+          ..moveTo(c.dx + side.dx * base, c.dy + side.dy * base)
+          ..lineTo(c.dx + dir.dx * length, c.dy + dir.dy * length)
+          ..lineTo(c.dx - side.dx * base, c.dy - side.dy * base)
+          ..close(),
+        hub,
+      );
+    }
+    canvas.drawCircle(c, r * 0.08, hub);
+  }
+
+  @override
+  bool shouldRepaint(_ControlGaugePainter old) =>
+      old.value != value ||
+      old.needleAt != needleAt ||
+      old.textScaler != textScaler;
 }
 
 /// One of Home / Work / School / Social in the stress-area grid.

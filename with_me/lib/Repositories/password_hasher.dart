@@ -35,8 +35,12 @@ class PasswordHasher {
       List<int>.generate(_saltBytes, (_) => random.nextInt(256)),
     );
     final result = _pbkdf2(password, salt, rounds);
-    return [_scheme, rounds, base64Encode(salt), base64Encode(result)]
-        .join(r'$');
+    return [
+      _scheme,
+      rounds,
+      base64Encode(salt),
+      base64Encode(result),
+    ].join(r'$');
   }
 
   /// True when [password] is the one that made [stored].

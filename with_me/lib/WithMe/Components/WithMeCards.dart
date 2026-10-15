@@ -210,9 +210,6 @@ class AccentLine extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) => Text(
-        text,
-        textAlign: TextAlign.center,
-        style: WithMeText.accent,
-      );
+  Widget build(BuildContext context) =>
+      Text(text, textAlign: TextAlign.center, style: WithMeText.accent);
 }

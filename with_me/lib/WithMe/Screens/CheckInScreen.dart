@@ -85,14 +85,16 @@ class _CheckInScreenState extends State<CheckInScreen> {
     final today = DateTime.now();
     try {
       // One step: today's earlier entry is replaced, never lost or doubled.
-      await AppRepositories.reflections.replaceForDay(Reflection(
-        who: _choices['Who?']!,
-        what: _choices['What?']!,
-        when: _choices['When?']!,
-        where: _choices['Where?']!,
-        why: _choices['Why?']!,
-        date: today,
-      ));
+      await AppRepositories.reflections.replaceForDay(
+        Reflection(
+          who: _choices['Who?']!,
+          what: _choices['What?']!,
+          when: _choices['When?']!,
+          where: _choices['Where?']!,
+          why: _choices['Why?']!,
+          date: today,
+        ),
+      );
     } catch (_) {
       if (!mounted) return;
       setState(() => _saving = false);
@@ -142,6 +144,7 @@ class _CheckInScreenState extends State<CheckInScreen> {
                 hint: entry.key == 'Why?' ? 'Select a question...' : null,
                 fill: Colors.white,
                 border: kScenicFieldRing,
+                height: 60,
                 onChanged: (v) => setState(() => _choices[entry.key] = v),
               ),
               const SizedBox(height: 8),

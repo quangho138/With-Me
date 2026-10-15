@@ -120,15 +120,12 @@ class MascotPose {
 /// the box is a stage wider than the character, and [MascotFrame.x] slides
 /// it from the left edge (0) to the right (1).
 class MascotPainter extends CustomPainter {
-  MascotPainter({
-    required this.frame,
-    this.roam = false,
-    this.characterWidth,
-  }) : super(repaint: frame);
+  MascotPainter({required this.frame, this.roam = false, this.characterWidth})
+    : super(repaint: frame);
 
   /// A single fixed pose - a still, or a test.
   MascotPainter.still(MascotPose pose)
-      : this(frame: ValueNotifier(MascotFrame(pose)));
+    : this(frame: ValueNotifier(MascotFrame(pose)));
 
   final ValueListenable<MascotFrame> frame;
   final bool roam;
@@ -323,7 +320,12 @@ class _Figure {
     // A shade darker than the body's edge, or the arms melt into it.
     final paint = Paint()..color = WithMeColors.bodyShade;
     _arm(paint, shoulder: const Offset(42, 148), raise: pose.leftArm, side: -1);
-    _arm(paint, shoulder: const Offset(158, 148), raise: pose.rightArm, side: 1);
+    _arm(
+      paint,
+      shoulder: const Offset(158, 148),
+      raise: pose.rightArm,
+      side: 1,
+    );
   }
 
   void _arm(
@@ -519,7 +521,8 @@ class _Figure {
   }
 
   void _drawBlush() {
-    final strong = pose.face == MascotFace.happy ||
+    final strong =
+        pose.face == MascotFace.happy ||
         pose.face == MascotFace.joy ||
         pose.face == MascotFace.wink ||
         pose.face == MascotFace.dazed;
@@ -610,7 +613,11 @@ class _Figure {
       Path()
         ..moveTo(center.dx - 14, center.dy + 4)
         ..quadraticBezierTo(
-            center.dx, center.dy - 14, center.dx + 14, center.dy + 4),
+          center.dx,
+          center.dy - 14,
+          center.dx + 14,
+          center.dy + 4,
+        ),
       _ink..strokeWidth = 5.5,
     );
   }
@@ -689,7 +696,11 @@ class _Figure {
         );
       case MascotFace.surprised:
         canvas.drawOval(
-          Rect.fromCenter(center: const Offset(cx, cy + 3), width: 11, height: 13),
+          Rect.fromCenter(
+            center: const Offset(cx, cy + 3),
+            width: 11,
+            height: 13,
+          ),
           ink..strokeWidth = 3.6,
         );
       case MascotFace.dazed:
@@ -734,7 +745,10 @@ class _Figure {
       ..style = PaintingStyle.fill;
     for (var i = 0; i < 3; i++) {
       final a = pose.step * 1.0 + i * math.pi * 2 / 3;
-      final c = Offset(100 + math.cos(a) * 58, 36 + pose.sit * 26 + math.sin(a) * 12);
+      final c = Offset(
+        100 + math.cos(a) * 58,
+        36 + pose.sit * 26 + math.sin(a) * 12,
+      );
       final path = Path();
       for (var k = 0; k < 10; k++) {
         final r = k.isEven ? 7.0 : 3.0;

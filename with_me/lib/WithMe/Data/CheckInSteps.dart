@@ -22,32 +22,32 @@ enum SignDimension { body, feelings, mind, behaviour }
 
 extension SignDimensionInfo on SignDimension {
   String get label => switch (this) {
-        SignDimension.body => 'BODY',
-        SignDimension.feelings => 'FEELINGS',
-        SignDimension.mind => 'MIND',
-        SignDimension.behaviour => 'BEHAVIOR',
-      };
+    SignDimension.body => 'BODY',
+    SignDimension.feelings => 'FEELINGS',
+    SignDimension.mind => 'MIND',
+    SignDimension.behaviour => 'BEHAVIOR',
+  };
 
   Color get color => switch (this) {
-        SignDimension.body => WithMeColors.mint,
-        SignDimension.feelings => WithMeColors.pink,
-        SignDimension.mind => WithMeColors.peach,
-        SignDimension.behaviour => WithMeColors.coral,
-      };
+    SignDimension.body => WithMeColors.mint,
+    SignDimension.feelings => WithMeColors.pink,
+    SignDimension.mind => WithMeColors.peach,
+    SignDimension.behaviour => WithMeColors.coral,
+  };
 
   String get question => switch (this) {
-        SignDimension.body => 'How is stress showing up in your body?',
-        SignDimension.feelings => 'What emotions are you feeling most right now?',
-        SignDimension.mind => 'What thoughts are coming up for you?',
-        SignDimension.behaviour => 'How is it affecting your behavior?',
-      };
+    SignDimension.body => 'How is stress showing up in your body?',
+    SignDimension.feelings => 'What emotions are you feeling most right now?',
+    SignDimension.mind => 'What thoughts are coming up for you?',
+    SignDimension.behaviour => 'How is it affecting your behavior?',
+  };
 
   List<StepOption> get options => switch (this) {
-        SignDimension.body => kBodySigns,
-        SignDimension.feelings => kFeelingSigns,
-        SignDimension.mind => kMindSigns,
-        SignDimension.behaviour => kBehaviourSigns,
-      };
+    SignDimension.body => kBodySigns,
+    SignDimension.feelings => kFeelingSigns,
+    SignDimension.mind => kMindSigns,
+    SignDimension.behaviour => kBehaviourSigns,
+  };
 }
 
 /// The rotation of dot colours the design uses down an option list
@@ -63,11 +63,13 @@ const List<Color> _dots = [
 ];
 
 List<StepOption> _list(List<String> labels) => [
-      for (var i = 0; i < labels.length; i++)
-        StepOption(labels[i], _dots[i % _dots.length]),
-    ];
+  for (var i = 0; i < labels.length; i++)
+    StepOption(labels[i], _dots[i % _dots.length]),
+];
 
 // --- image16 - image19 ------------------------------------------------------
+// Five each. The "Other" button these pages used to end with is now a
+// written "Other" field under the choices (see [CheckInAnswers.signOther]).
 
 final List<StepOption> kBodySigns = _list([
   'Tension',
@@ -75,7 +77,6 @@ final List<StepOption> kBodySigns = _list([
   'Sleep issues',
   'Low energy',
   'Stomach issues',
-  'Other',
 ]);
 
 final List<StepOption> kFeelingSigns = _list([
@@ -84,7 +85,6 @@ final List<StepOption> kFeelingSigns = _list([
   'Frustrated',
   'Sad',
   'Angry',
-  'Other',
 ]);
 
 final List<StepOption> kMindSigns = _list([
@@ -93,7 +93,6 @@ final List<StepOption> kMindSigns = _list([
   'Negative thoughts',
   'Worrying',
   'Self-doubt',
-  'Other',
 ]);
 
 final List<StepOption> kBehaviourSigns = _list([
@@ -102,13 +101,12 @@ final List<StepOption> kBehaviourSigns = _list([
   'Overeating',
   'Withdrawing',
   'Overworking',
-  'Other',
 ]);
 
 // --- image10 ----------------------------------------------------------------
 
-/// Where the stress is coming from. The design lays these out two-up with
-/// "Something else" as a full-width row underneath.
+/// Where the stress is coming from, two-up. There is no written "Other":
+/// one of these four is the answer.
 const List<StepOption> kStressAreas = [
   StepOption('Home', WithMeColors.mint),
   StepOption('Work', WithMeColors.peach),
@@ -119,6 +117,7 @@ const List<StepOption> kStressAreas = [
 // --- image11 - image14 ------------------------------------------------------
 
 /// The per-area stressor sets, three-up. Keyed by the area labels above.
+/// Each page also has a written "Other" field under its six choices.
 final Map<String, List<StepOption>> kStressorsByArea = {
   'Work': _list([
     'Colleagues',
@@ -223,7 +222,11 @@ const List<(String, String, Color)> kExercises = [
   ('De-stress Your Day', '4 · 4 · 4 · 4 breathing', WithMeColors.mint),
   ('Ease Your Sleep', '4 · 7 · 8 breathing', WithMeColors.peach),
   ('Strengthen Your Focus', '4 · 4 · 4 breathing', WithMeColors.pink),
-  ('Physiological Sigh', 'Deep inhale · two quick inhales · exhale', WithMeColors.slate),
+  (
+    'Physiological Sigh',
+    'Deep inhale · two quick inhales · exhale',
+    WithMeColors.slate,
+  ),
 ];
 
 /// The longer guided set (`image26.png`).
@@ -233,18 +236,54 @@ const List<(String, String, Color)> kRestExercises = [
   ('Strengthen your focus', '4 min · 4-4-4-4 focus', WithMeColors.peach),
 ];
 
+/// The longest a written "Other" answer may be, in characters. Answers are
+/// one line and trimmed; blank or whitespace-only text counts as no answer.
+const int kOtherMaxLength = 100;
+
+/// [text] trimmed, or null when nothing but whitespace is left.
+String? cleanOther(String? text) {
+  final t = text?.trim();
+  if (t == null || t.isEmpty) return null;
+  return t.length > kOtherMaxLength ? t.substring(0, kOtherMaxLength) : t;
+}
+
 /// Everything the user picked during one check-in.
 ///
 /// Persisted through `CheckInRepository` (lib/Repositories) — mood, control gauge,
 /// stressor and reflection all already have tables.
+///
+/// Answers live here for the whole visit, so going back and forward keeps
+/// them. Each area's stressors and written "Other", and each signs page's
+/// picks and "Other", are kept apart; only the area and signs page finally
+/// chosen are saved.
 class CheckInAnswers {
+  /// The day's feeling, as an index into `MoodFace.values`.
   int? mood;
+
+  /// "How in control do you feel today?", 1-5. Null until the user picks a
+  /// value; there is no default.
+  int? control;
   int? stress;
   int? motivation;
   String? area;
-  final Set<String> stressors = {};
+
+  /// Stressors picked on each area's page, by area.
+  final Map<String, Set<String>> stressorsByArea = {
+    for (final area in kStressorsByArea.keys) area: <String>{},
+  };
+
+  /// The written "Other" on each area's stressor page, as typed.
+  final Map<String, String> stressorOtherByArea = {
+    for (final area in kStressorsByArea.keys) area: '',
+  };
+
   final Map<SignDimension, Set<String>> signs = {
     for (final d in SignDimension.values) d: <String>{},
+  };
+
+  /// The written "Other" on each signs page, as typed.
+  final Map<SignDimension, String> signOther = {
+    for (final d in SignDimension.values) d: '',
   };
 
   /// Which of body, feelings, mind or behaviour the user chose to look at.
@@ -262,6 +301,28 @@ class CheckInAnswers {
   final Map<String, String?> reflection = {
     for (final key in kReflectionPrompts.keys) key: null,
   };
+
+  /// The stressors picked for the chosen area (none without an area).
+  Set<String> get stressors =>
+      area == null ? <String>{} : stressorsByArea[area]!;
+
+  /// The chosen area's written "Other", trimmed, or null.
+  String? get stressorOther =>
+      area == null ? null : cleanOther(stressorOtherByArea[area]);
+
+  /// Whether the stress-source page is answered: one of the four areas.
+  bool get hasSource => area != null;
+
+  /// Whether the chosen area's stressor page is answered: a pick, a written
+  /// "Other", or both.
+  bool get hasStressors => stressors.isNotEmpty || stressorOther != null;
+
+  /// Whether the chosen signs page is answered, the same way.
+  bool get hasSigns {
+    final d = signDimension;
+    if (d == null) return false;
+    return signs[d]!.isNotEmpty || cleanOther(signOther[d]) != null;
+  }
 
   bool get isEmpty => mood == null && stress == null && motivation == null;
 }

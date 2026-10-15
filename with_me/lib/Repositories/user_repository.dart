@@ -77,9 +77,9 @@ class LocalUserRepository implements UserRepository {
     Future<Database> Function()? open,
     DatabaseHelper? helper,
     PasswordHasher hasher = const PasswordHasher(),
-  })  : _helper = helper,
-        _hasher = hasher,
-        _open = open ?? (() => DatabaseHelper().database);
+  }) : _helper = helper,
+       _hasher = hasher,
+       _open = open ?? (() => DatabaseHelper().database);
 
   final Future<Database> Function() _open;
   final DatabaseHelper? _helper;
@@ -115,7 +115,9 @@ class LocalUserRepository implements UserRepository {
     final db = await _open();
     final rows = await db.query('session', limit: 1);
     if (rows.isEmpty) return SessionKind.none;
-    return rows.first['email'] == null ? SessionKind.guest : SessionKind.account;
+    return rows.first['email'] == null
+        ? SessionKind.guest
+        : SessionKind.account;
   }
 
   @override

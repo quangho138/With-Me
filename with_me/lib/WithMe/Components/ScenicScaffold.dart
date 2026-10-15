@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../Mascot/RealMascot.dart';
+import '../Speech/NarrationMouth.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ScenicKit.dart';
 
@@ -32,7 +33,9 @@ class ScenicScaffold extends StatelessWidget {
     this.mascot,
     this.mascotMax = 0.34,
     this.mascotMin = 120,
+    this.mascotMouth,
     this.softBackground = false,
+    this.wideAction = false,
   });
 
   final String? title;
@@ -62,9 +65,17 @@ class ScenicScaffold extends StatelessWidget {
   /// The smallest the companion is drawn, when room is short.
   final double mascotMin;
 
+  /// Moves the companion's mouth while the screen's line plays, or null for
+  /// a companion that does not speak.
+  final NarrationMouth? mascotMouth;
+
   /// Soften the painting behind a screen that is mostly reading - see
   /// [ScenicBackdrop.soften].
   final bool softBackground;
+
+  /// Give the bottom [action] the content's width instead of the narrower
+  /// pill width - for a bar of tabs that lines up with the cards above.
+  final bool wideAction;
 
   /// The widest the content column grows, so a tablet or a landscape
   /// window keeps phone proportions rather than stretching the panels.
@@ -122,6 +133,7 @@ class ScenicScaffold extends StatelessWidget {
                             hasScrollBody: false,
                             child: _MascotRoom(
                               pose: mascot!,
+                              mouth: mascotMouth,
                               min: mascotMin,
                               max: h * mascotMax,
                             ),
@@ -133,7 +145,9 @@ class ScenicScaffold extends StatelessWidget {
                     LayoutId(
                       id: _Slot.action,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: pillSide),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: wideAction ? side : pillSide,
+                        ),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -215,9 +229,15 @@ class _ScenicScaffoldLayout extends MultiChildLayoutDelegate {
 /// The companion at the foot of the content: as tall as the room left
 /// allows, between [min] and [max], standing on the bottom of that room.
 class _MascotRoom extends StatelessWidget {
-  const _MascotRoom({required this.pose, required this.min, required this.max});
+  const _MascotRoom({
+    required this.pose,
+    required this.min,
+    required this.max,
+    this.mouth,
+  });
 
   final RealPose pose;
+  final NarrationMouth? mouth;
 
   /// Small, but still unmistakably the companion.
   final double min;
@@ -234,7 +254,17 @@ class _MascotRoom extends StatelessWidget {
           final height = box.maxHeight.clamp(0.0, math.max(min, max));
           return Align(
             alignment: Alignment.bottomCenter,
-            child: RealMascot(pose: pose, height: height - 4),
+            child: mouth == null
+                ? RealMascot(pose: pose, height: height - 4)
+                : ValueListenableBuilder<bool>(
+                    valueListenable: mouth!,
+                    builder: (context, talking, _) => RealMascot(
+                      pose: pose,
+                      height: height - 4,
+                      talking: talking,
+                      mouthTimeline: mouth!.timeline,
+                    ),
+                  ),
           );
         },
       ),
@@ -468,57 +498,158 @@ class ScenicFootnote extends StatelessWidget {
 }
 
 /// Tabs in the scenic look: a cream track with the chosen tab a teal pill.
-class ScenicSegments extends StatelessWidget {
+///
+/// The teal fill follows [index] and nothing else, so the pill always sits
+/// on the tab whose content is showing. Keyboard focus is drawn separately,
+/// as an outline that only appears while navigating by keyboard, so a tab
+/// that was tapped never keeps a leftover highlight. When [index] changes
+/// from outside (a back press returning to the first tab) and a tab here
+/// holds focus, focus follows the selection instead of staying behind on
+/// the old tab.
+class ScenicSegments extends StatefulWidget {
   const ScenicSegments({
     super.key,
     required this.labels,
     required this.index,
     required this.onChanged,
+    this.height = 44,
+    this.fontSize = 16,
   });
 
   final List<String> labels;
   final int index;
   final ValueChanged<int> onChanged;
 
+  /// Each tab's height and label size - taller where the bar sits at the
+  /// bottom of the screen as the main thing to tap, like the dashboard's.
+  final double height;
+  final double fontSize;
+
+  @override
+  State<ScenicSegments> createState() => _ScenicSegmentsState();
+}
+
+class _ScenicSegmentsState extends State<ScenicSegments> {
+  late List<FocusNode> _nodes = _makeNodes(widget.labels.length);
+  int? _highlighted;
+
+  List<FocusNode> _makeNodes(int count) => [
+    for (var i = 0; i < count; i++)
+      FocusNode(debugLabel: 'ScenicSegments tab $i'),
+  ];
+
+  @override
+  void didUpdateWidget(ScenicSegments old) {
+    super.didUpdateWidget(old);
+    if (old.labels.length != widget.labels.length) {
+      for (final n in _nodes) {
+        n.dispose();
+      }
+      _nodes = _makeNodes(widget.labels.length);
+      _highlighted = null;
+      return;
+    }
+    if (old.index != widget.index &&
+        widget.index >= 0 &&
+        widget.index < _nodes.length &&
+        _nodes.any((n) => n.hasFocus)) {
+      _nodes[widget.index].requestFocus();
+    }
+  }
+
+  @override
+  void dispose() {
+    for (final n in _nodes) {
+      n.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final labels = widget.labels;
     return ScenicPanel(
       padding: const EdgeInsets.all(5),
-      child: Row(
-        children: [
-          for (var i = 0; i < labels.length; i++)
-            Expanded(
-              child: Semantics(
-                button: true,
-                selected: i == index,
-                label: labels[i],
-                excludeSemantics: true,
-                child: GestureDetector(
-                  onTap: () => onChanged(i),
-                  behavior: HitTestBehavior.opaque,
-                  child: AnimatedContainer(
-                    duration: WithMeMotion.fast,
-                    height: 44,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: i == index ? ScenicColors.pillBottom : null,
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    child: ChunkyText(
-                      labels[i],
-                      weight: 0.5,
-                      style: TextStyle(
-                        fontFamily: WithMeText.ui,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: i == index ? Colors.white : ScenicColors.ink,
+      child: FocusTraversalGroup(
+        child: Row(
+          children: [
+            for (var i = 0; i < labels.length; i++)
+              Expanded(
+                child: Semantics(
+                  button: true,
+                  selected: i == widget.index,
+                  label: labels[i],
+                  excludeSemantics: true,
+                  child: FocusableActionDetector(
+                    focusNode: _nodes[i],
+                    mouseCursor: SystemMouseCursors.click,
+                    onShowFocusHighlight: (show) => setState(() {
+                      if (show) {
+                        _highlighted = i;
+                      } else if (_highlighted == i) {
+                        _highlighted = null;
+                      }
+                    }),
+                    actions: {
+                      ActivateIntent: CallbackAction<ActivateIntent>(
+                        onInvoke: (_) {
+                          widget.onChanged(i);
+                          return null;
+                        },
+                      ),
+                    },
+                    child: GestureDetector(
+                      onTap: () => widget.onChanged(i),
+                      behavior: HitTestBehavior.opaque,
+                      child: AnimatedContainer(
+                        key: ValueKey('segment-$i'),
+                        duration: WithMeMotion.fast,
+                        height: widget.height,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: i == widget.index
+                              ? ScenicColors.pillBottom
+                              : null,
+                          borderRadius: BorderRadius.circular(
+                            widget.height * 0.4,
+                          ),
+                          border: Border.all(
+                            width: 2.5,
+                            // White on the teal pill, ink on the cream
+                            // track, so the ring reads on either.
+                            color: _highlighted != i
+                                ? Colors.transparent
+                                : i == widget.index
+                                ? Colors.white
+                                : ScenicColors.ink,
+                          ),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        // One line, scaled down rather than wrapped when a
+                        // label is wider than its tab on a narrow phone.
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: ChunkyText(
+                            labels[i],
+                            maxLines: 1,
+                            weight: 0.5,
+                            style: TextStyle(
+                              fontFamily: WithMeText.ui,
+                              fontSize: widget.fontSize,
+                              fontWeight: FontWeight.w700,
+                              color: i == widget.index
+                                  ? Colors.white
+                                  : ScenicColors.ink,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -88,9 +88,9 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
       ),
       footnote: ScenicFootnote(
         'Forgot your password?',
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => const ResetPasswordScreen()),
-        ),
+        onTap: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const ResetPasswordScreen())),
       ),
       child: ScenicPanel(
         child: Column(

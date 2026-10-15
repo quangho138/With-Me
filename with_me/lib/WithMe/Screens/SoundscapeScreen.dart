@@ -73,7 +73,11 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF7E1F0E), Color(0xFFC2603C), WithMeColors.sandPeach],
+          colors: [
+            Color(0xFF7E1F0E),
+            Color(0xFFC2603C),
+            WithMeColors.sandPeach,
+          ],
           stops: [0, 0.45, 1],
         ),
       ),
@@ -168,8 +172,8 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                         height: 48,
                         onPressed: () =>
                             ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('${widget.name} saved.')),
-                        ),
+                              SnackBar(content: Text('${widget.name} saved.')),
+                            ),
                       ),
                     ),
                   ],
@@ -234,8 +238,10 @@ class _Transport extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Volume', style: WithMeText.option.copyWith(color: ink)),
-              Text('Timer · 20 min',
-                  style: WithMeText.option.copyWith(color: ink)),
+              Text(
+                'Timer · 20 min',
+                style: WithMeText.option.copyWith(color: ink),
+              ),
             ],
           ),
         ],

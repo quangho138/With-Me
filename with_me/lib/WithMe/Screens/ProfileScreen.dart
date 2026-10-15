@@ -44,8 +44,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final moods = await AppRepositories.checkIns.moodsBetween(from, today);
       checkIns = moods.length;
       // Real finished exercises now that they are recorded (stage 1).
-      final sessions =
-          await AppRepositories.exercises.sessionsBetween(from, today);
+      final sessions = await AppRepositories.exercises.sessionsBetween(
+        from,
+        today,
+      );
       exercises = sessions.length;
     } catch (_) {
       // A device that cannot open its database should still show the empty
@@ -79,9 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(
-          saved ? 'Saved.' : "Couldn't save on this device.",
-        ),
+        content: Text(saved ? 'Saved.' : "Couldn't save on this device."),
       ),
     );
     if (saved) Navigator.of(context).pop();

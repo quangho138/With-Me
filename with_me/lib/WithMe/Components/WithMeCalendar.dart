@@ -9,18 +9,18 @@ enum DayMark { checkIn, exercise, feelingBetter, challenging }
 
 extension DayMarkInfo on DayMark {
   Color get color => switch (this) {
-        DayMark.checkIn => WithMeColors.mint,
-        DayMark.exercise => WithMeColors.peach,
-        DayMark.feelingBetter => WithMeColors.coral,
-        DayMark.challenging => WithMeColors.pink,
-      };
+    DayMark.checkIn => WithMeColors.mint,
+    DayMark.exercise => WithMeColors.peach,
+    DayMark.feelingBetter => WithMeColors.coral,
+    DayMark.challenging => WithMeColors.pink,
+  };
 
   String get label => switch (this) {
-        DayMark.checkIn => 'Check-in',
-        DayMark.exercise => 'Exercise',
-        DayMark.feelingBetter => 'Feeling better',
-        DayMark.challenging => 'Challenging day',
-      };
+    DayMark.checkIn => 'Check-in',
+    DayMark.exercise => 'Exercise',
+    DayMark.feelingBetter => 'Feeling better',
+    DayMark.challenging => 'Challenging day',
+  };
 
   /// The marks that read as dark enough to need a white numeral.
   bool get needsLightInk =>
@@ -54,8 +54,18 @@ class MonthCalendar extends StatelessWidget {
 
   static const List<String> _weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   static const List<String> _months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   @override
@@ -144,11 +154,13 @@ class MonthCalendar extends StatelessWidget {
         : (dayNumber < 1 ? daysInPrev + dayNumber : dayNumber - daysInMonth);
 
     final mark = inMonth ? marks[dayNumber] : null;
-    final isToday = inMonth &&
+    final isToday =
+        inMonth &&
         today.year == month.year &&
         today.month == month.month &&
         today.day == dayNumber;
-    final isSelected = inMonth &&
+    final isSelected =
+        inMonth &&
         selected != null &&
         selected!.year == month.year &&
         selected!.month == month.month &&
@@ -157,8 +169,8 @@ class MonthCalendar extends StatelessWidget {
     final ink = !inMonth
         ? WithMeColors.inkFaint.withValues(alpha: 0.7)
         : mark != null && mark.needsLightInk
-            ? Colors.white
-            : ScenicColors.ink;
+        ? Colors.white
+        : ScenicColors.ink;
 
     return GestureDetector(
       onTap: inMonth && onSelect != null
@@ -174,13 +186,14 @@ class MonthCalendar extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: mark?.color ??
+              color:
+                  mark?.color ??
                   (isSelected ? ScenicColors.tileSelected : null),
               border: isToday
                   ? Border.all(color: ScenicColors.pillBottom, width: 2.6)
                   : isSelected
-                      ? Border.all(color: ScenicColors.ink, width: 1.6)
-                      : null,
+                  ? Border.all(color: ScenicColors.ink, width: 1.6)
+                  : null,
             ),
             child: Text(
               '$shown',
@@ -206,14 +219,14 @@ class _Chevron extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.opaque,
-        child: SizedBox(
-          width: 40,
-          height: 40,
-          child: Icon(icon, size: 28, color: ScenicColors.pillBottom),
-        ),
-      );
+    onTap: onTap,
+    behavior: HitTestBehavior.opaque,
+    child: SizedBox(
+      width: 40,
+      height: 40,
+      child: Icon(icon, size: 28, color: ScenicColors.pillBottom),
+    ),
+  );
 }
 
 /// The four-row key under the calendar.

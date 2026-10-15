@@ -26,14 +26,14 @@ void main() {
   const quick = PasswordHasher(rounds: 50);
 
   Future<Database> freshDb() => databaseFactoryFfi.openDatabase(
-        inMemoryDatabasePath,
-        options: OpenDatabaseOptions(
-          version: DatabaseHelper.schemaVersion,
-          onCreate: DatabaseHelper.createSchema,
-          onUpgrade: DatabaseHelper.upgradeSchema,
-          singleInstance: false,
-        ),
-      );
+    inMemoryDatabasePath,
+    options: OpenDatabaseOptions(
+      version: DatabaseHelper.schemaVersion,
+      onCreate: DatabaseHelper.createSchema,
+      onUpgrade: DatabaseHelper.upgradeSchema,
+      singleInstance: false,
+    ),
+  );
 
   group('password scrambling', () {
     test('the right password matches, a wrong one does not', () {
@@ -60,7 +60,8 @@ void main() {
 
     test('matches the published PBKDF2-HMAC-SHA256 test value', () {
       // RFC 7914, section 11: password "passwd", salt "salt", 1 round.
-      const expected = '55ac046e56e3089fec1691c22544b605'
+      const expected =
+          '55ac046e56e3089fec1691c22544b605'
           'f94185216dde0465e68b9d57c20dacbc';
       final salt = base64Encode(utf8.encode('salt'));
       final stored = ['pbkdf2-sha256', '1', salt, _b64(expected)].join(r'$');
@@ -78,20 +79,32 @@ void main() {
     tearDown(() async => db.close());
 
     test('the password is stored scrambled, never as typed', () async {
-      await users.signUp(email: 'a@example.com', password: 'synthetic-pass', name: 'A');
+      await users.signUp(
+        email: 'a@example.com',
+        password: 'synthetic-pass',
+        name: 'A',
+      );
       final row = (await db.query('users')).single;
       expect(row.containsKey('password'), isFalse);
-      expect((row['password_hash'] as String).contains('synthetic-pass'), isFalse);
+      expect(
+        (row['password_hash'] as String).contains('synthetic-pass'),
+        isFalse,
+      );
     });
 
     test('sign up signs in; log out forgets it; data stays', () async {
       expect(await users.session(), SessionKind.none);
 
-      await users.signUp(email: 'Maya@Example.com ', password: 'pw-1', name: 'Maya');
+      await users.signUp(
+        email: 'Maya@Example.com ',
+        password: 'pw-1',
+        name: 'Maya',
+      );
       expect(await users.session(), SessionKind.account);
 
-      await LocalCheckInRepository(open: () async => db)
-          .save(CheckInEntry(day: DateTime(2026, 9, 28), mood: 'Good'));
+      await LocalCheckInRepository(
+        open: () async => db,
+      ).save(CheckInEntry(day: DateTime(2026, 9, 28), mood: 'Good'));
 
       await users.signOut();
       expect(await users.session(), SessionKind.none);
@@ -114,18 +127,21 @@ void main() {
       expect(await users.displayName(), 'A');
     });
 
-    test('no account: start without one, then sign up and keep the data',
-        () async {
-      expect(await users.startAsGuest(), isTrue);
-      expect(await users.session(), SessionKind.guest);
+    test(
+      'no account: start without one, then sign up and keep the data',
+      () async {
+        expect(await users.startAsGuest(), isTrue);
+        expect(await users.session(), SessionKind.guest);
 
-      await LocalCheckInRepository(open: () async => db)
-          .save(CheckInEntry(day: DateTime(2026, 9, 27), mood: 'Okay'));
+        await LocalCheckInRepository(
+          open: () async => db,
+        ).save(CheckInEntry(day: DateTime(2026, 9, 27), mood: 'Okay'));
 
-      await users.signUp(email: 'g@example.com', password: 'x', name: 'G');
-      expect(await users.session(), SessionKind.account);
-      expect((await db.query('moods')).single['mood'], 'Okay');
-    });
+        await users.signUp(email: 'g@example.com', password: 'x', name: 'G');
+        expect(await users.session(), SessionKind.account);
+        expect((await db.query('moods')).single['mood'], 'Okay');
+      },
+    );
 
     test('with an account, "start without one" is refused', () async {
       await users.signUp(email: 'a@example.com', password: 'x', name: 'A');
@@ -142,36 +158,47 @@ void main() {
     });
   });
 
-  test('upgrading version 4 clears old logins and keeps everything else',
-      () async {
-    // A version 4 database as the app made it: plain-text passwords.
-    final old = await databaseFactoryFfi.openDatabase(
-      inMemoryDatabasePath,
-      options: OpenDatabaseOptions(
-        version: 4,
-        singleInstance: false,
-        onCreate: (db, _) async {
-          await DatabaseHelper.createSchema(db, 4);
-          await db.execute('DROP TABLE users');
-          await db.execute('DROP TABLE session');
-          await db.execute('CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL)');
-        },
-      ),
-    );
-    await old.insert('users', {'email': 'old@example.com', 'password': 'plain'});
-    await old.insert('user', {'name': 'Old'});
-    await old.insert('moods', {'date': '2026-09-20', 'mood': 'Okay', 'createdAt': 'x'});
+  test(
+    'upgrading version 4 clears old logins and keeps everything else',
+    () async {
+      // A version 4 database as the app made it: plain-text passwords.
+      final old = await databaseFactoryFfi.openDatabase(
+        inMemoryDatabasePath,
+        options: OpenDatabaseOptions(
+          version: 4,
+          singleInstance: false,
+          onCreate: (db, _) async {
+            await DatabaseHelper.createSchema(db, 4);
+            await db.execute('DROP TABLE users');
+            await db.execute('DROP TABLE session');
+            await db.execute(
+              'CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL)',
+            );
+          },
+        ),
+      );
+      await old.insert('users', {
+        'email': 'old@example.com',
+        'password': 'plain',
+      });
+      await old.insert('user', {'name': 'Old'});
+      await old.insert('moods', {
+        'date': '2026-09-20',
+        'mood': 'Okay',
+        'createdAt': 'x',
+      });
 
-    await DatabaseHelper.upgradeSchema(old, 4, DatabaseHelper.schemaVersion);
+      await DatabaseHelper.upgradeSchema(old, 4, DatabaseHelper.schemaVersion);
 
-    expect(await old.query('users'), isEmpty);
-    expect((await old.query('moods')).length, 1);
-    expect((await old.query('user')).single['name'], 'Old');
-    final users = LocalUserRepository(open: () async => old, hasher: quick);
-    expect(await users.session(), SessionKind.none);
-    expect(await users.startAsGuest(), isTrue, reason: 'no account any more');
-    await old.close();
-  });
+      expect(await old.query('users'), isEmpty);
+      expect((await old.query('moods')).length, 1);
+      expect((await old.query('user')).single['name'], 'Old');
+      final users = LocalUserRepository(open: () async => old, hasher: quick);
+      expect(await users.session(), SessionKind.none);
+      expect(await users.startAsGuest(), isTrue, reason: 'no account any more');
+      await old.close();
+    },
+  );
 }
 
 /// Hex to base64, for the published test value above.

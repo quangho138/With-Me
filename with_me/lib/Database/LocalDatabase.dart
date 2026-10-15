@@ -26,9 +26,11 @@ class DatabaseHelper {
   /// Version 4 saves the rest of the daily check-in (check_in_details),
   /// records finished exercises (exercise_sessions), and allows one stressor
   /// row per day. Version 5 stores scrambled passwords instead of plain text
-  /// and remembers who is signed in (session). Bump this and extend
-  /// _onUpgrade for any later change.
-  static const int schemaVersion = 5;
+  /// and remembers who is signed in (session). Version 6 adds the check-in's
+  /// perceived-control answer and the written "Other" answers. Version 7
+  /// adds app_settings, for choices kept on this device such as Read aloud.
+  /// Bump this and extend _onUpgrade for any later change.
+  static const int schemaVersion = 7;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -44,8 +46,9 @@ class DatabaseHelper {
       // Read straight off `db`: going through getUserName() would await
       // `database`, which is this future, and never complete.
       final result = await db.query('user', limit: 1);
-      userNameNotifier.value =
-          result.isNotEmpty ? result.first['name'] as String? : null;
+      userNameNotifier.value = result.isNotEmpty
+          ? result.first['name'] as String?
+          : null;
       return db;
     } catch (_) {
       // Let the next caller try again instead of handing out a failure.
@@ -131,6 +134,8 @@ class DatabaseHelper {
 
     await _createVersion4(db);
     await _createVersion5(db);
+    await _createVersion6(db);
+    await _createVersion7(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -214,6 +219,53 @@ class DatabaseHelper {
     if (oldVersion < 5) {
       await _createVersion5(db);
     }
+    if (oldVersion < 6) {
+      await _createVersion6(db);
+    }
+    if (oldVersion < 7) {
+      await _createVersion7(db);
+    }
+  }
+
+  /// Everything version 7 adds. Shared by _onCreate and _onUpgrade.
+  ///
+  /// Settings for this device, one row per setting. A setting that was never
+  /// changed has no row, so its default applies.
+  static Future<void> _createVersion7(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS app_settings(
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL
+      )
+    ''');
+  }
+
+  /// Everything version 6 adds. Shared by _onCreate and _onUpgrade.
+  ///
+  /// The written "Other" answers get their own columns rather than joining
+  /// the comma-separated stressors.detail list, where a comma in the text
+  /// would split one answer into two.
+  static Future<void> _createVersion6(Database db) async {
+    // ALTER TABLE has no IF NOT EXISTS, so check first: safe to run twice.
+    Future<void> add(String table, String column, String type) async {
+      final columns = await db.rawQuery('PRAGMA table_info($table)');
+      if (columns.any((c) => c['name'] == column)) return;
+      await db.execute('ALTER TABLE $table ADD COLUMN $column $type');
+    }
+
+    // "How in control do you feel today?", 1-5. Kept apart from
+    // control_gauge, which holds the stress rating turned around.
+    await add('check_in_details', 'perceived_control', 'INTEGER');
+    // Other text on the stress-source page, on the chosen area's stressor
+    // page, and on the chosen signs page; and which signs page that was.
+    for (final column in [
+      'area_other',
+      'stressor_other',
+      'sign_dimension',
+      'sign_other',
+    ]) {
+      await add('stressors', column, 'TEXT');
+    }
   }
 
   /// Everything version 5 changes. Shared by _onCreate and _onUpgrade.
@@ -276,19 +328,15 @@ class DatabaseHelper {
     required DateTime date,
   }) async {
     final db = await database;
-    return await db.insert(
-      'reflections',
-      {
-        'who': who,
-        'what': what,
-        'when_question': when,
-        'where_question': where,
-        'why_question': why,
-        'date': date.toIso8601String(),
-        'createdAt': DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.insert('reflections', {
+      'who': who,
+      'what': what,
+      'when_question': when,
+      'where_question': where,
+      'why_question': why,
+      'date': date.toIso8601String(),
+      'createdAt': DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int> clearReflections() async {
@@ -317,6 +365,8 @@ class DatabaseHelper {
     'check_in_details',
     'exercise_sessions',
     'session',
+    // Read aloud and any later device settings go back to their defaults.
+    'app_settings',
   ];
 
   /// Empties every user data table in one transaction: all or nothing.
@@ -360,15 +410,11 @@ class DatabaseHelper {
   // Mood Selection
   Future<int> insertMood(DateTime date, String mood) async {
     final db = await database;
-    return await db.insert(
-      'moods',
-      {
-        'date': date.toIso8601String().substring(0, 10),
-        'mood': mood,
-        'createdAt': DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.insert('moods', {
+      'date': date.toIso8601String().substring(0, 10),
+      'mood': mood,
+      'createdAt': DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Get mood for a specific date
@@ -398,11 +444,10 @@ class DatabaseHelper {
   Future<int> insertControlGauge(DateTime date, int level) async {
     final db = await database;
     String isoDate = date.toIso8601String().substring(0, 10);
-    return await db.insert(
-      'control_gauge',
-      {'date': isoDate, 'level': level},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.insert('control_gauge', {
+      'date': isoDate,
+      'level': level,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int?> getControlGauge(DateTime date) async {
@@ -434,51 +479,51 @@ class DatabaseHelper {
   // Stressor activity
 
   // Insert or update stressor
-  Future<void> insertStressor(DateTime date, String category, {String? detail}) async {
+  Future<void> insertStressor(
+    DateTime date,
+    String category, {
+    String? detail,
+  }) async {
     final db = await database;
-    await db.insert(
-      'stressors',
-      {
-        'date': date.toIso8601String().substring(0,10),
-        'category': category,
-        'detail': detail,
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert('stressors', {
+      'date': date.toIso8601String().substring(0, 10),
+      'category': category,
+      'detail': detail,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Get stressor by date
-    Future<Map<String, dynamic>?> getStressor(DateTime date) async {
-      final db = await database;
-      final result = await db.query(
-        'stressors',
-        where: 'date LIKE ?',
-        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
-        limit: 1,
-      );
-      return result.isNotEmpty ? result.first : null;
-    }
+  Future<Map<String, dynamic>?> getStressor(DateTime date) async {
+    final db = await database;
+    final result = await db.query(
+      'stressors',
+      where: 'date LIKE ?',
+      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
+      limit: 1,
+    );
+    return result.isNotEmpty ? result.first : null;
+  }
 
   // Update detail for stressor
-    Future<void> updateStressorDetail(DateTime date, String detail) async {
-      final db = await database;
-      await db.update(
-        'stressors',
-        {'detail': detail},
-        where: 'date LIKE ?',
-        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
-      );
-    }
+  Future<void> updateStressorDetail(DateTime date, String detail) async {
+    final db = await database;
+    await db.update(
+      'stressors',
+      {'detail': detail},
+      where: 'date LIKE ?',
+      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
+    );
+  }
 
   // Delete stressor entry
-    Future<int> deleteStressor(DateTime date) async {
-      final db = await database;
-      return await db.delete(
-        'stressors',
-        where: 'date LIKE ?',
-        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
-      );
-    }
+  Future<int> deleteStressor(DateTime date) async {
+    final db = await database;
+    return await db.delete(
+      'stressors',
+      where: 'date LIKE ?',
+      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
+    );
+  }
 
   // --- Range reads ---------------------------------------------------------
   // The per-date getters above answer one day at a time. The calendar,
@@ -490,7 +535,10 @@ class DatabaseHelper {
   static String _key(DateTime date) => date.toIso8601String().substring(0, 10);
 
   /// Moods in [from]..[to] inclusive, keyed by YYYY-MM-DD.
-  Future<Map<String, String>> getMoodsBetween(DateTime from, DateTime to) async {
+  Future<Map<String, String>> getMoodsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
     final db = await database;
     final rows = await db.query(
       'moods',
@@ -498,8 +546,7 @@ class DatabaseHelper {
       whereArgs: [_key(from), _key(to)],
     );
     return {
-      for (final row in rows)
-        row['date'] as String: row['mood'] as String,
+      for (final row in rows) row['date'] as String: row['mood'] as String,
     };
   }
 
@@ -514,10 +561,7 @@ class DatabaseHelper {
       where: 'date >= ? AND date <= ?',
       whereArgs: [_key(from), _key(to)],
     );
-    return {
-      for (final row in rows)
-        row['date'] as String: row['level'] as int,
-    };
+    return {for (final row in rows) row['date'] as String: row['level'] as int};
   }
 
   /// Stressor rows in [from]..[to] inclusive, keyed by YYYY-MM-DD.
@@ -532,8 +576,7 @@ class DatabaseHelper {
       whereArgs: [_key(from), _key(to)],
     );
     return {
-      for (final row in rows)
-        (row['date'] as String).substring(0, 10): row,
+      for (final row in rows) (row['date'] as String).substring(0, 10): row,
     };
   }
 

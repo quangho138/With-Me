@@ -7,8 +7,8 @@ import 'BreathingScreen.dart';
 
 /// `image30.png` — "Before we start".
 ///
-/// A three-up sound picker and a five-up cycle picker, with the running total
-/// underneath - in the V2 look of the check-in: sage tiles for the sounds,
+/// A two-up sound picker (three rows) and a 3-over-2 cycle picker, with the
+/// running total underneath - in the V2 look of the check-in: sage tiles for the sounds,
 /// the check-in's number circles for the cycles.
 class BeforeWeStartScreen extends StatefulWidget {
   const BeforeWeStartScreen({
@@ -28,7 +28,12 @@ class BeforeWeStartScreen extends StatefulWidget {
 
 class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   static const List<String> _sounds = [
-    'Waves', 'Birds', 'Fire', 'Forest', 'Rain', 'None',
+    'Waves',
+    'Birds',
+    'Fire',
+    'Forest',
+    'Rain',
+    'None',
   ];
   static const List<int> _cycleChoices = [1, 2, 3, 5, 10];
 
@@ -71,19 +76,19 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
           children: [
             const ScenicHeading('Sound choice'),
             const SizedBox(height: 12),
-            for (var row = 0; row < 2; row++) ...[
+            for (var row = 0; row < 3; row++) ...[
               if (row > 0) const SizedBox(height: 10),
               Row(
                 children: [
-                  for (var col = 0; col < 3; col++) ...[
+                  for (var col = 0; col < 2; col++) ...[
                     if (col > 0) const SizedBox(width: 10),
                     Expanded(
                       child: _SoundTile(
-                        label: _sounds[row * 3 + col],
-                        icon: _soundIcons[_sounds[row * 3 + col]]!,
-                        selected: _sound == _sounds[row * 3 + col],
+                        label: _sounds[row * 2 + col],
+                        icon: _soundIcons[_sounds[row * 2 + col]]!,
+                        selected: _sound == _sounds[row * 2 + col],
                         onTap: () =>
-                            setState(() => _sound = _sounds[row * 3 + col]),
+                            setState(() => _sound = _sounds[row * 2 + col]),
                       ),
                     ),
                   ],
@@ -131,22 +136,22 @@ class _SoundTile extends StatelessWidget {
       label: label,
       selected: selected,
       onTap: onTap,
-      height: 74,
+      height: 84,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,
-            size: 26,
+            size: 34,
             color: selected ? ScenicColors.pillBottom : ScenicColors.ink,
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 6),
           ChunkyText(
             label,
             weight: 0.5,
             style: const TextStyle(
               fontFamily: WithMeText.ui,
-              fontSize: 16,
+              fontSize: 19,
               fontWeight: FontWeight.w700,
               color: ScenicColors.ink,
             ),

@@ -35,22 +35,26 @@ class _LogsScreenState extends State<LogsScreen> {
   @override
   void initState() {
     super.initState();
-    AppRepositories.reflections.all().catchError((_) {
-      return const <Map<String, dynamic>>[];
-    }).then((rows) {
-      // Newest first, as the design lists them: Today, Yesterday, Sept 10.
-      final sorted = [...rows]..sort((a, b) {
-          final x = a['date'] as String? ?? '';
-          final y = b['date'] as String? ?? '';
-          return y.compareTo(x);
+    AppRepositories.reflections
+        .all()
+        .catchError((_) {
+          return const <Map<String, dynamic>>[];
+        })
+        .then((rows) {
+          // Newest first, as the design lists them: Today, Yesterday, Sept 10.
+          final sorted = [...rows]
+            ..sort((a, b) {
+              final x = a['date'] as String? ?? '';
+              final y = b['date'] as String? ?? '';
+              return y.compareTo(x);
+            });
+          if (mounted) {
+            setState(() {
+              _rows = sorted;
+              _loaded = true;
+            });
+          }
         });
-      if (mounted) {
-        setState(() {
-          _rows = sorted;
-          _loaded = true;
-        });
-      }
-    });
   }
 
   @override
@@ -99,16 +103,17 @@ class _LogCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final date = DateTime.tryParse(row['date'] as String? ?? '');
     // The design shows one short line per entry, not the whole reflection.
-    final body = [
-      for (final key in [
-        'what',
-        'why_question',
-        'who',
-        'where_question',
-        'when_question',
-      ])
-        row[key] as String?,
-    ].whereType<String>().firstWhere(
+    final body =
+        [
+          for (final key in [
+            'what',
+            'why_question',
+            'who',
+            'where_question',
+            'when_question',
+          ])
+            row[key] as String?,
+        ].whereType<String>().firstWhere(
           (value) => value.trim().isNotEmpty,
           orElse: () => '',
         );
@@ -117,8 +122,8 @@ class _LogCard extends StatelessWidget {
       onTap: date == null
           ? null
           : () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => DayDetailScreen(date: date)),
-              ),
+              MaterialPageRoute(builder: (_) => DayDetailScreen(date: date)),
+            ),
       behavior: HitTestBehavior.opaque,
       child: WithMeCard(
         radius: WithMeSpace.radiusMd,
@@ -162,9 +167,11 @@ class _LogCard extends StatelessWidget {
   static String _when(DateTime? date) {
     if (date == null) return 'Earlier';
     final now = DateTime.now();
-    final days = DateTime(now.year, now.month, now.day)
-        .difference(DateTime(date.year, date.month, date.day))
-        .inDays;
+    final days = DateTime(
+      now.year,
+      now.month,
+      now.day,
+    ).difference(DateTime(date.year, date.month, date.day)).inDays;
     final time =
         '${date.hour % 12 == 0 ? 12 : date.hour % 12}:'
         '${date.minute.toString().padLeft(2, '0')} '
@@ -177,7 +184,17 @@ class _LogCard extends StatelessWidget {
   }
 
   static const List<String> _months = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
 }

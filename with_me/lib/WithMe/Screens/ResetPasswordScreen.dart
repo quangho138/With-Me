@@ -63,7 +63,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 decoration: BoxDecoration(
                   color: ScenicColors.tileSelected,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: ScenicColors.pillBottom, width: 1.4),
+                  border: Border.all(
+                    color: ScenicColors.pillBottom,
+                    width: 1.4,
+                  ),
                 ),
                 child: const Text(
                   'Check your inbox — the link works for 30 minutes.',

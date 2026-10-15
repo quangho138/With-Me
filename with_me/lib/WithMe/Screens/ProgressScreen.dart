@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
+import '../Components/ScenicKit.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeControls.dart';
@@ -72,8 +73,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
     final step = days > 60 ? days ~/ 30 : 1;
 
     for (var back = days - 1; back >= 0; back -= step) {
-      final key =
-          dayKey(today.subtract(Duration(days: back)));
+      final key = dayKey(today.subtract(Duration(days: back)));
       final gauge = gauges[key];
       final m = moods[key];
       if (gauge != null) stress.add((6 - gauge).toDouble());
@@ -91,15 +91,21 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
-  /// The four check-in faces, plus the older five words.
-  static double _moodScore(String mood) => switch (mood.toLowerCase()) {
-        'not good' || 'rough' => 1,
-        'low' => 2,
-        'okay' => 3,
-        'good' || 'pretty good' => 4,
-        'great' => 5,
-        _ => 3,
-      };
+  /// The five check-in feelings, then the older words.
+  static double _moodScore(String mood) {
+    final face = MoodFaceInfo.fromLabel(mood);
+    if (face != null) return face.score.toDouble();
+    return _oldMoodScore(mood);
+  }
+
+  static double _oldMoodScore(String mood) => switch (mood.toLowerCase()) {
+    'not good' || 'rough' => 1,
+    'low' => 2,
+    'okay' => 3,
+    'good' || 'pretty good' => 4,
+    'great' => 5,
+    _ => 3,
+  };
 
   void _navigate(int index) {
     if (index == 2) return;
@@ -198,8 +204,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   // The mockup sets the intention itself in bold teal.
                   : RichText(
                       text: TextSpan(
-                        style: WithMeText.body
-                            .copyWith(color: WithMeColors.ink),
+                        style: WithMeText.body.copyWith(
+                          color: WithMeColors.ink,
+                        ),
                         children: [
                           const TextSpan(text: "Today's intention: "),
                           TextSpan(
@@ -229,29 +236,28 @@ class _MiniCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => WithMeCard(
-        radius: 18,
-        // The pair of chart cards measures 136 tall on image37.
-        height: 136,
-        padding: const EdgeInsets.all(WithMeSpace.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: WithMeText.caption.copyWith(color: WithMeColors.ink),
-            ),
-            const SizedBox(height: WithMeSpace.sm),
-            Expanded(child: child),
-          ],
+    radius: 18,
+    // The pair of chart cards measures 136 tall on image37.
+    height: 136,
+    padding: const EdgeInsets.all(WithMeSpace.md),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: WithMeText.caption.copyWith(color: WithMeColors.ink),
         ),
-      );
+        const SizedBox(height: WithMeSpace.sm),
+        Expanded(child: child),
+      ],
+    ),
+  );
 }
 
 class _NotEnough extends StatelessWidget {
   const _NotEnough();
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: Text('Not enough data', style: WithMeText.caption),
-      );
+  Widget build(BuildContext context) =>
+      Center(child: Text('Not enough data', style: WithMeText.caption));
 }
