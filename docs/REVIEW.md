@@ -15,13 +15,15 @@ asks whether the change is the right one and an efficient one.
 - Run `flutter test`.
 - Start from the latest develop: `git checkout develop`, `git pull --ff-only`,
   then make your branch.
+- New sound or video? Shrink it first with `tool/compress_media.sh` (in
+  `with_me/`, needs ffmpeg). Never add WAV files or videos with sound tracks.
 
 ## Questions for every review
 
 1. **Need**: which PO need does it serve? Is anything built that nobody asked for?
 2. **Layers**: screens show, repositories handle data, the database stores it.
 3. **Size**: how many KB or MB does it add? Media should be compressed
-   (WebP images, AAC or Opus audio, short low-bitrate video) and only as
+   (WebP images, AAC .m4a audio, short low-bitrate video) and only as
    large as the screen shows it.
 4. **Smoothness**: run `flutter run --profile` on the emulator, turn on the
    performance overlay, and use the screen. Red bars mean dropped frames.

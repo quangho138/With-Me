@@ -15,9 +15,9 @@ The existing Flutter app is preserved. The changed product screen is BreathingSc
 
 ## Audio
 
-The five nature sounds in assets/audio are Mixkit free sound effects, bundled as WAV files. Sources for each are listed in tool/media-source/README.md. Mixkit's free license needs no attribution but does not allow sharing the raw files on their own, so the raw downloads are not committed. sigh-breath.wav is built from a CC0 recording (see assets/audio/SIGH-CREDITS.md) by tool/make_sigh_audio.py. Playback uses audioplayers.
+The five nature sounds in assets/audio are Mixkit free sound effects, bundled as AAC .m4a files (128 kbps). Sources for each are listed in tool/media-source/README.md. Mixkit's free license needs no attribution but does not allow sharing the raw files on their own, so the raw downloads are not committed. sigh-breath.wav is built from a CC0 recording (see assets/audio/SIGH-CREDITS.md) by tool/make_sigh_audio.py. Playback uses audioplayers.
 
-Known issue: the WAV files are large (birds.wav is about 55 MB). Converting them to AAC or OGG would shrink the app a lot.
+Size: the sounds used to be WAV files (about 73 MB, birds.wav alone 55 MB). In October 2026 they were converted to .m4a (about 5 MB) and the videos re-encoded without sound tracks (29 MB to 20 MB) with tool/compress_media.sh. sigh-breath.wav stays WAV: it is small (1.2 MB) and its timing must match the breathing clock exactly. AAC rather than Opus because iPhones and Safari do not play Opus in .ogg files.
 
 ## Run
 

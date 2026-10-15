@@ -22,7 +22,7 @@ class AmbientAudio {
       final player = _player ??= AudioPlayer();
       if (_loaded != sound) {
         await player.setReleaseMode(ReleaseMode.loop);
-        await player.setSource(AssetSource('audio/${sound.toLowerCase()}.wav'));
+        await player.setSource(AssetSource('audio/${sound.toLowerCase()}.m4a'));
         _loaded = sound;
       }
       if (_disposed || revision != _revision) return;
