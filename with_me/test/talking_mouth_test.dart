@@ -163,7 +163,8 @@ void main() {
     test('every recording has a timeline that opens and closes', () {
       final clips = Directory('assets/audio/checkin')
           .listSync()
-          .map((f) => f.path.split('/').last)
+          // Both separators: Windows lists files with \ in their paths.
+          .map((f) => f.path.split(RegExp(r'[\\/]')).last)
           .where((n) => n.endsWith('.mp3'));
       expect(clips, hasLength(16));
       for (final name in [
