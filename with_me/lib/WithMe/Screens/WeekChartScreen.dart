@@ -12,6 +12,7 @@ import '../Components/WithMeCharts.dart' show Slice;
 import '../Components/WithMeControls.dart' show ReadinessGauge;
 import '../Data/CheckInSteps.dart' show SignDimension;
 import '../Data/DashboardStats.dart';
+import '../Data/Today.dart';
 import '../Theme/WithMeTheme.dart';
 
 /// The Monday that starts [d]'s week.
@@ -912,7 +913,7 @@ class WeekChartScreen extends StatefulWidget {
 class _WeekChartScreenState extends State<WeekChartScreen> {
   final PageController _pages = PageController();
   List<DashboardDay>? _days;
-  DateTime _today = DateTime.now();
+  DateTime _today = Today.now();
   int _week = 0;
   int _loads = 0;
 
@@ -932,7 +933,7 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
 
   Future<void> _load() async {
     final load = ++_loads;
-    final now = DateTime.now();
+    final now = Today.now();
     final today = DateTime(now.year, now.month, now.day);
     final days = await loadDashboardDays(DateTime(2000), today);
     if (!mounted || load != _loads) return;

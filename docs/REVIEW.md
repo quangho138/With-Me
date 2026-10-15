@@ -7,6 +7,15 @@ shows a green or red mark. Red means do not merge.
 Passing tests only proves nothing we already check broke. A review also
 asks whether the change is the right one and an efficient one.
 
+## Before you push
+
+- Run `dart format lib test` in `with_me/` (or turn on "Format on save" in
+  VS Code). The checks fail if a file is not formatted, so a PR only shows
+  real changes, never re-spacing.
+- Run `flutter test`.
+- Start from the latest develop: `git checkout develop`, `git pull --ff-only`,
+  then make your branch.
+
 ## Questions for every review
 
 1. **Need**: which PO need does it serve? Is anything built that nobody asked for?

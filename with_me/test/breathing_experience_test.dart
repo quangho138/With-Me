@@ -80,9 +80,9 @@ void main() {
   });
   testWidgets('sound and cycle selections reach player', (t) async {
     await mount(t, const BeforeWeStartScreen(pattern: BreathPattern.box));
-    await t.tap(find.text('Birds').first);
-    await t.tap(find.text('2').first);
-    await t.tap(find.text('Next').first);
+    await t.tap(find.text('Birds').first, warnIfMissed: false);
+    await t.tap(find.text('2').first, warnIfMissed: false);
+    await t.tap(find.text('Next').first, warnIfMissed: false);
     await t.pump();
     await t.pump(const Duration(seconds: 1));
     final screen = t.widget<BreathingScreen>(find.byType(BreathingScreen));
@@ -133,7 +133,7 @@ void main() {
     await t.tap(find.text('Start breathing'));
     await t.pump();
     await t.pump(const Duration(seconds: 5));
-    await t.tap(find.text('4 · 7 · 8').first);
+    await t.tap(find.text('4 · 7 · 8').first, warnIfMissed: false);
     await t.pump();
     expect(find.text('Start breathing'), findsOneWidget);
     expect(find.text('Inhale 4 seconds'), findsOneWidget);

@@ -1,5 +1,6 @@
 import 'package:with_me/Database/DemoAccount.dart';
 import 'package:with_me/Repositories/check_in_repository.dart';
+import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Components/WithMeControls.dart'
     show ReadinessGauge;
 
@@ -16,7 +17,7 @@ class ExampleCheckIns extends LocalCheckInRepository {
   final Map<String, String> addedMoods = {};
 
   static DateTime dayOf(DemoDay d) {
-    final now = DateTime.now();
+    final now = Today.now();
     return DateTime(now.year, now.month, now.day - d.daysAgo);
   }
 
