@@ -45,5 +45,21 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- The deep link for With Me's emails and Google sign-in.
+	     Must match SupabaseConfig.redirectUrl. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.withme.companion</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Supabase reads the link itself, not Flutter's page router. -->
+	<key>FlutterDeepLinkingEnabled</key>
+	<false/>
 </dict>
 </plist>

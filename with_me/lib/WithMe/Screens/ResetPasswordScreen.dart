@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/user_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -20,6 +22,34 @@ class ResetPasswordScreen extends StatefulWidget {
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final _email = TextEditingController();
   bool _sent = false;
+  bool _busy = false;
+
+  /// Backend (stage 3): sends the real reset email. Its link opens the app
+  /// on "Set a new password".
+  Future<void> _send() async {
+    setState(() => _busy = true);
+    try {
+      await AppRepositories.users.sendPasswordReset(_email.text);
+    } on AccountException catch (e) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.problem.message)));
+      return;
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AccountProblem.unknown.message)),
+      );
+      return;
+    }
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _sent = true;
+    });
+  }
 
   @override
   void dispose() {
@@ -35,7 +65,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       action: ScenicPill(
         label: 'Send reset link',
         height: 58,
-        onPressed: () => setState(() => _sent = true),
+        onPressed: _busy ? null : _send,
       ),
       child: ScenicPanel(
         child: Column(
@@ -66,7 +96,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   border: Border.all(color: ScenicColors.pillBottom, width: 1.4),
                 ),
                 child: const Text(
-                  'Check your inbox — the link works for 30 minutes.',
+                  'If that email has an account, a reset link is on its way. '
+                  'Open it on this phone.',
                   textAlign: TextAlign.center,
                   style: kScenicBody,
                 ),

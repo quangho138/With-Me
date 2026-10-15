@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 /// Where the app's online accounts live (Supabase).
 ///
 /// Both values are safe to keep in the code and in the repo:
@@ -9,6 +11,14 @@
 /// Never put the secret key (sb_secret_...) or the database password here.
 class SupabaseConfig {
   SupabaseConfig._();
+
+  /// Where links in With Me's emails (confirm, reset password) and the
+  /// return from Google sign-in send people: the app itself (the deep link
+  /// set up in AndroidManifest.xml and Info.plist). In the browser build it
+  /// is the page's own address. Each must be listed under Authentication,
+  /// URL Configuration, Redirect URLs in the Supabase dashboard.
+  static const String appLink = 'com.withme.companion://login-callback';
+  static String get redirectUrl => kIsWeb ? Uri.base.origin : appLink;
 
   static const String url = 'https://mgahvsbczqcihatdrbyj.supabase.co';
   static const String publishableKey =

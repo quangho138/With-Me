@@ -26,6 +26,7 @@ import 'WithMe/Screens/MembershipScreen.dart';
 import 'WithMe/Screens/MenuScreen.dart';
 import 'WithMe/Screens/MonthlyCalendarScreen.dart';
 import 'WithMe/Screens/NotificationsScreen.dart';
+import 'WithMe/Screens/OutsideLogin.dart';
 import 'WithMe/Screens/ProfileScreen.dart';
 import 'WithMe/Screens/ProgressScreen.dart';
 import 'WithMe/Screens/RememberScreen.dart';
@@ -99,9 +100,19 @@ class WithMeApp extends StatelessWidget {
   /// account), so it opens on Home instead of the welcome screen.
   final bool signedIn;
 
+  /// Lets logins from email links and Google open the right screen.
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
+      // Finishes logins that arrive through the deep link (stage 3).
+      builder: (context, child) => OutsideLoginListener(
+        navigatorKey: navigatorKey,
+        child: child ?? const SizedBox.shrink(),
+      ),
       debugShowCheckedModeBanner: false,
       title: 'With Me',
       theme: buildWithMeTheme(),
