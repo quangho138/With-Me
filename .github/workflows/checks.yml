@@ -1,0 +1,44 @@
+# Runs on every pull request into develop (and every push to develop).
+# A red mark on the PR means: do not merge yet.
+name: Checks
+
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+
+jobs:
+  flutter:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: with_me
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Get packages
+        run: flutter pub get
+
+      # Code problems. Only real errors fail for now; the older warnings
+      # are listed in the log so they can be cleaned up over time.
+      - name: Analyze
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+
+      - name: Tests
+        run: flutter test
+
+      # Size check: the biggest files the app ships with. Not a pass/fail,
+      # a number to watch in every review (big media makes the app slow to
+      # download and start).
+      - name: Size of app files
+        run: |
+          echo "Total assets:"; du -sh assets
+          echo "Largest 15 files:"
+          find assets -type f -printf '%s\t%p\n' | sort -nr | head -15 \
+            | awk -F'\t' '{printf "%8.1f KB  %s\n", $1/1024, $2}'
