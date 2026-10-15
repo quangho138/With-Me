@@ -63,7 +63,7 @@ void main() {
       )) {
         expect(circle.constraints!.maxWidth, greaterThanOrEqualTo(64));
       }
-      await t.tap(find.text('4').first);
+      await t.tap(find.text('4').first, warnIfMissed: false);
       await t.pump();
       expect(picked, 4);
     });
@@ -94,8 +94,8 @@ void main() {
     expect(top.toSet().length, 1);
     expect(rectOf(t, '5').center.dy, greaterThan(top.first));
     expect(rectOf(t, '10').center.dy, rectOf(t, '5').center.dy);
-    await t.tap(find.text('Forest').first);
-    await t.tap(find.text('10').first);
+    await t.tap(find.text('Forest').first, warnIfMissed: false);
+    await t.tap(find.text('10').first, warnIfMissed: false);
     await t.pump();
     expect(find.textContaining('10 cycles'), findsOneWidget);
     expect(t.takeException(), isNull);

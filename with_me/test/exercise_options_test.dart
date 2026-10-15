@@ -26,9 +26,9 @@ void main() {
           home: const ExerciseChooseScreen(),
         ),
       );
-      await t.tap(find.text(entry.$1).first);
+      await t.tap(find.text(entry.$1).first, warnIfMissed: false);
       await t.pump();
-      await t.tap(find.text('Continue').first);
+      await t.tap(find.text('Continue').first, warnIfMissed: false);
       await t.pump();
       await t.pump(const Duration(milliseconds: 400));
       expect(
@@ -36,8 +36,8 @@ void main() {
         entry.$2,
       );
       if (entry.$1 == 'De-stress Your Day') {
-        await t.tap(find.text('None').first);
-        await t.tap(find.text('Next').first);
+        await t.tap(find.text('None').first, warnIfMissed: false);
+        await t.tap(find.text('Next').first, warnIfMissed: false);
         await t.pump();
         await t.pump(const Duration(milliseconds: 400));
         expect(find.text('4 · 7 · 8'), findsNothing);
@@ -69,9 +69,9 @@ void main() {
       // test screen, as on a short phone.
       await t.ensureVisible(find.text('Physiological Sigh').first);
       await t.pump();
-      await t.tap(find.text('Physiological Sigh').first);
+      await t.tap(find.text('Physiological Sigh').first, warnIfMissed: false);
       await t.pump();
-      await t.tap(find.text('Continue').first);
+      await t.tap(find.text('Continue').first, warnIfMissed: false);
       await t.pump();
       await t.pump(const Duration(milliseconds: 400));
       expect(find.byType(SighScreen), findsOneWidget);

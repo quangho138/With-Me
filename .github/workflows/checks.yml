@@ -25,6 +25,11 @@ jobs:
       - name: Get packages
         run: flutter pub get
 
+      # One code style for everyone, so diffs show real changes only.
+      # Fix locally with: dart format lib test
+      - name: Formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
       # Code problems. Only real errors fail for now; the older warnings
       # are listed in the log so they can be cleaned up over time.
       - name: Analyze

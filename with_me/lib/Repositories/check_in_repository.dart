@@ -180,7 +180,7 @@ class StrategyChoice {
 
 class LocalCheckInRepository implements CheckInRepository {
   LocalCheckInRepository({Future<Database> Function()? open})
-      : _open = open ?? (() => DatabaseHelper().database);
+    : _open = open ?? (() => DatabaseHelper().database);
 
   final Future<Database> Function() _open;
 
@@ -194,11 +194,11 @@ class LocalCheckInRepository implements CheckInRepository {
     await db.transaction((txn) async {
       await writeEntry(txn, entry, now);
       // Mark the day for sync to upload (only used with an account).
-      await txn.insert(
-        'sync_days',
-        {'date': day, 'changedAt': nowStamp(), 'pending': 1},
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      await txn.insert('sync_days', {
+        'date': day,
+        'changedAt': nowStamp(),
+        'pending': 1,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     });
   }
 
@@ -212,38 +212,33 @@ class LocalCheckInRepository implements CheckInRepository {
   ) async {
     final day = DatabaseHelper.dateKey(entry.day);
     if (entry.mood != null) {
-      await txn.insert(
-        'moods',
-        {'date': day, 'mood': entry.mood, 'createdAt': now},
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      await txn.insert('moods', {
+        'date': day,
+        'mood': entry.mood,
+        'createdAt': now,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     if (entry.stress != null) {
       // The gauge stores how in control the day felt, so the stress rating
       // is turned around: stress 1 is control 5.
-      await txn.insert(
-        'control_gauge',
-        {'date': day, 'level': 6 - entry.stress!},
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      await txn.insert('control_gauge', {
+        'date': day,
+        'level': 6 - entry.stress!,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     if (entry.area != null || entry.areaOther != null) {
       // One row per day (version 4), so this replaces an earlier save.
-      await txn.insert(
-        'stressors',
-        {
-          'date': day,
-          'category': entry.area ?? CheckInEntry.otherArea,
-          'detail': entry.stressorDetail.isEmpty
-              ? null
-              : entry.stressorDetail.join(', '),
-          'area_other': entry.areaOther,
-          'stressor_other': entry.stressorOther,
-          'sign_dimension': entry.signDimension,
-          'sign_other': entry.signOther,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      await txn.insert('stressors', {
+        'date': day,
+        'category': entry.area ?? CheckInEntry.otherArea,
+        'detail': entry.stressorDetail.isEmpty
+            ? null
+            : entry.stressorDetail.join(', '),
+        'area_other': entry.areaOther,
+        'stressor_other': entry.stressorOther,
+        'sign_dimension': entry.signDimension,
+        'sign_other': entry.signOther,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
 
     final details = <String, Object?>{
@@ -352,10 +347,7 @@ class LocalCheckInRepository implements CheckInRepository {
   }
 
   @override
-  Future<Map<String, String>> actionsBetween(
-    DateTime from,
-    DateTime to,
-  ) async {
+  Future<Map<String, String>> actionsBetween(DateTime from, DateTime to) async {
     final rows = await _between('check_in_details', from, to);
     return {
       for (final r in rows)
@@ -393,7 +385,8 @@ class LocalCheckInRepository implements CheckInRepository {
       (await _on('control_gauge', day))?['level'] as int?;
 
   @override
-  Future<Map<String, dynamic>?> stressorOn(DateTime day) => _on('stressors', day);
+  Future<Map<String, dynamic>?> stressorOn(DateTime day) =>
+      _on('stressors', day);
 
   /// All rows of a daily table from one day to another, both included.
   Future<List<Map<String, dynamic>>> _between(

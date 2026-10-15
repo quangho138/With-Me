@@ -46,16 +46,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
     await AppRepositories.sync.syncNow();
     try {
       final json = await AppRepositories.export.exportJson();
-      await Share.shareXFiles(
-        [
-          XFile.fromData(
-            utf8.encode(json),
-            name: ExportService.fileName(DateTime.now()),
-            mimeType: 'application/json',
-          ),
-        ],
-        subject: 'My With Me data',
-      );
+      await Share.shareXFiles([
+        XFile.fromData(
+          utf8.encode(json),
+          name: ExportService.fileName(DateTime.now()),
+          mimeType: 'application/json',
+        ),
+      ], subject: 'My With Me data');
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(

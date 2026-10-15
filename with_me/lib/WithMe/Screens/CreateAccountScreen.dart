@@ -81,8 +81,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     if (result == SignUpResult.confirmEmail) {
       // Backend (stage 3): the account is made; it works once the email
       // link is tapped. Then log in.
-      _say('Almost done! Check your email and tap the link to confirm, '
-          'then log in here.');
+      _say(
+        'Almost done! Check your email and tap the link to confirm, '
+        'then log in here.',
+      );
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
       );

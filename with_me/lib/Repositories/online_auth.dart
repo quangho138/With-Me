@@ -196,12 +196,14 @@ class SupabaseOnlineAuth implements OnlineAuth {
   Stream<OnlineAuthEvent> get events {
     try {
       return _auth.onAuthStateChange
-          .map((state) => switch (state.event) {
-                AuthChangeEvent.signedIn => OnlineAuthEvent.signedIn,
-                AuthChangeEvent.passwordRecovery =>
-                  OnlineAuthEvent.passwordRecovery,
-                _ => null,
-              })
+          .map(
+            (state) => switch (state.event) {
+              AuthChangeEvent.signedIn => OnlineAuthEvent.signedIn,
+              AuthChangeEvent.passwordRecovery =>
+                OnlineAuthEvent.passwordRecovery,
+              _ => null,
+            },
+          )
           .where((event) => event != null)
           .cast<OnlineAuthEvent>();
     } catch (_) {
@@ -273,7 +275,8 @@ class SupabaseOnlineAuth implements OnlineAuth {
       }
       // Older servers send no code, only a message.
       final message = error.message.toLowerCase();
-      if (message.contains('invalid login')) return AccountProblem.wrongPassword;
+      if (message.contains('invalid login'))
+        return AccountProblem.wrongPassword;
       if (message.contains('not confirmed')) {
         return AccountProblem.emailNotConfirmed;
       }

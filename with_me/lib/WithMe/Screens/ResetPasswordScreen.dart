@@ -33,15 +33,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     } on AccountException catch (e) {
       if (!mounted) return;
       setState(() => _busy = false);
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.problem.message)));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.problem.message)));
       return;
     } catch (_) {
       if (!mounted) return;
       setState(() => _busy = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AccountProblem.unknown.message)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(AccountProblem.unknown.message)));
       return;
     }
     if (!mounted) return;

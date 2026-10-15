@@ -21,14 +21,14 @@ void main() {
   sqfliteFfiInit();
 
   Future<Database> freshDb() => databaseFactoryFfi.openDatabase(
-        inMemoryDatabasePath,
-        options: OpenDatabaseOptions(
-          version: DatabaseHelper.schemaVersion,
-          onCreate: DatabaseHelper.createSchema,
-          onUpgrade: DatabaseHelper.upgradeSchema,
-          singleInstance: false,
-        ),
-      );
+    inMemoryDatabasePath,
+    options: OpenDatabaseOptions(
+      version: DatabaseHelper.schemaVersion,
+      onCreate: DatabaseHelper.createSchema,
+      onUpgrade: DatabaseHelper.upgradeSchema,
+      singleInstance: false,
+    ),
+  );
 
   test('no screen imports the database directly', () {
     final offenders = <String>[];
@@ -45,8 +45,11 @@ void main() {
         offenders.add(entity.path);
       }
     }
-    expect(offenders, isEmpty,
-        reason: 'Screens must use lib/Repositories (AppRepositories).');
+    expect(
+      offenders,
+      isEmpty,
+      reason: 'Screens must use lib/Repositories (AppRepositories).',
+    );
   });
 
   group('user repository', () {
@@ -70,8 +73,10 @@ void main() {
       expect(await users.hasAccount(), isTrue);
       expect(await users.displayName(), 'Test');
       await users.signOut();
-      await expectLater(users.signIn('test@example.com', 'wrong'),
-          throwsA(isA<AccountException>()));
+      await expectLater(
+        users.signIn('test@example.com', 'wrong'),
+        throwsA(isA<AccountException>()),
+      );
       await users.signIn('test@example.com', 'synthetic-pass');
       expect(await users.session(), SessionKind.account);
     });
@@ -90,9 +95,14 @@ void main() {
     });
 
     test('delete account and data empties everything', () async {
-      await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
-      await LocalCheckInRepository(open: () async => db)
-          .save(CheckInEntry(day: DateTime(2026, 9, 28), mood: 'Good'));
+      await users.signUp(
+        email: 'a@example.com',
+        password: 'synthetic',
+        name: 'A',
+      );
+      await LocalCheckInRepository(
+        open: () async => db,
+      ).save(CheckInEntry(day: DateTime(2026, 9, 28), mood: 'Good'));
       await users.deleteAccountAndData();
       for (final t in DatabaseHelper.userDataTables) {
         expect(await db.query(t), isEmpty, reason: t);
@@ -106,12 +116,23 @@ void main() {
       final db = await freshDb();
       final reflections = LocalReflectionRepository(open: () async => db);
       Reflection entry(String who, DateTime at) => Reflection(
-            who: who, what: 'w', when: 'n', where: 'h', why: 'y', date: at,
-          );
+        who: who,
+        what: 'w',
+        when: 'n',
+        where: 'h',
+        why: 'y',
+        date: at,
+      );
 
-      await reflections.replaceForDay(entry('Morning', DateTime(2026, 9, 28, 9)));
-      await reflections.replaceForDay(entry('Evening', DateTime(2026, 9, 28, 21)));
-      await reflections.replaceForDay(entry('Yesterday', DateTime(2026, 9, 27, 20)));
+      await reflections.replaceForDay(
+        entry('Morning', DateTime(2026, 9, 28, 9)),
+      );
+      await reflections.replaceForDay(
+        entry('Evening', DateTime(2026, 9, 28, 21)),
+      );
+      await reflections.replaceForDay(
+        entry('Yesterday', DateTime(2026, 9, 27, 20)),
+      );
 
       final today = await reflections.on(DateTime(2026, 9, 28));
       expect(today.length, 1);
@@ -125,23 +146,35 @@ void main() {
     test('ranges and single days read back what was saved', () async {
       final db = await freshDb();
       final checkIns = LocalCheckInRepository(open: () async => db);
-      await checkIns.save(CheckInEntry(
-        day: DateTime(2026, 9, 26), mood: 'Okay', stress: 3,
-        area: 'Work', stressorDetail: const ['Workload'],
-      ));
-      await checkIns.save(CheckInEntry(
-        day: DateTime(2026, 9, 28), mood: 'Not good', stress: 5,
-      ));
-      await checkIns.save(CheckInEntry(
-        day: DateTime(2026, 10, 2), mood: 'Great', // outside the range
-      ));
+      await checkIns.save(
+        CheckInEntry(
+          day: DateTime(2026, 9, 26),
+          mood: 'Okay',
+          stress: 3,
+          area: 'Work',
+          stressorDetail: const ['Workload'],
+        ),
+      );
+      await checkIns.save(
+        CheckInEntry(day: DateTime(2026, 9, 28), mood: 'Not good', stress: 5),
+      );
+      await checkIns.save(
+        CheckInEntry(
+          day: DateTime(2026, 10, 2),
+          mood: 'Great', // outside the range
+        ),
+      );
 
       final from = DateTime(2026, 9, 25);
       final to = DateTime(2026, 9, 30);
-      expect(await checkIns.moodsBetween(from, to),
-          {'2026-09-26': 'Okay', '2026-09-28': 'Not good'});
-      expect(await checkIns.controlLevelsBetween(from, to),
-          {'2026-09-26': 3, '2026-09-28': 1});
+      expect(await checkIns.moodsBetween(from, to), {
+        '2026-09-26': 'Okay',
+        '2026-09-28': 'Not good',
+      });
+      expect(await checkIns.controlLevelsBetween(from, to), {
+        '2026-09-26': 3,
+        '2026-09-28': 1,
+      });
       final stressors = await checkIns.stressorsBetween(from, to);
       expect(stressors.keys, ['2026-09-26']);
       expect(stressors['2026-09-26']!['detail'], 'Workload');

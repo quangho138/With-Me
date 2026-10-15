@@ -62,8 +62,9 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
     await continueAfterLogin(context);
   }
 
-  void _say(String message) => ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(message)));
+  void _say(String message) => ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(SnackBar(content: Text(message)));
 
   @override
   Widget build(BuildContext context) {

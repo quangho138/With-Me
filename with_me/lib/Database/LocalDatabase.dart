@@ -51,8 +51,9 @@ class DatabaseHelper {
       // Read straight off `db`: going through getUserName() would await
       // `database`, which is this future, and never complete.
       final result = await db.query('user', limit: 1);
-      userNameNotifier.value =
-          result.isNotEmpty ? result.first['name'] as String? : null;
+      userNameNotifier.value = result.isNotEmpty
+          ? result.first['name'] as String?
+          : null;
       return db;
     } catch (_) {
       // Let the next caller try again instead of handing out a failure.
@@ -426,19 +427,15 @@ class DatabaseHelper {
     required DateTime date,
   }) async {
     final db = await database;
-    return await db.insert(
-      'reflections',
-      {
-        'who': who,
-        'what': what,
-        'when_question': when,
-        'where_question': where,
-        'why_question': why,
-        'date': date.toIso8601String(),
-        'createdAt': DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.insert('reflections', {
+      'who': who,
+      'what': what,
+      'when_question': when,
+      'where_question': where,
+      'why_question': why,
+      'date': date.toIso8601String(),
+      'createdAt': DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int> clearReflections() async {
@@ -522,15 +519,11 @@ class DatabaseHelper {
   // Mood Selection
   Future<int> insertMood(DateTime date, String mood) async {
     final db = await database;
-    return await db.insert(
-      'moods',
-      {
-        'date': date.toIso8601String().substring(0, 10),
-        'mood': mood,
-        'createdAt': DateTime.now().toIso8601String(),
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.insert('moods', {
+      'date': date.toIso8601String().substring(0, 10),
+      'mood': mood,
+      'createdAt': DateTime.now().toIso8601String(),
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Get mood for a specific date
@@ -560,11 +553,10 @@ class DatabaseHelper {
   Future<int> insertControlGauge(DateTime date, int level) async {
     final db = await database;
     String isoDate = date.toIso8601String().substring(0, 10);
-    return await db.insert(
-      'control_gauge',
-      {'date': isoDate, 'level': level},
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    return await db.insert('control_gauge', {
+      'date': isoDate,
+      'level': level,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<int?> getControlGauge(DateTime date) async {
@@ -596,51 +588,51 @@ class DatabaseHelper {
   // Stressor activity
 
   // Insert or update stressor
-  Future<void> insertStressor(DateTime date, String category, {String? detail}) async {
+  Future<void> insertStressor(
+    DateTime date,
+    String category, {
+    String? detail,
+  }) async {
     final db = await database;
-    await db.insert(
-      'stressors',
-      {
-        'date': date.toIso8601String().substring(0,10),
-        'category': category,
-        'detail': detail,
-      },
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+    await db.insert('stressors', {
+      'date': date.toIso8601String().substring(0, 10),
+      'category': category,
+      'detail': detail,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // Get stressor by date
-    Future<Map<String, dynamic>?> getStressor(DateTime date) async {
-      final db = await database;
-      final result = await db.query(
-        'stressors',
-        where: 'date LIKE ?',
-        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
-        limit: 1,
-      );
-      return result.isNotEmpty ? result.first : null;
-    }
+  Future<Map<String, dynamic>?> getStressor(DateTime date) async {
+    final db = await database;
+    final result = await db.query(
+      'stressors',
+      where: 'date LIKE ?',
+      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
+      limit: 1,
+    );
+    return result.isNotEmpty ? result.first : null;
+  }
 
   // Update detail for stressor
-    Future<void> updateStressorDetail(DateTime date, String detail) async {
-      final db = await database;
-      await db.update(
-        'stressors',
-        {'detail': detail},
-        where: 'date LIKE ?',
-        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
-      );
-    }
+  Future<void> updateStressorDetail(DateTime date, String detail) async {
+    final db = await database;
+    await db.update(
+      'stressors',
+      {'detail': detail},
+      where: 'date LIKE ?',
+      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
+    );
+  }
 
   // Delete stressor entry
-    Future<int> deleteStressor(DateTime date) async {
-      final db = await database;
-      return await db.delete(
-        'stressors',
-        where: 'date LIKE ?',
-        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
-      );
-    }
+  Future<int> deleteStressor(DateTime date) async {
+    final db = await database;
+    return await db.delete(
+      'stressors',
+      where: 'date LIKE ?',
+      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
+    );
+  }
 
   // --- Range reads ---------------------------------------------------------
   // The per-date getters above answer one day at a time. The calendar,
@@ -652,7 +644,10 @@ class DatabaseHelper {
   static String _key(DateTime date) => date.toIso8601String().substring(0, 10);
 
   /// Moods in [from]..[to] inclusive, keyed by YYYY-MM-DD.
-  Future<Map<String, String>> getMoodsBetween(DateTime from, DateTime to) async {
+  Future<Map<String, String>> getMoodsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
     final db = await database;
     final rows = await db.query(
       'moods',
@@ -660,8 +655,7 @@ class DatabaseHelper {
       whereArgs: [_key(from), _key(to)],
     );
     return {
-      for (final row in rows)
-        row['date'] as String: row['mood'] as String,
+      for (final row in rows) row['date'] as String: row['mood'] as String,
     };
   }
 
@@ -676,10 +670,7 @@ class DatabaseHelper {
       where: 'date >= ? AND date <= ?',
       whereArgs: [_key(from), _key(to)],
     );
-    return {
-      for (final row in rows)
-        row['date'] as String: row['level'] as int,
-    };
+    return {for (final row in rows) row['date'] as String: row['level'] as int};
   }
 
   /// Stressor rows in [from]..[to] inclusive, keyed by YYYY-MM-DD.
@@ -694,8 +685,7 @@ class DatabaseHelper {
       whereArgs: [_key(from), _key(to)],
     );
     return {
-      for (final row in rows)
-        (row['date'] as String).substring(0, 10): row,
+      for (final row in rows) (row['date'] as String).substring(0, 10): row,
     };
   }
 

@@ -56,8 +56,9 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
     await continueAfterLogin(context);
   }
 
-  void _say(String message) => ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(message)));
+  void _say(String message) => ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(SnackBar(content: Text(message)));
 
   @override
   Widget build(BuildContext context) {

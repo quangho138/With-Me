@@ -31,41 +31,60 @@ void main() {
     Future<Database> open() async => db;
 
     final day = DateTime(2026, 10, 10, 20);
-    await LocalCheckInRepository(open: open).save(CheckInEntry(
-      day: day,
-      mood: 'Happy',
-      perceivedControl: 4,
-      stress: 2,
-      motivation: 3,
-      area: 'Work',
-      stressorDetail: const ['Workload'],
-      stressorOther: 'Late bus, again',
-      strategy: 'Social',
-      action: 'Share how I feel',
-      rating: 5,
-    ));
-    await LocalCheckInRepository(open: open)
-        .save(CheckInEntry(day: DateTime(2026, 10, 9), mood: 'Sad'));
-    await LocalExerciseRepository(open: open).recordCompleted(
-      ExerciseSession(completedAt: day, exercise: 'breathing', pattern: '4-7-8'),
+    await LocalCheckInRepository(open: open).save(
+      CheckInEntry(
+        day: day,
+        mood: 'Happy',
+        perceivedControl: 4,
+        stress: 2,
+        motivation: 3,
+        area: 'Work',
+        stressorDetail: const ['Workload'],
+        stressorOther: 'Late bus, again',
+        strategy: 'Social',
+        action: 'Share how I feel',
+        rating: 5,
+      ),
     );
-    await LocalReflectionRepository(open: open).replaceForDay(Reflection(
-      who: 'Me', what: 'Exam', when: 'Today', where: 'School', why: 'Grades',
-      date: day,
-    ));
+    await LocalCheckInRepository(
+      open: open,
+    ).save(CheckInEntry(day: DateTime(2026, 10, 9), mood: 'Sad'));
+    await LocalExerciseRepository(open: open).recordCompleted(
+      ExerciseSession(
+        completedAt: day,
+        exercise: 'breathing',
+        pattern: '4-7-8',
+      ),
+    );
+    await LocalReflectionRepository(open: open).replaceForDay(
+      Reflection(
+        who: 'Me',
+        what: 'Exam',
+        when: 'Today',
+        where: 'School',
+        why: 'Grades',
+        date: day,
+      ),
+    );
     await db.insert('user', {'name': 'Maya'});
     await db.insert('users', {
-      'user_id': 'synthetic-id', 'email': 'maya@test.invalid', 'linkedAt': 'x',
+      'user_id': 'synthetic-id',
+      'email': 'maya@test.invalid',
+      'linkedAt': 'x',
     });
 
-    final text = await ExportService(open: open)
-        .exportJson(now: DateTime.utc(2026, 10, 15));
+    final text = await ExportService(
+      open: open,
+    ).exportJson(now: DateTime.utc(2026, 10, 15));
     final data = jsonDecode(text) as Map<String, dynamic>;
 
     expect(data['format'], 'with-me-export');
     expect(data['version'], 1);
     expect(data['exportedAt'], '2026-10-15T00:00:00.000Z');
-    expect(data['profile'], {'displayName': 'Maya', 'email': 'maya@test.invalid'});
+    expect(data['profile'], {
+      'displayName': 'Maya',
+      'email': 'maya@test.invalid',
+    });
 
     final days = data['checkIns'] as List;
     expect([for (final d in days) d['day']], ['2026-10-09', '2026-10-10']);

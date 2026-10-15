@@ -5,6 +5,7 @@ import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Data/CheckInSteps.dart';
 import '../Data/DashboardStats.dart';
+import '../Data/Today.dart';
 import '../Theme/WithMeTheme.dart';
 import 'WeekChartScreen.dart';
 
@@ -324,7 +325,7 @@ class _DashboardPageState extends State<_DashboardPage> {
 
   Future<void> _load() async {
     final load = ++_loads;
-    final now = DateTime.now();
+    final now = Today.now();
     final today = DateTime(now.year, now.month, now.day);
     // Every saved day: the cards show this week, and Actions and
     // Strategies lists every strategy that has been chosen.

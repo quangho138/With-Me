@@ -11,6 +11,7 @@ import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
 import 'package:with_me/WithMe/Components/WithMeCharts.dart';
 import 'package:with_me/WithMe/Data/CheckInSteps.dart';
 import 'package:with_me/WithMe/Data/DashboardStats.dart';
+import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Screens/DashboardScreen.dart';
 import 'package:with_me/WithMe/Screens/WeekChartScreen.dart';
 import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
@@ -26,7 +27,11 @@ import 'support/example_check_ins.dart';
 void main() {
   setUpAll(() async {
     await loadFonts();
+    // A fixed Thursday, so "this week" always has example days in it.
+    // Before this, six tests failed whenever they ran on a Monday.
+    Today.clock = () => DateTime(2026, 10, 15, 12);
   });
+  tearDownAll(() => Today.clock = DateTime.now);
 
   late CheckInRepository previous;
   setUp(() {
@@ -350,7 +355,7 @@ void main() {
       }
       expect(tops, orderedEquals([...tops]..sort()));
       // The area pies are smaller than the trigger pie.
-      final now = DateTime.now();
+      final now = Today.now();
       final monday = DateTime(now.year, now.month, now.day - (now.weekday - 1));
       final thisWeek = DemoAccount.examples.where(
         (d) => d.daysAgo <= now.weekday - 1,
@@ -688,7 +693,7 @@ void main() {
           expect(find.text('90 days'), findsNothing);
           expect(find.text('All'), findsNothing);
         }
-        final now = DateTime.now();
+        final now = Today.now();
         final today = DateTime(now.year, now.month, now.day);
         final monday = DateTime(
           today.year,
@@ -788,7 +793,7 @@ void main() {
           tester.widget<Text>(find.byKey(const ValueKey('week-name'))).data!;
       String range() =>
           tester.widget<Text>(find.byKey(const ValueKey('week-range'))).data!;
-      final now = DateTime.now();
+      final now = Today.now();
       final monday = DateTime(now.year, now.month, now.day - (now.weekday - 1));
       expect(name(), 'This week');
       expect(range(), startsWith(shortDate(monday)));
@@ -901,12 +906,12 @@ void main() {
       final repo = await openDashboard(tester, days: []);
       await openPage(tester, 0);
       expect(find.byType(DayBarChart), findsNothing);
-      repo.addedMoods[dayKey(DateTime.now())] = 'Excited';
+      repo.addedMoods[dayKey(Today.now())] = 'Excited';
       CheckInRepository.saves.value++;
       await settle(tester);
       expect(find.byType(DayBarChart), findsOneWidget);
       // Saving the day again replaces its feeling rather than adding one.
-      repo.addedMoods[dayKey(DateTime.now())] = 'Sad';
+      repo.addedMoods[dayKey(Today.now())] = 'Sad';
       CheckInRepository.saves.value++;
       await settle(tester);
       final chart = tester.widget<DayBarChart>(find.byType(DayBarChart));

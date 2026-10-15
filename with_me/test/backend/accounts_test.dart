@@ -23,20 +23,21 @@ void main() {
   sqfliteFfiInit();
 
   Future<Database> freshDb() => databaseFactoryFfi.openDatabase(
-        inMemoryDatabasePath,
-        options: OpenDatabaseOptions(
-          version: DatabaseHelper.schemaVersion,
-          onCreate: DatabaseHelper.createSchema,
-          onUpgrade: DatabaseHelper.upgradeSchema,
-          singleInstance: false,
-        ),
-      );
+    inMemoryDatabasePath,
+    options: OpenDatabaseOptions(
+      version: DatabaseHelper.schemaVersion,
+      onCreate: DatabaseHelper.createSchema,
+      onUpgrade: DatabaseHelper.upgradeSchema,
+      singleInstance: false,
+    ),
+  );
 
   Future<void> expectProblem(Future<void> action, AccountProblem problem) =>
       expectLater(
         action,
-        throwsA(isA<AccountException>()
-            .having((e) => e.problem, 'problem', problem)),
+        throwsA(
+          isA<AccountException>().having((e) => e.problem, 'problem', problem),
+        ),
       );
 
   late Database db;
@@ -49,52 +50,64 @@ void main() {
   });
   tearDown(() async => db.close());
 
-  test('sign up, confirm the email, log in; no password on the phone',
-      () async {
-    final result = await users.signUp(
-      email: 'Maya@Example.com ',
-      password: 'synthetic-pass',
-      name: 'Maya',
-    );
-    expect(result, SignUpResult.confirmEmail);
-    expect(await users.session(), SessionKind.none);
-    expect(await users.displayName(), 'Maya');
+  test(
+    'sign up, confirm the email, log in; no password on the phone',
+    () async {
+      final result = await users.signUp(
+        email: 'Maya@Example.com ',
+        password: 'synthetic-pass',
+        name: 'Maya',
+      );
+      expect(result, SignUpResult.confirmEmail);
+      expect(await users.session(), SessionKind.none);
+      expect(await users.displayName(), 'Maya');
 
-    // Before the link is tapped.
-    await expectProblem(
-      users.signIn('maya@example.com', 'synthetic-pass'),
-      AccountProblem.emailNotConfirmed,
-    );
+      // Before the link is tapped.
+      await expectProblem(
+        users.signIn('maya@example.com', 'synthetic-pass'),
+        AccountProblem.emailNotConfirmed,
+      );
 
-    online.confirm('maya@example.com');
-    // Capitals and spaces in the email do not matter.
-    await users.signIn(' MAYA@example.com', 'synthetic-pass');
-    expect(await users.session(), SessionKind.account);
+      online.confirm('maya@example.com');
+      // Capitals and spaces in the email do not matter.
+      await users.signIn(' MAYA@example.com', 'synthetic-pass');
+      expect(await users.session(), SessionKind.account);
 
-    final row = (await db.query('users')).single;
-    expect(row.keys, isNot(contains('password')));
-    expect(row.keys, isNot(contains('password_hash')));
-    for (final value in row.values) {
-      expect('$value'.contains('synthetic-pass'), isFalse);
-    }
-  });
+      final row = (await db.query('users')).single;
+      expect(row.keys, isNot(contains('password')));
+      expect(row.keys, isNot(contains('password_hash')));
+      for (final value in row.values) {
+        expect('$value'.contains('synthetic-pass'), isFalse);
+      }
+    },
+  );
 
   test('each failure has its own message', () async {
-    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+    await users.signUp(
+      email: 'a@example.com',
+      password: 'synthetic',
+      name: 'A',
+    );
     online.confirm('a@example.com');
 
     await expectProblem(
-        users.signIn('a@example.com', 'wrong'), AccountProblem.wrongPassword);
+      users.signIn('a@example.com', 'wrong'),
+      AccountProblem.wrongPassword,
+    );
     await expectProblem(
-        users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A'),
-        AccountProblem.emailInUse);
+      users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A'),
+      AccountProblem.emailInUse,
+    );
     await expectProblem(
-        users.signUp(email: 'b@example.com', password: '123', name: 'B'),
-        AccountProblem.weakPassword);
+      users.signUp(email: 'b@example.com', password: '123', name: 'B'),
+      AccountProblem.weakPassword,
+    );
 
     online.offline = true;
     await expectProblem(
-        users.signIn('a@example.com', 'synthetic'), AccountProblem.noInternet);
+      users.signIn('a@example.com', 'synthetic'),
+      AccountProblem.noInternet,
+    );
     expect(await users.session(), SessionKind.none);
 
     for (final problem in AccountProblem.values) {
@@ -103,11 +116,16 @@ void main() {
   });
 
   test('log out clears the phone; logging back in works', () async {
-    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+    await users.signUp(
+      email: 'a@example.com',
+      password: 'synthetic',
+      name: 'A',
+    );
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
-    await LocalCheckInRepository(open: () async => db)
-        .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+    await LocalCheckInRepository(
+      open: () async => db,
+    ).save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
 
     await users.signOut();
     expect(await users.session(), SessionKind.none);
@@ -123,7 +141,11 @@ void main() {
   });
 
   test('one account per phone', () async {
-    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+    await users.signUp(
+      email: 'a@example.com',
+      password: 'synthetic',
+      name: 'A',
+    );
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
 
@@ -137,7 +159,11 @@ void main() {
     final otherPhone = await freshDb();
     addTearDown(otherPhone.close);
     final other = AppUserRepository(auth: online, open: () async => otherPhone);
-    await other.signUp(email: 'c@example.com', password: 'synthetic', name: 'C');
+    await other.signUp(
+      email: 'c@example.com',
+      password: 'synthetic',
+      name: 'C',
+    );
     online.confirm('c@example.com');
     await expectProblem(
       users.signIn('c@example.com', 'synthetic'),
@@ -147,26 +173,36 @@ void main() {
     expect((await db.query('users')).single['email'], 'a@example.com');
   });
 
-  test('a guest keeps their check-ins after signing up and logging in',
-      () async {
-    expect(await users.startAsGuest(), isTrue);
-    expect(await users.session(), SessionKind.guest);
-    await LocalCheckInRepository(open: () async => db)
-        .save(CheckInEntry(day: DateTime(2026, 9, 27), mood: 'Indifferent'));
+  test(
+    'a guest keeps their check-ins after signing up and logging in',
+    () async {
+      expect(await users.startAsGuest(), isTrue);
+      expect(await users.session(), SessionKind.guest);
+      await LocalCheckInRepository(
+        open: () async => db,
+      ).save(CheckInEntry(day: DateTime(2026, 9, 27), mood: 'Indifferent'));
 
-    await users.signUp(email: 'g@example.com', password: 'synthetic', name: 'G');
-    // Still a guest until the email is confirmed and they log in.
-    expect(await users.session(), SessionKind.guest);
-    online.confirm('g@example.com');
-    await users.signIn('g@example.com', 'synthetic');
+      await users.signUp(
+        email: 'g@example.com',
+        password: 'synthetic',
+        name: 'G',
+      );
+      // Still a guest until the email is confirmed and they log in.
+      expect(await users.session(), SessionKind.guest);
+      online.confirm('g@example.com');
+      await users.signIn('g@example.com', 'synthetic');
 
-    expect(await users.session(), SessionKind.account);
-    expect((await db.query('moods')).single['mood'], 'Indifferent');
-  });
+      expect(await users.session(), SessionKind.account);
+      expect((await db.query('moods')).single['mood'], 'Indifferent');
+    },
+  );
 
-  test('"start without an account" only on a phone with no account',
-      () async {
-    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+  test('"start without an account" only on a phone with no account', () async {
+    await users.signUp(
+      email: 'a@example.com',
+      password: 'synthetic',
+      name: 'A',
+    );
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
     expect(await users.startAsGuest(), isFalse);
@@ -185,45 +221,64 @@ void main() {
       open: () async => db,
     );
     expect(
-      await quick.signUp(email: 'a@example.com', password: 'synthetic', name: 'A'),
+      await quick.signUp(
+        email: 'a@example.com',
+        password: 'synthetic',
+        name: 'A',
+      ),
       SignUpResult.signedIn,
     );
     expect(await quick.session(), SessionKind.account);
   });
 
-  test('delete my account removes the online account, then the phone',
-      () async {
-    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
-    online.confirm('a@example.com');
-    await users.signIn('a@example.com', 'synthetic');
-    await users.deleteAccountAndData();
-    expect(await users.session(), SessionKind.none);
-    expect(await users.hasAccount(), isFalse);
-    expect(online.currentUserId, isNull);
-    // The account is gone online: it cannot log in any more.
-    await expectProblem(
-      users.signIn('a@example.com', 'synthetic'),
-      AccountProblem.wrongPassword,
-    );
-  });
+  test(
+    'delete my account removes the online account, then the phone',
+    () async {
+      await users.signUp(
+        email: 'a@example.com',
+        password: 'synthetic',
+        name: 'A',
+      );
+      online.confirm('a@example.com');
+      await users.signIn('a@example.com', 'synthetic');
+      await users.deleteAccountAndData();
+      expect(await users.session(), SessionKind.none);
+      expect(await users.hasAccount(), isFalse);
+      expect(online.currentUserId, isNull);
+      // The account is gone online: it cannot log in any more.
+      await expectProblem(
+        users.signIn('a@example.com', 'synthetic'),
+        AccountProblem.wrongPassword,
+      );
+    },
+  );
 
   test('offline, delete my account deletes nothing at all', () async {
-    await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+    await users.signUp(
+      email: 'a@example.com',
+      password: 'synthetic',
+      name: 'A',
+    );
     online.confirm('a@example.com');
     await users.signIn('a@example.com', 'synthetic');
-    await LocalCheckInRepository(open: () async => db)
-        .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+    await LocalCheckInRepository(
+      open: () async => db,
+    ).save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
 
     online.offline = true;
-    await expectProblem(users.deleteAccountAndData(), AccountProblem.noInternet);
+    await expectProblem(
+      users.deleteAccountAndData(),
+      AccountProblem.noInternet,
+    );
     expect(await users.session(), SessionKind.account);
     expect((await db.query('moods')).length, 1);
   });
 
   test('a guest\'s delete clears the phone without going online', () async {
     await users.startAsGuest();
-    await LocalCheckInRepository(open: () async => db)
-        .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+    await LocalCheckInRepository(
+      open: () async => db,
+    ).save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
     online.offline = true;
     await users.deleteAccountAndData();
     for (final table in DatabaseHelper.userDataTables) {
@@ -232,37 +287,48 @@ void main() {
   });
 
   group('logins from outside the app (Google, email links)', () {
-    test('Google: first sign-in links the phone and keeps guest data',
-        () async {
-      final seen = <OnlineAuthEvent>[];
-      final sub = users.onlineEvents.listen(seen.add);
-      addTearDown(sub.cancel);
+    test(
+      'Google: first sign-in links the phone and keeps guest data',
+      () async {
+        final seen = <OnlineAuthEvent>[];
+        final sub = users.onlineEvents.listen(seen.add);
+        addTearDown(sub.cancel);
 
-      await users.startAsGuest();
-      await LocalCheckInRepository(open: () async => db)
-          .save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
-      await users.startGoogleSignIn();
-      online.finishGoogle('g@gmail.test');
-      await Future<void>.delayed(Duration.zero);
-      expect(seen, [OnlineAuthEvent.signedIn]);
+        await users.startAsGuest();
+        await LocalCheckInRepository(
+          open: () async => db,
+        ).save(CheckInEntry(day: DateTime(2026, 10, 1), mood: 'Happy'));
+        await users.startGoogleSignIn();
+        online.finishGoogle('g@gmail.test');
+        await Future<void>.delayed(Duration.zero);
+        expect(seen, [OnlineAuthEvent.signedIn]);
 
-      expect(await users.completeOutsideLogin(), isTrue);
-      expect(await users.session(), SessionKind.account);
-      expect((await db.query('users')).single['email'], 'g@gmail.test');
-      expect((await db.query('moods')).length, 1, reason: 'guest data kept');
-      // Handled once: a second report changes nothing.
-      expect(await users.completeOutsideLogin(), isFalse);
-    });
+        expect(await users.completeOutsideLogin(), isTrue);
+        expect(await users.session(), SessionKind.account);
+        expect((await db.query('users')).single['email'], 'g@gmail.test');
+        expect((await db.query('moods')).length, 1, reason: 'guest data kept');
+        // Handled once: a second report changes nothing.
+        expect(await users.completeOutsideLogin(), isFalse);
+      },
+    );
 
     test('after the login screen, there is nothing left to do', () async {
-      await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+      await users.signUp(
+        email: 'a@example.com',
+        password: 'synthetic',
+        name: 'A',
+      );
       online.confirm('a@example.com');
       await users.signIn('a@example.com', 'synthetic');
       expect(await users.completeOutsideLogin(), isFalse);
     });
 
     test("Google cannot log in on another account's phone", () async {
-      await users.signUp(email: 'a@example.com', password: 'synthetic', name: 'A');
+      await users.signUp(
+        email: 'a@example.com',
+        password: 'synthetic',
+        name: 'A',
+      );
       online.confirm('a@example.com');
       await users.signIn('a@example.com', 'synthetic');
       online.finishGoogle('other@gmail.test');
@@ -275,10 +341,17 @@ void main() {
     });
 
     test('forgot password: link, new password, logged in', () async {
-      await users.signUp(email: 'a@example.com', password: 'old-pass', name: 'A');
+      await users.signUp(
+        email: 'a@example.com',
+        password: 'old-pass',
+        name: 'A',
+      );
       online.confirm('a@example.com');
 
-      await expectProblem(users.sendPasswordReset('  '), AccountProblem.enterEmail);
+      await expectProblem(
+        users.sendPasswordReset('  '),
+        AccountProblem.enterEmail,
+      );
       await users.sendPasswordReset(' A@Example.com');
       expect(online.resetSentTo, 'a@example.com');
 
@@ -289,7 +362,10 @@ void main() {
       await Future<void>.delayed(Duration.zero);
       expect(seen, [OnlineAuthEvent.passwordRecovery]);
 
-      await expectProblem(users.setNewPassword('123'), AccountProblem.weakPassword);
+      await expectProblem(
+        users.setNewPassword('123'),
+        AccountProblem.weakPassword,
+      );
       await users.setNewPassword('new-pass');
       expect(await users.session(), SessionKind.account);
 
@@ -303,38 +379,58 @@ void main() {
     });
   });
 
-  test('upgrading version 6 removes phone-only accounts and keeps the rest',
-      () async {
-    // A version 6 database: users with scrambled passwords, and someone
-    // logged in.
-    final old = await databaseFactoryFfi.openDatabase(
-      inMemoryDatabasePath,
-      options: OpenDatabaseOptions(
-        version: 6,
-        singleInstance: false,
-        onCreate: (db, _) async {
-          await DatabaseHelper.createSchema(db, 6);
-          await db.execute('DROP TABLE users');
-          await db.execute('CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, createdAt TEXT NOT NULL)');
-        },
-      ),
-    );
-    await old.insert('users', {'email': 'old@example.com', 'password_hash': 'x', 'createdAt': 'x'});
-    await old.insert('session', {'id': 1, 'email': 'old@example.com', 'startedAt': 'x'});
-    await old.insert('user', {'name': 'Old'});
-    await old.insert('moods', {'date': '2026-09-20', 'mood': 'Happy', 'createdAt': 'x'});
+  test(
+    'upgrading version 6 removes phone-only accounts and keeps the rest',
+    () async {
+      // A version 6 database: users with scrambled passwords, and someone
+      // logged in.
+      final old = await databaseFactoryFfi.openDatabase(
+        inMemoryDatabasePath,
+        options: OpenDatabaseOptions(
+          version: 6,
+          singleInstance: false,
+          onCreate: (db, _) async {
+            await DatabaseHelper.createSchema(db, 6);
+            await db.execute('DROP TABLE users');
+            await db.execute(
+              'CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, createdAt TEXT NOT NULL)',
+            );
+          },
+        ),
+      );
+      await old.insert('users', {
+        'email': 'old@example.com',
+        'password_hash': 'x',
+        'createdAt': 'x',
+      });
+      await old.insert('session', {
+        'id': 1,
+        'email': 'old@example.com',
+        'startedAt': 'x',
+      });
+      await old.insert('user', {'name': 'Old'});
+      await old.insert('moods', {
+        'date': '2026-09-20',
+        'mood': 'Happy',
+        'createdAt': 'x',
+      });
 
-    await DatabaseHelper.upgradeSchema(old, 6, DatabaseHelper.schemaVersion);
+      await DatabaseHelper.upgradeSchema(old, 6, DatabaseHelper.schemaVersion);
 
-    expect(await old.query('users'), isEmpty);
-    expect(await old.query('session'), isEmpty, reason: 'logged out');
-    expect((await old.query('moods')).length, 1);
-    expect((await old.query('user')).single['name'], 'Old');
-    final upgraded = AppUserRepository(
-      auth: FakeOnlineAuth(),
-      open: () async => old,
-    );
-    expect(await upgraded.startAsGuest(), isTrue, reason: 'no account any more');
-    await old.close();
-  });
+      expect(await old.query('users'), isEmpty);
+      expect(await old.query('session'), isEmpty, reason: 'logged out');
+      expect((await old.query('moods')).length, 1);
+      expect((await old.query('user')).single['name'], 'Old');
+      final upgraded = AppUserRepository(
+        auth: FakeOnlineAuth(),
+        open: () async => old,
+      );
+      expect(
+        await upgraded.startAsGuest(),
+        isTrue,
+        reason: 'no account any more',
+      );
+      await old.close();
+    },
+  );
 }
