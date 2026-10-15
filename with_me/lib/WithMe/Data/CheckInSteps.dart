@@ -22,32 +22,32 @@ enum SignDimension { body, feelings, mind, behaviour }
 
 extension SignDimensionInfo on SignDimension {
   String get label => switch (this) {
-        SignDimension.body => 'BODY',
-        SignDimension.feelings => 'FEELINGS',
-        SignDimension.mind => 'MIND',
-        SignDimension.behaviour => 'BEHAVIOR',
-      };
+    SignDimension.body => 'BODY',
+    SignDimension.feelings => 'FEELINGS',
+    SignDimension.mind => 'MIND',
+    SignDimension.behaviour => 'BEHAVIOR',
+  };
 
   Color get color => switch (this) {
-        SignDimension.body => WithMeColors.mint,
-        SignDimension.feelings => WithMeColors.pink,
-        SignDimension.mind => WithMeColors.peach,
-        SignDimension.behaviour => WithMeColors.coral,
-      };
+    SignDimension.body => WithMeColors.mint,
+    SignDimension.feelings => WithMeColors.pink,
+    SignDimension.mind => WithMeColors.peach,
+    SignDimension.behaviour => WithMeColors.coral,
+  };
 
   String get question => switch (this) {
-        SignDimension.body => 'How is stress showing up in your body?',
-        SignDimension.feelings => 'What emotions are you feeling most right now?',
-        SignDimension.mind => 'What thoughts are coming up for you?',
-        SignDimension.behaviour => 'How is it affecting your behavior?',
-      };
+    SignDimension.body => 'How is stress showing up in your body?',
+    SignDimension.feelings => 'What emotions are you feeling most right now?',
+    SignDimension.mind => 'What thoughts are coming up for you?',
+    SignDimension.behaviour => 'How is it affecting your behavior?',
+  };
 
   List<StepOption> get options => switch (this) {
-        SignDimension.body => kBodySigns,
-        SignDimension.feelings => kFeelingSigns,
-        SignDimension.mind => kMindSigns,
-        SignDimension.behaviour => kBehaviourSigns,
-      };
+    SignDimension.body => kBodySigns,
+    SignDimension.feelings => kFeelingSigns,
+    SignDimension.mind => kMindSigns,
+    SignDimension.behaviour => kBehaviourSigns,
+  };
 }
 
 /// The rotation of dot colours the design uses down an option list
@@ -63,9 +63,9 @@ const List<Color> _dots = [
 ];
 
 List<StepOption> _list(List<String> labels) => [
-      for (var i = 0; i < labels.length; i++)
-        StepOption(labels[i], _dots[i % _dots.length]),
-    ];
+  for (var i = 0; i < labels.length; i++)
+    StepOption(labels[i], _dots[i % _dots.length]),
+];
 
 // --- image16 - image19 ------------------------------------------------------
 // Five each. The "Other" button these pages used to end with is now a
@@ -222,7 +222,11 @@ const List<(String, String, Color)> kExercises = [
   ('De-stress Your Day', '4 · 4 · 4 · 4 breathing', WithMeColors.mint),
   ('Ease Your Sleep', '4 · 7 · 8 breathing', WithMeColors.peach),
   ('Strengthen Your Focus', '4 · 4 · 4 breathing', WithMeColors.pink),
-  ('Physiological Sigh', 'Deep inhale · two quick inhales · exhale', WithMeColors.slate),
+  (
+    'Physiological Sigh',
+    'Deep inhale · two quick inhales · exhale',
+    WithMeColors.slate,
+  ),
 ];
 
 /// The longer guided set (`image26.png`).

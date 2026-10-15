@@ -39,6 +39,7 @@ import 'WithMe/Screens/StrategiesActionsScreen.dart';
 import 'WithMe/Screens/TriggersSignsScreen.dart';
 import 'WithMe/Screens/WelcomeScreen.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
+import 'WithMe/Speech/SpeechService.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
 
 Future<void> main() async {
@@ -61,12 +62,21 @@ Future<void> main() async {
   // database engine first), start at the welcome screen.
   var signedIn = false;
   try {
-    signedIn = await AppRepositories.users
-            .session()
-            .timeout(const Duration(seconds: 3)) !=
+    signedIn =
+        await AppRepositories.users.session().timeout(
+          const Duration(seconds: 3),
+        ) !=
         SessionKind.none;
   } catch (e) {
     debugPrint('Could not read who is signed in: $e');
+  }
+
+  // Whether the companion reads aloud. Read before the first screen so a
+  // saved "off" holds from the start; until it is read, nothing is spoken.
+  try {
+    await SpeechService.instance.load().timeout(const Duration(seconds: 3));
+  } catch (e) {
+    debugPrint('Read aloud setting not loaded yet: $e');
   }
 
   // The database is not wiped on launch — the logs have to survive a restart.

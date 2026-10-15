@@ -93,7 +93,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 decoration: BoxDecoration(
                   color: ScenicColors.tileSelected,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: ScenicColors.pillBottom, width: 1.4),
+                  border: Border.all(
+                    color: ScenicColors.pillBottom,
+                    width: 1.4,
+                  ),
                 ),
                 child: const Text(
                   'If that email has an account, a reset link is on its way. '

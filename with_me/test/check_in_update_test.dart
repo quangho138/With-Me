@@ -41,17 +41,19 @@ void main() {
 
   /// Which feeling is announced as selected, if any.
   List<String> selectedFeelings(WidgetTester tester) => [
-        for (final face in MoodFace.values)
-          if (tester
-                  .widgetList<Semantics>(find.byWidgetPredicate(
-                    (w) => w is Semantics && w.properties.label == face.label,
-                  ))
-                  .first
-                  .properties
-                  .selected ==
-              true)
-            face.label,
-      ];
+    for (final face in MoodFace.values)
+      if (tester
+              .widgetList<Semantics>(
+                find.byWidgetPredicate(
+                  (w) => w is Semantics && w.properties.label == face.label,
+                ),
+              )
+              .first
+              .properties
+              .selected ==
+          true)
+        face.label,
+  ];
 
   int? control(WidgetTester tester) =>
       tester.widget<ControlScale>(find.byType(ControlScale)).value;
@@ -63,11 +65,11 @@ void main() {
 
   /// The labels on the page's choice tiles, in order.
   List<String> tiles(WidgetTester tester) => [
-        for (final t in tester.widgetList<ScenicChoiceTile>(
-          find.byType(ScenicChoiceTile),
-        ))
-          t.label,
-      ];
+    for (final t in tester.widgetList<ScenicChoiceTile>(
+      find.byType(ScenicChoiceTile),
+    ))
+      t.label,
+  ];
 
   group('feelings page', () {
     testWidgets('offers the five feelings in order, one selected at a time', (
@@ -140,22 +142,23 @@ void main() {
     }
   });
 
-  test('feelings score 1-5 along the reference arch; Angry and Sad are low',
-      () {
-    expect([for (final f in MoodFace.values) f.score], [1, 2, 3, 4, 5]);
-    expect([for (final f in MoodFace.values) if (f.isLow) f.label],
-        ['Angry', 'Sad']);
-  });
+  test(
+    'feelings score 1-5 along the reference arch; Angry and Sad are low',
+    () {
+      expect([for (final f in MoodFace.values) f.score], [1, 2, 3, 4, 5]);
+      expect(
+        [
+          for (final f in MoodFace.values)
+            if (f.isLow) f.label,
+        ],
+        ['Angry', 'Sad'],
+      );
+    },
+  );
 
-  test('the gauge runs red, orange, yellow, lime, green from left to right',
-      () {
-    expect(ControlScale.colors, const [
-      Color(0xFFE87878),
-      Color(0xFFE7AF78),
-      Color(0xFFE1E157),
-      Color(0xFFAFE878),
-      Color(0xFF78E778),
-    ]);
+  test('the gauge runs red, orange, yellow, green, purple from left to right, '
+      'the feelings page colours', () {
+    expect(ControlScale.colors, [for (final f in MoodFace.values) f.light]);
     const size = Size(280, 154);
     for (var n = 1; n <= 5; n++) {
       expect(ControlScale.valueAt(ControlScale.pointFor(n, size), size), n);
@@ -211,9 +214,7 @@ void main() {
 
       // Turn the needle: drag round the dial from the right end, over the
       // top, to past the left end.
-      final gauge = tester.getRect(
-        find.byKey(const ValueKey('control-gauge')),
-      );
+      final gauge = tester.getRect(find.byKey(const ValueKey('control-gauge')));
       final r = gauge.width / 2;
       final centre = gauge.topLeft + Offset(r, r);
       final drag = await tester.startGesture(
@@ -460,10 +461,9 @@ void main() {
       expect(find.text('Group chat'), findsOneWidget);
       expect(
         tester
-            .widget<ScenicChoiceTile>(find.widgetWithText(
-              ScenicChoiceTile,
-              'Friends',
-            ).first)
+            .widget<ScenicChoiceTile>(
+              find.widgetWithText(ScenicChoiceTile, 'Friends').first,
+            )
             .selected,
         isTrue,
       );

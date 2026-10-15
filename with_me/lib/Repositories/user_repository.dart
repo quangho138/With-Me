@@ -267,7 +267,8 @@ class AppUserRepository implements UserRepository {
   @override
   Future<void> signOut() async {
     final db = await _open();
-    await DatabaseHelper.wipeAllTables(db);
+    // Device settings (Read aloud, voice) stay with the phone.
+    await DatabaseHelper.wipeAllTables(db, keepDeviceSettings: true);
     _names.userNameNotifier.value = null;
     await _auth.signOut();
   }

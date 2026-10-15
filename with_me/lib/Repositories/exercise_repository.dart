@@ -38,7 +38,7 @@ abstract class ExerciseRepository {
 
 class LocalExerciseRepository implements ExerciseRepository {
   LocalExerciseRepository({Future<Database> Function()? open})
-      : _open = open ?? (() => DatabaseHelper().database);
+    : _open = open ?? (() => DatabaseHelper().database);
 
   final Future<Database> Function() _open;
 

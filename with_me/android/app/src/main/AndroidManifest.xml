@@ -56,6 +56,11 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <!-- Read aloud: lets the app find the phone's text-to-speech engine
+             on Android 11 and later (flutter_tts). -->
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
         <!-- Opening Google's sign-in page in the browser. -->
         <intent>
             <action android:name="android.intent.action.VIEW"/>

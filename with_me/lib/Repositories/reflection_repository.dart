@@ -38,7 +38,7 @@ abstract class ReflectionRepository {
 
 class LocalReflectionRepository implements ReflectionRepository {
   LocalReflectionRepository({Future<Database> Function()? open})
-      : _open = open ?? (() => DatabaseHelper().database);
+    : _open = open ?? (() => DatabaseHelper().database);
 
   final Future<Database> Function() _open;
 

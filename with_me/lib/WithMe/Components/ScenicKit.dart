@@ -527,24 +527,24 @@ extension MoodFaceInfo on MoodFace {
     MoodFace.excited => 'Excited',
   };
 
-  /// The face's fill, as on the feelings reference: pink-red, orange,
-  /// pale yellow, pale green and green.
+  /// The face's fill: red, orange, yellow, green and purple, so each of
+  /// the five feelings has a colour of its own.
   Color get light => switch (this) {
-    MoodFace.angry => const Color(0xFFFF9090),
-    MoodFace.sad => const Color(0xFFFFCC80),
-    MoodFace.indifferent => const Color(0xFFFEFFB6),
-    MoodFace.happy => const Color(0xFFC6F9C8),
-    MoodFace.excited => const Color(0xFF80DCA5),
+    MoodFace.angry => const Color(0xFFFF8A80),
+    MoodFace.sad => const Color(0xFFFFC078),
+    MoodFace.indifferent => const Color(0xFFFFEB80),
+    MoodFace.happy => const Color(0xFF9EE6A2),
+    MoodFace.excited => const Color(0xFFCDB0FF),
   };
 
-  /// A deeper tone of the same colour, for chart slices and legend dots,
-  /// where the pale fills would wash out.
+  /// A deeper tone of the same colour, for chart bars, slices and key
+  /// dots, where the pale fills would wash out.
   Color get deep => switch (this) {
-    MoodFace.angry => const Color(0xFFE85C5C),
-    MoodFace.sad => const Color(0xFFF2A541),
-    MoodFace.indifferent => const Color(0xFFD9CC4A),
-    MoodFace.happy => const Color(0xFF8FD994),
-    MoodFace.excited => const Color(0xFF3FAF6E),
+    MoodFace.angry => const Color(0xFFE04848),
+    MoodFace.sad => const Color(0xFFF08A24),
+    MoodFace.indifferent => const Color(0xFFE6C229),
+    MoodFace.happy => const Color(0xFF43A84B),
+    MoodFace.excited => const Color(0xFF8A5CD6),
   };
 
   /// The feeling's place on the 1-5 mood scale, read left to right along
@@ -827,7 +827,7 @@ class _FacePainter extends CustomPainter {
 }
 
 /// "How in control do you feel today?" as a gauge: a half dial of five
-/// numbered wedges, red, orange, yellow, lime and green from left to right,
+/// numbered wedges, red, orange, yellow, green and purple from left to right,
 /// with a needle turned to the chosen one.
 ///
 /// Nothing is chosen, and no needle shows, until the user picks a wedge:
@@ -851,14 +851,15 @@ class ControlScale extends StatefulWidget {
 
   static const int steps = 5;
 
-  /// One colour per wedge, from 1 (least in control) to 5 (most), as on the
-  /// control gauge reference: red, orange, yellow, lime, green.
+  /// One colour per wedge, from 1 (least in control) to 5 (most): red,
+  /// orange, yellow, green and purple, the feelings page's colours
+  /// ([MoodFace.light]), used for every 1 to 5 scale.
   static const List<Color> colors = [
-    Color(0xFFE87878),
-    Color(0xFFE7AF78),
-    Color(0xFFE1E157),
-    Color(0xFFAFE878),
-    Color(0xFF78E778),
+    Color(0xFFFF8A80),
+    Color(0xFFFFC078),
+    Color(0xFFFFEB80),
+    Color(0xFF9EE6A2),
+    Color(0xFFCDB0FF),
   ];
 
   /// The needle and hub colour, from the reference.

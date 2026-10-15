@@ -109,13 +109,15 @@ class _BreathingScreenState extends State<BreathingScreen>
   void _recordCompletion() {
     unawaited(
       AppRepositories.exercises
-          .recordCompleted(ExerciseSession(
-            completedAt: DateTime.now(),
-            exercise: 'breathing',
-            pattern: _pattern.tab.replaceAll(' · ', '-'),
-            cycles: widget.cycles,
-            sound: widget.sound,
-          ))
+          .recordCompleted(
+            ExerciseSession(
+              completedAt: DateTime.now(),
+              exercise: 'breathing',
+              pattern: _pattern.tab.replaceAll(' · ', '-'),
+              cycles: widget.cycles,
+              sound: widget.sound,
+            ),
+          )
           .catchError((Object _) {}),
     );
   }

@@ -69,11 +69,27 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
       _reflections.isNotEmpty;
 
   static const List<String> _weekdays = [
-    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday',
   ];
   static const List<String> _months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   /// The design shows "Locked — entries can be edited for 24 hours."
@@ -83,7 +99,8 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
   @override
   Widget build(BuildContext context) {
     final d = widget.date;
-    final title = '${_weekdays[d.weekday - 1]} ${d.day} ${_months[d.month - 1]}';
+    final title =
+        '${_weekdays[d.weekday - 1]} ${d.day} ${_months[d.month - 1]}';
 
     return ScenicScaffold(
       title: title,
@@ -91,14 +108,14 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
       child: !_loaded
           ? const SizedBox.shrink()
           : !_hasEntry
-              ? const ScenicPanel(
-                  child: Text(
-                    'Nothing logged on this day.',
-                    textAlign: TextAlign.center,
-                    style: kScenicBody,
-                  ),
-                )
-              : Column(
+          ? const ScenicPanel(
+              child: Text(
+                'Nothing logged on this day.',
+                textAlign: TextAlign.center,
+                style: kScenicBody,
+              ),
+            )
+          : Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ScenicPanel(
@@ -230,13 +247,13 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
   }
 
   static String _oldMoodScore(String mood) => switch (mood.toLowerCase()) {
-        'not good' || 'rough' => '1',
-        'low' => '2',
-        'okay' => '3',
-        'good' || 'pretty good' => '4',
-        'great' => '5',
-        _ => '3',
-      };
+    'not good' || 'rough' => '1',
+    'low' => '2',
+    'okay' => '3',
+    'good' || 'pretty good' => '4',
+    'great' => '5',
+    _ => '3',
+  };
 
   String? _note() {
     if (_reflections.isEmpty) return null;
@@ -254,7 +271,9 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
     if (category != null && category.isNotEmpty) chips.add(category);
     final detail = _stressor?['detail'] as String?;
     if (detail != null && detail.isNotEmpty) {
-      chips.addAll(detail.split(',').map((s) => s.trim()).where((s) => s.isNotEmpty));
+      chips.addAll(
+        detail.split(',').map((s) => s.trim()).where((s) => s.isNotEmpty),
+      );
     }
     return chips.take(4).toList();
   }
@@ -273,12 +292,12 @@ class _Chip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        decoration: BoxDecoration(
-          color: ScenicColors.tileSelected,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: ScenicColors.pillBottom, width: 1.2),
-        ),
-        child: Text(label, style: kScenicBody.copyWith(fontSize: 14)),
-      );
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    decoration: BoxDecoration(
+      color: ScenicColors.tileSelected,
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(color: ScenicColors.pillBottom, width: 1.2),
+    ),
+    child: Text(label, style: kScenicBody.copyWith(fontSize: 14)),
+  );
 }

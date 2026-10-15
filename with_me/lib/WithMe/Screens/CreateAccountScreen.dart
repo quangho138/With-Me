@@ -95,8 +95,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
-  void _say(String message) => ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text(message)));
+  void _say(String message) => ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(SnackBar(content: Text(message)));
 
   @override
   Widget build(BuildContext context) {

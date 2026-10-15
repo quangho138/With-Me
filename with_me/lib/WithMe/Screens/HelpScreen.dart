@@ -30,10 +30,7 @@ class HelpScreen extends StatefulWidget {
       'Does With Me replace therapy?',
       'No. With Me is not a substitute for professional mental health care.',
     ),
-    (
-      'Is my data secure?',
-      'Your logs are stored on this device.',
-    ),
+    ('Is my data secure?', 'Your logs are stored on this device.'),
     (
       'Who can use With Me?',
       'Designed for ages 18+. Minors should have supervision.',

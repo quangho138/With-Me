@@ -62,11 +62,13 @@ class _SighScreenState extends State<SighScreen>
         // Saved for progress. A failed save never interrupts the exercise.
         unawaited(
           AppRepositories.exercises
-              .recordCompleted(ExerciseSession(
-                completedAt: DateTime.now(),
-                exercise: 'physiological_sigh',
-                cycles: _cycles,
-              ))
+              .recordCompleted(
+                ExerciseSession(
+                  completedAt: DateTime.now(),
+                  exercise: 'physiological_sigh',
+                  cycles: _cycles,
+                ),
+              )
               .catchError((Object _) {}),
         );
       }

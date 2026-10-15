@@ -1144,12 +1144,16 @@ class _ReadinessPainter extends CustomPainter {
   final double value;
   final bool answered;
 
-  /// Band boundaries as fractions of the sweep, read off the screen the
-  /// product owner supplied.
+  /// One band per answer in [ReadinessGauge.levels], split where the
+  /// words change: Not ready yet red, A little ready orange, Somewhat ready
+  /// yellow, Ready green, Very ready purple - the feelings page's colours
+  /// (MoodFace.light), used for every 1 to 5 scale.
   static const List<(double, double, Color)> _bands = [
-    (0.00, 0.45, WithMeColors.mint),
-    (0.45, 0.66, WithMeColors.peach),
-    (0.66, 1.00, WithMeColors.coral),
+    (0.0, 0.2, Color(0xFFFF8A80)),
+    (0.2, 0.4, Color(0xFFFFC078)),
+    (0.4, 0.6, Color(0xFFFFEB80)),
+    (0.6, 0.8, Color(0xFF9EE6A2)),
+    (0.8, 1.0, Color(0xFFCDB0FF)),
   ];
 
   @override

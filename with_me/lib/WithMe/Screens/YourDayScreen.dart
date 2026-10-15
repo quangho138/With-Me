@@ -40,8 +40,15 @@ class _YourDayScreenState extends State<YourDayScreen> {
 
   int get _done => _tasks.where((t) => t.state == _TaskState.done).length;
 
-  static String _word(int n) => const [
-        'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six',
+  static String _word(int n) =>
+      const [
+        'Zero',
+        'One',
+        'Two',
+        'Three',
+        'Four',
+        'Five',
+        'Six',
       ].elementAtOrNull(n) ??
       '$n';
 
@@ -54,9 +61,9 @@ class _YourDayScreenState extends State<YourDayScreen> {
       action: ScenicPill(
         label: 'Do it now',
         height: 58,
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => const ExerciseChooseScreen()),
-        ),
+        onPressed: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const ExerciseChooseScreen())),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -129,7 +136,10 @@ class _TaskRow extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(task.label, style: kScenicBody.copyWith(fontSize: 16)),
+              child: Text(
+                task.label,
+                style: kScenicBody.copyWith(fontSize: 16),
+              ),
             ),
             const SizedBox(width: 8),
             Container(

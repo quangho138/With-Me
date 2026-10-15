@@ -69,8 +69,10 @@ void main() {
       // goldens need the device's insets for the two to line up - and for the
       // captures to show what a real iPhone shows.
       tester.view.padding = const FakeViewPadding(top: 47 * 3, bottom: 34 * 3);
-      tester.view.viewPadding =
-          const FakeViewPadding(top: 47 * 3, bottom: 34 * 3);
+      tester.view.viewPadding = const FakeViewPadding(
+        top: 47 * 3,
+        bottom: 34 * 3,
+      );
       addTearDown(tester.view.reset);
 
       await tester.pumpWidget(
@@ -146,9 +148,8 @@ final Map<String, Widget Function()> _screens = {
   'image34-strategies-and-actions': () => const StrategiesActionsScreen(),
   // Yesterday, so it lands on a seeded entry and can be compared against a
   // mockup that shows a filled-in day.
-  'image35-day-detail': () => DayDetailScreen(
-        date: DateTime.now().subtract(const Duration(days: 1)),
-      ),
+  'image35-day-detail': () =>
+      DayDetailScreen(date: DateTime.now().subtract(const Duration(days: 1))),
   'image36-your-day': () => const YourDayScreen(),
   'image37-progress': () => const ProgressScreen(),
   'image38-reminder': () => const ReminderScreen(),
@@ -249,9 +250,10 @@ String _flutterRoot() {
 void _stubPlatformChannels() {
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
       .setMockMethodCallHandler(
-    const MethodChannel('plugins.flutter.io/path_provider'),
-    (call) async => Directory.systemTemp.createTempSync('withme_golden').path,
-  );
+        const MethodChannel('plugins.flutter.io/path_provider'),
+        (call) async =>
+            Directory.systemTemp.createTempSync('withme_golden').path,
+      );
 
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;

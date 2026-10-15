@@ -3,6 +3,7 @@ import 'exercise_repository.dart';
 import 'export_service.dart';
 import 'online_auth.dart';
 import 'reflection_repository.dart';
+import 'settings_repository.dart';
 import 'sync_service.dart';
 import 'user_repository.dart';
 
@@ -19,6 +20,9 @@ class AppRepositories {
   static ExerciseRepository exercises = LocalExerciseRepository();
   static ReflectionRepository reflections = LocalReflectionRepository();
   static UserRepository users = AppUserRepository(auth: SupabaseOnlineAuth());
+
+  /// Choices kept on this device, such as Read aloud (Alex).
+  static SettingsRepository settings = LocalSettingsRepository();
 
   /// "Export my data" (stage 3, step 2d).
   static ExportService export = ExportService();

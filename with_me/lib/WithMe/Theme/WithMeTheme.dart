@@ -16,9 +16,11 @@ class WithMeColors {
   // --- Brand ---------------------------------------------------------------
   /// Primary. Buttons, headings, selected tiles, active tabs.
   static const Color teal = Color(0xFF0D6B63);
+
   /// Deepest teal — device frame stroke in the mockups, pressed states here.
   static const Color tealInk = Color(0xFF0B3E3C);
   static const Color tealLight = Color(0xFF3FA0A0);
+
   /// Deprecated alias kept while the legacy companion screens are rebuilt.
   static const Color tealDeep = tealInk;
   static const Color tealSoft = Color(0xFFD7EDEC);
@@ -26,8 +28,10 @@ class WithMeColors {
   // --- Paper ---------------------------------------------------------------
   /// Card and unselected-row fill.
   static const Color cream = Color(0xFFFCFAF4);
+
   /// Menu / settings row fill, a touch warmer.
   static const Color creamWarm = Color(0xFFFDF9F2);
+
   /// Kept for the speech bubble, which reads brighter than a card.
   static const Color creamLight = Color(0xFFFFFDF8);
   static const Color creamShadow = Color(0x1A6B5A3E);
@@ -35,6 +39,7 @@ class WithMeColors {
   // --- Page gradient -------------------------------------------------------
   /// Top of the page gradient.
   static const Color skyMint = Color(0xFFC9E5E0);
+
   /// Bottom of the page gradient.
   static const Color sandPeach = Color(0xFFF1CCAF);
 
@@ -46,12 +51,16 @@ class WithMeColors {
   // Calendar legend, option-row dots, stressor tiles, chart series.
   /// Check-in.
   static const Color mint = Color(0xFF9BD4CB);
+
   /// Exercise.
   static const Color peach = Color(0xFFF5CFB3);
+
   /// Feeling better.
   static const Color coral = Color(0xFFE38061);
+
   /// Challenging day.
   static const Color pink = Color(0xFFDD7397);
+
   /// "Other" / inactive.
   static const Color slate = Color(0xFFC8D3CD);
 
@@ -86,6 +95,7 @@ class WithMeColors {
   static const Color ink = Color(0xFF14413F);
   static const Color inkSoft = Color(0xFF5A7A77);
   static const Color inkFaint = Color(0xFF8CA5A1);
+
   /// Destructive rows — "Log out", "Delete my account".
   static const Color danger = Color(0xFFD04A3C);
 
@@ -129,8 +139,10 @@ class WithMeSpace {
   static const double ctaHeight = 60;
 
   static const double radiusSm = 12;
+
   /// Cards, rows and buttons. Measured at r = 15 on 108 rectangles.
   static const double radiusMd = 16;
+
   /// Large cards — the question card, the calendar panel.
   static const double radiusLg = 24;
   static const double radiusPill = 999;
@@ -147,11 +159,7 @@ class WithMeSpace {
   ];
 
   static const List<BoxShadow> liftShadow = [
-    BoxShadow(
-      color: Color(0x26000000),
-      blurRadius: 24,
-      offset: Offset(0, 10),
-    ),
+    BoxShadow(color: Color(0x26000000), blurRadius: 24, offset: Offset(0, 10)),
   ];
 }
 

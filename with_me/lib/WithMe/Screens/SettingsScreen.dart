@@ -8,12 +8,18 @@ import '../../Repositories/export_service.dart';
 import '../../Repositories/user_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Speech/SpeechService.dart';
 import '../Theme/WithMeTheme.dart';
+import 'VoiceSettingsScreen.dart';
 import 'WelcomeScreen.dart';
 
 /// `image41.png` — Settings.
 ///
-/// Three 63 pt toggle rows, then six 55 pt rows, the last of them destructive.
+/// Four toggle rows, then six 55 pt rows, the last of them destructive.
+///
+/// Read aloud is the only toggle that is saved: it decides whether the
+/// companion speaks, and is kept on this device. Read aloud voice, under it, opens
+/// how the companion sounds.
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -29,8 +35,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _voice = true;
 
   void _notWired(String what) => ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$what is not wired up in this UI pass.')),
-      );
+    SnackBar(content: Text('$what is not wired up in this UI pass.')),
+  );
 
   /// Backend (stage 3, 2d): "Export my data" as one JSON file, handed to
   /// the phone's share menu (in the browser it downloads).
@@ -94,6 +100,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (confirmed != true) return;
     try {
       await AppRepositories.users.deleteAccountAndData();
+      // The saved Read aloud setting went with everything else.
+      SpeechService.instance.forgetSetting();
     } on AccountException catch (e) {
       // Nothing was deleted (for example, no internet). Say why.
       if (!mounted) return;
@@ -150,6 +158,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
             iconColor: const Color(0xFFD2557F),
             value: _voice,
             onChanged: (v) => setState(() => _voice = v),
+          ),
+          gap(),
+          ValueListenableBuilder<bool>(
+            valueListenable: SpeechService.instance.enabled,
+            builder: (context, on, _) => ScenicToggleRow(
+              label: 'Read aloud',
+              icon: Icons.record_voice_over_rounded,
+              iconColor: const Color(0xFF1C7C84),
+              value: on,
+              onChanged: SpeechService.instance.setEnabled,
+            ),
+          ),
+          gap(),
+          ScenicRow(
+            label: 'Read aloud voice',
+            icon: Icons.graphic_eq_rounded,
+            iconColor: const Color(0xFF1C7C84),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const VoiceSettingsScreen()),
+            ),
           ),
           const SizedBox(height: 16),
           ScenicRow(

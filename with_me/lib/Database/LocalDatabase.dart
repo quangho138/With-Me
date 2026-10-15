@@ -33,8 +33,9 @@ class DatabaseHelper {
   /// adds what sync needs: which days and exercises still have to be
   /// uploaded (sync_days, exercise_sessions.pending) and where the last
   /// download stopped (sync_state). Bump this and extend _onUpgrade for any
-  /// later change.
-  static const int schemaVersion = 8;
+  /// later change. Version 9 adds app_settings (Alex: choices kept on this
+  /// device, such as Read aloud).
+  static const int schemaVersion = 9;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -140,6 +141,7 @@ class DatabaseHelper {
     await _createVersion6(db);
     await _createVersion7(db);
     await _createVersion8(db);
+    await _createVersion9(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -231,6 +233,31 @@ class DatabaseHelper {
     }
     if (oldVersion < 8) {
       await _createVersion8(db);
+    }
+    if (oldVersion < 9) {
+      await _createVersion9(db);
+    }
+  }
+
+  /// Everything version 9 adds. Shared by _onCreate and _onUpgrade.
+  ///
+  /// Settings for this device, one row per setting (Alex's Read aloud and
+  /// voice choices). A setting that was never changed has no row, so its
+  /// default applies.
+  static Future<void> _createVersion9(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS app_settings(
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL
+      )
+    ''');
+
+    // Test phones that ran Alex's branch numbered app_settings "version 7"
+    // and so skipped the real version 7 (accounts moved online). Catch that
+    // case: if users still has no user_id column, rebuild it now.
+    final users = await db.rawQuery('PRAGMA table_info(users)');
+    if (!users.any((c) => c['name'] == 'user_id')) {
+      await _createVersion7(db);
     }
   }
 
@@ -442,13 +469,23 @@ class DatabaseHelper {
     'session',
     'sync_days',
     'sync_state',
+    // Read aloud and any later device settings go back to their defaults.
+    'app_settings',
   ];
 
   /// Empties every user data table in one transaction: all or nothing.
   /// Used by UserRepository.deleteAccountAndData.
-  static Future<void> wipeAllTables(Database db) async {
+  ///
+  /// [keepDeviceSettings]: logging out keeps app_settings (Read aloud and
+  /// voice belong to the phone, not the person); deleting the account and
+  /// data does not.
+  static Future<void> wipeAllTables(
+    Database db, {
+    bool keepDeviceSettings = false,
+  }) async {
     await db.transaction((txn) async {
       for (final table in userDataTables) {
+        if (keepDeviceSettings && table == 'app_settings') continue;
         await txn.delete(table);
       }
     });

@@ -117,6 +117,7 @@ Future<void> walkCheckIn(
   Future<void> Function(int page)? capture,
   String feeling = 'Happy',
   int control = 3,
+  bool readAloud = false,
 }) async {
   Future<void> shot(int page) async {
     if (capture == null) return;
@@ -128,7 +129,7 @@ Future<void> walkCheckIn(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: buildWithMeTheme(),
-      home: const DailyCheckInScreen(),
+      home: DailyCheckInScreen(readAloud: readAloud),
     ),
   );
   await settle(tester);

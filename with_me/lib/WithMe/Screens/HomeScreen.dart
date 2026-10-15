@@ -4,6 +4,9 @@ import '../../Repositories/app_repositories.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Mascot/RealMascot.dart';
+import '../Speech/MouthTimelines.dart';
+import '../Speech/NarrationMouth.dart';
+import '../Speech/SpeechService.dart';
 import 'CheckInScreen.dart';
 import 'DashboardScreen.dart';
 import 'ExerciseChooseScreen.dart';
@@ -15,10 +18,24 @@ import 'MonthlyCalendarScreen.dart';
 /// The greeting in a cream panel, the four shortcuts as the welcome's pills
 /// - Check in filled, the rest light - and the companion waving hello in
 /// the room below them.
+///
+/// The first time Home opens after the app starts, the companion says
+/// Adrian's recorded welcome, mouth moving with it (Read aloud on). Any
+/// shortcut or the menu stops it; coming back to Home does not say it again.
 class WithMeHomeScreen extends StatefulWidget {
   const WithMeHomeScreen({super.key});
 
   static const String route = '/home';
+
+  /// The recorded welcome, under `assets/`.
+  static const String welcomeRecording = 'audio/home/welcome_back.mp3';
+
+  /// Whether this run of the app has played the welcome yet.
+  static bool _welcomed = false;
+
+  /// Lets the welcome play again, as after a fresh start of the app.
+  @visibleForTesting
+  static void resetWelcome() => _welcomed = false;
 
   @override
   State<WithMeHomeScreen> createState() => _WithMeHomeScreenState();
@@ -27,9 +44,25 @@ class WithMeHomeScreen extends StatefulWidget {
 class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
   String? _name;
 
+  /// Moves the companion's mouth while the welcome plays.
+  final NarrationMouth _mouth = NarrationMouth();
+
   @override
   void initState() {
     super.initState();
+    final speech = SpeechService.instance;
+    if (!WithMeHomeScreen._welcomed && speech.loaded && speech.enabled.value) {
+      WithMeHomeScreen._welcomed = true;
+      // Once the first frame has put Home on screen, as on the check-in.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        const clip = WithMeHomeScreen.welcomeRecording;
+        _mouth.follow(
+          speech.play(clip, owner: this),
+          timeline: kMouthTimelines[clip],
+        );
+      });
+    }
     AppRepositories.users
         .displayName()
         .then((name) {
@@ -40,19 +73,32 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
         .catchError((_) {});
   }
 
-  void _go(Widget screen) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (_) => screen));
+  @override
+  void dispose() {
+    SpeechService.instance.stop(owner: this);
+    _mouth.dispose();
+    super.dispose();
+  }
+
+  /// Opens [screen]. Leaving Home ends the welcome, and its mouth with it.
+  void _go(Widget screen) {
+    SpeechService.instance.stop(owner: this);
+    _mouth.follow(null);
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
+  }
 
   @override
   Widget build(BuildContext context) {
-    final greeting =
-        _name == null || _name!.isEmpty ? 'Welcome back!' : 'Welcome back, $_name!';
+    final greeting = _name == null || _name!.isEmpty
+        ? 'Welcome back!'
+        : 'Welcome back, $_name!';
 
     return ScenicScaffold(
       title: 'Home',
       leading: _MenuButton(onTap: () => _go(const MenuScreen())),
       mascot: RealPose.wave,
       mascotMax: 0.42,
+      mascotMouth: _mouth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

@@ -48,6 +48,8 @@ dependencies:
   supabase_flutter: ^2.8.0
   # "Export my data": hands the file to the phone's share menu.
   share_plus: ^10.1.0
+  # Read aloud: the phone's text-to-speech voice (Alex).
+  flutter_tts: ^4.2.5
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +79,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/audio/
+    - assets/audio/checkin/
+    - assets/audio/home/
     - assets/video/
     - assets/logo.png
     - assets/mascot/

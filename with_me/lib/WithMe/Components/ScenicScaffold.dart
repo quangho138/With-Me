@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import '../Mascot/RealMascot.dart';
+import '../Speech/NarrationMouth.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ScenicKit.dart';
 
@@ -32,6 +33,7 @@ class ScenicScaffold extends StatelessWidget {
     this.mascot,
     this.mascotMax = 0.34,
     this.mascotMin = 120,
+    this.mascotMouth,
     this.softBackground = false,
     this.wideAction = false,
   });
@@ -62,6 +64,10 @@ class ScenicScaffold extends StatelessWidget {
 
   /// The smallest the companion is drawn, when room is short.
   final double mascotMin;
+
+  /// Moves the companion's mouth while the screen's line plays, or null for
+  /// a companion that does not speak.
+  final NarrationMouth? mascotMouth;
 
   /// Soften the painting behind a screen that is mostly reading - see
   /// [ScenicBackdrop.soften].
@@ -127,6 +133,7 @@ class ScenicScaffold extends StatelessWidget {
                             hasScrollBody: false,
                             child: _MascotRoom(
                               pose: mascot!,
+                              mouth: mascotMouth,
                               min: mascotMin,
                               max: h * mascotMax,
                             ),
@@ -222,9 +229,15 @@ class _ScenicScaffoldLayout extends MultiChildLayoutDelegate {
 /// The companion at the foot of the content: as tall as the room left
 /// allows, between [min] and [max], standing on the bottom of that room.
 class _MascotRoom extends StatelessWidget {
-  const _MascotRoom({required this.pose, required this.min, required this.max});
+  const _MascotRoom({
+    required this.pose,
+    required this.min,
+    required this.max,
+    this.mouth,
+  });
 
   final RealPose pose;
+  final NarrationMouth? mouth;
 
   /// Small, but still unmistakably the companion.
   final double min;
@@ -241,7 +254,17 @@ class _MascotRoom extends StatelessWidget {
           final height = box.maxHeight.clamp(0.0, math.max(min, max));
           return Align(
             alignment: Alignment.bottomCenter,
-            child: RealMascot(pose: pose, height: height - 4),
+            child: mouth == null
+                ? RealMascot(pose: pose, height: height - 4)
+                : ValueListenableBuilder<bool>(
+                    valueListenable: mouth!,
+                    builder: (context, talking, _) => RealMascot(
+                      pose: pose,
+                      height: height - 4,
+                      talking: talking,
+                      mouthTimeline: mouth!.timeline,
+                    ),
+                  ),
           );
         },
       ),

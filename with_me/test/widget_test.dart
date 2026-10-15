@@ -53,10 +53,9 @@ void main() {
     );
 
     final box = tester.getSize(
-      find.ancestor(
-        of: find.text('Continue'),
-        matching: find.byType(Container),
-      ).first,
+      find
+          .ancestor(of: find.text('Continue'), matching: find.byType(Container))
+          .first,
     );
     expect(box.height, WithMeSpace.ctaHeight);
   });

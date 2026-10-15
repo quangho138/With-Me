@@ -60,9 +60,8 @@ void main() {
     '13-feelings-stress-pies': () => const TriggersSignsScreen(),
     '14-strategies': () => const StrategiesActionsScreen(),
     '15-your-day-final': () => const YourDayScreen(),
-    '16-entry-details': () => DayDetailScreen(
-      date: DateTime.now().subtract(const Duration(days: 1)),
-    ),
+    '16-entry-details': () =>
+        DayDetailScreen(date: DateTime.now().subtract(const Duration(days: 1))),
     '17-menu': () => const MenuScreen(),
     '18-profile': () => const ProfileScreen(),
     '19-notifications': () => const NotificationsScreen(),
@@ -133,7 +132,9 @@ void main() {
     testWidgets('capture 02b-login-keyboard ${size.key}', (tester) async {
       usePhone(tester, size.value);
       // A soft keyboard covering the bottom of the screen.
-      tester.view.viewInsets = FakeViewPadding(bottom: size.value.height * 0.4 * 3);
+      tester.view.viewInsets = FakeViewPadding(
+        bottom: size.value.height * 0.4 * 3,
+      );
       addTearDown(tester.view.reset);
       await open(tester, const WithMeLoginScreen());
       await shoot(size.key, '02b-login-keyboard');

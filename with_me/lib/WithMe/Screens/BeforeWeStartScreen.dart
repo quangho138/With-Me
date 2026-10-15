@@ -28,7 +28,12 @@ class BeforeWeStartScreen extends StatefulWidget {
 
 class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   static const List<String> _sounds = [
-    'Waves', 'Birds', 'Fire', 'Forest', 'Rain', 'None',
+    'Waves',
+    'Birds',
+    'Fire',
+    'Forest',
+    'Rain',
+    'None',
   ];
   static const List<int> _cycleChoices = [1, 2, 3, 5, 10];
 

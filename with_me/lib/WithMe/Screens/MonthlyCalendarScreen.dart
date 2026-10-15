@@ -69,7 +69,8 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
   Future<void> _openCheckIn(int step) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => DailyCheckInScreen(initialStep: step),
+        // Opened from the Daily Log, the companion says each page's line.
+        builder: (_) => DailyCheckInScreen(initialStep: step, readAloud: true),
       ),
     );
     // Back from the check-in, today may have a mark it did not have before.
@@ -101,9 +102,7 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
     }
 
     for (var day = 1; day <= days; day++) {
-      final key = dayKey(
-        DateTime(_month.year, _month.month, day),
-      );
+      final key = dayKey(DateTime(_month.year, _month.month, day));
       final mood = moods[key];
       final gauge = gauges[key];
 
@@ -258,9 +257,7 @@ class _PageRow extends StatelessWidget {
               ),
             ),
             const SizedBox(width: WithMeSpace.md),
-            Expanded(
-              child: Text(title, style: kScenicBody),
-            ),
+            Expanded(child: Text(title, style: kScenicBody)),
             const SizedBox(width: WithMeSpace.sm),
             const Icon(
               Icons.chevron_right_rounded,

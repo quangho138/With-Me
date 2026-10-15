@@ -9,6 +9,9 @@ import '../Components/ScenicKit.dart';
 import '../Components/WithMeControls.dart';
 import '../Data/CheckInSteps.dart';
 import '../Mascot/RealMascot.dart';
+import '../Speech/MouthTimelines.dart';
+import '../Speech/NarrationMouth.dart';
+import '../Speech/SpeechService.dart';
 import '../Theme/WithMeTheme.dart';
 import 'SettingsScreen.dart';
 import 'YourDayScreen.dart';
@@ -35,13 +38,61 @@ import 'YourDayScreen.dart';
 ///
 /// Answers are saved on the way out through `CheckInRepository`
 /// (lib/Repositories), which owns the tables and the date format.
+///
+/// Opened from the Daily Log ([readAloud]), the companion says each page's
+/// line when Read aloud is on, from Adrian's recordings ([recordingFor])
+/// rather than text-to-speech: the page it opens on, then each page reached
+/// with Continue. Going back to a page, or returning from Settings, does
+/// not repeat it. Leaving a page stops its line; answering on it does not.
 class DailyCheckInScreen extends StatefulWidget {
-  const DailyCheckInScreen({super.key, this.initialStep = 0})
-      : assert(initialStep >= 0 && initialStep < pageCount);
+  const DailyCheckInScreen({
+    super.key,
+    this.initialStep = 0,
+    this.readAloud = false,
+  }) : assert(initialStep >= 0 && initialStep < pageCount);
 
   /// Which page to open on. The calendar lists every page, and tapping one
   /// starts there.
   final int initialStep;
+
+  /// Whether the companion says each page's recorded line
+  /// ([recordingFor]): the page it opens on, and each page reached with
+  /// Continue. Going back is quiet. The Daily Log sets it, from "Start
+  /// today's check-in" and from its list of pages; nothing else does.
+  final bool readAloud;
+
+  /// The greeting, recorded: what plays instead of text-to-speech.
+  static const String greetingRecording = 'audio/checkin/page1.mp3';
+
+  /// The companion's recorded line for the page at [index] (0 is the
+  /// greeting), or null when that page has none. The stressor page's line
+  /// follows the area picked before it and the signs page's line follows
+  /// body / feelings / mind / behaviour, so those two need [answers]. The
+  /// last page, Strategy details, has no recording.
+  static String? recordingFor(int index, CheckInAnswers answers) {
+    const dir = 'audio/checkin';
+    if (index == stressorPage) {
+      final area = answers.area;
+      return area == null ? null : '$dir/page6_${area.toLowerCase()}.mp3';
+    }
+    if (index == signsPage) {
+      final kind = switch (answers.signDimension) {
+        null => null,
+        SignDimension.body => 'body',
+        SignDimension.feelings => 'feelings',
+        SignDimension.mind => 'mind',
+        SignDimension.behaviour => 'behavior',
+      };
+      return kind == null ? null : '$dir/page8_$kind.mp3';
+    }
+    if (index >= 0 && index < pageCount - 1) return '$dir/page${index + 1}.mp3';
+    return null;
+  }
+
+  /// The greeting in the first page's bubble, line breaks and all. The same
+  /// words are read aloud and listed on the Daily Log.
+  static const String greeting =
+      "Hi!\nI'm here with you.\nHow are you\nfeeling today?";
 
   static const String route = '/daily-check-in';
 
@@ -62,19 +113,19 @@ class DailyCheckInScreen extends StatefulWidget {
   /// Each page's heading, in order - what the calendar lists for today.
   /// Keep it in step with `_step`.
   static List<String> pageTitles(String? name) => [
-        "Hi! I'm here with you. How are you feeling today?",
-        'How in control do you feel today?',
-        'On a scale of 1 to 5, how would you rate your stress today?',
-        'How motivated do you feel to make a positive change today?',
-        'Where is most of your stress coming from right now?',
-        "What's weighing on you?",
-        'What are the signs? Body, feelings, mind or behavior',
-        // One page, whichever the previous choice named.
-        'How stress is showing up for you',
-        'Intention to change',
-        'Select strategies and actions',
-        'Strategy details',
-      ];
+    greeting.replaceAll('\n', ' '),
+    'How in control do you feel today?',
+    'On a scale of 1 to 5, how would you rate your stress today?',
+    'How motivated do you feel to make a positive change today?',
+    'Where is most of your stress coming from right now?',
+    "What's weighing on you?",
+    'What are the signs? Body, feelings, mind or behavior',
+    // One page, whichever the previous choice named.
+    'How stress is showing up for you',
+    'Intention to change',
+    'Select strategies and actions',
+    'Strategy details',
+  ];
 
   @override
   State<DailyCheckInScreen> createState() => _DailyCheckInScreenState();
@@ -87,7 +138,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   /// their own - each needs the choice before it (the area, or body /
   /// feelings / mind / behaviour) - so asking for either starts one page
   /// earlier.
-  late final int _start = widget.initialStep == DailyCheckInScreen.signsPage ||
+  late final int _start =
+      widget.initialStep == DailyCheckInScreen.signsPage ||
           widget.initialStep == DailyCheckInScreen.stressorPage
       ? widget.initialStep - 1
       : widget.initialStep;
@@ -111,6 +163,39 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   void initState() {
     super.initState();
     _loadSaved();
+    if (widget.readAloud) {
+      // The line starts once the first frame has put the page on screen;
+      // that frame already shows the pose it will be said in.
+      final speech = SpeechService.instance;
+      if (speech.loaded &&
+          speech.enabled.value &&
+          DailyCheckInScreen.recordingFor(_index, _answers) != null) {
+        _mouth.expect();
+      }
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _index == _start) _sayPage();
+      });
+    }
+  }
+
+  /// Moves the companion's mouth while this page's line plays.
+  final NarrationMouth _mouth = NarrationMouth();
+
+  /// Plays the current page's recorded line, if it has one, and has the
+  /// companion say it.
+  void _sayPage() {
+    final clip = DailyCheckInScreen.recordingFor(_index, _answers);
+    _mouth.follow(
+      clip == null ? null : SpeechService.instance.play(clip, owner: this),
+      timeline: kMouthTimelines[clip],
+    );
+  }
+
+  @override
+  void dispose() {
+    SpeechService.instance.stop(owner: this);
+    _mouth.dispose();
+    super.dispose();
   }
 
   /// Starts the pages from today's saved check-in, if there is one.
@@ -131,10 +216,14 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
       _finish();
       return;
     }
+    // One page's line is not read over the next.
+    SpeechService.instance.stop(owner: this);
+    _mouth.follow(null);
     setState(() {
       _forward = true;
       _index++;
     });
+    if (widget.readAloud) _sayPage();
   }
 
   void _back() {
@@ -145,6 +234,10 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
       Navigator.of(context).pop();
       return;
     }
+    // Going back is quiet: the page left stops, the one returned to does
+    // not play again, and the companion's mouth stays still.
+    SpeechService.instance.stop(owner: this);
+    _mouth.follow(null);
     setState(() {
       _forward = false;
       _index--;
@@ -171,9 +264,9 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     }
 
     if (!mounted) return;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const YourDayScreen()),
-    );
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (_) => const YourDayScreen()));
   }
 
   /// Saves every answer through the check-in repository, including the
@@ -182,29 +275,33 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Future<void> _save() {
     final a = _answers;
     final dimension = a.signDimension;
-    return AppRepositories.checkIns.save(CheckInEntry(
-      day: DateTime.now(),
-      mood: a.mood == null ? null : _moodLabel(a.mood!),
-      perceivedControl: a.control,
-      stress: a.stress,
-      motivation: a.motivation,
-      area: a.area,
-      // Signs share the stressor's detail column, and only the chosen
-      // area's stressors and the chosen dimension's signs count; the others
-      // were left behind when the user changed their mind.
-      stressorDetail: [
-        ...a.stressors,
-        if (dimension != null) ...a.signs[dimension]!,
-      ],
-      stressorOther: a.stressorOther,
-      signDimension: dimension?.name,
-      signOther: dimension == null ? null : cleanOther(a.signOther[dimension]),
-      readiness: a.readiness,
-      intention: a.intention,
-      strategy: a.strategy,
-      action: a.action,
-      rating: a.rating > 0 ? a.rating : null,
-    ));
+    return AppRepositories.checkIns.save(
+      CheckInEntry(
+        day: DateTime.now(),
+        mood: a.mood == null ? null : _moodLabel(a.mood!),
+        perceivedControl: a.control,
+        stress: a.stress,
+        motivation: a.motivation,
+        area: a.area,
+        // Signs share the stressor's detail column, and only the chosen
+        // area's stressors and the chosen dimension's signs count; the others
+        // were left behind when the user changed their mind.
+        stressorDetail: [
+          ...a.stressors,
+          if (dimension != null) ...a.signs[dimension]!,
+        ],
+        stressorOther: a.stressorOther,
+        signDimension: dimension?.name,
+        signOther: dimension == null
+            ? null
+            : cleanOther(a.signOther[dimension]),
+        readiness: a.readiness,
+        intention: a.intention,
+        strategy: a.strategy,
+        action: a.action,
+        rating: a.rating > 0 ? a.rating : null,
+      ),
+    );
   }
 
   /// The five faces on the greeting, as stored.
@@ -244,9 +341,21 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                   child: LayoutBuilder(
                     builder: (context, slot) => Align(
                       alignment: Alignment.bottomCenter,
-                      child: RealMascot(
-                        pose: _realPose,
-                        height: slot.maxHeight,
+                      child: ValueListenableBuilder<bool>(
+                        valueListenable: _mouth,
+                        builder: (context, talking, _) => RealMascot(
+                          // A line on a page already answered (a saved
+                          // check-in, or a page visited before) is said in
+                          // the page's waiting pose, which has the mouths.
+                          // That pose holds from the moment the line is due,
+                          // through the wait for the audio, so nothing
+                          // changes but the mouth when it starts; the
+                          // answer's reaction shows when it ends.
+                          pose: _mouth.saying ? _waitingPose : _realPose,
+                          height: slot.maxHeight,
+                          talking: talking,
+                          mouthTimeline: _mouth.timeline,
+                        ),
                       ),
                     ),
                   ),
@@ -326,7 +435,13 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   /// example answers (stress 4, motivation 3) land on its pictured poses.
   /// Naming a stressor or a sign gets thoughtful concern rather than a
   /// frown.
-  RealPose get _realPose {
+  RealPose get _realPose => _poseFor(_answers);
+
+  /// The pose this page opens on before anything is answered: heart, think
+  /// or idle, the poses the companion can talk in.
+  RealPose get _waitingPose => _poseFor(CheckInAnswers());
+
+  RealPose _poseFor(CheckInAnswers a) {
     RealPose scale(int? v) {
       if (v == null || v < 1) return RealPose.idle;
       if (v <= 2) return RealPose.sad;
@@ -334,7 +449,6 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
       return RealPose.happy;
     }
 
-    final a = _answers;
     switch (_index) {
       case 0:
         return switch (a.mood == null ? null : MoodFace.values[a.mood!]) {
@@ -386,9 +500,13 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     label: 'Settings',
     excludeSemantics: true,
     child: GestureDetector(
-      onTap: () => Navigator.of(
-        context,
-      ).push(MaterialPageRoute(builder: (_) => const SettingsScreen())),
+      onTap: () {
+        // Settings covers the page, so its line ends here.
+        SpeechService.instance.stop(owner: this);
+        Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const SettingsScreen()));
+      },
       child: const Icon(
         Icons.settings_rounded,
         color: Colors.white,
@@ -410,10 +528,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const BubbleText(
-                "Hi!\nI'm here with you.\nHow are you\nfeeling today?",
-                size: 27,
-              ),
+              const BubbleText(DailyCheckInScreen.greeting, size: 27),
               const SizedBox(height: 14),
               MoodFacesCard(
                 bare: true,
@@ -458,6 +573,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                 value: a.stress,
                 onChanged: (v) => _touch(() => a.stress = v),
               ),
+              const SizedBox(height: 14),
+              const _ScaleEnds(low: 'Low stress', high: 'High stress'),
             ],
           ),
         );
@@ -474,6 +591,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                 value: a.motivation,
                 onChanged: (v) => _touch(() => a.motivation = v),
               ),
+              const SizedBox(height: 14),
+              const _ScaleEnds(low: 'Least motivated', high: 'Most motivated'),
             ],
           ),
         );
@@ -490,9 +609,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           color: areas[i].$3,
           selected: a.area == areas[i].$1,
           // Tapping the chosen area again clears it.
-          onTap: () => _touch(
-            () => a.area = a.area == areas[i].$1 ? null : areas[i].$1,
-          ),
+          onTap: () =>
+              _touch(() => a.area = a.area == areas[i].$1 ? null : areas[i].$1),
         );
         return SpeechBubble(
           tailAt: 0.62,
@@ -558,8 +676,12 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   String get _actionLabel =>
       _index == _pageCount - 1 ? 'Finish check-in' : 'Continue';
 
+  /// Every answer on every page comes through here. An answer while the
+  /// line is playing ends the talking for that line: the companion shows its
+  /// reaction instead, and the audio carries on.
   void _touch(VoidCallback change) {
     _touched = true;
+    _mouth.hush();
     setState(change);
   }
 }
@@ -686,8 +808,9 @@ class _OtherFieldState extends State<_OtherField> {
             semanticCounterText: '',
             // The count shows only near the limit, so it does not crowd the
             // page while there is plenty of room.
-            counterText:
-                _controller.text.length >= kOtherMaxLength - 20 ? null : '',
+            counterText: _controller.text.length >= kOtherMaxLength - 20
+                ? null
+                : '',
             filled: true,
             fillColor: Colors.white,
             hintStyle: WithMeText.option.copyWith(color: WithMeColors.inkFaint),
@@ -697,7 +820,10 @@ class _OtherFieldState extends State<_OtherField> {
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
-              borderSide: const BorderSide(color: ScenicColors.ring, width: 1.4),
+              borderSide: const BorderSide(
+                color: ScenicColors.ring,
+                width: 1.4,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
@@ -790,6 +916,36 @@ const TextStyle _bubbleBody = TextStyle(
   fontWeight: FontWeight.w600,
   color: ScenicColors.ink,
 );
+
+/// What the ends of a 1 to 5 choice mean, under the numbers: "1 = Low
+/// stress" on the left, "5 = High stress" on the right.
+class _ScaleEnds extends StatelessWidget {
+  const _ScaleEnds({required this.low, required this.high});
+
+  final String low;
+  final String high;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = _bubbleBody.copyWith(
+      fontSize: 15,
+      color: ScenicColors.ink.withValues(alpha: 0.8),
+    );
+    return Semantics(
+      label: '1 means ${low.toLowerCase()}, 5 means ${high.toLowerCase()}',
+      excludeSemantics: true,
+      child: Row(
+        children: [
+          Expanded(child: Text('1 = $low', style: style)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text('5 = $high', textAlign: TextAlign.end, style: style),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 /// A white field on the cream bubble, ringed like the number choices.
 final BoxBorder _fieldRing = Border.all(color: ScenicColors.ring, width: 1.4);
@@ -929,10 +1085,7 @@ class _StressorStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          BubbleText(
-            'Which stressors affect\nyou ${_phrase(area)}?',
-            size: 24,
-          ),
+          BubbleText('Which stressors affect\nyou ${_phrase(area)}?', size: 24),
           const SizedBox(height: 16),
           _ChoiceGrid(
             options: kStressorsByArea[area]!,
@@ -1116,8 +1269,7 @@ class _SignsStep extends StatelessWidget {
             key: ValueKey('other-signs-${dimension.name}'),
             initial: answers.signOther[dimension]!,
             hint: 'Something else',
-            onChanged: (t) =>
-                onChanged(() => answers.signOther[dimension] = t),
+            onChanged: (t) => onChanged(() => answers.signOther[dimension] = t),
           ),
         ],
       ),

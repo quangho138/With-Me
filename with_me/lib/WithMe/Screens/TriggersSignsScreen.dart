@@ -148,9 +148,7 @@ class _PieCard extends StatelessWidget {
           ScenicHeading(title, size: 20, textAlign: TextAlign.start),
           const SizedBox(height: WithMeSpace.md),
           if (slices.isEmpty)
-            const Center(
-              child: Text('Nothing logged yet.', style: kScenicBody),
-            )
+            const Center(child: Text('Nothing logged yet.', style: kScenicBody))
           else ...[
             Center(child: PieChart(slices: slices)),
             const SizedBox(height: WithMeSpace.md),

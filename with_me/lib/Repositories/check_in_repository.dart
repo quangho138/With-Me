@@ -134,6 +134,17 @@ abstract class CheckInRepository {
     DateTime to,
   );
 
+  /// "How in control do you feel today?" (1 least - 5 most) per day.
+  Future<Map<String, int>> perceivedControlBetween(DateTime from, DateTime to);
+
+  /// "How motivated do you feel to make a positive change today?" per day,
+  /// 1-5, for days that saved one.
+  Future<Map<String, int>> motivationsBetween(DateTime from, DateTime to);
+
+  /// "Intention to change" per day, as saved ('Not ready yet' to 'Very
+  /// ready'), for days that saved one.
+  Future<Map<String, String>> intentionsBetween(DateTime from, DateTime to);
+
   /// The strategy chosen per day ('Mental', 'Physical', ...), for days that
   /// saved one.
   Future<Map<String, String>> strategiesBetween(DateTime from, DateTime to);
@@ -287,6 +298,44 @@ class LocalCheckInRepository implements CheckInRepository {
   ) async {
     final rows = await _between('stressors', from, to);
     return {for (final r in rows) (r['date'] as String).substring(0, 10): r};
+  }
+
+  @override
+  Future<Map<String, int>> perceivedControlBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final rows = await _between('check_in_details', from, to);
+    return {
+      for (final r in rows)
+        if (r['perceived_control'] is int)
+          r['date'] as String: r['perceived_control'] as int,
+    };
+  }
+
+  @override
+  Future<Map<String, int>> motivationsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final rows = await _between('check_in_details', from, to);
+    return {
+      for (final r in rows)
+        if (r['motivation'] is int) r['date'] as String: r['motivation'] as int,
+    };
+  }
+
+  @override
+  Future<Map<String, String>> intentionsBetween(
+    DateTime from,
+    DateTime to,
+  ) async {
+    final rows = await _between('check_in_details', from, to);
+    return {
+      for (final r in rows)
+        if ((r['intention'] as String?)?.isNotEmpty ?? false)
+          r['date'] as String: r['intention'] as String,
+    };
   }
 
   @override

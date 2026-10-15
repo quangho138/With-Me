@@ -38,14 +38,16 @@ class MembershipScreen extends StatelessWidget {
         children: [
           _Plan(
             name: 'Free forever',
-            blurb: 'Check-ins, daily logs, breathing exercises and the '
+            blurb:
+                'Check-ins, daily logs, breathing exercises and the '
                 'calendar. No card needed.',
             tinted: true,
           ),
           const SizedBox(height: 12),
           _Plan(
             name: r'Companion Plus · $4.99/mo',
-            blurb: 'All soundscapes · guided meditations · full insight '
+            blurb:
+                'All soundscapes · guided meditations · full insight '
                 'history · PDF summaries to share',
           ),
           const SizedBox(height: 12),
@@ -134,20 +136,20 @@ class _Inert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        height: kSettingsRowHeight,
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          border: kScenicFieldRing,
-        ),
-        child: Text(
-          text,
-          style: kScenicBody.copyWith(
-            fontSize: 16,
-            color: ScenicColors.ink.withValues(alpha: 0.55),
-          ),
-        ),
-      );
+    height: kSettingsRowHeight,
+    alignment: Alignment.centerLeft,
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(16),
+      border: kScenicFieldRing,
+    ),
+    child: Text(
+      text,
+      style: kScenicBody.copyWith(
+        fontSize: 16,
+        color: ScenicColors.ink.withValues(alpha: 0.55),
+      ),
+    ),
+  );
 }

@@ -19,14 +19,11 @@ void main() {
   Future<void> pump(WidgetTester t, Widget home, Size size) async {
     usePhone(t, size);
     addTearDown(t.view.reset);
-    await t.pumpWidget(
-      MaterialApp(theme: buildWithMeTheme(), home: home),
-    );
+    await t.pumpWidget(MaterialApp(theme: buildWithMeTheme(), home: home));
     await t.pump(const Duration(milliseconds: 400));
   }
 
-  Rect rectOf(WidgetTester t, String text) =>
-      t.getRect(find.text(text).first);
+  Rect rectOf(WidgetTester t, String text) => t.getRect(find.text(text).first);
 
   for (final size in const [Size(320, 568), Size(390, 844)]) {
     testWidgets('1-5 sits as 3 over 2 at ${size.width.toInt()}', (t) async {
@@ -48,8 +45,12 @@ void main() {
         ),
         size,
       );
-      final top = [for (final n in ['1', '2', '3']) rectOf(t, n).center.dy];
-      final bottom = [for (final n in ['4', '5']) rectOf(t, n).center.dy];
+      final top = [
+        for (final n in ['1', '2', '3']) rectOf(t, n).center.dy,
+      ];
+      final bottom = [
+        for (final n in ['4', '5']) rectOf(t, n).center.dy,
+      ];
       expect(top.toSet().length, 1);
       expect(bottom.toSet().length, 1);
       expect(bottom.first, greaterThan(top.first));
@@ -74,7 +75,11 @@ void main() {
       const BeforeWeStartScreen(pattern: BreathPattern.fourSevenEight),
       const Size(390, 844),
     );
-    const rows = [['Waves', 'Birds'], ['Fire', 'Forest'], ['Rain', 'None']];
+    const rows = [
+      ['Waves', 'Birds'],
+      ['Fire', 'Forest'],
+      ['Rain', 'None'],
+    ];
     double? lastY;
     for (final row in rows) {
       final a = rectOf(t, row[0]), b = rectOf(t, row[1]);
@@ -83,7 +88,9 @@ void main() {
       if (lastY != null) expect(a.center.dy, greaterThan(lastY));
       lastY = a.center.dy;
     }
-    final top = [for (final n in ['1', '2', '3']) rectOf(t, n).center.dy];
+    final top = [
+      for (final n in ['1', '2', '3']) rectOf(t, n).center.dy,
+    ];
     expect(top.toSet().length, 1);
     expect(rectOf(t, '5').center.dy, greaterThan(top.first));
     expect(rectOf(t, '10').center.dy, rectOf(t, '5').center.dy);
