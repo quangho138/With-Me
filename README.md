@@ -19,8 +19,8 @@ It is built for HR Vision Consulting as the Florida International University Com
 - **Calendar and day detail**: every checked-in day is marked, and tapping a day shows what you answered.
 - **Progress and dashboard**: stress and mood trends over 7, 30 and 365 days, and where stress comes from.
 - **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh, with optional nature video and sound.
-- **Accounts**: sign up, log in and stay logged in, or start without an account. One account per phone. Passwords are stored scrambled, never as typed.
-- **Profile and settings**: your name, your check-in and exercise counts, and "Delete my account", which removes everything on the device.
+- **Accounts**: sign up (with email confirmation), log in and stay logged in, or start without an account. One account per phone. Passwords are checked online and never stored on the phone.
+- **Profile and settings**: your name, your check-in and exercise counts, "Export my data" (one JSON file, ready to import elsewhere), and "Delete my account", which deletes the account online and everything on the phone.
 
 ## How it is built
 
@@ -46,6 +46,7 @@ Database       stores it (SQLite)     lib/Database/
 README.md              this file
 docs/                  design, backend and exercise notes
 tool/                  Python helpers for design captures and mascot art
+supabase/              online tables, security rules and their check (SQL)
 with_me/               the Flutter app
   lib/
     main.dart          app start and routes
@@ -79,7 +80,7 @@ Useful targets:
 - `flutter run -d web-server --web-port=8080`, then open localhost:8080 in Chrome: browser data survives restarts.
 - `flutter run -d emulator-5554` (or your device id): Android.
 
-In the browser, a demo account with a sample week of check-ins is created automatically. Email: demo@withme.app, password: withme123. This is made-up data only.
+In the browser, a sample week of made-up check-ins is added automatically. Tap "Start without an account" on the welcome screen to see it.
 
 ## Test it
 
@@ -103,10 +104,12 @@ flutter test
 
 ## Data and privacy
 
-- All data is stored on the device. Nothing is sent anywhere yet.
-- Passwords are scrambled with a random salt (PBKDF2, SHA-256) before they are saved.
+- Without an account, everything stays on the device.
+- Accounts are online (Supabase). Passwords are checked there and never stored on the phone.
+- With an account, check-ins, finished exercises and the name sync to the account, so they follow you to another phone. The newest edit of a day wins. The journal never leaves the phone.
+- Logging out clears the phone. Check-ins come back on the next login; the journal is deleted (the app warns first).
 - During the course, only made-up test data is used, never real personal data.
-- Planned next: optional accounts with syncing across devices (Supabase). The journal ("Check In") will never leave the device. See `docs/BACKEND.md`.
+- Details in `docs/BACKEND.md` and `supabase/`.
 
 ## Working on it
 

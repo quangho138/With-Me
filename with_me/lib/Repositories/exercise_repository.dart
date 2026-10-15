@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
 import '../Database/LocalDatabase.dart';
+import 'ids.dart';
 
 /// One finished exercise session.
 class ExerciseSession {
@@ -45,6 +46,9 @@ class LocalExerciseRepository implements ExerciseRepository {
   Future<void> recordCompleted(ExerciseSession session) async {
     final db = await _open();
     await db.insert('exercise_sessions', {
+      // Same id here and online; pending until sync uploads it.
+      'uuid': newId(),
+      'pending': 1,
       'date': DatabaseHelper.dateKey(session.completedAt),
       'exercise': session.exercise,
       'pattern': session.pattern,

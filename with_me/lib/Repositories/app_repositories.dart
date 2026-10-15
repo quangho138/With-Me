@@ -1,7 +1,10 @@
 import 'check_in_repository.dart';
 import 'exercise_repository.dart';
+import 'export_service.dart';
+import 'online_auth.dart';
 import 'reflection_repository.dart';
 import 'settings_repository.dart';
+import 'sync_service.dart';
 import 'user_repository.dart';
 
 /// The one place screens get their repositories from.
@@ -16,6 +19,17 @@ class AppRepositories {
   static CheckInRepository checkIns = LocalCheckInRepository();
   static ExerciseRepository exercises = LocalExerciseRepository();
   static ReflectionRepository reflections = LocalReflectionRepository();
-  static UserRepository users = LocalUserRepository();
+  static UserRepository users = AppUserRepository(auth: SupabaseOnlineAuth());
+
+  /// Choices kept on this device, such as Read aloud (Alex).
   static SettingsRepository settings = LocalSettingsRepository();
+
+  /// "Export my data" (stage 3, step 2d).
+  static ExportService export = ExportService();
+
+  /// Keeps the phone and the account in step (stage 3, step 2c).
+  static SyncService sync = SyncService(
+    users: users,
+    online: SupabaseOnlineStore(),
+  );
 }

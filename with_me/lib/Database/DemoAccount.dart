@@ -6,8 +6,13 @@ import '../Repositories/reflection_repository.dart';
 import '../WithMe/Components/WithMeControls.dart' show ReadinessGauge;
 import '../WithMe/Data/CheckInSteps.dart';
 
-/// A sign-in and four months of example check-ins, so the app can be shown
-/// with something in it.
+/// Four months of example check-ins, so the app can be shown with something
+/// in it.
+///
+/// Accounts are online now (Supabase), so the demo has no login of its own:
+/// the days are saved as "without an account" data, and the presenter taps
+/// "Start without an account" on the welcome screen. (Merged with Quang's
+/// stage 3; Alex's version signed up a local demo account.)
 ///
 /// On by default in the browser build, which is only ever a demo - there is
 /// no device and no way to have used the app beforehand. Off on phones unless
@@ -16,14 +21,12 @@ import '../WithMe/Data/CheckInSteps.dart';
 class DemoAccount {
   DemoAccount._();
 
-  static const String email = 'demo@withme.app';
-  static const String password = 'withme123';
   static const String name = 'Maya';
 
   static bool get enabled =>
       kIsWeb || const bool.fromEnvironment('WITHME_DEMO');
 
-  /// Create the account if it is missing and fill the [examples] days, counted
+  /// Fill the [examples] days, counted
   /// back from today, that have no check-in.
   ///
   /// Topping up on every launch, rather than seeding once, keeps the recent
@@ -34,15 +37,10 @@ class DemoAccount {
     final users = AppRepositories.users;
     final checkIns = AppRepositories.checkIns;
 
-    if (!await users.emailExists(email)) {
-      // A phone holds one account. If someone made their own here, leave
-      // their data alone rather than mixing a demo week into it.
-      if (await users.hasAccount()) return;
-      await users.signUp(email: email, password: password, name: name);
-      // Signing up also signs in; the demo should start at the welcome
-      // screen and be logged into by hand.
-      await users.signOut();
-    } else if (await users.displayName() == null) {
+    // If the phone belongs to a real account, leave its data alone rather
+    // than mixing example days into it.
+    if (await users.hasAccount()) return;
+    if (await users.displayName() == null) {
       await users.saveDisplayName(name);
     }
 

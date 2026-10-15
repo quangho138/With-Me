@@ -28,9 +28,14 @@ class DatabaseHelper {
   /// row per day. Version 5 stores scrambled passwords instead of plain text
   /// and remembers who is signed in (session). Version 6 adds the check-in's
   /// perceived-control answer and the written "Other" answers. Version 7
-  /// adds app_settings, for choices kept on this device such as Read aloud.
-  /// Bump this and extend _onUpgrade for any later change.
-  static const int schemaVersion = 7;
+  /// moves passwords off the phone: login is checked online (Supabase), and
+  /// users only remembers which account the phone belongs to. Version 8
+  /// adds what sync needs: which days and exercises still have to be
+  /// uploaded (sync_days, exercise_sessions.pending) and where the last
+  /// download stopped (sync_state). Bump this and extend _onUpgrade for any
+  /// later change. Version 9 adds app_settings (Alex: choices kept on this
+  /// device, such as Read aloud).
+  static const int schemaVersion = 9;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -46,9 +51,8 @@ class DatabaseHelper {
       // Read straight off `db`: going through getUserName() would await
       // `database`, which is this future, and never complete.
       final result = await db.query('user', limit: 1);
-      userNameNotifier.value = result.isNotEmpty
-          ? result.first['name'] as String?
-          : null;
+      userNameNotifier.value =
+          result.isNotEmpty ? result.first['name'] as String? : null;
       return db;
     } catch (_) {
       // Let the next caller try again instead of handing out a failure.
@@ -136,6 +140,8 @@ class DatabaseHelper {
     await _createVersion5(db);
     await _createVersion6(db);
     await _createVersion7(db);
+    await _createVersion8(db);
+    await _createVersion9(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -225,19 +231,111 @@ class DatabaseHelper {
     if (oldVersion < 7) {
       await _createVersion7(db);
     }
+    if (oldVersion < 8) {
+      await _createVersion8(db);
+    }
+    if (oldVersion < 9) {
+      await _createVersion9(db);
+    }
   }
 
-  /// Everything version 7 adds. Shared by _onCreate and _onUpgrade.
+  /// Everything version 9 adds. Shared by _onCreate and _onUpgrade.
   ///
-  /// Settings for this device, one row per setting. A setting that was never
-  /// changed has no row, so its default applies.
-  static Future<void> _createVersion7(Database db) async {
+  /// Settings for this device, one row per setting (Alex's Read aloud and
+  /// voice choices). A setting that was never changed has no row, so its
+  /// default applies.
+  static Future<void> _createVersion9(Database db) async {
     await db.execute('''
       CREATE TABLE IF NOT EXISTS app_settings(
         key TEXT PRIMARY KEY,
         value TEXT NOT NULL
       )
     ''');
+
+    // Test phones that ran Alex's branch numbered app_settings "version 7"
+    // and so skipped the real version 7 (accounts moved online). Catch that
+    // case: if users still has no user_id column, rebuild it now.
+    final users = await db.rawQuery('PRAGMA table_info(users)');
+    if (!users.any((c) => c['name'] == 'user_id')) {
+      await _createVersion7(db);
+    }
+  }
+
+  /// Everything version 8 adds, for sync. Shared by _onCreate and _onUpgrade
+  /// and safe to run twice.
+  static Future<void> _createVersion8(Database db) async {
+    // One row per day that has check-in answers on this phone: when it was
+    // last changed here, and whether that change still has to be uploaded.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS sync_days(
+        date TEXT PRIMARY KEY,
+        changedAt TEXT NOT NULL,
+        pending INTEGER NOT NULL DEFAULT 1
+      )
+    ''');
+
+    // Small facts sync keeps: where each download stopped, and whether the
+    // name still has to be uploaded.
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS sync_state(
+        key TEXT PRIMARY KEY,
+        value TEXT
+      )
+    ''');
+
+    // Each finished exercise gets an id that is the same on every phone and
+    // online, so it is never counted twice, and a "still to upload" mark.
+    final columns = await db.rawQuery('PRAGMA table_info(exercise_sessions)');
+    bool has(String name) => columns.any((c) => c['name'] == name);
+    if (!has('uuid')) {
+      await db.execute('ALTER TABLE exercise_sessions ADD COLUMN uuid TEXT');
+    }
+    if (!has('pending')) {
+      await db.execute(
+        'ALTER TABLE exercise_sessions ADD COLUMN pending INTEGER NOT NULL DEFAULT 1',
+      );
+    }
+    await db.execute('''
+      UPDATE exercise_sessions SET uuid =
+        lower(hex(randomblob(4))) || '-' || lower(hex(randomblob(2))) ||
+        '-4' || substr(lower(hex(randomblob(2))), 2) || '-' ||
+        substr('89ab', 1 + (abs(random()) % 4), 1) ||
+        substr(lower(hex(randomblob(2))), 2) || '-' ||
+        lower(hex(randomblob(6)))
+      WHERE uuid IS NULL
+    ''');
+
+    // Days already saved before sync existed are marked to upload, with an
+    // old time so they never replace a newer edit that is already online.
+    await db.execute('''
+      INSERT OR IGNORE INTO sync_days(date, changedAt, pending)
+      SELECT day, '2000-01-01T00:00:00.000Z', 1 FROM (
+        SELECT date AS day FROM moods
+        UNION SELECT date FROM control_gauge
+        UNION SELECT substr(date, 1, 10) FROM stressors
+        UNION SELECT date FROM check_in_details
+      )
+    ''');
+  }
+
+  /// Everything version 7 changes. Shared by _onCreate and _onUpgrade.
+  ///
+  /// Passwords leave the phone: Supabase checks them online. users now only
+  /// remembers which online account this phone belongs to. Accounts made
+  /// before this only ever existed on one phone, so they are removed and
+  /// people sign up again online; check-ins, journal and name are kept.
+  /// Whoever was logged in is logged out (a guest stays a guest).
+  static Future<void> _createVersion7(Database db) async {
+    await db.execute('DROP TABLE IF EXISTS users');
+    await db.execute('''
+      CREATE TABLE users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id TEXT NOT NULL UNIQUE,
+        email TEXT NOT NULL,
+        linkedAt TEXT NOT NULL
+      )
+    ''');
+    await db.execute('DELETE FROM session WHERE email IS NOT NULL');
   }
 
   /// Everything version 6 adds. Shared by _onCreate and _onUpgrade.
@@ -328,15 +426,19 @@ class DatabaseHelper {
     required DateTime date,
   }) async {
     final db = await database;
-    return await db.insert('reflections', {
-      'who': who,
-      'what': what,
-      'when_question': when,
-      'where_question': where,
-      'why_question': why,
-      'date': date.toIso8601String(),
-      'createdAt': DateTime.now().toIso8601String(),
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    return await db.insert(
+      'reflections',
+      {
+        'who': who,
+        'what': what,
+        'when_question': when,
+        'where_question': where,
+        'why_question': why,
+        'date': date.toIso8601String(),
+        'createdAt': DateTime.now().toIso8601String(),
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<int> clearReflections() async {
@@ -365,15 +467,25 @@ class DatabaseHelper {
     'check_in_details',
     'exercise_sessions',
     'session',
+    'sync_days',
+    'sync_state',
     // Read aloud and any later device settings go back to their defaults.
     'app_settings',
   ];
 
   /// Empties every user data table in one transaction: all or nothing.
   /// Used by UserRepository.deleteAccountAndData.
-  static Future<void> wipeAllTables(Database db) async {
+  ///
+  /// [keepDeviceSettings]: logging out keeps app_settings (Read aloud and
+  /// voice belong to the phone, not the person); deleting the account and
+  /// data does not.
+  static Future<void> wipeAllTables(
+    Database db, {
+    bool keepDeviceSettings = false,
+  }) async {
     await db.transaction((txn) async {
       for (final table in userDataTables) {
+        if (keepDeviceSettings && table == 'app_settings') continue;
         await txn.delete(table);
       }
     });
@@ -410,11 +522,15 @@ class DatabaseHelper {
   // Mood Selection
   Future<int> insertMood(DateTime date, String mood) async {
     final db = await database;
-    return await db.insert('moods', {
-      'date': date.toIso8601String().substring(0, 10),
-      'mood': mood,
-      'createdAt': DateTime.now().toIso8601String(),
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    return await db.insert(
+      'moods',
+      {
+        'date': date.toIso8601String().substring(0, 10),
+        'mood': mood,
+        'createdAt': DateTime.now().toIso8601String(),
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   // Get mood for a specific date
@@ -444,10 +560,11 @@ class DatabaseHelper {
   Future<int> insertControlGauge(DateTime date, int level) async {
     final db = await database;
     String isoDate = date.toIso8601String().substring(0, 10);
-    return await db.insert('control_gauge', {
-      'date': isoDate,
-      'level': level,
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    return await db.insert(
+      'control_gauge',
+      {'date': isoDate, 'level': level},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   Future<int?> getControlGauge(DateTime date) async {
@@ -479,51 +596,51 @@ class DatabaseHelper {
   // Stressor activity
 
   // Insert or update stressor
-  Future<void> insertStressor(
-    DateTime date,
-    String category, {
-    String? detail,
-  }) async {
+  Future<void> insertStressor(DateTime date, String category, {String? detail}) async {
     final db = await database;
-    await db.insert('stressors', {
-      'date': date.toIso8601String().substring(0, 10),
-      'category': category,
-      'detail': detail,
-    }, conflictAlgorithm: ConflictAlgorithm.replace);
+    await db.insert(
+      'stressors',
+      {
+        'date': date.toIso8601String().substring(0,10),
+        'category': category,
+        'detail': detail,
+      },
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 
   // Get stressor by date
-  Future<Map<String, dynamic>?> getStressor(DateTime date) async {
-    final db = await database;
-    final result = await db.query(
-      'stressors',
-      where: 'date LIKE ?',
-      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
-      limit: 1,
-    );
-    return result.isNotEmpty ? result.first : null;
-  }
+    Future<Map<String, dynamic>?> getStressor(DateTime date) async {
+      final db = await database;
+      final result = await db.query(
+        'stressors',
+        where: 'date LIKE ?',
+        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
+        limit: 1,
+      );
+      return result.isNotEmpty ? result.first : null;
+    }
 
   // Update detail for stressor
-  Future<void> updateStressorDetail(DateTime date, String detail) async {
-    final db = await database;
-    await db.update(
-      'stressors',
-      {'detail': detail},
-      where: 'date LIKE ?',
-      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
-    );
-  }
+    Future<void> updateStressorDetail(DateTime date, String detail) async {
+      final db = await database;
+      await db.update(
+        'stressors',
+        {'detail': detail},
+        where: 'date LIKE ?',
+        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
+      );
+    }
 
   // Delete stressor entry
-  Future<int> deleteStressor(DateTime date) async {
-    final db = await database;
-    return await db.delete(
-      'stressors',
-      where: 'date LIKE ?',
-      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
-    );
-  }
+    Future<int> deleteStressor(DateTime date) async {
+      final db = await database;
+      return await db.delete(
+        'stressors',
+        where: 'date LIKE ?',
+        whereArgs: ['${date.toIso8601String().substring(0,10)}%'],
+      );
+    }
 
   // --- Range reads ---------------------------------------------------------
   // The per-date getters above answer one day at a time. The calendar,
@@ -535,10 +652,7 @@ class DatabaseHelper {
   static String _key(DateTime date) => date.toIso8601String().substring(0, 10);
 
   /// Moods in [from]..[to] inclusive, keyed by YYYY-MM-DD.
-  Future<Map<String, String>> getMoodsBetween(
-    DateTime from,
-    DateTime to,
-  ) async {
+  Future<Map<String, String>> getMoodsBetween(DateTime from, DateTime to) async {
     final db = await database;
     final rows = await db.query(
       'moods',
@@ -546,7 +660,8 @@ class DatabaseHelper {
       whereArgs: [_key(from), _key(to)],
     );
     return {
-      for (final row in rows) row['date'] as String: row['mood'] as String,
+      for (final row in rows)
+        row['date'] as String: row['mood'] as String,
     };
   }
 
@@ -561,7 +676,10 @@ class DatabaseHelper {
       where: 'date >= ? AND date <= ?',
       whereArgs: [_key(from), _key(to)],
     );
-    return {for (final row in rows) row['date'] as String: row['level'] as int};
+    return {
+      for (final row in rows)
+        row['date'] as String: row['level'] as int,
+    };
   }
 
   /// Stressor rows in [from]..[to] inclusive, keyed by YYYY-MM-DD.
@@ -576,7 +694,8 @@ class DatabaseHelper {
       whereArgs: [_key(from), _key(to)],
     );
     return {
-      for (final row in rows) (row['date'] as String).substring(0, 10): row,
+      for (final row in rows)
+        (row['date'] as String).substring(0, 10): row,
     };
   }
 

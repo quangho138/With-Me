@@ -54,30 +54,40 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
     setState(() => _busy = true);
 
+    SignUpResult result;
     try {
-      // Signing up also signs in. A guest's saved check-ins stay and
-      // become this account's.
-      await AppRepositories.users.signUp(
+      // A guest's saved check-ins stay and become this account's.
+      result = await AppRepositories.users.signUp(
         email: email,
         password: password,
         name: name,
       );
-    } on AccountAlreadyOnPhone {
-      // One account per phone, so two people's data never mix.
+    } on AccountException catch (e) {
+      // Wrong format, email in use, no internet, one account per phone...
       if (!mounted) return;
       setState(() => _busy = false);
-      _say('This phone already has an account. Log in instead.');
+      _say(e.problem.message);
       return;
     } catch (_) {
-      // sqflite has no web implementation, and a device can fail to open its
-      // database too. Either way the button has to come back and say so
-      // rather than sit disabled for ever.
+      // The button has to come back and say so rather than sit disabled
+      // for ever.
       if (!mounted) return;
       setState(() => _busy = false);
-      _say("Couldn't save your account on this device.");
+      _say(AccountProblem.unknown.message);
       return;
     }
 
+    if (!mounted) return;
+    if (result == SignUpResult.confirmEmail) {
+      // Backend (stage 3): the account is made; it works once the email
+      // link is tapped. Then log in.
+      _say('Almost done! Check your email and tap the link to confirm, '
+          'then log in here.');
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
+      );
+      return;
+    }
     if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const WithMeHomeScreen()),
