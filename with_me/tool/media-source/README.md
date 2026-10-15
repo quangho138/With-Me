@@ -1,6 +1,6 @@
 # Media provenance
 
-The replacement player uses one silent Mixkit video and one separate Mixkit sound effect for each environment. Video audio is explicitly muted in `NatureVideo`; `AmbientAudio` loads only the WAV belonging to the selected button.
+The replacement player uses one silent Mixkit video and one separate Mixkit sound effect for each environment. Video audio is explicitly muted in `NatureVideo`; `AmbientAudio` loads only the sound file (.m4a) belonging to the selected button.
 
 | Choice | Video | Audio |
 | --- | --- | --- |

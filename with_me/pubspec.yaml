@@ -82,8 +82,6 @@ flutter:
     - assets/audio/checkin/
     - assets/audio/home/
     - assets/video/
-    - assets/logo.png
-    - assets/mascot/
     - assets/v2/app/
   #   - images/a_dot_ham.jpeg
 
