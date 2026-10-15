@@ -13,9 +13,8 @@ class FakeServer {
   var _clock = 0;
 
   /// The server's clock: always moves forward.
-  String stamp() => DateTime.utc(2030)
-      .add(Duration(seconds: ++_clock))
-      .toIso8601String();
+  String stamp() =>
+      DateTime.utc(2030).add(Duration(seconds: ++_clock)).toIso8601String();
 }
 
 /// One phone's connection to the [FakeServer], as the signed-in user.
@@ -42,7 +41,9 @@ class FakeOnlineStore implements OnlineStore {
       final existing = mine[day['day'] as String];
       final incoming = DateTime.parse(day['updated_at'] as String);
       if (existing != null &&
-          !DateTime.parse(existing['updated_at'] as String).isBefore(incoming)) {
+          !DateTime.parse(
+            existing['updated_at'] as String,
+          ).isBefore(incoming)) {
         continue; // a newer edit is already online
       }
       mine[day['day'] as String] = {
@@ -70,8 +71,9 @@ class FakeOnlineStore implements OnlineStore {
       _me,
       () => {'display_name': null, 'updated_at': '1970-01-01T00:00:00Z'},
     );
-    if (DateTime.parse(profile['updated_at'] as String)
-        .isBefore(DateTime.parse(changedAt))) {
+    if (DateTime.parse(
+      profile['updated_at'] as String,
+    ).isBefore(DateTime.parse(changedAt))) {
       profile['display_name'] = name;
       profile['updated_at'] = changedAt;
       profile['synced_at'] = server.stamp();
@@ -83,20 +85,26 @@ class FakeOnlineStore implements OnlineStore {
       _since(server.checkIns[_me], cursor, limit);
 
   @override
-  Future<List<Map<String, dynamic>>> exercisesSince(String? cursor, int limit) =>
-      _since(server.exercises[_me], cursor, limit);
+  Future<List<Map<String, dynamic>>> exercisesSince(
+    String? cursor,
+    int limit,
+  ) => _since(server.exercises[_me], cursor, limit);
 
   Future<List<Map<String, dynamic>>> _since(
     Map<String, Map<String, dynamic>>? rows,
     String? cursor,
     int limit,
   ) async {
-    final list = [
-      for (final r in (rows ?? {}).values)
-        if (cursor == null || (r['synced_at'] as String).compareTo(cursor) > 0)
-          Map<String, dynamic>.from(r),
-    ]..sort((a, b) =>
-        (a['synced_at'] as String).compareTo(b['synced_at'] as String));
+    final list =
+        [
+          for (final r in (rows ?? {}).values)
+            if (cursor == null ||
+                (r['synced_at'] as String).compareTo(cursor) > 0)
+              Map<String, dynamic>.from(r),
+        ]..sort(
+          (a, b) =>
+              (a['synced_at'] as String).compareTo(b['synced_at'] as String),
+        );
     return list.take(limit).toList();
   }
 
@@ -104,6 +112,5 @@ class FakeOnlineStore implements OnlineStore {
   Future<Map<String, dynamic>?> profile() async => server.profiles[_me];
 
   @override
-  Future<bool> hasCheckIns() async =>
-      (server.checkIns[_me] ?? {}).isNotEmpty;
+  Future<bool> hasCheckIns() async => (server.checkIns[_me] ?? {}).isNotEmpty;
 }

@@ -56,18 +56,15 @@ class SupabaseOnlineStore implements OnlineStore {
       _db.rpc<void>('upload_check_ins', params: {'entries': days});
 
   @override
-  Future<void> uploadExercises(List<Map<String, Object?>> sessions) =>
-      _db.from('exercise_sessions').upsert(
-            sessions,
-            onConflict: 'id',
-            ignoreDuplicates: true,
-          );
+  Future<void> uploadExercises(List<Map<String, Object?>> sessions) => _db
+      .from('exercise_sessions')
+      .upsert(sessions, onConflict: 'id', ignoreDuplicates: true);
 
   @override
   Future<void> saveName(String name, String changedAt) => _db.rpc<void>(
-        'save_display_name',
-        params: {'name': name, 'changed_at': changedAt},
-      );
+    'save_display_name',
+    params: {'name': name, 'changed_at': changedAt},
+  );
 
   @override
   Future<List<Map<String, dynamic>>> checkInsSince(String? cursor, int limit) =>
@@ -77,8 +74,7 @@ class SupabaseOnlineStore implements OnlineStore {
   Future<List<Map<String, dynamic>>> exercisesSince(
     String? cursor,
     int limit,
-  ) =>
-      _since('exercise_sessions', cursor, limit);
+  ) => _since('exercise_sessions', cursor, limit);
 
   Future<List<Map<String, dynamic>>> _since(
     String table,
@@ -114,10 +110,10 @@ class SyncService {
     required OnlineStore online,
     Future<Database> Function()? open,
     DatabaseHelper? helper,
-  })  : _users = users,
-        _online = online,
-        _helper = helper,
-        _open = open ?? (() => DatabaseHelper().database);
+  }) : _users = users,
+       _online = online,
+       _helper = helper,
+       _open = open ?? (() => DatabaseHelper().database);
 
   final UserRepository _users;
   final OnlineStore _online;
@@ -178,8 +174,11 @@ class SyncService {
   Future<bool> hasPendingChanges() async {
     final db = await _open();
     final days = await db.query('sync_days', where: 'pending = 1', limit: 1);
-    final exercises =
-        await db.query('exercise_sessions', where: 'pending = 1', limit: 1);
+    final exercises = await db.query(
+      'exercise_sessions',
+      where: 'pending = 1',
+      limit: 1,
+    );
     return days.isNotEmpty ||
         exercises.isNotEmpty ||
         await _state(db, 'name_pending') == '1';
@@ -250,43 +249,42 @@ class SyncService {
     String day,
     CheckInEntry? entry,
     String changedAt,
-  ) =>
-      {
-        'day': day,
-        'mood': entry?.mood,
-        'stress': entry?.stress,
-        'motivation': entry?.motivation,
-        'area': entry?.area,
-        'stressor_detail': (entry == null || entry.stressorDetail.isEmpty)
-            ? null
-            : entry.stressorDetail.join(', '),
-        'readiness': entry?.readiness,
-        'intention': entry?.intention,
-        'strategy': entry?.strategy,
-        'action': entry?.action,
-        'rating': entry?.rating,
-        'perceived_control': entry?.perceivedControl,
-        'area_other': entry?.areaOther,
-        'stressor_other': entry?.stressorOther,
-        'sign_other': entry?.signOther,
-        'sign_dimension': entry?.signDimension,
-        'updated_at': changedAt,
-        // A day that is marked but has no answers was removed on the phone.
-        'deleted': entry == null,
-      };
+  ) => {
+    'day': day,
+    'mood': entry?.mood,
+    'stress': entry?.stress,
+    'motivation': entry?.motivation,
+    'area': entry?.area,
+    'stressor_detail': (entry == null || entry.stressorDetail.isEmpty)
+        ? null
+        : entry.stressorDetail.join(', '),
+    'readiness': entry?.readiness,
+    'intention': entry?.intention,
+    'strategy': entry?.strategy,
+    'action': entry?.action,
+    'rating': entry?.rating,
+    'perceived_control': entry?.perceivedControl,
+    'area_other': entry?.areaOther,
+    'stressor_other': entry?.stressorOther,
+    'sign_other': entry?.signOther,
+    'sign_dimension': entry?.signDimension,
+    'updated_at': changedAt,
+    // A day that is marked but has no answers was removed on the phone.
+    'deleted': entry == null,
+  };
 
   Future<void> _uploadExercises() async {
     final db = await _open();
-    final pending =
-        await db.query('exercise_sessions', where: 'pending = 1');
+    final pending = await db.query('exercise_sessions', where: 'pending = 1');
     for (var i = 0; i < pending.length; i += _page) {
       final batch = pending.skip(i).take(_page).toList();
       await _online.uploadExercises([
         for (final r in batch)
           {
             'id': r['uuid'],
-            'completed_at':
-                DateTime.parse(r['completedAt'] as String).toUtc().toIso8601String(),
+            'completed_at': DateTime.parse(
+              r['completedAt'] as String,
+            ).toUtc().toIso8601String(),
             'exercise': r['exercise'],
             'pattern': r['pattern'],
             'cycles': r['cycles'],
@@ -328,7 +326,11 @@ class SyncService {
         changed |= await _applyDay(db, row);
       }
       if (rows.isNotEmpty) {
-        await _setState(db, 'check_ins_cursor', rows.last['synced_at'] as String);
+        await _setState(
+          db,
+          'check_ins_cursor',
+          rows.last['synced_at'] as String,
+        );
       } else if (cursor == null) {
         // Nothing online yet: remember that this account has been
         // downloaded once, so the "add or discard" question is not asked.
@@ -375,15 +377,11 @@ class SyncService {
           DateTime.now().toIso8601String(),
         );
       }
-      await txn.insert(
-        'sync_days',
-        {
-          'date': day,
-          'changedAt': online.toUtc().toIso8601String(),
-          'pending': 0,
-        },
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      await txn.insert('sync_days', {
+        'date': day,
+        'changedAt': online.toUtc().toIso8601String(),
+        'pending': 0,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     });
     return true;
   }
@@ -432,7 +430,9 @@ class SyncService {
           limit: 1,
         );
         if (known.isNotEmpty) continue;
-        final completed = DateTime.parse(row['completed_at'] as String).toLocal();
+        final completed = DateTime.parse(
+          row['completed_at'] as String,
+        ).toLocal();
         await db.insert('exercise_sessions', {
           'uuid': id,
           'pending': 0,
@@ -446,7 +446,11 @@ class SyncService {
         changed = true;
       }
       if (rows.isNotEmpty) {
-        await _setState(db, 'exercises_cursor', rows.last['synced_at'] as String);
+        await _setState(
+          db,
+          'exercises_cursor',
+          rows.last['synced_at'] as String,
+        );
       }
       if (rows.length < _page) return changed;
     }
@@ -466,11 +470,10 @@ class SyncService {
     await db.transaction((txn) async {
       await txn.delete('user');
       await txn.insert('user', {'name': name});
-      await txn.insert(
-        'sync_state',
-        {'key': 'name_changed_at', 'value': onlineAt},
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+      await txn.insert('sync_state', {
+        'key': 'name_changed_at',
+        'value': onlineAt,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     });
     (_helper ?? DatabaseHelper()).userNameNotifier.value = name;
   }
@@ -491,12 +494,10 @@ class SyncService {
     DatabaseExecutor db,
     String key,
     String value,
-  ) =>
-      db.insert(
-        'sync_state',
-        {'key': key, 'value': value},
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
+  ) => db.insert('sync_state', {
+    'key': key,
+    'value': value,
+  }, conflictAlgorithm: ConflictAlgorithm.replace);
 }
 
 /// Starts sync at the right moments: now, when the app comes back from the

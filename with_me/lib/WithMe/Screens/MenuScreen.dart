@@ -157,7 +157,8 @@ class _AccountRowState extends State<_AccountRow> {
     final sure = await showScenicChoice(
       context,
       title: 'Log out?',
-      body: 'Your check-ins stay in your account and come back when you log '
+      body:
+          'Your check-ins stay in your account and come back when you log '
           'in. Your journal is only kept on this phone, so it will be '
           'deleted.',
       yes: 'Log out',
@@ -177,7 +178,8 @@ class _AccountRowState extends State<_AccountRow> {
       final anyway = await showScenicChoice(
         context,
         title: 'Not saved online yet',
-        body: "Some changes haven't reached your account yet (no internet). "
+        body:
+            "Some changes haven't reached your account yet (no internet). "
             'If you log out now, they will be lost.',
         yes: 'Log out anyway',
         no: 'Stay logged in',

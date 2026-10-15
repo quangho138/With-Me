@@ -18,7 +18,7 @@ import 'check_in_repository.dart';
 /// sync bookkeeping.
 class ExportService {
   ExportService({Future<Database> Function()? open})
-      : _open = open ?? (() => DatabaseHelper().database);
+    : _open = open ?? (() => DatabaseHelper().database);
 
   final Future<Database> Function() _open;
 
@@ -94,21 +94,21 @@ class ExportService {
   }
 
   static Map<String, Object?> _checkIn(String day, CheckInEntry e) => {
-        'day': day,
-        'mood': e.mood,
-        'perceivedControl': e.perceivedControl,
-        'stress': e.stress,
-        'motivation': e.motivation,
-        'area': e.area,
-        'areaOther': e.areaOther,
-        'stressors': e.stressorDetail,
-        'stressorOther': e.stressorOther,
-        'signDimension': e.signDimension,
-        'signOther': e.signOther,
-        'readiness': e.readiness,
-        'intention': e.intention,
-        'strategy': e.strategy,
-        'action': e.action,
-        'rating': e.rating,
-      };
+    'day': day,
+    'mood': e.mood,
+    'perceivedControl': e.perceivedControl,
+    'stress': e.stress,
+    'motivation': e.motivation,
+    'area': e.area,
+    'areaOther': e.areaOther,
+    'stressors': e.stressorDetail,
+    'stressorOther': e.stressorOther,
+    'signDimension': e.signDimension,
+    'signOther': e.signOther,
+    'readiness': e.readiness,
+    'intention': e.intention,
+    'strategy': e.strategy,
+    'action': e.action,
+    'rating': e.rating,
+  };
 }

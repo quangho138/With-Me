@@ -47,9 +47,11 @@ class _OutsideLoginListenerState extends State<OutsideLoginListener> {
     if (navigator == null) return;
 
     if (event == OnlineAuthEvent.passwordRecovery) {
-      unawaited(navigator.push(
-        MaterialPageRoute(builder: (_) => const SetNewPasswordScreen()),
-      ));
+      unawaited(
+        navigator.push(
+          MaterialPageRoute(builder: (_) => const SetNewPasswordScreen()),
+        ),
+      );
       return;
     }
 
@@ -60,12 +62,15 @@ class _OutsideLoginListenerState extends State<OutsideLoginListener> {
     } on AccountException catch (e) {
       final context = widget.navigatorKey.currentContext;
       if (context == null || !context.mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.problem.message)));
-      unawaited(navigator.pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const WelcomeScreen()),
-        (_) => false,
-      ));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.problem.message)));
+      unawaited(
+        navigator.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const WelcomeScreen()),
+          (_) => false,
+        ),
+      );
       return;
     } catch (_) {
       return;

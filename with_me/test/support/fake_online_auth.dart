@@ -9,7 +9,7 @@ class FakeOnlineAuth implements OnlineAuth {
   /// [accounts]: pass the same [FakeAccounts] to two fakes to act as two
   /// phones using the same online accounts.
   FakeOnlineAuth({this.confirmEmail = true, FakeAccounts? accounts})
-      : _registry = accounts ?? FakeAccounts();
+    : _registry = accounts ?? FakeAccounts();
 
   /// True: a new account must confirm its email before logging in.
   final bool confirmEmail;

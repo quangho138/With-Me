@@ -103,9 +103,9 @@ class AppUserRepository implements UserRepository {
     required OnlineAuth auth,
     Future<Database> Function()? open,
     DatabaseHelper? helper,
-  })  : _auth = auth,
-        _helper = helper,
-        _open = open ?? (() => DatabaseHelper().database);
+  }) : _auth = auth,
+       _helper = helper,
+       _open = open ?? (() => DatabaseHelper().database);
 
   final OnlineAuth _auth;
   final Future<Database> Function() _open;
@@ -161,7 +161,11 @@ class AppUserRepository implements UserRepository {
     }
   }
 
-  Future<SignUpResult> _signUp(String email, String password, String name) async {
+  Future<SignUpResult> _signUp(
+    String email,
+    String password,
+    String name,
+  ) async {
     final result = await _auth.signUp(
       email: _clean(email),
       password: password,
@@ -301,11 +305,10 @@ class AppUserRepository implements UserRepository {
         'name_changed_at': nowStamp(),
         'name_pending': '1',
       }.entries) {
-        await txn.insert(
-          'sync_state',
-          {'key': fact.key, 'value': fact.value},
-          conflictAlgorithm: ConflictAlgorithm.replace,
-        );
+        await txn.insert('sync_state', {
+          'key': fact.key,
+          'value': fact.value,
+        }, conflictAlgorithm: ConflictAlgorithm.replace);
       }
     });
     _names.userNameNotifier.value = name;

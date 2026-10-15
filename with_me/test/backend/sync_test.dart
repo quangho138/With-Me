@@ -54,22 +54,22 @@ void main() {
   final day = DateTime(2026, 10, 10, 20, 30);
   const full = '2026-10-10';
   CheckInEntry everything(String mood) => CheckInEntry(
-        day: day,
-        mood: mood,
-        perceivedControl: 4,
-        stress: 2,
-        motivation: 3,
-        area: 'Work',
-        stressorDetail: const ['Workload', 'Deadlines'],
-        stressorOther: 'Long meeting, then more',
-        signDimension: 'body',
-        signOther: 'Stiff neck',
-        readiness: 0.5,
-        intention: 'Somewhat ready',
-        strategy: 'Physical',
-        action: 'Walking',
-        rating: 4,
-      );
+    day: day,
+    mood: mood,
+    perceivedControl: 4,
+    stress: 2,
+    motivation: 3,
+    area: 'Work',
+    stressorDetail: const ['Workload', 'Deadlines'],
+    stressorOther: 'Long meeting, then more',
+    signDimension: 'body',
+    signOther: 'Stiff neck',
+    readiness: 0.5,
+    intention: 'Somewhat ready',
+    strategy: 'Physical',
+    action: 'Walking',
+    rating: 4,
+  );
 
   /// A day's answers in one comparable shape.
   Future<Map<String, Object?>> answers(Phone p) async =>
@@ -77,7 +77,11 @@ void main() {
 
   test('a check-in reaches the account and a second phone, intact', () async {
     final a = await phone();
-    await a.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
+    await a.users.signUp(
+      email: 'maya@test.invalid',
+      password: 'synthetic',
+      name: 'Maya',
+    );
     await a.checkIns.save(everything('Happy'));
 
     expect(await a.sync.syncNow(), SyncOutcome.done);
@@ -92,14 +96,17 @@ void main() {
     expect(await answers(b), await answers(a));
   });
 
-  test('the newest edit wins on both phones, whichever syncs first',
-      () async {
+  test('the newest edit wins on both phones, whichever syncs first', () async {
     for (final bFirst in [true, false]) {
       accounts = FakeAccounts();
       server = FakeServer();
       final a = await phone();
       final b = await phone();
-      await a.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
+      await a.users.signUp(
+        email: 'maya@test.invalid',
+        password: 'synthetic',
+        name: 'Maya',
+      );
       await b.users.signIn('maya@test.invalid', 'synthetic');
 
       await a.checkIns.save(everything('Sad'));
@@ -118,7 +125,11 @@ void main() {
 
   test('offline, changes wait and go up on the next try', () async {
     final a = await phone();
-    await a.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
+    await a.users.signUp(
+      email: 'maya@test.invalid',
+      password: 'synthetic',
+      name: 'Maya',
+    );
     await a.checkIns.save(everything('Happy'));
 
     a.online.offline = true;
@@ -132,26 +143,37 @@ void main() {
     expect(server.checkIns.values.single[full]!['mood'], 'Happy');
   });
 
-  test('an exercise is uploaded once and reaches the other phone once',
-      () async {
-    final a = await phone();
-    await a.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
-    await LocalExerciseRepository(open: () async => a.db).recordCompleted(
-      ExerciseSession(completedAt: day, exercise: 'breathing', pattern: '4-7-8'),
-    );
-    await a.sync.syncNow();
-    await a.sync.syncNow();
-    expect(server.exercises.values.single.length, 1);
+  test(
+    'an exercise is uploaded once and reaches the other phone once',
+    () async {
+      final a = await phone();
+      await a.users.signUp(
+        email: 'maya@test.invalid',
+        password: 'synthetic',
+        name: 'Maya',
+      );
+      await LocalExerciseRepository(open: () async => a.db).recordCompleted(
+        ExerciseSession(
+          completedAt: day,
+          exercise: 'breathing',
+          pattern: '4-7-8',
+        ),
+      );
+      await a.sync.syncNow();
+      await a.sync.syncNow();
+      expect(server.exercises.values.single.length, 1);
 
-    final b = await phone();
-    await b.users.signIn('maya@test.invalid', 'synthetic');
-    await b.sync.syncNow();
-    await b.sync.syncNow();
-    final sessions = await LocalExerciseRepository(open: () async => b.db)
-        .sessionsBetween(day, day);
-    expect(sessions.length, 1);
-    expect(sessions.single.pattern, '4-7-8');
-  });
+      final b = await phone();
+      await b.users.signIn('maya@test.invalid', 'synthetic');
+      await b.sync.syncNow();
+      await b.sync.syncNow();
+      final sessions = await LocalExerciseRepository(
+        open: () async => b.db,
+      ).sessionsBetween(day, day);
+      expect(sessions.length, 1);
+      expect(sessions.single.pattern, '4-7-8');
+    },
+  );
 
   test('guests never sync', () async {
     final a = await phone();
@@ -166,7 +188,11 @@ void main() {
     await a.users.startAsGuest();
     await a.checkIns.save(everything('Happy'));
 
-    await a.users.signUp(email: 'new@test.invalid', password: 'synthetic', name: 'New');
+    await a.users.signUp(
+      email: 'new@test.invalid',
+      password: 'synthetic',
+      name: 'New',
+    );
     expect(await a.sync.phoneDataNeedsChoice(), isFalse);
     await a.sync.syncNow();
     expect(server.checkIns.values.single[full]!['mood'], 'Happy');
@@ -178,7 +204,11 @@ void main() {
     Future<Phone> guestThenLogin() async {
       // The account's old phone put one day online.
       final old = await phone();
-      await old.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
+      await old.users.signUp(
+        email: 'maya@test.invalid',
+        password: 'synthetic',
+        name: 'Maya',
+      );
       await old.checkIns.save(CheckInEntry(day: otherDay, mood: 'Sad'));
       await old.sync.syncNow();
 
@@ -194,10 +224,17 @@ void main() {
     test('add: both days end up in the account and on the phone', () async {
       final p = await guestThenLogin();
       await p.sync.syncNow();
-      expect(server.checkIns.values.single.keys, containsAll([full, '2026-10-03']));
+      expect(
+        server.checkIns.values.single.keys,
+        containsAll([full, '2026-10-03']),
+      );
       expect(await p.checkIns.moodOn(day), 'Happy');
       expect(await p.checkIns.moodOn(otherDay), 'Sad');
-      expect(await p.sync.phoneDataNeedsChoice(), isFalse, reason: 'asked once');
+      expect(
+        await p.sync.phoneDataNeedsChoice(),
+        isFalse,
+        reason: 'asked once',
+      );
     });
 
     test('discard: only the account comes down', () async {
@@ -210,32 +247,53 @@ void main() {
     });
   });
 
-  test('log out clears the phone, journal included; log in brings back check-ins',
-      () async {
-    final a = await phone();
-    await a.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
-    await a.checkIns.save(everything('Happy'));
-    await LocalReflectionRepository(open: () async => a.db).replaceForDay(
-      Reflection(who: 'w', what: 'w', when: 'w', where: 'w', why: 'w', date: day),
-    );
-    await a.sync.syncNow();
+  test(
+    'log out clears the phone, journal included; log in brings back check-ins',
+    () async {
+      final a = await phone();
+      await a.users.signUp(
+        email: 'maya@test.invalid',
+        password: 'synthetic',
+        name: 'Maya',
+      );
+      await a.checkIns.save(everything('Happy'));
+      await LocalReflectionRepository(open: () async => a.db).replaceForDay(
+        Reflection(
+          who: 'w',
+          what: 'w',
+          when: 'w',
+          where: 'w',
+          why: 'w',
+          date: day,
+        ),
+      );
+      await a.sync.syncNow();
 
-    await a.users.signOut();
-    for (final table in DatabaseHelper.userDataTables) {
-      expect(await a.db.query(table), isEmpty, reason: table);
-    }
+      await a.users.signOut();
+      for (final table in DatabaseHelper.userDataTables) {
+        expect(await a.db.query(table), isEmpty, reason: table);
+      }
 
-    await a.users.signIn('maya@test.invalid', 'synthetic');
-    await a.sync.syncNow();
-    expect(await a.checkIns.moodOn(day), 'Happy');
-    expect(await a.db.query('reflections'), isEmpty, reason: 'journal stays off');
-    expect(await a.users.displayName(), 'Maya');
-  });
+      await a.users.signIn('maya@test.invalid', 'synthetic');
+      await a.sync.syncNow();
+      expect(await a.checkIns.moodOn(day), 'Happy');
+      expect(
+        await a.db.query('reflections'),
+        isEmpty,
+        reason: 'journal stays off',
+      );
+      expect(await a.users.displayName(), 'Maya');
+    },
+  );
 
   test('the display name follows the account', () async {
     final a = await phone();
     final b = await phone();
-    await a.users.signUp(email: 'maya@test.invalid', password: 'synthetic', name: 'Maya');
+    await a.users.signUp(
+      email: 'maya@test.invalid',
+      password: 'synthetic',
+      name: 'Maya',
+    );
     await b.users.signIn('maya@test.invalid', 'synthetic');
     await a.sync.syncNow();
     await Future<void>.delayed(const Duration(milliseconds: 5));
@@ -245,44 +303,54 @@ void main() {
     expect(await b.users.displayName(), 'Maya R');
   });
 
-  test('upgrading version 7 marks existing days and gives exercises ids',
-      () async {
-    final old = await databaseFactoryFfi.openDatabase(
-      inMemoryDatabasePath,
-      options: OpenDatabaseOptions(
-        version: 7,
-        singleInstance: false,
-        onCreate: (db, _) async {
-          await DatabaseHelper.createSchema(db, 7);
-          // Back to version 7: no sync tables, exercises without ids.
-          await db.execute('DROP TABLE sync_days');
-          await db.execute('DROP TABLE sync_state');
-          await db.execute('DROP TABLE exercise_sessions');
-          await db.execute('CREATE TABLE exercise_sessions(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, exercise TEXT NOT NULL, pattern TEXT, cycles INTEGER, sound TEXT, completedAt TEXT NOT NULL)');
-        },
-      ),
-    );
-    addTearDown(old.close);
-    await old.insert('moods', {'date': '2026-09-20', 'mood': 'Happy', 'createdAt': 'x'});
-    await old.insert('exercise_sessions', {
-      'date': '2026-09-20', 'exercise': 'breathing', 'completedAt': '2026-09-20T10:00:00',
-    });
+  test(
+    'upgrading version 7 marks existing days and gives exercises ids',
+    () async {
+      final old = await databaseFactoryFfi.openDatabase(
+        inMemoryDatabasePath,
+        options: OpenDatabaseOptions(
+          version: 7,
+          singleInstance: false,
+          onCreate: (db, _) async {
+            await DatabaseHelper.createSchema(db, 7);
+            // Back to version 7: no sync tables, exercises without ids.
+            await db.execute('DROP TABLE sync_days');
+            await db.execute('DROP TABLE sync_state');
+            await db.execute('DROP TABLE exercise_sessions');
+            await db.execute(
+              'CREATE TABLE exercise_sessions(id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, exercise TEXT NOT NULL, pattern TEXT, cycles INTEGER, sound TEXT, completedAt TEXT NOT NULL)',
+            );
+          },
+        ),
+      );
+      addTearDown(old.close);
+      await old.insert('moods', {
+        'date': '2026-09-20',
+        'mood': 'Happy',
+        'createdAt': 'x',
+      });
+      await old.insert('exercise_sessions', {
+        'date': '2026-09-20',
+        'exercise': 'breathing',
+        'completedAt': '2026-09-20T10:00:00',
+      });
 
-    await DatabaseHelper.upgradeSchema(old, 7, DatabaseHelper.schemaVersion);
+      await DatabaseHelper.upgradeSchema(old, 7, DatabaseHelper.schemaVersion);
 
-    final mark = (await old.query('sync_days')).single;
-    expect(mark['date'], '2026-09-20');
-    expect(mark['pending'], 1);
-    final session = (await old.query('exercise_sessions')).single;
-    expect(session['pending'], 1);
-    expect(session['uuid'] as String, matches(RegExp(r'^[0-9a-f-]{36}$')));
-  });
+      final mark = (await old.query('sync_days')).single;
+      expect(mark['date'], '2026-09-20');
+      expect(mark['pending'], 1);
+      final session = (await old.query('exercise_sessions')).single;
+      expect(session['pending'], 1);
+      expect(session['uuid'] as String, matches(RegExp(r'^[0-9a-f-]{36}$')));
+    },
+  );
 }
 
 /// One made-up phone: its own database and login, the shared fake server.
 class Phone {
   Phone(this.db, this.auth, this.online)
-      : users = AppUserRepository(auth: auth, open: () async => db) {
+    : users = AppUserRepository(auth: auth, open: () async => db) {
     sync = SyncService(users: users, online: online, open: () async => db);
   }
 
