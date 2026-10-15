@@ -1,15 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
-import '../Components/ScenicChoice.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
 import '../Mascot/RealMascot.dart';
-import 'HomeScreen.dart';
+import 'AfterLogin.dart';
 import 'ResetPasswordScreen.dart';
 
 /// Log in.
@@ -59,36 +56,10 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
       return;
     }
 
-    // Backend (stage 3, sync): if this phone has check-ins (from using it
-    // without an account) and the account already has its own, ask what to
-    // do with the phone's. If the check fails (offline), they are kept and
-    // added later; the newest edit of a day wins.
-    final sync = AppRepositories.sync;
-    var needsChoice = false;
-    try {
-      needsChoice = await sync.phoneDataNeedsChoice();
-    } catch (_) {}
-    if (needsChoice && mounted) {
-      final add = await showScenicChoice(
-        context,
-        title: 'Keep this phone\'s check-ins?',
-        body: 'This phone has check-ins that are not in your account yet. '
-            'Add them to your account, or discard them and use only what '
-            'your account already has.',
-        yes: 'Add them',
-        no: 'Discard',
-        dismissible: false,
-      );
-      if (add == false) await sync.discardPhoneCheckIns();
-    }
-    unawaited(sync.syncNow());
-
     if (!mounted) return;
     setState(() => _busy = false);
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const WithMeHomeScreen()),
-      (_) => false,
-    );
+    // Add-or-discard question if needed, sync, then Home.
+    await continueAfterLogin(context);
   }
 
   void _say(String message) => ScaffoldMessenger.of(context)

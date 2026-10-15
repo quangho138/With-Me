@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:with_me/Repositories/online_auth.dart';
 
 /// Stands in for Supabase in tests: no internet, no real accounts.
@@ -72,6 +74,59 @@ class FakeOnlineAuth implements OnlineAuth {
   @override
   Future<void> signOut() async => _current = null;
 
+  final _events = StreamController<OnlineAuthEvent>.broadcast();
+
+  /// The last address a reset link was sent to.
+  String? resetSentTo;
+
+  @override
+  Stream<OnlineAuthEvent> get events => _events.stream;
+
+  @override
+  Future<void> startGoogleSignIn() async {
+    if (offline) throw const AccountException(AccountProblem.noInternet);
+  }
+
+  /// What coming back from Google's page does: makes the account the first
+  /// time (no password), logs in and reports it.
+  void finishGoogle(String email) {
+    final account = _accounts.putIfAbsent(
+      email,
+      () => _Account(
+        '00000000-0000-4000-a000-${(_registry._nextId++).toString().padLeft(12, '0')}',
+        email,
+        '',
+        confirmed: true,
+      ),
+    );
+    _current = account;
+    _events.add(OnlineAuthEvent.signedIn);
+  }
+
+  @override
+  Future<void> sendPasswordReset(String email) async {
+    if (offline) throw const AccountException(AccountProblem.noInternet);
+    resetSentTo = email;
+  }
+
+  /// What opening the reset link does: logs in for the reset and asks for a
+  /// new password.
+  void openResetLink(String email) {
+    _current = _accounts[email];
+    _events.add(OnlineAuthEvent.passwordRecovery);
+  }
+
+  @override
+  Future<void> setNewPassword(String password) async {
+    if (offline) throw const AccountException(AccountProblem.noInternet);
+    final me = _current;
+    if (me == null) throw const AccountException(AccountProblem.unknown);
+    if (password.length < 6) {
+      throw const AccountException(AccountProblem.weakPassword);
+    }
+    me.password = password;
+  }
+
   @override
   Future<void> deleteAccount() async {
     if (offline) throw const AccountException(AccountProblem.noInternet);
@@ -86,7 +141,7 @@ class _Account {
   _Account(this.id, this.email, this.password, {required this.confirmed});
   final String id;
   final String email;
-  final String password;
+  String password;
   bool confirmed;
 }
 

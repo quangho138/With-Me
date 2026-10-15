@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../Config/supabase_config.dart';
+
 /// What went wrong with signing up or logging in, in words a person can act
 /// on. Screens show [message]; nothing else about the error is shown.
 enum AccountProblem {
@@ -14,6 +16,8 @@ enum AccountProblem {
   weakPassword('Please choose a longer password (at least 6 characters).'),
   noInternet("Can't reach the internet. Check your connection and try again."),
   tooManyTries('Too many tries. Please wait a few minutes and try again.'),
+  samePassword('Please choose a password you have not used before.'),
+  enterEmail('Please enter your email first.'),
   otherAccountOnPhone(
     'This phone belongs to another account. Log in with that one, '
     'or delete it in Settings first.',
@@ -32,6 +36,16 @@ class AccountException implements Exception {
 
   @override
   String toString() => 'AccountException(${problem.name})';
+}
+
+/// Something that happened to the login outside the app's own screens:
+/// a link from an email or the return from Google opened the app.
+enum OnlineAuthEvent {
+  /// Someone is now logged in (email confirmed, Google, or a reset link).
+  signedIn,
+
+  /// A "reset your password" link was opened: ask for a new password.
+  passwordRecovery,
 }
 
 /// The result of signing up.
@@ -70,6 +84,23 @@ abstract class OnlineAuth {
   /// [AccountException] (for example with no internet) and then nothing is
   /// deleted.
   Future<void> deleteAccount();
+
+  /// Logins that arrive from outside the app's screens (email links,
+  /// Google). Includes password logins too; the repository tells them apart.
+  Stream<OnlineAuthEvent> get events;
+
+  /// Opens Google's sign-in page. The person comes back through the deep
+  /// link, reported on [events]. Throws [AccountException].
+  Future<void> startGoogleSignIn();
+
+  /// Emails a "reset your password" link (also when no such account exists,
+  /// so strangers cannot test which emails have accounts). Throws
+  /// [AccountException].
+  Future<void> sendPasswordReset(String email);
+
+  /// Sets a new password for the logged-in account (after a reset link).
+  /// Throws [AccountException].
+  Future<void> setNewPassword(String password);
 }
 
 /// The real one, using Supabase. Supabase stores the login on the phone
@@ -105,6 +136,8 @@ class SupabaseOnlineAuth implements OnlineAuth {
         password: password,
         // Read by the database to make the profile row (see supabase/).
         data: {'display_name': name},
+        // The confirmation link opens the app (the deep link).
+        emailRedirectTo: SupabaseConfig.redirectUrl,
       );
     } catch (e) {
       throw AccountException(problemFor(e));
@@ -159,6 +192,60 @@ class SupabaseOnlineAuth implements OnlineAuth {
     }
   }
 
+  @override
+  Stream<OnlineAuthEvent> get events {
+    try {
+      return _auth.onAuthStateChange
+          .map((state) => switch (state.event) {
+                AuthChangeEvent.signedIn => OnlineAuthEvent.signedIn,
+                AuthChangeEvent.passwordRecovery =>
+                  OnlineAuthEvent.passwordRecovery,
+                _ => null,
+              })
+          .where((event) => event != null)
+          .cast<OnlineAuthEvent>();
+    } catch (_) {
+      // Supabase not started (for example in widget tests).
+      return const Stream.empty();
+    }
+  }
+
+  @override
+  Future<void> startGoogleSignIn() async {
+    try {
+      final opened = await _auth.signInWithOAuth(
+        OAuthProvider.google,
+        redirectTo: SupabaseConfig.redirectUrl,
+      );
+      if (!opened) throw const AccountException(AccountProblem.unknown);
+    } on AccountException {
+      rethrow;
+    } catch (e) {
+      throw AccountException(problemFor(e));
+    }
+  }
+
+  @override
+  Future<void> sendPasswordReset(String email) async {
+    try {
+      await _auth.resetPasswordForEmail(
+        email,
+        redirectTo: SupabaseConfig.redirectUrl,
+      );
+    } catch (e) {
+      throw AccountException(problemFor(e));
+    }
+  }
+
+  @override
+  Future<void> setNewPassword(String password) async {
+    try {
+      await _auth.updateUser(UserAttributes(password: password));
+    } catch (e) {
+      throw AccountException(problemFor(e));
+    }
+  }
+
   /// Turns Supabase's error into one of ours.
   static AccountProblem problemFor(Object error) {
     if (error is AuthRetryableFetchException ||
@@ -178,6 +265,8 @@ class SupabaseOnlineAuth implements OnlineAuth {
           return AccountProblem.emailInUse;
         case 'weak_password':
           return AccountProblem.weakPassword;
+        case 'same_password':
+          return AccountProblem.samePassword;
         case 'over_request_rate_limit':
         case 'over_email_send_rate_limit':
           return AccountProblem.tooManyTries;

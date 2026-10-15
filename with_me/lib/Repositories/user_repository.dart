@@ -5,7 +5,8 @@ import '../Database/LocalDatabase.dart';
 import 'ids.dart';
 import 'online_auth.dart';
 
-export 'online_auth.dart' show AccountProblem, AccountException, SignUpResult;
+export 'online_auth.dart'
+    show AccountProblem, AccountException, SignUpResult, OnlineAuthEvent;
 
 /// Who is using the app right now.
 enum SessionKind {
@@ -65,6 +66,28 @@ abstract class UserRepository {
   /// Updates whenever the display name changes, so a screen showing it can
   /// redraw.
   ValueListenable<String?> get displayNameListenable;
+
+  /// Opens Google's sign-in page. The person comes back through the deep
+  /// link; [onlineEvents] reports it. Throws [AccountException].
+  Future<void> startGoogleSignIn();
+
+  /// Emails a reset link. Throws [AccountException].
+  Future<void> sendPasswordReset(String email);
+
+  /// Sets a new password after a reset link, then finishes the login on
+  /// this phone like [completeOutsideLogin]. Throws [AccountException].
+  Future<void> setNewPassword(String password);
+
+  /// Logins that arrive from outside the app's screens: an email link or
+  /// the return from Google ([OnlineAuthEvent.signedIn]), or a reset link
+  /// ([OnlineAuthEvent.passwordRecovery]).
+  Stream<OnlineAuthEvent> get onlineEvents;
+
+  /// After a login from outside the app's screens, links the phone to the
+  /// account, with the same rules as [signIn]. False when there is nothing
+  /// to do (nobody logged in, or the app's own login screen already did
+  /// it). Throws [AccountException] (another account's phone).
+  Future<bool> completeOutsideLogin();
 
   /// "Delete my account": with an account, deletes it online with all its
   /// rows, then clears the phone and logs out. It needs the internet; when
@@ -130,6 +153,15 @@ class AppUserRepository implements UserRepository {
     if (await hasAccount()) {
       throw const AccountException(AccountProblem.accountAlreadyOnPhone);
     }
+    _ownLoginRunning = true;
+    try {
+      return await _signUp(email, password, name);
+    } finally {
+      _ownLoginRunning = false;
+    }
+  }
+
+  Future<SignUpResult> _signUp(String email, String password, String name) async {
     final result = await _auth.signUp(
       email: _clean(email),
       password: password,
@@ -144,18 +176,65 @@ class AppUserRepository implements UserRepository {
     return result;
   }
 
+  /// True while the app's own sign-up or log-in is running, so the login
+  /// event it causes is not handled a second time as an outside login.
+  bool _ownLoginRunning = false;
+
   @override
   Future<void> signIn(String email, String password) async {
-    final db = await _open();
-    final belongsTo = await _phoneAccountId(db);
-    final id = await _auth.signIn(_clean(email), password);
+    _ownLoginRunning = true;
+    try {
+      final db = await _open();
+      final belongsTo = await _phoneAccountId(db);
+      final id = await _auth.signIn(_clean(email), password);
+      await _finishLogin(belongsTo, id, _clean(email));
+    } finally {
+      _ownLoginRunning = false;
+    }
+  }
+
+  /// Links the phone to account [id], unless it belongs to someone else.
+  Future<void> _finishLogin(String? belongsTo, String id, String email) async {
     if (belongsTo != null && belongsTo != id) {
-      // Another person's data is on this phone. Stage 2c will offer to
-      // replace it; until then, never mix two people's check-ins.
+      // Another person's data is on this phone: never mix two people's
+      // check-ins.
       await _auth.signOut();
       throw const AccountException(AccountProblem.otherAccountOnPhone);
     }
-    await _linkPhone(id, _clean(email));
+    await _linkPhone(id, email);
+  }
+
+  @override
+  Future<void> startGoogleSignIn() => _auth.startGoogleSignIn();
+
+  @override
+  Future<void> sendPasswordReset(String email) async {
+    if (email.trim().isEmpty) {
+      throw const AccountException(AccountProblem.enterEmail);
+    }
+    await _auth.sendPasswordReset(_clean(email));
+  }
+
+  @override
+  Future<void> setNewPassword(String password) async {
+    await _auth.setNewPassword(password);
+    await completeOutsideLogin();
+  }
+
+  @override
+  Stream<OnlineAuthEvent> get onlineEvents => _auth.events;
+
+  @override
+  Future<bool> completeOutsideLogin() async {
+    if (_ownLoginRunning) return false;
+    final id = _auth.currentUserId;
+    if (id == null) return false;
+    // Already logged in on this phone to this account: nothing to do.
+    if (await session() == SessionKind.account) return false;
+    final db = await _open();
+    final belongsTo = await _phoneAccountId(db);
+    await _finishLogin(belongsTo, id, _clean(_auth.currentEmail ?? ''));
+    return true;
   }
 
   /// Remembers that this phone belongs to account [id] and marks it logged

@@ -16,7 +16,16 @@ insert into auth.users (id, email, raw_user_meta_data) values
   ('00000000-0000-4000-a000-00000000000a', 'user-a@test.invalid',
    '{"display_name": "Test A"}'),
   ('00000000-0000-4000-a000-00000000000b', 'user-b@test.invalid',
-   '{"display_name": "Test B"}');
+   '{"display_name": "Test B"}'),
+  -- Signed up with Google: Google sends "full_name", not "display_name".
+  ('00000000-0000-4000-a000-00000000000c', 'user-c@test.invalid',
+   '{"full_name": "Test C"}');
+
+do $$ begin
+  if (select display_name from public.profiles
+      where user_id = '00000000-0000-4000-a000-00000000000c') is distinct from 'Test C'
+  then raise exception 'FAILED: a Google sign-up did not get its name'; end if;
+end $$;
 
 -- Act as a signed-in user: the same thing Supabase does with a login token.
 create function pg_temp.act_as(who uuid) returns void language sql as $$

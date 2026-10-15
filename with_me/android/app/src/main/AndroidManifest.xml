@@ -27,6 +27,18 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!-- The deep link: links in With Me's emails (confirm, reset
+                 password) and the return from Google sign-in open the app.
+                 Must match SupabaseConfig.redirectUrl. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="com.withme.companion" android:host="login-callback"/>
+            </intent-filter>
+            <!-- Supabase reads the link itself; Flutter's own page router must
+                 not try to open it as a screen. -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="false"/>
         </activity>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
@@ -48,6 +60,11 @@
              on Android 11 and later (flutter_tts). -->
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
+        <!-- Opening Google's sign-in page in the browser. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
         </intent>
     </queries>
 </manifest>
