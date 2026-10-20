@@ -49,4 +49,6 @@ const Map<String, String> kReflectionColumns = {
 /// otherwise null. Rows written another way (Alex's demo days, older test
 /// builds) can hold free text; that text stays on the phone.
 String? pickedQuestion(String w, Object? value) =>
-    (kReflectionPrompts[w] ?? const []).contains(value) ? value as String : null;
+    (kReflectionPrompts[w] ?? const []).contains(value)
+    ? value as String
+    : null;
