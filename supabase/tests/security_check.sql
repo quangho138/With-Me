@@ -48,6 +48,8 @@ insert into public.check_ins (day, mood, stress, strategy, action)
   values ('2026-10-01', 'Good', 2, 'Physical', 'Walking');
 insert into public.exercise_sessions (id, completed_at, exercise)
   values ('00000000-0000-4000-b000-000000000001', now(), 'breathing');
+insert into public.journal_entries (day, who, what)
+  values ('2026-10-01', 'Who did I lean on today?', 'What went better than expected?');
 reset role;
 
 -- Now act as user A.
@@ -74,6 +76,8 @@ do $$ begin
   then raise exception 'FAILED: A can read B''s check-ins'; end if;
   if exists (select 1 from public.exercise_sessions)
   then raise exception 'FAILED: A can read B''s exercises'; end if;
+  if exists (select 1 from public.journal_entries)
+  then raise exception 'FAILED: A can read B''s journal'; end if;
   if (select count(*) from public.profiles) <> 1
   then raise exception 'FAILED: A can read other profiles'; end if;
 end $$;
@@ -93,6 +97,12 @@ do $$ begin
     raise exception 'FAILED: A saved an exercise as B';
   exception when insufficient_privilege then null;
   end;
+  begin
+    insert into public.journal_entries (user_id, day, who)
+      values ('00000000-0000-4000-a000-00000000000b', '2026-10-02', 'x');
+    raise exception 'FAILED: A saved a journal entry as B';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 
 -- 5. A cannot change, hand over or remove B's rows.
@@ -108,6 +118,11 @@ begin
     where user_id = '00000000-0000-4000-a000-00000000000b';
   get diagnostics touched = row_count;
   if touched <> 0 then raise exception 'FAILED: A removed B''s check-in'; end if;
+
+  update public.journal_entries set who = 'Changed'
+    where user_id = '00000000-0000-4000-a000-00000000000b';
+  get diagnostics touched = row_count;
+  if touched <> 0 then raise exception 'FAILED: A changed B''s journal'; end if;
 
   update public.profiles set display_name = 'Changed'
     where user_id = '00000000-0000-4000-a000-00000000000b';
@@ -138,6 +153,22 @@ do $$ begin
   if exists (select 1 from public.check_ins
              where user_id <> '00000000-0000-4000-a000-00000000000a') then
     raise exception 'FAILED: an upload reached another user';
+  end if;
+  perform public.upload_journal(
+    '[{"day": "2026-10-01", "who": "First", "updated_at": "2026-10-01T10:00:00Z"}]');
+  perform public.upload_journal(
+    '[{"day": "2026-10-01", "who": "Older", "updated_at": "2000-01-01T00:00:00Z"}]');
+  if (select who from public.journal_entries where day = '2026-10-01') <> 'First' then
+    raise exception 'FAILED: an older journal upload replaced a newer edit';
+  end if;
+  perform public.upload_journal(
+    '[{"day": "2026-10-01", "who": "Newer", "updated_at": "2100-01-01T00:00:00Z"}]');
+  if (select who from public.journal_entries where day = '2026-10-01') <> 'Newer' then
+    raise exception 'FAILED: a newer journal upload did not replace the older edit';
+  end if;
+  if exists (select 1 from public.journal_entries
+             where user_id <> '00000000-0000-4000-a000-00000000000a') then
+    raise exception 'FAILED: a journal upload reached another user';
   end if;
   perform public.save_display_name('Renamed A', '2100-01-01T00:00:00Z');
   if (select display_name from public.profiles) <> 'Renamed A' then
@@ -184,6 +215,16 @@ do $$ begin
     raise exception 'FAILED: a signed-out visitor can upload';
   exception when insufficient_privilege then null;
   end;
+  begin
+    perform 1 from public.journal_entries;
+    raise exception 'FAILED: a signed-out visitor can read the journal';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.upload_journal('[]');
+    raise exception 'FAILED: a signed-out visitor can upload a journal';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 reset role;
 
@@ -196,6 +237,8 @@ do $$ begin
   if exists (select 1 from auth.users
              where id = '00000000-0000-4000-a000-00000000000a')
      or exists (select 1 from public.check_ins
+                where user_id = '00000000-0000-4000-a000-00000000000a')
+     or exists (select 1 from public.journal_entries
                 where user_id = '00000000-0000-4000-a000-00000000000a')
   then raise exception 'FAILED: delete my account left A behind'; end if;
   if not exists (select 1 from auth.users
@@ -220,6 +263,8 @@ do $$ begin
   if exists (select 1 from public.check_ins
              where user_id = '00000000-0000-4000-a000-00000000000b')
      or exists (select 1 from public.exercise_sessions
+                where user_id = '00000000-0000-4000-a000-00000000000b')
+     or exists (select 1 from public.journal_entries
                 where user_id = '00000000-0000-4000-a000-00000000000b')
      or exists (select 1 from public.profiles
                 where user_id = '00000000-0000-4000-a000-00000000000b')

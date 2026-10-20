@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../Database/LocalDatabase.dart';
+import 'ids.dart';
 
 /// One "Check In" entry: the five W's the user picked for a day.
 class Reflection {
@@ -22,8 +24,15 @@ class Reflection {
 }
 
 /// Saving and reading the five W's journal ("Check In").
-/// This is the user's most private data: it never leaves the phone.
+///
+/// An entry holds no written text, only which question was picked for each
+/// W from fixed lists (journal_prompts.dart). With an account it syncs like
+/// check-ins: one entry per day, newest edit wins (Quang, 19 Oct 2026).
+/// Sync only ever sends questions from those lists.
 abstract class ReflectionRepository {
+  /// Goes up by one each time a journal entry is saved, so sync can start.
+  static final ValueNotifier<int> saves = ValueNotifier<int>(0);
+
   /// Every entry, newest first. Rows keep the table's column names
   /// (who, what, when_question, where_question, why_question, date).
   Future<List<Map<String, dynamic>>> all();
@@ -81,6 +90,13 @@ class LocalReflectionRepository implements ReflectionRepository {
         'date': r.date.toIso8601String(),
         'createdAt': DateTime.now().toIso8601String(),
       });
+      // For sync: this day's entry changed here and still has to go online.
+      await txn.insert('sync_journal', {
+        'date': DatabaseHelper.dateKey(r.date),
+        'changedAt': nowStamp(),
+        'pending': 1,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
     });
+    ReflectionRepository.saves.value++;
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../Repositories/journal_prompts.dart';
 import '../Theme/WithMeTheme.dart';
+
+export '../../Repositories/journal_prompts.dart' show kReflectionPrompts;
 
 /// The check-in, as data.
 ///
@@ -185,36 +188,9 @@ const Map<String, List<String>> kActionsByStrategy = {
 
 // --- image24 ----------------------------------------------------------------
 
-/// The five reflection prompts. These map onto the `reflections` table's
-/// who / what / where / when / why columns, which must keep working.
-const Map<String, List<String>> kReflectionPrompts = {
-  'Who?': [
-    'Who did I lean on today?',
-    'Who made today harder?',
-    'Who do I want to talk to?',
-  ],
-  'What?': [
-    'What took the most out of me?',
-    'What went better than expected?',
-    'What would I do differently?',
-  ],
-  'Where?': [
-    'Where did I feel most at ease?',
-    'Where did the stress start?',
-    'Where do I want to be tomorrow?',
-  ],
-  'When?': [
-    'When did I feel steadiest?',
-    'When did it get hard?',
-    'When can I take a break?',
-  ],
-  'Why?': [
-    'Why did this matter to me?',
-    'Why did I react that way?',
-    'Why is this worth carrying?',
-  ],
-};
-
+// The five reflection prompts (kReflectionPrompts) now live in
+// lib/Repositories/journal_prompts.dart, because sync uses them too: only
+// these questions are ever sent online. Exported above.
 // --- image25, image26 -------------------------------------------------------
 
 /// Immediate exercises (`image25.png`).

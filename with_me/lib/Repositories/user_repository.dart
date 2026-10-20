@@ -30,9 +30,9 @@ enum SessionKind {
 /// - "Start without an account" only works on a phone with no account.
 /// - A guest who signs up and logs in keeps everything saved as a guest
 ///   (or chooses to discard it, if the account already has check-ins).
-/// - Logging out clears the phone: check-ins are kept in the account and
-///   come back on the next login; the journal, which never goes online, is
-///   deleted (the app warns first).
+/// - Logging out clears the phone: check-ins and the journal are kept in
+///   the account and come back on the next login (anything not uploaded yet
+///   is lost, and the app warns first).
 abstract class UserRepository {
   /// True when this phone belongs to an account.
   Future<bool> hasAccount();

@@ -34,8 +34,9 @@ class DatabaseHelper {
   /// uploaded (sync_days, exercise_sessions.pending) and where the last
   /// download stopped (sync_state). Bump this and extend _onUpgrade for any
   /// later change. Version 9 adds app_settings (Alex: choices kept on this
-  /// device, such as Read aloud).
-  static const int schemaVersion = 9;
+  /// device, such as Read aloud). Version 10 lets the journal sync: which
+  /// journal days still have to be uploaded (sync_journal).
+  static const int schemaVersion = 10;
 
   /// The create and upgrade steps, exposed so tests can build a real
   /// database with them and check both paths end at the same schema.
@@ -143,6 +144,7 @@ class DatabaseHelper {
     await _createVersion7(db);
     await _createVersion8(db);
     await _createVersion9(db);
+    await _createVersion10(db);
   }
 
   /// Everything version 4 adds. Shared by _onCreate (fresh installs) and
@@ -238,6 +240,34 @@ class DatabaseHelper {
     if (oldVersion < 9) {
       await _createVersion9(db);
     }
+    if (oldVersion < 10) {
+      await _createVersion10(db);
+    }
+  }
+
+  /// Everything version 10 adds. Shared by _onCreate and _onUpgrade and
+  /// safe to run twice.
+  ///
+  /// The journal syncs (Quang, 19 Oct 2026). It holds no written text, only
+  /// which question was picked for each of the five W's. Like sync_days, one
+  /// row per journal day: when it last changed here, and whether that
+  /// change still has to be uploaded.
+  static Future<void> _createVersion10(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS sync_journal(
+        date TEXT PRIMARY KEY,
+        changedAt TEXT NOT NULL,
+        pending INTEGER NOT NULL DEFAULT 1
+      )
+    ''');
+
+    // Journal days saved before this are marked to upload, with an old time
+    // so they never replace a newer edit that is already online.
+    await db.execute('''
+      INSERT OR IGNORE INTO sync_journal(date, changedAt, pending)
+      SELECT DISTINCT substr(date, 1, 10), '2000-01-01T00:00:00.000Z', 1
+      FROM reflections WHERE date IS NOT NULL
+    ''');
   }
 
   /// Everything version 9 adds. Shared by _onCreate and _onUpgrade.
@@ -465,6 +495,7 @@ class DatabaseHelper {
     'exercise_sessions',
     'session',
     'sync_days',
+    'sync_journal',
     'sync_state',
     // Read aloud and any later device settings go back to their defaults.
     'app_settings',

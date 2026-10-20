@@ -13,8 +13,7 @@ import 'check_in_repository.dart';
 /// can read it reliably. Change the layout only together with [version].
 ///
 /// Included: name and email, every check-in day with every answer, finished
-/// exercises, and the journal (it never goes online, but it is the
-/// person's). Never included: passwords (not on the phone at all) or
+/// exercises, and the journal. Never included: passwords (not on the phone at all) or
 /// sync bookkeeping.
 class ExportService {
   ExportService({Future<Database> Function()? open})
