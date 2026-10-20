@@ -9,6 +9,7 @@ import 'package:with_me/Repositories/sync_service.dart';
 class FakeServer {
   final Map<String, Map<String, Map<String, dynamic>>> checkIns = {};
   final Map<String, Map<String, Map<String, dynamic>>> exercises = {};
+  final Map<String, Map<String, Map<String, dynamic>>> journal = {};
   final Map<String, Map<String, dynamic>> profiles = {};
   var _clock = 0;
 
@@ -35,8 +36,19 @@ class FakeOnlineStore implements OnlineStore {
   }
 
   @override
-  Future<void> uploadCheckIns(List<Map<String, Object?>> days) async {
-    final mine = server.checkIns.putIfAbsent(_me, () => {});
+  Future<void> uploadCheckIns(List<Map<String, Object?>> days) =>
+      _uploadDays(server.checkIns, days);
+
+  @override
+  Future<void> uploadJournal(List<Map<String, Object?>> days) =>
+      _uploadDays(server.journal, days);
+
+  /// One row per day, newest edit wins (upload_check_ins, upload_journal).
+  Future<void> _uploadDays(
+    Map<String, Map<String, Map<String, dynamic>>> table,
+    List<Map<String, Object?>> days,
+  ) async {
+    final mine = table.putIfAbsent(_me, () => {});
     for (final day in days) {
       final existing = mine[day['day'] as String];
       final incoming = DateTime.parse(day['updated_at'] as String);
@@ -90,6 +102,10 @@ class FakeOnlineStore implements OnlineStore {
     int limit,
   ) => _since(server.exercises[_me], cursor, limit);
 
+  @override
+  Future<List<Map<String, dynamic>>> journalSince(String? cursor, int limit) =>
+      _since(server.journal[_me], cursor, limit);
+
   Future<List<Map<String, dynamic>>> _since(
     Map<String, Map<String, dynamic>>? rows,
     String? cursor,
@@ -113,4 +129,7 @@ class FakeOnlineStore implements OnlineStore {
 
   @override
   Future<bool> hasCheckIns() async => (server.checkIns[_me] ?? {}).isNotEmpty;
+
+  @override
+  Future<bool> hasJournal() async => (server.journal[_me] ?? {}).isNotEmpty;
 }

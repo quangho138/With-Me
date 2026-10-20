@@ -283,3 +283,35 @@ AI provenance:
 2. What was kept: the welcome, login and reset screens' layouts (buttons now do real work), the login rules from steps 2b and 2c.
 3. What was checked: SQL on a local PostgreSQL set up like Supabase. Flutter could not run in Claude's workspace; Dart tests and the real links are first run by Quang.
 4. What it got wrong or left open: a link opened on a different device than the one that asked for it (for example the email opened on a laptop) confirms the email but cannot log the phone in; the person logs in by hand. The Supabase login events were written from its documentation.
+
+## Journal sync (branch backend/journal-sync)
+
+Problem: the journal ("Check In", the five W's) stayed on the phone only, so logging out deleted it and a second phone never saw it. Quang decided on 19 Oct 2026 that it should sync. Earlier docs called the journal "free writing, the most private thing in the app". That was never true: the screen (and the original app's Self Reflection screen on main) only lets you pick one question from a fixed list for each W (kReflectionPrompts in lib/WithMe/Data/CheckInSteps.dart). There is no text box. So the journal is about as private as the stressor tags, which already sync, and plain sync with the same security rules is enough. Encrypting it was considered and left out: worth it only if the journal ever gets written answers.
+
+What changed:
+- Online: a journal_entries table, one row per account per day, with the same rules as check_ins (Row Level Security, own rows only, nothing for signed-out visitors, deleted with the account) and an upload_journal function where the newest edit wins on the server. supabase/migrations/20261019000000_journal.sql. Run it once in the SQL Editor, then run tests/security_check.sql again.
+- Phone database version 10: sync_journal marks which journal days still have to be uploaded, like sync_days for check-ins. Journal days saved before the upgrade are marked with an old time, so they upload but never replace a newer edit online.
+- Saving a journal entry marks its day and starts a sync.
+- SyncService uploads and downloads journal days on their own, separate from the check-in of the same day, so editing one never overwrites the other.
+- "Add or discard" after login now covers the journal too. Discard removes the phone's journal as well as its check-ins.
+- Log out no longer deletes the journal for good: it is in the account and comes back on the next login. The warning text changed to say so.
+- Guests still never sync.
+- Only questions from the fixed lists are ever sent online. Alex's demo days write a short note into the journal, and an old test build could hold other text; sync sends those fields as empty and the text stays on the phone. To make this possible the question lists moved from lib/WithMe/Data/CheckInSteps.dart to lib/Repositories/journal_prompts.dart (CheckInSteps re-exports them, so screens did not change).
+
+Success criteria, in test/backend/sync_test.dart (fake server with the real rules):
+1. A journal day reaches the account and a second phone with all five picked questions.
+2. When two phones edit the same day's journal, the newest edit wins on both, whichever syncs first, and the day keeps one entry.
+3. Offline, a journal edit waits and goes up later.
+4. Guests never sync the journal.
+5. A journal edit on one phone never overwrites that day's check-in.
+6. A guest's journal: "discard" removes it, "add" keeps both days.
+7. Upgrading from version 9 marks existing journal days to upload, with an old time.
+8. Log out and log in brings the journal back.
+9. Written text never goes online: every value sent is one of the fixed questions or empty, and the phone keeps its own copy.
+Plus security_check.sql: one user can never read, add or change another's journal, an older upload never replaces a newer one, signed-out visitors get nothing, and deleting an account removes its journal.
+
+AI provenance:
+1. Tools used: Claude (Opus 5.5, Cowork) wrote the SQL, code, tests and this section.
+2. What was kept: the sync rules from step 2c (phone is the main copy, server clock decides what is new, newest edit wins, guests never sync), the journal screens and the export.
+3. What was checked: the SQL and security_check.sql on a local PostgreSQL set up like Supabase (all checks passed, and the journal check fails when its security rule is turned off); the journal screen and the original app's screen, to confirm there is no free text. Flutter could not run in Claude's workspace, so the Dart tests are first run by Quang.
+4. What it got wrong or left open: the earlier docs, code comments and Claude's own explanations called the journal free writing without checking the screen; corrected here. The first draft of this change would have uploaded the demo days' free-text notes and could have stopped sync on old rows with no date; a second Claude agent's review caught both, and both are fixed (picked questions only; rows with no date are skipped). Open screens do not refresh when a journal day downloads (same known issue as check-ins).

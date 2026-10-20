@@ -152,15 +152,14 @@ class _AccountRowState extends State<_AccountRow> {
   }
 
   Future<void> _logOut() async {
-    // Backend (stage 3, sync): logging out clears the phone. Check-ins come
-    // back on the next login; the journal never goes online, so say so.
+    // Backend (stage 3, sync): logging out clears the phone. Check-ins and
+    // the journal are in the account and come back on the next login.
     final sure = await showScenicChoice(
       context,
       title: 'Log out?',
       body:
-          'Your check-ins stay in your account and come back when you log '
-          'in. Your journal is only kept on this phone, so it will be '
-          'deleted.',
+          'Your check-ins and journal stay in your account and come back '
+          'when you log in.',
       yes: 'Log out',
       no: 'Cancel',
       yesIsDanger: true,

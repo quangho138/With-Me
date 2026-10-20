@@ -106,8 +106,8 @@ flutter test
 
 - Without an account, everything stays on the device.
 - Accounts are online (Supabase). Passwords are checked there and never stored on the phone.
-- With an account, check-ins, finished exercises and the name sync to the account, so they follow you to another phone. The newest edit of a day wins. The journal never leaves the phone.
-- Logging out clears the phone. Check-ins come back on the next login; the journal is deleted (the app warns first).
+- With an account, check-ins, the journal, finished exercises and the name sync to the account, so they follow you to another phone. The newest edit of a day wins. The journal holds no written text, only the question picked for each of the five W's.
+- Logging out clears the phone. Check-ins and the journal come back on the next login. If something has not reached the account yet (offline), the app warns first.
 - During the course, only made-up test data is used, never real personal data.
 - Details in `docs/BACKEND.md` and `supabase/`.
 

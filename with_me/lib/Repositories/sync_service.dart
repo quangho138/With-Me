@@ -6,7 +6,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../Database/LocalDatabase.dart';
 import 'check_in_repository.dart';
+import 'journal_prompts.dart';
 import 'online_auth.dart';
+import 'reflection_repository.dart';
 import 'user_repository.dart';
 
 /// How a sync run ended.
@@ -33,18 +35,26 @@ abstract class OnlineStore {
   /// Saves finished exercises; ones already online are skipped.
   Future<void> uploadExercises(List<Map<String, Object?>> sessions);
 
+  /// Saves journal days online; a day already online with a newer edit is
+  /// kept.
+  Future<void> uploadJournal(List<Map<String, Object?>> days);
+
   /// Saves the display name, unless a newer one is already online.
   Future<void> saveName(String name, String changedAt);
 
   /// Rows the server received after [cursor] (its synced_at), oldest first.
   Future<List<Map<String, dynamic>>> checkInsSince(String? cursor, int limit);
   Future<List<Map<String, dynamic>>> exercisesSince(String? cursor, int limit);
+  Future<List<Map<String, dynamic>>> journalSince(String? cursor, int limit);
 
   /// The account's profile row (display_name, updated_at), or null.
   Future<Map<String, dynamic>?> profile();
 
   /// True when the account has any check-in online.
   Future<bool> hasCheckIns();
+
+  /// True when the account has any journal entry online.
+  Future<bool> hasJournal();
 }
 
 /// The real one: the Supabase tables and functions in supabase/migrations.
@@ -61,6 +71,10 @@ class SupabaseOnlineStore implements OnlineStore {
       .upsert(sessions, onConflict: 'id', ignoreDuplicates: true);
 
   @override
+  Future<void> uploadJournal(List<Map<String, Object?>> days) =>
+      _db.rpc<void>('upload_journal', params: {'entries': days});
+
+  @override
   Future<void> saveName(String name, String changedAt) => _db.rpc<void>(
     'save_display_name',
     params: {'name': name, 'changed_at': changedAt},
@@ -75,6 +89,10 @@ class SupabaseOnlineStore implements OnlineStore {
     String? cursor,
     int limit,
   ) => _since('exercise_sessions', cursor, limit);
+
+  @override
+  Future<List<Map<String, dynamic>>> journalSince(String? cursor, int limit) =>
+      _since('journal_entries', cursor, limit);
 
   Future<List<Map<String, dynamic>>> _since(
     String table,
@@ -95,15 +113,21 @@ class SupabaseOnlineStore implements OnlineStore {
   @override
   Future<bool> hasCheckIns() async =>
       (await _db.from('check_ins').select('day').limit(1)).isNotEmpty;
+
+  @override
+  Future<bool> hasJournal() async =>
+      (await _db.from('journal_entries').select('day').limit(1)).isNotEmpty;
 }
 
 /// Keeps the phone and the account in step. The phone stays the main copy:
 /// screens always read the phone. Sync runs in the background, only while
 /// logged in to an account:
-/// 1. upload the days, exercises and name marked as changed on the phone;
+/// 1. upload the days, journal days, exercises and name marked as changed
+///    on the phone;
 /// 2. download what the server received since the last download, unless
 ///    the phone has a newer edit of that day.
-/// The journal never syncs.
+/// The journal syncs on its own, apart from the check-in of the same day,
+/// so editing one never overwrites the other.
 class SyncService {
   SyncService({
     required UserRepository users,
@@ -154,13 +178,17 @@ class SyncService {
         return SyncOutcome.notSignedIn;
       }
       await _uploadDays();
+      await _uploadJournal();
       await _uploadExercises();
       await _uploadName();
       final daysChanged = await _downloadDays();
+      final journalChanged = await _downloadJournal();
       final exercisesChanged = await _downloadExercises();
       await _downloadName();
       // Let open screens (the dashboard) reload what arrived.
-      if (daysChanged || exercisesChanged) CheckInRepository.saves.value++;
+      if (daysChanged || journalChanged || exercisesChanged) {
+        CheckInRepository.saves.value++;
+      }
       return SyncOutcome.done;
     } catch (e) {
       debugPrint('Sync stopped: $e');
@@ -174,31 +202,40 @@ class SyncService {
   Future<bool> hasPendingChanges() async {
     final db = await _open();
     final days = await db.query('sync_days', where: 'pending = 1', limit: 1);
+    final journal = await db.query(
+      'sync_journal',
+      where: 'pending = 1',
+      limit: 1,
+    );
     final exercises = await db.query(
       'exercise_sessions',
       where: 'pending = 1',
       limit: 1,
     );
     return days.isNotEmpty ||
+        journal.isNotEmpty ||
         exercises.isNotEmpty ||
         await _state(db, 'name_pending') == '1';
   }
 
-  /// Right after logging in: true when this phone has check-ins (for
-  /// example from using it without an account) AND the account already has
-  /// check-ins online. Then the person chooses: add this phone's check-ins
-  /// to the account, or discard them ([discardPhoneCheckIns]).
+  /// Right after logging in: true when this phone has check-ins or journal
+  /// entries (for example from using it without an account) AND the
+  /// account already has some online. Then the person chooses: add this
+  /// phone's entries to the account, or discard them
+  /// ([discardPhoneCheckIns]).
   Future<bool> phoneDataNeedsChoice() async {
     final db = await _open();
     final everDownloaded = await _state(db, 'check_ins_cursor') != null;
     if (everDownloaded) return false;
-    final hasLocal = (await db.query('sync_days', limit: 1)).isNotEmpty;
+    final hasLocal =
+        (await db.query('sync_days', limit: 1)).isNotEmpty ||
+        (await db.query('sync_journal', limit: 1)).isNotEmpty;
     if (!hasLocal) return false;
-    return _online.hasCheckIns();
+    return await _online.hasCheckIns() || await _online.hasJournal();
   }
 
-  /// Removes the check-ins and exercises saved on this phone (not the
-  /// journal or the name), so only the account's data comes down.
+  /// Removes the check-ins, journal and exercises saved on this phone (not
+  /// the name), so only the account's data comes down.
   Future<void> discardPhoneCheckIns() async {
     final db = await _open();
     await db.transaction((txn) async {
@@ -209,6 +246,8 @@ class SyncService {
         'check_in_details',
         'exercise_sessions',
         'sync_days',
+        'reflections',
+        'sync_journal',
       ]) {
         await txn.delete(table);
       }
@@ -270,6 +309,58 @@ class SyncService {
     'sign_dimension': entry?.signDimension,
     'updated_at': changedAt,
     // A day that is marked but has no answers was removed on the phone.
+    'deleted': entry == null,
+  };
+
+  Future<void> _uploadJournal() async {
+    final db = await _open();
+    final journal = LocalReflectionRepository(open: _open);
+    final pending = await db.query('sync_journal', where: 'pending = 1');
+    for (var i = 0; i < pending.length; i += _page) {
+      final batch = pending.skip(i).take(_page).toList();
+      final rows = <Map<String, Object?>>[];
+      for (final mark in batch) {
+        final day = mark['date'] as String;
+        final entries = await journal.on(DateTime.parse(day));
+        final row = journalRow(
+          day,
+          entries.isEmpty ? null : entries.first,
+          mark['changedAt'] as String,
+        );
+        // A day with only free text (a demo day) has nothing to send.
+        final nothingPicked = kReflectionColumns.values.every(
+          (column) => row[column] == null,
+        );
+        if (row['deleted'] == true || !nothingPicked) rows.add(row);
+      }
+      if (rows.isNotEmpty) await _online.uploadJournal(rows);
+      // Clear the mark, unless the day was edited again during the upload.
+      for (final mark in batch) {
+        await db.update(
+          'sync_journal',
+          {'pending': 0},
+          where: 'date = ? AND changedAt = ?',
+          whereArgs: [mark['date'], mark['changedAt']],
+        );
+      }
+    }
+  }
+
+  /// One journal day as the online journal_entries table holds it. Only a
+  /// question from the fixed lists is sent; anything else (free text from
+  /// the demo days or an old test build) is sent as empty and stays on the
+  /// phone.
+  @visibleForTesting
+  static Map<String, Object?> journalRow(
+    String day,
+    Map<String, dynamic>? entry,
+    String changedAt,
+  ) => {
+    'day': day,
+    for (final w in kReflectionColumns.entries)
+      w.value: pickedQuestion(w.key, entry?[w.value]),
+    'updated_at': changedAt,
+    // A day that is marked but has no entry was removed on the phone.
     'deleted': entry == null,
   };
 
@@ -413,6 +504,69 @@ class SyncService {
     );
   }
 
+  /// True when any journal day on the phone changed.
+  Future<bool> _downloadJournal() async {
+    final db = await _open();
+    var changed = false;
+    while (true) {
+      final cursor = await _state(db, 'journal_cursor');
+      final rows = await _online.journalSince(cursor, _page);
+      for (final row in rows) {
+        changed |= await _applyJournalDay(db, row);
+      }
+      if (rows.isNotEmpty) {
+        await _setState(
+          db,
+          'journal_cursor',
+          rows.last['synced_at'] as String,
+        );
+      }
+      if (rows.length < _page) return changed;
+    }
+  }
+
+  /// Saves one downloaded journal day, unless the phone has a newer edit of
+  /// it. True when the phone changed.
+  Future<bool> _applyJournalDay(Database db, Map<String, dynamic> row) async {
+    final day = row['day'] as String;
+    final online = DateTime.parse(row['updated_at'] as String);
+    final marks = await db.query(
+      'sync_journal',
+      where: 'date = ?',
+      whereArgs: [day],
+      limit: 1,
+    );
+    if (marks.isNotEmpty &&
+        !online.isAfter(DateTime.parse(marks.first['changedAt'] as String))) {
+      return false;
+    }
+    await db.transaction((txn) async {
+      await txn.delete(
+        'reflections',
+        where: 'date LIKE ?',
+        whereArgs: ['$day%'],
+      );
+      if (row['deleted'] != true) {
+        await txn.insert('reflections', {
+          'who': row['who'] ?? '',
+          'what': row['what'] ?? '',
+          'when_question': row['when_question'] ?? '',
+          'where_question': row['where_question'] ?? '',
+          'why_question': row['why_question'] ?? '',
+          // Noon, so the day never moves with the time zone.
+          'date': '${day}T12:00:00.000',
+          'createdAt': online.toLocal().toIso8601String(),
+        });
+      }
+      await txn.insert('sync_journal', {
+        'date': day,
+        'changedAt': online.toUtc().toIso8601String(),
+        'pending': 0,
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
+    });
+    return true;
+  }
+
   /// True when any exercise was added to the phone.
   Future<bool> _downloadExercises() async {
     final db = await _open();
@@ -501,7 +655,7 @@ class SyncService {
 }
 
 /// Starts sync at the right moments: now, when the app comes back from the
-/// background, and whenever a check-in is saved.
+/// background, and whenever a check-in or journal entry is saved.
 class SyncTriggers with WidgetsBindingObserver {
   SyncTriggers._(this._sync);
   final SyncService _sync;
@@ -514,6 +668,7 @@ class SyncTriggers with WidgetsBindingObserver {
     _started = triggers;
     WidgetsBinding.instance.addObserver(triggers);
     CheckInRepository.saves.addListener(triggers._run);
+    ReflectionRepository.saves.addListener(triggers._run);
     triggers._run();
   }
 

@@ -17,15 +17,16 @@ Future<void> continueAfterLogin(BuildContext context) async {
   try {
     needsChoice = await sync.phoneDataNeedsChoice();
   } catch (_) {
-    // Offline: keep the phone's check-ins; they are added later and the
-    // newest edit of a day wins.
+    // Offline: keep the phone's check-ins and journal; they are added later
+    // and the newest edit of a day wins.
   }
   if (needsChoice && context.mounted) {
     final add = await showScenicChoice(
       context,
-      title: "Keep this phone's check-ins?",
+      title: "Keep this phone's check-ins and journal?",
       body:
-          'This phone has check-ins that are not in your account yet. '
+          'This phone has check-ins or journal entries that are not in your '
+          'account yet. '
           'Add them to your account, or discard them and use only what '
           'your account already has.',
       yes: 'Add them',

@@ -1,8 +1,9 @@
 # Supabase (online accounts and sync)
 
 The app keeps everything on the phone first. For people with an account,
-check-ins, finished exercises and the display name are also kept online,
-so they follow the person to a new phone. The journal never goes online.
+check-ins, the journal, finished exercises and the display name are also
+kept online, so they follow the person to a new phone. (The journal holds
+no written text, only which question was picked for each of the five W's.)
 
 - `migrations/` holds the SQL that builds the online tables and their
   security rules, in the order it was run.
