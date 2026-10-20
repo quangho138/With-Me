@@ -515,11 +515,7 @@ class SyncService {
         changed |= await _applyJournalDay(db, row);
       }
       if (rows.isNotEmpty) {
-        await _setState(
-          db,
-          'journal_cursor',
-          rows.last['synced_at'] as String,
-        );
+        await _setState(db, 'journal_cursor', rows.last['synced_at'] as String);
       }
       if (rows.length < _page) return changed;
     }
