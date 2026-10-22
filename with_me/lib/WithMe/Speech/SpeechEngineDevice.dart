@@ -113,8 +113,8 @@ class DeviceSpeechEngine implements SpeechEngine {
   }
 
   /// Puts [style] on the engine, only sending what changed.
-  Future<bool> _apply(SpeechStyle style) async {
-    final pick = pickVoice(await voices(), style.voice);
+  Future<bool> _apply(SpeechStyle style, String? locale) async {
+    final pick = pickVoice(await voices(locale: locale), style.voice);
     // No on-device voice: stay silent rather than use an online one.
     if (pick == null) return !_android;
     if (pick.id != _voiceInUse) {
@@ -139,10 +139,11 @@ class DeviceSpeechEngine implements SpeechEngine {
     String text,
     SpeechCallbacks callbacks, {
     SpeechStyle style = SpeechStyle.standard,
+    String? locale,
   }) async {
     try {
       if (!await (_ready ??= _setUp())) return false;
-      if (!await _apply(style)) return false;
+      if (!await _apply(style, locale)) return false;
       _current = callbacks;
       _started = false;
       final result = await _tts.speak(text);

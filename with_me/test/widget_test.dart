@@ -33,7 +33,7 @@ void main() {
     // is drawn fill-over-outline for weight - so each label is several
     // Text widgets.
     expect(find.text('With Me'), findsWidgets);
-    expect(find.text('Your AI Companion'), findsWidgets);
+    expect(find.text('Your Wellbeing Companion'), findsWidgets);
     expect(find.text('Here. With you.'), findsWidgets);
     expect(find.text('Sign Up'), findsWidgets);
     expect(find.text('Login'), findsWidgets);

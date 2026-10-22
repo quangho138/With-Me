@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Mascot/RealMascot.dart';
@@ -25,41 +26,43 @@ enum _TaskState { done, now, later }
 class _Task {
   _Task(this.label, this.state, this.color);
 
-  final String label;
+  /// The task's name in the language given.
+  final String Function(AppLocalizations l) label;
   _TaskState state;
   final Color color;
 }
 
 class _YourDayScreenState extends State<YourDayScreen> {
   final List<_Task> _tasks = [
-    _Task('Morning check-in', _TaskState.done, WithMeColors.teal),
-    _Task('Box breathing · 5 cycles', _TaskState.done, WithMeColors.teal),
-    _Task('One step: rehearse the opening', _TaskState.now, WithMeColors.coral),
-    _Task('Evening log', _TaskState.later, WithMeColors.slate),
+    _Task((l) => l.dashTaskMorningCheckIn, _TaskState.done, WithMeColors.teal),
+    _Task((l) => l.dashTaskBoxBreathing, _TaskState.done, WithMeColors.teal),
+    _Task((l) => l.dashTaskOneStep, _TaskState.now, WithMeColors.coral),
+    _Task((l) => l.dashTaskEveningLog, _TaskState.later, WithMeColors.slate),
   ];
 
   int get _done => _tasks.where((t) => t.state == _TaskState.done).length;
 
-  static String _word(int n) =>
-      const [
-        'Zero',
-        'One',
-        'Two',
-        'Three',
-        'Four',
-        'Five',
-        'Six',
-      ].elementAtOrNull(n) ??
-      '$n';
+  /// [n] spelled out with a capital, "Two"; past six, the digits.
+  static String _word(AppLocalizations l, int n) => switch (n) {
+    0 => l.dashNumberZero,
+    1 => l.dashNumberOne,
+    2 => l.dashNumberTwo,
+    3 => l.dashNumberThree,
+    4 => l.dashNumberFour,
+    5 => l.dashNumberFive,
+    6 => l.dashNumberSix,
+    _ => '$n',
+  };
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Your day',
+      title: l.dashYourDayTitle,
       mascot: RealPose.wave,
       mascotMax: 0.36,
       action: ScenicPill(
-        label: 'Do it now',
+        label: l.dashYourDayDoItNow,
         height: 58,
         onPressed: () => Navigator.of(
           context,
@@ -90,9 +93,7 @@ class _YourDayScreenState extends State<YourDayScreen> {
           ScenicPanel(
             child: Text(
               // The design spells the counts out rather than using digits.
-              '${_word(_done)} of ${_word(_tasks.length)} done. '
-              'The step you chose this morning is still waiting — two '
-              'minutes is enough.',
+              l.dashYourDaySummary(_word(l, _done), _word(l, _tasks.length)),
               textAlign: TextAlign.center,
               style: kScenicBody,
             ),
@@ -113,15 +114,21 @@ class _TaskRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final (word, fill, ink) = switch (task.state) {
-      _TaskState.done => ('DONE', ScenicColors.pillBottom, Colors.white),
-      _TaskState.now => ('NOW', const Color(0xFFE0604A), Colors.white),
-      _TaskState.later => ('LATER', Colors.white, ScenicColors.ink),
+      _TaskState.done => (
+        l.dashTaskDone,
+        ScenicColors.pillBottom,
+        Colors.white,
+      ),
+      _TaskState.now => (l.dashTaskNow, const Color(0xFFE0604A), Colors.white),
+      _TaskState.later => (l.dashTaskLater, Colors.white, ScenicColors.ink),
     };
     final done = task.state == _TaskState.done;
+    final label = task.label(l);
 
     return ScenicTile(
-      label: '${task.label}, $word',
+      label: l.dashTaskSemantics(label, word),
       selected: done,
       onTap: onTap,
       child: Padding(
@@ -136,10 +143,7 @@ class _TaskRow extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(
-                task.label,
-                style: kScenicBody.copyWith(fontSize: 16),
-              ),
+              child: Text(label, style: kScenicBody.copyWith(fontSize: 16)),
             ),
             const SizedBox(width: 8),
             Container(

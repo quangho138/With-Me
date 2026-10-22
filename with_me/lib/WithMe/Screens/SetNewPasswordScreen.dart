@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -34,7 +36,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
 
   Future<void> _save() async {
     if (_password.text != _again.text) {
-      _say('The two passwords are not the same.');
+      _say(context.l10n.accountPasswordsDiffer);
       return;
     }
     setState(() => _busy = true);
@@ -43,16 +45,16 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
     } on AccountException catch (e) {
       if (!mounted) return;
       setState(() => _busy = false);
-      _say(e.problem.message);
+      _say(e.problem.text(context.l10n));
       return;
     } catch (_) {
       if (!mounted) return;
       setState(() => _busy = false);
-      _say(AccountProblem.unknown.message);
+      _say(AccountProblem.unknown.text(context.l10n));
       return;
     }
     if (!mounted) return;
-    _say('Your new password is saved.');
+    _say(context.l10n.accountPasswordSaved);
     await continueAfterLogin(context);
   }
 
@@ -62,12 +64,13 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Set a new password',
+      title: l.accountSetPasswordTitle,
       mascot: RealPose.think,
       mascotMax: 0.28,
       action: ScenicPill(
-        label: 'Save password',
+        label: l.accountSetPasswordSave,
         height: 58,
         onPressed: _busy ? null : _save,
       ),
@@ -75,14 +78,14 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'Choose a new password (at least 6 characters).',
+            Text(
+              l.accountSetPasswordExplainer,
               textAlign: TextAlign.center,
               style: kScenicBody,
             ),
             const SizedBox(height: 14),
             WithMeField(
-              label: 'New password',
+              label: l.accountNewPassword,
               controller: _password,
               obscure: true,
               fill: Colors.white,
@@ -90,7 +93,7 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
             ),
             const SizedBox(height: 14),
             WithMeField(
-              label: 'Type it again',
+              label: l.accountRepeatPassword,
               controller: _again,
               obscure: true,
               fill: Colors.white,

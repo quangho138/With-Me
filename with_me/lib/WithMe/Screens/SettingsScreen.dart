@@ -6,10 +6,14 @@ import 'package:share_plus/share_plus.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/export_service.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Locale/AppLanguage.dart';
 import '../Speech/SpeechService.dart';
 import '../Theme/WithMeTheme.dart';
+import 'LanguageScreen.dart';
 import 'VoiceSettingsScreen.dart';
 import 'WelcomeScreen.dart';
 
@@ -34,9 +38,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _haptics = true;
   bool _voice = true;
 
-  void _notWired(String what) => ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('$what is not wired up in this UI pass.')),
-  );
+  void _notWired(String what) => ScaffoldMessenger.of(
+    context,
+  ).showSnackBar(SnackBar(content: Text(context.l10n.settingsNotWired(what))));
 
   /// Backend (stage 3, 2d): "Export my data" as one JSON file, handed to
   /// the phone's share menu (in the browser it downloads).
@@ -56,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Couldn't export your data. Try again.")),
+        SnackBar(content: Text(context.l10n.settingsExportFailed)),
       );
     }
   }
@@ -64,47 +68,55 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> _deleteAccount() async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: ScenicColors.bubble,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: const ScenicHeading('Delete my account', size: 21),
-        content: const Text(
-          'This deletes your account and everything in it: your check-ins, '
-          'exercises, journal and name, online and on this phone. '
-          'It cannot be undone.',
-          style: kScenicBody,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Cancel', style: kScenicBody.copyWith(fontSize: 16)),
+      builder: (context) {
+        final l = context.l10n;
+        return AlertDialog(
+          backgroundColor: ScenicColors.bubble,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
           ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(
-              'Delete',
-              style: kScenicBody.copyWith(
-                fontSize: 16,
-                color: WithMeColors.danger,
-                fontWeight: FontWeight.w800,
+          title: ScenicHeading(l.settingsDeleteAccount, size: 21),
+          content: Text(l.settingsDeleteAccountBody, style: kScenicBody),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(
+                l.commonCancel,
+                style: kScenicBody.copyWith(fontSize: 16),
               ),
             ),
-          ),
-        ],
-      ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(
+                l.commonDelete,
+                style: kScenicBody.copyWith(
+                  fontSize: 16,
+                  color: WithMeColors.danger,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
 
     if (confirmed != true) return;
     try {
       await AppRepositories.users.deleteAccountAndData();
-      // The saved Read aloud setting went with everything else.
+      // The saved Read aloud and language settings went with everything
+      // else, so the app goes back to the phone's own language.
       SpeechService.instance.forgetSetting();
+      AppLanguage.instance.value = null;
     } on AccountException catch (e) {
       // Nothing was deleted (for example, no internet). Say why.
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Couldn't delete your account. ${e.problem.message}"),
+          content: Text(
+            '${context.l10n.settingsDeleteAccountFailed} '
+            '${e.problem.text(context.l10n)}',
+          ),
         ),
       );
       return;
@@ -112,7 +124,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // Say so instead of pretending: the data is still on the device.
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Couldn't delete your data. Try again.")),
+        SnackBar(content: Text(context.l10n.settingsDeleteFailed)),
       );
       return;
     }
@@ -125,24 +137,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     Widget gap() => const SizedBox(height: 10);
 
     return ScenicScaffold(
-      title: 'Settings',
+      title: l.settingsTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ScenicToggleRow(
-            label: 'Sound effects',
+            label: l.settingsSoundEffects,
             icon: Icons.volume_up_rounded,
             value: _sound,
             onChanged: (v) => setState(() => _sound = v),
           ),
           gap(),
           ScenicToggleRow(
-            label: 'Haptics',
+            label: l.settingsHaptics,
             icon: Icons.vibration_rounded,
             iconColor: const Color(0xFF3E9C8C),
             value: _haptics,
@@ -150,7 +163,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           gap(),
           ScenicToggleRow(
-            label: 'Voice input',
+            label: l.settingsVoiceInput,
             icon: Icons.mic_rounded,
             iconColor: const Color(0xFFD2557F),
             value: _voice,
@@ -160,7 +173,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ValueListenableBuilder<bool>(
             valueListenable: SpeechService.instance.enabled,
             builder: (context, on, _) => ScenicToggleRow(
-              label: 'Read aloud',
+              label: l.settingsReadAloud,
               icon: Icons.record_voice_over_rounded,
               iconColor: const Color(0xFF1C7C84),
               value: on,
@@ -169,7 +182,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           gap(),
           ScenicRow(
-            label: 'Read aloud voice',
+            label: l.settingsReadAloudVoice,
             icon: Icons.graphic_eq_rounded,
             iconColor: const Color(0xFF1C7C84),
             onTap: () => Navigator.of(context).push(
@@ -177,45 +190,56 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          ScenicRow(
-            label: 'Language',
-            trailing: 'English',
-            icon: Icons.language_rounded,
-            iconColor: const Color(0xFF1C7C84),
-            onTap: () => _notWired('Language'),
+          ValueListenableBuilder<Locale?>(
+            valueListenable: AppLanguage.instance,
+            builder: (context, chosen, _) => ScenicRow(
+              label: l.settingsLanguage,
+              // With no choice, the language the device resolved to.
+              trailing: LanguageScreen.nativeName(
+                chosen ??
+                    AppLanguage.resolve(
+                      WidgetsBinding.instance.platformDispatcher.locales,
+                    ),
+              ),
+              icon: Icons.language_rounded,
+              iconColor: const Color(0xFF1C7C84),
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => const LanguageScreen())),
+            ),
           ),
           gap(),
           ScenicRow(
-            label: 'Text size',
+            label: l.settingsTextSize,
             icon: Icons.text_fields_rounded,
             iconColor: const Color(0xFFEE9A3E),
-            onTap: () => _notWired('Text size'),
+            onTap: () => _notWired(l.settingsTextSize),
           ),
           gap(),
           ScenicRow(
-            label: 'Theme',
-            trailing: 'Sunset',
+            label: l.settingsTheme,
+            trailing: l.settingsThemeSunset,
             icon: Icons.palette_rounded,
             iconColor: const Color(0xFFD2557F),
-            onTap: () => _notWired('Theme'),
+            onTap: () => _notWired(l.settingsTheme),
           ),
           const SizedBox(height: 16),
           ScenicRow(
-            label: 'Privacy & data',
+            label: l.settingsPrivacy,
             icon: Icons.lock_rounded,
             iconColor: const Color(0xFF1C7C84),
-            onTap: () => _notWired('Privacy & data'),
+            onTap: () => _notWired(l.settingsPrivacy),
           ),
           gap(),
           ScenicRow(
-            label: 'Export my data',
+            label: l.settingsExportData,
             icon: Icons.download_rounded,
             iconColor: const Color(0xFF3E9C8C),
             onTap: _export,
           ),
           gap(),
           ScenicRow(
-            label: 'Delete my account',
+            label: l.settingsDeleteAccount,
             icon: Icons.delete_rounded,
             danger: true,
             onTap: _deleteAccount,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/SoundIcons.dart';
 import '../Theme/WithMeTheme.dart';
+import '../../l10n/l10n.dart';
 import 'BreathingScreen.dart';
 
 /// `image30.png` — "Before we start".
@@ -27,6 +29,8 @@ class BeforeWeStartScreen extends StatefulWidget {
 }
 
 class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
+  /// Sound keys: English, saved with the session and naming the audio
+  /// and video files. Shown through [_soundName].
   static const List<String> _sounds = [
     'Waves',
     'Birds',
@@ -40,24 +44,16 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   String _sound = 'Waves';
   int _cycles = 5;
 
-  static const Map<String, IconData> _soundIcons = {
-    'Waves': Icons.waves_rounded,
-    'Birds': Icons.flutter_dash_rounded,
-    'Fire': Icons.local_fire_department_rounded,
-    'Forest': Icons.forest_rounded,
-    'Rain': Icons.water_drop_rounded,
-    'None': Icons.volume_off_rounded,
-  };
-
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final seconds = _cycles * widget.pattern.roundSeconds;
 
     return ScenicScaffold(
-      title: 'Before we start',
+      title: l.exerciseBeforeWeStart,
       onBack: () => Navigator.of(context).pop(),
       action: ScenicPill(
-        label: 'Next',
+        label: l.commonNext,
         height: 58,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
@@ -74,7 +70,7 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const ScenicHeading('Sound choice'),
+            ScenicHeading(l.exerciseSoundChoice),
             const SizedBox(height: 12),
             for (var row = 0; row < 3; row++) ...[
               if (row > 0) const SizedBox(height: 10),
@@ -84,8 +80,7 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
                     if (col > 0) const SizedBox(width: 10),
                     Expanded(
                       child: _SoundTile(
-                        label: _sounds[row * 2 + col],
-                        icon: _soundIcons[_sounds[row * 2 + col]]!,
+                        sound: _sounds[row * 2 + col],
                         selected: _sound == _sounds[row * 2 + col],
                         onTap: () =>
                             setState(() => _sound = _sounds[row * 2 + col]),
@@ -96,7 +91,7 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
               ),
             ],
             const SizedBox(height: 22),
-            const ScenicHeading('Number of cycles'),
+            ScenicHeading(l.exerciseNumberOfCycles),
             const SizedBox(height: 12),
             NumberChoice(
               value: _cycles,
@@ -105,7 +100,7 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              '$_cycles cycles ≈ $seconds seconds',
+              l.exerciseCyclesApproxSeconds(_cycles, seconds),
               textAlign: TextAlign.center,
               style: kScenicBody,
             ),
@@ -116,22 +111,33 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   }
 }
 
+/// A sound key of the picker in the reader's language.
+String _soundName(AppLocalizations l, String sound) => switch (sound) {
+  'Waves' => l.exerciseSoundWaves,
+  'Birds' => l.exerciseSoundBirds,
+  'Fire' => l.exerciseSoundFire,
+  'Forest' => l.exerciseSoundForest,
+  'Rain' => l.exerciseSoundRain,
+  'None' => l.exerciseSoundNone,
+  _ => sound,
+};
+
 /// One sound: a sage tile with the sound's glyph over its name.
 class _SoundTile extends StatelessWidget {
   const _SoundTile({
-    required this.label,
-    required this.icon,
+    required this.sound,
     required this.selected,
     required this.onTap,
   });
 
-  final String label;
-  final IconData icon;
+  /// The sound's key, as saved ("Waves").
+  final String sound;
   final bool selected;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
+    final label = _soundName(context.l10n, sound);
     return ScenicTile(
       label: label,
       selected: selected,
@@ -140,10 +146,11 @@ class _SoundTile extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            size: 34,
-            color: selected ? ScenicColors.pillBottom : ScenicColors.ink,
+          IconTheme(
+            data: IconThemeData(
+              color: selected ? ScenicColors.pillBottom : ScenicColors.ink,
+            ),
+            child: SoundIcon(sound),
           ),
           const SizedBox(height: 6),
           ChunkyText(

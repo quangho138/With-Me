@@ -2,10 +2,13 @@ import 'dart:ui' as ui;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/SighAudio.dart';
+import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/exercise_repository.dart';
 import '../Theme/WithMeTheme.dart';
@@ -18,17 +21,17 @@ class SighScreen extends StatefulWidget {
 
 class _SighScreenState extends State<SighScreen>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
-  static const labels = [
-    'Deep inhale',
-    'Quick inhale · 1',
-    'Quick inhale · 2',
-    'Long exhale',
+  static List<String> labels(AppLocalizations l) => [
+    l.exerciseSighDeepInhale,
+    l.exerciseSighQuickInhale(1),
+    l.exerciseSighQuickInhale(2),
+    l.exerciseSighLongExhale,
   ];
-  static const cues = [
-    'Breathe in slowly',
-    'Take a small extra sip of air',
-    'Take one more small sip of air',
-    'Let the breath out slowly',
+  static List<String> cues(AppLocalizations l) => [
+    l.exerciseSighCueDeepInhale,
+    l.exerciseSighCueFirstSip,
+    l.exerciseSighCueSecondSip,
+    l.exerciseSighCueLongExhale,
   ];
   int _cycles = 3;
   final _audio = SighAudio();
@@ -105,6 +108,7 @@ class _SighScreenState extends State<SighScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final phase = _session.phaseIndex;
     final progress = Curves.easeInOutSine.transform(_session.phaseProgress);
     final inflation = _session.complete
@@ -116,28 +120,32 @@ class _SighScreenState extends State<SighScreen>
             _ => 1 - progress,
           };
     return WithMeScaffold(
-      title: 'Physiological Sigh',
+      // The beach painting of the scenic screens, behind the same layout.
+      background: const ScenicBackdrop(scene: 'sunset', child: SizedBox()),
+      title: l.exerciseSighTitle,
       onBack: () => Navigator.of(context).pop(),
       action: WithMeButton(
         label: _session.complete
-            ? 'Breathe again'
+            ? l.exerciseBreatheAgain
             : _session.running
-            ? 'Pause'
+            ? l.exercisePause
             : _session.started
-            ? 'Resume'
-            : 'Start breathing',
+            ? l.exerciseResume
+            : l.exerciseStartBreathing,
         onPressed: _session.running ? _pause : _play,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Align(
-            alignment: Alignment.centerRight,
+            alignment: AlignmentDirectional.centerEnd,
             child: TextButton.icon(
               icon: Icon(
                 _muted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
               ),
-              label: Text(_muted ? 'Breath sound off' : 'Breath sound on'),
+              label: Text(
+                _muted ? l.exerciseBreathSoundOff : l.exerciseBreathSoundOn,
+              ),
               onPressed: () {
                 setState(() => _muted = !_muted);
                 _syncAudio();
@@ -145,19 +153,16 @@ class _SighScreenState extends State<SighScreen>
             ),
           ),
           if (_audioFailed)
-            Text(
-              'Sound could not play. You can still follow the lungs.',
-              style: WithMeText.caption,
-            ),
+            Text(l.exerciseSighSoundFailed, style: WithMeText.caption),
           Text(
-            'One deep inhale, two quick inhales, then a long exhale.',
+            l.exerciseSighIntro,
             style: WithMeText.option,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           if (!_session.started) ...[
             Text(
-              'Number of cycles',
+              l.exerciseNumberOfCycles,
               style: WithMeText.fieldLabel,
               textAlign: TextAlign.center,
             ),
@@ -185,7 +190,9 @@ class _SighScreenState extends State<SighScreen>
           const SizedBox(height: 16),
           Semantics(
             image: true,
-            label: 'Lungs ${phase == 3 ? 'compressing' : 'expanding'}',
+            label: phase == 3
+                ? l.exerciseLungsCompressing
+                : l.exerciseLungsExpanding,
             child: SizedBox(
               height: 280,
               child: CustomPaint(
@@ -196,25 +203,36 @@ class _SighScreenState extends State<SighScreen>
             ),
           ),
           const SizedBox(height: 16),
-          Semantics(
-            liveRegion: true,
-            child: Text(
-              _session.complete ? 'Session complete' : labels[phase],
-              textAlign: TextAlign.center,
-              style: WithMeText.title,
+          // On a soft card, so the words stay readable over the painting.
+          ScenicPanel(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    _session.complete
+                        ? l.exerciseSessionComplete
+                        : labels(l)[phase],
+                    textAlign: TextAlign.center,
+                    style: WithMeText.title,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  _session.complete ? l.exerciseSighSettle : cues(l)[phase],
+                  textAlign: TextAlign.center,
+                  style: WithMeText.option,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  l.exerciseCycleOf(_session.round, _cycles),
+                  textAlign: TextAlign.center,
+                  style: WithMeText.caption,
+                ),
+              ],
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            _session.complete ? 'Take a moment to settle.' : cues[phase],
-            textAlign: TextAlign.center,
-            style: WithMeText.option,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Cycle ${_session.round} of $_cycles',
-            textAlign: TextAlign.center,
-            style: WithMeText.caption,
           ),
         ],
       ),

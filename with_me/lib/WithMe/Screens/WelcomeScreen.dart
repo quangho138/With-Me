@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
@@ -24,6 +26,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final canPop = Navigator.of(context).canPop();
 
     return Scaffold(
@@ -70,8 +73,8 @@ class WelcomeScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       if (canPop)
-                        Positioned(
-                          left: 12,
+                        PositionedDirectional(
+                          start: 12,
                           top: 4,
                           child: ScenicBack(
                             onTap: () => Navigator.of(context).maybePop(),
@@ -90,12 +93,12 @@ class WelcomeScreen extends StatelessWidget {
                   top: h * 0.262,
                   left: 0,
                   right: 0,
-                  child: const Column(
+                  child: Column(
                     children: [
                       ChunkyText(
-                        'Your AI Companion',
+                        l.accountAiCompanion,
                         weight: 0.6,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: WithMeText.ui,
                           fontSize: 23,
                           fontWeight: FontWeight.w700,
@@ -105,11 +108,11 @@ class WelcomeScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 6),
+                      const SizedBox(height: 6),
                       ChunkyText(
-                        'Here. With you.',
+                        l.accountTagline,
                         weight: 0.8,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: WithMeText.ui,
                           fontSize: 29,
                           fontWeight: FontWeight.w700,
@@ -130,7 +133,7 @@ class WelcomeScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       ScenicPill(
-                        label: 'Sign Up',
+                        label: l.accountSignUp,
                         height: 56,
                         onPressed: () => Navigator.of(context).push(
                           MaterialPageRoute(
@@ -140,7 +143,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       ScenicPill(
-                        label: 'Login',
+                        label: l.accountLogin,
                         light: true,
                         height: 50,
                         onPressed: () => Navigator.of(context).push(
@@ -151,7 +154,7 @@ class WelcomeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       ScenicPill(
-                        label: 'Continue with Google',
+                        label: l.accountContinueWithGoogle,
                         light: true,
                         height: 50,
                         leading: const SizedBox(
@@ -168,13 +171,17 @@ class WelcomeScreen extends StatelessWidget {
                           } on AccountException catch (e) {
                             if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(e.problem.message)),
+                              SnackBar(
+                                content: Text(e.problem.text(context.l10n)),
+                              ),
                             );
                           } catch (_) {
                             if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(AccountProblem.unknown.message),
+                                content: Text(
+                                  AccountProblem.unknown.text(context.l10n),
+                                ),
                               ),
                             );
                           }
@@ -184,10 +191,10 @@ class WelcomeScreen extends StatelessWidget {
                       // account. Bhavesh: restyle freely, keep the rule.
                       const _StartWithoutAccount(),
                       const SizedBox(height: 14),
-                      const Text(
-                        'A calmer, happier you\nis possible.',
+                      Text(
+                        l.accountCalmerHappier,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: WithMeText.ui,
                           fontSize: 17,
                           height: 1.25,
@@ -245,9 +252,9 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
     }
     if (!mounted) return;
     if (!started) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please log in to continue.')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.accountPleaseLogIn)));
       return;
     }
     Navigator.of(context).pushAndRemoveUntil(
@@ -264,12 +271,12 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
       child: GestureDetector(
         onTap: _start,
         behavior: HitTestBehavior.opaque,
-        child: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 6),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 6),
           child: Text(
-            'Start without an account',
+            context.l10n.accountStartWithoutAccount,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontFamily: WithMeText.ui,
               fontSize: 15,
               fontWeight: FontWeight.w600,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicChoice.dart';
 import 'HomeScreen.dart';
 
@@ -23,14 +24,10 @@ Future<void> continueAfterLogin(BuildContext context) async {
   if (needsChoice && context.mounted) {
     final add = await showScenicChoice(
       context,
-      title: "Keep this phone's check-ins and journal?",
-      body:
-          'This phone has check-ins or journal entries that are not in your '
-          'account yet. '
-          'Add them to your account, or discard them and use only what '
-          'your account already has.',
-      yes: 'Add them',
-      no: 'Discard',
+      title: context.l10n.syncKeepPhoneDataTitle,
+      body: context.l10n.syncKeepPhoneDataBody,
+      yes: context.l10n.syncAddThem,
+      no: context.l10n.syncDiscard,
       dismissible: false,
     );
     if (add == false) await sync.discardPhoneCheckIns();

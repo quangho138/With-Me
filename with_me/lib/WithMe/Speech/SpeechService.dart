@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart' show Locale;
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/settings_repository.dart';
 import 'ClipPlayer.dart';
+import 'MouthTimelines.dart';
 import 'SpeechEngine.dart';
 
 /// Where the companion's speech is in its life.
@@ -181,21 +183,23 @@ class SpeechService {
     }
   }
 
-  /// The on-device voices the companion can use, best first.
-  Future<List<SpeechVoice>> voices() async {
+  /// The on-device voices the companion can use in [locale]'s language
+  /// (English when null), best first.
+  Future<List<SpeechVoice>> voices({String? locale}) async {
     try {
-      return await _speech.voices();
+      return await _speech.voices(locale: locale);
     } catch (_) {
       return const [];
     }
   }
 
-  /// Plays [sample] for [owner] in the current style, even before the
-  /// setting has loaded, so a voice can be tried from Settings. Read aloud
-  /// off still means silent.
-  int? preview({required Object owner}) {
+  /// Plays [text] (the [sample] unless given, in the reader's language)
+  /// for [owner] in the current style, even before the setting has loaded,
+  /// so a voice can be tried from Settings. Read aloud off still means
+  /// silent.
+  int? preview({required Object owner, String? text, String? locale}) {
     if (!enabled.value) return null;
-    return _say(sample, owner);
+    return _say(text ?? sample, owner, locale);
   }
 
   /// Back to the default (on) without saving, for when every table has
@@ -214,12 +218,49 @@ class SpeechService {
   /// With a sentence pause in [style], each sentence is its own utterance
   /// with that much quiet after it; [playback] stays speaking through the
   /// quiet and goes idle after the last sentence.
-  int? speak(String text, {required Object owner}) {
+  ///
+  /// [locale] is the language to speak in, as a tag such as "es"; English
+  /// when null.
+  int? speak(String text, {required Object owner, String? locale}) {
     if (!_loaded || !enabled.value) return null;
-    return _say(text, owner);
+    return _say(text, owner, locale);
   }
 
-  int? _say(String text, Object owner) {
+  /// Says one of the companion's lines for [owner]: the recording
+  /// [recordingFor] picks for [clip] in [locale] when there is one,
+  /// otherwise [text] (the same line in the reader's language) read by the
+  /// device's voice for [locale]. A recording in one language never plays
+  /// under another language's text. Returns the utterance's id, as [play]
+  /// and [speak] do.
+  int? sayLine({
+    required String clip,
+    required String text,
+    required Locale locale,
+    required Object owner,
+  }) {
+    final recording = recordingFor(clip, locale);
+    return recording != null
+        ? play(recording, owner: owner)
+        : speak(text, owner: owner, locale: locale.toLanguageTag());
+  }
+
+  /// The recording of [clip] (a line's name, such as
+  /// audio/checkin/page1.mp3) to play in [locale], or null when that
+  /// language has none and the device's voice reads the line.
+  ///
+  /// Every line is generated in Adrian's voice by tool/make_voice_lines.py
+  /// and lives under `audio/voice/<language>/`. A recording counts once it
+  /// has a mouth timeline, which tool/make_mouth_timelines.py writes for
+  /// every clip it finds.
+  static String? recordingFor(String clip, Locale locale) {
+    final generated = clip.replaceFirst(
+      'audio/',
+      'audio/voice/${locale.languageCode}/',
+    );
+    return kMouthTimelines.containsKey(generated) ? generated : null;
+  }
+
+  int? _say(String text, Object owner, [String? locale]) {
     final spoken = text.replaceAll(RegExp(r'\s+'), ' ').trim();
     if (spoken.isEmpty) return null;
     if (_current != null) _halt();
@@ -234,13 +275,19 @@ class SpeechService {
     // between them is timed here; without one the engine reads it in one go.
     final current = style.value;
     final parts = current.pause > 0 ? sentences(spoken) : [spoken];
-    _part(id, parts, 0, current);
+    _part(id, parts, 0, current, locale);
     return id;
   }
 
   /// Speaks [parts] from [index] on, as utterance [id]. Stops quietly once
   /// [id] is no longer current.
-  void _part(int id, List<String> parts, int index, SpeechStyle style) {
+  void _part(
+    int id,
+    List<String> parts,
+    int index,
+    SpeechStyle style, [
+    String? locale,
+  ]) {
     if (_current != id) return;
 
     void set(SpeechStatus status) {
@@ -252,7 +299,7 @@ class SpeechService {
       _gap?.cancel();
       _gap = Timer(
         Duration(milliseconds: style.pause),
-        () => _part(id, parts, index + 1, style),
+        () => _part(id, parts, index + 1, style, locale),
       );
     }
 
@@ -270,6 +317,7 @@ class SpeechService {
             },
           ),
           style: style,
+          locale: locale,
         )
         .then((started) {
           if (!started) _end(id);

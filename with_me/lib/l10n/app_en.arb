@@ -1,0 +1,3142 @@
+{
+  "@@locale": "en",
+  "appTitle": "With Me",
+  "@appTitle": {
+    "description": "The app's name."
+  },
+  "commonCancel": "Cancel",
+  "@commonCancel": {
+    "description": "Button that closes a dialog without doing anything."
+  },
+  "commonDelete": "Delete",
+  "@commonDelete": {
+    "description": "Button that confirms deleting something. Destructive."
+  },
+  "commonSave": "Save",
+  "@commonSave": {
+    "description": "Button that saves the changes on a screen."
+  },
+  "settingsTitle": "Settings",
+  "@settingsTitle": {
+    "description": "Title of the Settings screen, and its row in the menu."
+  },
+  "settingsNotWired": "{feature} is not wired up in this UI pass.",
+  "@settingsNotWired": {
+    "description": "Short notice when a feature that is not built yet is tapped. {feature} is that feature's name, e.g. 'Text size'.",
+    "placeholders": {
+      "feature": {
+        "type": "String",
+        "example": "Text size"
+      }
+    }
+  },
+  "settingsSoundEffects": "Sound effects",
+  "@settingsSoundEffects": {
+    "description": "Settings toggle: turn the app's sound effects on or off."
+  },
+  "settingsHaptics": "Haptics",
+  "@settingsHaptics": {
+    "description": "Settings toggle: vibration feedback on or off."
+  },
+  "settingsVoiceInput": "Voice input",
+  "@settingsVoiceInput": {
+    "description": "Settings toggle: speaking answers instead of typing them."
+  },
+  "settingsReadAloud": "Read aloud",
+  "@settingsReadAloud": {
+    "description": "Settings toggle: whether the companion speaks its words out loud. Also named in other messages, so keep it consistent."
+  },
+  "settingsReadAloudVoice": "Read aloud voice",
+  "@settingsReadAloudVoice": {
+    "description": "Settings row that opens how the companion's voice sounds (speed, pitch, which voice)."
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Settings row for the app's language."
+  },
+  "settingsTextSize": "Text size",
+  "@settingsTextSize": {
+    "description": "Settings row for making the text bigger or smaller."
+  },
+  "settingsTheme": "Theme",
+  "@settingsTheme": {
+    "description": "Settings row for the app's colour theme."
+  },
+  "settingsThemeSunset": "Sunset",
+  "@settingsThemeSunset": {
+    "description": "Name of the current colour theme, shown next to the Theme row."
+  },
+  "settingsPrivacy": "Privacy & data",
+  "@settingsPrivacy": {
+    "description": "Row in Settings and in the menu about privacy and the person's data."
+  },
+  "settingsExportData": "Export my data",
+  "@settingsExportData": {
+    "description": "Settings row to save a copy of the person's data."
+  },
+  "settingsExport": "Export",
+  "@settingsExport": {
+    "description": "Short name of the export feature, used in the 'not wired up' notice."
+  },
+  "settingsDeleteAccount": "Delete my account",
+  "@settingsDeleteAccount": {
+    "description": "Settings row and dialog title for deleting the account and all its data. Destructive. Also quoted in a Help answer."
+  },
+  "settingsDeleteAccountBody": "This deletes your account and everything in it: your check-ins, exercises, journal and name, online and on this phone. It cannot be undone.",
+  "@settingsDeleteAccountBody": {
+    "description": "Body of the dialog that confirms deleting the account. Plain and calm, but clear it is permanent."
+  },
+  "settingsDeleteFailed": "Couldn't delete your data. Try again.",
+  "@settingsDeleteFailed": {
+    "description": "Error after deleting the account failed; nothing was deleted."
+  },
+  "settingsVoiceTitle": "Voice",
+  "@settingsVoiceTitle": {
+    "description": "Title of the voice settings screen, and the heading over the list of voices."
+  },
+  "settingsVoiceTryIt": "Try it",
+  "@settingsVoiceTryIt": {
+    "description": "Button that plays a sample sentence in the chosen voice."
+  },
+  "settingsVoiceTurnOnReadAloud": "Turn on Read aloud in Settings to hear it.",
+  "@settingsVoiceTurnOnReadAloud": {
+    "description": "Hint on the voice screen when Read aloud is off. 'Read aloud' and 'Settings' are the names of that toggle and screen."
+  },
+  "settingsVoiceSpeed": "Speed",
+  "@settingsVoiceSpeed": {
+    "description": "Slider title: how fast the companion speaks."
+  },
+  "settingsVoiceSlower": "Slower",
+  "@settingsVoiceSlower": {
+    "description": "Label at the low end of the speed slider."
+  },
+  "settingsVoiceFaster": "Faster",
+  "@settingsVoiceFaster": {
+    "description": "Label at the high end of the speed slider."
+  },
+  "settingsVoicePitch": "Pitch",
+  "@settingsVoicePitch": {
+    "description": "Slider title: how high or low the companion's voice is."
+  },
+  "settingsVoiceLower": "Lower",
+  "@settingsVoiceLower": {
+    "description": "Label at the low end of the pitch slider."
+  },
+  "settingsVoiceHigher": "Higher",
+  "@settingsVoiceHigher": {
+    "description": "Label at the high end of the pitch slider."
+  },
+  "settingsVoicePause": "Pause between sentences",
+  "@settingsVoicePause": {
+    "description": "Slider title: how long the companion rests between sentences."
+  },
+  "settingsVoicePauseNone": "None",
+  "@settingsVoicePauseNone": {
+    "description": "No pause between sentences: the pause slider's value at zero and its low-end label."
+  },
+  "settingsVoicePauseLong": "Long",
+  "@settingsVoicePauseLong": {
+    "description": "Label at the high end of the pause slider."
+  },
+  "settingsVoicePauseMs": "{ms} ms",
+  "@settingsVoicePauseMs": {
+    "description": "The pause slider's value in milliseconds, e.g. '250 ms'.",
+    "placeholders": {
+      "ms": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsVoiceTimes": "{value}×",
+  "@settingsVoiceTimes": {
+    "description": "A speed or pitch slider's value relative to normal, e.g. '1.10×' (1.10 times normal). {value} is already formatted.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "1.10"
+      }
+    }
+  },
+  "settingsVoiceReset": "Back to the default voice",
+  "@settingsVoiceReset": {
+    "description": "Button that resets the voice, speed, pitch and pause to their defaults."
+  },
+  "settingsVoiceFinding": "Finding voices…",
+  "@settingsVoiceFinding": {
+    "description": "Shown while the list of the device's voices is loading."
+  },
+  "settingsVoiceNoneOffline": "No voice on this device can read aloud without the internet.",
+  "@settingsVoiceNoneOffline": {
+    "description": "Shown when the device has no voice that works offline."
+  },
+  "settingsVoiceAutomatic": "Automatic",
+  "@settingsVoiceAutomatic": {
+    "description": "First choice in the voice list: let the app pick the best voice."
+  },
+  "settingsVoiceAutomaticUses": "Uses {voice}, {detail}",
+  "@settingsVoiceAutomaticUses": {
+    "description": "Under 'Automatic': which voice it currently picks. {voice} is a voice name such as 'Samantha'; {detail} is its accent and quality, e.g. 'US English · High quality'.",
+    "placeholders": {
+      "voice": {
+        "type": "String",
+        "example": "Samantha"
+      },
+      "detail": {
+        "type": "String",
+        "example": "US English · High quality"
+      }
+    }
+  },
+  "settingsVoiceOptionLabel": "{title}, {detail}",
+  "@settingsVoiceOptionLabel": {
+    "description": "What a screen reader says for one voice in the list: its name, then its accent and quality.",
+    "placeholders": {
+      "title": {
+        "type": "String",
+        "example": "Samantha"
+      },
+      "detail": {
+        "type": "String",
+        "example": "US English · High quality"
+      }
+    }
+  },
+  "settingsVoiceDetail": "{accent} · {quality}",
+  "@settingsVoiceDetail": {
+    "description": "A voice's accent and quality on one line, e.g. 'US English · High quality'.",
+    "placeholders": {
+      "accent": {
+        "type": "String",
+        "example": "US English"
+      },
+      "quality": {
+        "type": "String",
+        "example": "High quality"
+      }
+    }
+  },
+  "settingsVoiceSample": "Hi! I'm here with you. How are you feeling today?",
+  "@settingsVoiceSample": {
+    "description": "Spoken out loud (not shown) when 'Try it' is tapped: the companion's greeting. Warm and gentle. Keep each sentence ending in . ! or ?, since the voice pauses after each."
+  },
+  "settingsVoiceAccentEnglish": "English",
+  "@settingsVoiceAccentEnglish": {
+    "description": "Accent of an English voice whose region is not known."
+  },
+  "settingsVoiceAccentUs": "US English",
+  "@settingsVoiceAccentUs": {
+    "description": "Accent of a voice: English as spoken in the United States."
+  },
+  "settingsVoiceAccentUk": "UK English",
+  "@settingsVoiceAccentUk": {
+    "description": "Accent of a voice: English as spoken in the United Kingdom."
+  },
+  "settingsVoiceAccentAu": "Australian English",
+  "@settingsVoiceAccentAu": {
+    "description": "Accent of a voice: English as spoken in Australia."
+  },
+  "settingsVoiceAccentCa": "Canadian English",
+  "@settingsVoiceAccentCa": {
+    "description": "Accent of a voice: English as spoken in Canada."
+  },
+  "settingsVoiceAccentIe": "Irish English",
+  "@settingsVoiceAccentIe": {
+    "description": "Accent of a voice: English as spoken in Ireland."
+  },
+  "settingsVoiceAccentIn": "Indian English",
+  "@settingsVoiceAccentIn": {
+    "description": "Accent of a voice: English as spoken in India."
+  },
+  "settingsVoiceAccentNz": "New Zealand English",
+  "@settingsVoiceAccentNz": {
+    "description": "Accent of a voice: English as spoken in New Zealand."
+  },
+  "settingsVoiceAccentNg": "Nigerian English",
+  "@settingsVoiceAccentNg": {
+    "description": "Accent of a voice: English as spoken in Nigeria."
+  },
+  "settingsVoiceAccentZa": "South African English",
+  "@settingsVoiceAccentZa": {
+    "description": "Accent of a voice: English as spoken in South Africa."
+  },
+  "settingsVoiceCode": "Voice {code}",
+  "@settingsVoiceCode": {
+    "description": "Name for an Android voice that only has a code, e.g. 'Voice TPF'.",
+    "placeholders": {
+      "code": {
+        "type": "String",
+        "example": "TPF"
+      }
+    }
+  },
+  "settingsVoiceStandard": "Standard voice",
+  "@settingsVoiceStandard": {
+    "description": "Name for the device's plain voice for a language, when it has no other name."
+  },
+  "settingsVoiceQualityBest": "Best quality",
+  "@settingsVoiceQualityBest": {
+    "description": "A voice's sound quality: the best the device has."
+  },
+  "settingsVoiceQualityHigh": "High quality",
+  "@settingsVoiceQualityHigh": {
+    "description": "A voice's sound quality: high."
+  },
+  "settingsVoiceQualityNormal": "Normal quality",
+  "@settingsVoiceQualityNormal": {
+    "description": "A voice's sound quality: normal."
+  },
+  "settingsVoiceQualityBasic": "Basic quality",
+  "@settingsVoiceQualityBasic": {
+    "description": "A voice's sound quality: basic, more robotic."
+  },
+  "settingsNotificationsTitle": "Notifications",
+  "@settingsNotificationsTitle": {
+    "description": "Title of the Notifications screen, and its row in the menu."
+  },
+  "settingsNotificationsSaved": "Preferences saved on this device.",
+  "@settingsNotificationsSaved": {
+    "description": "Confirmation after saving notification preferences."
+  },
+  "settingsDailyReminder": "Daily check-in reminder",
+  "@settingsDailyReminder": {
+    "description": "Notification toggle: a daily reminder to check in."
+  },
+  "settingsExerciseNudge": "Exercise nudge",
+  "@settingsExerciseNudge": {
+    "description": "Notification toggle: a gentle reminder to do a calming exercise."
+  },
+  "settingsWeeklySummary": "Weekly insight summary",
+  "@settingsWeeklySummary": {
+    "description": "Notification toggle: a weekly summary of the person's patterns."
+  },
+  "settingsEncouragement": "Encouragement notes",
+  "@settingsEncouragement": {
+    "description": "Notification toggle: short kind, encouraging messages."
+  },
+  "settingsQuietHours": "Quiet hours",
+  "@settingsQuietHours": {
+    "description": "Label of the field for the hours when no notifications are sent."
+  },
+  "settingsQuietHoursRange": "{start} – {end}",
+  "@settingsQuietHoursRange": {
+    "description": "A time range, e.g. '10:00 PM – 7:30 AM'. {start} and {end} are already-formatted times.",
+    "placeholders": {
+      "start": {
+        "type": "String",
+        "example": "10:00 PM"
+      },
+      "end": {
+        "type": "String",
+        "example": "7:30 AM"
+      }
+    }
+  },
+  "helpTitle": "Help",
+  "@helpTitle": {
+    "description": "Title of the Help screen (questions and answers), and its row in the menu."
+  },
+  "helpWhatIsQuestion": "What is {appName}?",
+  "@helpWhatIsQuestion": {
+    "description": "Help question. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpWhatIsAnswer": "{appName} is a mental wellness and stress management application designed to help you track emotional patterns and practise mindfulness.",
+  "@helpWhatIsAnswer": {
+    "description": "Help answer to 'What is With Me?'. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpHowQuestion": "How does {appName} work?",
+  "@helpHowQuestion": {
+    "description": "Help question. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpHowAnswer": "You can log emotions, track stress levels, and reach coping strategies like breathing exercises and journaling prompts.",
+  "@helpHowAnswer": {
+    "description": "Help answer to 'How does With Me work?'."
+  },
+  "helpTherapyQuestion": "Does {appName} replace therapy?",
+  "@helpTherapyQuestion": {
+    "description": "Help question. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpTherapyAnswer": "No. {appName} is not a substitute for professional mental health care.",
+  "@helpTherapyAnswer": {
+    "description": "Help answer: the app is not therapy. Clear and plain. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpSecureQuestion": "Is my data secure?",
+  "@helpSecureQuestion": {
+    "description": "Help question about data safety."
+  },
+  "helpSecureAnswer": "Without an account, everything stays on this phone. With an account, your check-ins, journal, exercises and name are also kept in your online account, so they follow you to a new phone. Other users can never see them.",
+  "@helpSecureAnswer": {
+    "description": "Help answer to 'Is my data secure?'."
+  },
+  "helpWhoQuestion": "Who can use {appName}?",
+  "@helpWhoQuestion": {
+    "description": "Help question. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpWhoAnswer": "Designed for ages 18+. Minors should have supervision.",
+  "@helpWhoAnswer": {
+    "description": "Help answer: the app is for adults."
+  },
+  "helpDeleteQuestion": "Can I delete my data?",
+  "@helpDeleteQuestion": {
+    "description": "Help question."
+  },
+  "helpDeleteAnswer": "Yes. Settings has \"Delete my account\", which deletes your account online and everything on this phone.",
+  "@helpDeleteAnswer": {
+    "description": "Help answer. 'Settings' and 'Delete my account' are the names of a screen and its row; use the same wording as those."
+  },
+  "helpShareQuestion": "Does {appName} share my info?",
+  "@helpShareQuestion": {
+    "description": "Help question. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "helpShareAnswer": "No. Your data is not sold or shared with advertisers.",
+  "@helpShareAnswer": {
+    "description": "Help answer: data is not sold or shared."
+  },
+  "helpCrisisQuestion": "What if I'm in crisis?",
+  "@helpCrisisQuestion": {
+    "description": "Help question from someone who may be in crisis. Serious, caring tone."
+  },
+  "helpCrisisAnswer": "Please contact your local emergency services or a crisis hotline.",
+  "@helpCrisisAnswer": {
+    "description": "Help answer for someone in crisis: get urgent help. Serious, caring and direct."
+  },
+  "menuTitle": "Menu",
+  "@menuTitle": {
+    "description": "Title of the menu screen, and what a screen reader says for the menu button on Home."
+  },
+  "menuFootnote": "Small steps, bright futures",
+  "@menuFootnote": {
+    "description": "Gentle motto at the bottom of the menu."
+  },
+  "menuLogOut": "Log out",
+  "@menuLogOut": {
+    "description": "Menu row that signs the person out. Their data stays on the phone."
+  },
+  "menuLogOutFailed": "Couldn't log out. Try again.",
+  "@menuLogOutFailed": {
+    "description": "Error when signing out failed."
+  },
+  "menuAbout": "About",
+  "@menuAbout": {
+    "description": "Title of the About screen, and its row in the menu."
+  },
+  "menuAboutFootnote": "Version {version} · Made with care",
+  "@menuAboutFootnote": {
+    "description": "Footer of the About screen. {version} is the app version, e.g. '1.0'.",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "1.0"
+      }
+    }
+  },
+  "menuAboutStory": "{appName} was built for the moments between appointments, when stress arrives and you need something steady by your side. It checks in with you, helps you name what is happening, and offers one small next step.",
+  "@menuAboutStory": {
+    "description": "About screen: why the app exists. Warm and calm. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "menuAboutDisclaimer": "{appName} does not diagnose or treat, and is not a substitute for professional care.",
+  "@menuAboutDisclaimer": {
+    "description": "About screen: the app is not medical care. Clear and plain. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "menuAboutTerms": "Terms & Privacy Policy",
+  "@menuAboutTerms": {
+    "description": "Row on the About screen that opens the terms and privacy policy."
+  },
+  "menuAboutTermsNotWired": "Terms are not wired up in this UI pass.",
+  "@menuAboutTermsNotWired": {
+    "description": "Notice that the terms page is not built yet."
+  },
+  "accountAiCompanion": "Your Wellbeing Companion",
+  "@accountAiCompanion": {
+    "description": "Subtitle under the app's name on the welcome and About screens."
+  },
+  "accountTagline": "Here. With you.",
+  "@accountTagline": {
+    "description": "The app's short tagline, on the welcome screen and in the menu. Warm, reassuring."
+  },
+  "accountSignUp": "Sign Up",
+  "@accountSignUp": {
+    "description": "Welcome screen button to create an account."
+  },
+  "accountLogin": "Login",
+  "@accountLogin": {
+    "description": "Welcome screen button that opens the log-in screen."
+  },
+  "accountContinueWithGoogle": "Continue with Google",
+  "@accountContinueWithGoogle": {
+    "description": "Welcome screen button to sign in with a Google account."
+  },
+  "accountGoogleNotWired": "Google sign-in is not wired up in this UI pass.",
+  "@accountGoogleNotWired": {
+    "description": "Notice that Google sign-in is not built yet."
+  },
+  "accountStartWithoutAccount": "Start without an account",
+  "@accountStartWithoutAccount": {
+    "description": "Welcome screen link to use the app without signing up; everything stays on the phone."
+  },
+  "accountPleaseLogIn": "Please log in to continue.",
+  "@accountPleaseLogIn": {
+    "description": "Shown when the app cannot be used without an account here."
+  },
+  "accountCalmerHappier": "A calmer, happier you\nis possible.",
+  "@accountCalmerHappier": {
+    "description": "Hopeful line at the bottom of the welcome screen. The line break is deliberate."
+  },
+  "accountWelcomeBack": "Welcome back",
+  "@accountWelcomeBack": {
+    "description": "Title of the log-in screen."
+  },
+  "accountLogIn": "Log in",
+  "@accountLogIn": {
+    "description": "Button that signs in with the email and password entered."
+  },
+  "accountForgotPassword": "Forgot your password?",
+  "@accountForgotPassword": {
+    "description": "Link on the log-in screen to reset the password."
+  },
+  "accountLoginReadFailed": "Couldn't read your account on this device.",
+  "@accountLoginReadFailed": {
+    "description": "Error when the account on the phone could not be read while logging in."
+  },
+  "accountLoginMismatch": "That email and password do not match.",
+  "@accountLoginMismatch": {
+    "description": "Error when the email or password is wrong."
+  },
+  "accountEmail": "Email",
+  "@accountEmail": {
+    "description": "Label of an email address field."
+  },
+  "accountEmailHint": "maya@email.com",
+  "@accountEmailHint": {
+    "description": "Example email shown in an empty email field. May be adapted to a common local name."
+  },
+  "accountPassword": "Password",
+  "@accountPassword": {
+    "description": "Label of a password field."
+  },
+  "accountName": "Name",
+  "@accountName": {
+    "description": "Label of the field for the person's name."
+  },
+  "accountNameHint": "Maya",
+  "@accountNameHint": {
+    "description": "Example first name shown in an empty name field. May be adapted to a common local name."
+  },
+  "accountCreateTitle": "Create your account",
+  "@accountCreateTitle": {
+    "description": "Title of the sign-up screen."
+  },
+  "accountCreateAccount": "Create account",
+  "@accountCreateAccount": {
+    "description": "Button on the sign-up screen that creates the account."
+  },
+  "accountCreateAnAccount": "Create an account",
+  "@accountCreateAnAccount": {
+    "description": "Menu row for someone using the app without an account; their saved data comes along."
+  },
+  "accountAlreadyWithUs": "Already with us? Log in",
+  "@accountAlreadyWithUs": {
+    "description": "Link on the sign-up screen for someone who already has an account."
+  },
+  "accountTermsAgreement": "I agree to the Terms and Privacy Policy. {appName} is a companion, not medical care.",
+  "@accountTermsAgreement": {
+    "description": "Checkbox on the sign-up screen. {appName} is the app's name.",
+    "placeholders": {
+      "appName": {
+        "type": "String",
+        "example": "With Me"
+      }
+    }
+  },
+  "accountFillInAll": "Fill in your name, email and a password.",
+  "@accountFillInAll": {
+    "description": "Error on sign-up when a field is empty."
+  },
+  "accountAgreeTerms": "Please agree to the terms to continue.",
+  "@accountAgreeTerms": {
+    "description": "Error on sign-up when the terms box is not ticked."
+  },
+  "accountAlreadyOnPhone": "This phone already has an account. Log in instead.",
+  "@accountAlreadyOnPhone": {
+    "description": "Error on sign-up: only one account per phone."
+  },
+  "accountSaveFailed": "Couldn't save your account on this device.",
+  "@accountSaveFailed": {
+    "description": "Error when the new account could not be saved."
+  },
+  "accountResetTitle": "Reset your password",
+  "@accountResetTitle": {
+    "description": "Title of the reset-password screen."
+  },
+  "accountSendResetLink": "Send reset link",
+  "@accountSendResetLink": {
+    "description": "Button that sends a password reset link by email."
+  },
+  "accountResetExplainer": "Enter your email and I'll send you a reset link.",
+  "@accountResetExplainer": {
+    "description": "Explanation on the reset-password screen, in the companion's friendly first person."
+  },
+  "accountResetSent": "If that email has an account, a reset link is on its way. Open it on this phone.",
+  "@accountResetSent": {
+    "description": "Confirmation after asking for a reset link."
+  },
+  "accountProfileTitle": "My Profile",
+  "@accountProfileTitle": {
+    "description": "Title of the profile screen, and its row in the menu."
+  },
+  "accountSaveChanges": "Save changes",
+  "@accountSaveChanges": {
+    "description": "Button that saves the profile."
+  },
+  "accountSaved": "Saved.",
+  "@accountSaved": {
+    "description": "Short confirmation after the profile was saved."
+  },
+  "accountProfileSaveFailed": "Couldn't save on this device.",
+  "@accountProfileSaveFailed": {
+    "description": "Error when the profile could not be saved."
+  },
+  "accountProfileYou": "You",
+  "@accountProfileYou": {
+    "description": "Shown on the profile card in place of a name when none is set."
+  },
+  "accountWithMeSince": "With me since today",
+  "@accountWithMeSince": {
+    "description": "Under the person's name on the profile card: how long they have used the app. 'With me' speaks as the companion."
+  },
+  "accountCheckInTime": "Daily check-in time",
+  "@accountCheckInTime": {
+    "description": "Label of the field for the time of the daily check-in."
+  },
+  "accountStatCheckIns": "{count, plural, other{check-ins}}",
+  "@accountStatCheckIns": {
+    "description": "Label under a number on the profile: how many check-ins in the last 90 days. The number is shown separately, above it.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountStatExercises": "{count, plural, other{exercises}}",
+  "@accountStatExercises": {
+    "description": "Label under a number on the profile: how many calming exercises were finished in the last 90 days. The number is shown separately, above it.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "accountMembershipTitle": "Membership",
+  "@accountMembershipTitle": {
+    "description": "Title of the membership (paid plan) screen, and its row in the menu."
+  },
+  "accountStartPlus": "Start Plus",
+  "@accountStartPlus": {
+    "description": "Button to start the paid 'Companion Plus' plan."
+  },
+  "accountPaymentsNotWired": "Payments are not connected in this UI pass.",
+  "@accountPaymentsNotWired": {
+    "description": "Notice that payments are not built yet."
+  },
+  "accountMembershipFootnote": "Cancel any time. Your logs stay yours either way.",
+  "@accountMembershipFootnote": {
+    "description": "Reassurance at the bottom of the membership screen."
+  },
+  "accountPlanFree": "Free forever",
+  "@accountPlanFree": {
+    "description": "Name of the free plan."
+  },
+  "accountPlanFreeBlurb": "Check-ins, daily logs, breathing exercises and the calendar. No card needed.",
+  "@accountPlanFreeBlurb": {
+    "description": "What the free plan includes."
+  },
+  "accountPlanPlus": "Companion Plus · $4.99/mo",
+  "@accountPlanPlus": {
+    "description": "Name and price of the paid plan. 'Companion Plus' is the plan's name; the price is in US dollars per month."
+  },
+  "accountPlanPlusBlurb": "All soundscapes · guided meditations · full insight history · PDF summaries to share",
+  "@accountPlanPlusBlurb": {
+    "description": "What the paid plan includes, as a list separated by dots."
+  },
+  "accountCard": "Card",
+  "@accountCard": {
+    "description": "Label of the payment card number field."
+  },
+  "accountCardExpiry": "Expiry",
+  "@accountCardExpiry": {
+    "description": "Label of the card's expiry date field."
+  },
+  "accountCardExpiryHint": "MM/YY",
+  "@accountCardExpiryHint": {
+    "description": "Format of the card expiry date: two-digit month, slash, two-digit year."
+  },
+  "accountCardCvc": "CVC",
+  "@accountCardCvc": {
+    "description": "Label of the card's 3-digit security code field."
+  },
+  "homeTitle": "Home",
+  "@homeTitle": {
+    "description": "Title of the home screen."
+  },
+  "homeWelcomeBack": "Welcome back!",
+  "@homeWelcomeBack": {
+    "description": "Greeting on Home when the person's name is not known."
+  },
+  "homeWelcomeBackName": "Welcome back, {name}!",
+  "@homeWelcomeBackName": {
+    "description": "Greeting on Home with the person's name.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Maya"
+      }
+    }
+  },
+  "homeWhatToDo": "What would you like to do?",
+  "@homeWhatToDo": {
+    "description": "Under the greeting on Home, before the four shortcuts."
+  },
+  "homeCheckIn": "Check In",
+  "@homeCheckIn": {
+    "description": "Home button that starts a check-in about how the person feels."
+  },
+  "homeDashboard": "Dashboard",
+  "@homeDashboard": {
+    "description": "Home button that opens charts of the person's moods and stress."
+  },
+  "homeExercises": "Immediate Exercises",
+  "@homeExercises": {
+    "description": "Home button that opens calming exercises to do right now."
+  },
+  "homeDailyLog": "Daily Log",
+  "@homeDailyLog": {
+    "description": "Home button that opens the calendar of past days."
+  },
+  "checkinGreeting": "Hi!\nI'm here with you.\nHow are you\nfeeling today?",
+  "@checkinGreeting": {
+    "description": "Daily check-in, first page: the companion's greeting in a speech bubble, above five feeling faces. Warm and friendly. Keep the line breaks (they shape the bubble); the Daily Log shows it on one line."
+  },
+  "checkinTitleControl": "How in control do you feel today?",
+  "@checkinTitleControl": {
+    "description": "Daily Log list of check-in pages: the title of the page asking how in control the person feels. One line."
+  },
+  "checkinTitleStress": "On a scale of 1 to 5, how would you rate your stress today?",
+  "@checkinTitleStress": {
+    "description": "Daily Log list of check-in pages: the title of the stress-rating page. One line."
+  },
+  "checkinTitleMotivation": "How motivated do you feel to make a positive change today?",
+  "@checkinTitleMotivation": {
+    "description": "Daily Log list of check-in pages: the title of the motivation page. One line."
+  },
+  "checkinTitleArea": "Where is most of your stress coming from right now?",
+  "@checkinTitleArea": {
+    "description": "Daily Log list of check-in pages: the title of the page asking where stress comes from (home, work, school, social). One line."
+  },
+  "checkinTitleStressors": "What's weighing on you?",
+  "@checkinTitleStressors": {
+    "description": "Daily Log list of check-in pages: the title of the page where the person picks their stressors. Gentle."
+  },
+  "checkinTitleSigns": "What are the signs? Body, feelings, mind or behavior",
+  "@checkinTitleSigns": {
+    "description": "Daily Log list of check-in pages: the title of the page choosing where stress shows up."
+  },
+  "checkinTitleSignsPage": "How stress is showing up for you",
+  "@checkinTitleSignsPage": {
+    "description": "Daily Log list of check-in pages: the title of the page listing signs of stress (body, feelings, mind or behavior, whichever was chosen)."
+  },
+  "checkinIntentionTitle": "Intention to change",
+  "@checkinIntentionTitle": {
+    "description": "Daily check-in: heading of the page with a dial for how ready the person feels to change today; also its title in the Daily Log list."
+  },
+  "checkinTitleStrategies": "Select strategies and actions",
+  "@checkinTitleStrategies": {
+    "description": "Daily Log list of check-in pages: the title of the page choosing a stress management strategy and action. One line."
+  },
+  "checkinStrategyDetailsTitle": "Strategy details",
+  "@checkinStrategyDetailsTitle": {
+    "description": "Daily check-in, last page: heading above a summary of the chosen strategy and action, and its title in the Daily Log list."
+  },
+  "checkinSaveFailed": "Couldn't save this check-in on this device.",
+  "@checkinSaveFailed": {
+    "description": "Message shown briefly when the finished check-in could not be stored. Calm, not alarming."
+  },
+  "checkinSettingsLabel": "Settings",
+  "@checkinSettingsLabel": {
+    "description": "Daily check-in, first page: screen reader label of the gear button that opens Settings."
+  },
+  "checkinControlQuestion": "How in control do\nyou feel today?",
+  "@checkinControlQuestion": {
+    "description": "Daily check-in, speech bubble question above a 1-5 gauge. Keep a line break near the middle."
+  },
+  "checkinControlHint": "Tap or turn the gauge below",
+  "@checkinControlHint": {
+    "description": "Daily check-in, instruction under the control question."
+  },
+  "checkinStressQuestion": "On a scale of 1 to 5,\nhow would you rate\nyour stress today?",
+  "@checkinStressQuestion": {
+    "description": "Daily check-in, speech bubble question above the numbers 1 to 5. Keep line breaks so the bubble stays narrow."
+  },
+  "checkinStressLow": "1 = Low stress",
+  "@checkinStressLow": {
+    "description": "Daily check-in, under the numbers 1-5 on the left: what 1 means."
+  },
+  "checkinStressHigh": "5 = High stress",
+  "@checkinStressHigh": {
+    "description": "Daily check-in, under the numbers 1-5 on the right: what 5 means."
+  },
+  "checkinStressScaleSemantics": "1 means low stress, 5 means high stress",
+  "@checkinStressScaleSemantics": {
+    "description": "Screen reader text for the ends of the stress scale."
+  },
+  "checkinMotivationQuestion": "How motivated\ndo you feel to make\na positive change\ntoday?",
+  "@checkinMotivationQuestion": {
+    "description": "Daily check-in, speech bubble question above the numbers 1 to 5. Keep line breaks so the bubble stays narrow. Encouraging."
+  },
+  "checkinMotivationLow": "1 = Least motivated",
+  "@checkinMotivationLow": {
+    "description": "Daily check-in, under the numbers 1-5 on the left: what 1 means."
+  },
+  "checkinMotivationHigh": "5 = Most motivated",
+  "@checkinMotivationHigh": {
+    "description": "Daily check-in, under the numbers 1-5 on the right: what 5 means."
+  },
+  "checkinMotivationScaleSemantics": "1 means least motivated, 5 means most motivated",
+  "@checkinMotivationScaleSemantics": {
+    "description": "Screen reader text for the ends of the motivation scale."
+  },
+  "checkinAreaQuestion": "Where is most of your\nstress coming from\nright now?",
+  "@checkinAreaQuestion": {
+    "description": "Daily check-in, speech bubble question above four tiles: Home, Work, School, Social. Keep line breaks."
+  },
+  "checkinStressorsQuestionWork": "Which stressors affect\nyou at work?",
+  "@checkinStressorsQuestionWork": {
+    "description": "Daily check-in, speech bubble question above the stressors for the Work area (the person said most stress comes from work). Keep the line break."
+  },
+  "checkinStressorsQuestionHome": "Which stressors affect\nyou at home?",
+  "@checkinStressorsQuestionHome": {
+    "description": "Daily check-in, speech bubble question above the stressors for the Home area (the person said most stress comes from home). Keep the line break."
+  },
+  "checkinStressorsQuestionSchool": "Which stressors affect\nyou at school?",
+  "@checkinStressorsQuestionSchool": {
+    "description": "Daily check-in, speech bubble question above the stressors for the School area (the person said most stress comes from school). Keep the line break."
+  },
+  "checkinStressorsQuestionSocial": "Which stressors affect\nyou socially?",
+  "@checkinStressorsQuestionSocial": {
+    "description": "Daily check-in, speech bubble question above the stressors for the Social area (the person said most stress comes from social). Keep the line break."
+  },
+  "checkinStressorsQuestionOther": "Which stressors affect\nyou right now?",
+  "@checkinStressorsQuestionOther": {
+    "description": "Daily check-in, speech bubble question above a list of stressors, when no area was named. Keep the line break."
+  },
+  "checkinStressorOtherHint": "Another stressor",
+  "@checkinStressorOtherHint": {
+    "description": "Daily check-in, hint inside the written 'Other' field under the stressors, for typing one that is not listed."
+  },
+  "checkinSignsQuestion": "What are the signs?",
+  "@checkinSignsQuestion": {
+    "description": "Daily check-in, speech bubble heading above two formulas and four tiles: Body, Feelings, Mind, Behavior."
+  },
+  "checkinFormulaStressor": "Stressor = {bodyReaction} + {situation}",
+  "@checkinFormulaStressor": {
+    "description": "Daily check-in, a small formula under \"What are the signs?\". The two placeholders are shown in bold: checkinFormulaBodyReaction and checkinFormulaSituation. Keep the = and + signs.",
+    "placeholders": {
+      "bodyReaction": {
+        "type": "String",
+        "example": "body reaction"
+      },
+      "situation": {
+        "type": "String",
+        "example": "situation"
+      }
+    }
+  },
+  "checkinFormulaBodyReaction": "body reaction",
+  "@checkinFormulaBodyReaction": {
+    "description": "Bold term in the formula \"Stressor = body reaction + situation\". Lower case."
+  },
+  "checkinFormulaSituation": "situation",
+  "@checkinFormulaSituation": {
+    "description": "Bold term in the formula \"Stressor = body reaction + situation\". Lower case."
+  },
+  "checkinFormulaAnxiety": "Anxiety = {anticipation} + {event} (real or imagined)",
+  "@checkinFormulaAnxiety": {
+    "description": "Daily check-in, a small formula under \"What are the signs?\". The two placeholders are shown in bold: checkinFormulaAnticipation and checkinFormulaEvent. \"(real or imagined)\" refers to the event.",
+    "placeholders": {
+      "anticipation": {
+        "type": "String",
+        "example": "anticipation"
+      },
+      "event": {
+        "type": "String",
+        "example": "event"
+      }
+    }
+  },
+  "checkinFormulaAnticipation": "anticipation",
+  "@checkinFormulaAnticipation": {
+    "description": "Bold term in the formula \"Anxiety = anticipation + event (real or imagined)\". Lower case."
+  },
+  "checkinFormulaEvent": "event",
+  "@checkinFormulaEvent": {
+    "description": "Bold term in the formula \"Anxiety = anticipation + event (real or imagined)\". Lower case."
+  },
+  "checkinSignsQuestionBody": "How is stress showing up in your body?",
+  "@checkinSignsQuestionBody": {
+    "description": "Daily check-in, speech bubble question above the body signs of stress the person can pick. Gentle."
+  },
+  "checkinSignsQuestionFeelings": "What emotions are you feeling most right now?",
+  "@checkinSignsQuestionFeelings": {
+    "description": "Daily check-in, speech bubble question above the feelings signs of stress the person can pick. Gentle."
+  },
+  "checkinSignsQuestionMind": "What thoughts are coming up for you?",
+  "@checkinSignsQuestionMind": {
+    "description": "Daily check-in, speech bubble question above the mind signs of stress the person can pick. Gentle."
+  },
+  "checkinSignsQuestionBehavior": "How is it affecting your behavior?",
+  "@checkinSignsQuestionBehavior": {
+    "description": "Daily check-in, speech bubble question above the behavior signs of stress the person can pick. Gentle."
+  },
+  "checkinSignsHint": "Pick all that fit, or write your own.",
+  "@checkinSignsHint": {
+    "description": "Daily check-in, instruction under the signs question: choose any number of tiles or type in the field below."
+  },
+  "checkinSignsOtherHint": "Something else",
+  "@checkinSignsOtherHint": {
+    "description": "Daily check-in, hint inside the written 'Other' field under the signs, for typing one that is not listed."
+  },
+  "checkinIntentionQuestion": "How ready do you feel to do something differently today?",
+  "@checkinIntentionQuestion": {
+    "description": "Daily check-in, question under \"Intention to change\", above a readiness dial."
+  },
+  "checkinIntentionDrag": "Drag the needle",
+  "@checkinIntentionDrag": {
+    "description": "Daily check-in, shown under the readiness dial until the person moves it."
+  },
+  "checkinIntentionNoteNotReady": "Not today is an honest answer too. Noticing it is a step.",
+  "@checkinIntentionNoteNotReady": {
+    "description": "Daily check-in, reassuring note when the dial reads \"Not ready yet\". Kind and non-judgmental."
+  },
+  "checkinIntentionNoteLittle": "A little is still a start. We'll keep it small.",
+  "@checkinIntentionNoteLittle": {
+    "description": "Daily check-in, reassuring note when the dial reads \"A little ready\". Kind, encouraging."
+  },
+  "checkinIntentionNoteSomewhat": "Somewhere in the middle is the most honest answer most days — and it is enough.",
+  "@checkinIntentionNoteSomewhat": {
+    "description": "Daily check-in, note when the dial reads \"Somewhat ready\", also shown before it is moved. Reassuring."
+  },
+  "checkinIntentionNoteReady": "Ready is a good place to be. Let's pick one small thing.",
+  "@checkinIntentionNoteReady": {
+    "description": "Daily check-in, encouraging note when the dial reads \"Ready\"."
+  },
+  "checkinIntentionNoteVery": "Let's use that energy — one step at a time.",
+  "@checkinIntentionNoteVery": {
+    "description": "Daily check-in, encouraging note when the dial reads \"Very ready\"."
+  },
+  "checkinStrategiesQuestion": "Select strategies\nand actions",
+  "@checkinStrategiesQuestion": {
+    "description": "Daily check-in, speech bubble heading above the strategy and action dropdowns. Keep the line break."
+  },
+  "checkinStrategyLabel": "Stress management strategy",
+  "@checkinStrategyLabel": {
+    "description": "Daily check-in, label above the dropdown of strategy kinds (Mental, Physical, ...)."
+  },
+  "checkinActionLabel": "Stress management action",
+  "@checkinActionLabel": {
+    "description": "Daily check-in, label above the dropdown of actions for the chosen strategy."
+  },
+  "checkinRateEffectiveness": "Pick a rate of effectiveness",
+  "@checkinRateEffectiveness": {
+    "description": "Daily check-in, instruction above five stars: how well the chosen strategy works for the person."
+  },
+  "checkinAddCustom": "+ Add custom strategy & action",
+  "@checkinAddCustom": {
+    "description": "Daily check-in, tappable link that opens a dialog to type a strategy and action of their own. Keep the leading +."
+  },
+  "checkinCustomDialogTitle": "Add custom strategy\n& action",
+  "@checkinCustomDialogTitle": {
+    "description": "Title of the dialog for typing a custom strategy and action. Keep the line break."
+  },
+  "checkinCustomStrategyHint": "Custom strategy",
+  "@checkinCustomStrategyHint": {
+    "description": "Hint inside the dialog field for typing a strategy of their own."
+  },
+  "checkinCustomActionHint": "Custom action",
+  "@checkinCustomActionHint": {
+    "description": "Hint inside the dialog field for typing an action of their own."
+  },
+  "commonAdd": "Add",
+  "@commonAdd": {
+    "description": "Button that confirms adding something."
+  },
+  "commonContinue": "Continue",
+  "@commonContinue": {
+    "description": "Button that moves on to the next page."
+  },
+  "checkinFinish": "Finish check-in",
+  "@checkinFinish": {
+    "description": "Daily check-in, button on the last page that saves the check-in."
+  },
+  "checkinDetailDate": "Date · {date}",
+  "@checkinDetailDate": {
+    "description": "Daily check-in, last page: today's date in the strategy summary.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "16 October 2026"
+      }
+    }
+  },
+  "checkinDetailStrategy": "Strategy · {strategy}",
+  "@checkinDetailStrategy": {
+    "description": "Daily check-in, last page: the chosen strategy in the summary (\"-\" when none).",
+    "placeholders": {
+      "strategy": {
+        "type": "String",
+        "example": "Mental"
+      }
+    }
+  },
+  "checkinDetailAction": "Action · {action}",
+  "@checkinDetailAction": {
+    "description": "Daily check-in, last page: the chosen action in the summary (\"-\" when none).",
+    "placeholders": {
+      "action": {
+        "type": "String",
+        "example": "Reframing"
+      }
+    }
+  },
+  "checkinRateStrategy": "Rate this strategy",
+  "@checkinRateStrategy": {
+    "description": "Daily check-in, last page: instruction above five stars."
+  },
+  "checkinReflectTitle": "Check In",
+  "@checkinReflectTitle": {
+    "description": "Check In (self-reflection) page: the page title. Short."
+  },
+  "checkinReflectSave": "Save reflection",
+  "@checkinReflectSave": {
+    "description": "Check In (self-reflection) page: button that saves the chosen questions."
+  },
+  "checkinReflectHeading": "Take a moment for\nself-reflection",
+  "@checkinReflectHeading": {
+    "description": "Check In (self-reflection) page: heading. Calm and inviting. Keep the line break."
+  },
+  "checkinReflectIntro": "Select one question from each category that resonates with you today.",
+  "@checkinReflectIntro": {
+    "description": "Check In (self-reflection) page: instruction under the heading, above five dropdowns (Who, What, Where, When, Why)."
+  },
+  "checkinReflectHint": "Select a question...",
+  "@checkinReflectHint": {
+    "description": "Check In (self-reflection) page: placeholder in the \"Why?\" dropdown before a question is chosen."
+  },
+  "checkinReflectChooseAll": "Choose one question from each of the five.",
+  "@checkinReflectChooseAll": {
+    "description": "Check In (self-reflection) page: brief message when saving with a dropdown left empty. Gentle."
+  },
+  "checkinReflectSaveFailed": "Couldn't save this reflection on this device.",
+  "@checkinReflectSaveFailed": {
+    "description": "Check In (self-reflection) page: brief message when the reflection could not be stored. Calm."
+  },
+  "checkinReflectSaved": "Reflection saved. Well done.",
+  "@checkinReflectSaved": {
+    "description": "Check In (self-reflection) page: brief message after saving. Warm, encouraging."
+  },
+  "checkinOptAngry": "Angry",
+  "@checkinOptAngry": {
+    "description": "A feeling: one of the five faces on the check-in's first page, and an emotion the person can pick as a sign of stress. Saved answer shown on the daily log and dashboard. One word."
+  },
+  "checkinOptSad": "Sad",
+  "@checkinOptSad": {
+    "description": "A feeling: one of the five faces on the check-in's first page, and an emotion the person can pick as a sign of stress. Saved answer shown on the daily log and dashboard. One word."
+  },
+  "checkinOptIndifferent": "Indifferent",
+  "@checkinOptIndifferent": {
+    "description": "A feeling on the check-in's first page (one of five faces: how the person feels today). Saved answer; shown on the faces, the daily log and the dashboard. One word."
+  },
+  "checkinOptHappy": "Happy",
+  "@checkinOptHappy": {
+    "description": "A feeling on the check-in's first page (one of five faces: how the person feels today). Saved answer; shown on the faces, the daily log and the dashboard. One word."
+  },
+  "checkinOptExcited": "Excited",
+  "@checkinOptExcited": {
+    "description": "A feeling on the check-in's first page (one of five faces: how the person feels today). Saved answer; shown on the faces, the daily log and the dashboard. One word."
+  },
+  "checkinOptHome": "Home",
+  "@checkinOptHome": {
+    "description": "Where most of the person's stress is coming from (check-in tile and dashboard). One word."
+  },
+  "checkinOptWork": "Work",
+  "@checkinOptWork": {
+    "description": "Where most of the person's stress is coming from (check-in tile and dashboard). One word."
+  },
+  "checkinOptSchool": "School",
+  "@checkinOptSchool": {
+    "description": "Where most of the person's stress is coming from (check-in tile and dashboard). One word."
+  },
+  "checkinOptSocial": "Social",
+  "@checkinOptSocial": {
+    "description": "'Social' as a source of stress (check-in tile, dashboard) and as a kind of stress management strategy (social support). One word."
+  },
+  "checkinOptColleagues": "Colleagues",
+  "@checkinOptColleagues": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptBoss": "Boss",
+  "@checkinOptBoss": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptEmployees": "Employees",
+  "@checkinOptEmployees": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptWorkload": "Workload",
+  "@checkinOptWorkload": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptTimeMgmt": "Time mgmt",
+  "@checkinOptTimeMgmt": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptEnvironment": "Environment",
+  "@checkinOptEnvironment": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptPartner": "Partner",
+  "@checkinOptPartner": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptFamily": "Family",
+  "@checkinOptFamily": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptInLaws": "In-laws",
+  "@checkinOptInLaws": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptFinancial": "Financial",
+  "@checkinOptFinancial": {
+    "description": "A stressor at home or at school: money worries. Short tile, one word."
+  },
+  "checkinOptDomesticDuties": "Domestic duties",
+  "@checkinOptDomesticDuties": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptSickness": "Sickness",
+  "@checkinOptSickness": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptHomework": "Homework",
+  "@checkinOptHomework": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptExamPressure": "Exam pressure",
+  "@checkinOptExamPressure": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptOrganization": "Organization",
+  "@checkinOptOrganization": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptBullying": "Bullying",
+  "@checkinOptBullying": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptPerformance": "Performance",
+  "@checkinOptPerformance": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptSocialMedia": "Social media",
+  "@checkinOptSocialMedia": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptTraffic": "Traffic",
+  "@checkinOptTraffic": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptIsolation": "Isolation",
+  "@checkinOptIsolation": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptFriends": "Friends",
+  "@checkinOptFriends": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptDisputes": "Disputes",
+  "@checkinOptDisputes": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptSportsPerformance": "Sports performance",
+  "@checkinOptSportsPerformance": {
+    "description": "A stressor the person can pick in the check-in (a tile, short: 1-2 words) and see tallied on the dashboard."
+  },
+  "checkinOptTension": "Tension",
+  "@checkinOptTension": {
+    "description": "A sign of stress in the body the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptHeadaches": "Headaches",
+  "@checkinOptHeadaches": {
+    "description": "A sign of stress in the body the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptSleepIssues": "Sleep issues",
+  "@checkinOptSleepIssues": {
+    "description": "A sign of stress in the body the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptLowEnergy": "Low energy",
+  "@checkinOptLowEnergy": {
+    "description": "A sign of stress in the body the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptStomachIssues": "Stomach issues",
+  "@checkinOptStomachIssues": {
+    "description": "A sign of stress in the body the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptAnxious": "Anxious",
+  "@checkinOptAnxious": {
+    "description": "An emotion the person can pick as a sign of stress (a short tile, one word)."
+  },
+  "checkinOptOverwhelmed": "Overwhelmed",
+  "@checkinOptOverwhelmed": {
+    "description": "An emotion the person can pick as a sign of stress (a short tile, one word)."
+  },
+  "checkinOptFrustrated": "Frustrated",
+  "@checkinOptFrustrated": {
+    "description": "An emotion the person can pick as a sign of stress (a short tile, one word)."
+  },
+  "checkinOptRacingThoughts": "Racing thoughts",
+  "@checkinOptRacingThoughts": {
+    "description": "A sign of stress in the mind the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptCantFocus": "Can't focus",
+  "@checkinOptCantFocus": {
+    "description": "A sign of stress in the mind the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptNegativeThoughts": "Negative thoughts",
+  "@checkinOptNegativeThoughts": {
+    "description": "A sign of stress in the mind the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptWorrying": "Worrying",
+  "@checkinOptWorrying": {
+    "description": "A sign of stress in the mind the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptSelfDoubt": "Self-doubt",
+  "@checkinOptSelfDoubt": {
+    "description": "A sign of stress in the mind the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptAvoidingTasks": "Avoiding tasks",
+  "@checkinOptAvoidingTasks": {
+    "description": "A sign of stress in behavior the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptProcrastinating": "Procrastinating",
+  "@checkinOptProcrastinating": {
+    "description": "A sign of stress in behavior the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptOvereating": "Overeating",
+  "@checkinOptOvereating": {
+    "description": "A sign of stress in behavior the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptWithdrawing": "Withdrawing",
+  "@checkinOptWithdrawing": {
+    "description": "A sign of stress in behavior the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptOverworking": "Overworking",
+  "@checkinOptOverworking": {
+    "description": "A sign of stress in behavior the person can pick (a short tile, 1-2 words)."
+  },
+  "checkinOptBodyCaps": "BODY",
+  "@checkinOptBodyCaps": {
+    "description": "One of the four areas where stress shows up, upper case, as a category label."
+  },
+  "checkinOptFeelingsCaps": "FEELINGS",
+  "@checkinOptFeelingsCaps": {
+    "description": "One of the four areas where stress shows up, upper case, as a category label."
+  },
+  "checkinOptMindCaps": "MIND",
+  "@checkinOptMindCaps": {
+    "description": "One of the four areas where stress shows up, upper case, as a category label."
+  },
+  "checkinOptBehaviorCaps": "BEHAVIOR",
+  "@checkinOptBehaviorCaps": {
+    "description": "One of the four areas where stress shows up, upper case, as a category label."
+  },
+  "checkinOptBody": "Body",
+  "@checkinOptBody": {
+    "description": "One of the four areas where stress shows up, as a check-in tile and dashboard label. One word."
+  },
+  "checkinOptFeelings": "Feelings",
+  "@checkinOptFeelings": {
+    "description": "One of the four areas where stress shows up, as a check-in tile and dashboard label. One word."
+  },
+  "checkinOptMind": "Mind",
+  "@checkinOptMind": {
+    "description": "One of the four areas where stress shows up, as a check-in tile and dashboard label. One word."
+  },
+  "checkinOptBehavior": "Behavior",
+  "@checkinOptBehavior": {
+    "description": "One of the four areas where stress shows up, as a check-in tile and dashboard label. One word."
+  },
+  "checkinOptFeelCalmer": "Feel calmer",
+  "@checkinOptFeelCalmer": {
+    "description": "An intention for the day the person could have chosen (older check-ins). Gentle, first person."
+  },
+  "checkinOptBeMoreInControl": "Be more in control",
+  "@checkinOptBeMoreInControl": {
+    "description": "An intention for the day the person could have chosen (older check-ins). Gentle, first person."
+  },
+  "checkinOptImproveMyFocus": "Improve my focus",
+  "@checkinOptImproveMyFocus": {
+    "description": "An intention for the day the person could have chosen (older check-ins). Gentle, first person."
+  },
+  "checkinOptBeKinderToMyself": "Be kinder to myself",
+  "@checkinOptBeKinderToMyself": {
+    "description": "An intention for the day the person could have chosen (older check-ins). Gentle, first person."
+  },
+  "checkinOptTakeSmallSteps": "Take small steps",
+  "@checkinOptTakeSmallSteps": {
+    "description": "An intention for the day the person could have chosen (older check-ins). Gentle, first person."
+  },
+  "checkinOptNotReadyYet": "Not ready yet",
+  "@checkinOptNotReadyYet": {
+    "description": "How ready the person feels to change today, read from a dial. Saved answer shown under the dial and on the dashboard."
+  },
+  "checkinOptALittleReady": "A little ready",
+  "@checkinOptALittleReady": {
+    "description": "How ready the person feels to change today, read from a dial. Saved answer shown under the dial and on the dashboard."
+  },
+  "checkinOptSomewhatReady": "Somewhat ready",
+  "@checkinOptSomewhatReady": {
+    "description": "How ready the person feels to change today, read from a dial. Saved answer shown under the dial and on the dashboard."
+  },
+  "checkinOptReady": "Ready",
+  "@checkinOptReady": {
+    "description": "How ready the person feels to change today, read from a dial. Saved answer shown under the dial and on the dashboard."
+  },
+  "checkinOptVeryReady": "Very ready",
+  "@checkinOptVeryReady": {
+    "description": "How ready the person feels to change today, read from a dial. Saved answer shown under the dial and on the dashboard."
+  },
+  "checkinOptMental": "Mental",
+  "@checkinOptMental": {
+    "description": "A kind of stress management strategy, in the check-in's dropdown and the dashboard. One word."
+  },
+  "checkinOptPhysical": "Physical",
+  "@checkinOptPhysical": {
+    "description": "A kind of stress management strategy, in the check-in's dropdown and the dashboard. One word."
+  },
+  "checkinOptEmotional": "Emotional",
+  "@checkinOptEmotional": {
+    "description": "A kind of stress management strategy, in the check-in's dropdown and the dashboard. One word."
+  },
+  "checkinOptCreative": "Creative",
+  "@checkinOptCreative": {
+    "description": "A kind of stress management strategy, in the check-in's dropdown and the dashboard. One word."
+  },
+  "checkinOptThoughtChallenging": "Thought challenging",
+  "@checkinOptThoughtChallenging": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptReframing": "Reframing",
+  "@checkinOptReframing": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptProblemSolving": "Problem solving",
+  "@checkinOptProblemSolving": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptDeepBreathing": "Deep breathing",
+  "@checkinOptDeepBreathing": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptWalking": "Walking",
+  "@checkinOptWalking": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptStretching": "Stretching",
+  "@checkinOptStretching": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptJournaling": "Journaling",
+  "@checkinOptJournaling": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptSelfCompassion": "Self-compassion",
+  "@checkinOptSelfCompassion": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptNamingTheFeeling": "Naming the feeling",
+  "@checkinOptNamingTheFeeling": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptCreativeWriting": "Creative writing",
+  "@checkinOptCreativeWriting": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptDrawing": "Drawing",
+  "@checkinOptDrawing": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptMusic": "Music",
+  "@checkinOptMusic": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptAskForHelp": "Ask for help",
+  "@checkinOptAskForHelp": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptReachOut": "Reach out",
+  "@checkinOptReachOut": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptShareHowIFeel": "Share how I feel",
+  "@checkinOptShareHowIFeel": {
+    "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
+  },
+  "checkinOptWho": "Who?",
+  "@checkinOptWho": {
+    "description": "A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why)."
+  },
+  "checkinOptWhat": "What?",
+  "@checkinOptWhat": {
+    "description": "A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why)."
+  },
+  "checkinOptWhere": "Where?",
+  "@checkinOptWhere": {
+    "description": "A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why)."
+  },
+  "checkinOptWhen": "When?",
+  "@checkinOptWhen": {
+    "description": "A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why)."
+  },
+  "checkinOptWhy": "Why?",
+  "@checkinOptWhy": {
+    "description": "A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why)."
+  },
+  "checkinOptWhoDidILeanOnToday": "Who did I lean on today?",
+  "@checkinOptWhoDidILeanOnToday": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhoMadeTodayHarder": "Who made today harder?",
+  "@checkinOptWhoMadeTodayHarder": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhoDoIWantToTalkTo": "Who do I want to talk to?",
+  "@checkinOptWhoDoIWantToTalkTo": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhatTookTheMostOutOfMe": "What took the most out of me?",
+  "@checkinOptWhatTookTheMostOutOfMe": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhatWentBetterThanExpected": "What went better than expected?",
+  "@checkinOptWhatWentBetterThanExpected": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhatWouldIDoDifferently": "What would I do differently?",
+  "@checkinOptWhatWouldIDoDifferently": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhereDidIFeelMostAtEase": "Where did I feel most at ease?",
+  "@checkinOptWhereDidIFeelMostAtEase": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhereDidTheStressStart": "Where did the stress start?",
+  "@checkinOptWhereDidTheStressStart": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhereDoIWantToBeTomorrow": "Where do I want to be tomorrow?",
+  "@checkinOptWhereDoIWantToBeTomorrow": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhenDidIFeelSteadiest": "When did I feel steadiest?",
+  "@checkinOptWhenDidIFeelSteadiest": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhenDidItGetHard": "When did it get hard?",
+  "@checkinOptWhenDidItGetHard": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhenCanITakeABreak": "When can I take a break?",
+  "@checkinOptWhenCanITakeABreak": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhyDidThisMatterToMe": "Why did this matter to me?",
+  "@checkinOptWhyDidThisMatterToMe": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhyDidIReactThatWay": "Why did I react that way?",
+  "@checkinOptWhyDidIReactThatWay": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptWhyIsThisWorthCarrying": "Why is this worth carrying?",
+  "@checkinOptWhyIsThisWorthCarrying": {
+    "description": "A self-reflection question the person can pick from a dropdown and is saved with the day. First person, gentle and reflective."
+  },
+  "checkinOptOther": "Other",
+  "@checkinOptOther": {
+    "description": "Label of the written 'Other' answer field under a page's choices, and the 'Other' slice on charts. One word."
+  },
+  "dashTitle": "Dashboard",
+  "@dashTitle": {
+    "description": "Heading of the dashboard screen, which lists five pages of charts about the user's check-ins."
+  },
+  "dashNoEntries": "No entries recorded for this period.",
+  "@dashNoEntries": {
+    "description": "Shown on a dashboard chart when there are no check-ins for the week shown. Calm, neutral."
+  },
+  "dashPercent": "{percent}%",
+  "@dashPercent": {
+    "description": "A share written on a pie slice or beside a legend entry, e.g. '41%'.",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "dashPercentLabel": "{percent}% {label}",
+  "@dashPercentLabel": {
+    "description": "Pie legend entry: a share followed by the answer it belongs to, e.g. '41% Work'.",
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "dashLabelPercent": "{label} {percent}%",
+  "@dashLabelPercent": {
+    "description": "An answer followed by its share, e.g. 'Work 41%'. Used in chart legends and read aloud by screen readers. percent is an already formatted number such as '41' or '12.5'.",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "dashTitledSummary": "{title}: {summary}",
+  "@dashTitledSummary": {
+    "description": "Screen reader label for a pie chart: its name, then its shares, e.g. 'Triggers: Work 50%, Home 50%'.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "summary": {
+        "type": "String"
+      }
+    }
+  },
+  "dashNothingYet": "nothing yet",
+  "@dashNothingYet": {
+    "description": "Read by screen readers after a chart's name when the chart has nothing counted yet, e.g. 'Triggers: nothing yet'. Lower case."
+  },
+  "dashCountShare": "{count} · {percent}%",
+  "@dashCountShare": {
+    "description": "Detail line under an answer in a chart's colour key: how often it was given and its share, e.g. '3 check-ins · 41%'. count is already worded, such as '3 check-ins' or '1 time'.",
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "dashCountShareSemantics": "{label}: {count}, {percent}%",
+  "@dashCountShareSemantics": {
+    "description": "Screen reader text for one row of a pie chart's colour key, e.g. 'Work: 3 check-ins, 41%'. count is already worded.",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "count": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "dashCheckInCount": "{count, plural, =1{1 check-in} other{{count} check-ins}}",
+  "@dashCheckInCount": {
+    "description": "A number of daily check-ins, used inside other dashboard sentences.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashTimeCount": "{count, plural, =1{1 time} other{{count} times}}",
+  "@dashTimeCount": {
+    "description": "How many times an answer was picked, in a chart's colour key, e.g. '3 times'.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashStressorCount": "{count, plural, =1{1 stressor} other{{count} stressors}}",
+  "@dashStressorCount": {
+    "description": "A number of stressors (sources of stress the user picked), used inside the Stressors chart note.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashSignCount": "{count, plural, =1{1 sign} other{{count} signs}}",
+  "@dashSignCount": {
+    "description": "A number of stress signs the user picked, used inside the Signs chart note.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashGoToSection": "Go to its section",
+  "@dashGoToSection": {
+    "description": "Screen reader hint on a tappable row in a chart legend; tapping opens that answer's own chart."
+  },
+  "dashDayReadout": "{date} · {answer}",
+  "@dashDayReadout": {
+    "description": "Line above a bar chart reading out the selected day, e.g. 'Tue, Oct 6 · Happy'.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "dashDayAnswer": "{date}: {answer}",
+  "@dashDayAnswer": {
+    "description": "One day of a bar chart read aloud by a screen reader, e.g. 'Tue, Oct 6: 3 of 5'.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "dashBarChartSemantics": "{count, plural, =1{{title}: 1 entry from {from} to {to}} other{{title}: {count} entries from {from} to {to}}}",
+  "@dashBarChartSemantics": {
+    "description": "Screen reader label for a bar chart of daily answers, e.g. 'Feelings over time: 4 entries from Oct 5 to Oct 11'.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "title": {
+        "type": "String"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "dashAdjustHint": "Adjust to read other days",
+  "@dashAdjustHint": {
+    "description": "Screen reader hint on a bar chart: swipe up or down to hear other days."
+  },
+  "dashStressLevelNoRatings": "Stress level: no ratings",
+  "@dashStressLevelNoRatings": {
+    "description": "Screen reader label for the stress level line chart when there are no ratings."
+  },
+  "dashStressLevelSemantics": "{count, plural, other{Stress level: {count} ratings from {from} to {to}, latest {latest} of 5 on {on}}}",
+  "@dashStressLevelSemantics": {
+    "description": "Screen reader label for the stress level line chart. Dates are short, e.g. '10/6'. English keeps 'ratings' for every count, including 1.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      },
+      "latest": {
+        "type": "int"
+      },
+      "on": {
+        "type": "String"
+      }
+    }
+  },
+  "dashWeekName": "{weeks, plural, =0{This week} =1{Last week} other{{weeks} weeks ago}}",
+  "@dashWeekName": {
+    "description": "Which week a dashboard chart shows: 0 is this week, 1 last week, and so on.",
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "dashWeekRange": "{from} to {to}",
+  "@dashWeekRange": {
+    "description": "The dates a week covers, Monday to Sunday, e.g. 'Oct 5 to Oct 11'.",
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "dashThisWeekRange": "This week · {range}",
+  "@dashThisWeekRange": {
+    "description": "Line under a chart card's title, e.g. 'This week · Oct 5 to Oct 11'.",
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "dashChartInWeek": "{chart}, {week}",
+  "@dashChartInWeek": {
+    "description": "Screen reader name of a weekly chart on its page, e.g. 'Stress Levels, Last week'.",
+    "placeholders": {
+      "chart": {
+        "type": "String"
+      },
+      "week": {
+        "type": "String"
+      }
+    }
+  },
+  "dashWeekCardSemantics": "{title}, this week, {range}. {reading}",
+  "@dashWeekCardSemantics": {
+    "description": "Screen reader label of a chart card on the dashboard: the chart's name, this week's dates, then the week read out.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "range": {
+        "type": "String"
+      },
+      "reading": {
+        "type": "String"
+      }
+    }
+  },
+  "dashWeekCardHint": "Opens the colour key and earlier weeks",
+  "@dashWeekCardHint": {
+    "description": "Screen reader hint on a chart card: tapping opens the chart's own page."
+  },
+  "dashPieTileSemantics": "{title}, this week. {reading}",
+  "@dashPieTileSemantics": {
+    "description": "Screen reader label of a small pie chart button: the chart's name, then this week's shares.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "reading": {
+        "type": "String"
+      }
+    }
+  },
+  "dashPieTileHint": "Opens the pie, the colour key and earlier weeks",
+  "@dashPieTileHint": {
+    "description": "Screen reader hint on a small pie chart button."
+  },
+  "dashWeekBefore": "Week before",
+  "@dashWeekBefore": {
+    "description": "Tooltip on the arrow that shows the previous week of a chart."
+  },
+  "dashWeekAfter": "Week after",
+  "@dashWeekAfter": {
+    "description": "Tooltip on the arrow that shows the next week of a chart."
+  },
+  "dashSwipeHint": "Swipe right on the chart for the week before.",
+  "@dashSwipeHint": {
+    "description": "Small hint under a weekly chart."
+  },
+  "dashColourKeyHeading": "What the colours mean",
+  "@dashColourKeyHeading": {
+    "description": "Heading of a chart's colour key."
+  },
+  "dashKeyRowSemantics": "{colour} is {label}",
+  "@dashKeyRowSemantics": {
+    "description": "Screen reader text for one row of a bar chart's colour key, e.g. 'Red is Angry'.",
+    "placeholders": {
+      "colour": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "dashColourRed": "Red",
+  "@dashColourRed": {
+    "description": "Colour name in a chart's colour key."
+  },
+  "dashColourOrange": "Orange",
+  "@dashColourOrange": {
+    "description": "Colour name in a chart's colour key."
+  },
+  "dashColourYellow": "Yellow",
+  "@dashColourYellow": {
+    "description": "Colour name in a chart's colour key."
+  },
+  "dashColourGreen": "Green",
+  "@dashColourGreen": {
+    "description": "Colour name in a chart's colour key."
+  },
+  "dashColourPurple": "Purple",
+  "@dashColourPurple": {
+    "description": "Colour name in a chart's colour key."
+  },
+  "dashOutOfFive": "{value} of 5",
+  "@dashOutOfFive": {
+    "description": "A day's answer on a 1 to 5 scale, e.g. '3 of 5'.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashFeelingsTitle": "Feelings over time",
+  "@dashFeelingsTitle": {
+    "description": "Title of the bar chart of the user's daily feeling (Angry, Sad, Indifferent, Happy, Excited)."
+  },
+  "dashFeelingsNote": "Bars are shortest for Angry and tallest for Excited.",
+  "@dashFeelingsNote": {
+    "description": "Explains the feelings bar chart. Angry and Excited are the lowest and highest of the five feelings the check-in offers."
+  },
+  "dashControlTitle": "How in control do you feel?",
+  "@dashControlTitle": {
+    "description": "Title of the bar chart of the daily answer to 'How in control do you feel today?'."
+  },
+  "dashControlNote": "Taller bars mean more in control.",
+  "@dashControlNote": {
+    "description": "Explains the 'in control' bar chart."
+  },
+  "dashKeyLeastInControl": "{value} · Least in control",
+  "@dashKeyLeastInControl": {
+    "description": "Colour key row for the lowest answer on the 'in control' scale.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashKeyMostInControl": "{value} · Most in control",
+  "@dashKeyMostInControl": {
+    "description": "Colour key row for the highest answer on the 'in control' scale.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashMotivationTitle": "Motivation to Change",
+  "@dashMotivationTitle": {
+    "description": "Title of the bar chart of the daily answer to 'How motivated do you feel to make a positive change today?'."
+  },
+  "dashMotivationNote": "Taller bars mean more motivated to make a positive change.",
+  "@dashMotivationNote": {
+    "description": "Explains the motivation bar chart."
+  },
+  "dashKeyLeastMotivated": "{value} · Least motivated",
+  "@dashKeyLeastMotivated": {
+    "description": "Colour key row for the lowest motivation answer.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashKeyMostMotivated": "{value} · Most motivated",
+  "@dashKeyMostMotivated": {
+    "description": "Colour key row for the highest motivation answer.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashIntentionTitle": "Intention to Change",
+  "@dashIntentionTitle": {
+    "description": "Title of the bar chart of how ready the user felt to change, from 'Not ready yet' to 'Very ready'."
+  },
+  "dashIntentionNote": "Taller bars mean more ready to do something differently.",
+  "@dashIntentionNote": {
+    "description": "Explains the intention bar chart."
+  },
+  "dashStressTitle": "Stress Levels",
+  "@dashStressTitle": {
+    "description": "Title of the bar chart of the daily stress rating, 1 (low) to 5 (high)."
+  },
+  "dashStressNote": "Taller bars mean more stress.",
+  "@dashStressNote": {
+    "description": "Explains the stress bar chart."
+  },
+  "dashKeyLowStress": "{value} · Low stress",
+  "@dashKeyLowStress": {
+    "description": "Colour key row for the lowest stress rating.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashKeyHighStress": "{value} · High stress",
+  "@dashKeyHighStress": {
+    "description": "Colour key row for the highest stress rating.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "dashTriggersTitle": "Stress Triggers",
+  "@dashTriggersTitle": {
+    "description": "Title of the pie chart of where the user's stress came from: Home, Work, School or Social."
+  },
+  "dashTriggersDescription": "What triggers your stress.",
+  "@dashTriggersDescription": {
+    "description": "Line under the Stress Triggers title. Gentle, plain."
+  },
+  "dashTriggersNote": "{count, plural, =1{Where stress came from, one answer per check-in: 1 check-in.} other{Where stress came from, one answer per check-in: {count} check-ins.}}",
+  "@dashTriggersNote": {
+    "description": "Explains what the Stress Triggers pie counts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashAreaStressorsTitle": "{area} Stressors",
+  "@dashAreaStressorsTitle": {
+    "description": "Title of the pie of stressors picked in one area, e.g. 'Work Stressors'. area is Home, Work, School or Social, already translated.",
+    "placeholders": {
+      "area": {
+        "type": "String"
+      }
+    }
+  },
+  "dashAreaStressorsDescription": "{area, select, Home{Stressors from home.} Work{Stressors from work.} School{Stressors from school.} Social{Stressors from social.} other{Stressors from {areaName}.}}",
+  "@dashAreaStressorsDescription": {
+    "description": "Line under an area's Stressors title. area is the English key (Home, Work, School, Social) to choose the sentence; areaName is the translated area in lower case, for any other area.",
+    "placeholders": {
+      "area": {
+        "type": "String"
+      },
+      "areaName": {
+        "type": "String"
+      }
+    }
+  },
+  "dashStressorsNote": "Share of all {stressors} picked on {checkIns}. A check-in can pick more than one.",
+  "@dashStressorsNote": {
+    "description": "Explains an area's Stressors pie. stressors is e.g. '5 stressors', checkIns e.g. '3 check-ins'.",
+    "placeholders": {
+      "stressors": {
+        "type": "String"
+      },
+      "checkIns": {
+        "type": "String"
+      }
+    }
+  },
+  "dashSignKindsTitle": "Signs of Stress",
+  "@dashSignKindsTitle": {
+    "description": "Title of the pie of which kind of stress sign each check-in named: Body, Feelings, Mind or Behavior."
+  },
+  "dashSignKindsDescription": "How your stress shows up.",
+  "@dashSignKindsDescription": {
+    "description": "Line under the Signs of Stress title."
+  },
+  "dashSignKindsNote": "{count, plural, =1{Each check-in answers one kind of sign: 1 check-in.} other{Each check-in answers one kind of sign: {count} check-ins.}}",
+  "@dashSignKindsNote": {
+    "description": "Explains what the Signs of Stress pie counts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashSignsTitle": "{kind} Signs",
+  "@dashSignsTitle": {
+    "description": "Title of the pie of stress signs of one kind, e.g. 'Body Signs'. kind is Body, Feelings, Mind or Behavior, already translated.",
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      }
+    }
+  },
+  "dashSignsDescription": "{kind, select, Body{Stress signs in your body.} Feelings{Stress signs in your feelings.} Mind{Stress signs in your mind.} Behavior{Stress signs in your behavior.} other{Stress signs in your {kindName}.}}",
+  "@dashSignsDescription": {
+    "description": "Line under a kind of sign's title. kind is the English key (Body, Feelings, Mind, Behavior) to choose the sentence; kindName is the translated kind in lower case, for any other.",
+    "placeholders": {
+      "kind": {
+        "type": "String"
+      },
+      "kindName": {
+        "type": "String"
+      }
+    }
+  },
+  "dashSignsNote": "Share of all {signs} given on {checkIns}, including written answers. A check-in can give more than one.",
+  "@dashSignsNote": {
+    "description": "Explains a Signs pie. signs is e.g. '4 signs', checkIns e.g. '2 check-ins'.",
+    "placeholders": {
+      "signs": {
+        "type": "String"
+      },
+      "checkIns": {
+        "type": "String"
+      }
+    }
+  },
+  "dashStrategiesTitle": "Stress Management Strategy",
+  "@dashStrategiesTitle": {
+    "description": "Title of the pie of which strategy (Mental, Physical, Emotional, Creative, Social or the user's own) each check-in chose."
+  },
+  "dashStrategiesDescription": "How you managed your stress.",
+  "@dashStrategiesDescription": {
+    "description": "Line under the strategy pie's title."
+  },
+  "dashStrategiesNote": "{count, plural, =1{The strategy chosen on each check-in: 1 check-in.} other{The strategy chosen on each check-in: {count} check-ins.}}",
+  "@dashStrategiesNote": {
+    "description": "Explains what the strategy pie counts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashActionTitle": "Action: {strategy}",
+  "@dashActionTitle": {
+    "description": "Title of the pie of actions chosen with one strategy, e.g. 'Action: Physical'. strategy is already translated, or the user's own words.",
+    "placeholders": {
+      "strategy": {
+        "type": "String"
+      }
+    }
+  },
+  "dashActionDescription": "The actions you chose with {strategy}.",
+  "@dashActionDescription": {
+    "description": "Line under an Action pie's title.",
+    "placeholders": {
+      "strategy": {
+        "type": "String"
+      }
+    }
+  },
+  "dashActionsNote": "{count, plural, =1{The action chosen with {strategy}, one per check-in: 1 check-in.} other{The action chosen with {strategy}, one per check-in: {count} check-ins.}}",
+  "@dashActionsNote": {
+    "description": "Explains what an Action pie counts.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "strategy": {
+        "type": "String"
+      }
+    }
+  },
+  "dashActionsNoAction": "{count, plural, =1{1 other check-in chose it with no action.} other{{count} other check-ins chose it with no action.}}",
+  "@dashActionsNoAction": {
+    "description": "Added after the Action pie's note when some check-ins chose the strategy without an action. 'it' is the strategy.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dashActionsEmpty": "{count, plural, =1{1 check-in chose {strategy} but saved no action.} other{{count} check-ins chose {strategy} but saved no action.}}",
+  "@dashActionsEmpty": {
+    "description": "Shown on an Action pie for a week where the strategy was chosen but no action was saved.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "strategy": {
+        "type": "String"
+      }
+    }
+  },
+  "dashPageYourFeelings": "Your Feelings",
+  "@dashPageYourFeelings": {
+    "description": "Name of the dashboard page about feelings and feeling in control."
+  },
+  "dashPageStressLevels": "Stress Levels",
+  "@dashPageStressLevels": {
+    "description": "Name of the dashboard page about stress ratings and triggers."
+  },
+  "dashPageStressSigns": "Stress Signs",
+  "@dashPageStressSigns": {
+    "description": "Name of the dashboard page about signs of stress."
+  },
+  "dashPageActionsStrategies": "Actions and Strategies",
+  "@dashPageActionsStrategies": {
+    "description": "Name of the dashboard page about the strategies and actions the user chose."
+  },
+  "dashPageMakeAChange": "Make a Change",
+  "@dashPageMakeAChange": {
+    "description": "Name of the dashboard page about motivation and readiness to change."
+  },
+  "dashCaptionMoodControl": "Mood & control",
+  "@dashCaptionMoodControl": {
+    "description": "Short caption on the Your Feelings card."
+  },
+  "dashCaptionTrendTriggers": "Trend & triggers",
+  "@dashCaptionTrendTriggers": {
+    "description": "Short caption on the Stress Levels card."
+  },
+  "dashCaptionBodyMind": "Body & mind",
+  "@dashCaptionBodyMind": {
+    "description": "Short caption on the Stress Signs card."
+  },
+  "dashCaptionWhatYouTried": "What you tried",
+  "@dashCaptionWhatYouTried": {
+    "description": "Short caption on the Actions and Strategies card."
+  },
+  "dashCaptionMotivationIntent": "Motivation & intent",
+  "@dashCaptionMotivationIntent": {
+    "description": "Short caption on the Make a Change card."
+  },
+  "dashCardLabel": "{title}. {caption}",
+  "@dashCardLabel": {
+    "description": "Screen reader label of a dashboard card: page name, then caption.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "caption": {
+        "type": "String"
+      }
+    }
+  },
+  "dashNothingLoggedOnDay": "Nothing logged on this day.",
+  "@dashNothingLoggedOnDay": {
+    "description": "Shown on a past day's page when nothing was saved that day."
+  },
+  "dashDaySummary": "Mood {mood}/5 · stress {stress}/5",
+  "@dashDaySummary": {
+    "description": "Heading on a day's page. mood and stress are numbers 1 to 5, or '-' when not given.",
+    "placeholders": {
+      "mood": {
+        "type": "String"
+      },
+      "stress": {
+        "type": "String"
+      }
+    }
+  },
+  "dashQuotedNote": "\"{note}\"",
+  "@dashQuotedNote": {
+    "description": "The user's own note for the day, shown in quotation marks. Use your language's quotation marks.",
+    "placeholders": {
+      "note": {
+        "type": "String"
+      }
+    }
+  },
+  "dashDaySigns": "Signs",
+  "@dashDaySigns": {
+    "description": "Label over a small chart of the day's stress signs."
+  },
+  "dashDayStrategy": "Strategy",
+  "@dashDayStrategy": {
+    "description": "Label over a small chart of the day's strategy."
+  },
+  "dashEntryLocked": "Locked — entries can be edited for 24 hours.",
+  "@dashEntryLocked": {
+    "description": "Notice on an older day's page: it can no longer be changed."
+  },
+  "dashEntryEditable": "You can still edit this entry today.",
+  "@dashEntryEditable": {
+    "description": "Notice on today's page: it can still be changed."
+  },
+  "dashLogsTitle": "Your logs",
+  "@dashLogsTitle": {
+    "description": "Title of the list of the user's past reflections."
+  },
+  "dashEveryStepCounts": "Every step counts",
+  "@dashEveryStepCounts": {
+    "description": "Encouraging closing line in a handwritten-style font at the bottom of the logs and daily log screens."
+  },
+  "dashLogsTabAll": "All",
+  "@dashLogsTabAll": {
+    "description": "Tab showing every log entry."
+  },
+  "dashLogsTabNotes": "Notes",
+  "@dashLogsTabNotes": {
+    "description": "Tab showing written notes only."
+  },
+  "dashLogsTabExercises": "Exercises",
+  "@dashLogsTabExercises": {
+    "description": "Tab showing exercises only."
+  },
+  "dashLogsEmpty": "Nothing logged yet. Your check-ins will show up here.",
+  "@dashLogsEmpty": {
+    "description": "Shown when the user has no log entries yet."
+  },
+  "dashLogsNoNote": "Logged, no note.",
+  "@dashLogsNoNote": {
+    "description": "A log entry with nothing written."
+  },
+  "dashLogsEarlier": "Earlier",
+  "@dashLogsEarlier": {
+    "description": "When a log entry has no readable date."
+  },
+  "dashLogsToday": "Today · {time}",
+  "@dashLogsToday": {
+    "description": "When a log entry was made today, e.g. 'Today · 3:05 PM'.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "dashLogsYesterday": "Yesterday · {time}",
+  "@dashLogsYesterday": {
+    "description": "When a log entry was made yesterday.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "dashLogsOnDate": "{date} · {time}",
+  "@dashLogsOnDate": {
+    "description": "When an older log entry was made, e.g. 'Sept 10 · 3:05 PM'.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "dashYourDayTitle": "Your day",
+  "@dashYourDayTitle": {
+    "description": "Title of the screen listing today's tasks."
+  },
+  "dashYourDayDoItNow": "Do it now",
+  "@dashYourDayDoItNow": {
+    "description": "Button that opens the exercises to do the waiting step."
+  },
+  "dashTaskMorningCheckIn": "Morning check-in",
+  "@dashTaskMorningCheckIn": {
+    "description": "A task on the Your day list."
+  },
+  "dashTaskBoxBreathing": "Box breathing · 5 cycles",
+  "@dashTaskBoxBreathing": {
+    "description": "A task on the Your day list: a breathing exercise done five times."
+  },
+  "dashTaskOneStep": "One step: rehearse the opening",
+  "@dashTaskOneStep": {
+    "description": "A task on the Your day list: a small step the user chose, practising how they will start (e.g. a talk)."
+  },
+  "dashTaskEveningLog": "Evening log",
+  "@dashTaskEveningLog": {
+    "description": "A task on the Your day list."
+  },
+  "dashTaskDone": "DONE",
+  "@dashTaskDone": {
+    "description": "Status chip on a finished task. All capitals in English."
+  },
+  "dashTaskNow": "NOW",
+  "@dashTaskNow": {
+    "description": "Status chip on the task to do now. All capitals in English."
+  },
+  "dashTaskLater": "LATER",
+  "@dashTaskLater": {
+    "description": "Status chip on a task for later. All capitals in English."
+  },
+  "dashTaskSemantics": "{task}, {state}",
+  "@dashTaskSemantics": {
+    "description": "Screen reader label of a task, e.g. 'Evening log, LATER'.",
+    "placeholders": {
+      "task": {
+        "type": "String"
+      },
+      "state": {
+        "type": "String"
+      }
+    }
+  },
+  "dashNumberZero": "Zero",
+  "@dashNumberZero": {
+    "description": "The number 0 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashNumberOne": "One",
+  "@dashNumberOne": {
+    "description": "The number 1 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashNumberTwo": "Two",
+  "@dashNumberTwo": {
+    "description": "The number 2 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashNumberThree": "Three",
+  "@dashNumberThree": {
+    "description": "The number 3 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashNumberFour": "Four",
+  "@dashNumberFour": {
+    "description": "The number 4 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashNumberFive": "Five",
+  "@dashNumberFive": {
+    "description": "The number 5 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashNumberSix": "Six",
+  "@dashNumberSix": {
+    "description": "The number 6 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
+  },
+  "dashYourDaySummary": "{done} of {total} done. The step you chose this morning is still waiting — two minutes is enough.",
+  "@dashYourDaySummary": {
+    "description": "Encouraging summary on the Your day screen. done and total are spelled-out numbers.",
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "dashProgressTitle": "Your Progress",
+  "@dashProgressTitle": {
+    "description": "Title of the progress screen."
+  },
+  "dashProgressTabWeek": "Week",
+  "@dashProgressTabWeek": {
+    "description": "Tab: show this week."
+  },
+  "dashProgressTabMonth": "Month",
+  "@dashProgressTabMonth": {
+    "description": "Tab: show this month."
+  },
+  "dashProgressTabYear": "Year",
+  "@dashProgressTabYear": {
+    "description": "Tab: show this year."
+  },
+  "dashProgressStressLevel": "Stress level",
+  "@dashProgressStressLevel": {
+    "description": "Title of a small stress chart."
+  },
+  "dashProgressMood": "Mood",
+  "@dashProgressMood": {
+    "description": "Title of a small mood chart."
+  },
+  "dashProgressNotEnoughData": "Not enough data",
+  "@dashProgressNotEnoughData": {
+    "description": "Shown in a small chart that has too few points to draw."
+  },
+  "dashProgressCheckInsWeek": "check-ins\nthis week",
+  "@dashProgressCheckInsWeek": {
+    "description": "Caption under the number of check-ins this week. Keep the line break."
+  },
+  "dashProgressCheckInsMonth": "check-ins\nthis month",
+  "@dashProgressCheckInsMonth": {
+    "description": "Caption under the number of check-ins this month. Keep the line break."
+  },
+  "dashProgressCheckInsYear": "check-ins\nthis year",
+  "@dashProgressCheckInsYear": {
+    "description": "Caption under the number of check-ins this year. Keep the line break."
+  },
+  "dashProgressPositiveTrend": "Positive trend",
+  "@dashProgressPositiveTrend": {
+    "description": "Stat tile text once the user has checked in a few times."
+  },
+  "dashProgressGettingStarted": "Getting started",
+  "@dashProgressGettingStarted": {
+    "description": "Stat tile text before the user has checked in a few times."
+  },
+  "dashProgressKeepGoing": "Keep going!",
+  "@dashProgressKeepGoing": {
+    "description": "Encouraging caption on a stat tile."
+  },
+  "dashProgressNoIntention": "No intention set today yet.",
+  "@dashProgressNoIntention": {
+    "description": "Shown when the user has not set an intention today."
+  },
+  "dashProgressIntention": "Today's intention: {intention} · 1 exercise done",
+  "@dashProgressIntention": {
+    "description": "The day's intention, shown in bold, inside a summary line.",
+    "placeholders": {
+      "intention": {
+        "type": "String"
+      }
+    }
+  },
+  "dashProgressIntentionSample": "feel calmer",
+  "@dashProgressIntentionSample": {
+    "description": "Example intention shown on the progress screen, lower case, completing 'Today's intention: …'."
+  },
+  "dashDailyLogTitle": "Daily Log",
+  "@dashDailyLogTitle": {
+    "description": "Title of the monthly calendar screen."
+  },
+  "dashStartTodaysCheckIn": "Start today's check-in",
+  "@dashStartTodaysCheckIn": {
+    "description": "Button that starts today's check-in from the first page."
+  },
+  "dashTodaysCheckIn": "Today's check-in",
+  "@dashTodaysCheckIn": {
+    "description": "Heading over the list of today's check-in pages."
+  },
+  "dashTodayCheckedIn": "You've checked in today. Tap a page to change an answer.",
+  "@dashTodayCheckedIn": {
+    "description": "Shown when today's check-in is done."
+  },
+  "dashTodayNotCheckedIn": "Tap a page to start there, or begin from the top below.",
+  "@dashTodayNotCheckedIn": {
+    "description": "Shown when today's check-in is not done yet."
+  },
+  "dashMarkCheckIn": "Check-in",
+  "@dashMarkCheckIn": {
+    "description": "Calendar key: a day with a check-in."
+  },
+  "dashMarkExercise": "Exercise",
+  "@dashMarkExercise": {
+    "description": "Calendar key: a day with an exercise."
+  },
+  "dashMarkFeelingBetter": "Feeling better",
+  "@dashMarkFeelingBetter": {
+    "description": "Calendar key: a day the user felt better."
+  },
+  "dashMarkChallenging": "Challenging day",
+  "@dashMarkChallenging": {
+    "description": "Calendar key: a hard day. Kind, not judging."
+  },
+  "dashTriggersSignsTitle": "Triggers & Signs",
+  "@dashTriggersSignsTitle": {
+    "description": "Title of the screen with pies of stress triggers and signs."
+  },
+  "dashDateRange": "DATE RANGE",
+  "@dashDateRange": {
+    "description": "Small label before the period a screen covers. All capitals in English."
+  },
+  "dashLastDays": "{days, plural, other{Last {days} days}}",
+  "@dashLastDays": {
+    "description": "The period a screen covers, e.g. 'Last 14 days'.",
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "dashTriggersHeading": "Triggers",
+  "@dashTriggersHeading": {
+    "description": "Heading of the pie of where stress came from."
+  },
+  "dashSignsHeading": "Signs",
+  "@dashSignsHeading": {
+    "description": "Heading of the pie of stress signs."
+  },
+  "dashNothingLoggedYet": "Nothing logged yet.",
+  "@dashNothingLoggedYet": {
+    "description": "Shown in a pie card with no data."
+  },
+  "dashStrategiesActionsTitle": "Strategies & Actions",
+  "@dashStrategiesActionsTitle": {
+    "description": "Title of the screen with the strategies and actions."
+  },
+  "dashViewEntryDetails": "View entry details",
+  "@dashViewEntryDetails": {
+    "description": "Button that opens today's entry."
+  },
+  "dashStrategiesHeading": "Strategies",
+  "@dashStrategiesHeading": {
+    "description": "Heading of the strategies pie."
+  },
+  "dashActionsHeading": "Actions",
+  "@dashActionsHeading": {
+    "description": "Heading of the list of actions."
+  },
+  "dashRatingsNotStored": "Ratings are not stored yet, so this shows the actions on offer rather than how they have gone.",
+  "@dashRatingsNotStored": {
+    "description": "Note under the actions list."
+  },
+  "dashRememberTitle": "Remember...",
+  "@dashRememberTitle": {
+    "description": "Title of the companion's promises screen, in a handwritten-style font."
+  },
+  "dashPromiseNotAlone": "You're not alone.",
+  "@dashPromiseNotAlone": {
+    "description": "One of the companion's five promises to the user. Warm."
+  },
+  "dashPromiseListen": "I listen.",
+  "@dashPromiseListen": {
+    "description": "One of the companion's five promises. 'I' is the companion."
+  },
+  "dashPromiseUnderstand": "I understand.",
+  "@dashPromiseUnderstand": {
+    "description": "One of the companion's five promises. 'I' is the companion."
+  },
+  "dashPromiseNextStep": "I help you take the next step.",
+  "@dashPromiseNextStep": {
+    "description": "One of the companion's five promises. 'I' is the companion."
+  },
+  "dashPromiseGotThis": "You've got this!",
+  "@dashPromiseGotThis": {
+    "description": "One of the companion's five promises. Encouraging."
+  },
+  "dashRememberDisclaimer": "{appTitle} is a companion, not a substitute for professional care.",
+  "@dashRememberDisclaimer": {
+    "description": "Important disclaimer at the foot of the promises screen. appTitle is the app's name.",
+    "placeholders": {
+      "appTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "dashReminderTitle": "Stay on Track",
+  "@dashReminderTitle": {
+    "description": "Title of the reminder screen."
+  },
+  "dashReminderSubtitle": "Set a reminder for your next check-in.",
+  "@dashReminderSubtitle": {
+    "description": "Line under the reminder screen's title."
+  },
+  "dashReminderLaterToday": "Later today",
+  "@dashReminderLaterToday": {
+    "description": "Reminder timing choice."
+  },
+  "dashReminderTomorrowMorning": "Tomorrow morning",
+  "@dashReminderTomorrowMorning": {
+    "description": "Reminder timing choice."
+  },
+  "dashReminderTomorrowTime": "8:00",
+  "@dashReminderTomorrowTime": {
+    "description": "The time shown beside 'Tomorrow morning' (8 in the morning). Write it as times are written in your language."
+  },
+  "dashReminderCustomTime": "Custom time",
+  "@dashReminderCustomTime": {
+    "description": "Reminder timing choice: the user picks a time."
+  },
+  "dashReminderEveryDay": "Every day",
+  "@dashReminderEveryDay": {
+    "description": "Switch: repeat the reminder every day."
+  },
+  "dashReminderSave": "Save Reminder",
+  "@dashReminderSave": {
+    "description": "Button that saves the reminder."
+  },
+  "dashReminderSaved": "Reminder saved. Scheduling comes later.",
+  "@dashReminderSaved": {
+    "description": "Message after saving a reminder; reminders are not actually scheduled yet."
+  },
+  "commonBack": "Back",
+  "@commonBack": {
+    "description": "Screen-reader label of the back arrow at the top of a screen."
+  },
+  "commonDone": "Done",
+  "@commonDone": {
+    "description": "Button that closes a finished exercise or screen."
+  },
+  "commonNext": "Next",
+  "@commonNext": {
+    "description": "Button that moves on to the next screen."
+  },
+  "commonHome": "Home",
+  "@commonHome": {
+    "description": "Bottom navigation bar tab: the home screen."
+  },
+  "commonTools": "Tools",
+  "@commonTools": {
+    "description": "Bottom navigation bar tab: calming tools and exercises."
+  },
+  "commonProgress": "Progress",
+  "@commonProgress": {
+    "description": "Bottom navigation bar tab: the person's progress charts."
+  },
+  "commonMore": "More",
+  "@commonMore": {
+    "description": "Bottom navigation bar tab: settings and other options."
+  },
+  "exerciseBoxTitle": "Box Breathing",
+  "@exerciseBoxTitle": {
+    "description": "Title of the breathing screen for box breathing (inhale, hold, exhale, hold, 4 seconds each)."
+  },
+  "exerciseBreathingTitle": "Breathing Exercise",
+  "@exerciseBreathingTitle": {
+    "description": "Title of the breathing screen for the 4-7-8 pattern, used to ease into sleep."
+  },
+  "exerciseFocusTitle": "Strengthen Your Focus",
+  "@exerciseFocusTitle": {
+    "description": "Name of the 4-4-4 breathing exercise, used for focus. Title of its breathing screen and of its tile on 'Choose an exercise'. Title case, encouraging."
+  },
+  "exerciseBreatheWithMe": "Breathe with me...",
+  "@exerciseBreatheWithMe": {
+    "description": "Gentle invitation line for a breathing pattern; the app's mascot speaks it."
+  },
+  "exerciseFourEqualSides": "Four equal sides...",
+  "@exerciseFourEqualSides": {
+    "description": "Gentle line for box breathing: the four phases are equally long, like the sides of a square."
+  },
+  "exercisePhaseInhale": "Inhale",
+  "@exercisePhaseInhale": {
+    "description": "Name of a breathing phase: breathing in."
+  },
+  "exercisePhaseHold": "Hold",
+  "@exercisePhaseHold": {
+    "description": "Name of a breathing phase: holding the breath."
+  },
+  "exercisePhaseExhale": "Exhale",
+  "@exercisePhaseExhale": {
+    "description": "Name of a breathing phase: breathing out."
+  },
+  "exercisePhaseStill": "Still",
+  "@exercisePhaseStill": {
+    "description": "Name of the fourth phase of box breathing: staying still with empty lungs before the next breath."
+  },
+  "exerciseInhaleSeconds": "Inhale {seconds} seconds",
+  "@exerciseInhaleSeconds": {
+    "description": "Instruction shown over the breathing shape during the breathing-in phase. Calm, short.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseHoldSeconds": "Hold {seconds} seconds",
+  "@exerciseHoldSeconds": {
+    "description": "Instruction shown over the breathing shape while holding the breath.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseExhaleSeconds": "Exhale {seconds} seconds",
+  "@exerciseExhaleSeconds": {
+    "description": "Instruction shown over the breathing shape during the breathing-out phase.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseStillSeconds": "Still {seconds} seconds",
+  "@exerciseStillSeconds": {
+    "description": "Instruction in box breathing's fourth phase: stay still, lungs empty.",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseComplete": "Complete",
+  "@exerciseComplete": {
+    "description": "Phase label once a breathing session has finished."
+  },
+  "exerciseSceneWaves": "By the ocean",
+  "@exerciseSceneWaves": {
+    "description": "Name of the calming scene behind the breathing exercise when the Waves sound is chosen."
+  },
+  "exerciseSceneBirds": "A quiet morning",
+  "@exerciseSceneBirds": {
+    "description": "Name of the calming scene when the Birds sound is chosen."
+  },
+  "exerciseSceneForest": "Among the trees",
+  "@exerciseSceneForest": {
+    "description": "Name of the calming scene when the Forest sound is chosen."
+  },
+  "exerciseSceneRain": "Under the rain",
+  "@exerciseSceneRain": {
+    "description": "Name of the calming scene when the Rain sound is chosen."
+  },
+  "exerciseSceneFire": "Beside the fire",
+  "@exerciseSceneFire": {
+    "description": "Name of the calming scene when the Fire sound is chosen."
+  },
+  "exerciseSceneNone": "A moment of stillness",
+  "@exerciseSceneNone": {
+    "description": "Name of the calming scene when no sound is chosen."
+  },
+  "exerciseSceneDetailWaves": "Soft tides · warm shore",
+  "@exerciseSceneDetailWaves": {
+    "description": "Short, poetic line under the Waves scene name; two phrases separated by a middle dot."
+  },
+  "exerciseSceneDetailBirds": "Birdsong · woodland nest",
+  "@exerciseSceneDetailBirds": {
+    "description": "Short, poetic line under the Birds scene name."
+  },
+  "exerciseSceneDetailForest": "Rustling leaves · gentle wind",
+  "@exerciseSceneDetailForest": {
+    "description": "Short, poetic line under the Forest scene name."
+  },
+  "exerciseSceneDetailRain": "Falling rain · flowing water",
+  "@exerciseSceneDetailRain": {
+    "description": "Short, poetic line under the Rain scene name."
+  },
+  "exerciseSceneDetailFire": "Crackling embers · evening sky",
+  "@exerciseSceneDetailFire": {
+    "description": "Short, poetic line under the Fire scene name."
+  },
+  "exerciseSceneDetailNone": "Just you and your breath",
+  "@exerciseSceneDetailNone": {
+    "description": "Short, gentle line when no sound is chosen."
+  },
+  "exerciseBreatheAgain": "Breathe again",
+  "@exerciseBreatheAgain": {
+    "description": "Main button after a breathing session ends: start another session."
+  },
+  "exercisePause": "Pause",
+  "@exercisePause": {
+    "description": "Main button while a breathing session runs: pause it."
+  },
+  "exerciseResume": "Resume",
+  "@exerciseResume": {
+    "description": "Main button on a paused breathing session: carry on."
+  },
+  "exerciseStartBreathing": "Start breathing",
+  "@exerciseStartBreathing": {
+    "description": "Main button that starts a breathing session."
+  },
+  "exerciseSessionComplete": "Session complete",
+  "@exerciseSessionComplete": {
+    "description": "Shown when the person has finished all cycles of a breathing exercise."
+  },
+  "exerciseCycleOf": "Cycle {round} of {total}",
+  "@exerciseCycleOf": {
+    "description": "Progress line during a breathing exercise: which breathing cycle the person is on.",
+    "placeholders": {
+      "round": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseMadeTimeForYourself": "You made time for yourself.",
+  "@exerciseMadeTimeForYourself": {
+    "description": "Warm, affirming line after a breathing session is finished."
+  },
+  "exerciseSoundUnavailable": "Sound unavailable. Tap to retry.",
+  "@exerciseSoundUnavailable": {
+    "description": "Button text when the background nature sound could not play."
+  },
+  "exerciseMotionOff": "Motion off",
+  "@exerciseMotionOff": {
+    "description": "Toggle on the breathing screen: the moving background video is paused (reduced motion)."
+  },
+  "exerciseMotionOn": "Motion on",
+  "@exerciseMotionOn": {
+    "description": "Toggle on the breathing screen: the background video is moving."
+  },
+  "exerciseRestart": "Restart",
+  "@exerciseRestart": {
+    "description": "Small button that starts the breathing session over from the beginning."
+  },
+  "exerciseBoxInfoTitle": "4·4·4·4 Box Breathing",
+  "@exerciseBoxInfoTitle": {
+    "description": "Title of the screen explaining box breathing; the numbers are the seconds of each of the four phases."
+  },
+  "exerciseBoxInfoIntro": "To help you relax.",
+  "@exerciseBoxInfoIntro": {
+    "description": "Line under the title of the box breathing explanation."
+  },
+  "exerciseBoxStepInhale": "Inhale deeply through your nose for 4 seconds.",
+  "@exerciseBoxStepInhale": {
+    "description": "Box breathing explanation, step 1."
+  },
+  "exerciseBoxStepHold": "Hold your breath for 4 seconds.",
+  "@exerciseBoxStepHold": {
+    "description": "Box breathing explanation, step 2."
+  },
+  "exerciseBoxStepExhale": "Exhale slowly and steadily through your mouth for 4 seconds.",
+  "@exerciseBoxStepExhale": {
+    "description": "Box breathing explanation, step 3."
+  },
+  "exerciseBoxStepStill": "Hold for 4 seconds before beginning the next cycle.",
+  "@exerciseBoxStepStill": {
+    "description": "Box breathing explanation, step 4."
+  },
+  "exerciseBoxStepRepeat": "Repeat for as many cycles as you chose.",
+  "@exerciseBoxStepRepeat": {
+    "description": "Box breathing explanation, last step."
+  },
+  "exerciseSighTitle": "Physiological Sigh",
+  "@exerciseSighTitle": {
+    "description": "Name of a breathing exercise: one deep inhale, two quick extra inhales, then a long exhale. Title of its screen and of its tile on 'Choose an exercise'. Use the usual term in your language if one exists."
+  },
+  "exerciseSighDeepInhale": "Deep inhale",
+  "@exerciseSighDeepInhale": {
+    "description": "Physiological sigh, phase 1: a slow, deep breath in."
+  },
+  "exerciseSighQuickInhale": "Quick inhale · {number}",
+  "@exerciseSighQuickInhale": {
+    "description": "Physiological sigh, phases 2 and 3: a short extra sip of air. {number} is 1 or 2.",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseSighLongExhale": "Long exhale",
+  "@exerciseSighLongExhale": {
+    "description": "Physiological sigh, last phase: a long, slow breath out."
+  },
+  "exerciseSighCueDeepInhale": "Breathe in slowly",
+  "@exerciseSighCueDeepInhale": {
+    "description": "Gentle cue under 'Deep inhale'."
+  },
+  "exerciseSighCueFirstSip": "Take a small extra sip of air",
+  "@exerciseSighCueFirstSip": {
+    "description": "Gentle cue under the first quick inhale."
+  },
+  "exerciseSighCueSecondSip": "Take one more small sip of air",
+  "@exerciseSighCueSecondSip": {
+    "description": "Gentle cue under the second quick inhale."
+  },
+  "exerciseSighCueLongExhale": "Let the breath out slowly",
+  "@exerciseSighCueLongExhale": {
+    "description": "Gentle cue under 'Long exhale'."
+  },
+  "exerciseBreathSoundOff": "Breath sound off",
+  "@exerciseBreathSoundOff": {
+    "description": "Toggle on the physiological sigh screen: the guiding breath sound is muted."
+  },
+  "exerciseBreathSoundOn": "Breath sound on",
+  "@exerciseBreathSoundOn": {
+    "description": "Toggle on the physiological sigh screen: the guiding breath sound plays."
+  },
+  "exerciseSighSoundFailed": "Sound could not play. You can still follow the lungs.",
+  "@exerciseSighSoundFailed": {
+    "description": "Shown when the breath sound fails; the animated lungs still guide the person."
+  },
+  "exerciseSighIntro": "One deep inhale, two quick inhales, then a long exhale.",
+  "@exerciseSighIntro": {
+    "description": "Explains the physiological sigh at the top of its screen."
+  },
+  "exerciseNumberOfCycles": "Number of cycles",
+  "@exerciseNumberOfCycles": {
+    "description": "Heading above the choice of how many breathing cycles to do."
+  },
+  "exerciseLungsExpanding": "Lungs expanding",
+  "@exerciseLungsExpanding": {
+    "description": "Screen-reader description of the lungs drawing while the person breathes in."
+  },
+  "exerciseLungsCompressing": "Lungs compressing",
+  "@exerciseLungsCompressing": {
+    "description": "Screen-reader description of the lungs drawing while the person breathes out."
+  },
+  "exerciseSighSettle": "Take a moment to settle.",
+  "@exerciseSighSettle": {
+    "description": "Gentle line after the physiological sigh session ends."
+  },
+  "exerciseBeforeWeStart": "Before we start",
+  "@exerciseBeforeWeStart": {
+    "description": "Title of the screen where the person picks a background sound and the number of breathing cycles."
+  },
+  "exerciseSoundChoice": "Sound choice",
+  "@exerciseSoundChoice": {
+    "description": "Heading above the background sound tiles."
+  },
+  "exerciseCyclesApproxSeconds": "{cycles} cycles ≈ {seconds} seconds",
+  "@exerciseCyclesApproxSeconds": {
+    "description": "How long the chosen breathing session takes. ≈ means 'about'. The English says 'cycles' for every number, including 1.",
+    "placeholders": {
+      "cycles": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseSoundWaves": "Waves",
+  "@exerciseSoundWaves": {
+    "description": "Background sound choice: ocean waves."
+  },
+  "exerciseSoundBirds": "Birds",
+  "@exerciseSoundBirds": {
+    "description": "Background sound choice: birdsong."
+  },
+  "exerciseSoundFire": "Fire",
+  "@exerciseSoundFire": {
+    "description": "Background sound choice: a crackling fire. Also the title of the fire soundscape player."
+  },
+  "exerciseSoundForest": "Forest",
+  "@exerciseSoundForest": {
+    "description": "Background sound choice: forest ambience."
+  },
+  "exerciseSoundRain": "Rain",
+  "@exerciseSoundRain": {
+    "description": "Background sound choice: rainfall."
+  },
+  "exerciseSoundNone": "None",
+  "@exerciseSoundNone": {
+    "description": "Background sound choice: no sound."
+  },
+  "exerciseChooseTitle": "Choose an exercise",
+  "@exerciseChooseTitle": {
+    "description": "Heading of the screen listing breathing exercises."
+  },
+  "exerciseTileSemantics": "{title}, {subtitle}",
+  "@exerciseTileSemantics": {
+    "description": "Screen-reader label of an exercise tile: its name, then its short description.",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "subtitle": {
+        "type": "String"
+      }
+    }
+  },
+  "exerciseDestressTitle": "De-stress Your Day",
+  "@exerciseDestressTitle": {
+    "description": "Name of the box breathing exercise on 'Choose an exercise'. Title case."
+  },
+  "exerciseDestressSubtitle": "4 · 4 · 4 · 4 breathing",
+  "@exerciseDestressSubtitle": {
+    "description": "Description under 'De-stress Your Day': the seconds of each phase."
+  },
+  "exerciseSleepTitle": "Ease Your Sleep",
+  "@exerciseSleepTitle": {
+    "description": "Name of the 4-7-8 breathing exercise on 'Choose an exercise'. Title case."
+  },
+  "exerciseSleepSubtitle": "4 · 7 · 8 breathing",
+  "@exerciseSleepSubtitle": {
+    "description": "Description under 'Ease Your Sleep': the seconds of each phase."
+  },
+  "exerciseFocusSubtitle": "4 · 4 · 4 breathing",
+  "@exerciseFocusSubtitle": {
+    "description": "Description under 'Strengthen Your Focus': the seconds of each phase."
+  },
+  "exerciseSighSubtitle": "Deep inhale · two quick inhales · exhale",
+  "@exerciseSighSubtitle": {
+    "description": "Description under 'Physiological Sigh' on 'Choose an exercise'."
+  },
+  "exerciseRestTitle": "Rest your mind",
+  "@exerciseRestTitle": {
+    "description": "Title of the screen listing longer guided exercises."
+  },
+  "exerciseRestIntro": "Longer guided exercises, for when you have a few minutes.",
+  "@exerciseRestIntro": {
+    "description": "Line under the 'Rest your mind' title."
+  },
+  "exerciseRestDestressTitle": "Destress your day",
+  "@exerciseRestDestressTitle": {
+    "description": "Longer guided exercise on 'Rest your mind': a soundscape to unwind. Sentence case."
+  },
+  "exerciseRestDestressSubtitle": "5 min · unwind after work",
+  "@exerciseRestDestressSubtitle": {
+    "description": "Length and purpose under 'Destress your day'."
+  },
+  "exerciseRestSleepTitle": "Ease your sleep",
+  "@exerciseRestSleepTitle": {
+    "description": "Longer guided exercise on 'Rest your mind', for falling asleep. Sentence case."
+  },
+  "exerciseRestSleepSubtitle": "8 min · 4-7-8 breathing",
+  "@exerciseRestSleepSubtitle": {
+    "description": "Length and breathing pattern under 'Ease your sleep'."
+  },
+  "exerciseRestFocusTitle": "Strengthen your focus",
+  "@exerciseRestFocusTitle": {
+    "description": "Longer guided exercise on 'Rest your mind', for focus. Sentence case."
+  },
+  "exerciseRestFocusSubtitle": "4 min · 4-4-4-4 focus",
+  "@exerciseRestFocusSubtitle": {
+    "description": "Length and breathing pattern under 'Strengthen your focus'."
+  },
+  "exerciseSoundscapeFireSubtitle": "Crackling logs · 40 min loop",
+  "@exerciseSoundscapeFireSubtitle": {
+    "description": "Line under 'Fire' on the soundscape player: what it sounds like and how long the loop is."
+  },
+  "exerciseAddBreathing": "Add breathing",
+  "@exerciseAddBreathing": {
+    "description": "Soundscape player button: add a breathing exercise on top of the sound."
+  },
+  "exerciseSaveFavourite": "Save favourite",
+  "@exerciseSaveFavourite": {
+    "description": "Soundscape player button: save this soundscape as a favourite."
+  },
+  "exerciseSoundscapeSaved": "{name} saved.",
+  "@exerciseSoundscapeSaved": {
+    "description": "Brief confirmation after saving a soundscape as a favourite. {name} is the soundscape, such as Fire.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "exerciseVolume": "Volume",
+  "@exerciseVolume": {
+    "description": "Label on the soundscape player."
+  },
+  "exerciseTimerMinutes": "Timer · {minutes} min",
+  "@exerciseTimerMinutes": {
+    "description": "Soundscape player: the sleep timer and its length in minutes.",
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseControlScaleLabel": "How in control you feel, 1 to 5",
+  "@exerciseControlScaleLabel": {
+    "description": "Screen-reader label of the check-in's 1-to-5 dial for how in control the person feels."
+  },
+  "exerciseControlScaleNotChosen": "Not chosen",
+  "@exerciseControlScaleNotChosen": {
+    "description": "Screen-reader value of the 1-to-5 control dial before the person picks a number."
+  },
+  "exerciseControlScaleValue": "{value} of 5",
+  "@exerciseControlScaleValue": {
+    "description": "The number picked on the 1-to-5 control dial, shown under it and read by screen readers.",
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "exerciseControlScalePick": "Pick a number",
+  "@exerciseControlScalePick": {
+    "description": "Hint under the 1-to-5 control dial before a number is picked."
+  },
+  "exerciseRowSemantics": "{label}, {value}",
+  "@exerciseRowSemantics": {
+    "description": "Screen-reader label of a settings-style row that shows a value on its right, e.g. 'Language, English'.",
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "exerciseStatSemantics": "{value} {label}",
+  "@exerciseStatSemantics": {
+    "description": "Screen-reader label of a statistic tile: the number, then what it counts, e.g. '12 check-ins'.",
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "exerciseMoodRough": "Rough",
+  "@exerciseMoodRough": {
+    "description": "Label under the left end of a five-step mood picker: feeling bad."
+  },
+  "exerciseMoodOkay": "Okay",
+  "@exerciseMoodOkay": {
+    "description": "Label under the middle of a five-step mood picker."
+  },
+  "exerciseMoodGood": "Good",
+  "@exerciseMoodGood": {
+    "description": "Label under the right end of a five-step mood picker: feeling well."
+  },
+  "exerciseSelectOne": "Select one...",
+  "@exerciseSelectOne": {
+    "description": "Placeholder in a drop-down list before anything is chosen."
+  },
+  "exerciseReadinessLabel": "How ready you feel to change",
+  "@exerciseReadinessLabel": {
+    "description": "Screen-reader label of the check-in's readiness dial (a needle from not ready to very ready)."
+  },
+  "exerciseReadinessNotSet": "Not set",
+  "@exerciseReadinessNotSet": {
+    "description": "Screen-reader value of the readiness dial before the person has moved the needle."
+  },
+  "settingsLanguageDevice": "Use device language",
+  "@settingsLanguageDevice": {
+    "description": "First choice on the Language screen: follow the phone's language setting. The phone's language name is shown under it."
+  },
+  "accountProblemWrongPassword": "That email and password do not match.",
+  "accountProblemEmailNotConfirmed": "Please confirm your email first. Check your inbox for our link.",
+  "accountProblemEmailInUse": "That email already has an account. Log in instead.",
+  "accountProblemWeakPassword": "Please choose a longer password (at least 6 characters).",
+  "accountProblemNoInternet": "Can't reach the internet. Check your connection and try again.",
+  "accountProblemTooManyTries": "Too many tries. Please wait a few minutes and try again.",
+  "accountProblemSamePassword": "Please choose a password you have not used before.",
+  "accountProblemEnterEmail": "Please enter your email first.",
+  "accountProblemOtherAccountOnPhone": "This phone belongs to another account. Log in with that one, or delete it in Settings first.",
+  "accountProblemAccountAlreadyOnPhone": "This phone already has an account. Log in instead.",
+  "accountProblemUnknown": "Something went wrong. Please try again.",
+  "accountConfirmEmailSent": "Almost done! Check your email and tap the link to confirm, then log in here.",
+  "accountSetPasswordTitle": "Set a new password",
+  "accountSetPasswordSave": "Save password",
+  "accountSetPasswordExplainer": "Choose a new password (at least 6 characters).",
+  "accountNewPassword": "New password",
+  "accountRepeatPassword": "Type it again",
+  "accountPasswordsDiffer": "The two passwords are not the same.",
+  "accountPasswordSaved": "Your new password is saved.",
+  "syncKeepPhoneDataTitle": "Keep this phone's check-ins and journal?",
+  "syncKeepPhoneDataBody": "This phone has check-ins or journal entries that are not in your account yet. Add them to your account, or discard them and use only what your account already has.",
+  "syncAddThem": "Add them",
+  "syncDiscard": "Discard",
+  "menuLogOutTitle": "Log out?",
+  "menuLogOutBody": "Your check-ins and journal stay in your account and come back when you log in.",
+  "menuNotSavedTitle": "Not saved online yet",
+  "menuNotSavedBody": "Some changes haven't reached your account yet (no internet). If you log out now, they will be lost.",
+  "menuLogOutAnyway": "Log out anyway",
+  "menuStayLoggedIn": "Stay logged in",
+  "settingsExportFailed": "Couldn't export your data. Try again.",
+  "settingsDeleteAccountFailed": "Couldn't delete your account."
+}

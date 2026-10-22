@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -21,7 +22,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _name = TextEditingController();
   final _email = TextEditingController();
-  final _checkInTime = TextEditingController(text: '8:00 AM');
+  final _checkInTime = TextEditingController();
+  bool _timeFilled = false;
 
   int _checkIns = 0;
   int _exercises = 0;
@@ -30,6 +32,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     _load();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 8 in the morning, written the reader's way ("8:00 AM" in English).
+    if (_timeFilled) return;
+    _timeFilled = true;
+    _checkInTime.text = MaterialLocalizations.of(
+      context,
+    ).formatTimeOfDay(const TimeOfDay(hour: 8, minute: 0));
   }
 
   Future<void> _load() async {
@@ -81,7 +94,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(saved ? 'Saved.' : "Couldn't save on this device."),
+        content: Text(
+          saved
+              ? context.l10n.accountSaved
+              : context.l10n.accountProfileSaveFailed,
+        ),
       ),
     );
     if (saved) Navigator.of(context).pop();
@@ -89,11 +106,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'My Profile',
+      title: l.accountProfileTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
-      action: ScenicPill(label: 'Save changes', height: 58, onPressed: _save),
+      action: ScenicPill(
+        label: l.accountSaveChanges,
+        height: 58,
+        onPressed: _save,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -111,12 +133,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ScenicHeading(
-                        _name.text.isEmpty ? 'You' : _name.text,
+                        _name.text.isEmpty ? l.accountProfileYou : _name.text,
                         size: 22,
                         textAlign: TextAlign.start,
                       ),
                       const SizedBox(height: 2),
-                      const Text('With me since today', style: kScenicBody),
+                      Text(l.accountWithMeSince, style: kScenicBody),
                     ],
                   ),
                 ),
@@ -129,23 +151,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 WithMeField(
-                  label: 'Name',
+                  label: l.accountName,
                   controller: _name,
                   fill: Colors.white,
                   border: kScenicFieldRing,
                 ),
                 const SizedBox(height: 14),
                 WithMeField(
-                  label: 'Email',
+                  label: l.accountEmail,
                   controller: _email,
-                  hint: 'maya@email.com',
+                  hint: l.accountEmailHint,
                   keyboardType: TextInputType.emailAddress,
                   fill: Colors.white,
                   border: kScenicFieldRing,
                 ),
                 const SizedBox(height: 14),
                 WithMeField(
-                  label: 'Daily check-in time',
+                  label: l.accountCheckInTime,
                   controller: _checkInTime,
                   fill: Colors.white,
                   border: kScenicFieldRing,
@@ -161,7 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Expanded(
                   child: ScenicStatTile(
                     value: '$_checkIns',
-                    label: 'check-ins',
+                    label: l.accountStatCheckIns(_checkIns),
                     icon: Icons.favorite_rounded,
                     iconColor: const Color(0xFFD2557F),
                   ),
@@ -170,7 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Expanded(
                   child: ScenicStatTile(
                     value: '$_exercises',
-                    label: 'exercises',
+                    label: l.accountStatExercises(_exercises),
                     icon: Icons.spa_rounded,
                     iconColor: const Color(0xFF3E9C8C),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Mascot/RealMascot.dart';
@@ -57,9 +58,20 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         const clip = WithMeHomeScreen.welcomeRecording;
+        final locale = Localizations.localeOf(context);
+        final l = context.l10n;
         _mouth.follow(
-          speech.play(clip, owner: this),
-          timeline: kMouthTimelines[clip],
+          speech.sayLine(
+            clip: clip,
+            // In a language without recordings (Bengali, Indonesian) the
+            // device's voice reads the welcome, by name once it has loaded.
+            text: _name == null || _name!.isEmpty
+                ? l.homeWelcomeBack
+                : l.homeWelcomeBackName(_name!),
+            locale: locale,
+            owner: this,
+          ),
+          timeline: kMouthTimelines[SpeechService.recordingFor(clip, locale)],
         );
       });
     }
@@ -89,12 +101,13 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final greeting = _name == null || _name!.isEmpty
-        ? 'Welcome back!'
-        : 'Welcome back, $_name!';
+        ? l.homeWelcomeBack
+        : l.homeWelcomeBackName(_name!);
 
     return ScenicScaffold(
-      title: 'Home',
+      title: l.homeTitle,
       leading: _MenuButton(onTap: () => _go(const MenuScreen())),
       mascot: RealPose.wave,
       mascotMax: 0.42,
@@ -107,8 +120,8 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
               children: [
                 ScenicHeading(greeting, size: 24),
                 const SizedBox(height: 4),
-                const Text(
-                  'What would you like to do?',
+                Text(
+                  l.homeWhatToDo,
                   textAlign: TextAlign.center,
                   style: kScenicBody,
                 ),
@@ -117,14 +130,14 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
           ),
           const SizedBox(height: 20),
           ScenicPill(
-            label: 'Check In',
+            label: l.homeCheckIn,
             height: 68,
             fontSize: 27,
             onPressed: () => _go(const CheckInScreen()),
           ),
           const SizedBox(height: 14),
           ScenicPill(
-            label: 'Dashboard',
+            label: l.homeDashboard,
             light: true,
             height: 64,
             fontSize: 23,
@@ -132,7 +145,7 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
           ),
           const SizedBox(height: 14),
           ScenicPill(
-            label: 'Immediate Exercises',
+            label: l.homeExercises,
             light: true,
             height: 64,
             fontSize: 23,
@@ -140,7 +153,7 @@ class _WithMeHomeScreenState extends State<WithMeHomeScreen> {
           ),
           const SizedBox(height: 14),
           ScenicPill(
-            label: 'Daily Log',
+            label: l.homeDailyLog,
             light: true,
             height: 64,
             fontSize: 23,
@@ -161,7 +174,7 @@ class _MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Semantics(
     button: true,
-    label: 'Menu',
+    label: context.l10n.menuTitle,
     excludeSemantics: true,
     child: GestureDetector(
       onTap: onTap,

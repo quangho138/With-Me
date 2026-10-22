@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 
@@ -14,41 +15,20 @@ class HelpScreen extends StatefulWidget {
 
   static const String route = '/help';
 
-  static const List<(String, String)> questions = [
-    (
-      'What is With Me?',
-      'With Me is a mental wellness and stress management application '
-          'designed to help you track emotional patterns and practise '
-          'mindfulness.',
-    ),
-    (
-      'How does With Me work?',
-      'You can log emotions, track stress levels, and reach coping '
-          'strategies like breathing exercises and journaling prompts.',
-    ),
-    (
-      'Does With Me replace therapy?',
-      'No. With Me is not a substitute for professional mental health care.',
-    ),
-    ('Is my data secure?', 'Your logs are stored on this device.'),
-    (
-      'Who can use With Me?',
-      'Designed for ages 18+. Minors should have supervision.',
-    ),
-    (
-      'Can I delete my data?',
-      'Yes — Settings has "Delete my account", which clears everything on '
-          'this device.',
-    ),
-    (
-      'Does With Me share my info?',
-      'No. Your data is not sold or shared with advertisers.',
-    ),
-    (
-      "What if I'm in crisis?",
-      'Please contact local emergency services or a crisis hotline.',
-    ),
-  ];
+  /// Each question and its answer, in [l].
+  static List<(String, String)> questions(AppLocalizations l) {
+    final app = l.appTitle;
+    return [
+      (l.helpWhatIsQuestion(app), l.helpWhatIsAnswer(app)),
+      (l.helpHowQuestion(app), l.helpHowAnswer),
+      (l.helpTherapyQuestion(app), l.helpTherapyAnswer(app)),
+      (l.helpSecureQuestion, l.helpSecureAnswer),
+      (l.helpWhoQuestion(app), l.helpWhoAnswer),
+      (l.helpDeleteQuestion, l.helpDeleteAnswer),
+      (l.helpShareQuestion(app), l.helpShareAnswer),
+      (l.helpCrisisQuestion, l.helpCrisisAnswer),
+    ];
+  }
 
   @override
   State<HelpScreen> createState() => _HelpScreenState();
@@ -59,14 +39,15 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final questions = HelpScreen.questions(context.l10n);
     return ScenicScaffold(
-      title: 'Help',
+      title: context.l10n.helpTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for (var i = 0; i < HelpScreen.questions.length; i++) ...[
+          for (var i = 0; i < questions.length; i++) ...[
             if (i > 0) const SizedBox(height: 10),
             Semantics(
               button: true,
@@ -75,7 +56,12 @@ class _HelpScreenState extends State<HelpScreen> {
                 onTap: () => setState(() => _open = _open == i ? null : i),
                 behavior: HitTestBehavior.opaque,
                 child: ScenicPanel(
-                  padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                    16,
+                    14,
+                    12,
+                    14,
+                  ).resolve(Directionality.of(context)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -83,7 +69,7 @@ class _HelpScreenState extends State<HelpScreen> {
                         children: [
                           Expanded(
                             child: ScenicHeading(
-                              HelpScreen.questions[i].$1,
+                              questions[i].$1,
                               size: 17,
                               textAlign: TextAlign.start,
                             ),
@@ -100,7 +86,7 @@ class _HelpScreenState extends State<HelpScreen> {
                       if (_open == i) ...[
                         const SizedBox(height: 8),
                         Text(
-                          HelpScreen.questions[i].$2,
+                          questions[i].$2,
                           style: kScenicBody.copyWith(
                             fontSize: 16,
                             height: 1.45,

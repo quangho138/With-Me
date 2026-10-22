@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -35,14 +37,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       setState(() => _busy = false);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(e.problem.message)));
+      ).showSnackBar(SnackBar(content: Text(e.problem.text(context.l10n))));
       return;
     } catch (_) {
       if (!mounted) return;
       setState(() => _busy = false);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(AccountProblem.unknown.message)));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AccountProblem.unknown.text(context.l10n))),
+      );
       return;
     }
     if (!mounted) return;
@@ -60,11 +62,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Reset your password',
+      title: l.accountResetTitle,
       onBack: () => Navigator.of(context).pop(),
       action: ScenicPill(
-        label: 'Send reset link',
+        label: l.accountSendResetLink,
         height: 58,
         onPressed: _busy ? null : _send,
       ),
@@ -72,16 +75,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              "Enter your email and I'll send you a reset link.",
+            Text(
+              l.accountResetExplainer,
               textAlign: TextAlign.center,
               style: kScenicBody,
             ),
             const SizedBox(height: 14),
             WithMeField(
-              label: 'Email',
+              label: l.accountEmail,
               controller: _email,
-              hint: 'maya@email.com',
+              hint: l.accountEmailHint,
               keyboardType: TextInputType.emailAddress,
               fill: Colors.white,
               border: kScenicFieldRing,
@@ -99,9 +102,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     width: 1.4,
                   ),
                 ),
-                child: const Text(
-                  'If that email has an account, a reset link is on its way. '
-                  'Open it on this phone.',
+                child: Text(
+                  l.accountResetSent,
                   textAlign: TextAlign.center,
                   style: kScenicBody,
                 ),

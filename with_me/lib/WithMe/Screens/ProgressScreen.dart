@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
 import '../Components/ScenicKit.dart';
@@ -119,20 +120,27 @@ class _ProgressScreenState extends State<ProgressScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final label = switch (_range) {
-      0 => 'this week',
-      1 => 'this month',
-      _ => 'this year',
+    final l = context.l10n;
+    final checkInsCaption = switch (_range) {
+      0 => l.dashProgressCheckInsWeek,
+      1 => l.dashProgressCheckInsMonth,
+      _ => l.dashProgressCheckInsYear,
     };
+    // The intention is set in bold teal in the sentence around it.
+    final intention = l.dashProgressIntention('\u0000').split('\u0000');
 
     return WithMeScaffold(
-      title: 'Your Progress',
+      title: l.dashProgressTitle,
       bottomNav: WithMeBottomNav(index: 2, onChanged: _navigate),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SegmentedTabs(
-            labels: const ['Week', 'Month', 'Year'],
+            labels: [
+              l.dashProgressTabWeek,
+              l.dashProgressTabMonth,
+              l.dashProgressTabYear,
+            ],
             index: _range,
             onChanged: (i) {
               setState(() => _range = i);
@@ -145,7 +153,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
             children: [
               Expanded(
                 child: _MiniCard(
-                  title: 'Stress level',
+                  title: l.dashProgressStressLevel,
                   child: _stress.length < 2
                       ? const _NotEnough()
                       : Sparkline(values: _stress),
@@ -154,7 +162,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
               const SizedBox(width: WithMeSpace.md),
               Expanded(
                 child: _MiniCard(
-                  title: 'Mood',
+                  title: l.dashProgressMood,
                   child: _mood.isEmpty
                       ? const _NotEnough()
                       : BarChart(values: _mood),
@@ -170,7 +178,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   value: '$_checkIns',
                   // Measured at 109 on image37, where the caption wraps.
                   minHeight: 109,
-                  caption: 'check-ins\n$label',
+                  caption: checkInsCaption,
                 ),
               ),
               const SizedBox(width: WithMeSpace.md),
@@ -178,8 +186,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 child: StatTile(
                   tinted: true,
                   minHeight: 109,
-                  value: _checkIns >= 3 ? 'Positive trend' : 'Getting started',
-                  caption: 'Keep going!',
+                  value: _checkIns >= 3
+                      ? l.dashProgressPositiveTrend
+                      : l.dashProgressGettingStarted,
+                  caption: l.dashProgressKeepGoing,
                 ),
               ),
             ],
@@ -198,7 +208,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
               behavior: HitTestBehavior.opaque,
               child: _checkIns == 0
                   ? Text(
-                      'No intention set today yet.',
+                      l.dashProgressNoIntention,
                       style: WithMeText.body.copyWith(color: WithMeColors.ink),
                     )
                   // The mockup sets the intention itself in bold teal.
@@ -208,15 +218,15 @@ class _ProgressScreenState extends State<ProgressScreen> {
                           color: WithMeColors.ink,
                         ),
                         children: [
-                          const TextSpan(text: "Today's intention: "),
+                          TextSpan(text: intention.first),
                           TextSpan(
-                            text: 'feel calmer',
+                            text: l.dashProgressIntentionSample,
                             style: WithMeText.body.copyWith(
                               fontWeight: FontWeight.w700,
                               color: WithMeColors.teal,
                             ),
                           ),
-                          const TextSpan(text: ' · 1 exercise done'),
+                          TextSpan(text: intention.skip(1).join()),
                         ],
                       ),
                     ),
@@ -258,6 +268,10 @@ class _NotEnough extends StatelessWidget {
   const _NotEnough();
 
   @override
-  Widget build(BuildContext context) =>
-      Center(child: Text('Not enough data', style: WithMeText.caption));
+  Widget build(BuildContext context) => Center(
+    child: Text(
+      context.l10n.dashProgressNotEnoughData,
+      style: WithMeText.caption,
+    ),
+  );
 }

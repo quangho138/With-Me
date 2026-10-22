@@ -20,6 +20,7 @@ It is built for HR Vision Consulting as the Florida International University Com
 - **Progress and dashboard**: stress and mood trends over 7, 30 and 365 days, and where stress comes from.
 - **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh, with optional nature video and sound.
 - **Accounts**: sign up (with email confirmation), log in with email or Google and stay logged in, reset a forgotten password, or start without an account. One account per phone. Passwords are checked online and never stored on the phone.
+- **Languages**: 22 languages under Menu, Settings, Language, or the phone's own language when the app has it (English otherwise). The companion speaks in Adrian's recorded voice in 13 of them and uses the phone's voice in the rest. Answers are always saved in English, so sync, export and the dashboard work the same in every language. Details: `with_me/lib/l10n/README.md`.
 - **Profile and settings**: your name, your check-in and exercise counts, "Export my data" (one JSON file, ready to import elsewhere), and "Delete my account", which deletes the account online and everything on the phone.
 
 ## How it is built

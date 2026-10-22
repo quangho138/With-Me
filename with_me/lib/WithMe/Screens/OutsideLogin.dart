@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
+import '../../l10n/l10n.dart';
 import 'AfterLogin.dart';
 import 'SetNewPasswordScreen.dart';
 import 'WelcomeScreen.dart';
@@ -64,7 +66,7 @@ class _OutsideLoginListenerState extends State<OutsideLoginListener> {
       if (context == null || !context.mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(e.problem.message)));
+      ).showSnackBar(SnackBar(content: Text(e.problem.text(context.l10n))));
       unawaited(
         navigator.pushAndRemoveUntil(
           MaterialPageRoute(builder: (_) => const WelcomeScreen()),

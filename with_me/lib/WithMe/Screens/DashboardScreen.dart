@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../Repositories/check_in_repository.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -33,7 +34,7 @@ class DashboardScreen extends StatefulWidget {
 
   static const String route = '/dashboard';
 
-  /// The pages, in card order.
+  /// The pages, in card order, in English. [pageTitle] is what is shown.
   static const List<String> pages = [
     'Your Feelings',
     'Stress Levels',
@@ -41,6 +42,15 @@ class DashboardScreen extends StatefulWidget {
     'Actions and Strategies',
     'Make a Change',
   ];
+
+  /// The name of page [index] (in [pages]) in [l]'s language.
+  static String pageTitle(AppLocalizations l, int index) => switch (index) {
+    0 => l.dashPageYourFeelings,
+    1 => l.dashPageStressLevels,
+    2 => l.dashPageStressSigns,
+    3 => l.dashPageActionsStrategies,
+    _ => l.dashPageMakeAChange,
+  };
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -65,11 +75,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     void pick(int i) => setState(() => _selected = i);
+    final l = context.l10n;
 
     final cards = [
       _DashboardCard(
         index: 0,
-        caption: 'Mood & control',
+        caption: l.dashCaptionMoodControl,
         icon: Icons.sentiment_satisfied_alt_rounded,
         color: DashboardColors.feelings,
         selected: _selected == 0,
@@ -77,7 +88,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCard(
         index: 1,
-        caption: 'Trend & triggers',
+        caption: l.dashCaptionTrendTriggers,
         icon: Icons.show_chart_rounded,
         color: DashboardColors.stress,
         selected: _selected == 1,
@@ -85,7 +96,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCard(
         index: 2,
-        caption: 'Body & mind',
+        caption: l.dashCaptionBodyMind,
         icon: Icons.warning_amber_rounded,
         color: DashboardColors.signs,
         selected: _selected == 2,
@@ -93,7 +104,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCard(
         index: 3,
-        caption: 'What you tried',
+        caption: l.dashCaptionWhatYouTried,
         icon: Icons.sports_mma_rounded,
         color: DashboardColors.actions,
         selected: _selected == 3,
@@ -101,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       _DashboardCard(
         index: 4,
-        caption: 'Motivation & intent',
+        caption: l.dashCaptionMotivationIntent,
         icon: Icons.flag_rounded,
         color: DashboardColors.change,
         selected: _selected == 4,
@@ -133,7 +144,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 )
               : null,
           child: ScenicPill(
-            label: 'Continue',
+            label: l.commonContinue,
             height: 58,
             onPressed: _continue,
           ),
@@ -147,7 +158,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const ScenicHeading('Dashboard', size: 24),
+            ScenicHeading(l.dashTitle, size: 24),
             SizedBox(height: short ? 4 : 14),
             for (var i = 0; i < cards.length; i++) ...[
               if (i > 0) SizedBox(height: short ? 6 : 12),
@@ -201,7 +212,7 @@ class _DashboardCardState extends State<_DashboardCard> {
 
   @override
   Widget build(BuildContext context) {
-    final title = DashboardScreen.pages[widget.index];
+    final title = DashboardScreen.pageTitle(context.l10n, widget.index);
     // A short phone (320x568) gets a tighter card, so all five fit.
     final short = MediaQuery.sizeOf(context).height < 700;
     return FocusableActionDetector(
@@ -223,11 +234,16 @@ class _DashboardCardState extends State<_DashboardCard> {
               )
             : null,
         child: ScenicTile(
-          label: '$title. ${widget.caption}',
+          label: context.l10n.dashCardLabel(title, widget.caption),
           selected: widget.selected,
           onTap: widget.onTap,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(16, short ? 7 : 16, 8, short ? 7 : 16),
+            padding: EdgeInsetsDirectional.fromSTEB(
+              16,
+              short ? 7 : 16,
+              8,
+              short ? 7 : 16,
+            ),
             child: Row(
               children: [
                 ScenicMarker(
@@ -338,7 +354,7 @@ class _DashboardPageState extends State<_DashboardPage> {
   Widget build(BuildContext context) {
     final view = _view;
     return ScenicScaffold(
-      title: DashboardScreen.pages[widget.index],
+      title: DashboardScreen.pageTitle(context.l10n, widget.index),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

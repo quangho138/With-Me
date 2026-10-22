@@ -369,6 +369,8 @@ int checkInsIn(List<DashboardDay> days, String area) =>
 // --- Stress Signs ------------------------------------------------------------
 
 /// The four kinds of sign, named and ordered as the check-in's sign pages.
+/// The names are English keys, which the pies count by; they are shown
+/// through `context.label`.
 String signCategoryLabel(SignDimension d) => switch (d) {
   SignDimension.body => 'Body',
   SignDimension.feelings => 'Feelings',

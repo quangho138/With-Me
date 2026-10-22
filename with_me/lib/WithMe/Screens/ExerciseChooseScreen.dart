@@ -4,6 +4,7 @@ import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Data/CheckInSteps.dart';
 import '../Theme/WithMeTheme.dart';
+import '../../l10n/l10n.dart';
 import 'BeforeWeStartScreen.dart';
 import 'BreathingScreen.dart';
 import 'SighScreen.dart';
@@ -51,22 +52,43 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
     Color(0xFF1C7C84),
   ];
 
+  /// [kExercises] keeps the English wording; these are what is shown.
+  static (String, String) _text(AppLocalizations l, int i) =>
+      switch (kExercises[i].$1) {
+        'De-stress Your Day' => (
+          l.exerciseDestressTitle,
+          l.exerciseDestressSubtitle,
+        ),
+        'Ease Your Sleep' => (l.exerciseSleepTitle, l.exerciseSleepSubtitle),
+        'Strengthen Your Focus' => (
+          l.exerciseFocusTitle,
+          l.exerciseFocusSubtitle,
+        ),
+        'Physiological Sigh' => (l.exerciseSighTitle, l.exerciseSighSubtitle),
+        _ => (kExercises[i].$1, kExercises[i].$2),
+      };
+
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
       onBack: () => Navigator.of(context).pop(),
-      action: ScenicPill(label: 'Continue', height: 58, onPressed: _continue),
+      action: ScenicPill(
+        label: l.commonContinue,
+        height: 58,
+        onPressed: _continue,
+      ),
       child: ScenicPanel(
         padding: const EdgeInsets.fromLTRB(14, 20, 14, 14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const ScenicHeading('Choose an exercise', size: 24),
+            ScenicHeading(l.exerciseChooseTitle, size: 24),
             const SizedBox(height: 14),
             for (var i = 0; i < kExercises.length; i++) ...[
               if (i > 0) const SizedBox(height: 12),
               ScenicTile(
-                label: '${kExercises[i].$1}, ${kExercises[i].$2}',
+                label: l.exerciseTileSemantics(_text(l, i).$1, _text(l, i).$2),
                 selected: _selected == i,
                 onTap: () => setState(() => _selected = i),
                 child: Padding(
@@ -87,7 +109,7 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ChunkyText(
-                              kExercises[i].$1,
+                              _text(l, i).$1,
                               weight: 0.5,
                               textAlign: TextAlign.start,
                               style: const TextStyle(
@@ -99,7 +121,7 @@ class _ExerciseChooseScreenState extends State<ExerciseChooseScreen> {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              kExercises[i].$2,
+                              _text(l, i).$2,
                               style: kScenicBody.copyWith(
                                 fontSize: 15,
                                 color: ScenicColors.ink.withValues(alpha: 0.75),

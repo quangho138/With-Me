@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicChoice.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -26,19 +27,20 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     void go(Widget screen) =>
         Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
 
-    void notWired(String what) => ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('$what is not wired up in this UI pass.')),
-    );
+    void notWired(String what) => ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(l.settingsNotWired(what))));
 
     Widget gap() => const SizedBox(height: 10);
 
     return ScenicScaffold(
-      title: 'Menu',
+      title: l.menuTitle,
       softBackground: true,
-      footnote: const ScenicFootnote('Small steps, bright futures'),
+      footnote: ScenicFootnote(l.menuFootnote),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -62,7 +64,7 @@ class MenuScreen extends StatelessWidget {
                           color: ScenicColors.ink,
                         ),
                       ),
-                      const Text('Here. With you.', style: kScenicBody),
+                      Text(l.accountTagline, style: kScenicBody),
                     ],
                   ),
                 ),
@@ -71,48 +73,48 @@ class MenuScreen extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           ScenicRow(
-            label: 'My Profile',
+            label: l.accountProfileTitle,
             icon: Icons.person_rounded,
             onTap: () => go(const ProfileScreen()),
           ),
           gap(),
           ScenicRow(
-            label: 'Notifications',
+            label: l.settingsNotificationsTitle,
             icon: Icons.notifications_rounded,
             iconColor: const Color(0xFFEE9A3E),
             onTap: () => go(const NotificationsScreen()),
           ),
           gap(),
           ScenicRow(
-            label: 'Settings',
+            label: l.settingsTitle,
             icon: Icons.settings_rounded,
             iconColor: const Color(0xFF3E9C8C),
             onTap: () => go(const SettingsScreen()),
           ),
           gap(),
           ScenicRow(
-            label: 'Privacy & data',
+            label: l.settingsPrivacy,
             icon: Icons.lock_rounded,
             iconColor: const Color(0xFF1C7C84),
-            onTap: () => notWired('Privacy & data'),
+            onTap: () => notWired(l.settingsPrivacy),
           ),
           gap(),
           ScenicRow(
-            label: 'About',
+            label: l.menuAbout,
             icon: Icons.info_rounded,
             iconColor: const Color(0xFFD2557F),
             onTap: () => go(const WithMeAboutScreen()),
           ),
           gap(),
           ScenicRow(
-            label: 'Help',
+            label: l.helpTitle,
             icon: Icons.help_rounded,
             iconColor: const Color(0xFF3E9C8C),
             onTap: () => go(const HelpScreen()),
           ),
           gap(),
           ScenicRow(
-            label: 'Membership',
+            label: l.accountMembershipTitle,
             icon: Icons.workspace_premium_rounded,
             iconColor: const Color(0xFFEE9A3E),
             onTap: () => go(const MembershipScreen()),
@@ -156,12 +158,10 @@ class _AccountRowState extends State<_AccountRow> {
     // the journal are in the account and come back on the next login.
     final sure = await showScenicChoice(
       context,
-      title: 'Log out?',
-      body:
-          'Your check-ins and journal stay in your account and come back '
-          'when you log in.',
-      yes: 'Log out',
-      no: 'Cancel',
+      title: context.l10n.menuLogOutTitle,
+      body: context.l10n.menuLogOutBody,
+      yes: context.l10n.menuLogOut,
+      no: context.l10n.commonCancel,
       yesIsDanger: true,
     );
     if (sure != true || !mounted) return;
@@ -176,12 +176,10 @@ class _AccountRowState extends State<_AccountRow> {
     if (waiting && mounted) {
       final anyway = await showScenicChoice(
         context,
-        title: 'Not saved online yet',
-        body:
-            "Some changes haven't reached your account yet (no internet). "
-            'If you log out now, they will be lost.',
-        yes: 'Log out anyway',
-        no: 'Stay logged in',
+        title: context.l10n.menuNotSavedTitle,
+        body: context.l10n.menuNotSavedBody,
+        yes: context.l10n.menuLogOutAnyway,
+        no: context.l10n.menuStayLoggedIn,
         yesIsDanger: true,
       );
       if (anyway != true) return;
@@ -192,9 +190,9 @@ class _AccountRowState extends State<_AccountRow> {
       await AppRepositories.users.signOut();
     } catch (_) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Couldn't log out. Try again.")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(context.l10n.menuLogOutFailed)));
       return;
     }
     if (!mounted) return;
@@ -208,7 +206,7 @@ class _AccountRowState extends State<_AccountRow> {
   Widget build(BuildContext context) {
     if (_guest) {
       return ScenicRow(
-        label: 'Create an account',
+        label: context.l10n.accountCreateAnAccount,
         icon: Icons.person_add_rounded,
         onTap: () => Navigator.of(
           context,
@@ -216,7 +214,7 @@ class _AccountRowState extends State<_AccountRow> {
       );
     }
     return ScenicRow(
-      label: 'Log out',
+      label: context.l10n.menuLogOut,
       icon: Icons.logout_rounded,
       danger: true,
       onTap: _logOut,

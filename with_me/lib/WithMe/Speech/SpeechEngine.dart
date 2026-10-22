@@ -37,13 +37,16 @@ class SpeechCallbacks {
 /// text to an online service is never picked; with no on-device voice the
 /// engine reports an error and stays silent.
 abstract class SpeechEngine {
-  /// Starts speaking [text] in [style]. Returns false when speech cannot
-  /// start here (no speech support, or no on-device voice); [callbacks] then
-  /// get nothing more.
+  /// Starts speaking [text] in [style], with a voice for [locale]'s
+  /// language (a tag such as "es" or "pt-BR"; the device's English when
+  /// null). Returns false when speech cannot start here (no speech support,
+  /// or no on-device voice for that language); [callbacks] then get nothing
+  /// more.
   Future<bool> speak(
     String text,
     SpeechCallbacks callbacks, {
     SpeechStyle style = SpeechStyle.standard,
+    String? locale,
   });
 
   /// The on-device voices in [locale]'s language (the device's own English
