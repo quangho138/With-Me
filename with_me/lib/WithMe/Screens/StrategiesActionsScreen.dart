@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
@@ -25,6 +26,7 @@ class StrategiesActionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final strategies = <Slice>[
       for (var i = 0; i < kStrategies.length; i++)
         Slice(
@@ -44,10 +46,10 @@ class StrategiesActionsScreen extends StatelessWidget {
     ];
 
     return ScenicScaffold(
-      title: 'Strategies & Actions',
+      title: l.dashStrategiesActionsTitle,
       onBack: () => Navigator.of(context).pop(),
       action: ScenicPill(
-        label: 'View entry details',
+        label: l.dashViewEntryDetails,
         light: true,
         height: 54,
         onPressed: () => Navigator.of(context).push(
@@ -59,13 +61,13 @@ class StrategiesActionsScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const DateRangeCard(label: 'Last 7 days'),
+          DateRangeCard(label: l.dashLastDays(7)),
           const SizedBox(height: WithMeSpace.md),
           ScenicPanel(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _Heading('Strategies'),
+                _Heading(l.dashStrategiesHeading),
                 const SizedBox(height: WithMeSpace.md),
                 Center(child: PieChart(slices: strategies)),
                 const SizedBox(height: WithMeSpace.md),
@@ -78,13 +80,12 @@ class StrategiesActionsScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _Heading('Actions'),
+                _Heading(l.dashActionsHeading),
                 const SizedBox(height: WithMeSpace.md),
                 ChartLegend(slices: actions, showPercent: false),
                 const SizedBox(height: WithMeSpace.md),
                 Text(
-                  'Ratings are not stored yet, so this shows the actions on '
-                  'offer rather than how they have gone.',
+                  l.dashRatingsNotStored,
                   style: kScenicBody.copyWith(fontSize: 13),
                 ),
               ],

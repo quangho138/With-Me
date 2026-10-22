@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
+import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
+import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Theme/WithMeTheme.dart';
@@ -59,15 +62,20 @@ class _LogsScreenState extends State<LogsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return WithMeScaffold(
-      title: 'Your logs',
+      title: l.dashLogsTitle,
       onBack: () => Navigator.of(context).pop(),
-      footnote: const AccentLine('Every step counts'),
+      footnote: AccentLine(l.dashEveryStepCounts),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SegmentedTabs(
-            labels: const ['All', 'Notes', 'Exercises'],
+            labels: [
+              l.dashLogsTabAll,
+              l.dashLogsTabNotes,
+              l.dashLogsTabExercises,
+            ],
             index: _tab,
             onChanged: (i) => setState(() => _tab = i),
           ),
@@ -77,7 +85,7 @@ class _LogsScreenState extends State<LogsScreen> {
           else if (_rows.isEmpty)
             WithMeCard(
               child: Text(
-                'Nothing logged yet. Your check-ins will show up here.',
+                l.dashLogsEmpty,
                 textAlign: TextAlign.center,
                 style: WithMeText.body,
               ),
@@ -142,7 +150,7 @@ class _LogCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _when(date),
+                    _when(context, date),
                     style: WithMeText.option.copyWith(
                       fontWeight: FontWeight.w700,
                       color: WithMeColors.teal,
@@ -150,7 +158,7 @@ class _LogCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    body.isEmpty ? 'Logged, no note.' : body,
+                    body.isEmpty ? context.l10n.dashLogsNoNote : body,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: WithMeText.body.copyWith(color: WithMeColors.ink),
@@ -164,37 +172,31 @@ class _LogCard extends StatelessWidget {
     );
   }
 
-  static String _when(DateTime? date) {
-    if (date == null) return 'Earlier';
+  static String _when(BuildContext context, DateTime? date) {
+    final l = context.l10n;
+    if (date == null) return l.dashLogsEarlier;
+    final locale = dateLocale(context);
     final now = DateTime.now();
     final days = DateTime(
       now.year,
       now.month,
       now.day,
     ).difference(DateTime(date.year, date.month, date.day)).inDays;
-    final time =
-        '${date.hour % 12 == 0 ? 12 : date.hour % 12}:'
-        '${date.minute.toString().padLeft(2, '0')} '
-        '${date.hour < 12 ? 'AM' : 'PM'}';
+    // "3:05 PM". intl puts a narrow space before AM/PM; the design has a
+    // plain one.
+    final time = DateFormat.jm(locale).format(date).replaceAll('\u202f', ' ');
     return switch (days) {
-      0 => 'Today · $time',
-      1 => 'Yesterday · $time',
-      _ => '${_months[date.month - 1]} ${date.day} · $time',
+      0 => l.dashLogsToday(time),
+      1 => l.dashLogsYesterday(time),
+      _ => l.dashLogsOnDate(_monthDay(date, locale), time),
     };
   }
 
-  static const List<String> _months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
+  /// "Oct 6". English spells September "Sept", as the design does.
+  static String _monthDay(DateTime date, String locale) {
+    final text = DateFormat.MMMd(locale).format(date);
+    return locale.startsWith('en') && date.month == 9
+        ? text.replaceFirst('Sep', 'Sept')
+        : text;
+  }
 }

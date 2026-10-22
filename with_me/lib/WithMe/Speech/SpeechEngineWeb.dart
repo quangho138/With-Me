@@ -90,13 +90,14 @@ class WebSpeechEngine implements SpeechEngine {
     String text,
     SpeechCallbacks callbacks, {
     SpeechStyle style = SpeechStyle.standard,
+    String? locale,
   }) async {
     try {
       final synth = _speechSynthesis;
       if (synth == null) return false;
       final local = _local(synth);
       final pick = pickVoice(
-        rankVoices([for (final (_, v) in local) v]),
+        rankVoices([for (final (_, v) in local) v], locale: locale ?? 'en-US'),
         style.voice,
       );
       if (pick == null) return false;

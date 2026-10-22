@@ -8,6 +8,7 @@ import '../Components/WithMeScaffold.dart';
 import '../Exercise/AmbientAudio.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/NatureVideo.dart';
+import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/exercise_repository.dart';
 import '../Theme/WithMeTheme.dart';
@@ -22,19 +23,20 @@ extension BreathPatternInfo on BreathPattern {
     BreathPattern.box => '4 · 4 · 4 · 4',
   };
 
-  String get title => switch (this) {
-    BreathPattern.fourFourFour => 'Strengthen Your Focus',
-    BreathPattern.fourSevenEight => 'Breathing Exercise',
-    BreathPattern.box => 'Box Breathing',
+  String title(AppLocalizations l) => switch (this) {
+    BreathPattern.fourFourFour => l.exerciseFocusTitle,
+    BreathPattern.fourSevenEight => l.exerciseBreathingTitle,
+    BreathPattern.box => l.exerciseBoxTitle,
   };
 
-  String get accent => switch (this) {
-    BreathPattern.fourFourFour => 'Breathe with me...',
-    BreathPattern.fourSevenEight => 'Breathe with me...',
-    BreathPattern.box => 'Four equal sides...',
+  String accent(AppLocalizations l) => switch (this) {
+    BreathPattern.fourFourFour => l.exerciseBreatheWithMe,
+    BreathPattern.fourSevenEight => l.exerciseBreatheWithMe,
+    BreathPattern.box => l.exerciseFourEqualSides,
   };
 
-  /// Phase name, seconds, and the colour of its chip.
+  /// Phase key (English, never shown; see [phaseName]), seconds, and the
+  /// colour of its chip.
   List<(String, int, Color)> get phases => switch (this) {
     BreathPattern.fourFourFour => const [
       ('Inhale', 4, WithMeColors.mint),
@@ -57,6 +59,25 @@ extension BreathPatternInfo on BreathPattern {
   int get roundSeconds =>
       phases.fold<int>(0, (total, phase) => total + phase.$2);
 }
+
+/// A phase key of [BreathPatternInfo.phases] in the reader's language.
+String phaseName(AppLocalizations l, String phase) => switch (phase) {
+  'Inhale' => l.exercisePhaseInhale,
+  'Hold' => l.exercisePhaseHold,
+  'Exhale' => l.exercisePhaseExhale,
+  'Still' => l.exercisePhaseStill,
+  _ => phase,
+};
+
+/// "Inhale 4 seconds": the phase and its length, as one sentence.
+String phaseInstruction(AppLocalizations l, String phase, int seconds) =>
+    switch (phase) {
+      'Inhale' => l.exerciseInhaleSeconds(seconds),
+      'Hold' => l.exerciseHoldSeconds(seconds),
+      'Exhale' => l.exerciseExhaleSeconds(seconds),
+      'Still' => l.exerciseStillSeconds(seconds),
+      _ => '$phase $seconds',
+    };
 
 class BreathingScreen extends StatefulWidget {
   const BreathingScreen({
@@ -187,50 +208,53 @@ class _BreathingScreenState extends State<BreathingScreen>
     super.dispose();
   }
 
-  String get _sceneName => switch (widget.sound) {
-    'Waves' => 'By the ocean',
-    'Birds' => 'A quiet morning',
-    'Forest' => 'Among the trees',
-    'Rain' => 'Under the rain',
-    'Fire' => 'Beside the fire',
-    _ => 'A moment of stillness',
+  String _sceneName(AppLocalizations l) => switch (widget.sound) {
+    'Waves' => l.exerciseSceneWaves,
+    'Birds' => l.exerciseSceneBirds,
+    'Forest' => l.exerciseSceneForest,
+    'Rain' => l.exerciseSceneRain,
+    'Fire' => l.exerciseSceneFire,
+    _ => l.exerciseSceneNone,
   };
-  String get _sceneDetail => switch (widget.sound) {
-    'Waves' => 'Soft tides · warm shore',
-    'Birds' => 'Birdsong · woodland nest',
-    'Forest' => 'Rustling leaves · gentle wind',
-    'Rain' => 'Falling rain · flowing water',
-    'Fire' => 'Crackling embers · evening sky',
-    _ => 'Just you and your breath',
+  String _sceneDetail(AppLocalizations l) => switch (widget.sound) {
+    'Waves' => l.exerciseSceneDetailWaves,
+    'Birds' => l.exerciseSceneDetailBirds,
+    'Forest' => l.exerciseSceneDetailForest,
+    'Rain' => l.exerciseSceneDetailRain,
+    'Fire' => l.exerciseSceneDetailFire,
+    _ => l.exerciseSceneDetailNone,
   };
 
   @override
   Widget build(BuildContext context) {
     final reduce = _reducedMotion || MediaQuery.disableAnimationsOf(context);
+    final l = context.l10n;
     return AnimatedBuilder(
       animation: _session,
       builder: (context, _) {
         final phase = _pattern.phases[_session.phaseIndex];
         final complete = _session.complete;
         final started = _session.started;
-        final label = complete ? 'Complete' : phase.$1;
-        final instruction = complete ? '' : '${phase.$1} ${phase.$2} seconds';
+        final label = complete ? l.exerciseComplete : phaseName(l, phase.$1);
+        final instruction = complete
+            ? ''
+            : phaseInstruction(l, phase.$1, phase.$2);
         return WithMeScaffold(
           // Reduced motion freezes the footage on one frame.
           background: NatureVideo(sound: widget.sound, still: reduce),
-          title: _pattern.title,
+          title: _pattern.title(l),
           onBack: () {
             _pause();
             Navigator.of(context).pop();
           },
           action: WithMeButton(
             label: complete
-                ? 'Breathe again'
+                ? l.exerciseBreatheAgain
                 : _session.running
-                ? 'Pause'
+                ? l.exercisePause
                 : started
-                ? 'Resume'
-                : 'Start breathing',
+                ? l.exerciseResume
+                : l.exerciseStartBreathing,
             onPressed: _toggle,
           ),
           child: Column(
@@ -254,8 +278,8 @@ class _BreathingScreenState extends State<BreathingScreen>
                   ),
                   Text(
                     complete
-                        ? 'Session complete'
-                        : 'Cycle ${_session.round} of ${widget.cycles}',
+                        ? l.exerciseSessionComplete
+                        : l.exerciseCycleOf(_session.round, widget.cycles),
                     style: WithMeText.caption,
                   ),
                 ],
@@ -283,14 +307,14 @@ class _BreathingScreenState extends State<BreathingScreen>
               const SizedBox(height: 18),
               if (complete)
                 Text(
-                  'You made time for yourself.',
+                  l.exerciseMadeTimeForYourself,
                   textAlign: TextAlign.center,
                   style: WithMeText.caption.copyWith(color: Colors.white),
                 ),
               if (_audioFailed)
                 TextButton(
                   onPressed: _syncAudio,
-                  child: const Text('Sound unavailable. Tap to retry.'),
+                  child: Text(l.exerciseSoundUnavailable),
                 ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -306,7 +330,9 @@ class _BreathingScreenState extends State<BreathingScreen>
                         size: 17,
                       ),
                       label: Text(
-                        _reducedMotion ? 'Motion off' : 'Motion on',
+                        _reducedMotion
+                            ? l.exerciseMotionOff
+                            : l.exerciseMotionOn,
                         style: WithMeText.caption,
                       ),
                     ),
@@ -316,12 +342,12 @@ class _BreathingScreenState extends State<BreathingScreen>
                         _pause();
                         _session.reset();
                       },
-                      child: Text('Restart', style: WithMeText.caption),
+                      child: Text(l.exerciseRestart, style: WithMeText.caption),
                     ),
                   if (complete)
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: const Text('Done'),
+                      child: Text(l.commonDone),
                     ),
                 ],
               ),
@@ -469,21 +495,23 @@ class _PathPainter extends CustomPainter {
 class BoxBreathingInfoScreen extends StatelessWidget {
   const BoxBreathingInfoScreen({super.key});
 
-  static const List<String> steps = [
-    'Inhale deeply through your nose for 4 seconds.',
-    'Hold your breath for 4 seconds.',
-    'Exhale slowly and steadily through your mouth for 4 seconds.',
-    'Hold for 4 seconds before beginning the next cycle.',
-    'Repeat for as many cycles as you chose.',
+  static List<String> steps(AppLocalizations l) => [
+    l.exerciseBoxStepInhale,
+    l.exerciseBoxStepHold,
+    l.exerciseBoxStepExhale,
+    l.exerciseBoxStepStill,
+    l.exerciseBoxStepRepeat,
   ];
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
+    final steps = BoxBreathingInfoScreen.steps(l);
     return WithMeScaffold(
-      title: '4·4·4·4 Box Breathing',
+      title: l.exerciseBoxInfoTitle,
       onBack: () => Navigator.of(context).pop(),
       action: WithMeButton(
-        label: 'Next',
+        label: l.commonNext,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => const BreathingScreen(pattern: BreathPattern.box),
@@ -494,7 +522,7 @@ class BoxBreathingInfoScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'To help you relax.',
+            l.exerciseBoxInfoIntro,
             textAlign: TextAlign.center,
             style: WithMeText.body,
           ),

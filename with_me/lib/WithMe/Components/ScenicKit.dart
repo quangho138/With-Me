@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../Theme/WithMeTheme.dart';
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 
 /// The V2 visual language, from `docs/design_v2/reference.webp`: painted
 /// tropical scenery full-bleed behind the screen, cream speech bubbles, and
@@ -331,7 +333,7 @@ class ScenicBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Semantics(
     button: true,
-    label: 'Back',
+    label: context.l10n.commonBack,
     excludeSemantics: true,
     child: GestureDetector(
       onTap: onTap,
@@ -652,10 +654,12 @@ class _FaceChoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The word is the saved value; what is shown is its translation.
+    final word = context.label(face.label);
     return Semantics(
       button: true,
       selected: selected,
-      label: face.label,
+      label: word,
       excludeSemantics: true,
       child: GestureDetector(
         onTap: onTap,
@@ -691,7 +695,7 @@ class _FaceChoice extends StatelessWidget {
               FittedBox(
                 fit: BoxFit.scaleDown,
                 child: ChunkyText(
-                  face.label,
+                  word,
                   weight: 0.5,
                   style: TextStyle(
                     fontFamily: WithMeText.ui,
@@ -913,6 +917,7 @@ class _ControlScaleState extends State<ControlScale> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final value = widget.value;
 
     Widget arrow(IconData icon, int by) {
@@ -979,10 +984,16 @@ class _ControlScaleState extends State<ControlScale> {
 
     return Semantics(
       slider: true,
-      label: 'How in control you feel, 1 to 5',
-      value: value == null ? 'Not chosen' : '$value of 5',
-      increasedValue: '${math.min((value ?? 0) + 1, 5)} of 5',
-      decreasedValue: '${math.max((value ?? 6) - 1, 1)} of 5',
+      label: l.exerciseControlScaleLabel,
+      value: value == null
+          ? l.exerciseControlScaleNotChosen
+          : l.exerciseControlScaleValue(value),
+      increasedValue: l.exerciseControlScaleValue(
+        math.min((value ?? 0) + 1, 5),
+      ),
+      decreasedValue: l.exerciseControlScaleValue(
+        math.max((value ?? 6) - 1, 1),
+      ),
       onIncrease: () => _step(1),
       onDecrease: () => _step(-1),
       child: FocusableActionDetector(
@@ -1033,7 +1044,9 @@ class _ControlScaleState extends State<ControlScale> {
                         child: FittedBox(
                           fit: BoxFit.scaleDown,
                           child: ChunkyText(
-                            value == null ? 'Pick a number' : '$value of 5',
+                            value == null
+                                ? l.exerciseControlScalePick
+                                : l.exerciseControlScaleValue(value),
                             weight: 0.6,
                             style: TextStyle(
                               fontFamily: WithMeText.ui,

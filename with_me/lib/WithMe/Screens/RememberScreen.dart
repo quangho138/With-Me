@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Mascot/MascotExpression.dart';
@@ -16,20 +17,23 @@ class RememberScreen extends StatelessWidget {
 
   static const String route = '/remember';
 
-  static const List<(String, Color)> promises = [
-    ("You're not alone.", WithMeColors.mint),
-    ('I listen.', WithMeColors.peach),
-    ('I understand.', WithMeColors.pink),
-    ('I help you take the next step.', WithMeColors.coral),
-    ("You've got this!", WithMeColors.teal),
+  /// The five promises, in [l]'s language, each with its dot.
+  static List<(String, Color)> promises(AppLocalizations l) => [
+    (l.dashPromiseNotAlone, WithMeColors.mint),
+    (l.dashPromiseListen, WithMeColors.peach),
+    (l.dashPromiseUnderstand, WithMeColors.pink),
+    (l.dashPromiseNextStep, WithMeColors.coral),
+    (l.dashPromiseGotThis, WithMeColors.teal),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
+    final promises = RememberScreen.promises(l);
     return WithMeScaffold(
       lockup: false,
       footnote: Text(
-        'With Me is a companion, not a substitute for professional care.',
+        l.dashRememberDisclaimer(l.appTitle),
         textAlign: TextAlign.center,
         style: WithMeText.caption.copyWith(color: WithMeColors.inkSoft),
       ),
@@ -38,7 +42,7 @@ class RememberScreen extends StatelessWidget {
         children: [
           const SizedBox(height: WithMeSpace.lg),
           Text(
-            'Remember...',
+            l.dashRememberTitle,
             textAlign: TextAlign.center,
             style: WithMeText.wordmark.copyWith(fontSize: 32),
           ),

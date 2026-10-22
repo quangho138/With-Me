@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../Theme/WithMeTheme.dart';
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 
 /// The control inventory of the V1 design.
 ///
@@ -332,17 +334,19 @@ class MoodSelector extends StatelessWidget {
     super.key,
     required this.value,
     required this.onChanged,
-    this.lowLabel = 'Rough',
-    this.midLabel = 'Okay',
-    this.highLabel = 'Good',
+    this.lowLabel,
+    this.midLabel,
+    this.highLabel,
   });
 
   /// 0-4, left to right.
   final int? value;
   final ValueChanged<int> onChanged;
-  final String lowLabel;
-  final String midLabel;
-  final String highLabel;
+
+  /// "Rough", "Okay" and "Good" when left out.
+  final String? lowLabel;
+  final String? midLabel;
+  final String? highLabel;
 
   static const List<Color> _swatches = [
     WithMeColors.pink,
@@ -392,9 +396,18 @@ class MoodSelector extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(lowLabel, style: WithMeText.caption),
-            Text(midLabel, style: WithMeText.caption),
-            Text(highLabel, style: WithMeText.caption),
+            Text(
+              lowLabel ?? context.l10n.exerciseMoodRough,
+              style: WithMeText.caption,
+            ),
+            Text(
+              midLabel ?? context.l10n.exerciseMoodOkay,
+              style: WithMeText.caption,
+            ),
+            Text(
+              highLabel ?? context.l10n.exerciseMoodGood,
+              style: WithMeText.caption,
+            ),
           ],
         ),
       ],
@@ -686,7 +699,7 @@ class WithMeDropdown extends StatelessWidget {
               value: value,
               isExpanded: true,
               hint: Text(
-                hint ?? 'Select one...',
+                hint ?? context.l10n.exerciseSelectOne,
                 style: WithMeText.option.copyWith(color: WithMeColors.inkFaint),
               ),
               icon: const Icon(
@@ -726,9 +739,9 @@ class ToggleRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: kToggleRowHeight,
-      padding: const EdgeInsets.only(
-        left: WithMeSpace.lg,
-        right: WithMeSpace.md,
+      padding: const EdgeInsetsDirectional.only(
+        start: WithMeSpace.lg,
+        end: WithMeSpace.md,
       ),
       decoration: BoxDecoration(
         color: WithMeColors.cream,
@@ -816,6 +829,8 @@ class WithMeBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
+    final shown = [l.commonHome, l.commonTools, l.commonProgress, l.commonMore];
     return Container(
       height: 64,
       padding: const EdgeInsets.symmetric(horizontal: WithMeSpace.sm),
@@ -846,7 +861,7 @@ class WithMeBottomNav extends StatelessWidget {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      labels[i],
+                      shown[i],
                       style: WithMeText.caption.copyWith(
                         color: i == index
                             ? WithMeColors.teal
@@ -1055,10 +1070,13 @@ class _ReadinessGaugeState extends State<ReadinessGauge> {
 
         return Semantics(
           slider: true,
-          label: 'How ready you feel to change',
-          value: v == null ? 'Not set' : levels[ReadinessGauge.levelOf(v)],
-          increasedValue: levels[ReadinessGauge.levelOf(up)],
-          decreasedValue: levels[ReadinessGauge.levelOf(down)],
+          label: context.l10n.exerciseReadinessLabel,
+          // The levels are saved answers; they are read out translated.
+          value: v == null
+              ? context.l10n.exerciseReadinessNotSet
+              : context.label(levels[ReadinessGauge.levelOf(v)]),
+          increasedValue: context.label(levels[ReadinessGauge.levelOf(up)]),
+          decreasedValue: context.label(levels[ReadinessGauge.levelOf(down)]),
           onIncrease: () => widget.onChanged(up),
           onDecrease: () => widget.onChanged(down),
           child: RawGestureDetector(

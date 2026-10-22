@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/reflection_repository.dart';
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -72,11 +74,10 @@ class _CheckInScreenState extends State<CheckInScreen> {
 
   Future<void> _save() async {
     final messenger = ScaffoldMessenger.of(context);
+    final l = context.l10n;
     if (_choices.values.any((v) => v == null)) {
       messenger.showSnackBar(
-        const SnackBar(
-          content: Text('Choose one question from each of the five.'),
-        ),
+        SnackBar(content: Text(l.checkinReflectChooseAll)),
       );
       return;
     }
@@ -99,27 +100,24 @@ class _CheckInScreenState extends State<CheckInScreen> {
       if (!mounted) return;
       setState(() => _saving = false);
       messenger.showSnackBar(
-        const SnackBar(
-          content: Text("Couldn't save this reflection on this device."),
-        ),
+        SnackBar(content: Text(l.checkinReflectSaveFailed)),
       );
       return;
     }
 
     if (!mounted) return;
     setState(() => _saving = false);
-    messenger.showSnackBar(
-      const SnackBar(content: Text('Reflection saved. Well done.')),
-    );
+    messenger.showSnackBar(SnackBar(content: Text(l.checkinReflectSaved)));
     Navigator.of(context).maybePop();
   }
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Check In',
+      title: l.checkinReflectTitle,
       action: ScenicPill(
-        label: 'Save reflection',
+        label: l.checkinReflectSave,
         height: 58,
         onPressed: _saving ? null : _save,
       ),
@@ -127,31 +125,38 @@ class _CheckInScreenState extends State<CheckInScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const ScenicHeading('Take a moment for\nself-reflection'),
+            ScenicHeading(l.checkinReflectHeading),
             const SizedBox(height: 6),
-            const Text(
-              'Select one question from each category that resonates with '
-              'you today.',
+            Text(
+              l.checkinReflectIntro,
               textAlign: TextAlign.center,
               style: kScenicBody,
             ),
             const SizedBox(height: 12),
             for (final entry in kReflectionPrompts.entries) ...[
-              WithMeDropdown(
-                label: entry.key,
-                value: _choices[entry.key],
-                items: entry.value,
-                hint: entry.key == 'Why?' ? 'Select a question...' : null,
-                fill: Colors.white,
-                border: kScenicFieldRing,
-                height: 60,
-                onChanged: (v) => setState(() => _choices[entry.key] = v),
-              ),
+              _dropdown(context, entry.key, entry.value),
               const SizedBox(height: 8),
             ],
           ],
         ),
       ),
+    );
+  }
+
+  /// One category's dropdown. The questions are saved in English, so the
+  /// list shows each in the reader's language and maps the pick back.
+  Widget _dropdown(BuildContext context, String category, List<String> items) {
+    final shown = {for (final q in items) context.label(q): q};
+    final chosen = _choices[category];
+    return WithMeDropdown(
+      label: context.label(category),
+      value: chosen == null ? null : context.label(chosen),
+      items: shown.keys.toList(),
+      hint: category == 'Why?' ? context.l10n.checkinReflectHint : null,
+      fill: Colors.white,
+      border: kScenicFieldRing,
+      height: 60,
+      onChanged: (v) => setState(() => _choices[category] = shown[v]),
     );
   }
 }

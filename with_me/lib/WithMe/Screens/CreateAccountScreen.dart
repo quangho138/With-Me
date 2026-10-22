@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -44,11 +45,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     final name = _name.text.trim();
 
     if (name.isEmpty || email.isEmpty || password.isEmpty) {
-      _say('Fill in your name, email and a password.');
+      _say(context.l10n.accountFillInAll);
       return;
     }
     if (!_agreed) {
-      _say('Please agree to the terms to continue.');
+      _say(context.l10n.accountAgreeTerms);
       return;
     }
 
@@ -103,18 +104,19 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Create your account',
+      title: l.accountCreateTitle,
       onBack: () => Navigator.of(context).pop(),
       mascot: RealPose.think,
       mascotMax: 0.28,
       action: ScenicPill(
-        label: 'Create account',
+        label: l.accountCreateAccount,
         height: 58,
         onPressed: _busy ? null : _create,
       ),
       footnote: ScenicFootnote(
-        'Already with us? Log in',
+        l.accountAlreadyWithUs,
         onTap: () => Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
         ),
@@ -124,24 +126,24 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             WithMeField(
-              label: 'Name',
+              label: l.accountName,
               controller: _name,
-              hint: 'Maya',
+              hint: l.accountNameHint,
               fill: Colors.white,
               border: kScenicFieldRing,
             ),
             const SizedBox(height: 14),
             WithMeField(
-              label: 'Email',
+              label: l.accountEmail,
               controller: _email,
-              hint: 'maya@email.com',
+              hint: l.accountEmailHint,
               keyboardType: TextInputType.emailAddress,
               fill: Colors.white,
               border: kScenicFieldRing,
             ),
             const SizedBox(height: 14),
             WithMeField(
-              label: 'Password',
+              label: l.accountPassword,
               controller: _password,
               obscure: true,
               fill: Colors.white,
@@ -195,8 +197,7 @@ class _TermsCheck extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                'I agree to the Terms and Privacy Policy. With Me is a '
-                'companion, not medical care.',
+                context.l10n.accountTermsAgreement(context.l10n.appTitle),
                 style: kScenicBody.copyWith(fontSize: 14),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -88,11 +89,12 @@ class _TriggersSignsScreenState extends State<TriggersSignsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Triggers & Signs',
+      title: l.dashTriggersSignsTitle,
       onBack: () => Navigator.of(context).pop(),
       action: ScenicPill(
-        label: 'Continue',
+        label: l.commonContinue,
         height: 58,
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => const StrategiesActionsScreen()),
@@ -101,11 +103,11 @@ class _TriggersSignsScreenState extends State<TriggersSignsScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const DateRangeCard(label: 'Last $_days days'),
+          DateRangeCard(label: l.dashLastDays(_days)),
           const SizedBox(height: WithMeSpace.md),
-          _PieCard(title: 'Triggers', slices: _triggers),
+          _PieCard(title: l.dashTriggersHeading, slices: _triggers),
           const SizedBox(height: WithMeSpace.md),
-          _PieCard(title: 'Signs', slices: _signs),
+          _PieCard(title: l.dashSignsHeading, slices: _signs),
         ],
       ),
     );
@@ -125,8 +127,12 @@ class DateRangeCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('DATE RANGE', style: kScenicLabel),
-          ScenicHeading(label, size: 17),
+          Text(context.l10n.dashDateRange, style: kScenicLabel),
+          const SizedBox(width: 12),
+          // Longer translations wrap here rather than run off the card.
+          Flexible(
+            child: ScenicHeading(label, size: 17, textAlign: TextAlign.end),
+          ),
         ],
       ),
     );
@@ -148,7 +154,12 @@ class _PieCard extends StatelessWidget {
           ScenicHeading(title, size: 20, textAlign: TextAlign.start),
           const SizedBox(height: WithMeSpace.md),
           if (slices.isEmpty)
-            const Center(child: Text('Nothing logged yet.', style: kScenicBody))
+            Center(
+              child: Text(
+                context.l10n.dashNothingLoggedYet,
+                style: kScenicBody,
+              ),
+            )
           else ...[
             Center(child: PieChart(slices: slices)),
             const SizedBox(height: WithMeSpace.md),

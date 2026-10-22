@@ -1,7 +1,10 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat, NumberFormat;
 
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../Theme/WithMeTheme.dart';
 
 /// Charts for the dashboard section (`image32`-`image37`).
@@ -10,7 +13,19 @@ import '../Theme/WithMeTheme.dart';
 /// three pies, a sparkline and a four-bar column — none of which is worth a
 /// charting dependency, and the companion work so far has added none.
 
-/// One slice of a pie or donut.
+/// The locale dates and numbers are written in, from [context]'s language. Without a
+/// [Localizations] above (one widget pumped on its own) it is US English,
+/// whose date names `intl` has without loading any.
+String dateLocale(BuildContext context) {
+  final locale = Localizations.maybeLocaleOf(context);
+  if (locale == null) return 'en_US';
+  // The date data has Traditional Chinese as Taiwan's, not as zh_Hant.
+  if (locale.scriptCode == 'Hant') return 'zh_TW';
+  return locale.toString();
+}
+
+/// One slice of a pie or donut. [label] is the answer as saved, in
+/// English; legends show it through `context.label`.
 class Slice {
   const Slice(this.label, this.value, this.color);
 
@@ -134,15 +149,16 @@ class ChartLegend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final total = slices.fold<double>(0, (sum, s) => sum + s.value);
+    final l = context.l10n;
+    // One decimal place, left off when it is zero: "12.5", "41".
+    final number = NumberFormat('0.#', dateLocale(context));
 
     String text(Slice s) {
-      if (!showPercent || total <= 0) return s.label;
+      final label = context.label(s.label);
+      if (!showPercent || total <= 0) return label;
       final pct = 100 * s.value / total;
       final rounded = (pct * 10).round() / 10;
-      final shown = rounded == rounded.roundToDouble()
-          ? rounded.toStringAsFixed(0)
-          : rounded.toStringAsFixed(1);
-      return '${s.label} $shown%';
+      return l.dashLabelPercent(label, number.format(rounded));
     }
 
     return Wrap(
@@ -217,12 +233,16 @@ class ValueLegend extends StatelessWidget {
                 const SizedBox(width: WithMeSpace.sm),
                 Expanded(
                   child: Text(
-                    slice.label,
+                    context.label(slice.label),
                     style: WithMeText.option.copyWith(fontSize: 14),
                   ),
                 ),
                 Text(
-                  total <= 0 ? '-' : '${(100 * slice.value / total).round()}%',
+                  total <= 0
+                      ? '-'
+                      : context.l10n.dashPercent(
+                          (100 * slice.value / total).round(),
+                        ),
                   style: WithMeText.option.copyWith(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -414,6 +434,7 @@ class PieBreakdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final all = wholePercents(slices);
     final shown = [
       for (var i = 0; i < slices.length; i++)
@@ -442,7 +463,7 @@ class PieBreakdown extends StatelessWidget {
                 const SizedBox(width: WithMeSpace.sm),
                 Flexible(
                   child: Text(
-                    '${all[i]}% ${slices[i].label}',
+                    l.dashPercentLabel(all[i], context.label(slices[i].label)),
                     style: WithMeText.option.copyWith(fontSize: legendFontSize),
                   ),
                 ),
@@ -453,15 +474,18 @@ class PieBreakdown extends StatelessWidget {
     );
 
     final summary = shown.isEmpty
-        ? 'nothing yet'
-        : [for (final i in shown) '${slices[i].label} ${all[i]}%'].join(', ');
+        ? l.dashNothingYet
+        : [
+            for (final i in shown)
+              l.dashLabelPercent(context.label(slices[i].label), '${all[i]}'),
+          ].join(', ');
     final counted = slices.any((s) => s.value > 0);
     final pieSlices = !counted && emptyColor != null
         ? [Slice('', 1, emptyColor!)]
         : slices;
 
     return Semantics(
-      label: '$title: $summary',
+      label: l.dashTitledSummary(title, summary),
       excludeSemantics: true,
       child: LayoutBuilder(
         builder: (context, box) {
@@ -505,7 +529,10 @@ class PieBreakdown extends StatelessWidget {
                               const SizedBox(width: WithMeSpace.sm),
                               Expanded(
                                 child: Text(
-                                  '${all[i]}% ${slices[i].label}',
+                                  l.dashPercentLabel(
+                                    all[i],
+                                    context.label(slices[i].label),
+                                  ),
                                   maxLines: 2,
                                   style: WithMeText.option.copyWith(
                                     fontSize: legendFontSize,
@@ -577,16 +604,22 @@ class StressLevelChart extends StatelessWidget {
   /// The size of the 1-5 and date labels.
   final double axisFontSize;
 
-  static String _md(DateTime d) => '${d.month}/${d.day}';
-
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
+    final locale = dateLocale(context);
+    // "10/6".
+    String md(DateTime d) => DateFormat.Md(locale).format(d);
     final latest = points.isEmpty ? null : points.last;
     final label = latest == null
-        ? 'Stress level: no ratings'
-        : 'Stress level: ${points.length} ratings from ${_md(from)} to '
-              '${_md(to)}, latest ${latest.value.round()} of 5 on '
-              '${_md(latest.day)}';
+        ? l.dashStressLevelNoRatings
+        : l.dashStressLevelSemantics(
+            points.length,
+            md(from),
+            md(to),
+            latest.value.round(),
+            md(latest.day),
+          );
     return Semantics(
       label: label,
       excludeSemantics: true,
@@ -599,6 +632,7 @@ class StressLevelChart extends StatelessWidget {
             from: from,
             to: to,
             color: color,
+            locale: locale,
             textStyle: WithMeText.caption.copyWith(
               color: WithMeColors.inkSoft,
               fontSize: axisFontSize,
@@ -616,6 +650,7 @@ class _StressPainter extends CustomPainter {
     required this.from,
     required this.to,
     required this.color,
+    required this.locale,
     required this.textStyle,
   });
 
@@ -623,6 +658,9 @@ class _StressPainter extends CustomPainter {
   final DateTime from;
   final DateTime to;
   final Color color;
+
+  /// The locale the dates are written in.
+  final String locale;
   final TextStyle textStyle;
 
   TextPainter _text(String s) => TextPainter(
@@ -676,7 +714,7 @@ class _StressPainter extends CustomPainter {
         start.month,
         start.day + (spanDays * i / (ticks - 1)).round(),
       );
-      final t = _text('${d.month}/${d.day}');
+      final t = _text(DateFormat.Md(locale).format(d));
       final cx = x(d);
       final tx = (cx - t.width / 2).clamp(0.0, size.width - t.width);
       t.paint(canvas, Offset(tx, plot.bottom + 5));
@@ -722,5 +760,6 @@ class _StressPainter extends CustomPainter {
       old.points != points ||
       old.from != from ||
       old.to != to ||
+      old.locale != locale ||
       old.color != color;
 }

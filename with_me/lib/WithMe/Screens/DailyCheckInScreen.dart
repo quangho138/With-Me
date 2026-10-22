@@ -2,10 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../Components/ScenicKit.dart';
+import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Components/WithMeControls.dart';
 import '../Data/CheckInSteps.dart';
 import '../Mascot/RealMascot.dart';
@@ -89,8 +93,43 @@ class DailyCheckInScreen extends StatefulWidget {
     return null;
   }
 
-  /// The greeting in the first page's bubble, line breaks and all. The same
-  /// words are read aloud and listed on the Daily Log.
+  /// What the companion says on the page at [index] when the line is read
+  /// by the device's voice, in a language without recordings:
+  /// the question in that page's bubble, in [l]'s language.
+  static String spokenLine(
+    int index,
+    CheckInAnswers answers,
+    AppLocalizations l,
+  ) {
+    return switch (index) {
+      0 => l.checkinGreeting.replaceAll('\n', ' '),
+      1 => l.checkinControlQuestion,
+      2 => l.checkinStressQuestion,
+      3 => l.checkinMotivationQuestion,
+      4 => l.checkinAreaQuestion,
+      stressorPage => switch (answers.area) {
+        'Work' => l.checkinStressorsQuestionWork,
+        'Home' => l.checkinStressorsQuestionHome,
+        'School' => l.checkinStressorsQuestionSchool,
+        'Social' => l.checkinStressorsQuestionSocial,
+        _ => l.checkinStressorsQuestionOther,
+      },
+      6 => l.checkinSignsQuestion,
+      signsPage => switch (answers.signDimension ?? SignDimension.body) {
+        SignDimension.body => l.checkinSignsQuestionBody,
+        SignDimension.feelings => l.checkinSignsQuestionFeelings,
+        SignDimension.mind => l.checkinSignsQuestionMind,
+        SignDimension.behaviour => l.checkinSignsQuestionBehavior,
+      },
+      8 => l.checkinIntentionTitle,
+      9 => l.checkinStrategiesQuestion,
+      _ => l.checkinStrategyDetailsTitle,
+    }.replaceAll('\n', ' ');
+  }
+
+  /// The greeting in the first page's bubble, line breaks and all, in
+  /// English. The same words are read aloud and listed on the Daily Log; the
+  /// page shows them in the reader's language (`checkinGreeting`).
   static const String greeting =
       "Hi!\nI'm here with you.\nHow are you\nfeeling today?";
 
@@ -111,21 +150,24 @@ class DailyCheckInScreen extends StatefulWidget {
   static const int signsPage = 7;
 
   /// Each page's heading, in order - what the calendar lists for today.
-  /// Keep it in step with `_step`.
-  static List<String> pageTitles(String? name) => [
-    greeting.replaceAll('\n', ' '),
-    'How in control do you feel today?',
-    'On a scale of 1 to 5, how would you rate your stress today?',
-    'How motivated do you feel to make a positive change today?',
-    'Where is most of your stress coming from right now?',
-    "What's weighing on you?",
-    'What are the signs? Body, feelings, mind or behavior',
-    // One page, whichever the previous choice named.
-    'How stress is showing up for you',
-    'Intention to change',
-    'Select strategies and actions',
-    'Strategy details',
-  ];
+  /// Keep it in step with `_step`. In [l]'s language, English without it.
+  static List<String> pageTitles(String? name, [AppLocalizations? l]) {
+    l ??= lookupAppLocalizations(const Locale('en'));
+    return [
+      l.checkinGreeting.replaceAll('\n', ' '),
+      l.checkinTitleControl,
+      l.checkinTitleStress,
+      l.checkinTitleMotivation,
+      l.checkinTitleArea,
+      l.checkinTitleStressors,
+      l.checkinTitleSigns,
+      // One page, whichever the previous choice named.
+      l.checkinTitleSignsPage,
+      l.checkinIntentionTitle,
+      l.checkinTitleStrategies,
+      l.checkinStrategyDetailsTitle,
+    ];
+  }
 
   @override
   State<DailyCheckInScreen> createState() => _DailyCheckInScreenState();
@@ -185,9 +227,24 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   /// companion say it.
   void _sayPage() {
     final clip = DailyCheckInScreen.recordingFor(_index, _answers);
+    final locale = Localizations.localeOf(context);
     _mouth.follow(
-      clip == null ? null : SpeechService.instance.play(clip, owner: this),
-      timeline: kMouthTimelines[clip],
+      clip == null
+          ? null
+          : SpeechService.instance.sayLine(
+              clip: clip,
+              text: DailyCheckInScreen.spokenLine(
+                _index,
+                _answers,
+                context.l10n,
+              ),
+              locale: locale,
+              owner: this,
+            ),
+      // Recordings have a timeline; the device's voice gets the generic one.
+      timeline: clip == null
+          ? null
+          : kMouthTimelines[SpeechService.recordingFor(clip, locale)],
     );
   }
 
@@ -255,11 +312,9 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
       // user on the last step. sqflite has no web implementation, so the
       // browser preview always lands here.
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Couldn't save this check-in on this device."),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(context.l10n.checkinSaveFailed)));
       }
     }
 
@@ -415,7 +470,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: pillSide),
                     child: ScenicPill(
-                      label: _actionLabel,
+                      label: _actionLabel(context.l10n),
                       height: 60,
                       onPressed: _answered ? _next : null,
                     ),
@@ -497,7 +552,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
 
   Widget _settingsGear(BuildContext context) => Semantics(
     button: true,
-    label: 'Settings',
+    label: context.l10n.checkinSettingsLabel,
     excludeSemantics: true,
     child: GestureDetector(
       onTap: () {
@@ -518,6 +573,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
 
   Widget _scenicContent() {
     final a = _answers;
+    final l = context.l10n;
     switch (_index) {
       case 0:
         // The faces sit under the question, inside the bubble, like the
@@ -528,7 +584,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const BubbleText(DailyCheckInScreen.greeting, size: 27),
+              BubbleText(l.checkinGreeting, size: 27),
               const SizedBox(height: 14),
               MoodFacesCard(
                 bare: true,
@@ -544,11 +600,11 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const BubbleText('How in control do\nyou feel today?'),
+              BubbleText(l.checkinControlQuestion),
               const SizedBox(height: 6),
               // The reference's instruction line, plus turning the needle.
-              const Text(
-                'Tap or turn the gauge below',
+              Text(
+                l.checkinControlHint,
                 textAlign: TextAlign.center,
                 style: _bubbleBody,
               ),
@@ -565,16 +621,18 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           tailAt: 0.62,
           child: Column(
             children: [
-              const BubbleText(
-                'On a scale of 1 to 5,\nhow would you rate\nyour stress today?',
-              ),
+              BubbleText(l.checkinStressQuestion),
               const SizedBox(height: 20),
               NumberChoice(
                 value: a.stress,
                 onChanged: (v) => _touch(() => a.stress = v),
               ),
               const SizedBox(height: 14),
-              const _ScaleEnds(low: 'Low stress', high: 'High stress'),
+              _ScaleEnds(
+                low: l.checkinStressLow,
+                high: l.checkinStressHigh,
+                semantics: l.checkinStressScaleSemantics,
+              ),
             ],
           ),
         );
@@ -583,16 +641,18 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           tailAt: 0.62,
           child: Column(
             children: [
-              const BubbleText(
-                'How motivated\ndo you feel to make\na positive change\ntoday?',
-              ),
+              BubbleText(l.checkinMotivationQuestion),
               const SizedBox(height: 20),
               NumberChoice(
                 value: a.motivation,
                 onChanged: (v) => _touch(() => a.motivation = v),
               ),
               const SizedBox(height: 14),
-              const _ScaleEnds(low: 'Least motivated', high: 'Most motivated'),
+              _ScaleEnds(
+                low: l.checkinMotivationLow,
+                high: l.checkinMotivationHigh,
+                semantics: l.checkinMotivationScaleSemantics,
+              ),
             ],
           ),
         );
@@ -604,7 +664,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           ('Social', Icons.groups_rounded, Color(0xFFEA6A58)),
         ];
         Widget tile(int i) => AreaTile(
-          label: areas[i].$1,
+          label: context.label(areas[i].$1),
           icon: areas[i].$2,
           color: areas[i].$3,
           selected: a.area == areas[i].$1,
@@ -617,9 +677,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
           padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
           child: Column(
             children: [
-              const BubbleText(
-                'Where is most of your\nstress coming from\nright now?',
-              ),
+              BubbleText(l.checkinAreaQuestion),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -673,8 +731,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     _ => _answers.rating > 0,
   };
 
-  String get _actionLabel =>
-      _index == _pageCount - 1 ? 'Finish check-in' : 'Continue';
+  String _actionLabel(AppLocalizations l) =>
+      _index == _pageCount - 1 ? l.checkinFinish : l.commonContinue;
 
   /// Every answer on every page comes through here. An answer while the
   /// line is playing ends the talking for that line: the companion shows its
@@ -784,9 +842,9 @@ class _OtherFieldState extends State<_OtherField> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 4, bottom: 6),
+          padding: const EdgeInsetsDirectional.only(start: 4, bottom: 6),
           child: Text(
-            'Other',
+            context.l10n.checkinOptOther,
             style: _bubbleBody.copyWith(fontWeight: FontWeight.w700),
           ),
         ),
@@ -918,12 +976,18 @@ const TextStyle _bubbleBody = TextStyle(
 );
 
 /// What the ends of a 1 to 5 choice mean, under the numbers: "1 = Low
-/// stress" on the left, "5 = High stress" on the right.
+/// stress" on the left, "5 = High stress" on the right. [semantics] says
+/// both for a screen reader.
 class _ScaleEnds extends StatelessWidget {
-  const _ScaleEnds({required this.low, required this.high});
+  const _ScaleEnds({
+    required this.low,
+    required this.high,
+    required this.semantics,
+  });
 
   final String low;
   final String high;
+  final String semantics;
 
   @override
   Widget build(BuildContext context) {
@@ -932,14 +996,14 @@ class _ScaleEnds extends StatelessWidget {
       color: ScenicColors.ink.withValues(alpha: 0.8),
     );
     return Semantics(
-      label: '1 means ${low.toLowerCase()}, 5 means ${high.toLowerCase()}',
+      label: semantics,
       excludeSemantics: true,
       child: Row(
         children: [
-          Expanded(child: Text('1 = $low', style: style)),
+          Expanded(child: Text(low, style: style)),
           const SizedBox(width: 12),
           Expanded(
-            child: Text('5 = $high', textAlign: TextAlign.end, style: style),
+            child: Text(high, textAlign: TextAlign.end, style: style),
           ),
         ],
       ),
@@ -1051,7 +1115,7 @@ class _ChoiceGrid extends StatelessWidget {
               SizedBox(
                 width: tile,
                 child: ScenicChoiceTile(
-                  label: option.label,
+                  label: context.label(option.label),
                   color: _deep(option.color),
                   icon: _optionIcons[option.label],
                   selected: chosen.contains(option.label),
@@ -1078,6 +1142,7 @@ class _StressorStep extends StatelessWidget {
   Widget build(BuildContext context) {
     // The area page always comes first, so there is always an area here.
     final area = answers.area ?? 'Home';
+    final l = context.l10n;
 
     return SpeechBubble(
       tailAt: 0.62,
@@ -1085,7 +1150,7 @@ class _StressorStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          BubbleText('Which stressors affect\nyou ${_phrase(area)}?', size: 24),
+          BubbleText(_question(l, area), size: 24),
           const SizedBox(height: 16),
           _ChoiceGrid(
             options: kStressorsByArea[area]!,
@@ -1099,7 +1164,7 @@ class _StressorStep extends StatelessWidget {
           _OtherField(
             key: ValueKey('other-stressor-$area'),
             initial: answers.stressorOtherByArea[area]!,
-            hint: 'Another stressor',
+            hint: l.checkinStressorOtherHint,
             onChanged: (t) =>
                 onChanged(() => answers.stressorOtherByArea[area] = t),
           ),
@@ -1108,12 +1173,12 @@ class _StressorStep extends StatelessWidget {
     );
   }
 
-  static String _phrase(String area) => switch (area) {
-    'Work' => 'at work',
-    'Home' => 'at home',
-    'School' => 'at school',
-    'Social' => 'socially',
-    _ => 'right now',
+  static String _question(AppLocalizations l, String area) => switch (area) {
+    'Work' => l.checkinStressorsQuestionWork,
+    'Home' => l.checkinStressorsQuestionHome,
+    'School' => l.checkinStressorsQuestionSchool,
+    'Social' => l.checkinStressorsQuestionSocial,
+    _ => l.checkinStressorsQuestionOther,
   };
 }
 
@@ -1125,11 +1190,11 @@ class _SignsIntroStep extends StatelessWidget {
   final CheckInAnswers answers;
   final void Function(VoidCallback) onChanged;
 
-  static String _name(SignDimension d) => switch (d) {
-    SignDimension.body => 'Body',
-    SignDimension.feelings => 'Feelings',
-    SignDimension.mind => 'Mind',
-    SignDimension.behaviour => 'Behavior',
+  static String _name(AppLocalizations l, SignDimension d) => switch (d) {
+    SignDimension.body => l.checkinOptBody,
+    SignDimension.feelings => l.checkinOptFeelings,
+    SignDimension.mind => l.checkinOptMind,
+    SignDimension.behaviour => l.checkinOptBehavior,
   };
 
   static IconData _icon(SignDimension d) => switch (d) {
@@ -1143,8 +1208,9 @@ class _SignsIntroStep extends StatelessWidget {
   Widget build(BuildContext context) {
     // A choice, not a list: whichever is picked decides the one page that
     // follows ("How is stress showing up in your body?").
+    final l = context.l10n;
     Widget card(SignDimension d) => ScenicChoiceTile(
-      label: _name(d),
+      label: _name(l, d),
       color: _deep(d.color),
       icon: _icon(d),
       selected: answers.signDimension == d,
@@ -1162,17 +1228,16 @@ class _SignsIntroStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const BubbleText('What are the signs?', size: 24),
+          BubbleText(l.checkinSignsQuestion, size: 24),
           const SizedBox(height: 8),
-          const _Formula(
-            lead: 'Stressor = ',
-            parts: ['body reaction', ' + ', 'situation'],
+          _Formula(
+            text: l.checkinFormulaStressor(_Formula.first, _Formula.second),
+            terms: [l.checkinFormulaBodyReaction, l.checkinFormulaSituation],
           ),
           const SizedBox(height: 2),
-          const _Formula(
-            lead: 'Anxiety = ',
-            parts: ['anticipation', ' + ', 'event'],
-            trail: ' (real or imagined)',
+          _Formula(
+            text: l.checkinFormulaAnxiety(_Formula.first, _Formula.second),
+            terms: [l.checkinFormulaAnticipation, l.checkinFormulaEvent],
           ),
           const SizedBox(height: 16),
           Row(
@@ -1196,12 +1261,17 @@ class _SignsIntroStep extends StatelessWidget {
   }
 }
 
+/// A formula line with its two terms in bold. [text] is the whole message
+/// with [first] and [second] standing where the terms go, so a translation
+/// can order the sentence its own way.
 class _Formula extends StatelessWidget {
-  const _Formula({required this.lead, required this.parts, this.trail});
+  const _Formula({required this.text, required this.terms});
 
-  final String lead;
-  final List<String> parts;
-  final String? trail;
+  static const String first = '\u0001';
+  static const String second = '\u0002';
+
+  final String text;
+  final List<String> terms;
 
   @override
   Widget build(BuildContext context) {
@@ -1210,17 +1280,30 @@ class _Formula extends StatelessWidget {
       color: ScenicColors.pillBottom,
     );
 
+    final spans = <TextSpan>[];
+    final plain = StringBuffer();
+    for (final rune in text.runes) {
+      final term = switch (String.fromCharCode(rune)) {
+        first => terms[0],
+        second => terms[1],
+        _ => null,
+      };
+      if (term == null) {
+        plain.writeCharCode(rune);
+        continue;
+      }
+      if (plain.isNotEmpty) spans.add(TextSpan(text: plain.toString()));
+      plain.clear();
+      spans.add(TextSpan(text: term, style: bold));
+    }
+    if (plain.isNotEmpty) spans.add(TextSpan(text: plain.toString()));
+
     return RichText(
       textAlign: TextAlign.center,
       textScaler: MediaQuery.textScalerOf(context),
       text: TextSpan(
         style: _bubbleBody.copyWith(fontSize: 14.5),
-        children: [
-          TextSpan(text: lead),
-          for (var i = 0; i < parts.length; i++)
-            TextSpan(text: parts[i], style: i.isEven ? bold : null),
-          if (trail != null) TextSpan(text: trail),
-        ],
+        children: spans,
       ),
     );
   }
@@ -1242,6 +1325,7 @@ class _SignsStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chosen = answers.signs[dimension]!;
+    final l = context.l10n;
 
     return SpeechBubble(
       tailAt: 0.62,
@@ -1249,10 +1333,10 @@ class _SignsStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          BubbleText(dimension.question, size: 24),
+          BubbleText(_question(l), size: 24),
           const SizedBox(height: 6),
-          const Text(
-            'Pick all that fit, or write your own.',
+          Text(
+            l.checkinSignsHint,
             textAlign: TextAlign.center,
             style: _bubbleBody,
           ),
@@ -1268,13 +1352,21 @@ class _SignsStep extends StatelessWidget {
           _OtherField(
             key: ValueKey('other-signs-${dimension.name}'),
             initial: answers.signOther[dimension]!,
-            hint: 'Something else',
+            hint: l.checkinSignsOtherHint,
             onChanged: (t) => onChanged(() => answers.signOther[dimension] = t),
           ),
         ],
       ),
     );
   }
+
+  /// [SignDimensionInfo.question] in the reader's language.
+  String _question(AppLocalizations l) => switch (dimension) {
+    SignDimension.body => l.checkinSignsQuestionBody,
+    SignDimension.feelings => l.checkinSignsQuestionFeelings,
+    SignDimension.mind => l.checkinSignsQuestionMind,
+    SignDimension.behaviour => l.checkinSignsQuestionBehavior,
+  };
 }
 
 // --- Intention to change ----------------------------------------------------
@@ -1287,29 +1379,30 @@ class _IntentionStep extends StatelessWidget {
   final CheckInAnswers answers;
   final void Function(VoidCallback) onChanged;
 
-  static const List<String> _notes = [
-    'Not today is an honest answer too. Noticing it is a step.',
-    "A little is still a start. We'll keep it small.",
-    'Somewhere in the middle is the most honest answer most days — and it '
-        'is enough.',
-    "Ready is a good place to be. Let's pick one small thing.",
-    "Let's use that energy — one step at a time.",
+  /// A note for each of the dial's five levels, least ready first.
+  static List<String> _notes(AppLocalizations l) => [
+    l.checkinIntentionNoteNotReady,
+    l.checkinIntentionNoteLittle,
+    l.checkinIntentionNoteSomewhat,
+    l.checkinIntentionNoteReady,
+    l.checkinIntentionNoteVery,
   ];
 
   @override
   Widget build(BuildContext context) {
     final readiness = answers.readiness;
     final level = readiness == null ? null : ReadinessGauge.levelOf(readiness);
+    final l = context.l10n;
 
     return SpeechBubble(
       tailAt: 0.62,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const BubbleText('Intention to change', size: 24),
+          BubbleText(l.checkinIntentionTitle, size: 24),
           const SizedBox(height: 8),
-          const Text(
-            'How ready do you feel to do something differently today?',
+          Text(
+            l.checkinIntentionQuestion,
             textAlign: TextAlign.center,
             style: _bubbleBody,
           ),
@@ -1326,7 +1419,9 @@ class _IntentionStep extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           ChunkyText(
-            level == null ? 'Drag the needle' : ReadinessGauge.levels[level],
+            level == null
+                ? l.checkinIntentionDrag
+                : context.label(ReadinessGauge.levels[level]),
             weight: 0.6,
             style: TextStyle(
               fontFamily: WithMeText.ui,
@@ -1339,7 +1434,7 @@ class _IntentionStep extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            _notes[level ?? 2],
+            _notes(l)[level ?? 2],
             textAlign: TextAlign.center,
             style: _bubbleBody.copyWith(
               fontSize: 15,
@@ -1405,40 +1500,57 @@ class _StrategyStepState extends State<_StrategyStep> {
     action.dispose();
   }
 
+  /// A dropdown of saved English [values], each shown in the reader's
+  /// language; a pick is handed back as the English it stands for. Custom
+  /// entries have no translation and show as typed.
+  Widget _dropdown({
+    required String label,
+    required String? value,
+    required List<String> values,
+    required ValueChanged<String?> onChanged,
+  }) {
+    final shown = {for (final v in values) context.label(v): v};
+    return WithMeDropdown(
+      label: label,
+      value: value == null ? null : context.label(value),
+      items: shown.keys.toList(),
+      fill: Colors.white,
+      border: _fieldRing,
+      onChanged: (v) => onChanged(shown[v]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final answers = widget.answers;
+    final l = context.l10n;
 
     return SpeechBubble(
       tailAt: 0.62,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const BubbleText('Select strategies\nand actions', size: 24),
+          BubbleText(l.checkinStrategiesQuestion, size: 24),
           const SizedBox(height: 16),
-          WithMeDropdown(
-            label: 'Stress management strategy',
+          _dropdown(
+            label: l.checkinStrategyLabel,
             value: answers.strategy,
-            items: _strategies,
-            fill: Colors.white,
-            border: _fieldRing,
+            values: _strategies,
             onChanged: (v) => widget.onChanged(() {
               answers.strategy = v;
               answers.action = null;
             }),
           ),
           const SizedBox(height: 12),
-          WithMeDropdown(
-            label: 'Stress management action',
+          _dropdown(
+            label: l.checkinActionLabel,
             value: answers.action,
-            items: _actions,
-            fill: Colors.white,
-            border: _fieldRing,
+            values: _actions,
             onChanged: (v) => widget.onChanged(() => answers.action = v),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Pick a rate of effectiveness',
+          Text(
+            l.checkinRateEffectiveness,
             textAlign: TextAlign.center,
             style: _bubbleBody,
           ),
@@ -1457,7 +1569,7 @@ class _StrategyStepState extends State<_StrategyStep> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 child: Text(
-                  '+ Add custom strategy & action',
+                  l.checkinAddCustom,
                   textAlign: TextAlign.center,
                   style: _bubbleBody.copyWith(
                     fontWeight: FontWeight.w700,
@@ -1482,6 +1594,7 @@ class _CustomStrategyDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return Dialog(
       backgroundColor: ScenicColors.bubble,
       insetPadding: const EdgeInsets.symmetric(horizontal: WithMeSpace.xl),
@@ -1492,17 +1605,20 @@ class _CustomStrategyDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const BubbleText('Add custom strategy\n& action', size: 21),
+            BubbleText(l.checkinCustomDialogTitle, size: 21),
             const SizedBox(height: WithMeSpace.lg),
-            _DialogField(controller: strategy, hint: 'Custom strategy'),
+            _DialogField(
+              controller: strategy,
+              hint: l.checkinCustomStrategyHint,
+            ),
             const SizedBox(height: WithMeSpace.md),
-            _DialogField(controller: action, hint: 'Custom action'),
+            _DialogField(controller: action, hint: l.checkinCustomActionHint),
             const SizedBox(height: WithMeSpace.lg),
             Row(
               children: [
                 Expanded(
                   child: ScenicPill(
-                    label: 'Cancel',
+                    label: l.commonCancel,
                     light: true,
                     height: 46,
                     onPressed: () => Navigator.of(context).pop(false),
@@ -1511,7 +1627,7 @@ class _CustomStrategyDialog extends StatelessWidget {
                 const SizedBox(width: WithMeSpace.md),
                 Expanded(
                   child: ScenicPill(
-                    label: 'Add',
+                    label: l.commonAdd,
                     height: 46,
                     onPressed: () => Navigator.of(context).pop(true),
                   ),
@@ -1573,13 +1689,23 @@ class _StrategyDetailStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
+    final l = context.l10n;
+    final locale = Localizations.maybeLocaleOf(context) == null
+        ? null
+        : dateLocale(context);
+    // "16 October 2026". Without the language's date data (a test pumping
+    // the page on its own), English.
+    final date = DateFormat(
+      'd MMMM y',
+      locale != null && DateFormat.localeExists(locale) ? locale : null,
+    ).format(now);
 
     return SpeechBubble(
       tailAt: 0.62,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const BubbleText('Strategy details', size: 24),
+          BubbleText(l.checkinStrategyDetailsTitle, size: 24),
           const SizedBox(height: 14),
           Container(
             padding: const EdgeInsets.all(14),
@@ -1594,20 +1720,19 @@ class _StrategyDetailStep extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Date · ${now.day} ${_month(now.month)} ${now.year}',
-                  style: _bubbleBody,
-                ),
+                Text(l.checkinDetailDate(date), style: _bubbleBody),
                 const SizedBox(height: 6),
-                _Line('Strategy', answers.strategy ?? '-'),
+                _Line(
+                  l.checkinDetailStrategy(_shown(context, answers.strategy)),
+                ),
                 const SizedBox(height: 4),
-                _Line('Action', answers.action ?? '-'),
+                _Line(l.checkinDetailAction(_shown(context, answers.action))),
               ],
             ),
           ),
           const SizedBox(height: 16),
-          const Text(
-            'Rate this strategy',
+          Text(
+            l.checkinRateStrategy,
             textAlign: TextAlign.center,
             style: _bubbleBody,
           ),
@@ -1622,27 +1747,16 @@ class _StrategyDetailStep extends StatelessWidget {
     );
   }
 
-  static String _month(int m) => const [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ][m - 1];
+  /// A saved strategy or action in the reader's language, or "-" for none.
+  static String _shown(BuildContext context, String? value) =>
+      value == null ? '-' : context.label(value);
 }
 
+/// One "Strategy · Mental" line of the details card.
 class _Line extends StatelessWidget {
-  const _Line(this.label, this.value);
+  const _Line(this.text);
 
-  final String label;
-  final String value;
+  final String text;
 
   @override
   Widget build(BuildContext context) => Text.rich(
@@ -1651,10 +1765,7 @@ class _Line extends StatelessWidget {
         fontWeight: FontWeight.w700,
         color: ScenicColors.pillBottom,
       ),
-      children: [
-        TextSpan(text: '$label · '),
-        TextSpan(text: value),
-      ],
+      text: text,
     ),
   );
 }

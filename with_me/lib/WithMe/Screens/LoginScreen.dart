@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -70,18 +71,19 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
   Widget build(BuildContext context) {
     // Carries on from the welcome: the same beach, the same pills, and the
     // companion thinking it over below the form.
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Welcome back',
+      title: l.accountWelcomeBack,
       onBack: () => Navigator.of(context).pop(),
       mascot: RealPose.think,
       mascotMax: 0.32,
       action: ScenicPill(
-        label: 'Log in',
+        label: l.accountLogIn,
         height: 58,
         onPressed: _busy ? null : _login,
       ),
       footnote: ScenicFootnote(
-        'Forgot your password?',
+        l.accountForgotPassword,
         onTap: () => Navigator.of(
           context,
         ).push(MaterialPageRoute(builder: (_) => const ResetPasswordScreen())),
@@ -91,16 +93,16 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             WithMeField(
-              label: 'Email',
+              label: l.accountEmail,
               controller: _email,
-              hint: 'maya@email.com',
+              hint: l.accountEmailHint,
               keyboardType: TextInputType.emailAddress,
               fill: Colors.white,
               border: kScenicFieldRing,
             ),
             const SizedBox(height: 14),
             WithMeField(
-              label: 'Password',
+              label: l.accountPassword,
               controller: _password,
               obscure: true,
               fill: Colors.white,

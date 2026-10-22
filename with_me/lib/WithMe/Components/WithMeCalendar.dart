@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
+import '../../l10n/l10n.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ScenicKit.dart';
 import 'ScenicScaffold.dart';
+import 'WithMeCharts.dart' show dateLocale;
 
 /// What a day was marked with. The legend on `image6.png` names exactly four.
 enum DayMark { checkIn, exercise, feelingBetter, challenging }
@@ -15,11 +18,12 @@ extension DayMarkInfo on DayMark {
     DayMark.challenging => WithMeColors.pink,
   };
 
-  String get label => switch (this) {
-    DayMark.checkIn => 'Check-in',
-    DayMark.exercise => 'Exercise',
-    DayMark.feelingBetter => 'Feeling better',
-    DayMark.challenging => 'Challenging day',
+  /// The mark's name on the legend, in [l]'s language.
+  String labelIn(AppLocalizations l) => switch (this) {
+    DayMark.checkIn => l.dashMarkCheckIn,
+    DayMark.exercise => l.dashMarkExercise,
+    DayMark.feelingBetter => l.dashMarkFeelingBetter,
+    DayMark.challenging => l.dashMarkChallenging,
   };
 
   /// The marks that read as dark enough to need a white numeral.
@@ -52,24 +56,9 @@ class MonthCalendar extends StatelessWidget {
   final ValueChanged<DateTime>? onSelect;
   final ValueChanged<DateTime>? onMonthChanged;
 
-  static const List<String> _weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  static const List<String> _months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final locale = dateLocale(context);
     final first = DateTime(month.year, month.month, 1);
     final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
     final daysInPrev = DateTime(month.year, month.month, 0).day;
@@ -91,7 +80,7 @@ class MonthCalendar extends StatelessWidget {
               ),
               Expanded(
                 child: ScenicHeading(
-                  '${_months[month.month - 1]} ${month.year}',
+                  DateFormat.yMMMM(locale).format(month),
                   size: 21,
                 ),
               ),
@@ -106,10 +95,14 @@ class MonthCalendar extends StatelessWidget {
           const SizedBox(height: WithMeSpace.md),
           Row(
             children: [
-              for (final d in _weekdays)
+              // Sunday first, as the grid: S M T W T F S.
+              for (var i = 0; i < 7; i++)
                 Expanded(
                   child: Text(
-                    d,
+                    DateFormat(
+                      'ccccc',
+                      locale,
+                    ).format(DateTime(2023, 1, 1 + i)),
                     textAlign: TextAlign.center,
                     style: kScenicLabel.copyWith(fontSize: 13),
                   ),
@@ -253,7 +246,10 @@ class CalendarLegend extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: WithMeSpace.md),
-                  Text(mark.label, style: kScenicBody.copyWith(fontSize: 16)),
+                  Text(
+                    mark.labelIn(context.l10n),
+                    style: kScenicBody.copyWith(fontSize: 16),
+                  ),
                 ],
               ),
             ),
