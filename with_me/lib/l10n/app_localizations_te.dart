@@ -69,7 +69,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'ఇది మీ చెక్-ఇన్‌లు, ఆత్మపరిశీలనలు, మీ పేరును ఈ పరికరం నుండి తొలగిస్తుంది. దీన్ని తిరిగి పొందలేరు.';
+      'ఇది మీ ఖాతాను, అందులోని ప్రతిదాన్నీ తొలగిస్తుంది: మీ చెక్-ఇన్‌లు, వ్యాయామాలు, ఆత్మపరిశీలనలు, మీ పేరు, ఆన్‌లైన్‌లోనూ ఈ ఫోన్‌లోనూ. దీన్ని రద్దు చేయడం సాధ్యం కాదు.';
 
   @override
   String get settingsDeleteFailed =>
@@ -267,7 +267,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String get helpSecureQuestion => 'నా డేటా సురక్షితంగా ఉందా?';
 
   @override
-  String get helpSecureAnswer => 'మీ లాగ్‌లు ఈ పరికరంలోనే నిల్వ అవుతాయి.';
+  String get helpSecureAnswer =>
+      'ఖాతా లేకుండా, అన్నీ ఈ ఫోన్‌లోనే ఉంటాయి. ఖాతా ఉంటే, మీ చెక్-ఇన్‌లు, ఆత్మపరిశీలనలు, వ్యాయామాలు, పేరు మీ ఆన్‌లైన్ ఖాతాలో కూడా ఉంచబడతాయి, కొత్త ఫోన్‌లో కూడా మీతో ఉంటాయి. ఇతర వినియోగదారులు వాటిని ఎప్పటికీ చూడలేరు.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -283,7 +284,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'అవును — సెట్టింగ్‌లలో “నా ఖాతాను తొలగించండి” ఉంది, అది ఈ పరికరంలోని ప్రతిదాన్నీ తొలగిస్తుంది.';
+      'అవును. సెట్టింగ్‌లలో "నా ఖాతాను తొలగించండి" ఉంది, ఇది మీ ఆన్‌లైన్ ఖాతాను, ఈ ఫోన్‌లోని ప్రతిదాన్నీ తొలగిస్తుంది.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -299,7 +300,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'దయచేసి మీ స్థానిక అత్యవసర సేవలను సంప్రదించండి.';
+      'దయచేసి మీ స్థానిక అత్యవసర సేవలను లేదా సంక్షోభ హెల్ప్‌లైన్‌ను సంప్రదించండి.';
 
   @override
   String get menuTitle => 'మెనూ';
@@ -323,7 +324,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName అపాయింట్‌మెంట్‌ల మధ్య ఉండే క్షణాల కోసం రూపొందించబడింది — ఒత్తిడి వచ్చినప్పుడు, మాట్లాడటానికి స్థిరమైన తోడు కావాలనిపించినప్పుడు. ఇది మీ మాట వింటుంది, ఏం జరుగుతోందో దానికి పేరు పెట్టడంలో సహాయపడుతుంది, ఒక చిన్న తదుపరి అడుగును సూచిస్తుంది.';
+    return '$appName అపాయింట్‌మెంట్ల మధ్య ఆ క్షణాల కోసం తయారైంది, ఒత్తిడి వచ్చినప్పుడు మీ పక్కన స్థిరంగా ఏదైనా కావాలనిపించినప్పుడు. ఇది మీ యోగక్షేమాలు అడుగుతుంది, జరుగుతున్నదానికి పేరు పెట్టడంలో సహాయపడుతుంది, ఒక చిన్న తదుపరి అడుగును సూచిస్తుంది.';
   }
 
   @override
@@ -339,7 +340,8 @@ class AppLocalizationsTe extends AppLocalizations {
       'నిబంధనలు ఈ UI వెర్షన్‌లో ఇంకా అందుబాటులో లేవు.';
 
   @override
-  String get accountAiCompanion => 'మీ AI తోడు';
+  String get accountAiCompanion =>
+      'మీ శ్రేయస్సు సహచరుడు';
 
   @override
   String get accountTagline => 'ఇక్కడే. మీతోనే.';
@@ -439,7 +441,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'మీ ఇన్‌బాక్స్ చూడండి — లింక్ 30 నిమిషాల పాటు పనిచేస్తుంది.';
+      'ఆ ఈమెయిల్‌కు ఖాతా ఉంటే, రీసెట్ లింక్ పంపబడుతోంది. దాన్ని ఈ ఫోన్‌లోనే తెరవండి.';
 
   @override
   String get accountProfileTitle => 'నా ప్రొఫైల్';
@@ -2268,4 +2270,128 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'పరికరం భాషను ఉపయోగించండి';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'ఆ ఈమెయిల్, పాస్‌వర్డ్ సరిపోలడం లేదు.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'దయచేసి ముందుగా మీ ఈమెయిల్‌ను నిర్ధారించండి. మా లింక్ కోసం మీ ఇన్‌బాక్స్ చూడండి.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'ఆ ఈమెయిల్‌కు ఇప్పటికే ఖాతా ఉంది. బదులుగా లాగిన్ చేయండి.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'దయచేసి పొడవైన పాస్‌వర్డ్‌ను ఎంచుకోండి (కనీసం 6 అక్షరాలు).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'ఇంటర్నెట్ అందుబాటులో లేదు. మీ కనెక్షన్‌ను తనిఖీ చేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'చాలా ఎక్కువ ప్రయత్నాలు. కొన్ని నిమిషాలు ఆగి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'దయచేసి మీరు ఇంతకు ముందు ఉపయోగించని పాస్‌వర్డ్‌ను ఎంచుకోండి.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'దయచేసి ముందుగా మీ ఈమెయిల్ నమోదు చేయండి.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'ఈ ఫోన్ వేరే ఖాతాకు చెందినది. ఆ ఖాతాతో లాగిన్ చేయండి, లేదా ముందుగా సెట్టింగ్‌లలో దాన్ని తొలగించండి.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'ఈ ఫోన్‌కు ఇప్పటికే ఒక ఖాతా ఉంది. బదులుగా లాగిన్ చేయండి.';
+
+  @override
+  String get accountProblemUnknown =>
+      'ఏదో తప్పు జరిగింది. దయచేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'దాదాపు అయిపోయింది! మీ ఈమెయిల్ చూసి నిర్ధారించడానికి లింక్‌ను నొక్కండి, తర్వాత ఇక్కడ లాగిన్ చేయండి.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'కొత్త పాస్‌వర్డ్ సెట్ చేయండి';
+
+  @override
+  String get accountSetPasswordSave =>
+      'పాస్‌వర్డ్ సేవ్ చేయండి';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'కొత్త పాస్‌వర్డ్‌ను ఎంచుకోండి (కనీసం 6 అక్షరాలు).';
+
+  @override
+  String get accountNewPassword =>
+      'కొత్త పాస్‌వర్డ్';
+
+  @override
+  String get accountRepeatPassword =>
+      'మళ్లీ టైప్ చేయండి';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'రెండు పాస్‌వర్డ్‌లు ఒకేలా లేవు.';
+
+  @override
+  String get accountPasswordSaved =>
+      'మీ కొత్త పాస్‌వర్డ్ సేవ్ అయింది.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'ఈ ఫోన్‌లోని చెక్-ఇన్‌లు, ఆత్మపరిశీలనలు ఉంచాలా?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'ఈ ఫోన్‌లో ఇంకా మీ ఖాతాలో లేని చెక్-ఇన్‌లు లేదా ఆత్మపరిశీలనలు ఉన్నాయి. వాటిని మీ ఖాతాకు జోడించండి, లేదా తీసివేసి మీ ఖాతాలో ఇప్పటికే ఉన్నవాటినే ఉపయోగించండి.';
+
+  @override
+  String get syncAddThem =>
+      'జోడించండి';
+
+  @override
+  String get syncDiscard =>
+      'తీసివేయండి';
+
+  @override
+  String get menuLogOutTitle =>
+      'లాగ్ అవుట్ చేయాలా?';
+
+  @override
+  String get menuLogOutBody =>
+      'మీ చెక్-ఇన్‌లు, ఆత్మపరిశీలనలు మీ ఖాతాలోనే ఉంటాయి, మీరు లాగిన్ చేసినప్పుడు తిరిగి వస్తాయి.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'ఇంకా ఆన్‌లైన్‌లో సేవ్ కాలేదు';
+
+  @override
+  String get menuNotSavedBody =>
+      'కొన్ని మార్పులు ఇంకా మీ ఖాతాకు చేరలేదు (ఇంటర్నెట్ లేదు). ఇప్పుడు లాగ్ అవుట్ చేస్తే అవి పోతాయి.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'అయినా లాగ్ అవుట్ చేయండి';
+
+  @override
+  String get menuStayLoggedIn =>
+      'లాగిన్‌లోనే ఉండండి';
+
+  @override
+  String get settingsExportFailed =>
+      'మీ డేటాను ఎగుమతి చేయలేకపోయాం. మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'మీ ఖాతాను తొలగించలేకపోయాం.';
 }

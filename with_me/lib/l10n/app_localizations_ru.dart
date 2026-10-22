@@ -69,7 +69,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Твои чек-ины, размышления и имя будут удалены с этого устройства. Отменить это нельзя.';
+      'Это удалит твой аккаунт и всё, что в нём есть: чек-ины, упражнения, размышления и имя, в сети и на этом телефоне. Это нельзя отменить.';
 
   @override
   String get settingsDeleteFailed =>
@@ -267,7 +267,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get helpSecureQuestion => 'Мои данные в безопасности?';
 
   @override
-  String get helpSecureAnswer => 'Твои записи хранятся на этом устройстве.';
+  String get helpSecureAnswer =>
+      'Без аккаунта всё остаётся на этом телефоне. С аккаунтом твои чек-ины, размышления, упражнения и имя также хранятся в твоём онлайн-аккаунте и переходят с тобой на новый телефон. Другие пользователи никогда их не увидят.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -283,7 +284,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Да — в «Настройках» есть пункт «Удалить мой аккаунт», который стирает всё на этом устройстве.';
+      'Да. В настройках есть «Удалить мой аккаунт»: это удаляет твой аккаунт в сети и всё, что есть на этом телефоне.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -299,7 +300,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Пожалуйста, обратись в местную службу экстренной помощи.';
+      'Пожалуйста, обратись в местные экстренные службы или на телефон доверия.';
 
   @override
   String get menuTitle => 'Меню';
@@ -323,7 +324,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName создан для моментов между встречами со специалистом — когда накатывает стресс и просто нужен кто-то спокойный рядом, с кем можно поговорить. Он слушает, помогает назвать то, что происходит, и предлагает один маленький следующий шаг.';
+    return '$appName создан для моментов между встречами, когда приходит стресс и рядом нужно что-то надёжное. Он спрашивает, как ты, помогает назвать то, что происходит, и предлагает один небольшой следующий шаг.';
   }
 
   @override
@@ -339,7 +340,8 @@ class AppLocalizationsRu extends AppLocalizations {
       'Условия пока не подключены в этой версии интерфейса.';
 
   @override
-  String get accountAiCompanion => 'Твой ИИ-компаньон';
+  String get accountAiCompanion =>
+      'Твой спутник для хорошего самочувствия';
 
   @override
   String get accountTagline => 'Здесь. С тобой.';
@@ -440,7 +442,8 @@ class AppLocalizationsRu extends AppLocalizations {
       'Укажи свою эл. почту, и я пришлю ссылку для сброса пароля.';
 
   @override
-  String get accountResetSent => 'Проверь почту — ссылка действует 30 минут.';
+  String get accountResetSent =>
+      'Если у этой почты есть аккаунт, ссылка для сброса пароля уже в пути. Открой её на этом телефоне.';
 
   @override
   String get accountProfileTitle => 'Мой профиль';
@@ -2301,4 +2304,128 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Язык устройства';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'Эта почта и пароль не совпадают.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Сначала подтверди почту. Найди нашу ссылку во входящих.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'У этой почты уже есть аккаунт. Лучше войди в него.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Выбери пароль подлиннее (не меньше 6 символов).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'Нет доступа к интернету. Проверь подключение и попробуй ещё раз.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Слишком много попыток. Подожди несколько минут и попробуй снова.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Выбери пароль, который ты раньше не использовал(а).';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Сначала введи свою почту.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Этот телефон привязан к другому аккаунту. Войди в него или сначала удали его в настройках.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'На этом телефоне уже есть аккаунт. Лучше войди в него.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Что-то пошло не так. Попробуй ещё раз.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Почти готово! Открой почту и нажми на ссылку для подтверждения, затем войди здесь.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Новый пароль';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Сохранить пароль';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Придумай новый пароль (не меньше 6 символов).';
+
+  @override
+  String get accountNewPassword =>
+      'Новый пароль';
+
+  @override
+  String get accountRepeatPassword =>
+      'Повтори его';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'Пароли не совпадают.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Новый пароль сохранён.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Оставить чек-ины и размышления с этого телефона?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'На этом телефоне есть чек-ины или размышления, которых ещё нет в твоём аккаунте. Добавь их в аккаунт или удали и используй только то, что уже есть в аккаунте.';
+
+  @override
+  String get syncAddThem =>
+      'Добавить';
+
+  @override
+  String get syncDiscard =>
+      'Удалить';
+
+  @override
+  String get menuLogOutTitle =>
+      'Выйти?';
+
+  @override
+  String get menuLogOutBody =>
+      'Твои чек-ины и размышления остаются в аккаунте и вернутся, когда ты войдёшь.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Ещё не сохранено в сети';
+
+  @override
+  String get menuNotSavedBody =>
+      'Некоторые изменения ещё не попали в аккаунт (нет интернета). Если выйти сейчас, они пропадут.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Всё равно выйти';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Остаться в аккаунте';
+
+  @override
+  String get settingsExportFailed =>
+      'Не удалось экспортировать данные. Попробуй ещё раз.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Не удалось удалить аккаунт.';
 }

@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/export_service.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -59,7 +60,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Couldn't export your data. Try again.")),
+        SnackBar(content: Text(context.l10n.settingsExportFailed)),
       );
     }
   }
@@ -75,15 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             borderRadius: BorderRadius.circular(24),
           ),
           title: ScenicHeading(l.settingsDeleteAccount, size: 21),
-          // Not l.settingsDeleteAccountBody: that wording says only this
-          // device is cleared, but the online account is deleted too. Alex
-          // to reword it in every language, then switch back.
-          content: const Text(
-            'This deletes your account and everything in it: your check-ins, '
-            'exercises, journal and name, online and on this phone. '
-            'It cannot be undone.',
-            style: kScenicBody,
-          ),
+          content: Text(l.settingsDeleteAccountBody, style: kScenicBody),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),
@@ -120,7 +113,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Couldn't delete your account. ${e.problem.message}"),
+          content: Text(
+            '${context.l10n.settingsDeleteAccountFailed} '
+            '${e.problem.text(context.l10n)}',
+          ),
         ),
       );
       return;

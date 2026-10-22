@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -47,13 +48,13 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
       // Wrong password, email not confirmed yet, no internet...
       if (!mounted) return;
       setState(() => _busy = false);
-      _say(e.problem.message);
+      _say(e.problem.text(context.l10n));
       return;
     } catch (_) {
       // The button has to come back and say so.
       if (!mounted) return;
       setState(() => _busy = false);
-      _say(AccountProblem.unknown.message);
+      _say(AccountProblem.unknown.text(context.l10n));
       return;
     }
 

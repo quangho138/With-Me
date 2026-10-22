@@ -69,7 +69,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'इससे आपके चेक-इन, चिंतन और नाम इस डिवाइस से मिट जाएँगे। इसे वापस नहीं लाया जा सकता।';
+      'इससे आपका खाता और उसमें मौजूद सब कुछ हट जाएगा: आपके चेक-इन, व्यायाम, चिंतन और नाम, ऑनलाइन भी और इस फ़ोन पर भी। इसे वापस नहीं किया जा सकता।';
 
   @override
   String get settingsDeleteFailed =>
@@ -266,7 +266,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get helpSecureQuestion => 'क्या मेरा डेटा सुरक्षित है?';
 
   @override
-  String get helpSecureAnswer => 'आपके लॉग इसी डिवाइस पर सेव रहते हैं।';
+  String get helpSecureAnswer =>
+      'बिना खाते के सब कुछ इसी फ़ोन पर रहता है। खाते के साथ, आपके चेक-इन, चिंतन, व्यायाम और नाम आपके ऑनलाइन खाते में भी रखे जाते हैं, ताकि नए फ़ोन पर भी आपके साथ रहें। दूसरे उपयोगकर्ता इन्हें कभी नहीं देख सकते।';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -282,7 +283,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'हाँ — सेटिंग्स में “मेरा खाता हटाएँ” है, जिससे इस डिवाइस पर सब कुछ मिट जाता है।';
+      'हाँ। सेटिंग्स में "मेरा खाता हटाएँ" है, जो आपका ऑनलाइन खाता और इस फ़ोन पर मौजूद सब कुछ हटा देता है।';
 
   @override
   String helpShareQuestion(String appName) {
@@ -298,7 +299,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'कृपया अपनी स्थानीय आपातकालीन सेवाओं से संपर्क करें।';
+      'कृपया अपनी स्थानीय आपातकालीन सेवाओं या किसी संकट हेल्पलाइन से संपर्क करें।';
 
   @override
   String get menuTitle => 'मेनू';
@@ -322,7 +323,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName अपॉइंटमेंट के बीच के उन पलों के लिए बनाया गया है — जब तनाव आ जाए और आपको बस किसी भरोसेमंद से बात करनी हो। यह आपकी बात सुनता है, जो हो रहा है उसे नाम देने में मदद करता है, और एक छोटा-सा अगला क़दम सुझाता है।';
+    return '$appName मुलाक़ातों के बीच के उन पलों के लिए बना है, जब तनाव आता है और आपको अपने पास कुछ स्थिर चाहिए। यह आपका हाल पूछता है, जो हो रहा है उसे नाम देने में मदद करता है, और एक छोटा अगला कदम सुझाता है।';
   }
 
   @override
@@ -338,7 +339,8 @@ class AppLocalizationsHi extends AppLocalizations {
       'नियम अभी इस UI वर्ज़न में उपलब्ध नहीं हैं।';
 
   @override
-  String get accountAiCompanion => 'आपका AI साथी';
+  String get accountAiCompanion =>
+      'आपका वेलबीइंग साथी';
 
   @override
   String get accountTagline => 'यहीं। आपके साथ।';
@@ -439,7 +441,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'अपना इनबॉक्स देखें — लिंक 30 मिनट तक काम करेगा।';
+      'अगर उस ईमेल का खाता है, तो पासवर्ड बदलने का लिंक भेजा जा रहा है। उसे इसी फ़ोन पर खोलें।';
 
   @override
   String get accountProfileTitle => 'मेरी प्रोफ़ाइल';
@@ -2254,4 +2256,128 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'डिवाइस की भाषा इस्तेमाल करें';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'यह ईमेल और पासवर्ड मेल नहीं खाते।';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'पहले अपना ईमेल पक्का करें। हमारे लिंक के लिए अपना इनबॉक्स देखें।';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'इस ईमेल का पहले से एक खाता है। उसकी जगह लॉग इन करें।';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'कृपया लंबा पासवर्ड चुनें (कम से कम 6 अक्षर)।';
+
+  @override
+  String get accountProblemNoInternet =>
+      'इंटरनेट तक नहीं पहुँच पा रहे। अपना कनेक्शन जाँचें और फिर कोशिश करें।';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'बहुत ज़्यादा कोशिशें हो गईं। कुछ मिनट रुककर फिर कोशिश करें।';
+
+  @override
+  String get accountProblemSamePassword =>
+      'कृपया ऐसा पासवर्ड चुनें जो आपने पहले इस्तेमाल न किया हो।';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'कृपया पहले अपना ईमेल डालें।';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'यह फ़ोन किसी दूसरे खाते का है। उसी खाते से लॉग इन करें, या पहले सेटिंग्स में उसे हटा दें।';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'इस फ़ोन पर पहले से एक खाता है। उसकी जगह लॉग इन करें।';
+
+  @override
+  String get accountProblemUnknown =>
+      'कुछ गड़बड़ हो गई। कृपया फिर कोशिश करें।';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'लगभग हो गया! अपना ईमेल देखें और पक्का करने के लिए लिंक पर टैप करें, फिर यहाँ लॉग इन करें।';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'नया पासवर्ड सेट करें';
+
+  @override
+  String get accountSetPasswordSave =>
+      'पासवर्ड सहेजें';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'नया पासवर्ड चुनें (कम से कम 6 अक्षर)।';
+
+  @override
+  String get accountNewPassword =>
+      'नया पासवर्ड';
+
+  @override
+  String get accountRepeatPassword =>
+      'फिर से लिखें';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'दोनों पासवर्ड एक जैसे नहीं हैं।';
+
+  @override
+  String get accountPasswordSaved =>
+      'आपका नया पासवर्ड सहेज लिया गया है।';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'इस फ़ोन के चेक-इन और चिंतन रखें?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'इस फ़ोन पर कुछ चेक-इन या चिंतन हैं जो अभी आपके खाते में नहीं हैं। उन्हें अपने खाते में जोड़ें, या हटा दें और सिर्फ़ वही इस्तेमाल करें जो आपके खाते में पहले से है।';
+
+  @override
+  String get syncAddThem =>
+      'जोड़ें';
+
+  @override
+  String get syncDiscard =>
+      'हटाएँ';
+
+  @override
+  String get menuLogOutTitle =>
+      'लॉग आउट करें?';
+
+  @override
+  String get menuLogOutBody =>
+      'आपके चेक-इन और चिंतन आपके खाते में रहते हैं और लॉग इन करने पर वापस आ जाते हैं।';
+
+  @override
+  String get menuNotSavedTitle =>
+      'अभी ऑनलाइन सहेजा नहीं गया';
+
+  @override
+  String get menuNotSavedBody =>
+      'कुछ बदलाव अभी आपके खाते तक नहीं पहुँचे हैं (इंटरनेट नहीं है)। अगर आप अभी लॉग आउट करेंगे, तो वे खो जाएँगे।';
+
+  @override
+  String get menuLogOutAnyway =>
+      'फिर भी लॉग आउट करें';
+
+  @override
+  String get menuStayLoggedIn =>
+      'लॉग इन रहें';
+
+  @override
+  String get settingsExportFailed =>
+      'आपका डेटा एक्सपोर्ट नहीं हो सका। फिर कोशिश करें।';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'आपका खाता हटाया नहीं जा सका।';
 }

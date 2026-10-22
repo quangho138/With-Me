@@ -20,3 +20,8 @@ from a language shows in English.
   Simplified. The saved setting for Traditional is `zh-Hant`.
 - Use start/end (`EdgeInsetsDirectional`, `AlignmentDirectional`,
   `TextAlign.start`) rather than left/right, so Arabic mirrors correctly.
+- Account errors: the repository says only which problem it was
+  (`AccountProblem`); screens show `problem.text(context.l10n)`
+  (`account_problems.dart`). A new problem needs a new `accountProblem...`
+  message in every `.arb` file. `test/account_problems_text_test.dart` checks
+  every language has words for every problem.

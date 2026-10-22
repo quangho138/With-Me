@@ -69,7 +69,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Esto borra tus registros, reflexiones y tu nombre de este dispositivo. No se puede deshacer.';
+      'Esto elimina tu cuenta y todo lo que contiene: tus registros, ejercicios, reflexiones y nombre, en línea y en este teléfono. No se puede deshacer.';
 
   @override
   String get settingsDeleteFailed =>
@@ -268,7 +268,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get helpSecureAnswer =>
-      'Tus registros se guardan en este dispositivo.';
+      'Sin cuenta, todo se queda en este teléfono. Con una cuenta, tus registros, reflexiones, ejercicios y nombre también se guardan en tu cuenta en línea, para que te acompañen a un teléfono nuevo. Otras personas nunca pueden verlos.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -284,7 +284,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Sí. En Configuración está \"Eliminar mi cuenta\", que borra todo en este dispositivo.';
+      'Sí. En Configuración está "Eliminar mi cuenta", que elimina tu cuenta en línea y todo lo que hay en este teléfono.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -300,7 +300,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Por favor, comunícate con los servicios de emergencia de tu zona.';
+      'Comunícate con los servicios de emergencia de tu zona o con una línea de ayuda en crisis.';
 
   @override
   String get menuTitle => 'Menú';
@@ -325,7 +325,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName nació para los momentos entre una cita y otra: cuando llega el estrés y solo necesitas algo estable con quien hablar. Te escucha, te ayuda a ponerle nombre a lo que está pasando y te ofrece un pequeño paso siguiente.';
+    return '$appName nació para los momentos entre cita y cita, cuando llega el estrés y necesitas algo estable a tu lado. Te pregunta cómo estás, te ayuda a ponerle nombre a lo que pasa y te ofrece un pequeño siguiente paso.';
   }
 
   @override
@@ -341,7 +341,8 @@ class AppLocalizationsEs extends AppLocalizations {
       'Los términos todavía no están disponibles en esta versión.';
 
   @override
-  String get accountAiCompanion => 'Tu compañero de IA';
+  String get accountAiCompanion =>
+      'Tu compañero de bienestar';
 
   @override
   String get accountTagline => 'Aquí. Contigo.';
@@ -444,7 +445,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Revisa tu bandeja de entrada: el enlace funciona durante 30 minutos.';
+      'Si ese correo tiene una cuenta, te llegará un enlace para restablecer la contraseña. Ábrelo en este teléfono.';
 
   @override
   String get accountProfileTitle => 'Mi perfil';
@@ -2269,4 +2270,128 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Usar el idioma del dispositivo';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'El correo y la contraseña no coinciden.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Primero confirma tu correo. Busca nuestro enlace en tu bandeja de entrada.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'Ese correo ya tiene una cuenta. Inicia sesión.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Elige una contraseña más larga (al menos 6 caracteres).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'No hay conexión a internet. Revisa tu conexión e inténtalo de nuevo.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Demasiados intentos. Espera unos minutos e inténtalo de nuevo.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Elige una contraseña que no hayas usado antes.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Primero escribe tu correo.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Este teléfono pertenece a otra cuenta. Inicia sesión con esa cuenta o elimínala antes en Configuración.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'Este teléfono ya tiene una cuenta. Inicia sesión.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Algo salió mal. Inténtalo de nuevo.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      '¡Casi listo! Revisa tu correo y toca el enlace para confirmar; después inicia sesión aquí.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Crea una contraseña nueva';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Guardar contraseña';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Elige una contraseña nueva (al menos 6 caracteres).';
+
+  @override
+  String get accountNewPassword =>
+      'Contraseña nueva';
+
+  @override
+  String get accountRepeatPassword =>
+      'Escríbela otra vez';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'Las dos contraseñas no coinciden.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Tu contraseña nueva está guardada.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      '¿Conservar los registros y reflexiones de este teléfono?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'Este teléfono tiene registros o reflexiones que todavía no están en tu cuenta. Agrégalos a tu cuenta, o descártalos y usa solo lo que ya tiene tu cuenta.';
+
+  @override
+  String get syncAddThem =>
+      'Agregarlos';
+
+  @override
+  String get syncDiscard =>
+      'Descartar';
+
+  @override
+  String get menuLogOutTitle =>
+      '¿Cerrar sesión?';
+
+  @override
+  String get menuLogOutBody =>
+      'Tus registros y reflexiones se quedan en tu cuenta y vuelven cuando inicias sesión.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Aún no se guardó en línea';
+
+  @override
+  String get menuNotSavedBody =>
+      'Algunos cambios todavía no llegaron a tu cuenta (no hay internet). Si cierras sesión ahora, se perderán.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Cerrar sesión de todos modos';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Seguir con la sesión iniciada';
+
+  @override
+  String get settingsExportFailed =>
+      'No se pudieron exportar tus datos. Inténtalo de nuevo.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'No se pudo eliminar tu cuenta.';
 }

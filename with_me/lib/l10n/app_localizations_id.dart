@@ -69,7 +69,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Ini akan menghapus check-in, refleksi, dan namamu dari perangkat ini. Tindakan ini tidak bisa dibatalkan.';
+      'Ini akan menghapus akunmu dan semua isinya: check-in, latihan, refleksi, dan namamu, secara online dan di ponsel ini. Tindakan ini tidak bisa dibatalkan.';
 
   @override
   String get settingsDeleteFailed => 'Datamu tidak bisa dihapus. Coba lagi.';
@@ -266,7 +266,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get helpSecureQuestion => 'Apakah dataku aman?';
 
   @override
-  String get helpSecureAnswer => 'Catatanmu disimpan di perangkat ini.';
+  String get helpSecureAnswer =>
+      'Tanpa akun, semuanya tetap di ponsel ini. Dengan akun, check-in, refleksi, latihan, dan namamu juga disimpan di akun online-mu, sehingga ikut pindah ke ponsel baru. Pengguna lain tidak pernah bisa melihatnya.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -282,7 +283,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Bisa — di Pengaturan ada \"Hapus akunku\", yang menghapus semuanya dari perangkat ini.';
+      'Ya. Di Pengaturan ada "Hapus akunku", yang menghapus akun online-mu dan semua yang ada di ponsel ini.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -297,7 +298,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get helpCrisisQuestion => 'Bagaimana jika aku sedang dalam krisis?';
 
   @override
-  String get helpCrisisAnswer => 'Silakan hubungi layanan darurat di daerahmu.';
+  String get helpCrisisAnswer =>
+      'Silakan hubungi layanan darurat setempat atau layanan bantuan krisis.';
 
   @override
   String get menuTitle => 'Menu';
@@ -321,7 +323,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName dibuat untuk saat-saat di antara jadwal konsultasi — ketika stres datang dan kamu hanya butuh sesuatu yang tenang untuk diajak bicara. Ia mendengarkan, membantumu menamai apa yang sedang terjadi, dan menawarkan satu langkah kecil berikutnya.';
+    return '$appName dibuat untuk saat-saat di antara janji temu, ketika stres datang dan kamu butuh sesuatu yang tenang di sisimu. Ia menanyakan kabarmu, membantumu menamai apa yang sedang terjadi, dan menawarkan satu langkah kecil berikutnya.';
   }
 
   @override
@@ -336,7 +338,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get menuAboutTermsNotWired => 'Ketentuan belum tersedia di versi ini.';
 
   @override
-  String get accountAiCompanion => 'Teman AI-mu';
+  String get accountAiCompanion =>
+      'Teman Kesejahteraanmu';
 
   @override
   String get accountTagline => 'Di sini. Bersamamu.';
@@ -438,7 +441,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Cek kotak masukmu — tautannya berlaku selama 30 menit.';
+      'Jika email itu punya akun, tautan atur ulang sedang dikirim. Buka di ponsel ini.';
 
   @override
   String get accountProfileTitle => 'Profilku';
@@ -2255,4 +2258,128 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Gunakan bahasa perangkat';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'Email dan kata sandi itu tidak cocok.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Konfirmasi emailmu dulu. Cari tautan dari kami di kotak masuk.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'Email itu sudah punya akun. Masuk saja.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Pilih kata sandi yang lebih panjang (minimal 6 karakter).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'Tidak bisa terhubung ke internet. Periksa koneksimu dan coba lagi.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Pilih kata sandi yang belum pernah kamu pakai.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Masukkan emailmu dulu.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Ponsel ini milik akun lain. Masuk dengan akun itu, atau hapus dulu di Pengaturan.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'Ponsel ini sudah punya akun. Masuk saja.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Ada yang salah. Coba lagi.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Hampir selesai! Buka emailmu dan ketuk tautannya untuk konfirmasi, lalu masuk di sini.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Buat kata sandi baru';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Simpan kata sandi';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Pilih kata sandi baru (minimal 6 karakter).';
+
+  @override
+  String get accountNewPassword =>
+      'Kata sandi baru';
+
+  @override
+  String get accountRepeatPassword =>
+      'Ketik lagi';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'Kedua kata sandi tidak sama.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Kata sandi barumu sudah disimpan.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Simpan check-in dan refleksi di ponsel ini?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'Ponsel ini punya check-in atau refleksi yang belum ada di akunmu. Tambahkan ke akunmu, atau buang dan gunakan hanya yang sudah ada di akunmu.';
+
+  @override
+  String get syncAddThem =>
+      'Tambahkan';
+
+  @override
+  String get syncDiscard =>
+      'Buang';
+
+  @override
+  String get menuLogOutTitle =>
+      'Keluar?';
+
+  @override
+  String get menuLogOutBody =>
+      'Check-in dan refleksimu tetap ada di akunmu dan kembali saat kamu masuk.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Belum tersimpan online';
+
+  @override
+  String get menuNotSavedBody =>
+      'Beberapa perubahan belum sampai ke akunmu (tidak ada internet). Jika kamu keluar sekarang, perubahan itu akan hilang.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Tetap keluar';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Tetap masuk';
+
+  @override
+  String get settingsExportFailed =>
+      'Tidak bisa mengekspor datamu. Coba lagi.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Tidak bisa menghapus akunmu.';
 }

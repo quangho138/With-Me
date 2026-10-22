@@ -69,7 +69,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Hii itafuta tathmini zako, tafakari zako na jina lako kwenye kifaa hiki. Haiwezi kutenduliwa.';
+      'Hii itafuta akaunti yako na kila kitu ndani yake: tathmini zako, mazoezi, tafakari na jina lako, mtandaoni na kwenye simu hii. Haiwezi kutenduliwa.';
 
   @override
   String get settingsDeleteFailed =>
@@ -268,7 +268,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get helpSecureAnswer =>
-      'Kumbukumbu zako zimehifadhiwa kwenye kifaa hiki.';
+      'Bila akaunti, kila kitu kinabaki kwenye simu hii. Ukiwa na akaunti, tathmini zako, tafakari, mazoezi na jina lako pia huhifadhiwa kwenye akaunti yako ya mtandaoni, ili zikufuate kwenye simu mpya. Watumiaji wengine hawawezi kamwe kuziona.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -284,7 +284,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Ndiyo — Mipangilio ina “Futa akaunti yangu”, ambayo hufuta kila kitu kwenye kifaa hiki.';
+      'Ndiyo. Kwenye Mipangilio kuna "Futa akaunti yangu", ambacho kinafuta akaunti yako ya mtandaoni na kila kitu kwenye simu hii.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -301,7 +301,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Tafadhali wasiliana na huduma za dharura za eneo lako.';
+      'Tafadhali wasiliana na huduma za dharura za eneo lako au simu ya msaada wa dharura.';
 
   @override
   String get menuTitle => 'Menyu';
@@ -325,7 +325,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName iliundwa kwa ajili ya nyakati zilizo kati ya miadi — msongo wa mawazo unapokuja na unahitaji tu kitu thabiti cha kuzungumza nacho. Husikiliza, hukusaidia kutaja kinachoendelea, na hukupa hatua moja ndogo inayofuata.';
+    return '$appName kimetengenezwa kwa ajili ya nyakati kati ya miadi, msongo unapokuja na unahitaji kitu imara kando yako. Kinakuuliza hali yako, kinakusaidia kutaja kinachoendelea, na kinapendekeza hatua moja ndogo inayofuata.';
   }
 
   @override
@@ -341,7 +341,8 @@ class AppLocalizationsSw extends AppLocalizations {
       'Masharti bado hayajaunganishwa katika toleo hili la kiolesura.';
 
   @override
-  String get accountAiCompanion => 'Mwenzako wa AI';
+  String get accountAiCompanion =>
+      'Mwenzako wa Ustawi';
 
   @override
   String get accountTagline => 'Hapa. Pamoja nawe.';
@@ -442,7 +443,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Angalia kikasha chako — kiungo kinafanya kazi kwa dakika 30.';
+      'Ikiwa barua pepe hiyo ina akaunti, kiungo cha kuweka upya kiko njiani. Kifungue kwenye simu hii.';
 
   @override
   String get accountProfileTitle => 'Wasifu Wangu';
@@ -2269,4 +2270,128 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Tumia lugha ya kifaa';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'Barua pepe na nenosiri hilo havilingani.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Tafadhali thibitisha barua pepe yako kwanza. Tafuta kiungo chetu kwenye kikasha chako.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'Barua pepe hiyo tayari ina akaunti. Ingia badala yake.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Tafadhali chagua nenosiri refu zaidi (angalau herufi 6).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'Haiwezi kufikia intaneti. Angalia muunganisho wako kisha ujaribu tena.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Majaribio mengi mno. Tafadhali subiri dakika chache kisha ujaribu tena.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Tafadhali chagua nenosiri ambalo hujawahi kutumia.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Tafadhali weka barua pepe yako kwanza.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Simu hii ni ya akaunti nyingine. Ingia kwa akaunti hiyo, au uifute kwanza kwenye Mipangilio.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'Simu hii tayari ina akaunti. Ingia badala yake.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Kuna hitilafu imetokea. Tafadhali jaribu tena.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Karibu umemaliza! Fungua barua pepe yako na uguse kiungo kuthibitisha, kisha uingie hapa.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Weka nenosiri jipya';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Hifadhi nenosiri';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Chagua nenosiri jipya (angalau herufi 6).';
+
+  @override
+  String get accountNewPassword =>
+      'Nenosiri jipya';
+
+  @override
+  String get accountRepeatPassword =>
+      'Liandike tena';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'Manenosiri hayo mawili si sawa.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Nenosiri lako jipya limehifadhiwa.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Uweke tathmini na tafakari za simu hii?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'Simu hii ina tathmini au tafakari ambazo bado haziko kwenye akaunti yako. Ziongeze kwenye akaunti yako, au uzitupe na utumie tu kilichopo tayari kwenye akaunti yako.';
+
+  @override
+  String get syncAddThem =>
+      'Ziongeze';
+
+  @override
+  String get syncDiscard =>
+      'Tupa';
+
+  @override
+  String get menuLogOutTitle =>
+      'Utoke?';
+
+  @override
+  String get menuLogOutBody =>
+      'Tathmini na tafakari zako zinabaki kwenye akaunti yako na zitarudi utakapoingia.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Bado hazijahifadhiwa mtandaoni';
+
+  @override
+  String get menuNotSavedBody =>
+      'Baadhi ya mabadiliko bado hayajafika kwenye akaunti yako (hakuna intaneti). Ukitoka sasa, yatapotea.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Toka hata hivyo';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Endelea kuwa umeingia';
+
+  @override
+  String get settingsExportFailed =>
+      'Imeshindwa kuhamisha data yako. Jaribu tena.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Imeshindwa kufuta akaunti yako.';
 }

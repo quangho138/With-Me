@@ -69,7 +69,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Bu işlem durum kayıtlarını, öz değerlendirmelerini ve adını bu cihazdan siler. Geri alınamaz.';
+      'Bu işlem hesabını ve içindeki her şeyi siler: durum kayıtların, egzersizlerin, öz değerlendirmelerin ve adın, hem çevrimiçi hem de bu telefonda. Geri alınamaz.';
 
   @override
   String get settingsDeleteFailed => 'Verilerin silinemedi. Tekrar dene.';
@@ -265,7 +265,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get helpSecureQuestion => 'Verilerim güvende mi?';
 
   @override
-  String get helpSecureAnswer => 'Kayıtların bu cihazda saklanır.';
+  String get helpSecureAnswer =>
+      'Hesap olmadan her şey bu telefonda kalır. Hesapla birlikte durum kayıtların, öz değerlendirmelerin, egzersizlerin ve adın çevrimiçi hesabında da saklanır, böylece yeni bir telefona seninle gelir. Diğer kullanıcılar bunları asla göremez.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -281,7 +282,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Evet. Ayarlar’da, bu cihazdaki her şeyi silen “Hesabımı sil” seçeneği var.';
+      'Evet. Ayarlar\'da "Hesabımı sil" var; bu, çevrimiçi hesabını ve bu telefondaki her şeyi siler.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -297,7 +298,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Lütfen bulunduğun yerdeki acil durum hizmetlerine başvur.';
+      'Lütfen yerel acil durum hizmetlerine ya da bir kriz destek hattına başvur.';
 
   @override
   String get menuTitle => 'Menü';
@@ -321,7 +322,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName, randevular arasındaki anlar için yapıldı: stres çıkageldiğinde ve konuşabileceğin sakin, güvenilir bir şeye ihtiyaç duyduğunda. Seni dinler, neler olduğunu adlandırmana yardım eder ve küçük bir sonraki adım önerir.';
+    return '$appName, randevular arasındaki o anlar için yapıldı: stres geldiğinde ve yanında sağlam bir şeye ihtiyaç duyduğunda. Nasıl olduğunu sorar, olan biteni adlandırmana yardım eder ve küçük bir sonraki adım önerir.';
   }
 
   @override
@@ -337,7 +338,8 @@ class AppLocalizationsTr extends AppLocalizations {
       'Koşullar bu sürümde henüz kullanılamıyor.';
 
   @override
-  String get accountAiCompanion => 'Yapay zekâ yol arkadaşın';
+  String get accountAiCompanion =>
+      'İyi Oluş Arkadaşın';
 
   @override
   String get accountTagline => 'Burada. Seninle.';
@@ -436,7 +438,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Gelen kutunu kontrol et. Bağlantı 30 dakika geçerli.';
+      'Bu e-postanın bir hesabı varsa sıfırlama bağlantısı yolda. Bağlantıyı bu telefonda aç.';
 
   @override
   String get accountProfileTitle => 'Profilim';
@@ -2249,4 +2251,128 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Cihaz dilini kullan';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'Bu e-posta ve şifre eşleşmiyor.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Lütfen önce e-postanı onayla. Bağlantımız için gelen kutuna bak.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'Bu e-postanın zaten bir hesabı var. Onun yerine giriş yap.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Lütfen daha uzun bir şifre seç (en az 6 karakter).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'İnternete ulaşılamıyor. Bağlantını kontrol edip tekrar dene.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Çok fazla deneme yapıldı. Lütfen birkaç dakika bekleyip tekrar dene.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Lütfen daha önce kullanmadığın bir şifre seç.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Lütfen önce e-postanı gir.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Bu telefon başka bir hesaba ait. O hesapla giriş yap ya da önce Ayarlar\'dan sil.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'Bu telefonda zaten bir hesap var. Onun yerine giriş yap.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Bir şeyler ters gitti. Lütfen tekrar dene.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Neredeyse bitti! E-postanı aç ve onaylamak için bağlantıya dokun, sonra burada giriş yap.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Yeni şifre belirle';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Şifreyi kaydet';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Yeni bir şifre seç (en az 6 karakter).';
+
+  @override
+  String get accountNewPassword =>
+      'Yeni şifre';
+
+  @override
+  String get accountRepeatPassword =>
+      'Tekrar yaz';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'İki şifre aynı değil.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Yeni şifren kaydedildi.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Bu telefondaki durum kayıtları ve öz değerlendirmeler kalsın mı?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'Bu telefonda henüz hesabında olmayan durum kayıtları veya öz değerlendirmeler var. Bunları hesabına ekle ya da at ve yalnızca hesabında zaten olanları kullan.';
+
+  @override
+  String get syncAddThem =>
+      'Ekle';
+
+  @override
+  String get syncDiscard =>
+      'At';
+
+  @override
+  String get menuLogOutTitle =>
+      'Çıkış yapılsın mı?';
+
+  @override
+  String get menuLogOutBody =>
+      'Durum kayıtların ve öz değerlendirmelerin hesabında kalır ve giriş yaptığında geri gelir.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Henüz çevrimiçi kaydedilmedi';
+
+  @override
+  String get menuNotSavedBody =>
+      'Bazı değişiklikler henüz hesabına ulaşmadı (internet yok). Şimdi çıkış yaparsan kaybolacaklar.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Yine de çıkış yap';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Girişli kal';
+
+  @override
+  String get settingsExportFailed =>
+      'Verilerin dışa aktarılamadı. Tekrar dene.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Hesabın silinemedi.';
 }

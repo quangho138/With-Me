@@ -69,7 +69,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Buburahin nito ang iyong mga check-in, pagninilay at pangalan sa device na ito. Hindi na ito maibabalik.';
+      'Buburahin nito ang iyong account at lahat ng nasa loob nito: ang iyong mga check-in, ehersisyo, pagninilay at pangalan, online at sa teleponong ito. Hindi na ito maibabalik.';
 
   @override
   String get settingsDeleteFailed =>
@@ -268,7 +268,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get helpSecureAnswer =>
-      'Nakaimbak ang iyong mga tala sa device na ito.';
+      'Kapag walang account, nananatili ang lahat sa teleponong ito. Kapag may account, ang iyong mga check-in, pagninilay, ehersisyo at pangalan ay itinatago rin sa iyong online account, kaya sasama sila sa bagong telepono. Hindi kailanman makikita ng ibang user ang mga ito.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -284,7 +284,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Oo — sa Mga Setting ay may “Burahin ang aking account”, na nagbubura ng lahat ng nasa device na ito.';
+      'Oo. Sa Mga Setting ay may "Burahin ang aking account", na bumubura sa iyong online account at sa lahat ng nasa teleponong ito.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -300,7 +300,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Pakiusap, makipag-ugnayan sa mga serbisyong pang-emergency sa iyong lugar.';
+      'Mangyaring makipag-ugnayan sa lokal na serbisyong pang-emergency o sa isang crisis hotline.';
 
   @override
   String get menuTitle => 'Menu';
@@ -324,7 +324,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return 'Ginawa ang $appName para sa mga sandali sa pagitan ng mga appointment — kapag dumating ang stress at kailangan mo lang ng isang matatag na makakausap. Nakikinig ito, tinutulungan kang pangalanan ang nangyayari, at nag-aalok ng isang maliit na susunod na hakbang.';
+    return 'Ginawa ang $appName para sa mga sandali sa pagitan ng mga appointment, kapag dumarating ang stress at kailangan mo ng isang bagay na matatag sa tabi mo. Kinukumusta ka nito, tinutulungan kang pangalanan ang nangyayari, at nag-aalok ng isang maliit na susunod na hakbang.';
   }
 
   @override
@@ -340,7 +340,8 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi pa naikokonekta ang Mga Tuntunin sa bersyong ito ng UI.';
 
   @override
-  String get accountAiCompanion => 'Ang Iyong AI na Kasama';
+  String get accountAiCompanion =>
+      'Ang Iyong Kasama sa Kagalingan';
 
   @override
   String get accountTagline => 'Nandito. Kasama mo.';
@@ -445,7 +446,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Tingnan ang iyong inbox — gumagana ang link sa loob ng 30 minuto.';
+      'Kung may account ang email na iyon, papunta na ang link para sa pag-reset. Buksan ito sa teleponong ito.';
 
   @override
   String get accountProfileTitle => 'Aking Profile';
@@ -2282,4 +2283,128 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Gamitin ang wika ng device';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'Hindi magkatugma ang email at password na iyon.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Pakikumpirma muna ang iyong email. Hanapin ang aming link sa iyong inbox.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'May account na ang email na iyon. Mag-log in na lang.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Pumili ng mas mahabang password (hindi bababa sa 6 na character).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'Hindi maabot ang internet. Suriin ang iyong koneksyon at subukan ulit.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Masyadong maraming subok. Maghintay ng ilang minuto at subukan ulit.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Pumili ng password na hindi mo pa nagamit dati.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Ilagay muna ang iyong email.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Pag-aari ng ibang account ang teleponong ito. Mag-log in gamit ang account na iyon, o burahin muna ito sa Mga Setting.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'May account na ang teleponong ito. Mag-log in na lang.';
+
+  @override
+  String get accountProblemUnknown =>
+      'May nangyaring mali. Pakisubukan ulit.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Malapit na! Buksan ang iyong email at i-tap ang link para kumpirmahin, pagkatapos ay mag-log in dito.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Magtakda ng bagong password';
+
+  @override
+  String get accountSetPasswordSave =>
+      'I-save ang password';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Pumili ng bagong password (hindi bababa sa 6 na character).';
+
+  @override
+  String get accountNewPassword =>
+      'Bagong password';
+
+  @override
+  String get accountRepeatPassword =>
+      'I-type ulit';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'Hindi magkapareho ang dalawang password.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Na-save na ang bago mong password.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Itago ang mga check-in at pagninilay sa teleponong ito?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'May mga check-in o pagninilay ang teleponong ito na wala pa sa iyong account. Idagdag ang mga ito sa iyong account, o itapon ang mga ito at gamitin lang ang nasa account mo na.';
+
+  @override
+  String get syncAddThem =>
+      'Idagdag';
+
+  @override
+  String get syncDiscard =>
+      'Itapon';
+
+  @override
+  String get menuLogOutTitle =>
+      'Mag-log out?';
+
+  @override
+  String get menuLogOutBody =>
+      'Nananatili sa iyong account ang iyong mga check-in at pagninilay at babalik ang mga ito kapag nag-log in ka.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Hindi pa naka-save online';
+
+  @override
+  String get menuNotSavedBody =>
+      'May ilang pagbabago na hindi pa nakarating sa iyong account (walang internet). Kung mag-log out ka ngayon, mawawala ang mga ito.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Mag-log out pa rin';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Manatiling naka-log in';
+
+  @override
+  String get settingsExportFailed =>
+      'Hindi ma-export ang iyong data. Subukan ulit.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Hindi mabura ang iyong account.';
 }

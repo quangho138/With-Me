@@ -69,7 +69,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'سيؤدي هذا إلى مسح تسجيلات حالتك وتأملاتك واسمك من هذا الجهاز. لا يمكن التراجع عن ذلك.';
+      'سيؤدي هذا إلى حذف حسابك وكل ما فيه: تسجيلات حالتك وتمارينك وتأملاتك واسمك، عبر الإنترنت وعلى هذا الهاتف. لا يمكن التراجع عن ذلك.';
 
   @override
   String get settingsDeleteFailed =>
@@ -265,7 +265,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get helpSecureQuestion => 'هل بياناتي آمنة؟';
 
   @override
-  String get helpSecureAnswer => 'تُحفظ سجلاتك على هذا الجهاز.';
+  String get helpSecureAnswer =>
+      'بدون حساب، يبقى كل شيء على هذا الهاتف. ومع حساب، تُحفَظ تسجيلات حالتك وتأملاتك وتمارينك واسمك أيضًا في حسابك عبر الإنترنت، لتنتقل معك إلى هاتف جديد. لا يمكن للمستخدمين الآخرين رؤيتها أبدًا.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -281,7 +282,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'نعم — في «الإعدادات» يوجد خيار «حذف حسابي» الذي يمسح كل شيء على هذا الجهاز.';
+      'نعم. في الإعدادات يوجد "حذف حسابي"، وهو يحذف حسابك عبر الإنترنت وكل ما على هذا الهاتف.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -295,7 +296,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get helpCrisisQuestion => 'ماذا لو كنت أمرّ بأزمة؟';
 
   @override
-  String get helpCrisisAnswer => 'يُرجى الاتصال بخدمات الطوارئ المحلية.';
+  String get helpCrisisAnswer =>
+      'يُرجى التواصل مع خدمات الطوارئ المحلية أو مع خط مساعدة للأزمات.';
 
   @override
   String get menuTitle => 'القائمة';
@@ -319,7 +321,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return 'صُمّم $appName للَّحظات التي تفصل بين المواعيد — حين يأتي التوتر ولا يلزمك سوى شيء ثابت للحديث إليه. إنه يصغي، ويساعدك على تسمية ما يحدث، ويقترح خطوة صغيرة واحدة تالية.';
+    return 'صُمِّم $appName للّحظات بين المواعيد، حين يأتي التوتر وتحتاج إلى شيء ثابت بجانبك. يطمئن عليك، ويساعدك على تسمية ما يحدث، ويقترح خطوة صغيرة تالية.';
   }
 
   @override
@@ -335,7 +337,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'الشروط غير مفعّلة بعد في هذه النسخة من الواجهة.';
 
   @override
-  String get accountAiCompanion => 'رفيقك بالذكاء الاصطناعي';
+  String get accountAiCompanion =>
+      'رفيقك للعافية';
 
   @override
   String get accountTagline => 'هنا. معك.';
@@ -436,7 +439,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'الرابط في بريدك الوارد — وهو صالح لمدة 30 دقيقة.';
+      'إذا كان لهذا البريد حساب، فرابط إعادة التعيين في طريقه إليك. افتحه على هذا الهاتف.';
 
   @override
   String get accountProfileTitle => 'ملفي الشخصي';
@@ -2302,4 +2305,128 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'استخدام لغة الجهاز';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'البريد الإلكتروني وكلمة المرور غير متطابقين.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'يُرجى تأكيد بريدك الإلكتروني أولًا. ابحث عن رابطنا في صندوق الوارد.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'لهذا البريد حساب بالفعل. سجّل الدخول بدلًا من ذلك.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'يُرجى اختيار كلمة مرور أطول (6 أحرف على الأقل).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'لا يمكن الوصول إلى الإنترنت. تحقّق من اتصالك وحاول مرة أخرى.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'محاولات كثيرة جدًا. يُرجى الانتظار بضع دقائق ثم المحاولة مرة أخرى.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'يُرجى اختيار كلمة مرور لم تستخدمها من قبل.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'يُرجى إدخال بريدك الإلكتروني أولًا.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'هذا الهاتف مرتبط بحساب آخر. سجّل الدخول بذلك الحساب، أو احذفه من الإعدادات أولًا.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'لهذا الهاتف حساب بالفعل. سجّل الدخول بدلًا من ذلك.';
+
+  @override
+  String get accountProblemUnknown =>
+      'حدث خطأ ما. يُرجى المحاولة مرة أخرى.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'أوشكت على الانتهاء! افتح بريدك الإلكتروني واضغط على الرابط للتأكيد، ثم سجّل الدخول هنا.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'تعيين كلمة مرور جديدة';
+
+  @override
+  String get accountSetPasswordSave =>
+      'حفظ كلمة المرور';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'اختر كلمة مرور جديدة (6 أحرف على الأقل).';
+
+  @override
+  String get accountNewPassword =>
+      'كلمة المرور الجديدة';
+
+  @override
+  String get accountRepeatPassword =>
+      'اكتبها مرة أخرى';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'كلمتا المرور غير متطابقتين.';
+
+  @override
+  String get accountPasswordSaved =>
+      'تم حفظ كلمة المرور الجديدة.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'هل تريد الاحتفاظ بتسجيلات الحالة والتأملات الموجودة على هذا الهاتف؟';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'على هذا الهاتف تسجيلات حالة أو تأملات ليست في حسابك بعد. أضِفها إلى حسابك، أو تجاهلها واستخدم فقط ما يوجد في حسابك.';
+
+  @override
+  String get syncAddThem =>
+      'إضافتها';
+
+  @override
+  String get syncDiscard =>
+      'تجاهل';
+
+  @override
+  String get menuLogOutTitle =>
+      'تسجيل الخروج؟';
+
+  @override
+  String get menuLogOutBody =>
+      'تبقى تسجيلات حالتك وتأملاتك في حسابك وتعود عند تسجيل الدخول.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'لم يُحفَظ عبر الإنترنت بعد';
+
+  @override
+  String get menuNotSavedBody =>
+      'بعض التغييرات لم تصل إلى حسابك بعد (لا يوجد إنترنت). إذا سجّلت الخروج الآن، فستضيع.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'تسجيل الخروج على أي حال';
+
+  @override
+  String get menuStayLoggedIn =>
+      'البقاء مسجّلًا الدخول';
+
+  @override
+  String get settingsExportFailed =>
+      'تعذّر تصدير بياناتك. حاول مرة أخرى.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'تعذّر حذف حسابك.';
 }

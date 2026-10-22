@@ -69,7 +69,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'Cela efface tes bilans, tes réflexions et ton prénom de cet appareil. Cette action est définitive.';
+      'Cela supprime ton compte et tout ce qu\'il contient : tes bilans, exercices, réflexions et ton nom, en ligne et sur ce téléphone. C\'est définitif.';
 
   @override
   String get settingsDeleteFailed =>
@@ -268,7 +268,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpSecureAnswer =>
-      'Tes données sont enregistrées sur cet appareil.';
+      'Sans compte, tout reste sur ce téléphone. Avec un compte, tes bilans, réflexions, exercices et ton nom sont aussi gardés dans ton compte en ligne, pour te suivre sur un nouveau téléphone. Les autres utilisateurs ne peuvent jamais les voir.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -284,7 +284,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Oui — dans les Réglages, « Supprimer mon compte » efface tout sur cet appareil.';
+      'Oui. Dans Réglages, « Supprimer mon compte » supprime ton compte en ligne et tout ce qui se trouve sur ce téléphone.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -300,7 +300,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'S’il te plaît, contacte les services d’urgence de ta région.';
+      'Contacte les services d\'urgence de ta région ou une ligne d\'écoute de crise.';
 
   @override
   String get menuTitle => 'Menu';
@@ -324,7 +324,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName est née pour les moments entre deux rendez-vous — quand le stress arrive et que tu as juste besoin de quelque chose de stable à qui parler. Elle t’écoute, t’aide à mettre des mots sur ce qui se passe et te propose un petit pas de plus.';
+    return '$appName est né pour les moments entre deux rendez-vous, quand le stress arrive et que tu as besoin de quelque chose de stable à tes côtés. Il prend de tes nouvelles, t\'aide à nommer ce qui se passe et te propose un petit pas suivant.';
   }
 
   @override
@@ -340,7 +340,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les conditions ne sont pas encore branchées dans cette version de l’interface.';
 
   @override
-  String get accountAiCompanion => 'Ton compagnon IA';
+  String get accountAiCompanion =>
+      'Ton compagnon bien-être';
 
   @override
   String get accountTagline => 'Là. Avec toi.';
@@ -444,7 +445,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Regarde ta boîte de réception — le lien est valable 30 minutes.';
+      'Si cette adresse a un compte, un lien de réinitialisation est en route. Ouvre-le sur ce téléphone.';
 
   @override
   String get accountProfileTitle => 'Mon profil';
@@ -2278,4 +2279,128 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Utiliser la langue de l’appareil';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'Cet e-mail et ce mot de passe ne correspondent pas.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Confirme d\'abord ton e-mail. Cherche notre lien dans ta boîte de réception.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'Cet e-mail a déjà un compte. Connecte-toi plutôt.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Choisis un mot de passe plus long (au moins 6 caractères).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'Impossible d\'accéder à Internet. Vérifie ta connexion et réessaie.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Trop d\'essais. Attends quelques minutes et réessaie.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Choisis un mot de passe que tu n\'as jamais utilisé.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Saisis d\'abord ton e-mail.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'Ce téléphone appartient à un autre compte. Connecte-toi avec celui-ci, ou supprime-le d\'abord dans Réglages.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'Ce téléphone a déjà un compte. Connecte-toi plutôt.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Un problème est survenu. Réessaie.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Presque fini ! Ouvre ton e-mail et touche le lien pour confirmer, puis connecte-toi ici.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Choisir un nouveau mot de passe';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Enregistrer le mot de passe';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Choisis un nouveau mot de passe (au moins 6 caractères).';
+
+  @override
+  String get accountNewPassword =>
+      'Nouveau mot de passe';
+
+  @override
+  String get accountRepeatPassword =>
+      'Saisis-le à nouveau';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'Les deux mots de passe ne sont pas identiques.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Ton nouveau mot de passe est enregistré.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Garder les bilans et réflexions de ce téléphone ?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'Ce téléphone a des bilans ou des réflexions qui ne sont pas encore dans ton compte. Ajoute-les à ton compte, ou supprime-les et garde seulement ce que ton compte contient déjà.';
+
+  @override
+  String get syncAddThem =>
+      'Les ajouter';
+
+  @override
+  String get syncDiscard =>
+      'Supprimer';
+
+  @override
+  String get menuLogOutTitle =>
+      'Se déconnecter ?';
+
+  @override
+  String get menuLogOutBody =>
+      'Tes bilans et réflexions restent dans ton compte et reviennent quand tu te connectes.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Pas encore enregistré en ligne';
+
+  @override
+  String get menuNotSavedBody =>
+      'Certaines modifications n\'ont pas encore atteint ton compte (pas d\'Internet). Si tu te déconnectes maintenant, elles seront perdues.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Se déconnecter quand même';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Rester connecté';
+
+  @override
+  String get settingsExportFailed =>
+      'Impossible d\'exporter tes données. Réessaie.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Impossible de supprimer ton compte.';
 }

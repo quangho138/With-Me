@@ -340,7 +340,7 @@ class _Header extends StatelessWidget {
 }
 
 /// A screen title on the open sky: the bubble type in ink, haloed white so
-/// it holds over bright cloud - as "Your AI Companion" on the welcome.
+/// it holds over bright cloud - as the welcome headline.
 class ScenicTitle extends StatelessWidget {
   const ScenicTitle(this.text, {super.key, this.size = 25});
 

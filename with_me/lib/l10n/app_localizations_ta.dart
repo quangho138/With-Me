@@ -69,7 +69,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'இது உங்கள் செக்-இன்கள், சுயசிந்தனைகள், பெயர் ஆகியவற்றை இந்தச் சாதனத்திலிருந்து அழிக்கும். இதைத் திரும்பப் பெற முடியாது.';
+      'இது உங்கள் கணக்கையும் அதிலுள்ள அனைத்தையும் நீக்கும்: உங்கள் செக்-இன்கள், பயிற்சிகள், சுயசிந்தனைகள் மற்றும் பெயர், ஆன்லைனிலும் இந்தத் தொலைபேசியிலும். இதைத் திரும்பப் பெற முடியாது.';
 
   @override
   String get settingsDeleteFailed =>
@@ -268,7 +268,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get helpSecureAnswer =>
-      'உங்கள் பதிவுகள் இந்தச் சாதனத்திலேயே சேமிக்கப்படுகின்றன.';
+      'கணக்கு இல்லாமல், அனைத்தும் இந்தத் தொலைபேசியிலேயே இருக்கும். கணக்கு இருந்தால், உங்கள் செக்-இன்கள், சுயசிந்தனைகள், பயிற்சிகள் மற்றும் பெயர் உங்கள் ஆன்லைன் கணக்கிலும் சேமிக்கப்படும், புதிய தொலைபேசியிலும் உங்களுடன் வரும். மற்ற பயனர்கள் அவற்றை ஒருபோதும் பார்க்க முடியாது.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -284,7 +284,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'ஆம் — அமைப்புகளில் “எனது கணக்கை நீக்கு” உள்ளது; அது இந்தச் சாதனத்தில் உள்ள அனைத்தையும் அழிக்கும்.';
+      'ஆம். அமைப்புகளில் "எனது கணக்கை நீக்கு" உள்ளது, இது உங்கள் ஆன்லைன் கணக்கையும் இந்தத் தொலைபேசியில் உள்ள அனைத்தையும் நீக்கும்.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -300,7 +300,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'தயவுசெய்து உங்கள் உள்ளூர் அவசரச் சேவைகளைத் தொடர்புகொள்ளுங்கள்.';
+      'தயவுசெய்து உங்கள் உள்ளூர் அவசர சேவைகளை அல்லது நெருக்கடி உதவி எண்ணைத் தொடர்புகொள்ளுங்கள்.';
 
   @override
   String get menuTitle => 'மெனு';
@@ -324,7 +324,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName சந்திப்புகளுக்கு இடையிலான தருணங்களுக்காக உருவாக்கப்பட்டது — மன அழுத்தம் வரும்போது, பேசுவதற்கு நிலையான ஒரு துணை மட்டும் தேவைப்படும்போது. இது நீங்கள் சொல்வதைக் கேட்கிறது, என்ன நடக்கிறது என்பதற்குப் பெயரிட உதவுகிறது, அடுத்த ஒரு சிறிய அடியைப் பரிந்துரைக்கிறது.';
+    return '$appName சந்திப்புகளுக்கு இடையிலான அந்தத் தருணங்களுக்காக உருவாக்கப்பட்டது, மன அழுத்தம் வரும்போது உங்கள் அருகில் நிலையான ஒன்று தேவைப்படும்போது. இது உங்கள் நலம் விசாரிக்கிறது, நடப்பதற்குப் பெயரிட உதவுகிறது, ஒரு சிறிய அடுத்த அடியைப் பரிந்துரைக்கிறது.';
   }
 
   @override
@@ -340,7 +340,8 @@ class AppLocalizationsTa extends AppLocalizations {
       'விதிமுறைகள் இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
 
   @override
-  String get accountAiCompanion => 'உங்கள் AI துணை';
+  String get accountAiCompanion =>
+      'உங்கள் நலவாழ்வுத் துணை';
 
   @override
   String get accountTagline => 'இங்கே. உங்களுடன்.';
@@ -444,7 +445,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'உங்கள் இன்பாக்ஸைப் பாருங்கள் — இணைப்பு 30 நிமிடங்கள் வேலை செய்யும்.';
+      'அந்த மின்னஞ்சலுக்குக் கணக்கு இருந்தால், மீட்டமைப்பு இணைப்பு அனுப்பப்படுகிறது. அதை இந்தத் தொலைபேசியிலேயே திறக்கவும்.';
 
   @override
   String get accountProfileTitle => 'எனது சுயவிவரம்';
@@ -2294,4 +2295,128 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'சாதன மொழியைப் பயன்படுத்து';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'அந்த மின்னஞ்சலும் கடவுச்சொல்லும் பொருந்தவில்லை.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'முதலில் உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவும். எங்கள் இணைப்புக்கு உங்கள் இன்பாக்ஸைப் பாருங்கள்.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'அந்த மின்னஞ்சலுக்கு ஏற்கனவே கணக்கு உள்ளது. அதற்குப் பதிலாக உள்நுழையுங்கள்.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'நீளமான கடவுச்சொல்லைத் தேர்ந்தெடுக்கவும் (குறைந்தது 6 எழுத்துகள்).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'இணையத்தை அணுக முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'அதிக முறை முயன்றுவிட்டீர்கள். சில நிமிடங்கள் காத்திருந்து மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'இதற்கு முன் பயன்படுத்தாத கடவுச்சொல்லைத் தேர்ந்தெடுக்கவும்.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'முதலில் உங்கள் மின்னஞ்சலை உள்ளிடவும்.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'இந்தத் தொலைபேசி வேறொரு கணக்குக்குச் சொந்தமானது. அந்தக் கணக்கில் உள்நுழையுங்கள், அல்லது முதலில் அமைப்புகளில் அதை நீக்குங்கள்.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'இந்தத் தொலைபேசிக்கு ஏற்கனவே கணக்கு உள்ளது. அதற்குப் பதிலாக உள்நுழையுங்கள்.';
+
+  @override
+  String get accountProblemUnknown =>
+      'ஏதோ தவறு நடந்தது. மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'கிட்டத்தட்ட முடிந்தது! உங்கள் மின்னஞ்சலைத் திறந்து உறுதிப்படுத்த இணைப்பைத் தட்டுங்கள், பிறகு இங்கே உள்நுழையுங்கள்.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'புதிய கடவுச்சொல்லை அமைக்கவும்';
+
+  @override
+  String get accountSetPasswordSave =>
+      'கடவுச்சொல்லைச் சேமி';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'புதிய கடவுச்சொல்லைத் தேர்ந்தெடுக்கவும் (குறைந்தது 6 எழுத்துகள்).';
+
+  @override
+  String get accountNewPassword =>
+      'புதிய கடவுச்சொல்';
+
+  @override
+  String get accountRepeatPassword =>
+      'மீண்டும் தட்டச்சு செய்யவும்';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'இரண்டு கடவுச்சொற்களும் ஒன்றாக இல்லை.';
+
+  @override
+  String get accountPasswordSaved =>
+      'உங்கள் புதிய கடவுச்சொல் சேமிக்கப்பட்டது.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'இந்தத் தொலைபேசியின் செக்-இன்களையும் சுயசிந்தனைகளையும் வைத்துக்கொள்ளவா?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'இந்தத் தொலைபேசியில் இன்னும் உங்கள் கணக்கில் இல்லாத செக்-இன்கள் அல்லது சுயசிந்தனைகள் உள்ளன. அவற்றை உங்கள் கணக்கில் சேர்க்கவும், அல்லது நிராகரித்து உங்கள் கணக்கில் ஏற்கனவே உள்ளதை மட்டும் பயன்படுத்தவும்.';
+
+  @override
+  String get syncAddThem =>
+      'சேர்';
+
+  @override
+  String get syncDiscard =>
+      'நிராகரி';
+
+  @override
+  String get menuLogOutTitle =>
+      'வெளியேறவா?';
+
+  @override
+  String get menuLogOutBody =>
+      'உங்கள் செக்-இன்களும் சுயசிந்தனைகளும் உங்கள் கணக்கில் இருக்கும், நீங்கள் உள்நுழையும்போது திரும்ப வரும்.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'இன்னும் ஆன்லைனில் சேமிக்கப்படவில்லை';
+
+  @override
+  String get menuNotSavedBody =>
+      'சில மாற்றங்கள் இன்னும் உங்கள் கணக்கை அடையவில்லை (இணையம் இல்லை). இப்போது வெளியேறினால், அவை இழக்கப்படும்.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'இருந்தாலும் வெளியேறு';
+
+  @override
+  String get menuStayLoggedIn =>
+      'உள்நுழைந்தே இரு';
+
+  @override
+  String get settingsExportFailed =>
+      'உங்கள் தரவை ஏற்றுமதி செய்ய முடியவில்லை. மீண்டும் முயலுங்கள்.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'உங்கள் கணக்கை நீக்க முடியவில்லை.';
 }

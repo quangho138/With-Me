@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Mascot/RealMascot.dart';
@@ -170,13 +171,13 @@ class WelcomeScreen extends StatelessWidget {
                           } on AccountException catch (e) {
                             if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(e.problem.message)),
+                              SnackBar(content: Text(e.problem.text(context.l10n))),
                             );
                           } catch (_) {
                             if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(AccountProblem.unknown.message),
+                                content: Text(AccountProblem.unknown.text(context.l10n)),
                               ),
                             );
                           }

@@ -82,7 +82,7 @@
   "@settingsDeleteAccount": {
     "description": "Settings row and dialog title for deleting the account and all its data. Destructive. Also quoted in a Help answer."
   },
-  "settingsDeleteAccountBody": "This clears your check-ins, reflections and name from this device. It cannot be undone.",
+  "settingsDeleteAccountBody": "This deletes your account and everything in it: your check-ins, exercises, journal and name, online and on this phone. It cannot be undone.",
   "@settingsDeleteAccountBody": {
     "description": "Body of the dialog that confirms deleting the account. Plain and calm, but clear it is permanent."
   },
@@ -393,7 +393,7 @@
   "@helpSecureQuestion": {
     "description": "Help question about data safety."
   },
-  "helpSecureAnswer": "Your logs are stored on this device.",
+  "helpSecureAnswer": "Without an account, everything stays on this phone. With an account, your check-ins, journal, exercises and name are also kept in your online account, so they follow you to a new phone. Other users can never see them.",
   "@helpSecureAnswer": {
     "description": "Help answer to 'Is my data secure?'."
   },
@@ -415,7 +415,7 @@
   "@helpDeleteQuestion": {
     "description": "Help question."
   },
-  "helpDeleteAnswer": "Yes — Settings has \"Delete my account\", which clears everything on this device.",
+  "helpDeleteAnswer": "Yes. Settings has \"Delete my account\", which deletes your account online and everything on this phone.",
   "@helpDeleteAnswer": {
     "description": "Help answer. 'Settings' and 'Delete my account' are the names of a screen and its row; use the same wording as those."
   },
@@ -437,7 +437,7 @@
   "@helpCrisisQuestion": {
     "description": "Help question from someone who may be in crisis. Serious, caring tone."
   },
-  "helpCrisisAnswer": "Please contact your local emergency services.",
+  "helpCrisisAnswer": "Please contact your local emergency services or a crisis hotline.",
   "@helpCrisisAnswer": {
     "description": "Help answer for someone in crisis: get urgent help. Serious, caring and direct."
   },
@@ -471,7 +471,7 @@
       }
     }
   },
-  "menuAboutStory": "{appName} was built for the moments between appointments — when stress arrives and you just need something steady to talk to. It listens, helps you name what is happening, and offers one small next step.",
+  "menuAboutStory": "{appName} was built for the moments between appointments, when stress arrives and you need something steady by your side. It checks in with you, helps you name what is happening, and offers one small next step.",
   "@menuAboutStory": {
     "description": "About screen: why the app exists. Warm and calm. {appName} is the app's name.",
     "placeholders": {
@@ -499,7 +499,7 @@
   "@menuAboutTermsNotWired": {
     "description": "Notice that the terms page is not built yet."
   },
-  "accountAiCompanion": "Your AI Companion",
+  "accountAiCompanion": "Your Wellbeing Companion",
   "@accountAiCompanion": {
     "description": "Subtitle under the app's name on the welcome and About screens."
   },
@@ -629,7 +629,7 @@
   "@accountResetExplainer": {
     "description": "Explanation on the reset-password screen, in the companion's friendly first person."
   },
-  "accountResetSent": "Check your inbox — the link works for 30 minutes.",
+  "accountResetSent": "If that email has an account, a reset link is on its way. Open it on this phone.",
   "@accountResetSent": {
     "description": "Confirmation after asking for a reset link."
   },
@@ -3107,5 +3107,36 @@
   "settingsLanguageDevice": "Use device language",
   "@settingsLanguageDevice": {
     "description": "First choice on the Language screen: follow the phone's language setting. The phone's language name is shown under it."
-  }
+  },
+  "accountProblemWrongPassword": "That email and password do not match.",
+  "accountProblemEmailNotConfirmed": "Please confirm your email first. Check your inbox for our link.",
+  "accountProblemEmailInUse": "That email already has an account. Log in instead.",
+  "accountProblemWeakPassword": "Please choose a longer password (at least 6 characters).",
+  "accountProblemNoInternet": "Can't reach the internet. Check your connection and try again.",
+  "accountProblemTooManyTries": "Too many tries. Please wait a few minutes and try again.",
+  "accountProblemSamePassword": "Please choose a password you have not used before.",
+  "accountProblemEnterEmail": "Please enter your email first.",
+  "accountProblemOtherAccountOnPhone": "This phone belongs to another account. Log in with that one, or delete it in Settings first.",
+  "accountProblemAccountAlreadyOnPhone": "This phone already has an account. Log in instead.",
+  "accountProblemUnknown": "Something went wrong. Please try again.",
+  "accountConfirmEmailSent": "Almost done! Check your email and tap the link to confirm, then log in here.",
+  "accountSetPasswordTitle": "Set a new password",
+  "accountSetPasswordSave": "Save password",
+  "accountSetPasswordExplainer": "Choose a new password (at least 6 characters).",
+  "accountNewPassword": "New password",
+  "accountRepeatPassword": "Type it again",
+  "accountPasswordsDiffer": "The two passwords are not the same.",
+  "accountPasswordSaved": "Your new password is saved.",
+  "syncKeepPhoneDataTitle": "Keep this phone's check-ins and journal?",
+  "syncKeepPhoneDataBody": "This phone has check-ins or journal entries that are not in your account yet. Add them to your account, or discard them and use only what your account already has.",
+  "syncAddThem": "Add them",
+  "syncDiscard": "Discard",
+  "menuLogOutTitle": "Log out?",
+  "menuLogOutBody": "Your check-ins and journal stay in your account and come back when you log in.",
+  "menuNotSavedTitle": "Not saved online yet",
+  "menuNotSavedBody": "Some changes haven't reached your account yet (no internet). If you log out now, they will be lost.",
+  "menuLogOutAnyway": "Log out anyway",
+  "menuStayLoggedIn": "Stay logged in",
+  "settingsExportFailed": "Couldn't export your data. Try again.",
+  "settingsDeleteAccountFailed": "Couldn't delete your account."
 }

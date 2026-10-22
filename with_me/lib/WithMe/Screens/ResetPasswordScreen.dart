@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -36,14 +37,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       setState(() => _busy = false);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(e.problem.message)));
+      ).showSnackBar(SnackBar(content: Text(e.problem.text(context.l10n))));
       return;
     } catch (_) {
       if (!mounted) return;
       setState(() => _busy = false);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(SnackBar(content: Text(AccountProblem.unknown.message)));
+      ).showSnackBar(SnackBar(content: Text(AccountProblem.unknown.text(context.l10n))));
       return;
     }
     if (!mounted) return;
@@ -101,13 +102,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     width: 1.4,
                   ),
                 ),
-                // Not l.accountResetSent: its wording promises a 30 minute
-                // link, which is not a setting we have, and leaves out that
-                // the link must be opened on this phone. Alex to reword it
-                // in every language, then switch back.
-                child: const Text(
-                  'If that email has an account, a reset link is on its way. '
-                  'Open it on this phone.',
+                child: Text(
+                  l.accountResetSent,
                   textAlign: TextAlign.center,
                   style: kScenicBody,
                 ),

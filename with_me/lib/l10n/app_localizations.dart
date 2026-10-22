@@ -254,7 +254,7 @@ abstract class AppLocalizations {
   /// Body of the dialog that confirms deleting the account. Plain and calm, but clear it is permanent.
   ///
   /// In en, this message translates to:
-  /// **'This clears your check-ins, reflections and name from this device. It cannot be undone.'**
+  /// **'This deletes your account and everything in it: your check-ins, exercises, journal and name, online and on this phone. It cannot be undone.'**
   String get settingsDeleteAccountBody;
 
   /// Error after deleting the account failed; nothing was deleted.
@@ -590,7 +590,7 @@ abstract class AppLocalizations {
   /// Help answer to 'Is my data secure?'.
   ///
   /// In en, this message translates to:
-  /// **'Your logs are stored on this device.'**
+  /// **'Without an account, everything stays on this phone. With an account, your check-ins, journal, exercises and name are also kept in your online account, so they follow you to a new phone. Other users can never see them.'**
   String get helpSecureAnswer;
 
   /// Help question. {appName} is the app's name.
@@ -614,7 +614,7 @@ abstract class AppLocalizations {
   /// Help answer. 'Settings' and 'Delete my account' are the names of a screen and its row; use the same wording as those.
   ///
   /// In en, this message translates to:
-  /// **'Yes — Settings has \"Delete my account\", which clears everything on this device.'**
+  /// **'Yes. Settings has "Delete my account", which deletes your account online and everything on this phone.'**
   String get helpDeleteAnswer;
 
   /// Help question. {appName} is the app's name.
@@ -638,7 +638,7 @@ abstract class AppLocalizations {
   /// Help answer for someone in crisis: get urgent help. Serious, caring and direct.
   ///
   /// In en, this message translates to:
-  /// **'Please contact your local emergency services.'**
+  /// **'Please contact your local emergency services or a crisis hotline.'**
   String get helpCrisisAnswer;
 
   /// Title of the menu screen, and what a screen reader says for the menu button on Home.
@@ -680,7 +680,7 @@ abstract class AppLocalizations {
   /// About screen: why the app exists. Warm and calm. {appName} is the app's name.
   ///
   /// In en, this message translates to:
-  /// **'{appName} was built for the moments between appointments — when stress arrives and you just need something steady to talk to. It listens, helps you name what is happening, and offers one small next step.'**
+  /// **'{appName} was built for the moments between appointments, when stress arrives and you need something steady by your side. It checks in with you, helps you name what is happening, and offers one small next step.'**
   String menuAboutStory(String appName);
 
   /// About screen: the app is not medical care. Clear and plain. {appName} is the app's name.
@@ -704,7 +704,7 @@ abstract class AppLocalizations {
   /// Subtitle under the app's name on the welcome and About screens.
   ///
   /// In en, this message translates to:
-  /// **'Your AI Companion'**
+  /// **'Your Wellbeing Companion'**
   String get accountAiCompanion;
 
   /// The app's short tagline, on the welcome screen and in the menu. Warm, reassuring.
@@ -890,7 +890,7 @@ abstract class AppLocalizations {
   /// Confirmation after asking for a reset link.
   ///
   /// In en, this message translates to:
-  /// **'Check your inbox — the link works for 30 minutes.'**
+  /// **'If that email has an account, a reset link is on its way. Open it on this phone.'**
   String get accountResetSent;
 
   /// Title of the profile screen, and its row in the menu.
@@ -3868,7 +3868,194 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Use device language'**
   String get settingsLanguageDevice;
+
+  /// No description provided for @accountProblemWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'That email and password do not match.'**
+  String get accountProblemWrongPassword;
+
+  /// No description provided for @accountProblemEmailNotConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your email first. Check your inbox for our link.'**
+  String get accountProblemEmailNotConfirmed;
+
+  /// No description provided for @accountProblemEmailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'That email already has an account. Log in instead.'**
+  String get accountProblemEmailInUse;
+
+  /// No description provided for @accountProblemWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a longer password (at least 6 characters).'**
+  String get accountProblemWeakPassword;
+
+  /// No description provided for @accountProblemNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'Can't reach the internet. Check your connection and try again.'**
+  String get accountProblemNoInternet;
+
+  /// No description provided for @accountProblemTooManyTries.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Please wait a few minutes and try again.'**
+  String get accountProblemTooManyTries;
+
+  /// No description provided for @accountProblemSamePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a password you have not used before.'**
+  String get accountProblemSamePassword;
+
+  /// No description provided for @accountProblemEnterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email first.'**
+  String get accountProblemEnterEmail;
+
+  /// No description provided for @accountProblemOtherAccountOnPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone belongs to another account. Log in with that one, or delete it in Settings first.'**
+  String get accountProblemOtherAccountOnPhone;
+
+  /// No description provided for @accountProblemAccountAlreadyOnPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone already has an account. Log in instead.'**
+  String get accountProblemAccountAlreadyOnPhone;
+
+  /// No description provided for @accountProblemUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get accountProblemUnknown;
+
+  /// No description provided for @accountConfirmEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost done! Check your email and tap the link to confirm, then log in here.'**
+  String get accountConfirmEmailSent;
+
+  /// No description provided for @accountSetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a new password'**
+  String get accountSetPasswordTitle;
+
+  /// No description provided for @accountSetPasswordSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save password'**
+  String get accountSetPasswordSave;
+
+  /// No description provided for @accountSetPasswordExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a new password (at least 6 characters).'**
+  String get accountSetPasswordExplainer;
+
+  /// No description provided for @accountNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get accountNewPassword;
+
+  /// No description provided for @accountRepeatPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Type it again'**
+  String get accountRepeatPassword;
+
+  /// No description provided for @accountPasswordsDiffer.
+  ///
+  /// In en, this message translates to:
+  /// **'The two passwords are not the same.'**
+  String get accountPasswordsDiffer;
+
+  /// No description provided for @accountPasswordSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your new password is saved.'**
+  String get accountPasswordSaved;
+
+  /// No description provided for @syncKeepPhoneDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep this phone's check-ins and journal?'**
+  String get syncKeepPhoneDataTitle;
+
+  /// No description provided for @syncKeepPhoneDataBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone has check-ins or journal entries that are not in your account yet. Add them to your account, or discard them and use only what your account already has.'**
+  String get syncKeepPhoneDataBody;
+
+  /// No description provided for @syncAddThem.
+  ///
+  /// In en, this message translates to:
+  /// **'Add them'**
+  String get syncAddThem;
+
+  /// No description provided for @syncDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get syncDiscard;
+
+  /// No description provided for @menuLogOutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out?'**
+  String get menuLogOutTitle;
+
+  /// No description provided for @menuLogOutBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your check-ins and journal stay in your account and come back when you log in.'**
+  String get menuLogOutBody;
+
+  /// No description provided for @menuNotSavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not saved online yet'**
+  String get menuNotSavedTitle;
+
+  /// No description provided for @menuNotSavedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Some changes haven't reached your account yet (no internet). If you log out now, they will be lost.'**
+  String get menuNotSavedBody;
+
+  /// No description provided for @menuLogOutAnyway.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out anyway'**
+  String get menuLogOutAnyway;
+
+  /// No description provided for @menuStayLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay logged in'**
+  String get menuStayLoggedIn;
+
+  /// No description provided for @settingsExportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn't export your data. Try again.'**
+  String get settingsExportFailed;
+
+  /// No description provided for @settingsDeleteAccountFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn't delete your account.'**
+  String get settingsDeleteAccountFailed;
 }
+
 
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {

@@ -69,7 +69,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'এতে এই ডিভাইস থেকে আপনার চেক-ইন, ভাবনা আর নাম মুছে যাবে। এটি আর ফেরানো যাবে না।';
+      'এতে আপনার অ্যাকাউন্ট এবং তার ভেতরের সবকিছু মুছে যাবে: আপনার চেক-ইন, ব্যায়াম, ভাবনা ও নাম, অনলাইনে এবং এই ফোনে। এটি আর ফেরানো যাবে না।';
 
   @override
   String get settingsDeleteFailed =>
@@ -266,7 +266,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get helpSecureQuestion => 'আমার ডেটা কি নিরাপদ?';
 
   @override
-  String get helpSecureAnswer => 'আপনার লগ এই ডিভাইসেই সংরক্ষিত থাকে।';
+  String get helpSecureAnswer =>
+      'অ্যাকাউন্ট ছাড়া সবকিছু এই ফোনেই থাকে। অ্যাকাউন্ট থাকলে আপনার চেক-ইন, ভাবনা, ব্যায়াম ও নাম আপনার অনলাইন অ্যাকাউন্টেও রাখা হয়, যাতে নতুন ফোনেও সেগুলো আপনার সঙ্গে থাকে। অন্য ব্যবহারকারীরা কখনো সেগুলো দেখতে পারেন না।';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -282,7 +283,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'হ্যাঁ — সেটিংসে “আমার অ্যাকাউন্ট মুছুন” আছে, যা এই ডিভাইসের সবকিছু মুছে দেয়।';
+      'হ্যাঁ। সেটিংসে "আমার অ্যাকাউন্ট মুছুন" আছে, যা আপনার অনলাইন অ্যাকাউন্ট এবং এই ফোনের সবকিছু মুছে দেয়।';
 
   @override
   String helpShareQuestion(String appName) {
@@ -298,7 +299,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'অনুগ্রহ করে আপনার স্থানীয় জরুরি পরিষেবার সাথে যোগাযোগ করুন।';
+      'অনুগ্রহ করে আপনার স্থানীয় জরুরি পরিষেবা বা কোনো সংকট হেল্পলাইনের সঙ্গে যোগাযোগ করুন।';
 
   @override
   String get menuTitle => 'মেনু';
@@ -322,7 +323,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName তৈরি হয়েছে অ্যাপয়েন্টমেন্টের মাঝের সেই মুহূর্তগুলোর জন্য — যখন চাপ এসে পড়ে আর আপনার শুধু ভরসা করে কথা বলার মতো কিছু দরকার। এটি আপনার কথা শোনে, কী ঘটছে তা চিনে নিতে সাহায্য করে, আর একটি ছোট পরের পদক্ষেপের কথা বলে।';
+    return '$appName তৈরি হয়েছে অ্যাপয়েন্টমেন্টের মাঝের সেই মুহূর্তগুলোর জন্য, যখন চাপ আসে আর আপনার পাশে স্থির কিছু দরকার হয়। এটি আপনার খোঁজ নেয়, যা ঘটছে তার নাম দিতে সাহায্য করে, আর একটি ছোট পরের ধাপ দেখায়।';
   }
 
   @override
@@ -338,7 +339,8 @@ class AppLocalizationsBn extends AppLocalizations {
       'শর্তাবলি এই UI সংস্করণে এখনও চালু হয়নি।';
 
   @override
-  String get accountAiCompanion => 'আপনার AI সঙ্গী';
+  String get accountAiCompanion =>
+      'আপনার সুস্থতার সঙ্গী';
 
   @override
   String get accountTagline => 'এখানেই। আপনার সাথে।';
@@ -438,7 +440,8 @@ class AppLocalizationsBn extends AppLocalizations {
       'আপনার ইমেল লিখুন, আমি আপনাকে একটি রিসেট লিংক পাঠিয়ে দেব।';
 
   @override
-  String get accountResetSent => 'ইনবক্স দেখুন — লিংকটি 30 মিনিট কাজ করবে।';
+  String get accountResetSent =>
+      'ওই ইমেলের অ্যাকাউন্ট থাকলে, পাসওয়ার্ড রিসেটের লিংক পাঠানো হচ্ছে। এটি এই ফোনেই খুলুন।';
 
   @override
   String get accountProfileTitle => 'আমার প্রোফাইল';
@@ -2248,4 +2251,128 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'ডিভাইসের ভাষা ব্যবহার করুন';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'এই ইমেল আর পাসওয়ার্ড মিলছে না।';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'আগে আপনার ইমেল নিশ্চিত করুন। আমাদের লিংকের জন্য ইনবক্স দেখুন।';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'এই ইমেলের একটি অ্যাকাউন্ট আগেই আছে। তার বদলে লগ ইন করুন।';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'অনুগ্রহ করে লম্বা পাসওয়ার্ড বেছে নিন (অন্তত ৬টি অক্ষর)।';
+
+  @override
+  String get accountProblemNoInternet =>
+      'ইন্টারনেটে পৌঁছানো যাচ্ছে না। আপনার সংযোগ দেখে আবার চেষ্টা করুন।';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'অনেকবার চেষ্টা হয়েছে। কয়েক মিনিট অপেক্ষা করে আবার চেষ্টা করুন।';
+
+  @override
+  String get accountProblemSamePassword =>
+      'অনুগ্রহ করে এমন পাসওয়ার্ড বেছে নিন যা আগে ব্যবহার করেননি।';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'অনুগ্রহ করে আগে আপনার ইমেল লিখুন।';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'এই ফোনটি অন্য একটি অ্যাকাউন্টের। সেই অ্যাকাউন্টে লগ ইন করুন, অথবা আগে সেটিংসে গিয়ে সেটি মুছে দিন।';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'এই ফোনে আগেই একটি অ্যাকাউন্ট আছে। তার বদলে লগ ইন করুন।';
+
+  @override
+  String get accountProblemUnknown =>
+      'কিছু একটা ভুল হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'প্রায় হয়ে গেছে! আপনার ইমেল দেখুন এবং নিশ্চিত করতে লিংকে ট্যাপ করুন, তারপর এখানে লগ ইন করুন।';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'নতুন পাসওয়ার্ড দিন';
+
+  @override
+  String get accountSetPasswordSave =>
+      'পাসওয়ার্ড সংরক্ষণ করুন';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'একটি নতুন পাসওয়ার্ড বেছে নিন (অন্তত ৬টি অক্ষর)।';
+
+  @override
+  String get accountNewPassword =>
+      'নতুন পাসওয়ার্ড';
+
+  @override
+  String get accountRepeatPassword =>
+      'আবার লিখুন';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'দুটি পাসওয়ার্ড এক নয়।';
+
+  @override
+  String get accountPasswordSaved =>
+      'আপনার নতুন পাসওয়ার্ড সংরক্ষিত হয়েছে।';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'এই ফোনের চেক-ইন আর ভাবনাগুলো রাখবেন?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'এই ফোনে এমন কিছু চেক-ইন বা ভাবনা আছে যা এখনো আপনার অ্যাকাউন্টে নেই। সেগুলো আপনার অ্যাকাউন্টে যোগ করুন, অথবা বাদ দিয়ে শুধু অ্যাকাউন্টে যা আছে তা ব্যবহার করুন।';
+
+  @override
+  String get syncAddThem =>
+      'যোগ করুন';
+
+  @override
+  String get syncDiscard =>
+      'বাদ দিন';
+
+  @override
+  String get menuLogOutTitle =>
+      'লগ আউট করবেন?';
+
+  @override
+  String get menuLogOutBody =>
+      'আপনার চেক-ইন আর ভাবনা আপনার অ্যাকাউন্টে থাকে এবং লগ ইন করলে আবার ফিরে আসে।';
+
+  @override
+  String get menuNotSavedTitle =>
+      'এখনো অনলাইনে সংরক্ষিত হয়নি';
+
+  @override
+  String get menuNotSavedBody =>
+      'কিছু পরিবর্তন এখনো আপনার অ্যাকাউন্টে পৌঁছায়নি (ইন্টারনেট নেই)। এখন লগ আউট করলে সেগুলো হারিয়ে যাবে।';
+
+  @override
+  String get menuLogOutAnyway =>
+      'তবুও লগ আউট করুন';
+
+  @override
+  String get menuStayLoggedIn =>
+      'লগ ইন থাকুন';
+
+  @override
+  String get settingsExportFailed =>
+      'আপনার ডেটা এক্সপোর্ট করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'আপনার অ্যাকাউন্ট মোছা যায়নি।';
 }

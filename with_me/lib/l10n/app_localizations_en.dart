@@ -69,7 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'This clears your check-ins, reflections and name from this device. It cannot be undone.';
+      'This deletes your account and everything in it: your check-ins, exercises, journal and name, online and on this phone. It cannot be undone.';
 
   @override
   String get settingsDeleteFailed => 'Couldn\'t delete your data. Try again.';
@@ -265,7 +265,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get helpSecureQuestion => 'Is my data secure?';
 
   @override
-  String get helpSecureAnswer => 'Your logs are stored on this device.';
+  String get helpSecureAnswer =>
+      'Without an account, everything stays on this phone. With an account, your check-ins, journal, exercises and name are also kept in your online account, so they follow you to a new phone. Other users can never see them.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -281,7 +282,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Yes — Settings has \"Delete my account\", which clears everything on this device.';
+      'Yes. Settings has "Delete my account", which deletes your account online and everything on this phone.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -297,7 +298,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Please contact your local emergency services.';
+      'Please contact your local emergency services or a crisis hotline.';
 
   @override
   String get menuTitle => 'Menu';
@@ -321,7 +322,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName was built for the moments between appointments — when stress arrives and you just need something steady to talk to. It listens, helps you name what is happening, and offers one small next step.';
+    return '$appName was built for the moments between appointments, when stress arrives and you need something steady by your side. It checks in with you, helps you name what is happening, and offers one small next step.';
   }
 
   @override
@@ -337,7 +338,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Terms are not wired up in this UI pass.';
 
   @override
-  String get accountAiCompanion => 'Your AI Companion';
+  String get accountAiCompanion =>
+      'Your Wellbeing Companion';
 
   @override
   String get accountTagline => 'Here. With you.';
@@ -437,7 +439,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get accountResetSent =>
-      'Check your inbox — the link works for 30 minutes.';
+      'If that email has an account, a reset link is on its way. Open it on this phone.';
 
   @override
   String get accountProfileTitle => 'My Profile';
@@ -2243,4 +2245,128 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => 'Use device language';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'That email and password do not match.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'Please confirm your email first. Check your inbox for our link.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'That email already has an account. Log in instead.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'Please choose a longer password (at least 6 characters).';
+
+  @override
+  String get accountProblemNoInternet =>
+      'Can\'t reach the internet. Check your connection and try again.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      'Too many tries. Please wait a few minutes and try again.';
+
+  @override
+  String get accountProblemSamePassword =>
+      'Please choose a password you have not used before.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      'Please enter your email first.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'This phone belongs to another account. Log in with that one, or delete it in Settings first.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'This phone already has an account. Log in instead.';
+
+  @override
+  String get accountProblemUnknown =>
+      'Something went wrong. Please try again.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'Almost done! Check your email and tap the link to confirm, then log in here.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      'Set a new password';
+
+  @override
+  String get accountSetPasswordSave =>
+      'Save password';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      'Choose a new password (at least 6 characters).';
+
+  @override
+  String get accountNewPassword =>
+      'New password';
+
+  @override
+  String get accountRepeatPassword =>
+      'Type it again';
+
+  @override
+  String get accountPasswordsDiffer =>
+      'The two passwords are not the same.';
+
+  @override
+  String get accountPasswordSaved =>
+      'Your new password is saved.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'Keep this phone\'s check-ins and journal?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'This phone has check-ins or journal entries that are not in your account yet. Add them to your account, or discard them and use only what your account already has.';
+
+  @override
+  String get syncAddThem =>
+      'Add them';
+
+  @override
+  String get syncDiscard =>
+      'Discard';
+
+  @override
+  String get menuLogOutTitle =>
+      'Log out?';
+
+  @override
+  String get menuLogOutBody =>
+      'Your check-ins and journal stay in your account and come back when you log in.';
+
+  @override
+  String get menuNotSavedTitle =>
+      'Not saved online yet';
+
+  @override
+  String get menuNotSavedBody =>
+      'Some changes haven\'t reached your account yet (no internet). If you log out now, they will be lost.';
+
+  @override
+  String get menuLogOutAnyway =>
+      'Log out anyway';
+
+  @override
+  String get menuStayLoggedIn =>
+      'Stay logged in';
+
+  @override
+  String get settingsExportFailed =>
+      'Couldn\'t export your data. Try again.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'Couldn\'t delete your account.';
 }

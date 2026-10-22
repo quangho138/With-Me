@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
+import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -67,14 +68,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       // Wrong format, email in use, no internet, one account per phone...
       if (!mounted) return;
       setState(() => _busy = false);
-      _say(e.problem.message);
+      _say(e.problem.text(context.l10n));
       return;
     } catch (_) {
       // The button has to come back and say so rather than sit disabled
       // for ever.
       if (!mounted) return;
       setState(() => _busy = false);
-      _say(AccountProblem.unknown.message);
+      _say(AccountProblem.unknown.text(context.l10n));
       return;
     }
 
@@ -82,10 +83,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     if (result == SignUpResult.confirmEmail) {
       // Backend (stage 3): the account is made; it works once the email
       // link is tapped. Then log in.
-      _say(
-        'Almost done! Check your email and tap the link to confirm, '
-        'then log in here.',
-      );
+      _say(context.l10n.accountConfirmEmailSent);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
       );

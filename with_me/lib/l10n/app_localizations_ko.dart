@@ -69,7 +69,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      '이 기기에서 체크인, 돌아보기 기록, 이름이 지워져요. 되돌릴 수 없어요.';
+      '계정과 그 안의 모든 것(체크인, 운동, 돌아보기 기록, 이름)이 온라인과 이 휴대폰에서 모두 삭제돼요. 되돌릴 수 없어요.';
 
   @override
   String get settingsDeleteFailed => '데이터를 삭제하지 못했어요. 다시 시도해 주세요.';
@@ -262,7 +262,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get helpSecureQuestion => '내 데이터는 안전한가요?';
 
   @override
-  String get helpSecureAnswer => '기록은 이 기기에 저장돼요.';
+  String get helpSecureAnswer =>
+      '계정이 없으면 모든 것이 이 휴대폰에만 있어요. 계정이 있으면 체크인, 돌아보기 기록, 운동, 이름이 온라인 계정에도 저장되어 새 휴대폰에서도 함께해요. 다른 사용자는 절대 볼 수 없어요.';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -277,7 +278,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      '네. \'설정\'의 \'내 계정 삭제\'에서 이 기기에 있는 모든 데이터를 지울 수 있어요.';
+      '네. 설정의 \'내 계정 삭제\'에서 온라인 계정과 이 휴대폰의 모든 것을 삭제할 수 있어요.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -291,7 +292,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get helpCrisisQuestion => '위기 상황이라면 어떻게 해야 하나요?';
 
   @override
-  String get helpCrisisAnswer => '계신 지역의 응급 서비스에 연락해 주세요.';
+  String get helpCrisisAnswer =>
+      '가까운 응급 서비스나 위기 상담 전화에 연락해 주세요.';
 
   @override
   String get menuTitle => '메뉴';
@@ -315,7 +317,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appName는 진료나 상담 사이의 순간을 위해 만들어졌어요. 스트레스가 찾아왔을 때, 그저 차분하게 이야기 나눌 상대가 필요할 때요. 이야기를 듣고, 지금 무슨 일이 일어나고 있는지 이름 붙일 수 있게 돕고, 작은 다음 걸음 하나를 제안해요.';
+    return '$appName은 약속과 약속 사이의 순간, 스트레스가 찾아와 곁에 든든한 무언가가 필요할 때를 위해 만들어졌어요. 안부를 묻고, 지금 일어나는 일에 이름을 붙이도록 돕고, 작은 다음 걸음을 제안해요.';
   }
 
   @override
@@ -330,7 +332,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get menuAboutTermsNotWired => '이용약관은 이번 버전에서 아직 연결되지 않았어요.';
 
   @override
-  String get accountAiCompanion => '나의 AI 동반자';
+  String get accountAiCompanion =>
+      '당신의 웰빙 동반자';
 
   @override
   String get accountTagline => '여기, 당신 곁에.';
@@ -425,7 +428,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get accountResetExplainer => '이메일을 입력하면 재설정 링크를 보내 드릴게요.';
 
   @override
-  String get accountResetSent => '받은편지함을 확인해 주세요. 링크는 30분 동안 유효해요.';
+  String get accountResetSent =>
+      '그 이메일에 계정이 있으면 재설정 링크가 가고 있어요. 이 휴대폰에서 열어 주세요.';
 
   @override
   String get accountProfileTitle => '내 프로필';
@@ -2171,4 +2175,128 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => '기기 언어 사용';
+
+  @override
+  String get accountProblemWrongPassword =>
+      '이메일과 비밀번호가 맞지 않아요.';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      '먼저 이메일을 인증해 주세요. 받은편지함에서 링크를 확인하세요.';
+
+  @override
+  String get accountProblemEmailInUse =>
+      '이 이메일은 이미 계정이 있어요. 로그인해 주세요.';
+
+  @override
+  String get accountProblemWeakPassword =>
+      '더 긴 비밀번호를 정해 주세요(6자 이상).';
+
+  @override
+  String get accountProblemNoInternet =>
+      '인터넷에 연결할 수 없어요. 연결을 확인하고 다시 시도해 주세요.';
+
+  @override
+  String get accountProblemTooManyTries =>
+      '시도 횟수가 너무 많아요. 몇 분 뒤에 다시 시도해 주세요.';
+
+  @override
+  String get accountProblemSamePassword =>
+      '전에 사용하지 않은 비밀번호를 정해 주세요.';
+
+  @override
+  String get accountProblemEnterEmail =>
+      '먼저 이메일을 입력해 주세요.';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      '이 휴대폰은 다른 계정에 연결되어 있어요. 그 계정으로 로그인하거나, 먼저 설정에서 삭제해 주세요.';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      '이 휴대폰에는 이미 계정이 있어요. 로그인해 주세요.';
+
+  @override
+  String get accountProblemUnknown =>
+      '문제가 생겼어요. 다시 시도해 주세요.';
+
+  @override
+  String get accountConfirmEmailSent =>
+      '거의 다 됐어요! 이메일의 링크를 눌러 인증한 뒤 여기서 로그인해 주세요.';
+
+  @override
+  String get accountSetPasswordTitle =>
+      '새 비밀번호 설정';
+
+  @override
+  String get accountSetPasswordSave =>
+      '비밀번호 저장';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      '새 비밀번호를 정해 주세요(6자 이상).';
+
+  @override
+  String get accountNewPassword =>
+      '새 비밀번호';
+
+  @override
+  String get accountRepeatPassword =>
+      '한 번 더 입력';
+
+  @override
+  String get accountPasswordsDiffer =>
+      '두 비밀번호가 같지 않아요.';
+
+  @override
+  String get accountPasswordSaved =>
+      '새 비밀번호를 저장했어요.';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      '이 휴대폰의 체크인과 돌아보기 기록을 남길까요?';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      '이 휴대폰에 아직 계정에 없는 체크인이나 돌아보기 기록이 있어요. 계정에 추가하거나, 버리고 계정에 이미 있는 것만 사용하세요.';
+
+  @override
+  String get syncAddThem =>
+      '추가하기';
+
+  @override
+  String get syncDiscard =>
+      '버리기';
+
+  @override
+  String get menuLogOutTitle =>
+      '로그아웃할까요?';
+
+  @override
+  String get menuLogOutBody =>
+      '체크인과 돌아보기 기록은 계정에 남아 있고 로그인하면 다시 돌아와요.';
+
+  @override
+  String get menuNotSavedTitle =>
+      '아직 온라인에 저장되지 않았어요';
+
+  @override
+  String get menuNotSavedBody =>
+      '일부 변경 사항이 아직 계정에 전송되지 않았어요(인터넷 없음). 지금 로그아웃하면 사라져요.';
+
+  @override
+  String get menuLogOutAnyway =>
+      '그래도 로그아웃';
+
+  @override
+  String get menuStayLoggedIn =>
+      '로그인 유지';
+
+  @override
+  String get settingsExportFailed =>
+      '데이터를 내보내지 못했어요. 다시 시도해 주세요.';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      '계정을 삭제하지 못했어요.';
 }

@@ -69,7 +69,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountBody =>
-      'この端末から、チェックイン、ふり返り、名前が消去されます。元に戻すことはできません。';
+      'アカウントとその中のすべて（チェックイン、エクササイズ、ふり返り、名前）が、オンラインとこのスマホの両方から削除されます。元に戻すことはできません。';
 
   @override
   String get settingsDeleteFailed => 'データを削除できませんでした。もう一度お試しください。';
@@ -262,7 +262,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get helpSecureQuestion => 'データは安全ですか？';
 
   @override
-  String get helpSecureAnswer => '記録はこの端末に保存されます。';
+  String get helpSecureAnswer =>
+      'アカウントなしの場合、すべてこのスマホに保存されます。アカウントがあると、チェックイン、ふり返り、エクササイズ、名前はオンラインのアカウントにも保存され、新しいスマホでも使えます。ほかのユーザーが見ることはできません。';
 
   @override
   String helpWhoQuestion(String appName) {
@@ -276,7 +277,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get helpDeleteQuestion => 'データを削除できますか？';
 
   @override
-  String get helpDeleteAnswer => 'はい。「設定」に「アカウントを削除」があり、この端末のすべてのデータを消去できます。';
+  String get helpDeleteAnswer =>
+      'はい。設定の「アカウントを削除」で、オンラインのアカウントとこのスマホのデータがすべて削除されます。';
 
   @override
   String helpShareQuestion(String appName) {
@@ -290,7 +292,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get helpCrisisQuestion => '危機的な状況にあるときは？';
 
   @override
-  String get helpCrisisAnswer => 'お住まいの地域の緊急通報サービスに連絡してください。';
+  String get helpCrisisAnswer =>
+      'お住まいの地域の緊急サービス、または相談窓口に連絡してください。';
 
   @override
   String get menuTitle => 'メニュー';
@@ -314,7 +317,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String menuAboutStory(String appName) {
-    return '$appNameは、通院や相談の合間のひとときのために作られました。ストレスがやってきて、ただ落ち着いて話せる相手がほしいときのために。話を聞き、いま起きていることに名前をつける手助けをして、小さな次の一歩をひとつ提案します。';
+    return '$appName は、予定と予定のあいだ、ストレスを感じて何か安定したものがそばにほしいときのために作られました。あなたの様子をたずね、いま起きていることに名前をつける手伝いをし、小さな次の一歩を提案します。';
   }
 
   @override
@@ -329,7 +332,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get menuAboutTermsNotWired => '利用規約は、このバージョンではまだ使えません。';
 
   @override
-  String get accountAiCompanion => 'あなたのAIコンパニオン';
+  String get accountAiCompanion =>
+      'あなたのウェルビーイングの相棒';
 
   @override
   String get accountTagline => 'ここに。あなたのそばに。';
@@ -424,7 +428,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get accountResetExplainer => 'メールアドレスを入力してくれたら、再設定リンクをお送りしますね。';
 
   @override
-  String get accountResetSent => '受信トレイを確認してください。リンクは30分間有効です。';
+  String get accountResetSent =>
+      'そのメールアドレスのアカウントがあれば、リセット用のリンクを送ります。このスマホで開いてください。';
 
   @override
   String get accountProfileTitle => 'マイプロフィール';
@@ -2171,4 +2176,128 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsLanguageDevice => '端末の言語を使う';
+
+  @override
+  String get accountProblemWrongPassword =>
+      'メールアドレスとパスワードが一致しません。';
+
+  @override
+  String get accountProblemEmailNotConfirmed =>
+      'まずメールアドレスを確認してください。受信トレイのリンクを開いてください。';
+
+  @override
+  String get accountProblemEmailInUse =>
+      'このメールアドレスにはすでにアカウントがあります。ログインしてください。';
+
+  @override
+  String get accountProblemWeakPassword =>
+      'もっと長いパスワードにしてください（6文字以上）。';
+
+  @override
+  String get accountProblemNoInternet =>
+      'インターネットにつながりません。接続を確認して、もう一度お試しください。';
+
+  @override
+  String get accountProblemTooManyTries =>
+      '試行回数が多すぎます。数分待ってから、もう一度お試しください。';
+
+  @override
+  String get accountProblemSamePassword =>
+      'これまでに使ったことのないパスワードにしてください。';
+
+  @override
+  String get accountProblemEnterEmail =>
+      '先にメールアドレスを入力してください。';
+
+  @override
+  String get accountProblemOtherAccountOnPhone =>
+      'このスマホは別のアカウントで使われています。そのアカウントでログインするか、先に設定で削除してください。';
+
+  @override
+  String get accountProblemAccountAlreadyOnPhone =>
+      'このスマホにはすでにアカウントがあります。ログインしてください。';
+
+  @override
+  String get accountProblemUnknown =>
+      '問題が発生しました。もう一度お試しください。';
+
+  @override
+  String get accountConfirmEmailSent =>
+      'あと少しです！メールのリンクをタップして確認してから、ここでログインしてください。';
+
+  @override
+  String get accountSetPasswordTitle =>
+      '新しいパスワードを設定';
+
+  @override
+  String get accountSetPasswordSave =>
+      'パスワードを保存';
+
+  @override
+  String get accountSetPasswordExplainer =>
+      '新しいパスワードを決めてください（6文字以上）。';
+
+  @override
+  String get accountNewPassword =>
+      '新しいパスワード';
+
+  @override
+  String get accountRepeatPassword =>
+      'もう一度入力';
+
+  @override
+  String get accountPasswordsDiffer =>
+      '2つのパスワードが一致しません。';
+
+  @override
+  String get accountPasswordSaved =>
+      '新しいパスワードを保存しました。';
+
+  @override
+  String get syncKeepPhoneDataTitle =>
+      'このスマホのチェックインとふり返りを残しますか？';
+
+  @override
+  String get syncKeepPhoneDataBody =>
+      'このスマホには、まだアカウントにないチェックインやふり返りがあります。アカウントに追加するか、削除してアカウントにあるものだけを使ってください。';
+
+  @override
+  String get syncAddThem =>
+      '追加する';
+
+  @override
+  String get syncDiscard =>
+      '削除する';
+
+  @override
+  String get menuLogOutTitle =>
+      'ログアウトしますか？';
+
+  @override
+  String get menuLogOutBody =>
+      'チェックインとふり返りはアカウントに残り、ログインすると戻ってきます。';
+
+  @override
+  String get menuNotSavedTitle =>
+      'まだオンラインに保存されていません';
+
+  @override
+  String get menuNotSavedBody =>
+      '一部の変更がまだアカウントに届いていません（インターネットに未接続）。今ログアウトすると失われます。';
+
+  @override
+  String get menuLogOutAnyway =>
+      'それでもログアウト';
+
+  @override
+  String get menuStayLoggedIn =>
+      'ログインしたままにする';
+
+  @override
+  String get settingsExportFailed =>
+      'データをエクスポートできませんでした。もう一度お試しください。';
+
+  @override
+  String get settingsDeleteAccountFailed =>
+      'アカウントを削除できませんでした。';
 }

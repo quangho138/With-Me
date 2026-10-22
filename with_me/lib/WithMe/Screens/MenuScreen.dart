@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
-import '../Components/ScenicChoice.dart';
 import '../../l10n/l10n.dart';
+import '../Components/ScenicChoice.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
@@ -158,12 +158,10 @@ class _AccountRowState extends State<_AccountRow> {
     // the journal are in the account and come back on the next login.
     final sure = await showScenicChoice(
       context,
-      title: 'Log out?',
-      body:
-          'Your check-ins and journal stay in your account and come back '
-          'when you log in.',
-      yes: 'Log out',
-      no: 'Cancel',
+      title: context.l10n.menuLogOutTitle,
+      body: context.l10n.menuLogOutBody,
+      yes: context.l10n.menuLogOut,
+      no: context.l10n.commonCancel,
       yesIsDanger: true,
     );
     if (sure != true || !mounted) return;
@@ -178,12 +176,10 @@ class _AccountRowState extends State<_AccountRow> {
     if (waiting && mounted) {
       final anyway = await showScenicChoice(
         context,
-        title: 'Not saved online yet',
-        body:
-            "Some changes haven't reached your account yet (no internet). "
-            'If you log out now, they will be lost.',
-        yes: 'Log out anyway',
-        no: 'Stay logged in',
+        title: context.l10n.menuNotSavedTitle,
+        body: context.l10n.menuNotSavedBody,
+        yes: context.l10n.menuLogOutAnyway,
+        no: context.l10n.menuStayLoggedIn,
         yesIsDanger: true,
       );
       if (anyway != true) return;
