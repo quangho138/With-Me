@@ -614,7 +614,7 @@ abstract class AppLocalizations {
   /// Help answer. 'Settings' and 'Delete my account' are the names of a screen and its row; use the same wording as those.
   ///
   /// In en, this message translates to:
-  /// **'Yes. Settings has "Delete my account", which deletes your account online and everything on this phone.'**
+  /// **'Yes. Settings has \"Delete my account\", which deletes your account online and everything on this phone.'**
   String get helpDeleteAnswer;
 
   /// Help question. {appName} is the app's name.
@@ -3896,7 +3896,7 @@ abstract class AppLocalizations {
   /// No description provided for @accountProblemNoInternet.
   ///
   /// In en, this message translates to:
-  /// **'Can't reach the internet. Check your connection and try again.'**
+  /// **'Can\'t reach the internet. Check your connection and try again.'**
   String get accountProblemNoInternet;
 
   /// No description provided for @accountProblemTooManyTries.
@@ -3986,7 +3986,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncKeepPhoneDataTitle.
   ///
   /// In en, this message translates to:
-  /// **'Keep this phone's check-ins and journal?'**
+  /// **'Keep this phone\'s check-ins and journal?'**
   String get syncKeepPhoneDataTitle;
 
   /// No description provided for @syncKeepPhoneDataBody.
@@ -4028,7 +4028,7 @@ abstract class AppLocalizations {
   /// No description provided for @menuNotSavedBody.
   ///
   /// In en, this message translates to:
-  /// **'Some changes haven't reached your account yet (no internet). If you log out now, they will be lost.'**
+  /// **'Some changes haven\'t reached your account yet (no internet). If you log out now, they will be lost.'**
   String get menuNotSavedBody;
 
   /// No description provided for @menuLogOutAnyway.
@@ -4046,16 +4046,15 @@ abstract class AppLocalizations {
   /// No description provided for @settingsExportFailed.
   ///
   /// In en, this message translates to:
-  /// **'Couldn't export your data. Try again.'**
+  /// **'Couldn\'t export your data. Try again.'**
   String get settingsExportFailed;
 
   /// No description provided for @settingsDeleteAccountFailed.
   ///
   /// In en, this message translates to:
-  /// **'Couldn't delete your account.'**
+  /// **'Couldn\'t delete your account.'**
   String get settingsDeleteAccountFailed;
 }
-
 
 class _AppLocalizationsDelegate
     extends LocalizationsDelegate<AppLocalizations> {

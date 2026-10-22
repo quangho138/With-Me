@@ -42,9 +42,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     } catch (_) {
       if (!mounted) return;
       setState(() => _busy = false);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(AccountProblem.unknown.text(context.l10n))));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AccountProblem.unknown.text(context.l10n))),
+      );
       return;
     }
     if (!mounted) return;

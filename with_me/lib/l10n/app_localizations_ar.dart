@@ -282,7 +282,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'نعم. في الإعدادات يوجد "حذف حسابي"، وهو يحذف حسابك عبر الإنترنت وكل ما على هذا الهاتف.';
+      'نعم. في الإعدادات يوجد \"حذف حسابي\"، وهو يحذف حسابك عبر الإنترنت وكل ما على هذا الهاتف.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -337,8 +337,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'الشروط غير مفعّلة بعد في هذه النسخة من الواجهة.';
 
   @override
-  String get accountAiCompanion =>
-      'رفيقك للعافية';
+  String get accountAiCompanion => 'رفيقك للعافية';
 
   @override
   String get accountTagline => 'هنا. معك.';
@@ -2335,8 +2334,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'يُرجى اختيار كلمة مرور لم تستخدمها من قبل.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'يُرجى إدخال بريدك الإلكتروني أولًا.';
+  String get accountProblemEnterEmail => 'يُرجى إدخال بريدك الإلكتروني أولًا.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2347,40 +2345,33 @@ class AppLocalizationsAr extends AppLocalizations {
       'لهذا الهاتف حساب بالفعل. سجّل الدخول بدلًا من ذلك.';
 
   @override
-  String get accountProblemUnknown =>
-      'حدث خطأ ما. يُرجى المحاولة مرة أخرى.';
+  String get accountProblemUnknown => 'حدث خطأ ما. يُرجى المحاولة مرة أخرى.';
 
   @override
   String get accountConfirmEmailSent =>
       'أوشكت على الانتهاء! افتح بريدك الإلكتروني واضغط على الرابط للتأكيد، ثم سجّل الدخول هنا.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'تعيين كلمة مرور جديدة';
+  String get accountSetPasswordTitle => 'تعيين كلمة مرور جديدة';
 
   @override
-  String get accountSetPasswordSave =>
-      'حفظ كلمة المرور';
+  String get accountSetPasswordSave => 'حفظ كلمة المرور';
 
   @override
   String get accountSetPasswordExplainer =>
       'اختر كلمة مرور جديدة (6 أحرف على الأقل).';
 
   @override
-  String get accountNewPassword =>
-      'كلمة المرور الجديدة';
+  String get accountNewPassword => 'كلمة المرور الجديدة';
 
   @override
-  String get accountRepeatPassword =>
-      'اكتبها مرة أخرى';
+  String get accountRepeatPassword => 'اكتبها مرة أخرى';
 
   @override
-  String get accountPasswordsDiffer =>
-      'كلمتا المرور غير متطابقتين.';
+  String get accountPasswordsDiffer => 'كلمتا المرور غير متطابقتين.';
 
   @override
-  String get accountPasswordSaved =>
-      'تم حفظ كلمة المرور الجديدة.';
+  String get accountPasswordSaved => 'تم حفظ كلمة المرور الجديدة.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2391,42 +2382,34 @@ class AppLocalizationsAr extends AppLocalizations {
       'على هذا الهاتف تسجيلات حالة أو تأملات ليست في حسابك بعد. أضِفها إلى حسابك، أو تجاهلها واستخدم فقط ما يوجد في حسابك.';
 
   @override
-  String get syncAddThem =>
-      'إضافتها';
+  String get syncAddThem => 'إضافتها';
 
   @override
-  String get syncDiscard =>
-      'تجاهل';
+  String get syncDiscard => 'تجاهل';
 
   @override
-  String get menuLogOutTitle =>
-      'تسجيل الخروج؟';
+  String get menuLogOutTitle => 'تسجيل الخروج؟';
 
   @override
   String get menuLogOutBody =>
       'تبقى تسجيلات حالتك وتأملاتك في حسابك وتعود عند تسجيل الدخول.';
 
   @override
-  String get menuNotSavedTitle =>
-      'لم يُحفَظ عبر الإنترنت بعد';
+  String get menuNotSavedTitle => 'لم يُحفَظ عبر الإنترنت بعد';
 
   @override
   String get menuNotSavedBody =>
       'بعض التغييرات لم تصل إلى حسابك بعد (لا يوجد إنترنت). إذا سجّلت الخروج الآن، فستضيع.';
 
   @override
-  String get menuLogOutAnyway =>
-      'تسجيل الخروج على أي حال';
+  String get menuLogOutAnyway => 'تسجيل الخروج على أي حال';
 
   @override
-  String get menuStayLoggedIn =>
-      'البقاء مسجّلًا الدخول';
+  String get menuStayLoggedIn => 'البقاء مسجّلًا الدخول';
 
   @override
-  String get settingsExportFailed =>
-      'تعذّر تصدير بياناتك. حاول مرة أخرى.';
+  String get settingsExportFailed => 'تعذّر تصدير بياناتك. حاول مرة أخرى.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'تعذّر حذف حسابك.';
+  String get settingsDeleteAccountFailed => 'تعذّر حذف حسابك.';
 }

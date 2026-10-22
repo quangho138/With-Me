@@ -284,7 +284,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Sí. En Configuración está "Eliminar mi cuenta", que elimina tu cuenta en línea y todo lo que hay en este teléfono.';
+      'Sí. En Configuración está \"Eliminar mi cuenta\", que elimina tu cuenta en línea y todo lo que hay en este teléfono.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -341,8 +341,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Los términos todavía no están disponibles en esta versión.';
 
   @override
-  String get accountAiCompanion =>
-      'Tu compañero de bienestar';
+  String get accountAiCompanion => 'Tu compañero de bienestar';
 
   @override
   String get accountTagline => 'Aquí. Contigo.';
@@ -2300,8 +2299,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Elige una contraseña que no hayas usado antes.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Primero escribe tu correo.';
+  String get accountProblemEnterEmail => 'Primero escribe tu correo.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2312,40 +2310,33 @@ class AppLocalizationsEs extends AppLocalizations {
       'Este teléfono ya tiene una cuenta. Inicia sesión.';
 
   @override
-  String get accountProblemUnknown =>
-      'Algo salió mal. Inténtalo de nuevo.';
+  String get accountProblemUnknown => 'Algo salió mal. Inténtalo de nuevo.';
 
   @override
   String get accountConfirmEmailSent =>
       '¡Casi listo! Revisa tu correo y toca el enlace para confirmar; después inicia sesión aquí.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Crea una contraseña nueva';
+  String get accountSetPasswordTitle => 'Crea una contraseña nueva';
 
   @override
-  String get accountSetPasswordSave =>
-      'Guardar contraseña';
+  String get accountSetPasswordSave => 'Guardar contraseña';
 
   @override
   String get accountSetPasswordExplainer =>
       'Elige una contraseña nueva (al menos 6 caracteres).';
 
   @override
-  String get accountNewPassword =>
-      'Contraseña nueva';
+  String get accountNewPassword => 'Contraseña nueva';
 
   @override
-  String get accountRepeatPassword =>
-      'Escríbela otra vez';
+  String get accountRepeatPassword => 'Escríbela otra vez';
 
   @override
-  String get accountPasswordsDiffer =>
-      'Las dos contraseñas no coinciden.';
+  String get accountPasswordsDiffer => 'Las dos contraseñas no coinciden.';
 
   @override
-  String get accountPasswordSaved =>
-      'Tu contraseña nueva está guardada.';
+  String get accountPasswordSaved => 'Tu contraseña nueva está guardada.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2356,42 +2347,35 @@ class AppLocalizationsEs extends AppLocalizations {
       'Este teléfono tiene registros o reflexiones que todavía no están en tu cuenta. Agrégalos a tu cuenta, o descártalos y usa solo lo que ya tiene tu cuenta.';
 
   @override
-  String get syncAddThem =>
-      'Agregarlos';
+  String get syncAddThem => 'Agregarlos';
 
   @override
-  String get syncDiscard =>
-      'Descartar';
+  String get syncDiscard => 'Descartar';
 
   @override
-  String get menuLogOutTitle =>
-      '¿Cerrar sesión?';
+  String get menuLogOutTitle => '¿Cerrar sesión?';
 
   @override
   String get menuLogOutBody =>
       'Tus registros y reflexiones se quedan en tu cuenta y vuelven cuando inicias sesión.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Aún no se guardó en línea';
+  String get menuNotSavedTitle => 'Aún no se guardó en línea';
 
   @override
   String get menuNotSavedBody =>
       'Algunos cambios todavía no llegaron a tu cuenta (no hay internet). Si cierras sesión ahora, se perderán.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Cerrar sesión de todos modos';
+  String get menuLogOutAnyway => 'Cerrar sesión de todos modos';
 
   @override
-  String get menuStayLoggedIn =>
-      'Seguir con la sesión iniciada';
+  String get menuStayLoggedIn => 'Seguir con la sesión iniciada';
 
   @override
   String get settingsExportFailed =>
       'No se pudieron exportar tus datos. Inténtalo de nuevo.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'No se pudo eliminar tu cuenta.';
+  String get settingsDeleteAccountFailed => 'No se pudo eliminar tu cuenta.';
 }

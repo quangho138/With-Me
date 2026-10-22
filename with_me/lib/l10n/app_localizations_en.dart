@@ -282,7 +282,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Yes. Settings has "Delete my account", which deletes your account online and everything on this phone.';
+      'Yes. Settings has \"Delete my account\", which deletes your account online and everything on this phone.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -338,8 +338,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Terms are not wired up in this UI pass.';
 
   @override
-  String get accountAiCompanion =>
-      'Your Wellbeing Companion';
+  String get accountAiCompanion => 'Your Wellbeing Companion';
 
   @override
   String get accountTagline => 'Here. With you.';
@@ -2275,8 +2274,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please choose a password you have not used before.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Please enter your email first.';
+  String get accountProblemEnterEmail => 'Please enter your email first.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2287,40 +2285,33 @@ class AppLocalizationsEn extends AppLocalizations {
       'This phone already has an account. Log in instead.';
 
   @override
-  String get accountProblemUnknown =>
-      'Something went wrong. Please try again.';
+  String get accountProblemUnknown => 'Something went wrong. Please try again.';
 
   @override
   String get accountConfirmEmailSent =>
       'Almost done! Check your email and tap the link to confirm, then log in here.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Set a new password';
+  String get accountSetPasswordTitle => 'Set a new password';
 
   @override
-  String get accountSetPasswordSave =>
-      'Save password';
+  String get accountSetPasswordSave => 'Save password';
 
   @override
   String get accountSetPasswordExplainer =>
       'Choose a new password (at least 6 characters).';
 
   @override
-  String get accountNewPassword =>
-      'New password';
+  String get accountNewPassword => 'New password';
 
   @override
-  String get accountRepeatPassword =>
-      'Type it again';
+  String get accountRepeatPassword => 'Type it again';
 
   @override
-  String get accountPasswordsDiffer =>
-      'The two passwords are not the same.';
+  String get accountPasswordsDiffer => 'The two passwords are not the same.';
 
   @override
-  String get accountPasswordSaved =>
-      'Your new password is saved.';
+  String get accountPasswordSaved => 'Your new password is saved.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2331,42 +2322,34 @@ class AppLocalizationsEn extends AppLocalizations {
       'This phone has check-ins or journal entries that are not in your account yet. Add them to your account, or discard them and use only what your account already has.';
 
   @override
-  String get syncAddThem =>
-      'Add them';
+  String get syncAddThem => 'Add them';
 
   @override
-  String get syncDiscard =>
-      'Discard';
+  String get syncDiscard => 'Discard';
 
   @override
-  String get menuLogOutTitle =>
-      'Log out?';
+  String get menuLogOutTitle => 'Log out?';
 
   @override
   String get menuLogOutBody =>
       'Your check-ins and journal stay in your account and come back when you log in.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Not saved online yet';
+  String get menuNotSavedTitle => 'Not saved online yet';
 
   @override
   String get menuNotSavedBody =>
       'Some changes haven\'t reached your account yet (no internet). If you log out now, they will be lost.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Log out anyway';
+  String get menuLogOutAnyway => 'Log out anyway';
 
   @override
-  String get menuStayLoggedIn =>
-      'Stay logged in';
+  String get menuStayLoggedIn => 'Stay logged in';
 
   @override
-  String get settingsExportFailed =>
-      'Couldn\'t export your data. Try again.';
+  String get settingsExportFailed => 'Couldn\'t export your data. Try again.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Couldn\'t delete your account.';
+  String get settingsDeleteAccountFailed => 'Couldn\'t delete your account.';
 }

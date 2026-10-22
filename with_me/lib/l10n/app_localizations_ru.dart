@@ -340,8 +340,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Условия пока не подключены в этой версии интерфейса.';
 
   @override
-  String get accountAiCompanion =>
-      'Твой спутник для хорошего самочувствия';
+  String get accountAiCompanion => 'Твой спутник для хорошего самочувствия';
 
   @override
   String get accountTagline => 'Здесь. С тобой.';
@@ -2306,8 +2305,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsLanguageDevice => 'Язык устройства';
 
   @override
-  String get accountProblemWrongPassword =>
-      'Эта почта и пароль не совпадают.';
+  String get accountProblemWrongPassword => 'Эта почта и пароль не совпадают.';
 
   @override
   String get accountProblemEmailNotConfirmed =>
@@ -2334,8 +2332,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Выбери пароль, который ты раньше не использовал(а).';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Сначала введи свою почту.';
+  String get accountProblemEnterEmail => 'Сначала введи свою почту.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2346,40 +2343,33 @@ class AppLocalizationsRu extends AppLocalizations {
       'На этом телефоне уже есть аккаунт. Лучше войди в него.';
 
   @override
-  String get accountProblemUnknown =>
-      'Что-то пошло не так. Попробуй ещё раз.';
+  String get accountProblemUnknown => 'Что-то пошло не так. Попробуй ещё раз.';
 
   @override
   String get accountConfirmEmailSent =>
       'Почти готово! Открой почту и нажми на ссылку для подтверждения, затем войди здесь.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Новый пароль';
+  String get accountSetPasswordTitle => 'Новый пароль';
 
   @override
-  String get accountSetPasswordSave =>
-      'Сохранить пароль';
+  String get accountSetPasswordSave => 'Сохранить пароль';
 
   @override
   String get accountSetPasswordExplainer =>
       'Придумай новый пароль (не меньше 6 символов).';
 
   @override
-  String get accountNewPassword =>
-      'Новый пароль';
+  String get accountNewPassword => 'Новый пароль';
 
   @override
-  String get accountRepeatPassword =>
-      'Повтори его';
+  String get accountRepeatPassword => 'Повтори его';
 
   @override
-  String get accountPasswordsDiffer =>
-      'Пароли не совпадают.';
+  String get accountPasswordsDiffer => 'Пароли не совпадают.';
 
   @override
-  String get accountPasswordSaved =>
-      'Новый пароль сохранён.';
+  String get accountPasswordSaved => 'Новый пароль сохранён.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2390,42 +2380,35 @@ class AppLocalizationsRu extends AppLocalizations {
       'На этом телефоне есть чек-ины или размышления, которых ещё нет в твоём аккаунте. Добавь их в аккаунт или удали и используй только то, что уже есть в аккаунте.';
 
   @override
-  String get syncAddThem =>
-      'Добавить';
+  String get syncAddThem => 'Добавить';
 
   @override
-  String get syncDiscard =>
-      'Удалить';
+  String get syncDiscard => 'Удалить';
 
   @override
-  String get menuLogOutTitle =>
-      'Выйти?';
+  String get menuLogOutTitle => 'Выйти?';
 
   @override
   String get menuLogOutBody =>
       'Твои чек-ины и размышления остаются в аккаунте и вернутся, когда ты войдёшь.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Ещё не сохранено в сети';
+  String get menuNotSavedTitle => 'Ещё не сохранено в сети';
 
   @override
   String get menuNotSavedBody =>
       'Некоторые изменения ещё не попали в аккаунт (нет интернета). Если выйти сейчас, они пропадут.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Всё равно выйти';
+  String get menuLogOutAnyway => 'Всё равно выйти';
 
   @override
-  String get menuStayLoggedIn =>
-      'Остаться в аккаунте';
+  String get menuStayLoggedIn => 'Остаться в аккаунте';
 
   @override
   String get settingsExportFailed =>
       'Не удалось экспортировать данные. Попробуй ещё раз.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Не удалось удалить аккаунт.';
+  String get settingsDeleteAccountFailed => 'Не удалось удалить аккаунт.';
 }

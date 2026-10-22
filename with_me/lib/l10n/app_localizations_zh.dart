@@ -276,8 +276,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get helpDeleteQuestion => '我可以删除我的数据吗？';
 
   @override
-  String get helpDeleteAnswer =>
-      '可以。设置中有「删除我的账户」，它会删除你的线上账户和这部手机上的所有内容。';
+  String get helpDeleteAnswer => '可以。设置中有「删除我的账户」，它会删除你的线上账户和这部手机上的所有内容。';
 
   @override
   String helpShareQuestion(String appName) {
@@ -291,8 +290,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get helpCrisisQuestion => '如果我正处于危机中，该怎么办？';
 
   @override
-  String get helpCrisisAnswer =>
-      '请联系当地的紧急服务或心理危机热线。';
+  String get helpCrisisAnswer => '请联系当地的紧急服务或心理危机热线。';
 
   @override
   String get menuTitle => '菜单';
@@ -331,8 +329,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get menuAboutTermsNotWired => '条款页面在此版本界面中尚未接入。';
 
   @override
-  String get accountAiCompanion =>
-      '你的身心健康伙伴';
+  String get accountAiCompanion => '你的身心健康伙伴';
 
   @override
   String get accountTagline => '在这里。陪着你。';
@@ -427,8 +424,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get accountResetExplainer => '输入你的邮箱，我会给你发送重置链接。';
 
   @override
-  String get accountResetSent =>
-      '如果这个邮箱有账户，重置链接已经在路上了。请在这部手机上打开。';
+  String get accountResetSent => '如果这个邮箱有账户，重置链接已经在路上了。请在这部手机上打开。';
 
   @override
   String get accountProfileTitle => '我的资料';
@@ -2171,130 +2167,100 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsLanguageDevice => '跟随设备语言';
 
   @override
-  String get accountProblemWrongPassword =>
-      '邮箱和密码不匹配。';
+  String get accountProblemWrongPassword => '邮箱和密码不匹配。';
 
   @override
-  String get accountProblemEmailNotConfirmed =>
-      '请先确认你的邮箱。在收件箱中查找我们的链接。';
+  String get accountProblemEmailNotConfirmed => '请先确认你的邮箱。在收件箱中查找我们的链接。';
 
   @override
-  String get accountProblemEmailInUse =>
-      '这个邮箱已经有账户了。请直接登录。';
+  String get accountProblemEmailInUse => '这个邮箱已经有账户了。请直接登录。';
 
   @override
-  String get accountProblemWeakPassword =>
-      '请设置更长的密码（至少 6 个字符）。';
+  String get accountProblemWeakPassword => '请设置更长的密码（至少 6 个字符）。';
 
   @override
-  String get accountProblemNoInternet =>
-      '无法连接到互联网。请检查网络后再试一次。';
+  String get accountProblemNoInternet => '无法连接到互联网。请检查网络后再试一次。';
 
   @override
-  String get accountProblemTooManyTries =>
-      '尝试次数太多。请等几分钟后再试。';
+  String get accountProblemTooManyTries => '尝试次数太多。请等几分钟后再试。';
 
   @override
-  String get accountProblemSamePassword =>
-      '请设置一个你以前没有用过的密码。';
+  String get accountProblemSamePassword => '请设置一个你以前没有用过的密码。';
 
   @override
-  String get accountProblemEnterEmail =>
-      '请先输入你的邮箱。';
+  String get accountProblemEnterEmail => '请先输入你的邮箱。';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
       '这部手机属于另一个账户。请用那个账户登录，或者先在设置中删除它。';
 
   @override
-  String get accountProblemAccountAlreadyOnPhone =>
-      '这部手机已经有账户了。请直接登录。';
+  String get accountProblemAccountAlreadyOnPhone => '这部手机已经有账户了。请直接登录。';
 
   @override
-  String get accountProblemUnknown =>
-      '出了点问题。请再试一次。';
+  String get accountProblemUnknown => '出了点问题。请再试一次。';
 
   @override
-  String get accountConfirmEmailSent =>
-      '快完成了！请打开邮箱，点击链接确认，然后在这里登录。';
+  String get accountConfirmEmailSent => '快完成了！请打开邮箱，点击链接确认，然后在这里登录。';
 
   @override
-  String get accountSetPasswordTitle =>
-      '设置新密码';
+  String get accountSetPasswordTitle => '设置新密码';
 
   @override
-  String get accountSetPasswordSave =>
-      '保存密码';
+  String get accountSetPasswordSave => '保存密码';
 
   @override
-  String get accountSetPasswordExplainer =>
-      '请设置新密码（至少 6 个字符）。';
+  String get accountSetPasswordExplainer => '请设置新密码（至少 6 个字符）。';
 
   @override
-  String get accountNewPassword =>
-      '新密码';
+  String get accountNewPassword => '新密码';
 
   @override
-  String get accountRepeatPassword =>
-      '再输入一次';
+  String get accountRepeatPassword => '再输入一次';
 
   @override
-  String get accountPasswordsDiffer =>
-      '两次输入的密码不一致。';
+  String get accountPasswordsDiffer => '两次输入的密码不一致。';
 
   @override
-  String get accountPasswordSaved =>
-      '新密码已保存。';
+  String get accountPasswordSaved => '新密码已保存。';
 
   @override
-  String get syncKeepPhoneDataTitle =>
-      '保留这部手机上的打卡和反思记录吗？';
+  String get syncKeepPhoneDataTitle => '保留这部手机上的打卡和反思记录吗？';
 
   @override
   String get syncKeepPhoneDataBody =>
       '这部手机上有尚未进入你账户的打卡或反思记录。你可以把它们添加到账户中，或者丢弃它们，只使用账户里已有的内容。';
 
   @override
-  String get syncAddThem =>
-      '添加';
+  String get syncAddThem => '添加';
 
   @override
-  String get syncDiscard =>
-      '丢弃';
+  String get syncDiscard => '丢弃';
 
   @override
-  String get menuLogOutTitle =>
-      '要退出登录吗？';
+  String get menuLogOutTitle => '要退出登录吗？';
 
   @override
-  String get menuLogOutBody =>
-      '你的打卡和反思记录会保留在账户中，登录后就会回来。';
+  String get menuLogOutBody => '你的打卡和反思记录会保留在账户中，登录后就会回来。';
 
   @override
-  String get menuNotSavedTitle =>
-      '尚未保存到线上';
+  String get menuNotSavedTitle => '尚未保存到线上';
 
   @override
-  String get menuNotSavedBody =>
-      '有些更改还没有同步到你的账户（没有网络）。如果现在退出登录，这些更改会丢失。';
+  String get menuNotSavedBody => '有些更改还没有同步到你的账户（没有网络）。如果现在退出登录，这些更改会丢失。';
 
   @override
-  String get menuLogOutAnyway =>
-      '仍然退出登录';
+  String get menuLogOutAnyway => '仍然退出登录';
 
   @override
-  String get menuStayLoggedIn =>
-      '保持登录';
+  String get menuStayLoggedIn => '保持登录';
 
   @override
-  String get settingsExportFailed =>
-      '无法导出你的数据。请再试一次。';
+  String get settingsExportFailed => '无法导出你的数据。请再试一次。';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      '无法删除你的账户。';
+  String get settingsDeleteAccountFailed => '无法删除你的账户。';
 }
-
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
 class AppLocalizationsZhHant extends AppLocalizationsZh {
@@ -2568,8 +2534,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get helpDeleteQuestion => '我可以刪除我的資料嗎？';
 
   @override
-  String get helpDeleteAnswer =>
-      '可以。設定中有「刪除我的帳戶」，它會刪除你的線上帳戶和這支手機上的所有內容。';
+  String get helpDeleteAnswer => '可以。設定中有「刪除我的帳戶」，它會刪除你的線上帳戶和這支手機上的所有內容。';
 
   @override
   String helpShareQuestion(String appName) {
@@ -2583,8 +2548,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get helpCrisisQuestion => '如果我正處於危機中，該怎麼辦？';
 
   @override
-  String get helpCrisisAnswer =>
-      '請聯絡當地的緊急服務或心理危機專線。';
+  String get helpCrisisAnswer => '請聯絡當地的緊急服務或心理危機專線。';
 
   @override
   String get menuTitle => '選單';
@@ -2623,8 +2587,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get menuAboutTermsNotWired => '條款頁面在此版本介面中尚未接入。';
 
   @override
-  String get accountAiCompanion =>
-      '你的身心健康夥伴';
+  String get accountAiCompanion => '你的身心健康夥伴';
 
   @override
   String get accountTagline => '在這裡。陪著你。';
@@ -2719,8 +2682,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get accountResetExplainer => '輸入你的電子郵件，我會給你傳送重置連結。';
 
   @override
-  String get accountResetSent =>
-      '如果這個電子郵件有帳戶，重設連結已經在路上了。請在這支手機上開啟。';
+  String get accountResetSent => '如果這個電子郵件有帳戶，重設連結已經在路上了。請在這支手機上開啟。';
 
   @override
   String get accountProfileTitle => '我的資料';
@@ -4463,126 +4425,97 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsLanguageDevice => '跟隨裝置語言';
 
   @override
-  String get accountProblemWrongPassword =>
-      '電子郵件和密碼不相符。';
+  String get accountProblemWrongPassword => '電子郵件和密碼不相符。';
 
   @override
-  String get accountProblemEmailNotConfirmed =>
-      '請先確認你的電子郵件。在收件匣中尋找我們的連結。';
+  String get accountProblemEmailNotConfirmed => '請先確認你的電子郵件。在收件匣中尋找我們的連結。';
 
   @override
-  String get accountProblemEmailInUse =>
-      '這個電子郵件已經有帳戶了。請直接登入。';
+  String get accountProblemEmailInUse => '這個電子郵件已經有帳戶了。請直接登入。';
 
   @override
-  String get accountProblemWeakPassword =>
-      '請設定更長的密碼（至少 6 個字元）。';
+  String get accountProblemWeakPassword => '請設定更長的密碼（至少 6 個字元）。';
 
   @override
-  String get accountProblemNoInternet =>
-      '無法連上網路。請檢查連線後再試一次。';
+  String get accountProblemNoInternet => '無法連上網路。請檢查連線後再試一次。';
 
   @override
-  String get accountProblemTooManyTries =>
-      '嘗試次數太多。請等幾分鐘後再試。';
+  String get accountProblemTooManyTries => '嘗試次數太多。請等幾分鐘後再試。';
 
   @override
-  String get accountProblemSamePassword =>
-      '請設定一個你以前沒有用過的密碼。';
+  String get accountProblemSamePassword => '請設定一個你以前沒有用過的密碼。';
 
   @override
-  String get accountProblemEnterEmail =>
-      '請先輸入你的電子郵件。';
+  String get accountProblemEnterEmail => '請先輸入你的電子郵件。';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
       '這支手機屬於另一個帳戶。請用那個帳戶登入，或者先在設定中刪除它。';
 
   @override
-  String get accountProblemAccountAlreadyOnPhone =>
-      '這支手機已經有帳戶了。請直接登入。';
+  String get accountProblemAccountAlreadyOnPhone => '這支手機已經有帳戶了。請直接登入。';
 
   @override
-  String get accountProblemUnknown =>
-      '發生了一點問題。請再試一次。';
+  String get accountProblemUnknown => '發生了一點問題。請再試一次。';
 
   @override
-  String get accountConfirmEmailSent =>
-      '快完成了！請開啟電子郵件，點選連結確認，然後在這裡登入。';
+  String get accountConfirmEmailSent => '快完成了！請開啟電子郵件，點選連結確認，然後在這裡登入。';
 
   @override
-  String get accountSetPasswordTitle =>
-      '設定新密碼';
+  String get accountSetPasswordTitle => '設定新密碼';
 
   @override
-  String get accountSetPasswordSave =>
-      '儲存密碼';
+  String get accountSetPasswordSave => '儲存密碼';
 
   @override
-  String get accountSetPasswordExplainer =>
-      '請設定新密碼（至少 6 個字元）。';
+  String get accountSetPasswordExplainer => '請設定新密碼（至少 6 個字元）。';
 
   @override
-  String get accountNewPassword =>
-      '新密碼';
+  String get accountNewPassword => '新密碼';
 
   @override
-  String get accountRepeatPassword =>
-      '再輸入一次';
+  String get accountRepeatPassword => '再輸入一次';
 
   @override
-  String get accountPasswordsDiffer =>
-      '兩次輸入的密碼不一致。';
+  String get accountPasswordsDiffer => '兩次輸入的密碼不一致。';
 
   @override
-  String get accountPasswordSaved =>
-      '新密碼已儲存。';
+  String get accountPasswordSaved => '新密碼已儲存。';
 
   @override
-  String get syncKeepPhoneDataTitle =>
-      '保留這支手機上的打卡和反思記錄嗎？';
+  String get syncKeepPhoneDataTitle => '保留這支手機上的打卡和反思記錄嗎？';
 
   @override
   String get syncKeepPhoneDataBody =>
       '這支手機上有尚未進入你帳戶的打卡或反思記錄。你可以把它們加入帳戶，或者捨棄它們，只使用帳戶裡已有的內容。';
 
   @override
-  String get syncAddThem =>
-      '加入';
+  String get syncAddThem => '加入';
 
   @override
-  String get syncDiscard =>
-      '捨棄';
+  String get syncDiscard => '捨棄';
 
   @override
-  String get menuLogOutTitle =>
-      '要登出嗎？';
+  String get menuLogOutTitle => '要登出嗎？';
 
   @override
-  String get menuLogOutBody =>
-      '你的打卡和反思記錄會保留在帳戶中，登入後就會回來。';
+  String get menuLogOutBody => '你的打卡和反思記錄會保留在帳戶中，登入後就會回來。';
 
   @override
-  String get menuNotSavedTitle =>
-      '尚未儲存到線上';
+  String get menuNotSavedTitle => '尚未儲存到線上';
 
   @override
-  String get menuNotSavedBody =>
-      '有些變更還沒有同步到你的帳戶（沒有網路）。如果現在登出，這些變更會遺失。';
+  String get menuNotSavedBody => '有些變更還沒有同步到你的帳戶（沒有網路）。如果現在登出，這些變更會遺失。';
 
   @override
-  String get menuLogOutAnyway =>
-      '仍然登出';
+  String get menuLogOutAnyway => '仍然登出';
 
   @override
-  String get menuStayLoggedIn =>
-      '保持登入';
+  String get menuStayLoggedIn => '保持登入';
 
   @override
-  String get settingsExportFailed =>
-      '無法匯出你的資料。請再試一次。';
+  String get settingsExportFailed => '無法匯出你的資料。請再試一次。';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      '無法刪除你的帳戶。';
+  String get settingsDeleteAccountFailed => '無法刪除你的帳戶。';
 }

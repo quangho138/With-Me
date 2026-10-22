@@ -340,8 +340,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les conditions ne sont pas encore branchées dans cette version de l’interface.';
 
   @override
-  String get accountAiCompanion =>
-      'Ton compagnon bien-être';
+  String get accountAiCompanion => 'Ton compagnon bien-être';
 
   @override
   String get accountTagline => 'Là. Avec toi.';
@@ -2309,8 +2308,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Choisis un mot de passe que tu n\'as jamais utilisé.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Saisis d\'abord ton e-mail.';
+  String get accountProblemEnterEmail => 'Saisis d\'abord ton e-mail.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2321,40 +2319,34 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ce téléphone a déjà un compte. Connecte-toi plutôt.';
 
   @override
-  String get accountProblemUnknown =>
-      'Un problème est survenu. Réessaie.';
+  String get accountProblemUnknown => 'Un problème est survenu. Réessaie.';
 
   @override
   String get accountConfirmEmailSent =>
       'Presque fini ! Ouvre ton e-mail et touche le lien pour confirmer, puis connecte-toi ici.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Choisir un nouveau mot de passe';
+  String get accountSetPasswordTitle => 'Choisir un nouveau mot de passe';
 
   @override
-  String get accountSetPasswordSave =>
-      'Enregistrer le mot de passe';
+  String get accountSetPasswordSave => 'Enregistrer le mot de passe';
 
   @override
   String get accountSetPasswordExplainer =>
       'Choisis un nouveau mot de passe (au moins 6 caractères).';
 
   @override
-  String get accountNewPassword =>
-      'Nouveau mot de passe';
+  String get accountNewPassword => 'Nouveau mot de passe';
 
   @override
-  String get accountRepeatPassword =>
-      'Saisis-le à nouveau';
+  String get accountRepeatPassword => 'Saisis-le à nouveau';
 
   @override
   String get accountPasswordsDiffer =>
       'Les deux mots de passe ne sont pas identiques.';
 
   @override
-  String get accountPasswordSaved =>
-      'Ton nouveau mot de passe est enregistré.';
+  String get accountPasswordSaved => 'Ton nouveau mot de passe est enregistré.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2365,36 +2357,30 @@ class AppLocalizationsFr extends AppLocalizations {
       'Ce téléphone a des bilans ou des réflexions qui ne sont pas encore dans ton compte. Ajoute-les à ton compte, ou supprime-les et garde seulement ce que ton compte contient déjà.';
 
   @override
-  String get syncAddThem =>
-      'Les ajouter';
+  String get syncAddThem => 'Les ajouter';
 
   @override
-  String get syncDiscard =>
-      'Supprimer';
+  String get syncDiscard => 'Supprimer';
 
   @override
-  String get menuLogOutTitle =>
-      'Se déconnecter ?';
+  String get menuLogOutTitle => 'Se déconnecter ?';
 
   @override
   String get menuLogOutBody =>
       'Tes bilans et réflexions restent dans ton compte et reviennent quand tu te connectes.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Pas encore enregistré en ligne';
+  String get menuNotSavedTitle => 'Pas encore enregistré en ligne';
 
   @override
   String get menuNotSavedBody =>
       'Certaines modifications n\'ont pas encore atteint ton compte (pas d\'Internet). Si tu te déconnectes maintenant, elles seront perdues.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Se déconnecter quand même';
+  String get menuLogOutAnyway => 'Se déconnecter quand même';
 
   @override
-  String get menuStayLoggedIn =>
-      'Rester connecté';
+  String get menuStayLoggedIn => 'Rester connecté';
 
   @override
   String get settingsExportFailed =>

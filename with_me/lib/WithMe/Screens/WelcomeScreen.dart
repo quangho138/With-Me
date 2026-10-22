@@ -171,13 +171,17 @@ class WelcomeScreen extends StatelessWidget {
                           } on AccountException catch (e) {
                             if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(e.problem.text(context.l10n))),
+                              SnackBar(
+                                content: Text(e.problem.text(context.l10n)),
+                              ),
                             );
                           } catch (_) {
                             if (!context.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(AccountProblem.unknown.text(context.l10n)),
+                                content: Text(
+                                  AccountProblem.unknown.text(context.l10n),
+                                ),
                               ),
                             );
                           }

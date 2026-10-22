@@ -284,7 +284,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'جی ہاں۔ سیٹنگز میں "میرا اکاؤنٹ حذف کریں" موجود ہے، جو آپ کا آن لائن اکاؤنٹ اور اس فون پر موجود سب کچھ حذف کر دیتا ہے۔';
+      'جی ہاں۔ سیٹنگز میں \"میرا اکاؤنٹ حذف کریں\" موجود ہے، جو آپ کا آن لائن اکاؤنٹ اور اس فون پر موجود سب کچھ حذف کر دیتا ہے۔';
 
   @override
   String helpShareQuestion(String appName) {
@@ -340,8 +340,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'شرائط ابھی اس UI ورژن میں دستیاب نہیں ہیں۔';
 
   @override
-  String get accountAiCompanion =>
-      'آپ کا فلاح و بہبود کا ساتھی';
+  String get accountAiCompanion => 'آپ کا فلاح و بہبود کا ساتھی';
 
   @override
   String get accountTagline => 'یہیں۔ آپ کے ساتھ۔';
@@ -2291,8 +2290,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'براہِ کرم ایسا پاس ورڈ چنیں جو آپ نے پہلے استعمال نہ کیا ہو۔';
 
   @override
-  String get accountProblemEnterEmail =>
-      'براہِ کرم پہلے اپنی ای میل درج کریں۔';
+  String get accountProblemEnterEmail => 'براہِ کرم پہلے اپنی ای میل درج کریں۔';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2311,78 +2309,64 @@ class AppLocalizationsUr extends AppLocalizations {
       'تقریباً ہو گیا! اپنی ای میل کھولیں اور تصدیق کے لیے لنک پر ٹیپ کریں، پھر یہاں لاگ اِن کریں۔';
 
   @override
-  String get accountSetPasswordTitle =>
-      'نیا پاس ورڈ سیٹ کریں';
+  String get accountSetPasswordTitle => 'نیا پاس ورڈ سیٹ کریں';
 
   @override
-  String get accountSetPasswordSave =>
-      'پاس ورڈ محفوظ کریں';
+  String get accountSetPasswordSave => 'پاس ورڈ محفوظ کریں';
 
   @override
   String get accountSetPasswordExplainer =>
       'نیا پاس ورڈ چنیں (کم از کم 6 حروف)۔';
 
   @override
-  String get accountNewPassword =>
-      'نیا پاس ورڈ';
+  String get accountNewPassword => 'نیا پاس ورڈ';
 
   @override
-  String get accountRepeatPassword =>
-      'دوبارہ لکھیں';
+  String get accountRepeatPassword => 'دوبارہ لکھیں';
 
   @override
-  String get accountPasswordsDiffer =>
-      'دونوں پاس ورڈ ایک جیسے نہیں ہیں۔';
+  String get accountPasswordsDiffer => 'دونوں پاس ورڈ ایک جیسے نہیں ہیں۔';
 
   @override
-  String get accountPasswordSaved =>
-      'آپ کا نیا پاس ورڈ محفوظ ہو گیا۔';
+  String get accountPasswordSaved => 'آپ کا نیا پاس ورڈ محفوظ ہو گیا۔';
 
   @override
-  String get syncKeepPhoneDataTitle =>
-      'اس فون کے چیک اِن اور غور و فکر رکھیں؟';
+  String get syncKeepPhoneDataTitle => 'اس فون کے چیک اِن اور غور و فکر رکھیں؟';
 
   @override
   String get syncKeepPhoneDataBody =>
       'اس فون پر کچھ چیک اِن یا غور و فکر ہیں جو ابھی آپ کے اکاؤنٹ میں نہیں ہیں۔ انہیں اپنے اکاؤنٹ میں شامل کریں، یا ہٹا دیں اور صرف وہی استعمال کریں جو آپ کے اکاؤنٹ میں پہلے سے ہے۔';
 
   @override
-  String get syncAddThem =>
-      'شامل کریں';
+  String get syncAddThem => 'شامل کریں';
 
   @override
-  String get syncDiscard =>
-      'ہٹا دیں';
+  String get syncDiscard => 'ہٹا دیں';
 
   @override
-  String get menuLogOutTitle =>
-      'لاگ آؤٹ کریں؟';
+  String get menuLogOutTitle => 'لاگ آؤٹ کریں؟';
 
   @override
   String get menuLogOutBody =>
       'آپ کے چیک اِن اور غور و فکر آپ کے اکاؤنٹ میں رہتے ہیں اور لاگ اِن کرنے پر واپس آ جاتے ہیں۔';
 
   @override
-  String get menuNotSavedTitle =>
-      'ابھی آن لائن محفوظ نہیں ہوا';
+  String get menuNotSavedTitle => 'ابھی آن لائن محفوظ نہیں ہوا';
 
   @override
   String get menuNotSavedBody =>
       'کچھ تبدیلیاں ابھی آپ کے اکاؤنٹ تک نہیں پہنچیں (انٹرنیٹ نہیں ہے)۔ اگر آپ ابھی لاگ آؤٹ کریں تو یہ ضائع ہو جائیں گی۔';
 
   @override
-  String get menuLogOutAnyway =>
-      'پھر بھی لاگ آؤٹ کریں';
+  String get menuLogOutAnyway => 'پھر بھی لاگ آؤٹ کریں';
 
   @override
-  String get menuStayLoggedIn =>
-      'لاگ اِن رہیں';
+  String get menuStayLoggedIn => 'لاگ اِن رہیں';
 
   @override
   String get settingsExportFailed =>
       'آپ کا ڈیٹا ایکسپورٹ نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'آپ کا اکاؤنٹ حذف نہیں ہو سکا۔';
+  String get settingsDeleteAccountFailed => 'آپ کا اکاؤنٹ حذف نہیں ہو سکا۔';
 }

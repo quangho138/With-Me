@@ -284,7 +284,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Sim. Em Configurações há "Excluir minha conta", que exclui sua conta on-line e tudo o que está neste celular.';
+      'Sim. Em Configurações há \"Excluir minha conta\", que exclui sua conta on-line e tudo o que está neste celular.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -340,8 +340,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Os termos ainda não estão ligados nesta versão da interface.';
 
   @override
-  String get accountAiCompanion =>
-      'Seu companheiro de bem-estar';
+  String get accountAiCompanion => 'Seu companheiro de bem-estar';
 
   @override
   String get accountTagline => 'Aqui. Com você.';
@@ -2301,8 +2300,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Escolha uma senha que você ainda não usou.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Digite seu e-mail primeiro.';
+  String get accountProblemEnterEmail => 'Digite seu e-mail primeiro.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2313,40 +2311,33 @@ class AppLocalizationsPt extends AppLocalizations {
       'Este celular já tem uma conta. Entre com ela.';
 
   @override
-  String get accountProblemUnknown =>
-      'Algo deu errado. Tente de novo.';
+  String get accountProblemUnknown => 'Algo deu errado. Tente de novo.';
 
   @override
   String get accountConfirmEmailSent =>
       'Quase lá! Abra seu e-mail e toque no link para confirmar; depois entre aqui.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Definir uma nova senha';
+  String get accountSetPasswordTitle => 'Definir uma nova senha';
 
   @override
-  String get accountSetPasswordSave =>
-      'Salvar senha';
+  String get accountSetPasswordSave => 'Salvar senha';
 
   @override
   String get accountSetPasswordExplainer =>
       'Escolha uma nova senha (pelo menos 6 caracteres).';
 
   @override
-  String get accountNewPassword =>
-      'Nova senha';
+  String get accountNewPassword => 'Nova senha';
 
   @override
-  String get accountRepeatPassword =>
-      'Digite de novo';
+  String get accountRepeatPassword => 'Digite de novo';
 
   @override
-  String get accountPasswordsDiffer =>
-      'As duas senhas não são iguais.';
+  String get accountPasswordsDiffer => 'As duas senhas não são iguais.';
 
   @override
-  String get accountPasswordSaved =>
-      'Sua nova senha foi salva.';
+  String get accountPasswordSaved => 'Sua nova senha foi salva.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2357,36 +2348,30 @@ class AppLocalizationsPt extends AppLocalizations {
       'Este celular tem check-ins ou reflexões que ainda não estão na sua conta. Adicione-os à sua conta, ou descarte-os e use só o que sua conta já tem.';
 
   @override
-  String get syncAddThem =>
-      'Adicionar';
+  String get syncAddThem => 'Adicionar';
 
   @override
-  String get syncDiscard =>
-      'Descartar';
+  String get syncDiscard => 'Descartar';
 
   @override
-  String get menuLogOutTitle =>
-      'Sair?';
+  String get menuLogOutTitle => 'Sair?';
 
   @override
   String get menuLogOutBody =>
       'Seus check-ins e reflexões ficam na sua conta e voltam quando você entrar.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Ainda não salvo on-line';
+  String get menuNotSavedTitle => 'Ainda não salvo on-line';
 
   @override
   String get menuNotSavedBody =>
       'Algumas alterações ainda não chegaram à sua conta (sem internet). Se você sair agora, elas serão perdidas.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Sair mesmo assim';
+  String get menuLogOutAnyway => 'Sair mesmo assim';
 
   @override
-  String get menuStayLoggedIn =>
-      'Continuar conectado';
+  String get menuStayLoggedIn => 'Continuar conectado';
 
   @override
   String get settingsExportFailed =>

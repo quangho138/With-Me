@@ -282,7 +282,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Evet. Ayarlar\'da "Hesabımı sil" var; bu, çevrimiçi hesabını ve bu telefondaki her şeyi siler.';
+      'Evet. Ayarlar\'da \"Hesabımı sil\" var; bu, çevrimiçi hesabını ve bu telefondaki her şeyi siler.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -338,8 +338,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Koşullar bu sürümde henüz kullanılamıyor.';
 
   @override
-  String get accountAiCompanion =>
-      'İyi Oluş Arkadaşın';
+  String get accountAiCompanion => 'İyi Oluş Arkadaşın';
 
   @override
   String get accountTagline => 'Burada. Seninle.';
@@ -2253,8 +2252,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsLanguageDevice => 'Cihaz dilini kullan';
 
   @override
-  String get accountProblemWrongPassword =>
-      'Bu e-posta ve şifre eşleşmiyor.';
+  String get accountProblemWrongPassword => 'Bu e-posta ve şifre eşleşmiyor.';
 
   @override
   String get accountProblemEmailNotConfirmed =>
@@ -2281,8 +2279,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Lütfen daha önce kullanmadığın bir şifre seç.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Lütfen önce e-postanı gir.';
+  String get accountProblemEnterEmail => 'Lütfen önce e-postanı gir.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2301,32 +2298,26 @@ class AppLocalizationsTr extends AppLocalizations {
       'Neredeyse bitti! E-postanı aç ve onaylamak için bağlantıya dokun, sonra burada giriş yap.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Yeni şifre belirle';
+  String get accountSetPasswordTitle => 'Yeni şifre belirle';
 
   @override
-  String get accountSetPasswordSave =>
-      'Şifreyi kaydet';
+  String get accountSetPasswordSave => 'Şifreyi kaydet';
 
   @override
   String get accountSetPasswordExplainer =>
       'Yeni bir şifre seç (en az 6 karakter).';
 
   @override
-  String get accountNewPassword =>
-      'Yeni şifre';
+  String get accountNewPassword => 'Yeni şifre';
 
   @override
-  String get accountRepeatPassword =>
-      'Tekrar yaz';
+  String get accountRepeatPassword => 'Tekrar yaz';
 
   @override
-  String get accountPasswordsDiffer =>
-      'İki şifre aynı değil.';
+  String get accountPasswordsDiffer => 'İki şifre aynı değil.';
 
   @override
-  String get accountPasswordSaved =>
-      'Yeni şifren kaydedildi.';
+  String get accountPasswordSaved => 'Yeni şifren kaydedildi.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2337,42 +2328,35 @@ class AppLocalizationsTr extends AppLocalizations {
       'Bu telefonda henüz hesabında olmayan durum kayıtları veya öz değerlendirmeler var. Bunları hesabına ekle ya da at ve yalnızca hesabında zaten olanları kullan.';
 
   @override
-  String get syncAddThem =>
-      'Ekle';
+  String get syncAddThem => 'Ekle';
 
   @override
-  String get syncDiscard =>
-      'At';
+  String get syncDiscard => 'At';
 
   @override
-  String get menuLogOutTitle =>
-      'Çıkış yapılsın mı?';
+  String get menuLogOutTitle => 'Çıkış yapılsın mı?';
 
   @override
   String get menuLogOutBody =>
       'Durum kayıtların ve öz değerlendirmelerin hesabında kalır ve giriş yaptığında geri gelir.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Henüz çevrimiçi kaydedilmedi';
+  String get menuNotSavedTitle => 'Henüz çevrimiçi kaydedilmedi';
 
   @override
   String get menuNotSavedBody =>
       'Bazı değişiklikler henüz hesabına ulaşmadı (internet yok). Şimdi çıkış yaparsan kaybolacaklar.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Yine de çıkış yap';
+  String get menuLogOutAnyway => 'Yine de çıkış yap';
 
   @override
-  String get menuStayLoggedIn =>
-      'Girişli kal';
+  String get menuStayLoggedIn => 'Girişli kal';
 
   @override
   String get settingsExportFailed =>
       'Verilerin dışa aktarılamadı. Tekrar dene.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Hesabın silinemedi.';
+  String get settingsDeleteAccountFailed => 'Hesabın silinemedi.';
 }

@@ -284,7 +284,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Ndiyo. Kwenye Mipangilio kuna "Futa akaunti yangu", ambacho kinafuta akaunti yako ya mtandaoni na kila kitu kwenye simu hii.';
+      'Ndiyo. Kwenye Mipangilio kuna \"Futa akaunti yangu\", ambacho kinafuta akaunti yako ya mtandaoni na kila kitu kwenye simu hii.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -341,8 +341,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'Masharti bado hayajaunganishwa katika toleo hili la kiolesura.';
 
   @override
-  String get accountAiCompanion =>
-      'Mwenzako wa Ustawi';
+  String get accountAiCompanion => 'Mwenzako wa Ustawi';
 
   @override
   String get accountTagline => 'Hapa. Pamoja nawe.';
@@ -2320,32 +2319,26 @@ class AppLocalizationsSw extends AppLocalizations {
       'Karibu umemaliza! Fungua barua pepe yako na uguse kiungo kuthibitisha, kisha uingie hapa.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Weka nenosiri jipya';
+  String get accountSetPasswordTitle => 'Weka nenosiri jipya';
 
   @override
-  String get accountSetPasswordSave =>
-      'Hifadhi nenosiri';
+  String get accountSetPasswordSave => 'Hifadhi nenosiri';
 
   @override
   String get accountSetPasswordExplainer =>
       'Chagua nenosiri jipya (angalau herufi 6).';
 
   @override
-  String get accountNewPassword =>
-      'Nenosiri jipya';
+  String get accountNewPassword => 'Nenosiri jipya';
 
   @override
-  String get accountRepeatPassword =>
-      'Liandike tena';
+  String get accountRepeatPassword => 'Liandike tena';
 
   @override
-  String get accountPasswordsDiffer =>
-      'Manenosiri hayo mawili si sawa.';
+  String get accountPasswordsDiffer => 'Manenosiri hayo mawili si sawa.';
 
   @override
-  String get accountPasswordSaved =>
-      'Nenosiri lako jipya limehifadhiwa.';
+  String get accountPasswordSaved => 'Nenosiri lako jipya limehifadhiwa.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2356,42 +2349,35 @@ class AppLocalizationsSw extends AppLocalizations {
       'Simu hii ina tathmini au tafakari ambazo bado haziko kwenye akaunti yako. Ziongeze kwenye akaunti yako, au uzitupe na utumie tu kilichopo tayari kwenye akaunti yako.';
 
   @override
-  String get syncAddThem =>
-      'Ziongeze';
+  String get syncAddThem => 'Ziongeze';
 
   @override
-  String get syncDiscard =>
-      'Tupa';
+  String get syncDiscard => 'Tupa';
 
   @override
-  String get menuLogOutTitle =>
-      'Utoke?';
+  String get menuLogOutTitle => 'Utoke?';
 
   @override
   String get menuLogOutBody =>
       'Tathmini na tafakari zako zinabaki kwenye akaunti yako na zitarudi utakapoingia.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Bado hazijahifadhiwa mtandaoni';
+  String get menuNotSavedTitle => 'Bado hazijahifadhiwa mtandaoni';
 
   @override
   String get menuNotSavedBody =>
       'Baadhi ya mabadiliko bado hayajafika kwenye akaunti yako (hakuna intaneti). Ukitoka sasa, yatapotea.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Toka hata hivyo';
+  String get menuLogOutAnyway => 'Toka hata hivyo';
 
   @override
-  String get menuStayLoggedIn =>
-      'Endelea kuwa umeingia';
+  String get menuStayLoggedIn => 'Endelea kuwa umeingia';
 
   @override
   String get settingsExportFailed =>
       'Imeshindwa kuhamisha data yako. Jaribu tena.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Imeshindwa kufuta akaunti yako.';
+  String get settingsDeleteAccountFailed => 'Imeshindwa kufuta akaunti yako.';
 }

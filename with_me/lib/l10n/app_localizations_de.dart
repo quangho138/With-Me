@@ -341,8 +341,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die Nutzungsbedingungen sind in dieser Version noch nicht verfügbar.';
 
   @override
-  String get accountAiCompanion =>
-      'Dein Wohlfühl-Begleiter';
+  String get accountAiCompanion => 'Dein Wohlfühl-Begleiter';
 
   @override
   String get accountTagline => 'Hier. Bei dir.';
@@ -2315,8 +2314,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Bitte wähle ein Passwort, das du noch nicht benutzt hast.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Bitte gib zuerst deine E-Mail ein.';
+  String get accountProblemEnterEmail => 'Bitte gib zuerst deine E-Mail ein.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2335,32 +2333,27 @@ class AppLocalizationsDe extends AppLocalizations {
       'Fast geschafft! Öffne deine E-Mail und tippe zum Bestätigen auf den Link. Melde dich dann hier an.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Neues Passwort festlegen';
+  String get accountSetPasswordTitle => 'Neues Passwort festlegen';
 
   @override
-  String get accountSetPasswordSave =>
-      'Passwort speichern';
+  String get accountSetPasswordSave => 'Passwort speichern';
 
   @override
   String get accountSetPasswordExplainer =>
       'Wähle ein neues Passwort (mindestens 6 Zeichen).';
 
   @override
-  String get accountNewPassword =>
-      'Neues Passwort';
+  String get accountNewPassword => 'Neues Passwort';
 
   @override
-  String get accountRepeatPassword =>
-      'Noch einmal eingeben';
+  String get accountRepeatPassword => 'Noch einmal eingeben';
 
   @override
   String get accountPasswordsDiffer =>
       'Die beiden Passwörter sind nicht gleich.';
 
   @override
-  String get accountPasswordSaved =>
-      'Dein neues Passwort ist gespeichert.';
+  String get accountPasswordSaved => 'Dein neues Passwort ist gespeichert.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2371,36 +2364,30 @@ class AppLocalizationsDe extends AppLocalizations {
       'Auf diesem Handy gibt es Check-ins oder Reflexionen, die noch nicht in deinem Konto sind. Füge sie deinem Konto hinzu oder verwirf sie und nutze nur, was dein Konto schon hat.';
 
   @override
-  String get syncAddThem =>
-      'Hinzufügen';
+  String get syncAddThem => 'Hinzufügen';
 
   @override
-  String get syncDiscard =>
-      'Verwerfen';
+  String get syncDiscard => 'Verwerfen';
 
   @override
-  String get menuLogOutTitle =>
-      'Abmelden?';
+  String get menuLogOutTitle => 'Abmelden?';
 
   @override
   String get menuLogOutBody =>
       'Deine Check-ins und Reflexionen bleiben in deinem Konto und kommen zurück, wenn du dich anmeldest.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Noch nicht online gespeichert';
+  String get menuNotSavedTitle => 'Noch nicht online gespeichert';
 
   @override
   String get menuNotSavedBody =>
       'Einige Änderungen sind noch nicht in deinem Konto angekommen (kein Internet). Wenn du dich jetzt abmeldest, gehen sie verloren.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Trotzdem abmelden';
+  String get menuLogOutAnyway => 'Trotzdem abmelden';
 
   @override
-  String get menuStayLoggedIn =>
-      'Angemeldet bleiben';
+  String get menuStayLoggedIn => 'Angemeldet bleiben';
 
   @override
   String get settingsExportFailed =>

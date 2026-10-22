@@ -283,7 +283,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Ya. Di Pengaturan ada "Hapus akunku", yang menghapus akun online-mu dan semua yang ada di ponsel ini.';
+      'Ya. Di Pengaturan ada \"Hapus akunku\", yang menghapus akun online-mu dan semua yang ada di ponsel ini.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -338,8 +338,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get menuAboutTermsNotWired => 'Ketentuan belum tersedia di versi ini.';
 
   @override
-  String get accountAiCompanion =>
-      'Teman Kesejahteraanmu';
+  String get accountAiCompanion => 'Teman Kesejahteraanmu';
 
   @override
   String get accountTagline => 'Di sini. Bersamamu.';
@@ -2288,8 +2287,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Pilih kata sandi yang belum pernah kamu pakai.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Masukkan emailmu dulu.';
+  String get accountProblemEnterEmail => 'Masukkan emailmu dulu.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2300,40 +2298,33 @@ class AppLocalizationsId extends AppLocalizations {
       'Ponsel ini sudah punya akun. Masuk saja.';
 
   @override
-  String get accountProblemUnknown =>
-      'Ada yang salah. Coba lagi.';
+  String get accountProblemUnknown => 'Ada yang salah. Coba lagi.';
 
   @override
   String get accountConfirmEmailSent =>
       'Hampir selesai! Buka emailmu dan ketuk tautannya untuk konfirmasi, lalu masuk di sini.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Buat kata sandi baru';
+  String get accountSetPasswordTitle => 'Buat kata sandi baru';
 
   @override
-  String get accountSetPasswordSave =>
-      'Simpan kata sandi';
+  String get accountSetPasswordSave => 'Simpan kata sandi';
 
   @override
   String get accountSetPasswordExplainer =>
       'Pilih kata sandi baru (minimal 6 karakter).';
 
   @override
-  String get accountNewPassword =>
-      'Kata sandi baru';
+  String get accountNewPassword => 'Kata sandi baru';
 
   @override
-  String get accountRepeatPassword =>
-      'Ketik lagi';
+  String get accountRepeatPassword => 'Ketik lagi';
 
   @override
-  String get accountPasswordsDiffer =>
-      'Kedua kata sandi tidak sama.';
+  String get accountPasswordsDiffer => 'Kedua kata sandi tidak sama.';
 
   @override
-  String get accountPasswordSaved =>
-      'Kata sandi barumu sudah disimpan.';
+  String get accountPasswordSaved => 'Kata sandi barumu sudah disimpan.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2344,42 +2335,34 @@ class AppLocalizationsId extends AppLocalizations {
       'Ponsel ini punya check-in atau refleksi yang belum ada di akunmu. Tambahkan ke akunmu, atau buang dan gunakan hanya yang sudah ada di akunmu.';
 
   @override
-  String get syncAddThem =>
-      'Tambahkan';
+  String get syncAddThem => 'Tambahkan';
 
   @override
-  String get syncDiscard =>
-      'Buang';
+  String get syncDiscard => 'Buang';
 
   @override
-  String get menuLogOutTitle =>
-      'Keluar?';
+  String get menuLogOutTitle => 'Keluar?';
 
   @override
   String get menuLogOutBody =>
       'Check-in dan refleksimu tetap ada di akunmu dan kembali saat kamu masuk.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Belum tersimpan online';
+  String get menuNotSavedTitle => 'Belum tersimpan online';
 
   @override
   String get menuNotSavedBody =>
       'Beberapa perubahan belum sampai ke akunmu (tidak ada internet). Jika kamu keluar sekarang, perubahan itu akan hilang.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Tetap keluar';
+  String get menuLogOutAnyway => 'Tetap keluar';
 
   @override
-  String get menuStayLoggedIn =>
-      'Tetap masuk';
+  String get menuStayLoggedIn => 'Tetap masuk';
 
   @override
-  String get settingsExportFailed =>
-      'Tidak bisa mengekspor datamu. Coba lagi.';
+  String get settingsExportFailed => 'Tidak bisa mengekspor datamu. Coba lagi.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Tidak bisa menghapus akunmu.';
+  String get settingsDeleteAccountFailed => 'Tidak bisa menghapus akunmu.';
 }

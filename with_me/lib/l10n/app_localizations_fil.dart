@@ -284,7 +284,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Oo. Sa Mga Setting ay may "Burahin ang aking account", na bumubura sa iyong online account at sa lahat ng nasa teleponong ito.';
+      'Oo. Sa Mga Setting ay may \"Burahin ang aking account\", na bumubura sa iyong online account at sa lahat ng nasa teleponong ito.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -340,8 +340,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi pa naikokonekta ang Mga Tuntunin sa bersyong ito ng UI.';
 
   @override
-  String get accountAiCompanion =>
-      'Ang Iyong Kasama sa Kagalingan';
+  String get accountAiCompanion => 'Ang Iyong Kasama sa Kagalingan';
 
   @override
   String get accountTagline => 'Nandito. Kasama mo.';
@@ -2313,8 +2312,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'Pumili ng password na hindi mo pa nagamit dati.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Ilagay muna ang iyong email.';
+  String get accountProblemEnterEmail => 'Ilagay muna ang iyong email.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2325,40 +2323,34 @@ class AppLocalizationsFil extends AppLocalizations {
       'May account na ang teleponong ito. Mag-log in na lang.';
 
   @override
-  String get accountProblemUnknown =>
-      'May nangyaring mali. Pakisubukan ulit.';
+  String get accountProblemUnknown => 'May nangyaring mali. Pakisubukan ulit.';
 
   @override
   String get accountConfirmEmailSent =>
       'Malapit na! Buksan ang iyong email at i-tap ang link para kumpirmahin, pagkatapos ay mag-log in dito.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Magtakda ng bagong password';
+  String get accountSetPasswordTitle => 'Magtakda ng bagong password';
 
   @override
-  String get accountSetPasswordSave =>
-      'I-save ang password';
+  String get accountSetPasswordSave => 'I-save ang password';
 
   @override
   String get accountSetPasswordExplainer =>
       'Pumili ng bagong password (hindi bababa sa 6 na character).';
 
   @override
-  String get accountNewPassword =>
-      'Bagong password';
+  String get accountNewPassword => 'Bagong password';
 
   @override
-  String get accountRepeatPassword =>
-      'I-type ulit';
+  String get accountRepeatPassword => 'I-type ulit';
 
   @override
   String get accountPasswordsDiffer =>
       'Hindi magkapareho ang dalawang password.';
 
   @override
-  String get accountPasswordSaved =>
-      'Na-save na ang bago mong password.';
+  String get accountPasswordSaved => 'Na-save na ang bago mong password.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2369,42 +2361,35 @@ class AppLocalizationsFil extends AppLocalizations {
       'May mga check-in o pagninilay ang teleponong ito na wala pa sa iyong account. Idagdag ang mga ito sa iyong account, o itapon ang mga ito at gamitin lang ang nasa account mo na.';
 
   @override
-  String get syncAddThem =>
-      'Idagdag';
+  String get syncAddThem => 'Idagdag';
 
   @override
-  String get syncDiscard =>
-      'Itapon';
+  String get syncDiscard => 'Itapon';
 
   @override
-  String get menuLogOutTitle =>
-      'Mag-log out?';
+  String get menuLogOutTitle => 'Mag-log out?';
 
   @override
   String get menuLogOutBody =>
       'Nananatili sa iyong account ang iyong mga check-in at pagninilay at babalik ang mga ito kapag nag-log in ka.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Hindi pa naka-save online';
+  String get menuNotSavedTitle => 'Hindi pa naka-save online';
 
   @override
   String get menuNotSavedBody =>
       'May ilang pagbabago na hindi pa nakarating sa iyong account (walang internet). Kung mag-log out ka ngayon, mawawala ang mga ito.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Mag-log out pa rin';
+  String get menuLogOutAnyway => 'Mag-log out pa rin';
 
   @override
-  String get menuStayLoggedIn =>
-      'Manatiling naka-log in';
+  String get menuStayLoggedIn => 'Manatiling naka-log in';
 
   @override
   String get settingsExportFailed =>
       'Hindi ma-export ang iyong data. Subukan ulit.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Hindi mabura ang iyong account.';
+  String get settingsDeleteAccountFailed => 'Hindi mabura ang iyong account.';
 }

@@ -284,7 +284,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'ஆம். அமைப்புகளில் "எனது கணக்கை நீக்கு" உள்ளது, இது உங்கள் ஆன்லைன் கணக்கையும் இந்தத் தொலைபேசியில் உள்ள அனைத்தையும் நீக்கும்.';
+      'ஆம். அமைப்புகளில் \"எனது கணக்கை நீக்கு\" உள்ளது, இது உங்கள் ஆன்லைன் கணக்கையும் இந்தத் தொலைபேசியில் உள்ள அனைத்தையும் நீக்கும்.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -340,8 +340,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'விதிமுறைகள் இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
 
   @override
-  String get accountAiCompanion =>
-      'உங்கள் நலவாழ்வுத் துணை';
+  String get accountAiCompanion => 'உங்கள் நலவாழ்வுத் துணை';
 
   @override
   String get accountTagline => 'இங்கே. உங்களுடன்.';
@@ -2337,40 +2336,33 @@ class AppLocalizationsTa extends AppLocalizations {
       'இந்தத் தொலைபேசிக்கு ஏற்கனவே கணக்கு உள்ளது. அதற்குப் பதிலாக உள்நுழையுங்கள்.';
 
   @override
-  String get accountProblemUnknown =>
-      'ஏதோ தவறு நடந்தது. மீண்டும் முயலுங்கள்.';
+  String get accountProblemUnknown => 'ஏதோ தவறு நடந்தது. மீண்டும் முயலுங்கள்.';
 
   @override
   String get accountConfirmEmailSent =>
       'கிட்டத்தட்ட முடிந்தது! உங்கள் மின்னஞ்சலைத் திறந்து உறுதிப்படுத்த இணைப்பைத் தட்டுங்கள், பிறகு இங்கே உள்நுழையுங்கள்.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'புதிய கடவுச்சொல்லை அமைக்கவும்';
+  String get accountSetPasswordTitle => 'புதிய கடவுச்சொல்லை அமைக்கவும்';
 
   @override
-  String get accountSetPasswordSave =>
-      'கடவுச்சொல்லைச் சேமி';
+  String get accountSetPasswordSave => 'கடவுச்சொல்லைச் சேமி';
 
   @override
   String get accountSetPasswordExplainer =>
       'புதிய கடவுச்சொல்லைத் தேர்ந்தெடுக்கவும் (குறைந்தது 6 எழுத்துகள்).';
 
   @override
-  String get accountNewPassword =>
-      'புதிய கடவுச்சொல்';
+  String get accountNewPassword => 'புதிய கடவுச்சொல்';
 
   @override
-  String get accountRepeatPassword =>
-      'மீண்டும் தட்டச்சு செய்யவும்';
+  String get accountRepeatPassword => 'மீண்டும் தட்டச்சு செய்யவும்';
 
   @override
-  String get accountPasswordsDiffer =>
-      'இரண்டு கடவுச்சொற்களும் ஒன்றாக இல்லை.';
+  String get accountPasswordsDiffer => 'இரண்டு கடவுச்சொற்களும் ஒன்றாக இல்லை.';
 
   @override
-  String get accountPasswordSaved =>
-      'உங்கள் புதிய கடவுச்சொல் சேமிக்கப்பட்டது.';
+  String get accountPasswordSaved => 'உங்கள் புதிய கடவுச்சொல் சேமிக்கப்பட்டது.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2381,42 +2373,35 @@ class AppLocalizationsTa extends AppLocalizations {
       'இந்தத் தொலைபேசியில் இன்னும் உங்கள் கணக்கில் இல்லாத செக்-இன்கள் அல்லது சுயசிந்தனைகள் உள்ளன. அவற்றை உங்கள் கணக்கில் சேர்க்கவும், அல்லது நிராகரித்து உங்கள் கணக்கில் ஏற்கனவே உள்ளதை மட்டும் பயன்படுத்தவும்.';
 
   @override
-  String get syncAddThem =>
-      'சேர்';
+  String get syncAddThem => 'சேர்';
 
   @override
-  String get syncDiscard =>
-      'நிராகரி';
+  String get syncDiscard => 'நிராகரி';
 
   @override
-  String get menuLogOutTitle =>
-      'வெளியேறவா?';
+  String get menuLogOutTitle => 'வெளியேறவா?';
 
   @override
   String get menuLogOutBody =>
       'உங்கள் செக்-இன்களும் சுயசிந்தனைகளும் உங்கள் கணக்கில் இருக்கும், நீங்கள் உள்நுழையும்போது திரும்ப வரும்.';
 
   @override
-  String get menuNotSavedTitle =>
-      'இன்னும் ஆன்லைனில் சேமிக்கப்படவில்லை';
+  String get menuNotSavedTitle => 'இன்னும் ஆன்லைனில் சேமிக்கப்படவில்லை';
 
   @override
   String get menuNotSavedBody =>
       'சில மாற்றங்கள் இன்னும் உங்கள் கணக்கை அடையவில்லை (இணையம் இல்லை). இப்போது வெளியேறினால், அவை இழக்கப்படும்.';
 
   @override
-  String get menuLogOutAnyway =>
-      'இருந்தாலும் வெளியேறு';
+  String get menuLogOutAnyway => 'இருந்தாலும் வெளியேறு';
 
   @override
-  String get menuStayLoggedIn =>
-      'உள்நுழைந்தே இரு';
+  String get menuStayLoggedIn => 'உள்நுழைந்தே இரு';
 
   @override
   String get settingsExportFailed =>
       'உங்கள் தரவை ஏற்றுமதி செய்ய முடியவில்லை. மீண்டும் முயலுங்கள்.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'உங்கள் கணக்கை நீக்க முடியவில்லை.';
+  String get settingsDeleteAccountFailed => 'உங்கள் கணக்கை நீக்க முடியவில்லை.';
 }

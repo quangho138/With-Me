@@ -283,7 +283,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'Có. Trong Cài đặt có "Xóa tài khoản của tôi", sẽ xóa tài khoản trực tuyến của bạn và mọi thứ trên điện thoại này.';
+      'Có. Trong Cài đặt có \"Xóa tài khoản của tôi\", sẽ xóa tài khoản trực tuyến của bạn và mọi thứ trên điện thoại này.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -339,8 +339,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Trang điều khoản chưa được kết nối trong bản giao diện này.';
 
   @override
-  String get accountAiCompanion =>
-      'Người bạn đồng hành vì sức khỏe tinh thần';
+  String get accountAiCompanion => 'Người bạn đồng hành vì sức khỏe tinh thần';
 
   @override
   String get accountTagline => 'Ở đây. Cùng bạn.';
@@ -2257,8 +2256,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsLanguageDevice => 'Dùng ngôn ngữ của thiết bị';
 
   @override
-  String get accountProblemWrongPassword =>
-      'Email và mật khẩu không khớp.';
+  String get accountProblemWrongPassword => 'Email và mật khẩu không khớp.';
 
   @override
   String get accountProblemEmailNotConfirmed =>
@@ -2285,8 +2283,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Hãy chọn một mật khẩu bạn chưa từng dùng.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'Hãy nhập email của bạn trước.';
+  String get accountProblemEnterEmail => 'Hãy nhập email của bạn trước.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2297,40 +2294,33 @@ class AppLocalizationsVi extends AppLocalizations {
       'Điện thoại này đã có tài khoản. Hãy đăng nhập.';
 
   @override
-  String get accountProblemUnknown =>
-      'Đã có lỗi xảy ra. Hãy thử lại.';
+  String get accountProblemUnknown => 'Đã có lỗi xảy ra. Hãy thử lại.';
 
   @override
   String get accountConfirmEmailSent =>
       'Sắp xong rồi! Hãy mở email và chạm vào liên kết để xác nhận, sau đó đăng nhập tại đây.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'Đặt mật khẩu mới';
+  String get accountSetPasswordTitle => 'Đặt mật khẩu mới';
 
   @override
-  String get accountSetPasswordSave =>
-      'Lưu mật khẩu';
+  String get accountSetPasswordSave => 'Lưu mật khẩu';
 
   @override
   String get accountSetPasswordExplainer =>
       'Chọn mật khẩu mới (ít nhất 6 ký tự).';
 
   @override
-  String get accountNewPassword =>
-      'Mật khẩu mới';
+  String get accountNewPassword => 'Mật khẩu mới';
 
   @override
-  String get accountRepeatPassword =>
-      'Nhập lại';
+  String get accountRepeatPassword => 'Nhập lại';
 
   @override
-  String get accountPasswordsDiffer =>
-      'Hai mật khẩu không giống nhau.';
+  String get accountPasswordsDiffer => 'Hai mật khẩu không giống nhau.';
 
   @override
-  String get accountPasswordSaved =>
-      'Mật khẩu mới của bạn đã được lưu.';
+  String get accountPasswordSaved => 'Mật khẩu mới của bạn đã được lưu.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2341,42 +2331,35 @@ class AppLocalizationsVi extends AppLocalizations {
       'Điện thoại này có các lần ghi nhận hoặc suy ngẫm chưa có trong tài khoản của bạn. Hãy thêm chúng vào tài khoản, hoặc bỏ đi và chỉ dùng những gì tài khoản đã có.';
 
   @override
-  String get syncAddThem =>
-      'Thêm vào';
+  String get syncAddThem => 'Thêm vào';
 
   @override
-  String get syncDiscard =>
-      'Bỏ đi';
+  String get syncDiscard => 'Bỏ đi';
 
   @override
-  String get menuLogOutTitle =>
-      'Đăng xuất?';
+  String get menuLogOutTitle => 'Đăng xuất?';
 
   @override
   String get menuLogOutBody =>
       'Các lần ghi nhận và suy ngẫm của bạn vẫn ở trong tài khoản và sẽ quay lại khi bạn đăng nhập.';
 
   @override
-  String get menuNotSavedTitle =>
-      'Chưa lưu trực tuyến';
+  String get menuNotSavedTitle => 'Chưa lưu trực tuyến';
 
   @override
   String get menuNotSavedBody =>
       'Một số thay đổi chưa đến được tài khoản của bạn (không có internet). Nếu bạn đăng xuất bây giờ, chúng sẽ bị mất.';
 
   @override
-  String get menuLogOutAnyway =>
-      'Vẫn đăng xuất';
+  String get menuLogOutAnyway => 'Vẫn đăng xuất';
 
   @override
-  String get menuStayLoggedIn =>
-      'Giữ đăng nhập';
+  String get menuStayLoggedIn => 'Giữ đăng nhập';
 
   @override
   String get settingsExportFailed =>
       'Không xuất được dữ liệu của bạn. Hãy thử lại.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'Không xóa được tài khoản của bạn.';
+  String get settingsDeleteAccountFailed => 'Không xóa được tài khoản của bạn.';
 }

@@ -284,7 +284,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'అవును. సెట్టింగ్‌లలో "నా ఖాతాను తొలగించండి" ఉంది, ఇది మీ ఆన్‌లైన్ ఖాతాను, ఈ ఫోన్‌లోని ప్రతిదాన్నీ తొలగిస్తుంది.';
+      'అవును. సెట్టింగ్‌లలో \"నా ఖాతాను తొలగించండి\" ఉంది, ఇది మీ ఆన్‌లైన్ ఖాతాను, ఈ ఫోన్‌లోని ప్రతిదాన్నీ తొలగిస్తుంది.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -340,8 +340,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'నిబంధనలు ఈ UI వెర్షన్‌లో ఇంకా అందుబాటులో లేవు.';
 
   @override
-  String get accountAiCompanion =>
-      'మీ శ్రేయస్సు సహచరుడు';
+  String get accountAiCompanion => 'మీ శ్రేయస్సు సహచరుడు';
 
   @override
   String get accountTagline => 'ఇక్కడే. మీతోనే.';
@@ -2320,32 +2319,26 @@ class AppLocalizationsTe extends AppLocalizations {
       'దాదాపు అయిపోయింది! మీ ఈమెయిల్ చూసి నిర్ధారించడానికి లింక్‌ను నొక్కండి, తర్వాత ఇక్కడ లాగిన్ చేయండి.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'కొత్త పాస్‌వర్డ్ సెట్ చేయండి';
+  String get accountSetPasswordTitle => 'కొత్త పాస్‌వర్డ్ సెట్ చేయండి';
 
   @override
-  String get accountSetPasswordSave =>
-      'పాస్‌వర్డ్ సేవ్ చేయండి';
+  String get accountSetPasswordSave => 'పాస్‌వర్డ్ సేవ్ చేయండి';
 
   @override
   String get accountSetPasswordExplainer =>
       'కొత్త పాస్‌వర్డ్‌ను ఎంచుకోండి (కనీసం 6 అక్షరాలు).';
 
   @override
-  String get accountNewPassword =>
-      'కొత్త పాస్‌వర్డ్';
+  String get accountNewPassword => 'కొత్త పాస్‌వర్డ్';
 
   @override
-  String get accountRepeatPassword =>
-      'మళ్లీ టైప్ చేయండి';
+  String get accountRepeatPassword => 'మళ్లీ టైప్ చేయండి';
 
   @override
-  String get accountPasswordsDiffer =>
-      'రెండు పాస్‌వర్డ్‌లు ఒకేలా లేవు.';
+  String get accountPasswordsDiffer => 'రెండు పాస్‌వర్డ్‌లు ఒకేలా లేవు.';
 
   @override
-  String get accountPasswordSaved =>
-      'మీ కొత్త పాస్‌వర్డ్ సేవ్ అయింది.';
+  String get accountPasswordSaved => 'మీ కొత్త పాస్‌వర్డ్ సేవ్ అయింది.';
 
   @override
   String get syncKeepPhoneDataTitle =>
@@ -2356,42 +2349,35 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఈ ఫోన్‌లో ఇంకా మీ ఖాతాలో లేని చెక్-ఇన్‌లు లేదా ఆత్మపరిశీలనలు ఉన్నాయి. వాటిని మీ ఖాతాకు జోడించండి, లేదా తీసివేసి మీ ఖాతాలో ఇప్పటికే ఉన్నవాటినే ఉపయోగించండి.';
 
   @override
-  String get syncAddThem =>
-      'జోడించండి';
+  String get syncAddThem => 'జోడించండి';
 
   @override
-  String get syncDiscard =>
-      'తీసివేయండి';
+  String get syncDiscard => 'తీసివేయండి';
 
   @override
-  String get menuLogOutTitle =>
-      'లాగ్ అవుట్ చేయాలా?';
+  String get menuLogOutTitle => 'లాగ్ అవుట్ చేయాలా?';
 
   @override
   String get menuLogOutBody =>
       'మీ చెక్-ఇన్‌లు, ఆత్మపరిశీలనలు మీ ఖాతాలోనే ఉంటాయి, మీరు లాగిన్ చేసినప్పుడు తిరిగి వస్తాయి.';
 
   @override
-  String get menuNotSavedTitle =>
-      'ఇంకా ఆన్‌లైన్‌లో సేవ్ కాలేదు';
+  String get menuNotSavedTitle => 'ఇంకా ఆన్‌లైన్‌లో సేవ్ కాలేదు';
 
   @override
   String get menuNotSavedBody =>
       'కొన్ని మార్పులు ఇంకా మీ ఖాతాకు చేరలేదు (ఇంటర్నెట్ లేదు). ఇప్పుడు లాగ్ అవుట్ చేస్తే అవి పోతాయి.';
 
   @override
-  String get menuLogOutAnyway =>
-      'అయినా లాగ్ అవుట్ చేయండి';
+  String get menuLogOutAnyway => 'అయినా లాగ్ అవుట్ చేయండి';
 
   @override
-  String get menuStayLoggedIn =>
-      'లాగిన్‌లోనే ఉండండి';
+  String get menuStayLoggedIn => 'లాగిన్‌లోనే ఉండండి';
 
   @override
   String get settingsExportFailed =>
       'మీ డేటాను ఎగుమతి చేయలేకపోయాం. మళ్లీ ప్రయత్నించండి.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'మీ ఖాతాను తొలగించలేకపోయాం.';
+  String get settingsDeleteAccountFailed => 'మీ ఖాతాను తొలగించలేకపోయాం.';
 }

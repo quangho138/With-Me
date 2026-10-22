@@ -284,7 +284,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get helpDeleteAnswer =>
-      'हो. सेटिंग्जमध्ये "माझे खाते हटवा" आहे, जे तुमचे ऑनलाइन खाते आणि या फोनवरील सर्व काही हटवते.';
+      'हो. सेटिंग्जमध्ये \"माझे खाते हटवा\" आहे, जे तुमचे ऑनलाइन खाते आणि या फोनवरील सर्व काही हटवते.';
 
   @override
   String helpShareQuestion(String appName) {
@@ -340,8 +340,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'अटी अद्याप या UI आवृत्तीत उपलब्ध नाहीत.';
 
   @override
-  String get accountAiCompanion =>
-      'तुमचा स्वास्थ्य सोबती';
+  String get accountAiCompanion => 'तुमचा स्वास्थ्य सोबती';
 
   @override
   String get accountTagline => 'इथेच. तुमच्यासोबत.';
@@ -2263,8 +2262,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsLanguageDevice => 'डिव्हाइसची भाषा वापरा';
 
   @override
-  String get accountProblemWrongPassword =>
-      'हा ईमेल आणि पासवर्ड जुळत नाहीत.';
+  String get accountProblemWrongPassword => 'हा ईमेल आणि पासवर्ड जुळत नाहीत.';
 
   @override
   String get accountProblemEmailNotConfirmed =>
@@ -2291,8 +2289,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'कृपया असा पासवर्ड निवडा जो तुम्ही आधी वापरलेला नाही.';
 
   @override
-  String get accountProblemEnterEmail =>
-      'कृपया आधी तुमचा ईमेल लिहा.';
+  String get accountProblemEnterEmail => 'कृपया आधी तुमचा ईमेल लिहा.';
 
   @override
   String get accountProblemOtherAccountOnPhone =>
@@ -2311,78 +2308,64 @@ class AppLocalizationsMr extends AppLocalizations {
       'जवळजवळ झाले! तुमचा ईमेल उघडा आणि पक्के करण्यासाठी लिंकवर टॅप करा, मग इथे लॉग इन करा.';
 
   @override
-  String get accountSetPasswordTitle =>
-      'नवीन पासवर्ड सेट करा';
+  String get accountSetPasswordTitle => 'नवीन पासवर्ड सेट करा';
 
   @override
-  String get accountSetPasswordSave =>
-      'पासवर्ड जतन करा';
+  String get accountSetPasswordSave => 'पासवर्ड जतन करा';
 
   @override
   String get accountSetPasswordExplainer =>
       'नवीन पासवर्ड निवडा (किमान 6 अक्षरे).';
 
   @override
-  String get accountNewPassword =>
-      'नवीन पासवर्ड';
+  String get accountNewPassword => 'नवीन पासवर्ड';
 
   @override
-  String get accountRepeatPassword =>
-      'पुन्हा लिहा';
+  String get accountRepeatPassword => 'पुन्हा लिहा';
 
   @override
-  String get accountPasswordsDiffer =>
-      'दोन्ही पासवर्ड सारखे नाहीत.';
+  String get accountPasswordsDiffer => 'दोन्ही पासवर्ड सारखे नाहीत.';
 
   @override
-  String get accountPasswordSaved =>
-      'तुमचा नवीन पासवर्ड जतन झाला आहे.';
+  String get accountPasswordSaved => 'तुमचा नवीन पासवर्ड जतन झाला आहे.';
 
   @override
-  String get syncKeepPhoneDataTitle =>
-      'या फोनवरील चेक-इन आणि चिंतन ठेवायचे?';
+  String get syncKeepPhoneDataTitle => 'या फोनवरील चेक-इन आणि चिंतन ठेवायचे?';
 
   @override
   String get syncKeepPhoneDataBody =>
       'या फोनवर काही चेक-इन किंवा चिंतन आहेत जे अजून तुमच्या खात्यात नाहीत. ते तुमच्या खात्यात जोडा, किंवा काढून टाका आणि फक्त खात्यात आधीपासून असलेलेच वापरा.';
 
   @override
-  String get syncAddThem =>
-      'जोडा';
+  String get syncAddThem => 'जोडा';
 
   @override
-  String get syncDiscard =>
-      'काढून टाका';
+  String get syncDiscard => 'काढून टाका';
 
   @override
-  String get menuLogOutTitle =>
-      'लॉग आउट करायचे?';
+  String get menuLogOutTitle => 'लॉग आउट करायचे?';
 
   @override
   String get menuLogOutBody =>
       'तुमचे चेक-इन आणि चिंतन तुमच्या खात्यात राहतात आणि लॉग इन केल्यावर परत येतात.';
 
   @override
-  String get menuNotSavedTitle =>
-      'अजून ऑनलाइन जतन झाले नाही';
+  String get menuNotSavedTitle => 'अजून ऑनलाइन जतन झाले नाही';
 
   @override
   String get menuNotSavedBody =>
       'काही बदल अजून तुमच्या खात्यापर्यंत पोहोचलेले नाहीत (इंटरनेट नाही). आता लॉग आउट केल्यास ते हरवतील.';
 
   @override
-  String get menuLogOutAnyway =>
-      'तरीही लॉग आउट करा';
+  String get menuLogOutAnyway => 'तरीही लॉग आउट करा';
 
   @override
-  String get menuStayLoggedIn =>
-      'लॉग इन राहा';
+  String get menuStayLoggedIn => 'लॉग इन राहा';
 
   @override
   String get settingsExportFailed =>
       'तुमचा डेटा एक्सपोर्ट करता आला नाही. पुन्हा प्रयत्न करा.';
 
   @override
-  String get settingsDeleteAccountFailed =>
-      'तुमचे खाते हटवता आले नाही.';
+  String get settingsDeleteAccountFailed => 'तुमचे खाते हटवता आले नाही.';
 }
