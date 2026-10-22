@@ -1,0 +1,6 @@
+# Translations: one .arb file per language in lib/l10n. English is the
+# template; any message another language leaves out falls back to English.
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations

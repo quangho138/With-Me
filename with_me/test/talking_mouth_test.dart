@@ -40,7 +40,7 @@ void main() {
     test('follows its utterance\'s real playback', () async {
       await install();
       final mouth = NarrationMouth(speech);
-      final id = speech.play('audio/checkin/page1.mp3', owner: 1);
+      final id = speech.play('audio/voice/en/checkin/page1.mp3', owner: 1);
       mouth.follow(id);
       expect(mouth.value, isFalse, reason: 'audio has not started yet');
       clips.callbacks.last.onStart();
@@ -53,7 +53,7 @@ void main() {
     test('hush holds for the rest of that line', () async {
       await install();
       final mouth = NarrationMouth(speech);
-      mouth.follow(speech.play('audio/checkin/page1.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page1.mp3', owner: 1));
       clips.callbacks.last.onStart();
       mouth.hush();
       expect(mouth.value, isFalse);
@@ -62,7 +62,7 @@ void main() {
       expect(mouth.value, isFalse);
 
       // A new line is followed afresh.
-      mouth.follow(speech.play('audio/checkin/page2.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page2.mp3', owner: 1));
       clips.callbacks.last.onStart();
       expect(mouth.value, isTrue);
       mouth.dispose();
@@ -72,7 +72,7 @@ void main() {
       await install();
       final mouth = NarrationMouth(speech);
       mouth.follow(null);
-      speech.play('audio/checkin/page1.mp3', owner: 2);
+      speech.play('audio/voice/en/checkin/page1.mp3', owner: 2);
       clips.callbacks.last.onStart();
       expect(mouth.value, isFalse);
       mouth.dispose();
@@ -85,7 +85,7 @@ void main() {
       mouth.expect();
       expect(mouth.saying, isTrue, reason: 'due before it is started');
       expect(mouth.value, isFalse, reason: 'but the mouth is still');
-      mouth.follow(speech.play('audio/checkin/page1.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page1.mp3', owner: 1));
       expect(mouth.saying, isTrue, reason: 'loading');
       expect(mouth.value, isFalse);
       clips.callbacks.last.onStart();
@@ -97,10 +97,10 @@ void main() {
       mouth.expect();
       mouth.follow(null);
       expect(mouth.saying, isFalse);
-      mouth.follow(speech.play('audio/checkin/page1.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page1.mp3', owner: 1));
       mouth.hush();
       expect(mouth.saying, isFalse);
-      mouth.follow(speech.play('audio/checkin/page2.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page2.mp3', owner: 1));
       clips.callbacks.last.onError('no file');
       expect(mouth.saying, isFalse);
 
@@ -108,7 +108,7 @@ void main() {
       mouth.expect();
       mouth.hush();
       expect(mouth.saying, isFalse);
-      mouth.follow(speech.play('audio/checkin/page1.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page1.mp3', owner: 1));
       clips.callbacks.last.onStart();
       expect(mouth.saying || mouth.value, isFalse);
       mouth.dispose();
@@ -117,7 +117,7 @@ void main() {
     test('stopped is still', () async {
       await install();
       final mouth = NarrationMouth(speech);
-      mouth.follow(speech.play('audio/checkin/page1.mp3', owner: 1));
+      mouth.follow(speech.play('audio/voice/en/checkin/page1.mp3', owner: 1));
       clips.callbacks.last.onStart();
       speech.stop(owner: 1);
       expect(mouth.value, isFalse);
@@ -161,28 +161,34 @@ void main() {
     });
 
     test('every recording has a timeline that opens and closes', () {
-      final clips = Directory('assets/audio/checkin')
+      final clips = Directory('assets/audio/voice/en/checkin')
           .listSync()
           .map((f) => f.path.split('/').last)
           .where((n) => n.endsWith('.mp3'));
       expect(clips, hasLength(16));
-      for (final name in [
-        ...clips.map((n) => 'checkin/$n'),
-        'home/welcome_back.mp3',
-      ]) {
-        final t = kMouthTimelines['audio/$name'];
-        expect(t, isNotNull, reason: name);
-        final shapes = {for (final c in t!.split('')) MouthShape.fromCode(c)};
-        expect(shapes, contains(MouthShape.closed), reason: name);
-        expect(shapes.length, greaterThanOrEqualTo(4), reason: name);
-        for (final c in t.split('')) {
-          expect(
-            MouthShape.values.any((m) => m.code == c),
-            isTrue,
-            reason: '$name: $c',
-          );
+      // Every language Chatterbox speaks has the same 17 lines.
+      for (final language in [
+        ...['en', 'es', 'hi', 'ar', 'fr', 'pt', 'ru', 'ja'],
+        ...['zh', 'de', 'tr', 'sw', 'ko'],
+      ])
+        for (final name in [
+          ...clips.map((n) => '$language/checkin/$n'),
+          '$language/home/welcome_back.mp3',
+        ]) {
+          expect(File('assets/audio/voice/$name').existsSync(), isTrue);
+          final t = kMouthTimelines['audio/voice/$name'];
+          expect(t, isNotNull, reason: name);
+          final shapes = {for (final c in t!.split('')) MouthShape.fromCode(c)};
+          expect(shapes, contains(MouthShape.closed), reason: name);
+          expect(shapes.length, greaterThanOrEqualTo(4), reason: name);
+          for (final c in t.split('')) {
+            expect(
+              MouthShape.values.any((m) => m.code == c),
+              isTrue,
+              reason: '$name: $c',
+            );
+          }
         }
-      }
       expect(kMouthTimelineFps, 30);
     });
 
@@ -255,7 +261,7 @@ void main() {
     ) async {
       await install();
       await open(tester);
-      expect(clips.played, [DailyCheckInScreen.greetingRecording]);
+      expect(clips.played, ['audio/voice/en/checkin/page1.mp3']);
       expect(talking(tester), isFalse, reason: 'not until the audio starts');
 
       clips.callbacks.last.onStart();
@@ -263,7 +269,7 @@ void main() {
       expect(talking(tester), isTrue);
       expect(mascot(tester).pose, RealPose.heart, reason: 'the page\'s pose');
       // The mouth follows the greeting's timeline.
-      final timeline = kMouthTimelines[DailyCheckInScreen.greetingRecording]!;
+      final timeline = kMouthTimelines['audio/voice/en/checkin/page1.mp3']!;
       expect(mascot(tester).mouthTimeline, timeline);
       String shown() {
         final m = anyMouth('heart');
@@ -274,9 +280,9 @@ void main() {
                   .last;
       }
 
-      // Frames 11 to 15 of the greeting are slightly open.
-      expect(timeline.substring(11, 16), '11111');
-      await tester.pump(const Duration(milliseconds: 430));
+      // Frames 13 to 18 of the greeting are slightly open.
+      expect(timeline.substring(13, 19), '111111');
+      await tester.pump(const Duration(milliseconds: 500));
       expect(shown(), 'mid');
       final seen = <String>{};
       for (var i = 0; i < 60; i++) {
@@ -324,7 +330,7 @@ void main() {
       await open(tester);
       await tapLabel(tester, 'Happy');
       await tapContinue(tester);
-      expect(clips.played.last, 'audio/checkin/page2.mp3');
+      expect(clips.played.last, 'audio/voice/en/checkin/page2.mp3');
       clips.callbacks.last.onStart();
       await tester.pump();
       expect(talking(tester), isTrue);
@@ -380,7 +386,7 @@ void main() {
         saved: CheckInEntry(day: DateTime.now(), mood: 'Indifferent'),
       );
       expect(frames, [(RealPose.heart, false)], reason: 'no smirk flash');
-      expect(clips.played, [DailyCheckInScreen.greetingRecording]);
+      expect(clips.played, ['audio/voice/en/checkin/page1.mp3']);
       // The audio takes its time; the pose waits with the mouth at rest.
       await tester.pump(const Duration(seconds: 2));
       expect(anyMouth('heart'), findsNothing);
@@ -455,7 +461,7 @@ void main() {
         }
       });
       await tapContinue(tester);
-      expect(clips.played.last, 'audio/checkin/page2.mp3');
+      expect(clips.played.last, 'audio/voice/en/checkin/page2.mp3');
       expect(clips.played, hasLength(3));
       expect(poses.toSet(), {RealPose.think}, reason: 'not its answer first');
       clips.callbacks.last.onStart();
@@ -494,7 +500,7 @@ void main() {
       expect(clips.stops, 1);
       expect(speech.playback.value, SpeechPlayback.idle);
       // Later playback reaches no listener left behind by the page.
-      speech.play('audio/checkin/page2.mp3', owner: 9);
+      speech.play('audio/voice/en/checkin/page2.mp3', owner: 9);
       clips.callbacks.last.onStart();
       await tester.pump();
       expect(tester.takeException(), isNull);

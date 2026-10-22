@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Theme/WithMeTheme.dart';
+import '../../l10n/l10n.dart';
 import 'BeforeWeStartScreen.dart';
 
 /// `image31.png` — the soundscape player.
@@ -16,15 +17,16 @@ import 'BeforeWeStartScreen.dart';
 class SoundscapeScreen extends StatefulWidget {
   const SoundscapeScreen({
     super.key,
-    this.name = 'Fire',
-    this.subtitle = 'Crackling logs · 40 min loop',
+    this.name,
+    this.subtitle,
     this.totalSeconds = 2400,
   });
 
   static const String route = '/soundscape';
 
-  final String name;
-  final String subtitle;
+  /// Shown as given; Fire's name and line when left out.
+  final String? name;
+  final String? subtitle;
   final int totalSeconds;
 
   @override
@@ -66,7 +68,9 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final progress = _elapsed / widget.totalSeconds;
+    final name = widget.name ?? l.exerciseSoundFire;
 
     return DecoratedBox(
       decoration: const BoxDecoration(
@@ -93,7 +97,7 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                 // way back is added here; "Done" at the bottom also pops.
                 const SizedBox(height: WithMeSpace.md),
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: WithMeBackChevron(
                     color: Colors.white,
                     onTap: () => Navigator.of(context).maybePop(),
@@ -101,7 +105,7 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                 ),
                 const SizedBox(height: WithMeSpace.sm),
                 Text(
-                  widget.name,
+                  name,
                   textAlign: TextAlign.center,
                   style: WithMeText.title.copyWith(
                     fontSize: 26,
@@ -110,7 +114,7 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                 ),
                 const SizedBox(height: WithMeSpace.xs),
                 Text(
-                  widget.subtitle,
+                  widget.subtitle ?? l.exerciseSoundscapeFireSubtitle,
                   textAlign: TextAlign.center,
                   style: WithMeText.body.copyWith(
                     color: Colors.white.withValues(alpha: 0.85),
@@ -154,7 +158,7 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                   children: [
                     Expanded(
                       child: WithMeButton(
-                        label: 'Add breathing',
+                        label: l.exerciseAddBreathing,
                         filled: false,
                         height: 48,
                         onPressed: () => Navigator.of(context).push(
@@ -167,12 +171,14 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                     const SizedBox(width: WithMeSpace.md),
                     Expanded(
                       child: WithMeButton(
-                        label: 'Save favourite',
+                        label: l.exerciseSaveFavourite,
                         filled: false,
                         height: 48,
                         onPressed: () =>
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('${widget.name} saved.')),
+                              SnackBar(
+                                content: Text(l.exerciseSoundscapeSaved(name)),
+                              ),
                             ),
                       ),
                     ),
@@ -180,7 +186,7 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                 ),
                 const Spacer(),
                 WithMeButton(
-                  label: 'Done',
+                  label: l.commonDone,
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 const SizedBox(height: WithMeSpace.xl),
@@ -206,6 +212,7 @@ class _Transport extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final ink = Colors.white.withValues(alpha: 0.9);
 
     return Container(
@@ -237,9 +244,12 @@ class _Transport extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Volume', style: WithMeText.option.copyWith(color: ink)),
               Text(
-                'Timer · 20 min',
+                l.exerciseVolume,
+                style: WithMeText.option.copyWith(color: ink),
+              ),
+              Text(
+                l.exerciseTimerMinutes(20),
                 style: WithMeText.option.copyWith(color: ink),
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Mascot/RealMascot.dart';
@@ -14,14 +15,15 @@ class WithMeAboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'About',
+      title: l.menuAbout,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
       mascot: RealPose.happy,
       mascotMin: 96,
       mascotMax: 0.15,
-      footnote: const ScenicFootnote('Version 1.0 · Made with care'),
+      footnote: ScenicFootnote(l.menuAboutFootnote('1.0')),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -36,17 +38,14 @@ class WithMeAboutScreen extends StatelessWidget {
                     color: ScenicColors.ink,
                   ),
                 ),
-                const ScenicHeading('Your AI Companion', size: 19),
+                ScenicHeading(l.accountAiCompanion, size: 19),
               ],
             ),
           ),
           const SizedBox(height: 12),
           ScenicPanel(
             child: Text(
-              'With Me was built for the moments between appointments — when '
-              'stress arrives and you just need something steady to talk to. '
-              'It listens, helps you name what is happening, and offers one '
-              'small next step.',
+              l.menuAboutStory(l.appTitle),
               style: kScenicBody.copyWith(fontSize: 16, height: 1.45),
             ),
           ),
@@ -63,8 +62,7 @@ class WithMeAboutScreen extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    'With Me does not diagnose or treat, and is not a '
-                    'substitute for professional care.',
+                    l.menuAboutDisclaimer(l.appTitle),
                     style: kScenicBody.copyWith(fontSize: 16, height: 1.45),
                   ),
                 ),
@@ -73,13 +71,11 @@ class WithMeAboutScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ScenicRow(
-            label: 'Terms & Privacy Policy',
+            label: l.menuAboutTerms,
             icon: Icons.description_rounded,
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Terms are not wired up in this UI pass.'),
-              ),
-            ),
+            onTap: () => ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(l.menuAboutTermsNotWired))),
           ),
         ],
       ),

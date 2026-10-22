@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
 import '../Components/ScenicKit.dart';
@@ -133,16 +134,17 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Daily Log',
+      title: l.dashDailyLogTitle,
       action: _todaySelected
           ? ScenicPill(
-              label: "Start today's check-in",
+              label: l.dashStartTodaysCheckIn,
               height: 58,
               onPressed: () => _openCheckIn(0),
             )
           : null,
-      footnote: const ScenicFootnote('Every step counts'),
+      footnote: ScenicFootnote(l.dashEveryStepCounts),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -168,7 +170,7 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
           const SizedBox(height: WithMeSpace.lg),
           if (_todaySelected) ...[
             _TodayCheckIn(
-              titles: DailyCheckInScreen.pageTitles(_name),
+              titles: DailyCheckInScreen.pageTitles(_name, l),
               done: _checkedInToday,
               onOpen: _openCheckIn,
             ),
@@ -199,12 +201,15 @@ class _TodayCheckIn extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const ScenicHeading("Today's check-in", textAlign: TextAlign.start),
+          ScenicHeading(
+            context.l10n.dashTodaysCheckIn,
+            textAlign: TextAlign.start,
+          ),
           const SizedBox(height: WithMeSpace.xs),
           Text(
             done
-                ? "You've checked in today. Tap a page to change an answer."
-                : 'Tap a page to start there, or begin from the top below.',
+                ? context.l10n.dashTodayCheckedIn
+                : context.l10n.dashTodayNotCheckedIn,
             style: kScenicBody.copyWith(fontSize: 14),
           ),
           const SizedBox(height: WithMeSpace.sm),

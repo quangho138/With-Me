@@ -2,7 +2,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ScenicKit.dart';
 import 'ScenicScaffold.dart';
@@ -22,36 +25,13 @@ class DayPoint {
   final int value;
 }
 
-const List<String> _months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-];
+/// "Oct 6", in [locale].
+String shortDate(DateTime d, [String locale = 'en_US']) =>
+    DateFormat.MMMd(locale).format(d);
 
-const List<String> _weekdays = [
-  'Mon',
-  'Tue',
-  'Wed',
-  'Thu',
-  'Fri',
-  'Sat',
-  'Sun',
-];
-
-/// "Oct 6".
-String shortDate(DateTime d) => '${_months[d.month - 1]} ${d.day}';
-
-/// "Tue, Oct 6".
-String longDate(DateTime d) => '${_weekdays[d.weekday - 1]}, ${shortDate(d)}';
+/// "Tue, Oct 6", in [locale].
+String longDate(DateTime d, [String locale = 'en_US']) =>
+    DateFormat.MMMEd(locale).format(d);
 
 /// Each slice's share of the total, rounded to the nearest whole percent.
 /// Equal counts always read the same, so the shares can add up to 99 or
@@ -63,7 +43,8 @@ List<int> shareOf(List<Slice> slices) {
   ];
 }
 
-/// The text every empty dashboard section shows.
+/// The text every empty dashboard section shows, in English
+/// (`dashNoEntries`); what is shown comes from `context.l10n`.
 const String kNoEntries = 'No entries recorded for this period.';
 
 /// A titled dashboard section: a panel with a heading, an optional line
@@ -93,10 +74,10 @@ class DashboardSection extends StatelessWidget {
           Semantics(header: true, child: ScenicHeading(title, size: 25)),
           if (empty) ...[
             const SizedBox(height: 14),
-            const Text(
-              kNoEntries,
+            Text(
+              context.l10n.dashNoEntries,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: WithMeText.ui,
                 fontSize: 18,
                 height: 1.35,
@@ -163,9 +144,14 @@ class ChoicePie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final pie = CustomPaint(
       size: Size.square(size),
-      painter: _ChoicePiePainter(slices, labels: labels),
+      painter: _ChoicePiePainter(
+        slices,
+        labels: labels,
+        percent: (p) => l.dashPercent(p),
+      ),
     );
     if (onTap == null) return pie;
     return GestureDetector(
@@ -199,10 +185,13 @@ class ChoicePie extends StatelessWidget {
 }
 
 class _ChoicePiePainter extends CustomPainter {
-  _ChoicePiePainter(this.slices, {this.labels = true});
+  _ChoicePiePainter(this.slices, {this.labels = true, required this.percent});
 
   final List<Slice> slices;
   final bool labels;
+
+  /// A share as written on its slice: "41%".
+  final String Function(int percent) percent;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -260,7 +249,7 @@ class _ChoicePiePainter extends CustomPainter {
         final at = counted == 1
             ? centre
             : centre + Offset(math.cos(mid), math.sin(mid)) * radius * 0.64;
-        _label(canvas, '${percents[i]}%', at, fontSize);
+        _label(canvas, percent(percents[i]), at, fontSize);
       }
       start += sweep;
     }
@@ -311,13 +300,14 @@ class ChoiceLegend extends StatelessWidget {
 
   final List<Slice> slices;
 
-  /// What one count is, singular and plural - ('check-in', 'check-ins').
-  final (String, String) unit;
+  /// A count with what one count is - "1 check-in", "3 check-ins".
+  final String Function(AppLocalizations l, int count) unit;
 
   final ValueChanged<int>? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final percents = shareOf(slices);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -325,10 +315,10 @@ class ChoiceLegend extends StatelessWidget {
         for (var i = 0; i < slices.length; i++)
           _LegendRow(
             slice: slices[i],
-            detail:
-                '${slices[i].value.round()} '
-                '${slices[i].value.round() == 1 ? unit.$1 : unit.$2}'
-                ' · ${percents[i]}%',
+            detail: l.dashCountShare(
+              unit(l, slices[i].value.round()),
+              percents[i],
+            ),
             onTap: onTap == null ? null : () => onTap!(i),
           ),
       ],
@@ -370,7 +360,7 @@ class _LegendRow extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    slice.label,
+                    context.label(slice.label),
                     style: const TextStyle(
                       fontFamily: WithMeText.ui,
                       fontSize: 19,
@@ -407,7 +397,7 @@ class _LegendRow extends StatelessWidget {
     }
     return Semantics(
       button: true,
-      hint: 'Go to its section',
+      hint: context.l10n.dashGoToSection,
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
@@ -431,7 +421,7 @@ class ChoiceBreakdown extends StatelessWidget {
   });
 
   final List<Slice> slices;
-  final (String, String) unit;
+  final String Function(AppLocalizations l, int count) unit;
 
   /// Called with the tapped slice's label.
   final ValueChanged<String>? onTap;
@@ -534,7 +524,10 @@ class _DayBarChartState extends State<DayBarChart> {
 
   String _read(int i) {
     final p = widget.points[i];
-    return '${longDate(p.day)} · ${widget.describe(p.value)}';
+    return context.l10n.dashDayReadout(
+      longDate(p.day, dateLocale(context)),
+      widget.describe(p.value),
+    );
   }
 
   _BarLayout _layout(double width) => _BarLayout(
@@ -550,6 +543,7 @@ class _DayBarChartState extends State<DayBarChart> {
     selected: selected,
     colorOf: widget.colorOf,
     today: widget.today ?? widget.to,
+    locale: dateLocale(context),
   );
 
   @override
@@ -572,16 +566,20 @@ class _DayBarChartState extends State<DayBarChart> {
     final has = points.isNotEmpty && _selected >= 0;
     final canNext = has && _selected < points.length - 1;
     final canBack = has && _selected > 0;
+    final l = context.l10n;
+    final locale = dateLocale(context);
 
     return Semantics(
-      label:
-          '${widget.title}: ${points.length} '
-          '${points.length == 1 ? 'entry' : 'entries'} from '
-          '${shortDate(widget.from)} to ${shortDate(widget.to)}',
+      label: l.dashBarChartSemantics(
+        points.length,
+        widget.title,
+        shortDate(widget.from, locale),
+        shortDate(widget.to, locale),
+      ),
       value: has ? _read(_selected) : null,
       increasedValue: canNext ? _read(_selected + 1) : null,
       decreasedValue: canBack ? _read(_selected - 1) : null,
-      hint: points.length > 1 ? 'Adjust to read other days' : null,
+      hint: points.length > 1 ? l.dashAdjustHint : null,
       onIncrease: canNext ? () => _select(_selected + 1) : null,
       onDecrease: canBack ? () => _select(_selected - 1) : null,
       excludeSemantics: true,
@@ -726,6 +724,7 @@ class _BarPainter extends CustomPainter {
     required this.selected,
     required this.colorOf,
     required this.today,
+    required this.locale,
   });
 
   final _BarLayout layout;
@@ -734,15 +733,8 @@ class _BarPainter extends CustomPainter {
   final Color Function(int value) colorOf;
   final DateTime today;
 
-  static const List<String> _weekdays = [
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat',
-    'Sun',
-  ];
+  /// The locale the dates are written in.
+  final String locale;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -794,12 +786,12 @@ class _BarPainter extends CustomPainter {
       final named = !layout.week && d.month != labelledMonth;
       labelledMonth = d.month;
       final date = _BarLayout.text(
-        named ? shortDate(d) : '${d.day}',
+        named ? shortDate(d, locale) : DateFormat.d(locale).format(d),
         _BarLayout.axisStyle,
       );
       if (layout.week) {
         final day = _BarLayout.text(
-          _weekdays[d.weekday - 1],
+          DateFormat.E(locale).format(d),
           _BarLayout.axisStyle.copyWith(color: WithMeColors.inkFaint),
         );
         day.paint(canvas, Offset(cx - day.width / 2, plot.bottom + 3));
@@ -848,5 +840,6 @@ class _BarPainter extends CustomPainter {
       old.points != points ||
       old.selected != selected ||
       old.today != today ||
+      old.locale != locale ||
       old.layout.size != layout.size;
 }

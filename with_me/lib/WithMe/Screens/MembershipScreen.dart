@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -17,39 +18,29 @@ class MembershipScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Membership',
+      title: l.accountMembershipTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
       action: ScenicPill(
-        label: 'Start Plus',
+        label: l.accountStartPlus,
         height: 58,
-        onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Payments are not connected in this UI pass.'),
-          ),
-        ),
+        onPressed: () => ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(l.accountPaymentsNotWired))),
       ),
-      footnote: const ScenicFootnote(
-        'Cancel any time. Your logs stay yours either way.',
-      ),
+      footnote: ScenicFootnote(l.accountMembershipFootnote),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _Plan(
-            name: 'Free forever',
-            blurb:
-                'Check-ins, daily logs, breathing exercises and the '
-                'calendar. No card needed.',
+            name: l.accountPlanFree,
+            blurb: l.accountPlanFreeBlurb,
             tinted: true,
           ),
           const SizedBox(height: 12),
-          _Plan(
-            name: r'Companion Plus · $4.99/mo',
-            blurb:
-                'All soundscapes · guided meditations · full insight '
-                'history · PDF summaries to share',
-          ),
+          _Plan(name: l.accountPlanPlus, blurb: l.accountPlanPlusBlurb),
           const SizedBox(height: 12),
           const ScenicPanel(child: _CardFields()),
         ],
@@ -95,10 +86,11 @@ class _CardFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Card', style: kScenicLabel),
+        Text(l.accountCard, style: kScenicLabel),
         const SizedBox(height: 6),
         const _Inert(text: '•••• •••• •••• ••••'),
         const SizedBox(height: 14),
@@ -108,16 +100,19 @@ class _CardFields extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Expiry', style: kScenicLabel),
+                Text(l.accountCardExpiry, style: kScenicLabel),
                 const SizedBox(height: 6),
-                const SizedBox(width: 92, child: _Inert(text: 'MM/YY')),
+                SizedBox(
+                  width: 92,
+                  child: _Inert(text: l.accountCardExpiryHint),
+                ),
               ],
             ),
             const SizedBox(width: 14),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('CVC', style: kScenicLabel),
+                Text(l.accountCardCvc, style: kScenicLabel),
                 const SizedBox(height: 6),
                 const SizedBox(width: 68, child: _Inert(text: '•••')),
               ],
@@ -137,7 +132,7 @@ class _Inert extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
     height: kSettingsRowHeight,
-    alignment: Alignment.centerLeft,
+    alignment: AlignmentDirectional.centerStart,
     padding: const EdgeInsets.symmetric(horizontal: 16),
     decoration: BoxDecoration(
       color: Colors.white,

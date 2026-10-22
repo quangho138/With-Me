@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
@@ -25,7 +26,22 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   bool _weeklySummary = true;
   bool _encouragement = true;
 
-  final _quietHours = TextEditingController(text: '10:00 PM – 7:30 AM');
+  final _quietHours = TextEditingController();
+  bool _hoursFilled = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 10 at night to half past 7, written the reader's way
+    // ("10:00 PM – 7:30 AM" in English).
+    if (_hoursFilled) return;
+    _hoursFilled = true;
+    final clock = MaterialLocalizations.of(context);
+    _quietHours.text = context.l10n.settingsQuietHoursRange(
+      clock.formatTimeOfDay(const TimeOfDay(hour: 22, minute: 0)),
+      clock.formatTimeOfDay(const TimeOfDay(hour: 7, minute: 30)),
+    );
+  }
 
   @override
   void dispose() {
@@ -35,17 +51,18 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return ScenicScaffold(
-      title: 'Notifications',
+      title: l.settingsNotificationsTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
       action: ScenicPill(
-        label: 'Save',
+        label: l.commonSave,
         height: 58,
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Preferences saved on this device.')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(l.settingsNotificationsSaved)));
           Navigator.of(context).pop();
         },
       ),
@@ -53,7 +70,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ScenicToggleRow(
-            label: 'Daily check-in reminder',
+            label: l.settingsDailyReminder,
             icon: Icons.wb_sunny_rounded,
             iconColor: const Color(0xFFEE9A3E),
             value: _dailyCheckIn,
@@ -61,7 +78,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
           const SizedBox(height: 10),
           ScenicToggleRow(
-            label: 'Exercise nudge',
+            label: l.settingsExerciseNudge,
             icon: Icons.spa_rounded,
             iconColor: const Color(0xFF3E9C8C),
             value: _exerciseNudge,
@@ -69,7 +86,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
           const SizedBox(height: 10),
           ScenicToggleRow(
-            label: 'Weekly insight summary',
+            label: l.settingsWeeklySummary,
             icon: Icons.insights_rounded,
             iconColor: const Color(0xFF1C7C84),
             value: _weeklySummary,
@@ -77,7 +94,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
           const SizedBox(height: 10),
           ScenicToggleRow(
-            label: 'Encouragement notes',
+            label: l.settingsEncouragement,
             icon: Icons.favorite_rounded,
             iconColor: const Color(0xFFD2557F),
             value: _encouragement,
@@ -86,7 +103,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           const SizedBox(height: 12),
           ScenicPanel(
             child: WithMeField(
-              label: 'Quiet hours',
+              label: l.settingsQuietHours,
               controller: _quietHours,
               fill: Colors.white,
               border: kScenicFieldRing,

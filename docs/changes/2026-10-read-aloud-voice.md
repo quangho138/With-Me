@@ -167,3 +167,13 @@ an Android emulator (Google Play or Google APIs image) or phone:
 5. Turn Read aloud off, restart the app: it stays off and nothing plays.
 
 If it's silent, check the media volume.
+
+## Adrian's own voice (2026-10-18)
+
+The English lines are now in Adrian's own voice. He recorded a 9-second reference through free CapCut voice filters, and tool/make_voice_lines.py had Chatterbox Multilingual read all 17 lines in that voice, into with_me/assets/audio/voice/en/. Each clip was checked against its line with speech recognition; three were made again and four trimmed where the model added stray sounds after the last word. The mouth timelines were rebuilt from the new clips.
+
+The fish.audio recordings no longer ship with the app. They are kept, unchanged, in with_me/tool/media-source/fish-audio-original/, with a note on how to bring them back. The change is in adrian-voice.diff.
+
+### The other languages
+
+The same voice now speaks the lines in Spanish, Hindi, Arabic, French, Portuguese, Russian and Japanese (with_me/assets/audio/voice/<language>/), so those languages no longer use the device's voice. Since 2026-10-19 it also speaks Chinese (the Simplified and Traditional versions share the Mandarin recordings), German, Turkish, Swahili and Korean. Bengali, Indonesian, Urdu, Marathi, Vietnamese, Telugu, Filipino and Tamil still use the device's voice, because Chatterbox can't speak them. Each clip was checked with speech recognition; clips where the model added sounds after the line were trimmed, and 15 were made again until they said their line. make_voice_lines.py now spells out "1 to 5" in Russian, Hindi, Arabic, Chinese and Korean, reads 選ぶ as えらぶ in Japanese, and adds a short pause in one French line, because the model misread those.

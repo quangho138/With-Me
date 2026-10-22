@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'Database/DemoAccount.dart';
 import 'Repositories/app_repositories.dart';
 import 'Repositories/user_repository.dart';
 
+import 'WithMe/Locale/AppLanguage.dart';
 import 'WithMe/Screens/AboutScreen.dart';
 import 'WithMe/Screens/BeforeWeStartScreen.dart';
 import 'WithMe/Screens/BreathingScreen.dart';
@@ -36,6 +38,7 @@ import 'WithMe/Screens/WelcomeScreen.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
+import 'l10n/app_localizations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,6 +64,15 @@ Future<void> main() async {
     await SpeechService.instance.load().timeout(const Duration(seconds: 3));
   } catch (e) {
     debugPrint('Read aloud setting not loaded yet: $e');
+  }
+
+  // The language picked in Settings, read before the first screen so it
+  // never opens in the wrong language. Until it is read (or if it fails),
+  // the device's language is used.
+  try {
+    await AppLanguage.instance.load().timeout(const Duration(seconds: 3));
+  } catch (e) {
+    debugPrint('Language setting not loaded yet: $e');
   }
 
   // The database is not wiped on launch — the logs have to survive a restart.
@@ -92,10 +104,30 @@ class WithMeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Rebuilt when the language changes in Settings, so every screen
+    // switches at once, with no restart.
+    return ValueListenableBuilder<Locale?>(
+      valueListenable: AppLanguage.instance,
+      builder: (context, chosen, _) => _app(chosen),
+    );
+  }
+
+  Widget _app(Locale? chosen) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'With Me',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
       theme: buildWithMeTheme(),
+      // The picked language, or the device's when none was picked (English
+      // when the app does not have the device's language).
+      locale: chosen,
+      supportedLocales: AppLanguage.supported,
+      localeListResolutionCallback: (device, _) => AppLanguage.resolve(device),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       // One first screen, chosen above. (initialRoute '/home' would put the
       // welcome screen underneath it, and Back would land there.)
       onGenerateInitialRoutes: (_) => [

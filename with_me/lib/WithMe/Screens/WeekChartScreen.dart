@@ -3,32 +3,37 @@ import 'dart:math' as math;
 import 'package:flutter/gestures.dart' show PointerDeviceKind;
 import 'package:flutter/material.dart';
 
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
 import '../Components/DashboardCharts.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
-import '../Components/WithMeCharts.dart' show Slice;
+import '../Components/WithMeCharts.dart' show Slice, dateLocale;
 import '../Components/WithMeControls.dart' show ReadinessGauge;
 import '../Data/CheckInSteps.dart' show SignDimension;
 import '../Data/DashboardStats.dart';
 import '../Theme/WithMeTheme.dart';
+
+/// The app's English. A chart's [WeekView.title], and a bar chart's
+/// [WeekChart.rows] and [WeekChart.describe], are in English: the names
+/// code and tests know them by. What is shown is in the reader's language.
+final AppLocalizations _english = lookupAppLocalizations(const Locale('en'));
 
 /// The Monday that starts [d]'s week.
 DateTime weekStart(DateTime d) =>
     DateTime(d.year, d.month, d.day - (d.weekday - 1));
 
 /// "This week", "Last week" or "3 weeks ago".
-String weekName(int weeksBack) => switch (weeksBack) {
-  0 => 'This week',
-  1 => 'Last week',
-  _ => '$weeksBack weeks ago',
-};
+String weekName(AppLocalizations l, int weeksBack) => l.dashWeekName(weeksBack);
 
-/// "Oct 5 to Oct 11".
-String weekRange(DateTime monday) =>
-    '${shortDate(monday)} to '
-    '${shortDate(DateTime(monday.year, monday.month, monday.day + 6))}';
+/// "Oct 5 to Oct 11", with the dates in [locale].
+String weekRange(AppLocalizations l, String locale, DateTime monday) =>
+    l.dashWeekRange(
+      shortDate(monday, locale),
+      shortDate(DateTime(monday.year, monday.month, monday.day + 6), locale),
+    );
 
 /// The saved days in the week starting [monday].
 List<DashboardDay> inWeek(List<DashboardDay> days, DateTime monday) {
@@ -66,7 +71,11 @@ Future<List<DashboardDay>> loadDashboardDays(DateTime from, DateTime to) async {
   );
 }
 
-String _plural(int n, String one, String many) => '$n ${n == 1 ? one : many}';
+/// "1 check-in", "3 check-ins".
+String _checkIns(AppLocalizations l, int n) => l.dashCheckInCount(n);
+
+/// "1 time", "3 times".
+String _times(AppLocalizations l, int n) => l.dashTimeCount(n);
 
 const TextStyle _noteStyle = TextStyle(
   fontFamily: WithMeText.ui,
@@ -89,27 +98,38 @@ const TextStyle _emptyStyle = TextStyle(
 abstract class WeekView {
   const WeekView();
 
-  String get title;
+  /// The chart's name in English.
+  String get title => titleIn(_english);
+
+  /// The chart's name in [l]'s language.
+  String titleIn(AppLocalizations l);
 
   /// A line under the page's title saying what the chart is, if any.
-  String? get description => null;
+  String? descriptionIn(AppLocalizations l) => null;
 
   /// Whether [week] has nothing to chart.
   bool isEmpty(List<DashboardDay> week);
 
   /// What a card or page shows for an empty week.
-  String emptyText(List<DashboardDay> week) => kNoEntries;
+  String emptyText(AppLocalizations l, List<DashboardDay> week) =>
+      l.dashNoEntries;
 
   /// Whether an empty week still draws its chart, empty, with [emptyText]
   /// under it on a card. A pie does: an empty white circle.
   bool get drawsEmpty => false;
 
   /// The chart on the dashboard card.
-  Widget card(List<DashboardDay> week, DateTime monday, DateTime today);
+  Widget card(
+    BuildContext context,
+    List<DashboardDay> week,
+    DateTime monday,
+    DateTime today,
+  );
 
   /// The chart on its own page, [width] wide, for the week [weeksBack]
   /// weeks ago.
   Widget page(
+    BuildContext context,
     List<DashboardDay> week,
     DateTime monday,
     DateTime today,
@@ -121,31 +141,39 @@ abstract class WeekView {
   double pageHeight(double width);
 
   /// The key's line under its heading, for [week].
-  String keyNote(List<DashboardDay> week);
+  String keyNote(AppLocalizations l, List<DashboardDay> week);
 
   /// The key's rows for [week].
-  Widget keyRows(List<DashboardDay> week);
+  Widget keyRows(BuildContext context, List<DashboardDay> week);
 
   /// The week read aloud, for a screen reader on the card.
-  String read(List<DashboardDay> week);
+  String read(BuildContext context, List<DashboardDay> week);
 }
 
 // --- Bars ---------------------------------------------------------------------
 
 /// The colour each feeling's bar is drawn in, by name, for the key.
-String feelingColourName(MoodFace face) => switch (face) {
-  MoodFace.angry => 'Red',
-  MoodFace.sad => 'Orange',
-  MoodFace.indifferent => 'Yellow',
-  MoodFace.happy => 'Green',
-  MoodFace.excited => 'Purple',
+String feelingColourName(AppLocalizations l, MoodFace face) => switch (face) {
+  MoodFace.angry => l.dashColourRed,
+  MoodFace.sad => l.dashColourOrange,
+  MoodFace.indifferent => l.dashColourYellow,
+  MoodFace.happy => l.dashColourGreen,
+  MoodFace.excited => l.dashColourPurple,
 };
 
 /// Red, orange, yellow, green, purple, for the 1 to 5 scales: the feelings'
 /// colours ([MoodFace.deep]), so every scale reads the same way, red worst
-/// and purple best. [_scaleNames] names them.
+/// and purple best. [_scaleName] names them.
 final List<Color> _scale = [for (final f in MoodFace.values) f.deep];
-const List<String> _scaleNames = ['Red', 'Orange', 'Yellow', 'Green', 'Purple'];
+
+/// The name of [_scale]'s colour at [i].
+String _scaleName(AppLocalizations l, int i) => [
+  l.dashColourRed,
+  l.dashColourOrange,
+  l.dashColourYellow,
+  l.dashColourGreen,
+  l.dashColourPurple,
+][i];
 
 /// One line of a bar chart's colour key.
 typedef WeekKeyRow = ({int value, String label, String colour});
@@ -154,57 +182,63 @@ typedef WeekKeyRow = ({int value, String label, String colour});
 /// day's 1 to 5 answer and its colour from [colorOf].
 class WeekChart extends WeekView {
   const WeekChart({
-    required this.title,
+    required this.name,
     required this.points,
     required this.colorOf,
-    required this.describe,
+    required this.answer,
     required this.note,
-    required this.rows,
+    required this.keyIn,
   });
 
-  @override
-  final String title;
+  /// The chart's name, in the language given.
+  final String Function(AppLocalizations l) name;
   final List<DayPoint> Function(List<DashboardDay> days) points;
   final Color Function(int value) colorOf;
-  final String Function(int value) describe;
-  final String note;
 
-  /// The key, in the order it is listed.
-  final List<WeekKeyRow> rows;
+  /// A day's answer, in the language given: "Angry", "3 of 5".
+  final String Function(AppLocalizations l, int value) answer;
+  final String Function(AppLocalizations l) note;
+
+  /// The key, in the order it is listed, in the language given.
+  final List<WeekKeyRow> Function(AppLocalizations l) keyIn;
 
   /// The bars' height on the card and on the page alike.
   static const double barHeight = 196;
 
   /// The day's feeling, Angry red to Excited purple.
   static final WeekChart feelings = WeekChart(
-    title: 'Feelings over time',
+    name: (l) => l.dashFeelingsTitle,
     points: feelingPoints,
     colorOf: (v) => MoodFace.values[v - 1].deep,
-    describe: (v) => MoodFace.values[v - 1].label,
-    note: 'Bars are shortest for Angry and tallest for Excited.',
-    rows: [
+    answer: (l, v) => localizedLabel(l, MoodFace.values[v - 1].label),
+    note: (l) => l.dashFeelingsNote,
+    keyIn: (l) => [
       for (final f in MoodFace.values)
-        (value: f.score, label: f.label, colour: feelingColourName(f)),
+        (
+          value: f.score,
+          label: localizedLabel(l, f.label),
+          colour: feelingColourName(l, f),
+        ),
     ],
   );
 
   /// "How in control do you feel?", 1 (least, red) to 5 (most, purple).
   static final WeekChart control = WeekChart(
-    title: 'How in control do you feel?',
+    name: (l) => l.dashControlTitle,
     points: controlPoints,
     colorOf: (v) => _scale[v - 1],
-    describe: (v) => '$v of 5',
-    note: 'Taller bars mean more in control.',
-    rows: [
+    answer: (l, v) => l.dashOutOfFive(v),
+    note: (l) => l.dashControlNote,
+    keyIn: (l) => [
       for (var v = 1; v <= 5; v++)
         (
           value: v,
           label: switch (v) {
-            1 => '1 · Least in control',
-            5 => '5 · Most in control',
+            1 => l.dashKeyLeastInControl(v),
+            5 => l.dashKeyMostInControl(v),
             _ => '$v',
           },
-          colour: _scaleNames[v - 1],
+          colour: _scaleName(l, v - 1),
         ),
     ],
   );
@@ -212,103 +246,125 @@ class WeekChart extends WeekView {
   /// "How motivated do you feel to make a positive change today?", 1
   /// (least, red) to 5 (most, purple).
   static final WeekChart motivation = WeekChart(
-    title: 'Motivation to Change',
+    name: (l) => l.dashMotivationTitle,
     points: motivationPoints,
     colorOf: (v) => _scale[v - 1],
-    describe: (v) => '$v of 5',
-    note: 'Taller bars mean more motivated to make a positive change.',
-    rows: [
+    answer: (l, v) => l.dashOutOfFive(v),
+    note: (l) => l.dashMotivationNote,
+    keyIn: (l) => [
       for (var v = 1; v <= 5; v++)
         (
           value: v,
           label: switch (v) {
-            1 => '1 · Least motivated',
-            5 => '5 · Most motivated',
+            1 => l.dashKeyLeastMotivated(v),
+            5 => l.dashKeyMostMotivated(v),
             _ => '$v',
           },
-          colour: _scaleNames[v - 1],
+          colour: _scaleName(l, v - 1),
         ),
     ],
   );
 
   /// "Intention to change", Not ready yet (red) to Very ready (purple).
   static final WeekChart intention = WeekChart(
-    title: 'Intention to Change',
+    name: (l) => l.dashIntentionTitle,
     points: readinessPoints,
     colorOf: (v) => _scale[v - 1],
-    describe: (v) => ReadinessGauge.levels[v - 1],
-    note: 'Taller bars mean more ready to do something differently.',
-    rows: [
+    answer: (l, v) => localizedLabel(l, ReadinessGauge.levels[v - 1]),
+    note: (l) => l.dashIntentionNote,
+    keyIn: (l) => [
       for (var v = 1; v <= 5; v++)
         (
           value: v,
-          label: ReadinessGauge.levels[v - 1],
-          colour: _scaleNames[v - 1],
+          label: localizedLabel(l, ReadinessGauge.levels[v - 1]),
+          colour: _scaleName(l, v - 1),
         ),
     ],
   );
 
   /// The stress rating, 1 (low, purple) to 5 (high, red).
   static final WeekChart stress = WeekChart(
-    title: 'Stress Levels',
+    name: (l) => l.dashStressTitle,
     points: stressLevelPoints,
     colorOf: (v) => _scale[5 - v],
-    describe: (v) => '$v of 5',
-    note: 'Taller bars mean more stress.',
-    rows: [
+    answer: (l, v) => l.dashOutOfFive(v),
+    note: (l) => l.dashStressNote,
+    keyIn: (l) => [
       for (var v = 1; v <= 5; v++)
         (
           value: v,
           label: switch (v) {
-            1 => '1 · Low stress',
-            5 => '5 · High stress',
+            1 => l.dashKeyLowStress(v),
+            5 => l.dashKeyHighStress(v),
             _ => '$v',
           },
-          colour: _scaleNames[5 - v],
+          colour: _scaleName(l, 5 - v),
         ),
     ],
   );
 
+  @override
+  String titleIn(AppLocalizations l) => name(l);
+
+  /// A day's answer in English: "Angry", "3 of 5".
+  String describe(int value) => answer(_english, value);
+
+  /// The key, in English.
+  List<WeekKeyRow> get rows => keyIn(_english);
+
   DayBarChart _bars(
+    BuildContext context,
     List<DashboardDay> week,
     DateTime monday,
     DateTime today, {
     Key? key,
-    String? name,
+    String? heading,
     bool interactive = true,
-  }) => DayBarChart(
-    key: key,
-    title: name ?? title,
-    points: points(week),
-    from: monday,
-    to: DateTime(monday.year, monday.month, monday.day + 6),
-    today: today,
-    describe: describe,
-    colorOf: colorOf,
-    interactive: interactive,
-    height: barHeight,
-  );
+  }) {
+    final l = context.l10n;
+    return DayBarChart(
+      key: key,
+      title: heading ?? titleIn(l),
+      points: points(week),
+      from: monday,
+      to: DateTime(monday.year, monday.month, monday.day + 6),
+      today: today,
+      describe: (v) => answer(l, v),
+      colorOf: colorOf,
+      interactive: interactive,
+      height: barHeight,
+    );
+  }
 
   @override
   bool isEmpty(List<DashboardDay> week) => points(week).isEmpty;
 
   @override
-  Widget card(List<DashboardDay> week, DateTime monday, DateTime today) =>
-      _bars(week, monday, today, interactive: false);
+  Widget card(
+    BuildContext context,
+    List<DashboardDay> week,
+    DateTime monday,
+    DateTime today,
+  ) => _bars(context, week, monday, today, interactive: false);
 
   @override
   Widget page(
+    BuildContext context,
     List<DashboardDay> week,
     DateTime monday,
     DateTime today,
     int weeksBack,
     double width,
   ) => _bars(
+    context,
     week,
     monday,
     today,
     key: ValueKey('week-$weeksBack'),
-    name: '$title, ${weekName(weeksBack)}',
+    heading: context.l10n.dashChartInWeek(
+      titleIn(context.l10n),
+      weekName(context.l10n, weeksBack),
+    ),
   );
 
   // The readout line above the bars, and the focus ring's padding.
@@ -316,28 +372,34 @@ class WeekChart extends WeekView {
   double pageHeight(double width) => barHeight + 40;
 
   @override
-  String keyNote(List<DashboardDay> week) => note;
+  String keyNote(AppLocalizations l, List<DashboardDay> week) => note(l);
 
   @override
-  Widget keyRows(List<DashboardDay> week) => Column(
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      for (final row in rows)
-        _KeyRow(
-          color: colorOf(row.value),
-          label: row.label,
-          detail: row.colour,
-          semantics: '${row.colour} is ${row.label}',
-        ),
-    ],
-  );
+  Widget keyRows(BuildContext context, List<DashboardDay> week) {
+    final l = context.l10n;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        for (final row in keyIn(l))
+          _KeyRow(
+            color: colorOf(row.value),
+            label: row.label,
+            detail: row.colour,
+            semantics: l.dashKeyRowSemantics(row.colour, row.label),
+          ),
+      ],
+    );
+  }
 
   @override
-  String read(List<DashboardDay> week) {
+  String read(BuildContext context, List<DashboardDay> week) {
+    final l = context.l10n;
+    final locale = dateLocale(context);
     final days = [
-      for (final p in points(week)) '${longDate(p.day)}: ${describe(p.value)}',
+      for (final p in points(week))
+        l.dashDayAnswer(longDate(p.day, locale), answer(l, p.value)),
     ];
-    return days.isEmpty ? kNoEntries : '${days.join('. ')}.';
+    return days.isEmpty ? l.dashNoEntries : '${days.join('. ')}.';
   }
 }
 
@@ -347,7 +409,7 @@ class WeekChart extends WeekView {
 /// on it, and a key with each colour's name, count and share.
 class WeekPie extends WeekView {
   const WeekPie({
-    required this.title,
+    required this.name,
     required this.slices,
     required this.unit,
     required this.note,
@@ -357,14 +419,13 @@ class WeekPie extends WeekView {
     this.keySlices,
   });
 
-  @override
-  final String title;
+  /// The chart's name, in the language given.
+  final String Function(AppLocalizations l) name;
 
   /// Set on the Stress Levels and Stress Signs pies, whose pages are compact: a smaller pie,
   /// this line under the title, and a key in smaller type listing every
   /// offered answer, zeros included, then the written ones.
-  @override
-  final String? description;
+  final String Function(AppLocalizations l)? description;
 
   /// The key's slices for the week, when they differ from the pie's.
   final List<Slice> Function(List<DashboardDay> week)? keySlices;
@@ -374,17 +435,18 @@ class WeekPie extends WeekView {
   /// Every slice for the days given, zeros included.
   final List<Slice> Function(List<DashboardDay> week) slices;
 
-  /// What one count is, singular and plural - ('check-in', 'check-ins').
-  final (String, String) unit;
+  /// A count with what one count is - "1 check-in", "3 check-ins".
+  final String Function(AppLocalizations l, int count) unit;
 
   /// What the shares are of, for the week given.
-  final String Function(List<DashboardDay> week, int total) note;
+  final String Function(AppLocalizations l, List<DashboardDay> week, int total)
+  note;
 
   /// The first pie on a page is drawn larger than the ones under it.
   final bool large;
 
-  /// What an empty week says instead of [kNoEntries], if anything.
-  final String? Function(List<DashboardDay> week)? empty;
+  /// What an empty week says instead of `dashNoEntries`, if anything.
+  final String? Function(AppLocalizations l, List<DashboardDay> week)? empty;
 
   List<Slice> _counted(List<DashboardDay> week) => [
     for (final s in slices(week))
@@ -393,90 +455,94 @@ class WeekPie extends WeekView {
 
   /// Where stress came from.
   static final WeekPie triggers = WeekPie(
-    title: 'Stress Triggers',
-    description: 'What triggers your stress.',
+    name: (l) => l.dashTriggersTitle,
+    description: (l) => l.dashTriggersDescription,
     slices: triggerSlices,
     keySlices: triggerSlices,
-    unit: ('check-in', 'check-ins'),
+    unit: _checkIns,
     large: true,
-    note: (week, total) =>
-        'Where stress came from, one answer per check-in: '
-        '${_plural(total, 'check-in', 'check-ins')}.',
+    note: (l, week, total) => l.dashTriggersNote(total),
   );
 
   /// The stressors picked in one area.
   static WeekPie stressors(String area) => WeekPie(
-    title: '$area Stressors',
-    description: 'Stressors from ${area.toLowerCase()}.',
+    name: (l) => l.dashAreaStressorsTitle(localizedLabel(l, area)),
+    description: (l) => l.dashAreaStressorsDescription(
+      area,
+      localizedLabel(l, area).toLowerCase(),
+    ),
     slices: (week) => stressorSlices(week, area),
     keySlices: (week) => stressorSlices(week, area, withZeros: true),
-    unit: ('time', 'times'),
-    note: (week, total) =>
-        'Share of all ${_plural(total, 'stressor', 'stressors')} picked on '
-        '${_plural(checkInsIn(week, area), 'check-in', 'check-ins')}. '
-        'A check-in can pick more than one.',
+    unit: _times,
+    note: (l, week, total) => l.dashStressorsNote(
+      l.dashStressorCount(total),
+      _checkIns(l, checkInsIn(week, area)),
+    ),
   );
 
   /// Which kind of sign each check-in answered.
   static final WeekPie signKinds = WeekPie(
-    title: 'Signs of Stress',
-    description: 'How your stress shows up.',
+    name: (l) => l.dashSignKindsTitle,
+    description: (l) => l.dashSignKindsDescription,
     slices: signCategorySlices,
     keySlices: signCategorySlices,
-    unit: ('check-in', 'check-ins'),
+    unit: _checkIns,
     large: true,
-    note: (week, total) =>
-        'Each check-in answers one kind of sign: '
-        '${_plural(total, 'check-in', 'check-ins')}.',
+    note: (l, week, total) => l.dashSignKindsNote(total),
   );
 
   /// The signs given on one kind.
   static WeekPie signs(SignDimension d) => WeekPie(
-    title: '${signCategoryLabel(d)} Signs',
-    description: 'Stress signs in your ${signCategoryLabel(d).toLowerCase()}.',
+    name: (l) => l.dashSignsTitle(localizedLabel(l, signCategoryLabel(d))),
+    description: (l) => l.dashSignsDescription(
+      signCategoryLabel(d),
+      localizedLabel(l, signCategoryLabel(d)).toLowerCase(),
+    ),
     slices: (week) => signSlices(week, d),
     keySlices: (week) => signSlices(week, d, withZeros: true),
-    unit: ('time', 'times'),
-    note: (week, total) =>
-        'Share of all ${_plural(total, 'sign', 'signs')} given on '
-        '${_plural(checkInsWithSigns(week, d), 'check-in', 'check-ins')}, '
-        'including written answers. A check-in can give more than one.',
+    unit: _times,
+    note: (l, week, total) => l.dashSignsNote(
+      l.dashSignCount(total),
+      _checkIns(l, checkInsWithSigns(week, d)),
+    ),
   );
 
   /// The strategy chosen on each check-in.
   static final WeekPie strategies = WeekPie(
-    title: 'Stress Management Strategy',
-    description: 'How you managed your stress.',
+    name: (l) => l.dashStrategiesTitle,
+    description: (l) => l.dashStrategiesDescription,
     slices: strategySlices,
     keySlices: strategySlices,
-    unit: ('check-in', 'check-ins'),
+    unit: _checkIns,
     large: true,
-    note: (week, total) =>
-        'The strategy chosen on each check-in: '
-        '${_plural(total, 'check-in', 'check-ins')}.',
+    note: (l, week, total) => l.dashStrategiesNote(total),
   );
 
   /// The actions chosen with one strategy.
   static WeekPie actions(String strategy) => WeekPie(
-    title: 'Action: $strategy',
-    description: 'The actions you chose with $strategy.',
+    name: (l) => l.dashActionTitle(localizedLabel(l, strategy)),
+    description: (l) => l.dashActionDescription(localizedLabel(l, strategy)),
     slices: (week) => actionSlices(week, strategy),
     keySlices: (week) => actionSlices(week, strategy, withZeros: true),
-    unit: ('check-in', 'check-ins'),
-    note: (week, total) {
+    unit: _checkIns,
+    note: (l, week, total) {
       final missing = withoutAction(week, strategy);
-      return 'The action chosen with $strategy, one per check-in: '
-          '${_plural(total, 'check-in', 'check-ins')}.'
-          '${missing > 0 ? ' ${_plural(missing, 'other check-in', 'other check-ins')} chose it with no action.' : ''}';
+      final note = l.dashActionsNote(total, localizedLabel(l, strategy));
+      return missing > 0 ? '$note ${l.dashActionsNoAction(missing)}' : note;
     },
-    empty: (week) {
+    empty: (l, week) {
       final missing = withoutAction(week, strategy);
       return missing == 0
           ? null
-          : '${_plural(missing, 'check-in', 'check-ins')} chose $strategy '
-                'but saved no action.';
+          : l.dashActionsEmpty(missing, localizedLabel(l, strategy));
     },
   );
+
+  @override
+  String titleIn(AppLocalizations l) => name(l);
+
+  @override
+  String? descriptionIn(AppLocalizations l) => description?.call(l);
 
   @override
   bool isEmpty(List<DashboardDay> week) => _counted(week).isEmpty;
@@ -485,21 +551,27 @@ class WeekPie extends WeekView {
   bool get drawsEmpty => true;
 
   @override
-  String emptyText(List<DashboardDay> week) => empty?.call(week) ?? kNoEntries;
+  String emptyText(AppLocalizations l, List<DashboardDay> week) =>
+      empty?.call(l, week) ?? l.dashNoEntries;
 
   @override
-  Widget card(List<DashboardDay> week, DateTime monday, DateTime today) =>
-      Center(
-        child: LayoutBuilder(
-          builder: (context, box) => ChoicePie(
-            slices: _counted(week),
-            size: math.min(box.maxWidth * 0.8, large ? 210 : 160),
-          ),
-        ),
-      );
+  Widget card(
+    BuildContext context,
+    List<DashboardDay> week,
+    DateTime monday,
+    DateTime today,
+  ) => Center(
+    child: LayoutBuilder(
+      builder: (context, box) => ChoicePie(
+        slices: _counted(week),
+        size: math.min(box.maxWidth * 0.8, large ? 210 : 160),
+      ),
+    ),
+  );
 
   @override
   Widget page(
+    BuildContext context,
     List<DashboardDay> week,
     DateTime monday,
     DateTime today,
@@ -516,13 +588,14 @@ class WeekPie extends WeekView {
   double pageHeight(double width) => _pageSize(width) + 8;
 
   @override
-  String keyNote(List<DashboardDay> week) {
+  String keyNote(AppLocalizations l, List<DashboardDay> week) {
     final total = _counted(week).fold<double>(0, (s, e) => s + e.value);
-    return note(week, total.round());
+    return note(l, week, total.round());
   }
 
   @override
-  Widget keyRows(List<DashboardDay> week) {
+  Widget keyRows(BuildContext context, List<DashboardDay> week) {
+    final l = context.l10n;
     if (compact) {
       final all = keySlices!(week);
       if (all.isEmpty) {
@@ -530,7 +603,7 @@ class WeekPie extends WeekView {
         // actions.
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Text(emptyText(week), style: _emptyStyle),
+          child: Text(emptyText(l, week), style: _emptyStyle),
         );
       }
       final shares = shareOf(all);
@@ -540,15 +613,16 @@ class WeekPie extends WeekView {
           for (var i = 0; i < all.length; i++)
             _KeyRow(
               color: all[i].color,
-              label: all[i].label,
-              detail:
-                  '${all[i].value.round()} '
-                  '${all[i].value.round() == 1 ? unit.$1 : unit.$2}'
-                  ' · ${shares[i]}%',
-              semantics:
-                  '${all[i].label}: ${all[i].value.round()} '
-                  '${all[i].value.round() == 1 ? unit.$1 : unit.$2}, '
-                  '${shares[i]}%',
+              label: context.label(all[i].label),
+              detail: l.dashCountShare(
+                unit(l, all[i].value.round()),
+                shares[i],
+              ),
+              semantics: l.dashCountShareSemantics(
+                context.label(all[i].label),
+                unit(l, all[i].value.round()),
+                shares[i],
+              ),
               small: true,
             ),
         ],
@@ -558,18 +632,19 @@ class WeekPie extends WeekView {
     if (counted.isEmpty) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Text(emptyText(week), style: _emptyStyle),
+        child: Text(emptyText(l, week), style: _emptyStyle),
       );
     }
     return ChoiceLegend(slices: counted, unit: unit);
   }
 
   @override
-  String read(List<DashboardDay> week) {
+  String read(BuildContext context, List<DashboardDay> week) {
+    final l = context.l10n;
     final counted = _counted(week);
-    if (counted.isEmpty) return emptyText(week);
+    if (counted.isEmpty) return emptyText(l, week);
     final shares = shareOf(counted);
-    return '${[for (var i = 0; i < counted.length; i++) '${counted[i].label} ${shares[i]}%'].join(', ')}.';
+    return '${[for (var i = 0; i < counted.length; i++) l.dashLabelPercent(context.label(counted[i].label), '${shares[i]}')].join(', ')}.';
   }
 }
 
@@ -608,16 +683,20 @@ class _WeekChartCardState extends State<WeekChartCard> {
   @override
   Widget build(BuildContext context) {
     final chart = widget.chart;
+    final l = context.l10n;
     final monday = weekStart(widget.today);
     final week = inWeek(widget.days, monday);
+    final range = weekRange(l, dateLocale(context), monday);
     final radius = BorderRadius.circular(22);
 
     return Semantics(
       button: true,
-      label:
-          '${chart.title}, this week, ${weekRange(monday)}. '
-          '${chart.read(week)}',
-      hint: 'Opens the colour key and earlier weeks',
+      label: l.dashWeekCardSemantics(
+        chart.titleIn(l),
+        range,
+        chart.read(context, week),
+      ),
+      hint: l.dashWeekCardHint,
       excludeSemantics: true,
       child: AnimatedScale(
         scale: _pressed ? 0.98 : 1,
@@ -643,7 +722,7 @@ class _WeekChartCardState extends State<WeekChartCard> {
               onTapUp: (_) => _press(false),
               onTapCancel: () => _press(false),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(14, 14, 8, 14),
+                padding: const EdgeInsetsDirectional.fromSTEB(14, 14, 8, 14),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -651,7 +730,7 @@ class _WeekChartCardState extends State<WeekChartCard> {
                       children: [
                         Expanded(
                           child: Text(
-                            chart.title,
+                            chart.titleIn(l),
                             style: const TextStyle(
                               fontFamily: WithMeText.ui,
                               fontSize: 17,
@@ -669,17 +748,17 @@ class _WeekChartCardState extends State<WeekChartCard> {
                       ],
                     ),
                     const SizedBox(height: 2),
-                    Text('This week · ${weekRange(monday)}', style: _noteStyle),
+                    Text(l.dashThisWeekRange(range), style: _noteStyle),
                     const SizedBox(height: 12),
                     Padding(
-                      padding: const EdgeInsets.only(right: 6),
+                      padding: const EdgeInsetsDirectional.only(end: 6),
                       child: chart.isEmpty(week) && chart.drawsEmpty
                           ? Column(
                               children: [
-                                chart.card(week, monday, widget.today),
+                                chart.card(context, week, monday, widget.today),
                                 const SizedBox(height: 8),
                                 Text(
-                                  chart.emptyText(week),
+                                  chart.emptyText(l, week),
                                   textAlign: TextAlign.center,
                                   style: _noteStyle,
                                 ),
@@ -689,12 +768,12 @@ class _WeekChartCardState extends State<WeekChartCard> {
                           ? Padding(
                               padding: const EdgeInsets.symmetric(vertical: 24),
                               child: Text(
-                                chart.emptyText(week),
+                                chart.emptyText(l, week),
                                 textAlign: TextAlign.center,
                                 style: _emptyStyle,
                               ),
                             )
-                          : chart.card(week, monday, widget.today),
+                          : chart.card(context, week, monday, widget.today),
                     ),
                   ],
                 ),
@@ -750,12 +829,16 @@ class _WeekPieTileState extends State<WeekPieTile> {
   @override
   Widget build(BuildContext context) {
     final chart = widget.chart;
+    final l = context.l10n;
     final week = inWeek(widget.days, weekStart(widget.today));
     final radius = BorderRadius.circular(18);
     return Semantics(
       button: true,
-      label: '${chart.title}, this week. ${chart.read(week)}',
-      hint: 'Opens the pie, the colour key and earlier weeks',
+      label: l.dashPieTileSemantics(
+        chart.titleIn(l),
+        chart.read(context, week),
+      ),
+      hint: l.dashPieTileHint,
       excludeSemantics: true,
       child: AnimatedScale(
         scale: _pressed ? 0.97 : 1,
@@ -783,7 +866,12 @@ class _WeekPieTileState extends State<WeekPieTile> {
               child: widget.wide
                   ? _wide(week)
                   : Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 10, 4, 10),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                        12,
+                        10,
+                        4,
+                        10,
+                      ),
                       // Given a row's height, the pie sits at the bottom, so
                       // pies line up when a neighbour's title wraps.
                       child: Column(
@@ -794,7 +882,7 @@ class _WeekPieTileState extends State<WeekPieTile> {
                             children: [
                               Expanded(
                                 child: Text(
-                                  chart.title,
+                                  chart.titleIn(l),
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
@@ -836,8 +924,10 @@ class _WeekPieTileState extends State<WeekPieTile> {
 
   Widget _wide(List<DashboardDay> week) {
     final chart = widget.chart;
+    final l = context.l10n;
+    final description = chart.descriptionIn(l);
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 14, 12),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 14, 12),
       child: Row(
         children: [
           Expanded(
@@ -849,7 +939,7 @@ class _WeekPieTileState extends State<WeekPieTile> {
                   children: [
                     Flexible(
                       child: Text(
-                        chart.title,
+                        chart.titleIn(l),
                         style: const TextStyle(
                           fontFamily: WithMeText.ui,
                           fontSize: 17,
@@ -866,10 +956,10 @@ class _WeekPieTileState extends State<WeekPieTile> {
                     ),
                   ],
                 ),
-                if (chart.description != null) ...[
+                if (description != null) ...[
                   const SizedBox(height: 4),
                   Text(
-                    chart.description!,
+                    description,
                     style: const TextStyle(
                       fontFamily: WithMeText.ui,
                       fontSize: 14,
@@ -974,13 +1064,15 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
   @override
   Widget build(BuildContext context) {
     final chart = widget.chart;
+    final l = context.l10n;
+    final description = chart.descriptionIn(l);
     final days = _days;
     final weeks = _weeks;
     final monday = _monday(_week);
     final shown = days == null ? <DashboardDay>[] : inWeek(days, monday);
 
     return ScenicScaffold(
-      title: chart.title,
+      title: chart.titleIn(l),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -989,11 +1081,11 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                if (chart.description != null)
+                if (description != null)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 2, 10, 6),
                     child: Text(
-                      chart.description!,
+                      description,
                       key: const ValueKey('week-description'),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
@@ -1009,14 +1101,14 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
                     _WeekArrow(
                       key: const ValueKey('week-older'),
                       icon: Icons.chevron_left_rounded,
-                      label: 'Week before',
+                      label: l.dashWeekBefore,
                       onTap: _week < weeks - 1 ? () => _go(_week + 1) : null,
                     ),
                     Expanded(
                       child: Column(
                         children: [
                           Text(
-                            weekName(_week),
+                            weekName(l, _week),
                             key: const ValueKey('week-name'),
                             style: const TextStyle(
                               fontFamily: WithMeText.ui,
@@ -1026,7 +1118,7 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
                             ),
                           ),
                           Text(
-                            weekRange(monday),
+                            weekRange(l, dateLocale(context), monday),
                             key: const ValueKey('week-range'),
                             style: _noteStyle,
                           ),
@@ -1036,7 +1128,7 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
                     _WeekArrow(
                       key: const ValueKey('week-newer'),
                       icon: Icons.chevron_right_rounded,
-                      label: 'Week after',
+                      label: l.dashWeekAfter,
                       onTap: _week > 0 ? () => _go(_week - 1) : null,
                     ),
                   ],
@@ -1076,12 +1168,13 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
                                       chart.isEmpty(week) && !chart.drawsEmpty
                                       ? Center(
                                           child: Text(
-                                            chart.emptyText(week),
+                                            chart.emptyText(l, week),
                                             textAlign: TextAlign.center,
                                             style: _emptyStyle,
                                           ),
                                         )
                                       : chart.page(
+                                          context,
                                           week,
                                           from,
                                           _today,
@@ -1095,12 +1188,12 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
                   },
                 ),
                 if (weeks > 1)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 6),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
                     child: Text(
-                      'Swipe right on the chart for the week before.',
+                      l.dashSwipeHint,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: WithMeText.ui,
                         fontSize: 12.5,
                         fontWeight: FontWeight.w600,
@@ -1120,9 +1213,9 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
               children: [
                 Semantics(
                   header: true,
-                  child: const Text(
-                    'What the colours mean',
-                    style: TextStyle(
+                  child: Text(
+                    l.dashColourKeyHeading,
+                    style: const TextStyle(
                       fontFamily: WithMeText.ui,
                       fontSize: 17,
                       fontWeight: FontWeight.w800,
@@ -1132,12 +1225,12 @@ class _WeekChartScreenState extends State<WeekChartScreen> {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  chart.keyNote(shown),
+                  chart.keyNote(l, shown),
                   key: const ValueKey('week-key-note'),
                   style: _noteStyle,
                 ),
                 const SizedBox(height: 6),
-                chart.keyRows(shown),
+                chart.keyRows(context, shown),
               ],
             ),
           ),

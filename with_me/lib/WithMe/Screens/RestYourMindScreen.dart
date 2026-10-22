@@ -6,6 +6,7 @@ import '../Data/CheckInSteps.dart';
 import '../Mascot/MascotExpression.dart';
 import '../Mascot/WithMeAvatar.dart';
 import '../Theme/WithMeTheme.dart';
+import '../../l10n/l10n.dart';
 import 'BeforeWeStartScreen.dart';
 import 'BreathingScreen.dart';
 import 'SoundscapeScreen.dart';
@@ -36,17 +37,36 @@ class _RestYourMindScreenState extends State<RestYourMindScreen> {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) => target));
   }
 
+  /// [kRestExercises] keeps the English wording; these are what is shown.
+  static (String, String) _text(AppLocalizations l, int i) =>
+      switch (kRestExercises[i].$1) {
+        'Destress your day' => (
+          l.exerciseRestDestressTitle,
+          l.exerciseRestDestressSubtitle,
+        ),
+        'Ease your sleep' => (
+          l.exerciseRestSleepTitle,
+          l.exerciseRestSleepSubtitle,
+        ),
+        'Strengthen your focus' => (
+          l.exerciseRestFocusTitle,
+          l.exerciseRestFocusSubtitle,
+        ),
+        _ => (kRestExercises[i].$1, kRestExercises[i].$2),
+      };
+
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     return WithMeScaffold(
-      title: 'Rest your mind',
+      title: l.exerciseRestTitle,
       onBack: () => Navigator.of(context).pop(),
-      action: WithMeButton(label: 'Continue', onPressed: _continue),
+      action: WithMeButton(label: l.commonContinue, onPressed: _continue),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            'Longer guided exercises, for when you have a few minutes.',
+            l.exerciseRestIntro,
             textAlign: TextAlign.center,
             style: WithMeText.body,
           ),
@@ -54,8 +74,8 @@ class _RestYourMindScreenState extends State<RestYourMindScreen> {
           for (var i = 0; i < kRestExercises.length; i++) ...[
             if (i > 0) const SizedBox(height: WithMeSpace.md),
             OptionRow(
-              label: kRestExercises[i].$1,
-              subtitle: kRestExercises[i].$2,
+              label: _text(l, i).$1,
+              subtitle: _text(l, i).$2,
               dot: kRestExercises[i].$3,
               selected: _selected == i,
               onTap: () => setState(() => _selected = i),

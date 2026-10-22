@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
+import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../../Repositories/app_repositories.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
@@ -68,39 +71,18 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
       _stressor != null ||
       _reflections.isNotEmpty;
 
-  static const List<String> _weekdays = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-  ];
-  static const List<String> _months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
   /// The design shows "Locked — entries can be edited for 24 hours."
   bool get _locked =>
       DateTime.now().difference(widget.date) > const Duration(hours: 24);
 
   @override
   Widget build(BuildContext context) {
-    final d = widget.date;
-    final title =
-        '${_weekdays[d.weekday - 1]} ${d.day} ${_months[d.month - 1]}';
+    final l = context.l10n;
+    // "Monday 6 October", the names in the reader's language.
+    final title = DateFormat(
+      'EEEE d MMMM',
+      dateLocale(context),
+    ).format(widget.date);
 
     return ScenicScaffold(
       title: title,
@@ -108,9 +90,9 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
       child: !_loaded
           ? const SizedBox.shrink()
           : !_hasEntry
-          ? const ScenicPanel(
+          ? ScenicPanel(
               child: Text(
-                'Nothing logged on this day.',
+                l.dashNothingLoggedOnDay,
                 textAlign: TextAlign.center,
                 style: kScenicBody,
               ),
@@ -132,7 +114,7 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: ScenicHeading(
-                              _summary(),
+                              _summary(l),
                               size: 19,
                               textAlign: TextAlign.start,
                             ),
@@ -142,7 +124,7 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                       if (_note() != null) ...[
                         const SizedBox(height: WithMeSpace.sm),
                         Text(
-                          '"${_note()}"',
+                          l.dashQuotedNote(_note()!),
                           style: kScenicBody.copyWith(
                             fontSize: 16,
                             height: 1.45,
@@ -170,7 +152,7 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Signs', style: kScenicLabel),
+                            Text(l.dashDaySigns, style: kScenicLabel),
                             const SizedBox(height: WithMeSpace.sm),
                             BarChart(
                               values: _signBars(),
@@ -189,9 +171,10 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('Strategy', style: kScenicLabel),
+                            Text(l.dashDayStrategy, style: kScenicLabel),
                             const SizedBox(height: WithMeSpace.sm),
                             const Center(
+                              // No legend: the slices' names are not shown.
                               child: PieChart(
                                 size: 60,
                                 slices: [
@@ -218,9 +201,7 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
-                          _locked
-                              ? 'Locked — entries can be edited for 24 hours.'
-                              : 'You can still edit this entry today.',
+                          _locked ? l.dashEntryLocked : l.dashEntryEditable,
                           style: kScenicBody,
                         ),
                       ),
@@ -232,10 +213,10 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
     );
   }
 
-  String _summary() {
+  String _summary(AppLocalizations l) {
     final mood = _mood == null ? '-' : _moodScore(_mood!);
     final stress = _gauge == null ? '-' : '${6 - _gauge!}';
-    return 'Mood $mood/5 · stress $stress/5';
+    return l.dashDaySummary(mood, stress);
   }
 
   /// Out of 5. The check-in's five feelings score 1 (Angry) to 5
@@ -298,6 +279,9 @@ class _Chip extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       border: Border.all(color: ScenicColors.pillBottom, width: 1.2),
     ),
-    child: Text(label, style: kScenicBody.copyWith(fontSize: 14)),
+    child: Text(
+      context.label(label),
+      style: kScenicBody.copyWith(fontSize: 14),
+    ),
   );
 }

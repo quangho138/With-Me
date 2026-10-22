@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Mascot/WithMeAvatar.dart';
 import '../Theme/WithMeTheme.dart';
 import 'WithMeBackdrop.dart';
+import '../../l10n/l10n.dart';
 
 /// The page shell every screen in the V1 design shares.
 ///
@@ -85,7 +86,7 @@ class WithMeScaffold extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: WithMeSpace.md),
             child: Align(
-              alignment: Alignment.centerLeft,
+              alignment: AlignmentDirectional.centerStart,
               child: WithMeBackChevron(onTap: back),
             ),
           ),
@@ -230,7 +231,7 @@ class WithMeBackChevron extends StatelessWidget {
     // button.
     return Semantics(
       button: true,
-      label: 'Back',
+      label: context.l10n.commonBack,
       child: GestureDetector(
         onTap: onTap,
         behavior: HitTestBehavior.opaque,

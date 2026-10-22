@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 
+import '../../l10n/app_localizations_en.dart';
+import '../../l10n/l10n.dart';
+
 /// How the companion sounds: which voice, how fast, how high, and how long
 /// it rests between sentences.
 ///
@@ -180,45 +183,50 @@ List<String> sentences(String text) => [
     if (part.trim().isNotEmpty) part.trim(),
 ];
 
-const Map<String, String> _accents = {
-  'us': 'US',
-  'gb': 'UK',
-  'au': 'Australian',
-  'ca': 'Canadian',
-  'ie': 'Irish',
-  'in': 'Indian',
-  'nz': 'New Zealand',
-  'ng': 'Nigerian',
-  'za': 'South African',
-};
+/// The words below in [l], or in English when none is given.
+AppLocalizations _words(AppLocalizations? l) => l ?? AppLocalizationsEn();
 
-/// "US English", "UK English" and so on; the tag itself when the region is
-/// not a familiar one.
-String accentName(SpeechVoice voice) {
+/// "US English", "UK English" and so on, in [l]; the tag itself when the
+/// region is not a familiar one.
+String accentName(SpeechVoice voice, [AppLocalizations? l]) {
+  final words = _words(l);
   final parts = voice.tag.split('-');
   if (voice.language != 'en') return voice.locale;
-  if (parts.length < 2) return 'English';
-  final region = _accents[parts[1]];
-  return region == null ? voice.locale : '$region English';
+  if (parts.length < 2) return words.settingsVoiceAccentEnglish;
+  return switch (parts[1]) {
+    'us' => words.settingsVoiceAccentUs,
+    'gb' => words.settingsVoiceAccentUk,
+    'au' => words.settingsVoiceAccentAu,
+    'ca' => words.settingsVoiceAccentCa,
+    'ie' => words.settingsVoiceAccentIe,
+    'in' => words.settingsVoiceAccentIn,
+    'nz' => words.settingsVoiceAccentNz,
+    'ng' => words.settingsVoiceAccentNg,
+    'za' => words.settingsVoiceAccentZa,
+    _ => voice.locale,
+  };
 }
 
 /// What to call [voice] in a list. Android's names are codes such as
 /// en-us-x-tpf-local; those read as "Voice TPF". Other platforms already
-/// use names such as "Samantha".
-String voiceTitle(SpeechVoice voice) {
+/// use names such as "Samantha", which are kept as they are.
+String voiceTitle(SpeechVoice voice, [AppLocalizations? l]) {
   final code = RegExp(r'-x-([a-z0-9]+)-').firstMatch(voice.name.toLowerCase());
-  if (code != null) return 'Voice ${code.group(1)!.toUpperCase()}';
+  if (code != null) {
+    return _words(l).settingsVoiceCode(code.group(1)!.toUpperCase());
+  }
   if (voice.name.toLowerCase() == '${voice.tag}-language') {
-    return 'Standard voice';
+    return _words(l).settingsVoiceStandard;
   }
   return voice.name;
 }
 
-/// The quality as words, or null when the platform did not say.
-String? qualityName(SpeechVoice voice) => switch (voice.quality) {
-  5 => 'Best quality',
-  4 => 'High quality',
-  3 => 'Normal quality',
-  1 || 2 => 'Basic quality',
-  _ => null,
-};
+/// The quality as words in [l], or null when the platform did not say.
+String? qualityName(SpeechVoice voice, [AppLocalizations? l]) =>
+    switch (voice.quality) {
+      5 => _words(l).settingsVoiceQualityBest,
+      4 => _words(l).settingsVoiceQualityHigh,
+      3 => _words(l).settingsVoiceQualityNormal,
+      1 || 2 => _words(l).settingsVoiceQualityBasic,
+      _ => null,
+    };

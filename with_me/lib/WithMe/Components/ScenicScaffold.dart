@@ -7,6 +7,7 @@ import '../Mascot/RealMascot.dart';
 import '../Speech/NarrationMouth.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ScenicKit.dart';
+import '../../l10n/l10n.dart';
 
 /// The page shell for screens in the V2 look - the same painted sunset,
 /// bubbly type, cream panels and teal pills as the daily check-in.
@@ -682,7 +683,9 @@ class ScenicRow extends StatelessWidget {
     final ink = danger ? const Color(0xFFC8412F) : ScenicColors.ink;
     return Semantics(
       button: true,
-      label: trailing == null ? label : '$label, $trailing',
+      label: trailing == null
+          ? label
+          : context.l10n.exerciseRowSemantics(label, trailing!),
       excludeSemantics: true,
       child: GestureDetector(
         onTap: onTap,
@@ -813,7 +816,7 @@ class ScenicStatTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: '$value $label',
+      label: context.l10n.exerciseStatSemantics(value, label),
       excludeSemantics: true,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 14),
@@ -854,7 +857,7 @@ class ScenicGroupLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(left: 6, bottom: 8, top: 4),
+    padding: const EdgeInsetsDirectional.only(start: 6, bottom: 8, top: 4),
     child: ChunkyText(
       text,
       weight: 0.5,

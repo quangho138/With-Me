@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show NumberFormat;
 
+import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Speech/SpeechService.dart';
@@ -28,16 +30,25 @@ class _VoiceSettingsScreenState extends State<VoiceSettingsScreen> {
   Timer? _retry;
   int _tries = 0;
 
+  /// The reader's language as a tag such as "es": the voices listed and
+  /// tried are the ones for it.
+  String? _locale;
+
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final locale = Localizations.maybeLocaleOf(context)?.toLanguageTag();
+    if (locale == _locale && _voices != null) return;
+    _locale = locale;
+    _retry?.cancel();
+    _tries = 0;
     _loadVoices();
   }
 
   /// Browsers fill their voice list a moment after the first ask, so an
   /// empty answer is asked again a few times.
   Future<void> _loadVoices() async {
-    final found = await _speech.voices();
+    final found = await _speech.voices(locale: _locale);
     if (!mounted) return;
     setState(() => _voices = found);
     if (found.isEmpty && _tries++ < 5) {
@@ -57,19 +68,29 @@ class _VoiceSettingsScreenState extends State<VoiceSettingsScreen> {
     _speech.setStyle(next);
   }
 
-  void _tryIt() => _speech.preview(owner: this);
+  void _tryIt() => _speech.preview(
+    owner: this,
+    text: context.l10n.settingsVoiceSample,
+    locale: _locale,
+  );
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
+    // 1.10× for speed and pitch, with the reader's decimal mark.
+    final mark = NumberFormat.decimalPattern(
+      Localizations.maybeLocaleOf(context)?.toString(),
+    ).symbols.DECIMAL_SEP;
+    String times(double v) => v.toStringAsFixed(2).replaceAll('.', mark);
     return ValueListenableBuilder<bool>(
       valueListenable: _speech.enabled,
       builder: (context, on, _) => ScenicScaffold(
-        title: 'Voice',
+        title: l.settingsVoiceTitle,
         onBack: () => Navigator.of(context).pop(),
         softBackground: true,
         action: ScenicPill(
           key: const Key('voice-try'),
-          label: 'Try it',
+          label: l.settingsVoiceTryIt,
           leading: const Icon(
             Icons.play_arrow_rounded,
             color: Colors.white,
@@ -77,24 +98,20 @@ class _VoiceSettingsScreenState extends State<VoiceSettingsScreen> {
           ),
           onPressed: on ? _tryIt : null,
         ),
-        footnote: on
-            ? null
-            : const ScenicFootnote(
-                'Turn on Read aloud in Settings to hear it.',
-              ),
+        footnote: on ? null : ScenicFootnote(l.settingsVoiceTurnOnReadAloud),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             _SliderPanel(
               key: const Key('voice-speed'),
-              title: 'Speed',
+              title: l.settingsVoiceSpeed,
               value: _style.speed,
               min: SpeechStyle.minSpeed,
               max: SpeechStyle.maxSpeed,
               divisions: 18,
-              shown: '${_style.speed.toStringAsFixed(2)}×',
-              low: 'Slower',
-              high: 'Faster',
+              shown: l.settingsVoiceTimes(times(_style.speed)),
+              low: l.settingsVoiceSlower,
+              high: l.settingsVoiceFaster,
               onChanged: (v) =>
                   setState(() => _style = _style.copyWith(speed: v)),
               onChangeEnd: (v) => _save(_style.copyWith(speed: v)),
@@ -102,14 +119,14 @@ class _VoiceSettingsScreenState extends State<VoiceSettingsScreen> {
             const SizedBox(height: 12),
             _SliderPanel(
               key: const Key('voice-pitch'),
-              title: 'Pitch',
+              title: l.settingsVoicePitch,
               value: _style.pitch,
               min: SpeechStyle.minPitch,
               max: SpeechStyle.maxPitch,
               divisions: 16,
-              shown: '${_style.pitch.toStringAsFixed(2)}×',
-              low: 'Lower',
-              high: 'Higher',
+              shown: l.settingsVoiceTimes(times(_style.pitch)),
+              low: l.settingsVoiceLower,
+              high: l.settingsVoiceHigher,
               onChanged: (v) =>
                   setState(() => _style = _style.copyWith(pitch: v)),
               onChangeEnd: (v) => _save(_style.copyWith(pitch: v)),
@@ -117,14 +134,16 @@ class _VoiceSettingsScreenState extends State<VoiceSettingsScreen> {
             const SizedBox(height: 12),
             _SliderPanel(
               key: const Key('voice-pause'),
-              title: 'Pause between sentences',
+              title: l.settingsVoicePause,
               value: _style.pause.toDouble(),
               min: 0,
               max: SpeechStyle.maxPause.toDouble(),
               divisions: 16,
-              shown: _style.pause == 0 ? 'None' : '${_style.pause} ms',
-              low: 'None',
-              high: 'Long',
+              shown: _style.pause == 0
+                  ? l.settingsVoicePauseNone
+                  : l.settingsVoicePauseMs(_style.pause),
+              low: l.settingsVoicePauseNone,
+              high: l.settingsVoicePauseLong,
               onChanged: (v) =>
                   setState(() => _style = _style.copyWith(pause: v.round())),
               onChangeEnd: (v) => _save(_style.copyWith(pause: v.round())),
@@ -145,7 +164,7 @@ class _VoiceSettingsScreenState extends State<VoiceSettingsScreen> {
                 key: const Key('voice-reset'),
                 onPressed: () => _save(SpeechStyle.standard),
                 child: Text(
-                  'Back to the default voice',
+                  l.settingsVoiceReset,
                   style: kScenicBody.copyWith(
                     decoration: TextDecoration.underline,
                     decorationColor: ScenicColors.ink,
@@ -202,7 +221,7 @@ class _SliderPanel extends StatelessWidget {
                 child: ScenicHeading(
                   title,
                   size: 18,
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.start,
                 ),
               ),
               Text(shown, style: kScenicBody.copyWith(fontSize: 16)),
@@ -248,6 +267,7 @@ class _VoiceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = context.l10n;
     final list = voices;
     final best = list?.firstOrNull;
     // A saved voice that is no longer on the device reads as Automatic.
@@ -257,7 +277,9 @@ class _VoiceList extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: ScenicTile(
         key: Key('voice-option-${id ?? 'auto'}'),
-        label: detail == null ? title : '$title, $detail',
+        label: detail == null
+            ? title
+            : l.settingsVoiceOptionLabel(title, detail),
         selected: current == id,
         onTap: () => onChosen(id),
         child: Padding(
@@ -293,36 +315,45 @@ class _VoiceList extends StatelessWidget {
       ),
     );
 
-    String detail(SpeechVoice v) =>
-        [accentName(v), ?qualityName(v)].join(' · ');
+    String detail(SpeechVoice v) {
+      final quality = qualityName(v, l);
+      return quality == null
+          ? accentName(v, l)
+          : l.settingsVoiceDetail(accentName(v, l), quality);
+    }
 
     return ScenicPanel(
       padding: const EdgeInsets.fromLTRB(18, 14, 18, 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const ScenicHeading('Voice', size: 18, textAlign: TextAlign.left),
+          ScenicHeading(
+            l.settingsVoiceTitle,
+            size: 18,
+            textAlign: TextAlign.start,
+          ),
           if (list == null)
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: Text('Finding voices…', style: kScenicBody),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(l.settingsVoiceFinding, style: kScenicBody),
             )
           else if (list.isEmpty)
-            const Padding(
-              padding: EdgeInsets.only(top: 8),
-              child: Text(
-                'No voice on this device can read aloud without the '
-                'internet.',
-                style: kScenicBody,
-              ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(l.settingsVoiceNoneOffline, style: kScenicBody),
             )
           else ...[
             option(
               null,
-              'Automatic',
-              best == null ? null : 'Uses ${voiceTitle(best)}, ${detail(best)}',
+              l.settingsVoiceAutomatic,
+              best == null
+                  ? null
+                  : l.settingsVoiceAutomaticUses(
+                      voiceTitle(best, l),
+                      detail(best),
+                    ),
             ),
-            for (final v in list) option(v.id, voiceTitle(v), detail(v)),
+            for (final v in list) option(v.id, voiceTitle(v, l), detail(v)),
           ],
         ],
       ),

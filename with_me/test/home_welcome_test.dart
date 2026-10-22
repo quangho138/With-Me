@@ -84,7 +84,7 @@ void main() {
   ) async {
     await install();
     await start(tester);
-    expect(clips.played, [WithMeHomeScreen.welcomeRecording]);
+    expect(clips.played, ['audio/voice/en/home/welcome_back.mp3']);
     expect(mascot(tester).pose, RealPose.wave);
     expect(mascot(tester).talking, isFalse, reason: 'not before the sound');
 
@@ -94,7 +94,7 @@ void main() {
     expect(mascot(tester).pose, RealPose.wave, reason: 'still waving');
     expect(
       mascot(tester).mouthTimeline,
-      kMouthTimelines[WithMeHomeScreen.welcomeRecording],
+      kMouthTimelines['audio/voice/en/home/welcome_back.mp3'],
     );
     final seen = <String>{};
     for (var i = 0; i < 60; i++) {

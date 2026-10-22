@@ -26,6 +26,7 @@ class FakeEngine implements SpeechEngine {
   final List<String> spoken = [];
   final List<SpeechCallbacks> callbacks = [];
   final List<SpeechStyle> styles = [];
+  final List<String?> locales = [];
   int stops = 0;
 
   /// What voices() answers.
@@ -40,10 +41,12 @@ class FakeEngine implements SpeechEngine {
     String text,
     SpeechCallbacks callbacks, {
     SpeechStyle style = SpeechStyle.standard,
+    String? locale,
   }) async {
     if (throws) throw StateError('no speech');
     spoken.add(text);
     styles.add(style);
+    locales.add(locale);
     this.callbacks.add(callbacks);
     return accept;
   }
@@ -108,6 +111,11 @@ void main() {
   const greetingSpoken = "Hi! I'm here with you. How are you feeling today?";
   const recording = DailyCheckInScreen.greetingRecording;
 
+  /// The English recording that plays for [clip]: Adrian's voice, under
+  /// audio/voice/en/.
+  String en(String clip) => clip.replaceFirst('audio/', 'audio/voice/en/');
+  final greeting = en(recording);
+
   late FakeEngine engine;
   late FakeClips clips;
   late MemorySettings settings;
@@ -135,6 +143,57 @@ void main() {
   tearDown(() => SpeechService.instance = original);
 
   group('speech service', () {
+    test('a language without its own recordings has none to play', () {
+      expect(
+        SpeechService.recordingFor(recording, const Locale('en')),
+        greeting,
+      );
+      expect(SpeechService.recordingFor(recording, const Locale('bn')), isNull);
+    });
+
+    test('in English a line plays the recording', () async {
+      final speech = await install();
+      speech.sayLine(
+        clip: recording,
+        text: 'Hola',
+        locale: const Locale('en'),
+        owner: Object(),
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(clips.played, [greeting]);
+      expect(engine.spoken, isEmpty);
+    });
+
+    test('in Portuguese a line plays its Portuguese recording', () async {
+      final speech = await install();
+      speech.sayLine(
+        clip: recording,
+        text: 'Oi! Estou aqui com você.',
+        locale: const Locale('pt', 'BR'),
+        owner: Object(),
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(clips.played, ['audio/voice/pt/checkin/page1.mp3']);
+      expect(engine.spoken, isEmpty);
+    });
+
+    test(
+      'in a language without recordings the device voice reads the line',
+      () async {
+        final speech = await install();
+        speech.sayLine(
+          clip: recording,
+          text: 'Hai! Aku di sini bersamamu.',
+          locale: const Locale('id'),
+          owner: Object(),
+        );
+        await Future<void>.delayed(Duration.zero);
+        expect(clips.played, isEmpty);
+        expect(engine.spoken, ['Hai! Aku di sini bersamamu.']);
+        expect(engine.locales, ['id']);
+      },
+    );
+
     test('says nothing until the saved setting has been read', () async {
       await install(load: false);
       expect(speech.speak('Hello', owner: 1), isNull);
@@ -315,7 +374,7 @@ void main() {
       expect(all, contains('audio/checkin/page6_social.mp3'));
       expect(all, contains('audio/checkin/page8_behavior.mp3'));
       for (final c in all) {
-        expect(File('assets/$c').existsSync(), isTrue, reason: c);
+        expect(File('assets/${en(c)}').existsSync(), isTrue, reason: c);
       }
     });
   });
@@ -429,7 +488,7 @@ void main() {
       await install();
       await openDailyLog(tester);
       await startToday(tester);
-      expect(clips.played, [recording]);
+      expect(clips.played, [greeting]);
       expect(engine.spoken, isEmpty, reason: 'no text-to-speech');
 
       // Ordinary rebuilds and the companion's breathing do not repeat it.
@@ -468,7 +527,7 @@ void main() {
       await tapLabel(tester, 'Happy');
       await tapContinue(tester);
       expect(clips.stops, 1, reason: 'the greeting stops');
-      expect(clips.played, [recording, 'audio/checkin/page2.mp3']);
+      expect(clips.played, [greeting, en('audio/checkin/page2.mp3')]);
 
       await back(tester);
       expect(find.text('Happy'), findsWidgets, reason: 'on the greeting');
@@ -488,7 +547,7 @@ void main() {
       expect(clips.stops, 1);
 
       await startToday(tester);
-      expect(clips.played, [recording, recording]);
+      expect(clips.played, [greeting, greeting]);
     });
 
     testWidgets('a page opened from the Daily Log list plays its line', (
@@ -507,7 +566,7 @@ void main() {
         await tapRow(tester, row);
         await settle(tester);
         expect(find.byType(DailyCheckInScreen), findsOneWidget);
-        expect(clips.played.last, clip, reason: row);
+        expect(clips.played.last, en(clip), reason: row);
         // Back from the page it opened on returns to the Daily Log.
         await back(tester);
         expect(find.byType(DailyCheckInScreen), findsNothing);
@@ -539,7 +598,7 @@ void main() {
           'page9',
           'page10',
         ])
-          'audio/checkin/$page.mp3',
+          'audio/voice/en/checkin/$page.mp3',
       ]);
       expect(engine.spoken, isEmpty);
     });
