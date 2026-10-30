@@ -17,19 +17,26 @@ import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 /// every page, shared by the flow test and the capture tool.
 
 /// The local repository, except that [save] keeps the entry for the test
-/// to read rather than writing it, and [entryOn] hands back [today] (what
-/// was "saved earlier today") instead of reading the database.
+/// to read rather than writing it, [entryOn] hands back [today] (what
+/// was "saved earlier today") and [lastCheckInBefore] hands back [lastDay],
+/// instead of reading the database.
 class RecordingCheckIns extends LocalCheckInRepository {
-  RecordingCheckIns({this.today});
+  RecordingCheckIns({this.today, this.lastDay});
 
   final List<CheckInEntry> saved = [];
   CheckInEntry? today;
+
+  /// The last checked-in day before today, for "back after a gap".
+  DateTime? lastDay;
 
   @override
   Future<void> save(CheckInEntry entry) async => saved.add(entry);
 
   @override
   Future<CheckInEntry?> entryOn(DateTime day) async => today;
+
+  @override
+  Future<DateTime?> lastCheckInBefore(DateTime day) async => lastDay;
 }
 
 /// sqflite and path_provider have no implementation in a widget test; the
@@ -232,9 +239,9 @@ Future<void> walkCheckIn(
 }
 
 /// Installs a [RecordingCheckIns] for the length of the test.
-RecordingCheckIns recordCheckIns({CheckInEntry? today}) {
+RecordingCheckIns recordCheckIns({CheckInEntry? today, DateTime? lastDay}) {
   final previous = AppRepositories.checkIns;
-  final recording = RecordingCheckIns(today: today);
+  final recording = RecordingCheckIns(today: today, lastDay: lastDay);
   AppRepositories.checkIns = recording;
   addTearDown(() => AppRepositories.checkIns = previous);
   return recording;

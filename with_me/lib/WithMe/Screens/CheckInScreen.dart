@@ -4,10 +4,12 @@ import '../../Repositories/app_repositories.dart';
 import '../../Repositories/reflection_repository.dart';
 import '../../l10n/l10n.dart';
 import '../../l10n/labels.dart';
+import '../Components/AvatarReactionCard.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
 import '../Data/CheckInSteps.dart';
+import '../Data/avatar_reactions.dart';
 
 /// Check In — the five-part self-reflection (`image24.png`) as a page of its
 /// own: Who, What, Where, When and Why, each with its dropdown of questions.
@@ -34,6 +36,10 @@ class _CheckInScreenState extends State<CheckInScreen> {
   };
 
   bool _saving = false;
+
+  /// True once today's reflection is saved and nothing changed since: the
+  /// companion thanks the person and the button becomes Done.
+  bool _saved = false;
 
   /// Database column for each category.
   static const Map<String, String> _columns = {
@@ -106,9 +112,12 @@ class _CheckInScreenState extends State<CheckInScreen> {
     }
 
     if (!mounted) return;
-    setState(() => _saving = false);
-    messenger.showSnackBar(SnackBar(content: Text(l.checkinReflectSaved)));
-    Navigator.of(context).maybePop();
+    // The companion's thank-you (graded core feature A, E5) stays on this
+    // page until the person taps Done.
+    setState(() {
+      _saving = false;
+      _saved = true;
+    });
   }
 
   @override
@@ -116,12 +125,33 @@ class _CheckInScreenState extends State<CheckInScreen> {
     final l = context.l10n;
     return ScenicScaffold(
       title: l.checkinReflectTitle,
-      action: ScenicPill(
-        label: l.checkinReflectSave,
-        height: 58,
-        onPressed: _saving ? null : _save,
+      action: _saved
+          ? ScenicPill(
+              label: l.commonDone,
+              height: 58,
+              onPressed: () => Navigator.of(context).maybePop(),
+            )
+          : ScenicPill(
+              label: l.checkinReflectSave,
+              height: 58,
+              onPressed: _saving ? null : _save,
+            ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (_saved) ...[
+            const AvatarReactionCard(reaction: AvatarReaction.journalThanks),
+            const SizedBox(height: 12),
+          ],
+          _questions(context),
+        ],
       ),
-      child: ScenicPanel(
+    );
+  }
+
+  Widget _questions(BuildContext context) {
+    final l = context.l10n;
+    return ScenicPanel(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -139,7 +169,6 @@ class _CheckInScreenState extends State<CheckInScreen> {
             ],
           ],
         ),
-      ),
     );
   }
 
@@ -156,7 +185,10 @@ class _CheckInScreenState extends State<CheckInScreen> {
       fill: Colors.white,
       border: kScenicFieldRing,
       height: 60,
-      onChanged: (v) => setState(() => _choices[category] = shown[v]),
+      onChanged: (v) => setState(() {
+        _choices[category] = shown[v];
+        _saved = false;
+      }),
     );
   }
 }

@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/AvatarReactionCard.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
+import '../Data/avatar_reactions.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/SighAudio.dart';
 import '../../l10n/l10n.dart';
@@ -234,6 +236,11 @@ class _SighScreenState extends State<SighScreen>
               ],
             ),
           ),
+          // The companion's "well done" (graded core feature A, E4).
+          if (_session.complete) ...[
+            const SizedBox(height: 16),
+            const AvatarReactionCard(reaction: AvatarReaction.wellDone),
+          ],
         ],
       ),
     );

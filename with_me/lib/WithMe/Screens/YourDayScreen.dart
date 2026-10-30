@@ -1,165 +1,131 @@
 import 'package:flutter/material.dart';
 
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/check_in_repository.dart';
 import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
+import '../Components/AvatarReactionCard.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Data/Today.dart';
+import '../Data/avatar_reactions.dart';
 import '../Mascot/RealMascot.dart';
-import '../Theme/WithMeTheme.dart';
 import 'ExerciseChooseScreen.dart';
 
-/// `image36.png` — "Your day".
+/// `image36.png` - "Your day", shown after the daily check-in.
 ///
-/// The four things today asked for, each with its state on the right, then
-/// the nudge toward whichever one is still open - on the beach the check-in
-/// began on, with the companion waving below.
+/// Only what was really saved today: that the check-in is done, the
+/// strategy and action picked, and how many exercises were finished. Above
+/// it, the companion's [reaction] to the check-in just finished; after a
+/// low mood ([AvatarReaction.comfort]) the button offers a calming
+/// exercise. Graded core feature A, criteria A6 and A7.
 class YourDayScreen extends StatefulWidget {
-  const YourDayScreen({super.key});
+  const YourDayScreen({super.key, this.reaction, this.entry});
 
   static const String route = '/your-day';
+
+  /// The companion's reaction to the check-in just finished, or null when
+  /// the screen is opened on its own (then the companion only waves).
+  final AvatarReaction? reaction;
+
+  /// The check-in just saved. Null reads today's from the phone instead.
+  final CheckInEntry? entry;
 
   @override
   State<YourDayScreen> createState() => _YourDayScreenState();
 }
 
-enum _TaskState { done, now, later }
-
-class _Task {
-  _Task(this.label, this.state, this.color);
-
-  /// The task's name in the language given.
-  final String Function(AppLocalizations l) label;
-  _TaskState state;
-  final Color color;
-}
-
 class _YourDayScreenState extends State<YourDayScreen> {
-  final List<_Task> _tasks = [
-    _Task((l) => l.dashTaskMorningCheckIn, _TaskState.done, WithMeColors.teal),
-    _Task((l) => l.dashTaskBoxBreathing, _TaskState.done, WithMeColors.teal),
-    _Task((l) => l.dashTaskOneStep, _TaskState.now, WithMeColors.coral),
-    _Task((l) => l.dashTaskEveningLog, _TaskState.later, WithMeColors.slate),
-  ];
+  late CheckInEntry? _entry = widget.entry;
+  int _exercises = 0;
 
-  int get _done => _tasks.where((t) => t.state == _TaskState.done).length;
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
 
-  /// [n] spelled out with a capital, "Two"; past six, the digits.
-  static String _word(AppLocalizations l, int n) => switch (n) {
-    0 => l.dashNumberZero,
-    1 => l.dashNumberOne,
-    2 => l.dashNumberTwo,
-    3 => l.dashNumberThree,
-    4 => l.dashNumberFour,
-    5 => l.dashNumberFive,
-    6 => l.dashNumberSix,
-    _ => '$n',
-  };
+  Future<void> _load() async {
+    final today = Today.now();
+    var entry = _entry;
+    var exercises = 0;
+    try {
+      entry ??= await AppRepositories.checkIns.entryOn(today);
+    } catch (_) {
+      // No database (the browser preview): show what was handed over.
+    }
+    try {
+      exercises =
+          (await AppRepositories.exercises.sessionsBetween(today, today))
+              .length;
+    } catch (_) {
+      // Same: no exercises line.
+    }
+    if (!mounted) return;
+    setState(() {
+      _entry = entry;
+      _exercises = exercises;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final reaction = widget.reaction;
+    final entry = _entry;
+    final strategy = entry?.strategy;
+    final action = entry?.action;
+
+    final lines = <String>[
+      entry == null ? l.yourDayNoCheckIn : l.yourDayCheckInDone,
+      if (strategy != null) l.checkinDetailStrategy(context.label(strategy)),
+      if (action != null) l.checkinDetailAction(context.label(action)),
+      if (_exercises > 0) l.yourDayExercises('$_exercises'),
+    ];
+
     return ScenicScaffold(
       title: l.dashYourDayTitle,
-      mascot: RealPose.wave,
+      mascot: reaction == null ? RealPose.wave : poseForReaction(reaction),
       mascotMax: 0.36,
-      action: ScenicPill(
-        label: l.dashYourDayDoItNow,
-        height: 58,
-        onPressed: () => Navigator.of(
-          context,
-        ).push(MaterialPageRoute(builder: (_) => const ExerciseChooseScreen())),
-      ),
+      action: reaction == AvatarReaction.comfort
+          ? ScenicPill(
+              label: l.yourDayCalmingOffer,
+              height: 58,
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const ExerciseChooseScreen()),
+              ),
+            )
+          : ScenicPill(
+              label: l.commonDone,
+              height: 58,
+              onPressed: () => Navigator.of(context).maybePop(),
+            ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (reaction != null) ...[
+            ScenicPanel(
+              child: Text(
+                reactionLine(l, reaction),
+                textAlign: TextAlign.center,
+                style: kScenicBody.copyWith(fontSize: 18),
+              ),
+            ),
+            const SizedBox(height: 12),
+          ],
           ScenicPanel(
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                for (var i = 0; i < _tasks.length; i++) ...[
+                for (var i = 0; i < lines.length; i++) ...[
                   if (i > 0) const SizedBox(height: 8),
-                  _TaskRow(
-                    task: _tasks[i],
-                    onTap: () => setState(() {
-                      _tasks[i].state = _tasks[i].state == _TaskState.done
-                          ? _TaskState.later
-                          : _TaskState.done;
-                    }),
-                  ),
+                  Text(lines[i], style: kScenicBody.copyWith(fontSize: 16)),
                 ],
               ],
             ),
           ),
-          const SizedBox(height: 12),
-          ScenicPanel(
-            child: Text(
-              // The design spells the counts out rather than using digits.
-              l.dashYourDaySummary(_word(l, _done), _word(l, _tasks.length)),
-              textAlign: TextAlign.center,
-              style: kScenicBody,
-            ),
-          ),
         ],
-      ),
-    );
-  }
-}
-
-/// One task on a sage tile: its colour, its name, and its state as a chip -
-/// filled teal when done, coral for the one to do now, outlined for later.
-class _TaskRow extends StatelessWidget {
-  const _TaskRow({required this.task, required this.onTap});
-
-  final _Task task;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    final (word, fill, ink) = switch (task.state) {
-      _TaskState.done => (
-        l.dashTaskDone,
-        ScenicColors.pillBottom,
-        Colors.white,
-      ),
-      _TaskState.now => (l.dashTaskNow, const Color(0xFFE0604A), Colors.white),
-      _TaskState.later => (l.dashTaskLater, Colors.white, ScenicColors.ink),
-    };
-    final done = task.state == _TaskState.done;
-    final label = task.label(l);
-
-    return ScenicTile(
-      label: l.dashTaskSemantics(label, word),
-      selected: done,
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        child: Row(
-          children: [
-            ScenicMarker(
-              color: task.color,
-              size: 30,
-              checked: done,
-              icon: done ? null : Icons.circle_outlined,
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(label, style: kScenicBody.copyWith(fontSize: 16)),
-            ),
-            const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                color: fill,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: ScenicColors.ring, width: 1.2),
-              ),
-              child: Text(
-                word,
-                style: kScenicLabel.copyWith(fontSize: 12, color: ink),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

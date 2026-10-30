@@ -1679,58 +1679,29 @@ class AppLocalizationsFil extends AppLocalizations {
   String get dashYourDayTitle => 'Ang araw mo';
 
   @override
-  String get dashYourDayDoItNow => 'Gawin ngayon';
+  String get avatarThanksLine => 'Salamat sa pag-check-in ngayong araw.';
 
   @override
-  String get dashTaskMorningCheckIn => 'Check-in sa umaga';
+  String get avatarComfortLine => 'Nandito ako para sa iyo. Maging mabait ka sa sarili mo ngayon.';
 
   @override
-  String get dashTaskBoxBreathing => 'Paghingang parisukat · 5 ikot';
+  String get avatarWelcomeLine => 'Masaya akong makita ka ulit.';
 
   @override
-  String get dashTaskOneStep => 'Isang hakbang: ensayuhin ang pambungad';
+  String get avatarJournalThanksLine => 'Salamat sa paglaan ng sandali para magnilay.';
 
   @override
-  String get dashTaskEveningLog => 'Tala sa gabi';
+  String get yourDayCalmingOffer => 'Subukan ang isang nakakakalmang ehersisyo';
 
   @override
-  String get dashTaskDone => 'TAPOS';
+  String get yourDayCheckInDone => 'Na-save na ang check-in mo ngayong araw.';
 
   @override
-  String get dashTaskNow => 'NGAYON';
+  String get yourDayNoCheckIn => 'Wala pang na-save na check-in ngayong araw.';
 
   @override
-  String get dashTaskLater => 'MAMAYA';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => 'Sero';
-
-  @override
-  String get dashNumberOne => 'Isa';
-
-  @override
-  String get dashNumberTwo => 'Dalawa';
-
-  @override
-  String get dashNumberThree => 'Tatlo';
-
-  @override
-  String get dashNumberFour => 'Apat';
-
-  @override
-  String get dashNumberFive => 'Lima';
-
-  @override
-  String get dashNumberSix => 'Anim';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$done sa $total ang tapos na. Naghihintay pa rin ang hakbang na pinili mo kaninang umaga — sapat na ang dalawang minuto.';
+  String yourDayExercises(String count) {
+    return 'Mga ehersisyong natapos ngayon: $count';
   }
 
   @override

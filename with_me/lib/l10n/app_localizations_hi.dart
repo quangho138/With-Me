@@ -1660,58 +1660,29 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dashYourDayTitle => 'आपका दिन';
 
   @override
-  String get dashYourDayDoItNow => 'अभी करें';
+  String get avatarThanksLine => 'आज चेक-इन करने के लिए धन्यवाद।';
 
   @override
-  String get dashTaskMorningCheckIn => 'सुबह का चेक-इन';
+  String get avatarComfortLine => 'मैं आपके साथ हूँ। आज अपने साथ नरमी से पेश आएँ।';
 
   @override
-  String get dashTaskBoxBreathing => 'बॉक्स ब्रीदिंग · 5 चक्र';
+  String get avatarWelcomeLine => 'आपको फिर से देखकर अच्छा लगा।';
 
   @override
-  String get dashTaskOneStep => 'एक क़दम: शुरुआत का अभ्यास करें';
+  String get avatarJournalThanksLine => 'थोड़ा रुककर सोचने के लिए धन्यवाद।';
 
   @override
-  String get dashTaskEveningLog => 'शाम का लॉग';
+  String get yourDayCalmingOffer => 'शांत करने वाला एक अभ्यास आज़माएँ';
 
   @override
-  String get dashTaskDone => 'पूरा';
+  String get yourDayCheckInDone => 'आज का चेक-इन सेव हो गया है।';
 
   @override
-  String get dashTaskNow => 'अभी';
+  String get yourDayNoCheckIn => 'आज अभी तक कोई चेक-इन सेव नहीं हुआ है।';
 
   @override
-  String get dashTaskLater => 'बाद में';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => 'शून्य';
-
-  @override
-  String get dashNumberOne => 'एक';
-
-  @override
-  String get dashNumberTwo => 'दो';
-
-  @override
-  String get dashNumberThree => 'तीन';
-
-  @override
-  String get dashNumberFour => 'चार';
-
-  @override
-  String get dashNumberFive => 'पाँच';
-
-  @override
-  String get dashNumberSix => 'छह';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$total में से $done पूरे हुए। आज सुबह चुना हुआ क़दम अभी बाकी है — दो मिनट काफ़ी हैं।';
+  String yourDayExercises(String count) {
+    return 'आज पूरे किए गए अभ्यास: $count';
   }
 
   @override

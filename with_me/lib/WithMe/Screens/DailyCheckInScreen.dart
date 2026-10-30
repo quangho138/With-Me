@@ -306,8 +306,21 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Future<void> _finish() async {
     if (_saving) return;
     _saving = true;
+    final today = Today.now();
+    final entry = _entry(today);
+
+    // The last checked-in day before today, for "back after a gap".
+    DateTime? lastDay;
     try {
-      await _save();
+      lastDay = await AppRepositories.checkIns.lastCheckInBefore(today);
+    } catch (_) {
+      // No database: no welcome, the rest still works.
+    }
+
+    var saved = false;
+    try {
+      await AppRepositories.checkIns.save(entry);
+      saved = true;
       CheckInRepository.saves.value++;
     } catch (_) {
       // The check-in is done either way — losing the write must not trap the
@@ -321,20 +334,34 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     }
 
     if (!mounted) return;
-    Navigator.of(
-      context,
-    ).pushReplacement(MaterialPageRoute(builder: (_) => const YourDayScreen()));
+    // One reaction to what just happened (graded core feature A).
+    final reaction = reactionFor(
+      checkInEvents(
+        mood: entry.mood,
+        checkInDay: entry.day,
+        today: today,
+        lastDayBefore: lastDay,
+      ),
+    );
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => YourDayScreen(
+          reaction: reaction,
+          // Only what was really saved is shown as saved.
+          entry: saved ? entry : null,
+        ),
+      ),
+    );
   }
 
-  /// Saves every answer through the check-in repository, including the
-  /// pages that used to be thrown away (motivation, intention, strategy,
-  /// action, rating). Unanswered pages stay null and change nothing.
-  Future<void> _save() {
+  /// Every answer as one check-in for [day], including the pages that used
+  /// to be thrown away (motivation, intention, strategy, action, rating).
+  /// Unanswered pages stay null and change nothing when saved.
+  CheckInEntry _entry(DateTime day) {
     final a = _answers;
     final dimension = a.signDimension;
-    return AppRepositories.checkIns.save(
-      CheckInEntry(
-        day: Today.now(),
+    return CheckInEntry(
+        day: day,
         mood: a.mood == null ? null : _moodLabel(a.mood!),
         perceivedControl: a.control,
         stress: a.stress,
@@ -356,8 +383,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
         intention: a.intention,
         strategy: a.strategy,
         action: a.action,
-        rating: a.rating > 0 ? a.rating : null,
-      ),
+      rating: a.rating > 0 ? a.rating : null,
     );
   }
 

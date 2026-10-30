@@ -1593,58 +1593,29 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashYourDayTitle => '나의 하루';
 
   @override
-  String get dashYourDayDoItNow => '지금 하기';
+  String get avatarThanksLine => '오늘 체크인해 줘서 고마워요.';
 
   @override
-  String get dashTaskMorningCheckIn => '아침 체크인';
+  String get avatarComfortLine => '내가 곁에 있어요. 오늘은 스스로에게 다정하게 대해 주세요.';
 
   @override
-  String get dashTaskBoxBreathing => '박스 호흡 · 5회 반복';
+  String get avatarWelcomeLine => '다시 만나서 반가워요.';
 
   @override
-  String get dashTaskOneStep => '한 걸음: 첫마디 연습하기';
+  String get avatarJournalThanksLine => '잠시 돌아보는 시간을 가져 줘서 고마워요.';
 
   @override
-  String get dashTaskEveningLog => '저녁 기록';
+  String get yourDayCalmingOffer => '마음을 진정시키는 운동 해 보기';
 
   @override
-  String get dashTaskDone => '완료';
+  String get yourDayCheckInDone => '오늘의 체크인을 저장했어요.';
 
   @override
-  String get dashTaskNow => '지금';
+  String get yourDayNoCheckIn => '오늘은 아직 저장된 체크인이 없어요.';
 
   @override
-  String get dashTaskLater => '나중에';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => '0';
-
-  @override
-  String get dashNumberOne => '1';
-
-  @override
-  String get dashNumberTwo => '2';
-
-  @override
-  String get dashNumberThree => '3';
-
-  @override
-  String get dashNumberFour => '4';
-
-  @override
-  String get dashNumberFive => '5';
-
-  @override
-  String get dashNumberSix => '6';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$total개 중 $done개 완료. 오늘 아침에 고른 한 걸음이 아직 기다리고 있어요. 2분이면 충분해요.';
+  String yourDayExercises(String count) {
+    return '오늘 마친 운동: $count';
   }
 
   @override

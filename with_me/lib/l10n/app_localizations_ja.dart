@@ -1594,58 +1594,29 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dashYourDayTitle => 'あなたの一日';
 
   @override
-  String get dashYourDayDoItNow => '今すぐやる';
+  String get avatarThanksLine => '今日もチェックインしてくれてありがとう。';
 
   @override
-  String get dashTaskMorningCheckIn => '朝のチェックイン';
+  String get avatarComfortLine => 'そばにいますよ。今日は自分にやさしくしてくださいね。';
 
   @override
-  String get dashTaskBoxBreathing => 'ボックス呼吸 · 5サイクル';
+  String get avatarWelcomeLine => 'また会えてうれしいです。';
 
   @override
-  String get dashTaskOneStep => 'ひとつの一歩：話の始め方を練習する';
+  String get avatarJournalThanksLine => 'ふり返る時間をとってくれてありがとう。';
 
   @override
-  String get dashTaskEveningLog => '夜の記録';
+  String get yourDayCalmingOffer => '心を落ち着ける練習をしてみる';
 
   @override
-  String get dashTaskDone => '完了';
+  String get yourDayCheckInDone => '今日のチェックインを保存しました。';
 
   @override
-  String get dashTaskNow => '今';
+  String get yourDayNoCheckIn => '今日はまだチェックインが保存されていません。';
 
   @override
-  String get dashTaskLater => 'あとで';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task、$state';
-  }
-
-  @override
-  String get dashNumberZero => '0';
-
-  @override
-  String get dashNumberOne => '1';
-
-  @override
-  String get dashNumberTwo => '2';
-
-  @override
-  String get dashNumberThree => '3';
-
-  @override
-  String get dashNumberFour => '4';
-
-  @override
-  String get dashNumberFive => '5';
-
-  @override
-  String get dashNumberSix => '6';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$done/$total件完了。今朝選んだ一歩がまだ待っています — 2分あれば十分です。';
+  String yourDayExercises(String count) {
+    return '今日終えた練習：$count';
   }
 
   @override
