@@ -12,6 +12,8 @@ import '../Components/ScenicKit.dart';
 import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Components/WithMeControls.dart';
 import '../Data/CheckInSteps.dart';
+import '../Data/Today.dart';
+import '../Data/avatar_reactions.dart';
 import '../Mascot/RealMascot.dart';
 import '../Speech/MouthTimelines.dart';
 import '../Speech/NarrationMouth.dart';
@@ -259,7 +261,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Future<void> _loadSaved() async {
     CheckInEntry? saved;
     try {
-      saved = await AppRepositories.checkIns.entryOn(DateTime.now());
+      saved = await AppRepositories.checkIns.entryOn(Today.now());
     } catch (_) {
       // No database (the browser preview) - start blank.
       return;
@@ -332,7 +334,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     final dimension = a.signDimension;
     return AppRepositories.checkIns.save(
       CheckInEntry(
-        day: DateTime.now(),
+        day: Today.now(),
         mood: a.mood == null ? null : _moodLabel(a.mood!),
         perceivedControl: a.control,
         stress: a.stress,
@@ -484,71 +486,14 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     );
   }
 
-  /// The rendered companion's pose. Each page opens on the pose the
-  /// reference shows, then answers move it: hard ones make it sad,
-  /// middling ones get a smirk, good ones a happy hop. The reference's own
-  /// example answers (stress 4, motivation 3) land on its pictured poses.
-  /// Naming a stressor or a sign gets thoughtful concern rather than a
-  /// frown.
-  RealPose get _realPose => _poseFor(_answers);
+  /// The rendered companion's pose for this page and these answers. The
+  /// rule lives in lib/WithMe/Data/avatar_reactions.dart so tests can check
+  /// it against the table in docs/GRADED_CORE.md.
+  RealPose get _realPose => poseFor(_index, _answers);
 
   /// The pose this page opens on before anything is answered: heart, think
   /// or idle, the poses the companion can talk in.
-  RealPose get _waitingPose => _poseFor(CheckInAnswers());
-
-  RealPose _poseFor(CheckInAnswers a) {
-    RealPose scale(int? v) {
-      if (v == null || v < 1) return RealPose.idle;
-      if (v <= 2) return RealPose.sad;
-      if (v == 3) return RealPose.smirk;
-      return RealPose.happy;
-    }
-
-    switch (_index) {
-      case 0:
-        return switch (a.mood == null ? null : MoodFace.values[a.mood!]) {
-          null => RealPose.heart,
-          MoodFace.angry || MoodFace.sad => RealPose.sad,
-          MoodFace.indifferent => RealPose.smirk,
-          MoodFace.happy => RealPose.happy,
-          MoodFace.excited => RealPose.excited,
-        };
-      case 1:
-        return a.control == null ? RealPose.think : scale(a.control);
-      case 2:
-        return switch (a.stress) {
-          null => RealPose.think,
-          1 || 2 => RealPose.happy,
-          3 => RealPose.smirk,
-          4 => RealPose.think,
-          _ => RealPose.sad,
-        };
-      case 3:
-        return switch (a.motivation) {
-          null => RealPose.idle,
-          1 => RealPose.sad,
-          2 => RealPose.smirk,
-          _ => RealPose.excited,
-        };
-      case 4:
-        return a.hasSource ? RealPose.sad : RealPose.think;
-      case 5:
-        return a.hasStressors ? RealPose.think : RealPose.idle;
-      // Body, feelings, mind or behaviour is neither good nor bad news.
-      case 6:
-        return a.signDimension == null ? RealPose.idle : RealPose.smirk;
-      case 7:
-        return a.hasSigns ? RealPose.think : RealPose.idle;
-      case 8:
-        return scale(
-          a.readiness == null ? null : ReadinessGauge.levelOf(a.readiness!) + 1,
-        );
-      case 9:
-        return a.strategy == null ? RealPose.idle : RealPose.happy;
-      default:
-        return scale(a.rating);
-    }
-  }
+  RealPose get _waitingPose => poseFor(_index, CheckInAnswers());
 
   Widget _settingsGear(BuildContext context) => Semantics(
     button: true,
