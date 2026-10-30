@@ -163,6 +163,11 @@ abstract class CheckInRepository {
   Future<String?> moodOn(DateTime day);
   Future<int?> controlLevelOn(DateTime day);
   Future<Map<String, dynamic>?> stressorOn(DateTime day);
+
+  /// The latest checked-in day before [day], or null if there is none.
+  /// A checked-in day has a mood, a control level or a stressor saved
+  /// (docs/GRADED_CORE.md, section 2.2). Used for "back after a gap".
+  Future<DateTime?> lastCheckInBefore(DateTime day);
 }
 
 /// One check-in's strategy and action, and the day it was saved for.
@@ -387,6 +392,24 @@ class LocalCheckInRepository implements CheckInRepository {
   @override
   Future<Map<String, dynamic>?> stressorOn(DateTime day) =>
       _on('stressors', day);
+
+  @override
+  Future<DateTime?> lastCheckInBefore(DateTime day) async {
+    final db = await _open();
+    final key = dayKey(day);
+    final rows = await db.rawQuery(
+      'SELECT MAX(date) AS last FROM ('
+      'SELECT date FROM moods WHERE date < ? '
+      'UNION ALL SELECT date FROM control_gauge WHERE date < ? '
+      'UNION ALL SELECT date FROM stressors WHERE date < ?)',
+      [key, key, key],
+    );
+    final last = rows.isEmpty ? null : rows.first['last'] as String?;
+    if (last == null) return null;
+    // A day key is 'YYYY-MM-DD'; read it as that calendar date.
+    final parts = last.split('-').map(int.parse).toList();
+    return DateTime(parts[0], parts[1], parts[2]);
+  }
 
   /// All rows of a daily table from one day to another, both included.
   Future<List<Map<String, dynamic>>> _between(
