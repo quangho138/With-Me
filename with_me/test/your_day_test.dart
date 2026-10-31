@@ -7,6 +7,8 @@ import 'package:with_me/Repositories/check_in_repository.dart';
 import 'package:with_me/Repositories/exercise_repository.dart';
 import 'package:with_me/Repositories/reflection_repository.dart';
 import 'package:with_me/WithMe/Components/AvatarReactionCard.dart';
+import 'package:with_me/WithMe/Components/WithMeControls.dart'
+    show WithMeButton;
 import 'package:with_me/WithMe/Data/CheckInSteps.dart';
 import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Data/avatar_reactions.dart';
@@ -83,9 +85,11 @@ Future<void> pumpApp(
   WidgetTester tester,
   Widget home, {
   Locale locale = const Locale('en'),
+  Size physicalSize = const Size(1170, 2532),
+  double pixelRatio = 3,
 }) async {
-  tester.view.physicalSize = const Size(390, 844) * 3;
-  tester.view.devicePixelRatio = 3;
+  tester.view.physicalSize = physicalSize;
+  tester.view.devicePixelRatio = pixelRatio;
   addTearDown(tester.view.reset);
   await tester.pumpWidget(
     MaterialApp(
@@ -430,46 +434,73 @@ void main() {
       });
     }
 
-    testWidgets('a finished breathing exercise shows "well done" (E4)', (
-      tester,
-    ) async {
-      await pumpApp(tester, const BreathingScreen(sound: 'None', cycles: 1));
-      expect(find.byType(AvatarReactionCard), findsNothing);
-      await tester.tap(find.text(en.exerciseStartBreathing));
-      await tester.pump();
-      await tester.pump(const Duration(seconds: 20));
-      await tester.pump();
-      expect(
-        tester
-            .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
-            .reaction,
-        AvatarReaction.wellDone,
-      );
-      expect(find.text(en.exerciseMadeTimeForYourself), findsOneWidget);
-      await tester.pumpWidget(const SizedBox());
-    });
+    // The phones the card must fit on without scrolling: the test phone and
+    // the Pixel 7 the emulator check used (1080x2400 at 2.625).
+    const phones = {
+      '390x844': (Size(1170, 2532), 3.0),
+      'Pixel 7': (Size(1080, 2400), 2.625),
+    };
 
-    testWidgets('a finished sigh exercise shows "well done" (E4)', (
-      tester,
-    ) async {
-      await pumpApp(tester, const SighScreen());
-      expect(find.byType(AvatarReactionCard), findsNothing);
-      await tester.tap(find.text(en.exerciseBreathSoundOn));
-      await tester.pump();
-      await tester.tap(find.widgetWithText(ChoiceChip, '1'));
-      await tester.pump();
-      await tester.tap(find.text(en.exerciseStartBreathing));
-      await tester.pump();
-      await tester.pump(const Duration(seconds: 15));
-      await tester.pump();
-      expect(
-        tester
-            .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
-            .reaction,
-        AvatarReaction.wellDone,
-      );
-      await tester.pumpWidget(const SizedBox());
-    });
+    /// The well done card is on screen and above the bottom button.
+    void expectCardUncovered(WidgetTester tester) {
+      final card = tester.getRect(find.byType(AvatarReactionCard));
+      final button = tester.getRect(find.byType(WithMeButton));
+      expect(card.top, greaterThanOrEqualTo(0));
+      expect(card.bottom, lessThanOrEqualTo(button.top));
+    }
+
+    for (final phone in phones.entries) {
+      testWidgets('a finished breathing exercise shows "well done", '
+          'not covered (E4, ${phone.key})', (tester) async {
+        await pumpApp(
+          tester,
+          const BreathingScreen(sound: 'None', cycles: 1),
+          physicalSize: phone.value.$1,
+          pixelRatio: phone.value.$2,
+        );
+        expect(find.byType(AvatarReactionCard), findsNothing);
+        await tester.tap(find.text(en.exerciseStartBreathing));
+        await tester.pump();
+        await tester.pump(const Duration(seconds: 20));
+        await tester.pump();
+        expect(
+          tester
+              .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
+              .reaction,
+          AvatarReaction.wellDone,
+        );
+        expect(find.text(en.exerciseMadeTimeForYourself), findsOneWidget);
+        expectCardUncovered(tester);
+        await tester.pumpWidget(const SizedBox());
+      });
+
+      testWidgets('a finished sigh exercise shows "well done", '
+          'not covered (E4, ${phone.key})', (tester) async {
+        await pumpApp(
+          tester,
+          const SighScreen(),
+          physicalSize: phone.value.$1,
+          pixelRatio: phone.value.$2,
+        );
+        expect(find.byType(AvatarReactionCard), findsNothing);
+        await tester.tap(find.text(en.exerciseBreathSoundOn));
+        await tester.pump();
+        await tester.tap(find.widgetWithText(ChoiceChip, '1'));
+        await tester.pump();
+        await tester.tap(find.text(en.exerciseStartBreathing));
+        await tester.pump();
+        await tester.pump(const Duration(seconds: 15));
+        await tester.pump();
+        expect(
+          tester
+              .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
+              .reaction,
+          AvatarReaction.wellDone,
+        );
+        expectCardUncovered(tester);
+        await tester.pumpWidget(const SizedBox());
+      });
+    }
 
     testWidgets('a saved reflection shows the thank-you (E5)', (tester) async {
       final reflections = FakeReflections();

@@ -287,6 +287,12 @@ class _BreathingScreenState extends State<BreathingScreen>
                 ],
               ),
               const SizedBox(height: 12),
+              // The companion's "well done" (graded core feature A, E4),
+              // above the path so the bottom button never covers it.
+              if (complete) ...[
+                const AvatarReactionCard(reaction: AvatarReaction.wellDone),
+                const SizedBox(height: 12),
+              ],
               SizedBox(
                 height: (MediaQuery.sizeOf(context).height * .58).clamp(
                   300.0,
@@ -307,9 +313,6 @@ class _BreathingScreenState extends State<BreathingScreen>
                 ),
               ),
               const SizedBox(height: 18),
-              // The companion's "well done" (graded core feature A, E4).
-              if (complete)
-                const AvatarReactionCard(reaction: AvatarReaction.wellDone),
               if (_audioFailed)
                 TextButton(
                   onPressed: _syncAudio,

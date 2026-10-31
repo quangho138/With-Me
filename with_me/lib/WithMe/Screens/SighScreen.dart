@@ -162,6 +162,12 @@ class _SighScreenState extends State<SighScreen>
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
+          // The companion's "well done" (graded core feature A, E4), near
+          // the top so the bottom button never covers it.
+          if (_session.complete) ...[
+            const AvatarReactionCard(reaction: AvatarReaction.wellDone),
+            const SizedBox(height: 16),
+          ],
           if (!_session.started) ...[
             Text(
               l.exerciseNumberOfCycles,
@@ -236,11 +242,6 @@ class _SighScreenState extends State<SighScreen>
               ],
             ),
           ),
-          // The companion's "well done" (graded core feature A, E4).
-          if (_session.complete) ...[
-            const SizedBox(height: 16),
-            const AvatarReactionCard(reaction: AvatarReaction.wellDone),
-          ],
         ],
       ),
     );
