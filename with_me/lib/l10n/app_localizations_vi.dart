@@ -231,12 +231,6 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Giờ nhắc';
-
-  @override
-  String get settingsQuietHoursTimes => 'Giờ yên tĩnh từ và đến';
-
-  @override
   String get settingsNotificationsDenied =>
       'Thông báo của With Me đang tắt. Bạn có thể cho phép trong cài đặt điện thoại.';
 
@@ -1705,6 +1699,9 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Đặt lời nhắc';
+
+  @override
   String get dashFillInYesterday => 'Điền lần ghi nhận hôm qua';
 
   @override
@@ -1894,8 +1891,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashReminderSave => 'Lưu lời nhắc';
 
   @override
-  String get dashReminderSaved =>
-      'Đã lưu lời nhắc. Tính năng hẹn giờ sẽ có sau.';
+  String get dashReminderSaved => 'Đã lưu lời nhắc.';
 
   @override
   String get commonBack => 'Quay lại';

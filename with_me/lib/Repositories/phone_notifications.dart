@@ -89,7 +89,7 @@ class PhoneNotifications implements NotificationLayer {
     // without the others. Channel names are what the Notifications screen
     // calls them.
     final (channel, name, body) = switch (kind) {
-      NoticeKind.daily => (
+      NoticeKind.daily || NoticeKind.once => (
         'daily_check_in',
         l.settingsDailyReminder,
         l.noticeDailyBody,

@@ -230,12 +230,6 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Hatırlatma saati';
-
-  @override
-  String get settingsQuietHoursTimes => 'Sessiz saatler başlangıç ve bitiş';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me bildirimleri kapalı. Telefonunun ayarlarından izin verebilirsin.';
 
@@ -1698,6 +1692,9 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Hatırlatma kur';
+
+  @override
   String get dashFillInYesterday => 'Dünkü durum kaydını doldur';
 
   @override
@@ -1887,8 +1884,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashReminderSave => 'Hatırlatıcıyı Kaydet';
 
   @override
-  String get dashReminderSaved =>
-      'Hatırlatıcı kaydedildi. Zamanlama daha sonra gelecek.';
+  String get dashReminderSaved => 'Hatırlatma kaydedildi.';
 
   @override
   String get commonBack => 'Geri';

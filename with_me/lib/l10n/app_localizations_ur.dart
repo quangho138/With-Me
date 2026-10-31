@@ -232,12 +232,6 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'یاد دہانی کا وقت';
-
-  @override
-  String get settingsQuietHoursTimes => 'خاموشی کب سے کب تک';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me کی اطلاعات بند ہیں۔ آپ اپنے فون کی سیٹنگز میں انہیں اجازت دے سکتے ہیں۔';
 
@@ -1708,6 +1702,9 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'یاد دہانی لگائیں';
+
+  @override
   String get dashFillInYesterday => 'کل کا چیک اِن مکمل کریں';
 
   @override
@@ -1898,8 +1895,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get dashReminderSave => 'یاد دہانی محفوظ کریں';
 
   @override
-  String get dashReminderSaved =>
-      'یاد دہانی محفوظ ہو گئی۔ شیڈول کرنے کی سہولت بعد میں آئے گی۔';
+  String get dashReminderSaved => 'یاد دہانی محفوظ ہو گئی۔';
 
   @override
   String get commonBack => 'واپس';

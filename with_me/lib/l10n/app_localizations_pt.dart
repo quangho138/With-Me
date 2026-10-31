@@ -232,12 +232,6 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Horário do lembrete';
-
-  @override
-  String get settingsQuietHoursTimes => 'Silêncio de e até';
-
-  @override
   String get settingsNotificationsDenied =>
       'As notificações do With Me estão desativadas. Você pode permiti-las nas configurações do seu telefone.';
 
@@ -1716,6 +1710,9 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Criar um lembrete';
+
+  @override
   String get dashFillInYesterday => 'Preencher o check-in de ontem';
 
   @override
@@ -1906,7 +1903,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get dashReminderSave => 'Salvar lembrete';
 
   @override
-  String get dashReminderSaved => 'Lembrete salvo. O agendamento vem depois.';
+  String get dashReminderSaved => 'Lembrete salvo.';
 
   @override
   String get commonBack => 'Voltar';

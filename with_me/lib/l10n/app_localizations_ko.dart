@@ -227,12 +227,6 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => '알림 시간';
-
-  @override
-  String get settingsQuietHoursTimes => '방해 금지 시작과 끝';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me 알림이 꺼져 있어요. 휴대폰 설정에서 허용할 수 있어요.';
 
@@ -1632,6 +1626,9 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => '알림 설정하기';
+
+  @override
   String get dashFillInYesterday => '어제 체크인 작성하기';
 
   @override
@@ -1817,7 +1814,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashReminderSave => '알림 저장';
 
   @override
-  String get dashReminderSaved => '알림을 저장했어요. 예약 기능은 나중에 추가될 예정이에요.';
+  String get dashReminderSaved => '알림을 저장했어요.';
 
   @override
   String get commonBack => '뒤로';

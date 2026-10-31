@@ -231,12 +231,6 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'रिमाइंडर का समय';
-
-  @override
-  String get settingsQuietHoursTimes => 'शांत समय कब से कब तक';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me के लिए सूचनाएँ बंद हैं। आप अपने फ़ोन की सेटिंग में इन्हें चालू कर सकते हैं।';
 
@@ -1702,6 +1696,9 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'रिमाइंडर सेट करें';
+
+  @override
   String get dashFillInYesterday => 'कल का चेक-इन भरें';
 
   @override
@@ -1893,8 +1890,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dashReminderSave => 'रिमाइंडर सेव करें';
 
   @override
-  String get dashReminderSaved =>
-      'रिमाइंडर सेव हो गया। शेड्यूल करने की सुविधा बाद में आएगी।';
+  String get dashReminderSaved => 'रिमाइंडर सेव हो गया।';
 
   @override
   String get commonBack => 'वापस';

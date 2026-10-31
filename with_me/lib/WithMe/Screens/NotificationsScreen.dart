@@ -5,16 +5,22 @@ import '../../Repositories/phone_notifications.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/WithMeControls.dart';
 import '../Data/notice_times.dart';
 
-/// `image42.png` - Notifications (graded core feature E).
+/// `image42.png` - Notifications (graded core feature E), in the PO's
+/// layout: the toggle rows, the quiet hours field, then Save.
 ///
-/// Three kinds of notice (decided 30 Oct): the daily check-in reminder at a
-/// time the person picks, the exercise nudge on a low mood day, and the
-/// weekly summary; then quiet hours, when nudges and summaries wait.
-/// Every change is saved and scheduled at once, so there is no Save button.
-/// Turning a notice on asks the phone for permission; when it is refused
-/// the switch stays off and a short message says how to allow it later.
+/// Three kinds of notice (decided 30 Oct; Encouragement was removed): the
+/// daily check-in reminder, the exercise nudge on a low mood day, and the
+/// weekly summary. Quiet hours (10 PM to 7:30 AM until changed) keep
+/// nudges and summaries away at night; tapping the field picks the start,
+/// then the end. The reminder's time is set where the PO put it: Profile
+/// (Check-in time) and Stay on Track.
+///
+/// Nothing changes until Save. Save asks the phone for permission when a
+/// switch is being turned on; if it is refused, those switches go back to
+/// off and a short message says how to allow it later.
 ///
 /// Phones only: the web and desktop builds cannot schedule reminders
 /// reliably, so they show a note instead of the switches.
@@ -32,13 +38,11 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  NoticeSettings? _settings;
+  /// The choices on screen, saved only by Save.
+  NoticeSettings? _choices;
+  bool _saving = false;
 
-  /// Quiet hours when they are first turned on: 10 at night to half past 7.
-  static const QuietHours _defaultQuiet = QuietHours(
-    ClockTime(22, 0),
-    ClockTime(7, 30),
-  );
+  final _quietHours = TextEditingController();
 
   bool get _phone => widget.phone ?? PhoneNotifications.supported;
 
@@ -48,30 +52,36 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     if (_phone) _load();
   }
 
+  @override
+  void dispose() {
+    _quietHours.dispose();
+    super.dispose();
+  }
+
   Future<void> _load() async {
     NoticeSettings settings;
     try {
       settings = await AppRepositories.reminders.settings();
     } catch (_) {
-      settings = const NoticeSettings();
+      settings = const NoticeSettings(quiet: kDefaultQuietHours);
     }
-    if (mounted) setState(() => _settings = settings);
+    if (mounted) setState(() => _setChoices(settings));
   }
 
-  Future<void> _set(NoticeKind kind, bool on) async {
-    final messenger = ScaffoldMessenger.of(context);
-    final denied = context.l10n.settingsNotificationsDenied;
-    var allowed = true;
-    try {
-      allowed = await AppRepositories.reminders.setOn(kind, on);
-    } catch (_) {
-      allowed = !on;
-    }
-    if (!allowed) {
-      messenger.showSnackBar(SnackBar(content: Text(denied)));
-    }
-    await _load();
+  /// The choices, and the quiet hours written in their field the reader's
+  /// way ("10:00 PM – 7:30 AM").
+  void _setChoices(NoticeSettings c) {
+    _choices = c;
+    final quiet = c.quiet ?? kDefaultQuietHours;
+    _quietHours.text = context.l10n.settingsQuietHoursRange(
+      _clock(quiet.start),
+      _clock(quiet.end),
+    );
   }
+
+  String _clock(ClockTime t) => MaterialLocalizations.of(
+    context,
+  ).formatTimeOfDay(TimeOfDay(hour: t.hour, minute: t.minute));
 
   Future<ClockTime?> _pick(ClockTime from) async {
     final picked = await showTimePicker(
@@ -81,44 +91,60 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return picked == null ? null : ClockTime(picked.hour, picked.minute);
   }
 
-  Future<void> _pickDailyTime() async {
-    final at = await _pick(_settings!.dailyAt);
-    if (at == null) return;
-    await AppRepositories.reminders.setDailyTime(at);
-    await _load();
-  }
-
-  Future<void> _setQuiet(bool on) async {
-    await AppRepositories.reminders.setQuietHours(
-      on ? _defaultQuiet.start : null,
-      on ? _defaultQuiet.end : null,
-    );
-    await _load();
-  }
-
   /// Start, then end.
-  Future<void> _pickQuiet() async {
-    final quiet = _settings!.quiet ?? _defaultQuiet;
+  Future<void> _pickQuietHours() async {
+    final quiet = _choices!.quiet ?? kDefaultQuietHours;
     final start = await _pick(quiet.start);
     if (start == null || !mounted) return;
     final end = await _pick(quiet.end);
-    if (end == null) return;
-    await AppRepositories.reminders.setQuietHours(start, end);
-    await _load();
+    if (end == null || !mounted) return;
+    setState(
+      () => _setChoices(_choices!.copyWith(quiet: QuietHours(start, end))),
+    );
   }
 
-  String _clock(ClockTime t) => MaterialLocalizations.of(
-    context,
-  ).formatTimeOfDay(TimeOfDay(hour: t.hour, minute: t.minute));
+  Future<void> _save() async {
+    final l = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+    setState(() => _saving = true);
+    var allowed = true;
+    try {
+      allowed = await AppRepositories.reminders.apply(_choices!);
+    } catch (_) {
+      allowed = false;
+    }
+    if (!mounted) return;
+    setState(() => _saving = false);
+    if (!allowed) {
+      // The switches being turned on stayed off: show what was saved.
+      messenger.showSnackBar(
+        SnackBar(content: Text(l.settingsNotificationsDenied)),
+      );
+      await _load();
+      return;
+    }
+    messenger.showSnackBar(
+      SnackBar(content: Text(l.settingsNotificationsSaved)),
+    );
+    navigator.pop();
+  }
 
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    final s = _settings;
+    final c = _choices;
     return ScenicScaffold(
       title: l.settingsNotificationsTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
+      action: !_phone || c == null
+          ? null
+          : ScenicPill(
+              label: l.commonSave,
+              height: 58,
+              onPressed: _saving ? null : _save,
+            ),
       child: !_phone
           ? ScenicPanel(
               child: Text(
@@ -127,7 +153,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 style: kScenicBody,
               ),
             )
-          : s == null
+          : c == null
           ? const SizedBox.shrink()
           : Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -136,56 +162,45 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   label: l.settingsDailyReminder,
                   icon: Icons.wb_sunny_rounded,
                   iconColor: const Color(0xFFEE9A3E),
-                  value: s.daily,
-                  onChanged: (v) => _set(NoticeKind.daily, v),
+                  value: c.daily,
+                  onChanged: (v) =>
+                      setState(() => _choices = c.copyWith(daily: v)),
                 ),
-                if (s.daily) ...[
-                  const SizedBox(height: 10),
-                  ScenicRow(
-                    label: l.settingsReminderTime,
-                    trailing: _clock(s.dailyAt),
-                    icon: Icons.schedule_rounded,
-                    iconColor: const Color(0xFFEE9A3E),
-                    onTap: _pickDailyTime,
-                  ),
-                ],
                 const SizedBox(height: 10),
                 ScenicToggleRow(
                   label: l.settingsExerciseNudge,
                   icon: Icons.spa_rounded,
                   iconColor: const Color(0xFF3E9C8C),
-                  value: s.nudge,
-                  onChanged: (v) => _set(NoticeKind.nudge, v),
+                  value: c.nudge,
+                  onChanged: (v) =>
+                      setState(() => _choices = c.copyWith(nudge: v)),
                 ),
                 const SizedBox(height: 10),
                 ScenicToggleRow(
                   label: l.settingsWeeklySummary,
                   icon: Icons.insights_rounded,
                   iconColor: const Color(0xFF1C7C84),
-                  value: s.weekly,
-                  onChanged: (v) => _set(NoticeKind.weekly, v),
+                  value: c.weekly,
+                  onChanged: (v) =>
+                      setState(() => _choices = c.copyWith(weekly: v)),
                 ),
-                const SizedBox(height: 16),
-                ScenicToggleRow(
-                  label: l.settingsQuietHours,
-                  icon: Icons.bedtime_rounded,
-                  iconColor: const Color(0xFF6B5FB5),
-                  value: s.quiet != null,
-                  onChanged: _setQuiet,
-                ),
-                if (s.quiet != null) ...[
-                  const SizedBox(height: 10),
-                  ScenicRow(
-                    label: l.settingsQuietHoursTimes,
-                    trailing: l.settingsQuietHoursRange(
-                      _clock(s.quiet!.start),
-                      _clock(s.quiet!.end),
+                const SizedBox(height: 12),
+                ScenicPanel(
+                  // Looks like the PO's field; tapping it opens the clock.
+                  child: GestureDetector(
+                    key: const ValueKey('quiet-hours'),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: _pickQuietHours,
+                    child: AbsorbPointer(
+                      child: WithMeField(
+                        label: l.settingsQuietHours,
+                        controller: _quietHours,
+                        fill: Colors.white,
+                        border: kScenicFieldRing,
+                      ),
                     ),
-                    icon: Icons.schedule_rounded,
-                    iconColor: const Color(0xFF6B5FB5),
-                    onTap: _pickQuiet,
                   ),
-                ],
+                ),
               ],
             ),
     );

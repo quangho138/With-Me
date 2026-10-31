@@ -231,12 +231,6 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Waktu pengingat';
-
-  @override
-  String get settingsQuietHoursTimes => 'Tenang dari dan sampai';
-
-  @override
   String get settingsNotificationsDenied =>
       'Notifikasi With Me sedang mati. Kamu bisa mengizinkannya di pengaturan ponselmu.';
 
@@ -1703,6 +1697,9 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Atur pengingat';
+
+  @override
   String get dashFillInYesterday => 'Isi check-in kemarin';
 
   @override
@@ -1894,7 +1891,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashReminderSave => 'Simpan Pengingat';
 
   @override
-  String get dashReminderSaved => 'Pengingat tersimpan. Penjadwalan menyusul.';
+  String get dashReminderSaved => 'Pengingat tersimpan.';
 
   @override
   String get commonBack => 'Kembali';

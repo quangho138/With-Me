@@ -232,12 +232,6 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Uhrzeit der Erinnerung';
-
-  @override
-  String get settingsQuietHoursTimes => 'Ruhezeit von und bis';
-
-  @override
   String get settingsNotificationsDenied =>
       'Benachrichtigungen sind für With Me aus. Du kannst sie in den Einstellungen deines Handys erlauben.';
 
@@ -1725,6 +1719,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Erinnerung einrichten';
+
+  @override
   String get dashFillInYesterday => 'Check-in von gestern ausfüllen';
 
   @override
@@ -1918,8 +1915,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get dashReminderSave => 'Erinnerung speichern';
 
   @override
-  String get dashReminderSaved =>
-      'Erinnerung gespeichert. Die Planung folgt später.';
+  String get dashReminderSaved => 'Erinnerung gespeichert.';
 
   @override
   String get commonBack => 'Zurück';

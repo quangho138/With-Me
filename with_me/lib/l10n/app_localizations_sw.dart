@@ -232,12 +232,6 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Muda wa ukumbusho';
-
-  @override
-  String get settingsQuietHoursTimes => 'Kimya kuanzia na hadi';
-
-  @override
   String get settingsNotificationsDenied =>
       'Arifa za With Me zimezimwa. Unaweza kuziruhusu kwenye mipangilio ya simu yako.';
 
@@ -1713,6 +1707,9 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Weka ukumbusho';
+
+  @override
   String get dashFillInYesterday => 'Jaza tathmini ya jana';
 
   @override
@@ -1902,8 +1899,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dashReminderSave => 'Hifadhi Kikumbusho';
 
   @override
-  String get dashReminderSaved =>
-      'Kikumbusho kimehifadhiwa. Upangaji wa muda utakuja baadaye.';
+  String get dashReminderSaved => 'Ukumbusho umehifadhiwa.';
 
   @override
   String get commonBack => 'Rudi';

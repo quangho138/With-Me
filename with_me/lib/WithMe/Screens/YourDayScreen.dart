@@ -13,6 +13,7 @@ import '../Data/Today.dart';
 import '../Data/avatar_reactions.dart';
 import '../Mascot/RealMascot.dart';
 import 'ExerciseChooseScreen.dart';
+import 'ReminderScreen.dart';
 
 /// `image36.png` - "Your day", shown after the daily check-in.
 ///
@@ -146,6 +147,31 @@ class _YourDayScreenState extends State<YourDayScreen> {
                   if (i > 0) const SizedBox(height: 8),
                   Text(lines[i], style: kScenicBody.copyWith(fontSize: 16)),
                 ],
+                const SizedBox(height: 4),
+                // Stay on Track (image38): "Set a reminder for your next
+                // check-in", right after the check-in.
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: TextButton.icon(
+                    style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                    icon: const Icon(
+                      Icons.notifications_active_rounded,
+                      size: 20,
+                      color: ScenicColors.pillBottom,
+                    ),
+                    label: Text(
+                      l.yourDaySetReminder,
+                      style: kScenicBody.copyWith(
+                        fontSize: 16,
+                        color: ScenicColors.pillBottom,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const ReminderScreen()),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

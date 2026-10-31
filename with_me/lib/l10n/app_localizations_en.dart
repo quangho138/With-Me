@@ -230,12 +230,6 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Reminder time';
-
-  @override
-  String get settingsQuietHoursTimes => 'Quiet from and until';
-
-  @override
   String get settingsNotificationsDenied =>
       'Notifications are off for With Me. You can allow them in your phone\'s settings.';
 
@@ -1699,6 +1693,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Set a reminder';
+
+  @override
   String get dashFillInYesterday => 'Fill in yesterday\'s check-in';
 
   @override
@@ -1887,7 +1884,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashReminderSave => 'Save Reminder';
 
   @override
-  String get dashReminderSaved => 'Reminder saved. Scheduling comes later.';
+  String get dashReminderSaved => 'Reminder saved.';
 
   @override
   String get commonBack => 'Back';

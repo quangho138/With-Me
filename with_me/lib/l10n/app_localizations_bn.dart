@@ -231,12 +231,6 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'রিমাইন্ডারের সময়';
-
-  @override
-  String get settingsQuietHoursTimes => 'নীরব সময় শুরু ও শেষ';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me-এর জন্য নোটিফিকেশন বন্ধ আছে। আপনার ফোনের সেটিংসে গিয়ে চালু করতে পারেন।';
 
@@ -1698,6 +1692,9 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'রিমাইন্ডার সেট করুন';
+
+  @override
   String get dashFillInYesterday => 'গতকালের চেক-ইন পূরণ করুন';
 
   @override
@@ -1886,8 +1883,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashReminderSave => 'রিমাইন্ডার সেভ করুন';
 
   @override
-  String get dashReminderSaved =>
-      'রিমাইন্ডার সেভ হয়েছে। সময়মতো পাঠানোর ব্যবস্থা পরে আসবে।';
+  String get dashReminderSaved => 'রিমাইন্ডার সেভ হয়েছে।';
 
   @override
   String get commonBack => 'পিছনে';

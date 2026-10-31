@@ -331,14 +331,6 @@
       }
     }
   },
-  "settingsReminderTime": "Reminder time",
-  "@settingsReminderTime": {
-    "description": "Notifications: the row that shows and changes the daily reminder's time."
-  },
-  "settingsQuietHoursTimes": "Quiet from and until",
-  "@settingsQuietHoursTimes": {
-    "description": "Notifications: the row that shows and changes when quiet hours start and end."
-  },
   "settingsNotificationsDenied": "Notifications are off for With Me. You can allow them in your phone's settings.",
   "@settingsNotificationsDenied": {
     "description": "Shown when the phone refused permission to show notifications; the switch went back to off."
@@ -2330,6 +2322,10 @@
       }
     }
   },
+  "yourDaySetReminder": "Set a reminder",
+  "@yourDaySetReminder": {
+    "description": "Link on Your day that opens Stay on Track, to set a reminder for the next check-in."
+  },
   "dashFillInYesterday": "Fill in yesterday's check-in",
   "@dashFillInYesterday": {
     "description": "Button on yesterday's day detail: opens yesterday's check-in to fill in or change it."
@@ -2578,7 +2574,7 @@
   "@dashReminderSave": {
     "description": "Button that saves the reminder."
   },
-  "dashReminderSaved": "Reminder saved. Scheduling comes later.",
+  "dashReminderSaved": "Reminder saved.",
   "@dashReminderSaved": {
     "description": "Message after saving a reminder; reminders are not actually scheduled yet."
   },

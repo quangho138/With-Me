@@ -539,18 +539,6 @@ abstract class AppLocalizations {
   /// **'{start} – {end}'**
   String settingsQuietHoursRange(String start, String end);
 
-  /// Notifications: the row that shows and changes the daily reminder's time.
-  ///
-  /// In en, this message translates to:
-  /// **'Reminder time'**
-  String get settingsReminderTime;
-
-  /// Notifications: the row that shows and changes when quiet hours start and end.
-  ///
-  /// In en, this message translates to:
-  /// **'Quiet from and until'**
-  String get settingsQuietHoursTimes;
-
   /// Shown when the phone refused permission to show notifications; the switch went back to off.
   ///
   /// In en, this message translates to:
@@ -2861,6 +2849,12 @@ abstract class AppLocalizations {
   /// **'Exercises finished today: {count}'**
   String yourDayExercises(String count);
 
+  /// Link on Your day that opens Stay on Track, to set a reminder for the next check-in.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a reminder'**
+  String get yourDaySetReminder;
+
   /// Button on yesterday's day detail: opens yesterday's check-in to fill in or change it.
   ///
   /// In en, this message translates to:
@@ -3206,7 +3200,7 @@ abstract class AppLocalizations {
   /// Message after saving a reminder; reminders are not actually scheduled yet.
   ///
   /// In en, this message translates to:
-  /// **'Reminder saved. Scheduling comes later.'**
+  /// **'Reminder saved.'**
   String get dashReminderSaved;
 
   /// Screen-reader label of the back arrow at the top of a screen.

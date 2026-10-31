@@ -232,13 +232,6 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'நினைவூட்டல் நேரம்';
-
-  @override
-  String get settingsQuietHoursTimes =>
-      'அமைதி நேரம் எப்போதிலிருந்து எப்போது வரை';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me அறிவிப்புகள் அணைக்கப்பட்டுள்ளன. உங்கள் தொலைபேசி அமைப்புகளில் அவற்றை அனுமதிக்கலாம்.';
 
@@ -1738,6 +1731,9 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'நினைவூட்டலை அமைக்கவும்';
+
+  @override
   String get dashFillInYesterday => 'நேற்றைய செக்-இன்னை நிரப்புங்கள்';
 
   @override
@@ -1931,8 +1927,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dashReminderSave => 'நினைவூட்டலைச் சேமி';
 
   @override
-  String get dashReminderSaved =>
-      'நினைவூட்டல் சேமிக்கப்பட்டது. நேரத்தை அமைக்கும் வசதி பின்னர் வரும்.';
+  String get dashReminderSaved => 'நினைவூட்டல் சேமிக்கப்பட்டது.';
 
   @override
   String get commonBack => 'பின்செல்';

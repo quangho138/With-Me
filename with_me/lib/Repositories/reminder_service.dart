@@ -80,19 +80,24 @@ class ReminderService {
   static const String _quietStartKey = 'notice_quiet_start';
   static const String _quietEndKey = 'notice_quiet_end';
   static const String _lowCheckInKey = 'notice_low_check_in_at';
+  static const String _onceKey = 'notice_once_at';
 
   /// Notice ids: one per daily reminder, one nudge, one summary.
   static const int _dailyId = 100;
   static const int _nudgeId = 200;
   static const int _weeklyId = 300;
+  static const int _onceId = 400;
 
   static String _keyFor(NoticeKind kind) => switch (kind) {
     NoticeKind.daily => _dailyKey,
     NoticeKind.nudge => _nudgeKey,
     NoticeKind.weekly => _weeklyKey,
+    NoticeKind.once => _onceKey,
   };
 
-  /// The saved settings. Everything is off until the person turns it on.
+  /// The saved settings. Every notice is off until the person turns it on;
+  /// the reminder time and quiet hours start from the PO's defaults
+  /// ([kDefaultDailyAt], [kDefaultQuietHours]).
   Future<NoticeSettings> settings() async {
     final start = ClockTime.parse(await _settings.readString(_quietStartKey));
     final end = ClockTime.parse(await _settings.readString(_quietEndKey));
@@ -100,16 +105,50 @@ class ReminderService {
       daily: await _settings.readBool(_dailyKey) ?? false,
       dailyAt:
           ClockTime.parse(await _settings.readString(_dailyAtKey)) ??
-          const NoticeSettings().dailyAt,
+          kDefaultDailyAt,
       nudge: await _settings.readBool(_nudgeKey) ?? false,
       weekly: await _settings.readBool(_weeklyKey) ?? false,
-      quiet: start == null || end == null ? null : QuietHours(start, end),
+      quiet: start == null || end == null
+          ? kDefaultQuietHours
+          : QuietHours(start, end),
+      onceAt: DateTime.tryParse(await _settings.readString(_onceKey) ?? ''),
     );
   }
 
-  /// Turns one kind of notice on or off. Turning on asks the phone for
-  /// permission first; when it is refused, the kind stays off and this
-  /// returns false, so the screen can put the switch back and explain.
+  /// Saves the Notifications screen in one go (its Save button): the
+  /// three switches, the reminder time and quiet hours. When a switch is
+  /// being turned on, the phone is asked for permission once; if it is
+  /// refused, the kinds being turned on stay off (the others are saved)
+  /// and this returns false, so the screen can explain.
+  Future<bool> apply(NoticeSettings wanted) async {
+    final current = await settings();
+    const switches = [NoticeKind.daily, NoticeKind.nudge, NoticeKind.weekly];
+    final turningOn = switches.any((k) => wanted.isOn(k) && !current.isOn(k));
+    final allowed = !turningOn || await layer.askPermission();
+    for (final kind in switches) {
+      final on = wanted.isOn(kind) && (allowed || current.isOn(kind));
+      await _settings.writeBool(_keyFor(kind), on);
+    }
+    await _settings.writeString(_dailyAtKey, wanted.dailyAt.saved);
+    final quiet = wanted.quiet ?? kDefaultQuietHours;
+    await _settings.writeString(_quietStartKey, quiet.start.saved);
+    await _settings.writeString(_quietEndKey, quiet.end.saved);
+    await refresh(force: true);
+    return allowed;
+  }
+
+  /// One reminder at [at] (Stay on Track). Asks the phone for permission;
+  /// returns false and saves nothing when it is refused.
+  Future<bool> remindOnce(DateTime at) async {
+    if (!await layer.askPermission()) return false;
+    await _settings.writeString(_onceKey, at.toIso8601String());
+    await refresh(force: true);
+    return true;
+  }
+
+  /// Turns one kind of notice on or off (daily, nudge or weekly). Turning
+  /// on asks the phone for permission first; when it is refused, the kind
+  /// stays off and this returns false, so the screen can explain.
   Future<bool> setOn(NoticeKind kind, bool on) async {
     if (on && !await layer.askPermission()) {
       await _settings.writeBool(_keyFor(kind), false);
@@ -126,7 +165,8 @@ class ReminderService {
     await refresh(force: true);
   }
 
-  /// Quiet hours from [start] to [end], or none when either is null.
+  /// Quiet hours from [start] to [end]; either null goes back to the
+  /// default ([kDefaultQuietHours]).
   Future<void> setQuietHours(ClockTime? start, ClockTime? end) async {
     if (start == null || end == null) {
       await _settings.remove(_quietStartKey);
@@ -213,6 +253,7 @@ class ReminderService {
         NoticeKind.daily => _dailyId + daily++,
         NoticeKind.nudge => _nudgeId,
         NoticeKind.weekly => _weeklyId,
+        NoticeKind.once => _onceId,
       };
       await layer.schedule(id: id, at: n.at, kind: n.kind);
     }

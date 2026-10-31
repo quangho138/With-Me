@@ -3,20 +3,26 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:with_me/Repositories/app_repositories.dart';
 import 'package:with_me/Repositories/reminder_service.dart';
+import 'package:with_me/WithMe/Components/WithMeControls.dart';
+import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Data/notice_times.dart';
 import 'package:with_me/WithMe/Screens/NotificationsScreen.dart';
+import 'package:with_me/WithMe/Screens/ReminderScreen.dart';
+import 'package:with_me/WithMe/Screens/YourDayScreen.dart';
 import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 import 'package:with_me/l10n/app_localizations_en.dart';
 
 import 'support/check_in_walk.dart';
 import 'support/fake_reminders.dart';
 
-/// The Notifications screen (graded core feature E): the switches are
-/// real, a refused permission puts the switch back with a message (E6, the
-/// screen half), and the web and desktop show a note instead. All data
-/// here is made up.
+/// The PO's Notifications (image42) and Stay on Track (image38) screens,
+/// made real (graded core feature E): nothing changes until Save, a refused
+/// permission keeps new switches off with a message (E6, the screen half),
+/// and the web and desktop show a note instead. All data here is made up.
 void main() {
   final en = AppLocalizationsEn();
+  // Wednesday 28 October 2026, 7 in the morning.
+  final now = DateTime(2026, 10, 28, 7);
 
   setUpAll(() async {
     await loadFonts();
@@ -24,33 +30,48 @@ void main() {
   });
 
   late FakeLayer layer;
-  late MemorySettings settings;
 
   setUp(() {
     layer = FakeLayer();
-    settings = MemorySettings();
     final previous = AppRepositories.reminders;
     AppRepositories.reminders = ReminderService(
       layer: layer,
-      settings: settings,
+      settings: MemorySettings(),
       checkIns: TodayCheckIn(),
       exercises: MemoryExercises(),
-      // Wednesday 28 October 2026, 8 in the morning.
-      now: () => DateTime(2026, 10, 28, 8),
+      now: () => now,
       weeklyFactsReady: () async => true,
     );
-    addTearDown(() => AppRepositories.reminders = previous);
+    Today.clock = () => now;
+    addTearDown(() {
+      AppRepositories.reminders = previous;
+      Today.clock = DateTime.now;
+    });
   });
 
-  Future<void> open(WidgetTester tester, {bool phone = true}) async {
+  /// [screen] opened from a home page, so Save can return to it.
+  Future<void> open(WidgetTester tester, Widget screen) async {
     usePhone(tester, const Size(390, 844));
     addTearDown(tester.view.reset);
     await tester.pumpWidget(
       MaterialApp(
         theme: buildWithMeTheme(),
-        home: NotificationsScreen(phone: phone),
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: Center(
+              child: TextButton(
+                onPressed: () => Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => screen)),
+                child: const Text('Open'),
+              ),
+            ),
+          ),
+        ),
       ),
     );
+    await tester.tap(find.text('Open'));
+    await settle(tester);
     await settle(tester);
   }
 
@@ -69,63 +90,121 @@ void main() {
   bool isOn(WidgetTester tester, String label) =>
       tester.widget<Switch>(switchOf(label)).value;
 
-  testWidgets('everything starts off; there is no Save button any more', (
-    tester,
-  ) async {
-    await open(tester);
-    for (final label in [
-      en.settingsDailyReminder,
-      en.settingsExerciseNudge,
-      en.settingsWeeklySummary,
-      en.settingsQuietHours,
-    ]) {
-      expect(isOn(tester, label), isFalse, reason: label);
+  Future<void> save(WidgetTester tester, String label) async {
+    await tapLabel(tester, label);
+    await settle(tester);
+    await settle(tester);
+  }
+
+  group('Notifications', () {
+    testWidgets("the PO's layout: three switches, quiet hours, Save", (
+      tester,
+    ) async {
+      await open(tester, const NotificationsScreen(phone: true));
+      for (final label in [
+        en.settingsDailyReminder,
+        en.settingsExerciseNudge,
+        en.settingsWeeklySummary,
+      ]) {
+        expect(isOn(tester, label), isFalse, reason: label);
+      }
+      expect(find.text(en.settingsEncouragement), findsNothing);
+      expect(find.text(en.settingsQuietHours), findsOneWidget);
+      // The default quiet hours, written the reader's way.
+      expect(find.text('10:00 PM – 7:30 AM'), findsOneWidget);
+      expect(find.text(en.commonSave), findsWidgets);
+    });
+
+    testWidgets('nothing is scheduled until Save', (tester) async {
+      await open(tester, const NotificationsScreen(phone: true));
+      await toggle(tester, en.settingsDailyReminder);
+      expect(isOn(tester, en.settingsDailyReminder), isTrue);
+      expect(layer.scheduled, isEmpty);
+      expect(layer.asked, 0);
+
+      await save(tester, en.commonSave);
+      expect(layer.asked, 1);
+      expect(layer.of(NoticeKind.daily), hasLength(14));
+      expect(layer.of(NoticeKind.daily).first, DateTime(2026, 10, 28, 8));
+      expect(find.byType(NotificationsScreen), findsNothing);
+      expect(find.text(en.settingsNotificationsSaved), findsOneWidget);
+    });
+
+    testWidgets('E6: permission refused keeps the switch off and explains', (
+      tester,
+    ) async {
+      layer.allow = false;
+      await open(tester, const NotificationsScreen(phone: true));
+      await toggle(tester, en.settingsDailyReminder);
+      await save(tester, en.commonSave);
+      expect(layer.asked, 1);
+      expect(find.byType(NotificationsScreen), findsOneWidget);
+      expect(isOn(tester, en.settingsDailyReminder), isFalse);
+      expect(find.text(en.settingsNotificationsDenied), findsOneWidget);
+      expect(layer.scheduled, isEmpty);
+    });
+
+    testWidgets('the web and desktop show a note instead of switches', (
+      tester,
+    ) async {
+      await open(tester, const NotificationsScreen(phone: false));
+      expect(find.text(en.settingsNotificationsPhoneOnly), findsOneWidget);
+      expect(find.byType(Switch), findsNothing);
+    });
+  });
+
+  group('Stay on Track', () {
+    Future<void> choose(WidgetTester tester, String label) async {
+      await tester.tap(find.text(label));
+      await settle(tester);
     }
-    expect(find.text(en.commonSave), findsNothing);
-    expect(find.text(en.settingsEncouragement), findsNothing);
-  });
 
-  testWidgets('turning the daily reminder on schedules it and shows its '
-      'time', (tester) async {
-    await open(tester);
-    await toggle(tester, en.settingsDailyReminder);
-    expect(isOn(tester, en.settingsDailyReminder), isTrue);
-    expect(layer.of(NoticeKind.daily), hasLength(14));
-    expect(find.text(en.settingsReminderTime), findsOneWidget);
+    testWidgets('Tomorrow morning, every day: the daily reminder at 8:00', (
+      tester,
+    ) async {
+      await open(tester, const ReminderScreen(phone: true));
+      await save(tester, en.dashReminderSave);
+      final s = await AppRepositories.reminders.settings();
+      expect(s.daily, isTrue);
+      expect(s.dailyAt, const ClockTime(8, 0));
+      expect(layer.of(NoticeKind.daily), hasLength(14));
+      expect(find.byType(ReminderScreen), findsNothing);
+      expect(find.text(en.dashReminderSaved), findsOneWidget);
+    });
 
-    await toggle(tester, en.settingsDailyReminder);
-    expect(isOn(tester, en.settingsDailyReminder), isFalse);
-    expect(layer.of(NoticeKind.daily), isEmpty);
-    expect(find.text(en.settingsReminderTime), findsNothing);
-  });
+    testWidgets('Later today, not every day: one reminder in about 3 hours', (
+      tester,
+    ) async {
+      await open(tester, const ReminderScreen(phone: true));
+      await choose(tester, en.dashReminderLaterToday);
+      final every = find.byType(ToggleRow);
+      await tester.ensureVisible(every);
+      await tester.tap(
+        find.descendant(of: every, matching: find.byType(Switch)),
+      );
+      await settle(tester);
+      await save(tester, en.dashReminderSave);
+      // 7:00 plus 3 hours, on the quarter hour.
+      expect(layer.of(NoticeKind.once), [DateTime(2026, 10, 28, 10, 0)]);
+      expect(layer.of(NoticeKind.daily), isEmpty);
+    });
 
-  testWidgets('E6: permission refused puts the switch back and explains', (
-    tester,
-  ) async {
-    layer.allow = false;
-    await open(tester);
-    await toggle(tester, en.settingsDailyReminder);
-    expect(layer.asked, 1);
-    expect(isOn(tester, en.settingsDailyReminder), isFalse);
-    expect(find.text(en.settingsNotificationsDenied), findsOneWidget);
-    expect(layer.scheduled, isEmpty);
-  });
+    testWidgets('refused: stays open and explains', (tester) async {
+      layer.allow = false;
+      await open(tester, const ReminderScreen(phone: true));
+      await save(tester, en.dashReminderSave);
+      expect(find.byType(ReminderScreen), findsOneWidget);
+      expect(find.text(en.settingsNotificationsDenied), findsOneWidget);
+      expect(layer.scheduled, isEmpty);
+    });
 
-  testWidgets('quiet hours turn on with 10 PM to 7:30 AM', (tester) async {
-    await open(tester);
-    await toggle(tester, en.settingsQuietHours);
-    expect(isOn(tester, en.settingsQuietHours), isTrue);
-    final quiet = (await AppRepositories.reminders.settings()).quiet!;
-    expect(quiet.start, const ClockTime(22, 0));
-    expect(quiet.end, const ClockTime(7, 30));
-    expect(find.text(en.settingsQuietHoursTimes), findsOneWidget);
-  });
-
-  testWidgets('the web and desktop show a note instead of switches', (
-    tester,
-  ) async {
-    await open(tester, phone: false);
-    expect(find.text(en.settingsNotificationsPhoneOnly), findsOneWidget);
-    expect(find.byType(Switch), findsNothing);
+    testWidgets('Your day links to it', (tester) async {
+      await open(tester, const YourDayScreen());
+      await tester.ensureVisible(find.text(en.yourDaySetReminder));
+      await tester.tap(find.text(en.yourDaySetReminder));
+      await settle(tester);
+      await settle(tester);
+      expect(find.byType(ReminderScreen), findsOneWidget);
+    });
   });
 }

@@ -232,13 +232,6 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'రిమైండర్ సమయం';
-
-  @override
-  String get settingsQuietHoursTimes =>
-      'నిశ్శబ్ద సమయం ఎప్పటి నుండి ఎప్పటి వరకు';
-
-  @override
   String get settingsNotificationsDenied =>
       'With Me నోటిఫికేషన్లు ఆఫ్‌లో ఉన్నాయి. మీ ఫోన్ సెట్టింగ్‌లలో వాటిని అనుమతించవచ్చు.';
 
@@ -1714,6 +1707,9 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'రిమైండర్ సెట్ చేయండి';
+
+  @override
   String get dashFillInYesterday => 'నిన్నటి చెక్-ఇన్ పూరించండి';
 
   @override
@@ -1906,8 +1902,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get dashReminderSave => 'రిమైండర్ సేవ్ చేయండి';
 
   @override
-  String get dashReminderSaved =>
-      'రిమైండర్ సేవ్ అయింది. షెడ్యూల్ చేసే సౌకర్యం తర్వాత వస్తుంది.';
+  String get dashReminderSaved => 'రిమైండర్ సేవ్ అయింది.';
 
   @override
   String get commonBack => 'వెనుకకు';

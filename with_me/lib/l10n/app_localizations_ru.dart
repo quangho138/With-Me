@@ -232,12 +232,6 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get settingsReminderTime => 'Время напоминания';
-
-  @override
-  String get settingsQuietHoursTimes => 'Тихие часы: с и до';
-
-  @override
   String get settingsNotificationsDenied =>
       'Уведомления With Me выключены. Их можно разрешить в настройках телефона.';
 
@@ -1749,6 +1743,9 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Поставить напоминание';
+
+  @override
   String get dashFillInYesterday => 'Заполнить вчерашний чек-ин';
 
   @override
@@ -1941,8 +1938,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dashReminderSave => 'Сохранить напоминание';
 
   @override
-  String get dashReminderSaved =>
-      'Напоминание сохранено. Расписание появится позже.';
+  String get dashReminderSaved => 'Напоминание сохранено.';
 
   @override
   String get commonBack => 'Назад';
