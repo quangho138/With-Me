@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:flutter/widgets.dart';
+
 import '../WithMe/Data/notice_times.dart';
 import 'check_in_repository.dart';
 import 'exercise_repository.dart';
@@ -112,14 +116,14 @@ class ReminderService {
       return false;
     }
     await _settings.writeBool(_keyFor(kind), on);
-    await refresh();
+    await refresh(force: true);
     return true;
   }
 
   /// The daily reminder's time, chosen by the person.
   Future<void> setDailyTime(ClockTime at) async {
     await _settings.writeString(_dailyAtKey, at.saved);
-    await refresh();
+    await refresh(force: true);
   }
 
   /// Quiet hours from [start] to [end], or none when either is null.
@@ -131,7 +135,7 @@ class ReminderService {
       await _settings.writeString(_quietStartKey, start.saved);
       await _settings.writeString(_quietEndKey, end.saved);
     }
-    await refresh();
+    await refresh(force: true);
   }
 
   /// Today's check-in was finished at [at]. A low mood is remembered for
@@ -140,6 +144,7 @@ class ReminderService {
     required DateTime at,
     required bool lowMood,
   }) async {
+    if (_nothingToSchedule) return;
     if (lowMood) {
       await _settings.writeString(_lowCheckInKey, at.toIso8601String());
     }
@@ -148,10 +153,28 @@ class ReminderService {
 
   /// Schedules the plan again from scratch: everything this app scheduled
   /// is cancelled, then only what the settings and today's facts call for
-  /// is scheduled. Safe to call often.
-  Future<void> refresh() async {
+  /// is scheduled. Safe to call often. With every kind off there is nothing
+  /// to do, unless [force] (a setting just changed, so what was scheduled
+  /// before must be cancelled).
+  Future<void> refresh({bool force = false}) {
+    // One at a time: two refreshes at once could cancel what the other
+    // just scheduled.
+    final run = _queue.catchError((Object _) {}).then((_) => _refresh(force));
+    _queue = run;
+    return run;
+  }
+
+  Future<void> _queue = Future.value();
+
+  /// With the empty layer (web, desktop, tests of other screens) nothing
+  /// can be scheduled, so nothing is read or written either.
+  bool get _nothingToSchedule => layer is NoNotifications;
+
+  Future<void> _refresh(bool force) async {
+    if (_nothingToSchedule) return;
     final now = _now();
     final s = await settings();
+    if (!force && !NoticeKind.values.any(s.isOn)) return;
     final checkedInToday = await _checkIns.entryOn(now) != null;
 
     // A low mood check-in counts only on the day it was made.
@@ -189,6 +212,38 @@ class ReminderService {
         NoticeKind.weekly => _weeklyId,
       };
       await layer.schedule(id: id, at: n.at, kind: n.kind);
+    }
+  }
+}
+
+/// Keeps the next 14 days of reminders filled (GRADED_CORE section 4): when
+/// the app starts, when it comes back to the front or goes to the
+/// background (so an exercise finished meanwhile cancels the nudge), and
+/// whenever a check-in is saved.
+class ReminderTriggers with WidgetsBindingObserver {
+  ReminderTriggers._(this._reminders);
+  final ReminderService _reminders;
+
+  static ReminderTriggers? _started;
+
+  static void start(ReminderService reminders) {
+    if (_started != null) return;
+    final triggers = ReminderTriggers._(reminders);
+    _started = triggers;
+    WidgetsBinding.instance.addObserver(triggers);
+    CheckInRepository.saves.addListener(triggers._run);
+    triggers._run();
+  }
+
+  /// A failure here must never reach the person: reminders are a help,
+  /// not a reason for the app to stop.
+  void _run() => unawaited(_reminders.refresh().catchError((Object _) {}));
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed ||
+        state == AppLifecycleState.paused) {
+      _run();
     }
   }
 }

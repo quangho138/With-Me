@@ -331,6 +331,22 @@
       }
     }
   },
+  "settingsReminderTime": "Reminder time",
+  "@settingsReminderTime": {
+    "description": "Notifications: the row that shows and changes the daily reminder's time."
+  },
+  "settingsQuietHoursTimes": "Quiet from and until",
+  "@settingsQuietHoursTimes": {
+    "description": "Notifications: the row that shows and changes when quiet hours start and end."
+  },
+  "settingsNotificationsDenied": "Notifications are off for With Me. You can allow them in your phone's settings.",
+  "@settingsNotificationsDenied": {
+    "description": "Shown when the phone refused permission to show notifications; the switch went back to off."
+  },
+  "settingsNotificationsPhoneOnly": "Reminders work in the With Me phone app.",
+  "@settingsNotificationsPhoneOnly": {
+    "description": "Notifications screen on the web or a computer, which cannot schedule reminders."
+  },
   "helpTitle": "Help",
   "@helpTitle": {
     "description": "Title of the Help screen (questions and answers), and its row in the menu."

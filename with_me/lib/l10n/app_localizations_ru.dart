@@ -232,6 +232,20 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Время напоминания';
+
+  @override
+  String get settingsQuietHoursTimes => 'Тихие часы: с и до';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Уведомления With Me выключены. Их можно разрешить в настройках телефона.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Напоминания работают в приложении With Me на телефоне.';
+
+  @override
   String get helpTitle => 'Помощь';
 
   @override

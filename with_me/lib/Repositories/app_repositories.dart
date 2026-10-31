@@ -1,6 +1,7 @@
 import 'check_in_repository.dart';
 import 'exercise_repository.dart';
 import 'export_service.dart';
+import 'reminder_service.dart';
 import 'online_auth.dart';
 import 'reflection_repository.dart';
 import 'settings_repository.dart';
@@ -26,6 +27,16 @@ class AppRepositories {
 
   /// "Export my data" (stage 3, step 2d).
   static ExportService export = ExportService();
+
+  /// Reminders on the phone (feature E). The app sets the real phone
+  /// layer when it starts (main.dart); until then, and on the web and
+  /// desktop, nothing is scheduled.
+  static ReminderService reminders = ReminderService(
+    layer: const NoNotifications(),
+    settings: settings,
+    checkIns: checkIns,
+    exercises: exercises,
+  );
 
   /// Keeps the phone and the account in step (stage 3, step 2c).
   static SyncService sync = SyncService(

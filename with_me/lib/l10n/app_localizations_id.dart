@@ -231,6 +231,20 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Waktu pengingat';
+
+  @override
+  String get settingsQuietHoursTimes => 'Tenang dari dan sampai';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Notifikasi With Me sedang mati. Kamu bisa mengizinkannya di pengaturan ponselmu.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Pengingat berfungsi di aplikasi With Me di ponsel.';
+
+  @override
   String get helpTitle => 'Bantuan';
 
   @override

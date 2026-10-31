@@ -232,6 +232,21 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'நினைவூட்டல் நேரம்';
+
+  @override
+  String get settingsQuietHoursTimes =>
+      'அமைதி நேரம் எப்போதிலிருந்து எப்போது வரை';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me அறிவிப்புகள் அணைக்கப்பட்டுள்ளன. உங்கள் தொலைபேசி அமைப்புகளில் அவற்றை அனுமதிக்கலாம்.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'நினைவூட்டல்கள் With Me தொலைபேசி செயலியில் செயல்படும்.';
+
+  @override
   String get helpTitle => 'உதவி';
 
   @override

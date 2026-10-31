@@ -232,6 +232,20 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'रिमाइंडरची वेळ';
+
+  @override
+  String get settingsQuietHoursTimes => 'शांत वेळ कधीपासून कधीपर्यंत';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me साठी सूचना बंद आहेत. तुमच्या फोनच्या सेटिंग्जमध्ये तुम्ही त्या चालू करू शकता.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'रिमाइंडर With Me फोन अॅपमध्ये काम करतात.';
+
+  @override
   String get helpTitle => 'मदत';
 
   @override

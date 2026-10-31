@@ -232,6 +232,20 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Muda wa ukumbusho';
+
+  @override
+  String get settingsQuietHoursTimes => 'Kimya kuanzia na hadi';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Arifa za With Me zimezimwa. Unaweza kuziruhusu kwenye mipangilio ya simu yako.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Vikumbusho hufanya kazi kwenye programu ya With Me ya simu.';
+
+  @override
   String get helpTitle => 'Msaada';
 
   @override

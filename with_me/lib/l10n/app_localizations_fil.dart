@@ -232,6 +232,20 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Oras ng paalala';
+
+  @override
+  String get settingsQuietHoursTimes => 'Tahimik mula at hanggang';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Naka-off ang mga notification para sa With Me. Puwede mo silang payagan sa settings ng phone mo.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Gumagana ang mga paalala sa With Me app sa phone.';
+
+  @override
   String get helpTitle => 'Tulong';
 
   @override

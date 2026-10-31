@@ -230,6 +230,20 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Hatırlatma saati';
+
+  @override
+  String get settingsQuietHoursTimes => 'Sessiz saatler başlangıç ve bitiş';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me bildirimleri kapalı. Telefonunun ayarlarından izin verebilirsin.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Hatırlatmalar With Me telefon uygulamasında çalışır.';
+
+  @override
   String get helpTitle => 'Yardım';
 
   @override

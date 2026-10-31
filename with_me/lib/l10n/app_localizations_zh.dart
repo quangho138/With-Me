@@ -227,6 +227,18 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => '提醒时间';
+
+  @override
+  String get settingsQuietHoursTimes => '免打扰的开始和结束';
+
+  @override
+  String get settingsNotificationsDenied => 'With Me 的通知已关闭。你可以在手机设置中允许通知。';
+
+  @override
+  String get settingsNotificationsPhoneOnly => '提醒在 With Me 手机应用中使用。';
+
+  @override
   String get helpTitle => '帮助';
 
   @override
@@ -2489,6 +2501,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String settingsQuietHoursRange(String start, String end) {
     return '$start – $end';
   }
+
+  @override
+  String get settingsReminderTime => '提醒時間';
+
+  @override
+  String get settingsQuietHoursTimes => '勿擾的開始和結束';
+
+  @override
+  String get settingsNotificationsDenied => 'With Me 的通知已關閉。你可以在手機設定中允許通知。';
+
+  @override
+  String get settingsNotificationsPhoneOnly => '提醒在 With Me 手機應用程式中使用。';
 
   @override
   String get helpTitle => '幫助';

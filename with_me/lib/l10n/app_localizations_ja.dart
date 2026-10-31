@@ -227,6 +227,20 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'リマインダーの時刻';
+
+  @override
+  String get settingsQuietHoursTimes => 'おやすみ時間の開始と終了';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me の通知はオフになっています。スマートフォンの設定で許可できます。';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'リマインダーはスマートフォンの With Me アプリで使えます。';
+
+  @override
   String get helpTitle => 'ヘルプ';
 
   @override

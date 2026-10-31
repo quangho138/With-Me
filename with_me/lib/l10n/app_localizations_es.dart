@@ -232,6 +232,20 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Hora del recordatorio';
+
+  @override
+  String get settingsQuietHoursTimes => 'Silencio desde y hasta';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Las notificaciones de With Me están desactivadas. Puedes permitirlas en los ajustes de tu teléfono.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Los recordatorios funcionan en la app de With Me para teléfono.';
+
+  @override
   String get helpTitle => 'Ayuda';
 
   @override

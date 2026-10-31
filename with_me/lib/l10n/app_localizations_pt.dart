@@ -232,6 +232,20 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Horário do lembrete';
+
+  @override
+  String get settingsQuietHoursTimes => 'Silêncio de e até';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'As notificações do With Me estão desativadas. Você pode permiti-las nas configurações do seu telefone.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Os lembretes funcionam no app With Me para celular.';
+
+  @override
   String get helpTitle => 'Ajuda';
 
   @override

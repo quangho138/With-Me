@@ -232,6 +232,20 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'یاد دہانی کا وقت';
+
+  @override
+  String get settingsQuietHoursTimes => 'خاموشی کب سے کب تک';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me کی اطلاعات بند ہیں۔ آپ اپنے فون کی سیٹنگز میں انہیں اجازت دے سکتے ہیں۔';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'یاد دہانیاں With Me فون ایپ میں کام کرتی ہیں۔';
+
+  @override
   String get helpTitle => 'مدد';
 
   @override

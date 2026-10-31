@@ -227,6 +227,19 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => '알림 시간';
+
+  @override
+  String get settingsQuietHoursTimes => '방해 금지 시작과 끝';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me 알림이 꺼져 있어요. 휴대폰 설정에서 허용할 수 있어요.';
+
+  @override
+  String get settingsNotificationsPhoneOnly => '알림은 휴대폰의 With Me 앱에서 작동해요.';
+
+  @override
   String get helpTitle => '도움말';
 
   @override

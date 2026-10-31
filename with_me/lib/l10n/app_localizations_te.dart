@@ -232,6 +232,21 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'రిమైండర్ సమయం';
+
+  @override
+  String get settingsQuietHoursTimes =>
+      'నిశ్శబ్ద సమయం ఎప్పటి నుండి ఎప్పటి వరకు';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me నోటిఫికేషన్లు ఆఫ్‌లో ఉన్నాయి. మీ ఫోన్ సెట్టింగ్‌లలో వాటిని అనుమతించవచ్చు.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'రిమైండర్లు With Me ఫోన్ యాప్‌లో పనిచేస్తాయి.';
+
+  @override
   String get helpTitle => 'సహాయం';
 
   @override

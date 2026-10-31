@@ -539,6 +539,30 @@ abstract class AppLocalizations {
   /// **'{start} – {end}'**
   String settingsQuietHoursRange(String start, String end);
 
+  /// Notifications: the row that shows and changes the daily reminder's time.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get settingsReminderTime;
+
+  /// Notifications: the row that shows and changes when quiet hours start and end.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet from and until'**
+  String get settingsQuietHoursTimes;
+
+  /// Shown when the phone refused permission to show notifications; the switch went back to off.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off for With Me. You can allow them in your phone\'s settings.'**
+  String get settingsNotificationsDenied;
+
+  /// Notifications screen on the web or a computer, which cannot schedule reminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders work in the With Me phone app.'**
+  String get settingsNotificationsPhoneOnly;
+
   /// Title of the Help screen (questions and answers), and its row in the menu.
   ///
   /// In en, this message translates to:

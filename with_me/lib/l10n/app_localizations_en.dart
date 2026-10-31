@@ -230,6 +230,20 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Reminder time';
+
+  @override
+  String get settingsQuietHoursTimes => 'Quiet from and until';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Notifications are off for With Me. You can allow them in your phone\'s settings.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Reminders work in the With Me phone app.';
+
+  @override
   String get helpTitle => 'Help';
 
   @override

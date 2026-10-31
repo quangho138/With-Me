@@ -232,6 +232,20 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Uhrzeit der Erinnerung';
+
+  @override
+  String get settingsQuietHoursTimes => 'Ruhezeit von und bis';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Benachrichtigungen sind für With Me aus. Du kannst sie in den Einstellungen deines Handys erlauben.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Erinnerungen funktionieren in der With Me App auf dem Handy.';
+
+  @override
   String get helpTitle => 'Hilfe';
 
   @override

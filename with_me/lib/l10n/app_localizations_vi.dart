@@ -231,6 +231,20 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Giờ nhắc';
+
+  @override
+  String get settingsQuietHoursTimes => 'Giờ yên tĩnh từ và đến';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Thông báo của With Me đang tắt. Bạn có thể cho phép trong cài đặt điện thoại.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Lời nhắc hoạt động trong ứng dụng With Me trên điện thoại.';
+
+  @override
   String get helpTitle => 'Trợ giúp';
 
   @override

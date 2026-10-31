@@ -230,6 +230,20 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'وقت التذكير';
+
+  @override
+  String get settingsQuietHoursTimes => 'الهدوء من وإلى';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'الإشعارات متوقفة لتطبيق With Me. يمكنك السماح بها من إعدادات هاتفك.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'تعمل التذكيرات في تطبيق With Me على الهاتف.';
+
+  @override
   String get helpTitle => 'المساعدة';
 
   @override

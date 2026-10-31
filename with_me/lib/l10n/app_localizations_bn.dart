@@ -231,6 +231,20 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'রিমাইন্ডারের সময়';
+
+  @override
+  String get settingsQuietHoursTimes => 'নীরব সময় শুরু ও শেষ';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me-এর জন্য নোটিফিকেশন বন্ধ আছে। আপনার ফোনের সেটিংসে গিয়ে চালু করতে পারেন।';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'রিমাইন্ডার With Me ফোন অ্যাপে কাজ করে।';
+
+  @override
   String get helpTitle => 'সাহায্য';
 
   @override
