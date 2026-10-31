@@ -41,6 +41,13 @@ jobs:
       - name: Tests
         run: flutter test --reporter github
 
+      # The reminder times again in New York time, so the daylight saving
+      # cases cross a real change (graded core E1, E3; 8 Mar and 1 Nov 2026).
+      - name: Reminder times in New York time
+        env:
+          TZ: America/New_York
+        run: flutter test --reporter github test/notice_times_test.dart
+
       # Size check: the biggest files the app ships with. Not a pass/fail,
       # a number to watch in every review (big media makes the app slow to
       # download and start).

@@ -1538,7 +1538,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashDayStrategy => '策略';
 
   @override
-  String get dashEntryLocked => '已锁定——记录只能在24小时内编辑。';
+  String get dashEntryLocked => '已锁定：记录可以在当天和第二天修改。';
 
   @override
   String get dashEntryEditable => '今天你仍可以编辑这条记录。';
@@ -1618,6 +1618,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date的打卡已保存。';
   }
+
+  @override
+  String get avatarThanksEarlierLine => '谢谢你把它补填完。';
+
+  @override
+  String get noticeDailyBody => '随时可以来打卡。';
+
+  @override
+  String get noticeNudgeBody => '一个简短的呼吸练习已准备好，随时都可以。';
+
+  @override
+  String get noticeWeeklyBody => '你在 With Me 的这一周可以查看了。';
 
   @override
   String get dashProgressTitle => '你的进展';
@@ -3790,7 +3802,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashDayStrategy => '策略';
 
   @override
-  String get dashEntryLocked => '已鎖定——記錄只能在24小時內編輯。';
+  String get dashEntryLocked => '已鎖定：記錄可以在當天和第二天修改。';
 
   @override
   String get dashEntryEditable => '今天你仍可以編輯這條記錄。';
@@ -3870,6 +3882,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String yourDayCheckInDoneOn(String date) {
     return '$date的打卡已儲存。';
   }
+
+  @override
+  String get avatarThanksEarlierLine => '謝謝你把它補填完。';
+
+  @override
+  String get noticeDailyBody => '隨時可以來打卡。';
+
+  @override
+  String get noticeNudgeBody => '一個簡短的呼吸練習已準備好，隨時都可以。';
+
+  @override
+  String get noticeWeeklyBody => '你在 With Me 的這一週可以查看了。';
 
   @override
   String get dashProgressTitle => '你的進展';

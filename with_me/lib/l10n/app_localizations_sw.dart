@@ -1624,7 +1624,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Imefungwa — kumbukumbu zinaweza kuhaririwa kwa saa 24.';
+      'Imefungwa: maingizo yanaweza kubadilishwa siku yake na siku inayofuata.';
 
   @override
   String get dashEntryEditable => 'Bado unaweza kuhariri kumbukumbu hii leo.';
@@ -1705,6 +1705,20 @@ class AppLocalizationsSw extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'Tathmini ya $date imehifadhiwa.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Asante kwa kujaza hili.';
+
+  @override
+  String get noticeDailyBody => 'Tathmini yako iko tayari wakati wowote.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Zoezi fupi la kupumua liko tayari wakati wowote.';
+
+  @override
+  String get noticeWeeklyBody =>
+      'Wiki yako katika With Me iko tayari kutazamwa.';
 
   @override
   String get dashProgressTitle => 'Maendeleo Yako';
