@@ -35,11 +35,15 @@ jobs:
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
-      # The github reporter turns each failing test into a note on the
-      # check, with its name and error, so a failure can be read without
+      # Each failing test also becomes a note on the check, with its name
+      # and the start of its error, so a failure can be read without
       # downloading the whole log.
       - name: Tests
-        run: flutter test --reporter github
+        run: |
+          flutter test --reporter github --file-reporter json:test-results.json || {
+            python3 ../.github/scripts/failed_tests.py test-results.json
+            exit 1
+          }
 
       # Size check: the biggest files the app ships with. Not a pass/fail,
       # a number to watch in every review (big media makes the app slow to
