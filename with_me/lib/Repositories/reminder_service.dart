@@ -158,13 +158,16 @@ class ReminderService {
   /// before must be cancelled).
   Future<void> refresh({bool force = false}) {
     // One at a time: two refreshes at once could cancel what the other
-    // just scheduled.
-    final run = _queue.catchError((Object _) {}).then((_) => _refresh(force));
+    // just scheduled. The first starts at once; later ones wait their turn.
+    final previous = _queue;
+    final run = previous == null
+        ? _refresh(force)
+        : previous.catchError((Object _) {}).then((_) => _refresh(force));
     _queue = run;
     return run;
   }
 
-  Future<void> _queue = Future.value();
+  Future<void>? _queue;
 
   /// With the empty layer (web, desktop, tests of other screens) nothing
   /// can be scheduled, so nothing is read or written either.
