@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "ఈ రోజు చెక్-ఇన్ సేవ్ అయింది.",
   "yourDayNoCheckIn": "ఈ రోజు ఇంకా ఏ చెక్-ఇన్ సేవ్ కాలేదు.",
   "yourDayExercises": "ఈ రోజు పూర్తి చేసిన వ్యాయామాలు: {count}",
+  "dashFillInYesterday": "నిన్నటి చెక్-ఇన్ పూరించండి",
+  "yourDayCheckInDoneOn": "{date} చెక్-ఇన్ సేవ్ అయింది.",
   "dashProgressTitle": "మీ పురోగతి",
   "dashProgressTabWeek": "వారం",
   "dashProgressTabMonth": "నెల",

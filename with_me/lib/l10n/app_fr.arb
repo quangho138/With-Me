@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Le bilan du jour est enregistré.",
   "yourDayNoCheckIn": "Aucun bilan enregistré aujourd’hui pour l’instant.",
   "yourDayExercises": "Exercices terminés aujourd’hui : {count}",
+  "dashFillInYesterday": "Remplir le bilan d’hier",
+  "yourDayCheckInDoneOn": "Le bilan du {date} est enregistré.",
   "dashProgressTitle": "Tes progrès",
   "dashProgressTabWeek": "Semaine",
   "dashProgressTabMonth": "Mois",

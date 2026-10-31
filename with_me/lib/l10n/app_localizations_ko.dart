@@ -1619,6 +1619,14 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => '어제 체크인 작성하기';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date 체크인을 저장했어요.';
+  }
+
+  @override
   String get dashProgressTitle => '나의 성장';
 
   @override

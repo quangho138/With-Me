@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "今日のチェックインを保存しました。",
   "yourDayNoCheckIn": "今日はまだチェックインが保存されていません。",
   "yourDayExercises": "今日終えた練習：{count}",
+  "dashFillInYesterday": "昨日のチェックインを入力する",
+  "yourDayCheckInDoneOn": "{date}のチェックインを保存しました。",
   "dashProgressTitle": "あなたのあゆみ",
   "dashProgressTabWeek": "週",
   "dashProgressTabMonth": "月",

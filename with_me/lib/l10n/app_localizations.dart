@@ -2837,6 +2837,18 @@ abstract class AppLocalizations {
   /// **'Exercises finished today: {count}'**
   String yourDayExercises(String count);
 
+  /// Button on yesterday's day detail: opens yesterday's check-in to fill in or change it.
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in yesterday\'s check-in'**
+  String get dashFillInYesterday;
+
+  /// Your day, after filling in an earlier day's check-in. {date} is that day, e.g. '30 October'.
+  ///
+  /// In en, this message translates to:
+  /// **'The check-in for {date} is saved.'**
+  String yourDayCheckInDoneOn(String date);
+
   /// Title of the progress screen.
   ///
   /// In en, this message translates to:

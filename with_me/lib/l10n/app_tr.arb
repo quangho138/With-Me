@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Bugünkü durum kaydın kaydedildi.",
   "yourDayNoCheckIn": "Bugün henüz kaydedilmiş bir durum kaydı yok.",
   "yourDayExercises": "Bugün tamamlanan egzersizler: {count}",
+  "dashFillInYesterday": "Dünkü durum kaydını doldur",
+  "yourDayCheckInDoneOn": "{date} durum kaydı kaydedildi.",
   "dashProgressTitle": "İlerlemen",
   "dashProgressTabWeek": "Hafta",
   "dashProgressTabMonth": "Ay",

@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "आजचे चेक-इन सेव्ह झाले आहे.",
   "yourDayNoCheckIn": "आज अजून कोणतेही चेक-इन सेव्ह झालेले नाही.",
   "yourDayExercises": "आज पूर्ण केलेले व्यायाम: {count}",
+  "dashFillInYesterday": "कालचे चेक-इन भरा",
+  "yourDayCheckInDoneOn": "{date} चे चेक-इन सेव्ह झाले आहे.",
   "dashProgressTitle": "तुमची प्रगती",
   "dashProgressTabWeek": "आठवडा",
   "dashProgressTabMonth": "महिना",

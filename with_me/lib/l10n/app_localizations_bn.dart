@@ -1684,6 +1684,14 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'গতকালের চেক-ইন পূরণ করুন';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date তারিখের চেক-ইন সেভ হয়েছে।';
+  }
+
+  @override
   String get dashProgressTitle => 'আপনার অগ্রগতি';
 
   @override

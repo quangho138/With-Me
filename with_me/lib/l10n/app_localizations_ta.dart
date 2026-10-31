@@ -1723,6 +1723,14 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'நேற்றைய செக்-இன்னை நிரப்புங்கள்';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date செக்-இன் சேமிக்கப்பட்டது.';
+  }
+
+  @override
   String get dashProgressTitle => 'உங்கள் முன்னேற்றம்';
 
   @override

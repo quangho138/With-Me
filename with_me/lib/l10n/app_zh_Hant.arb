@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "今天的打卡已儲存。",
   "yourDayNoCheckIn": "今天還沒有儲存打卡。",
   "yourDayExercises": "今天完成的練習：{count}",
+  "dashFillInYesterday": "補填昨天的打卡",
+  "yourDayCheckInDoneOn": "{date}的打卡已儲存。",
   "dashProgressTitle": "你的進展",
   "dashProgressTabWeek": "周",
   "dashProgressTabMonth": "月",

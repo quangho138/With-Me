@@ -1691,6 +1691,14 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Điền lần ghi nhận hôm qua';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'Lần ghi nhận ngày $date đã được lưu.';
+  }
+
+  @override
   String get dashProgressTitle => 'Tiến trình của bạn';
 
   @override

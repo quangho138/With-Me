@@ -1707,6 +1707,14 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Punan ang check-in kahapon';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'Na-save na ang check-in para sa $date.';
+  }
+
+  @override
   String get dashProgressTitle => 'Ang Iyong Progreso';
 
   @override

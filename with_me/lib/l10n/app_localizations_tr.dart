@@ -1684,6 +1684,14 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Dünkü durum kaydını doldur';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date durum kaydı kaydedildi.';
+  }
+
+  @override
   String get dashProgressTitle => 'İlerlemen';
 
   @override

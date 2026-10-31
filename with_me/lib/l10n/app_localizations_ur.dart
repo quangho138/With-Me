@@ -1694,6 +1694,14 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'کل کا چیک اِن مکمل کریں';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date کا چیک اِن محفوظ ہو گیا ہے۔';
+  }
+
+  @override
   String get dashProgressTitle => 'آپ کی پیش رفت';
 
   @override

@@ -1699,6 +1699,14 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Jaza tathmini ya jana';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'Tathmini ya $date imehifadhiwa.';
+  }
+
+  @override
   String get dashProgressTitle => 'Maendeleo Yako';
 
   @override

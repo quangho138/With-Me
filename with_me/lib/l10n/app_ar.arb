@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "تم حفظ تسجيل حالة اليوم.",
   "yourDayNoCheckIn": "لم يُحفظ أي تسجيل حالة اليوم بعد.",
   "yourDayExercises": "التمارين المكتملة اليوم: {count}",
+  "dashFillInYesterday": "أكمل تسجيل حالة الأمس",
+  "yourDayCheckInDoneOn": "تم حفظ تسجيل الحالة ليوم {date}.",
   "dashProgressTitle": "تقدّمك",
   "dashProgressTabWeek": "أسبوع",
   "dashProgressTabMonth": "شهر",

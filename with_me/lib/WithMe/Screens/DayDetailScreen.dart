@@ -7,7 +7,10 @@ import '../../Repositories/app_repositories.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
+import '../Data/Today.dart';
+import '../Data/avatar_reactions.dart' show calendarDaysBetween;
 import '../Theme/WithMeTheme.dart';
+import 'DailyCheckInScreen.dart';
 
 /// `image35.png` — one day's entry, in the scenic look. Reached from a past
 /// date on the calendar and from "View entry details" on the dashboard.
@@ -71,9 +74,21 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
       _stressor != null ||
       _reflections.isNotEmpty;
 
-  /// The design shows "Locked — entries can be edited for 24 hours."
-  bool get _locked =>
-      DateTime.now().difference(widget.date) > const Duration(hours: 24);
+  /// Calendar days from this entry's day to today: 0 today, 1 yesterday.
+  int get _daysAgo => calendarDaysBetween(widget.date, Today.now());
+
+  /// Today and yesterday can still be changed (yesterday since 30 Oct,
+  /// D12); anything older is locked. Counted on dates, not hours.
+  bool get _locked => _daysAgo > 1;
+
+  /// Yesterday's check-in, opened for filling in or changing. Read aloud
+  /// stays off: the recorded lines speak of today.
+  Future<void> _fillInYesterday() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => DailyCheckInScreen(day: widget.date)),
+    );
+    if (mounted) _load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +102,13 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
     return ScenicScaffold(
       title: title,
       onBack: () => Navigator.of(context).pop(),
+      action: _daysAgo == 1
+          ? ScenicPill(
+              label: l.dashFillInYesterday,
+              height: 58,
+              onPressed: _fillInYesterday,
+            )
+          : null,
       child: !_loaded
           ? const SizedBox.shrink()
           : !_hasEntry
