@@ -5,6 +5,7 @@ import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
+import '../Data/notice_times.dart';
 
 /// `image4.png` — My Profile.
 ///
@@ -22,8 +23,10 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _name = TextEditingController();
   final _email = TextEditingController();
-  final _checkInTime = TextEditingController();
-  bool _timeFilled = false;
+
+  /// The daily check-in time: the same setting as the reminder's time on
+  /// the Notifications screen (feature E).
+  ClockTime _checkInAt = const NoticeSettings().dailyAt;
 
   int _checkIns = 0;
   int _exercises = 0;
@@ -32,17 +35,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     _load();
+    _loadCheckInTime();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // 8 in the morning, written the reader's way ("8:00 AM" in English).
-    if (_timeFilled) return;
-    _timeFilled = true;
-    _checkInTime.text = MaterialLocalizations.of(
-      context,
-    ).formatTimeOfDay(const TimeOfDay(hour: 8, minute: 0));
+  Future<void> _loadCheckInTime() async {
+    try {
+      final at = (await AppRepositories.reminders.settings()).dailyAt;
+      if (mounted) setState(() => _checkInAt = at);
+    } catch (_) {
+      // No database (the browser preview): keep the default.
+    }
+  }
+
+  Future<void> _pickCheckInTime() async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: _checkInAt.hour, minute: _checkInAt.minute),
+    );
+    if (picked == null) return;
+    final at = ClockTime(picked.hour, picked.minute);
+    setState(() => _checkInAt = at);
+    try {
+      await AppRepositories.reminders.setDailyTime(at);
+    } catch (_) {}
   }
 
   Future<void> _load() async {
@@ -80,7 +95,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void dispose() {
     _name.dispose();
     _email.dispose();
-    _checkInTime.dispose();
     super.dispose();
   }
 
@@ -165,15 +179,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fill: Colors.white,
                   border: kScenicFieldRing,
                 ),
-                const SizedBox(height: 14),
-                WithMeField(
-                  label: l.accountCheckInTime,
-                  controller: _checkInTime,
-                  fill: Colors.white,
-                  border: kScenicFieldRing,
-                ),
               ],
             ),
+          ),
+          const SizedBox(height: 12),
+          ScenicRow(
+            label: l.accountCheckInTime,
+            trailing: MaterialLocalizations.of(context).formatTimeOfDay(
+              TimeOfDay(hour: _checkInAt.hour, minute: _checkInAt.minute),
+            ),
+            icon: Icons.schedule_rounded,
+            iconColor: const Color(0xFFEE9A3E),
+            onTap: _pickCheckInTime,
           ),
           const SizedBox(height: 12),
           ScenicPanel(

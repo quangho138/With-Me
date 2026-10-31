@@ -331,6 +331,22 @@
       }
     }
   },
+  "settingsReminderTime": "Reminder time",
+  "@settingsReminderTime": {
+    "description": "Notifications: the row that shows and changes the daily reminder's time."
+  },
+  "settingsQuietHoursTimes": "Quiet from and until",
+  "@settingsQuietHoursTimes": {
+    "description": "Notifications: the row that shows and changes when quiet hours start and end."
+  },
+  "settingsNotificationsDenied": "Notifications are off for With Me. You can allow them in your phone's settings.",
+  "@settingsNotificationsDenied": {
+    "description": "Shown when the phone refused permission to show notifications; the switch went back to off."
+  },
+  "settingsNotificationsPhoneOnly": "Reminders work in the With Me phone app.",
+  "@settingsNotificationsPhoneOnly": {
+    "description": "Notifications screen on the web or a computer, which cannot schedule reminders."
+  },
   "helpTitle": "Help",
   "@helpTitle": {
     "description": "Title of the Help screen (questions and answers), and its row in the menu."
@@ -2203,7 +2219,7 @@
   "@dashDayStrategy": {
     "description": "Label over a small chart of the day's strategy."
   },
-  "dashEntryLocked": "Locked — entries can be edited for 24 hours.",
+  "dashEntryLocked": "Locked: entries can be changed on their own day and the day after.",
   "@dashEntryLocked": {
     "description": "Notice on an older day's page: it can no longer be changed."
   },
@@ -2326,6 +2342,22 @@
         "type": "String"
       }
     }
+  },
+  "avatarThanksEarlierLine": "Thank you for filling this in.",
+  "@avatarThanksEarlierLine": {
+    "description": "What the companion says after an earlier day's check-in (yesterday) is filled in. Do not say 'today'."
+  },
+  "noticeDailyBody": "Your check-in is ready when you are.",
+  "@noticeDailyBody": {
+    "description": "Phone notification, daily check-in reminder. Others may see the lock screen: never mention mood, stress or feelings."
+  },
+  "noticeNudgeBody": "A short breathing exercise is here whenever you want it.",
+  "@noticeNudgeBody": {
+    "description": "Phone notification on a hard day, offering a breathing exercise. Others may see the lock screen: never mention mood, stress or feelings."
+  },
+  "noticeWeeklyBody": "Your week in With Me is ready to look at.",
+  "@noticeWeeklyBody": {
+    "description": "Phone notification, Sundays: the weekly insights are ready. Others may see the lock screen: never mention mood, stress or feelings."
   },
   "dashProgressTitle": "Your Progress",
   "@dashProgressTitle": {

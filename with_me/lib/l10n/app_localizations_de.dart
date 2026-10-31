@@ -232,6 +232,20 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Uhrzeit der Erinnerung';
+
+  @override
+  String get settingsQuietHoursTimes => 'Ruhezeit von und bis';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Benachrichtigungen sind für With Me aus. Du kannst sie in den Einstellungen deines Handys erlauben.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Erinnerungen funktionieren in der With Me App auf dem Handy.';
+
+  @override
   String get helpTitle => 'Hilfe';
 
   @override
@@ -1634,7 +1648,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Gesperrt – Einträge können 24 Stunden lang bearbeitet werden.';
+      'Gesperrt: Einträge können an ihrem Tag und am Tag danach geändert werden.';
 
   @override
   String get dashEntryEditable =>
@@ -1717,6 +1731,21 @@ class AppLocalizationsDe extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'Der Check-in für den $date ist gespeichert.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Danke, dass du das ausgefüllt hast.';
+
+  @override
+  String get noticeDailyBody =>
+      'Dein Check-in ist bereit, wann immer du magst.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Eine kurze Atemübung wartet, wann immer du willst.';
+
+  @override
+  String get noticeWeeklyBody =>
+      'Deine Woche in With Me ist bereit zum Ansehen.';
 
   @override
   String get dashProgressTitle => 'Dein Fortschritt';

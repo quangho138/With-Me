@@ -232,6 +232,20 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'रिमाइंडरची वेळ';
+
+  @override
+  String get settingsQuietHoursTimes => 'शांत वेळ कधीपासून कधीपर्यंत';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me साठी सूचना बंद आहेत. तुमच्या फोनच्या सेटिंग्जमध्ये तुम्ही त्या चालू करू शकता.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'रिमाइंडर With Me फोन अॅपमध्ये काम करतात.';
+
+  @override
   String get helpTitle => 'मदत';
 
   @override
@@ -1617,7 +1631,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get dashDayStrategy => 'रणनीती';
 
   @override
-  String get dashEntryLocked => 'लॉक — नोंदी फक्त 24 तासांपर्यंत बदलता येतात.';
+  String get dashEntryLocked =>
+      'लॉक: नोंदी त्याच दिवशी आणि दुसऱ्या दिवशी बदलता येतात.';
 
   @override
   String get dashEntryEditable => 'ही नोंद तुम्ही आज अजूनही बदलू शकता.';
@@ -1700,6 +1715,21 @@ class AppLocalizationsMr extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date चे चेक-इन सेव्ह झाले आहे.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'हे भरल्याबद्दल धन्यवाद.';
+
+  @override
+  String get noticeDailyBody =>
+      'तुमचे चेक-इन तयार आहे, जेव्हा तुम्हाला हवे तेव्हा.';
+
+  @override
+  String get noticeNudgeBody =>
+      'श्वासाचा एक छोटा व्यायाम तयार आहे, हवा तेव्हा.';
+
+  @override
+  String get noticeWeeklyBody =>
+      'With Me मधील तुमचा आठवडा पाहण्यासाठी तयार आहे.';
 
   @override
   String get dashProgressTitle => 'तुमची प्रगती';

@@ -230,6 +230,20 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'وقت التذكير';
+
+  @override
+  String get settingsQuietHoursTimes => 'الهدوء من وإلى';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'الإشعارات متوقفة لتطبيق With Me. يمكنك السماح بها من إعدادات هاتفك.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'تعمل التذكيرات في تطبيق With Me على الهاتف.';
+
+  @override
   String get helpTitle => 'المساعدة';
 
   @override
@@ -1664,7 +1678,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashDayStrategy => 'الاستراتيجية';
 
   @override
-  String get dashEntryLocked => 'مقفل — يمكن تعديل الإدخالات خلال 24 ساعة.';
+  String get dashEntryLocked =>
+      'مقفل: يمكن تعديل الإدخالات في يومها واليوم التالي.';
 
   @override
   String get dashEntryEditable => 'ما زال بإمكانك تعديل هذا الإدخال اليوم.';
@@ -1744,6 +1759,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'تم حفظ تسجيل الحالة ليوم $date.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'شكرًا لأنك أكملت هذا.';
+
+  @override
+  String get noticeDailyBody => 'تسجيل حالتك جاهز متى شئت.';
+
+  @override
+  String get noticeNudgeBody => 'تمرين تنفّس قصير هنا متى أردته.';
+
+  @override
+  String get noticeWeeklyBody => 'أسبوعك في With Me جاهز لتلقي نظرة عليه.';
 
   @override
   String get dashProgressTitle => 'تقدّمك';

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -363,6 +364,15 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen>
     try {
       await AppRepositories.checkIns.save(entry);
       saved = true;
+      // Reminders (feature E): today's reminder is no longer needed, and a
+      // low mood may bring the exercise nudge. A failure here is silent.
+      if (calendarDaysBetween(entry.day, today) == 0) {
+        unawaited(
+          AppRepositories.reminders
+              .checkInFinished(at: today, lowMood: isLowMood(entry.mood))
+              .catchError((Object _) {}),
+        );
+      }
       CheckInRepository.saves.value++;
     } catch (_) {
       // The check-in is done either way — losing the write must not trap the

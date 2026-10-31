@@ -539,6 +539,30 @@ abstract class AppLocalizations {
   /// **'{start} – {end}'**
   String settingsQuietHoursRange(String start, String end);
 
+  /// Notifications: the row that shows and changes the daily reminder's time.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get settingsReminderTime;
+
+  /// Notifications: the row that shows and changes when quiet hours start and end.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet from and until'**
+  String get settingsQuietHoursTimes;
+
+  /// Shown when the phone refused permission to show notifications; the switch went back to off.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off for With Me. You can allow them in your phone\'s settings.'**
+  String get settingsNotificationsDenied;
+
+  /// Notifications screen on the web or a computer, which cannot schedule reminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders work in the With Me phone app.'**
+  String get settingsNotificationsPhoneOnly;
+
   /// Title of the Help screen (questions and answers), and its row in the menu.
   ///
   /// In en, this message translates to:
@@ -2708,7 +2732,7 @@ abstract class AppLocalizations {
   /// Notice on an older day's page: it can no longer be changed.
   ///
   /// In en, this message translates to:
-  /// **'Locked — entries can be edited for 24 hours.'**
+  /// **'Locked: entries can be changed on their own day and the day after.'**
   String get dashEntryLocked;
 
   /// Notice on today's page: it can still be changed.
@@ -2848,6 +2872,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The check-in for {date} is saved.'**
   String yourDayCheckInDoneOn(String date);
+
+  /// What the companion says after an earlier day's check-in (yesterday) is filled in. Do not say 'today'.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for filling this in.'**
+  String get avatarThanksEarlierLine;
+
+  /// Phone notification, daily check-in reminder. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your check-in is ready when you are.'**
+  String get noticeDailyBody;
+
+  /// Phone notification on a hard day, offering a breathing exercise. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'A short breathing exercise is here whenever you want it.'**
+  String get noticeNudgeBody;
+
+  /// Phone notification, Sundays: the weekly insights are ready. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your week in With Me is ready to look at.'**
+  String get noticeWeeklyBody;
 
   /// Title of the progress screen.
   ///

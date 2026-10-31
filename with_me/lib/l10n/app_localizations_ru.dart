@@ -232,6 +232,20 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Время напоминания';
+
+  @override
+  String get settingsQuietHoursTimes => 'Тихие часы: с и до';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'Уведомления With Me выключены. Их можно разрешить в настройках телефона.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Напоминания работают в приложении With Me на телефоне.';
+
+  @override
   String get helpTitle => 'Помощь';
 
   @override
@@ -1658,7 +1672,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Закрыто — записи можно изменять в течение 24 часов.';
+      'Заблокировано: записи можно менять в их день и на следующий день.';
 
   @override
   String get dashEntryEditable => 'Эту запись ещё можно изменить сегодня.';
@@ -1741,6 +1755,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'Чек-ин за $date сохранён.';
   }
+
+  @override
+  String get avatarThanksEarlierLine =>
+      'Спасибо, что нашлось время это заполнить.';
+
+  @override
+  String get noticeDailyBody => 'Чек-ин ждёт тебя, когда будет удобно.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Короткое дыхательное упражнение ждёт, когда захочешь.';
+
+  @override
+  String get noticeWeeklyBody => 'Твоя неделя в With Me готова к просмотру.';
 
   @override
   String get dashProgressTitle => 'Твой прогресс';

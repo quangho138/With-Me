@@ -2,6 +2,11 @@
     <!-- Online accounts (Supabase). Debug builds get this automatically;
          release builds need it here. -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Reminders (feature E): put scheduled notices back after the phone
+         restarts. Showing notices (POST_NOTIFICATIONS) comes with the
+         plugin; reminders use inexact alarms, so no exact alarm
+         permission is needed. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
         android:label="With Me"
         android:name="${applicationName}"
@@ -40,6 +45,17 @@
                  not try to open it as a screen. -->
             <meta-data android:name="flutter_deeplinking_enabled" android:value="false"/>
         </activity>
+        <!-- Reminders (feature E): show scheduled notices, and schedule them
+             again after a restart or an app update. -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

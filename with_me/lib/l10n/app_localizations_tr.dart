@@ -230,6 +230,20 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get settingsReminderTime => 'Hatırlatma saati';
+
+  @override
+  String get settingsQuietHoursTimes => 'Sessiz saatler başlangıç ve bitiş';
+
+  @override
+  String get settingsNotificationsDenied =>
+      'With Me bildirimleri kapalı. Telefonunun ayarlarından izin verebilirsin.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Hatırlatmalar With Me telefon uygulamasında çalışır.';
+
+  @override
   String get helpTitle => 'Yardım';
 
   @override
@@ -1608,7 +1622,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Kilitli. Kayıtlar 24 saat boyunca düzenlenebilir.';
+      'Kilitli: kayıtlar kendi gününde ve ertesi gün değiştirilebilir.';
 
   @override
   String get dashEntryEditable => 'Bu kaydı bugün hâlâ düzenleyebilirsin.';
@@ -1690,6 +1704,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date durum kaydı kaydedildi.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Bunu doldurduğun için teşekkürler.';
+
+  @override
+  String get noticeDailyBody => 'Durum kaydın hazır, ne zaman istersen.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Kısa bir nefes egzersizi, ne zaman istersen hazır.';
+
+  @override
+  String get noticeWeeklyBody => 'With Me\'deki haftan bakmaya hazır.';
 
   @override
   String get dashProgressTitle => 'İlerlemen';
