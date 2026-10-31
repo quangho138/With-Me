@@ -49,7 +49,12 @@ void main() {
   });
 
   group('E5: off means off', () {
-    for (final kind in NoticeKind.values) {
+    // The three kinds with a switch (the one-time reminder has none).
+    for (final kind in [
+      NoticeKind.daily,
+      NoticeKind.nudge,
+      NoticeKind.weekly,
+    ]) {
       test('${kind.name}: on schedules it, off schedules none and cancels '
           'what was there', () async {
         if (kind == NoticeKind.nudge) {
