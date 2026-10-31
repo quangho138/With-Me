@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Toka hata hivyo",
   "menuStayLoggedIn": "Endelea kuwa umeingia",
   "settingsExportFailed": "Imeshindwa kuhamisha data yako. Jaribu tena.",
+  "settingsSyncSavedAt": "Imehifadhiwa kwenye akaunti yako saa {time}",
+  "settingsSyncSavedOn": "Imehifadhiwa kwenye akaunti yako tarehe {date}",
+  "settingsSyncFailing": "Mabadiliko yako ya karibuni hayajafika kwenye akaunti yako tangu {date}. Yako salama kwenye simu hii na yatatumwa muunganisho ukifanya kazi tena.",
   "settingsDeleteAccountFailed": "Imeshindwa kufuta akaunti yako."
 }

@@ -2359,6 +2359,21 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não foi possível exportar seus dados. Tente de novo.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Salvo na sua conta às $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Salvo na sua conta em $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Suas últimas alterações não chegam à sua conta desde $date. Elas estão seguras neste aparelho e serão enviadas quando a conexão voltar a funcionar.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed =>
       'Não foi possível excluir sua conta.';
 }

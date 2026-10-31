@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Vẫn đăng xuất",
   "menuStayLoggedIn": "Giữ đăng nhập",
   "settingsExportFailed": "Không xuất được dữ liệu của bạn. Hãy thử lại.",
+  "settingsSyncSavedAt": "Đã lưu vào tài khoản lúc {time}",
+  "settingsSyncSavedOn": "Đã lưu vào tài khoản ngày {date}",
+  "settingsSyncFailing": "Từ ngày {date}, các thay đổi mới nhất chưa đến được tài khoản của bạn. Chúng vẫn an toàn trên điện thoại này và sẽ được gửi khi kết nối hoạt động lại.",
   "settingsDeleteAccountFailed": "Không xóa được tài khoản của bạn."
 }

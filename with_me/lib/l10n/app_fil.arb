@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Mag-log out pa rin",
   "menuStayLoggedIn": "Manatiling naka-log in",
   "settingsExportFailed": "Hindi ma-export ang iyong data. Subukan ulit.",
+  "settingsSyncSavedAt": "Na-save sa account mo nang {time}",
+  "settingsSyncSavedOn": "Na-save sa account mo noong {date}",
+  "settingsSyncFailing": "Hindi pa nakakarating sa account mo ang mga pinakabagong pagbabago mula noong {date}. Ligtas ang mga ito sa phone na ito at ipapadala kapag gumana ulit ang koneksyon.",
   "settingsDeleteAccountFailed": "Hindi mabura ang iyong account."
 }

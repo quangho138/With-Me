@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Cerrar sesión de todos modos",
   "menuStayLoggedIn": "Seguir con la sesión iniciada",
   "settingsExportFailed": "No se pudieron exportar tus datos. Inténtalo de nuevo.",
+  "settingsSyncSavedAt": "Guardado en tu cuenta a las {time}",
+  "settingsSyncSavedOn": "Guardado en tu cuenta el {date}",
+  "settingsSyncFailing": "Tus últimos cambios no han llegado a tu cuenta desde el {date}. Están seguros en este teléfono y se enviarán cuando la conexión vuelva a funcionar.",
   "settingsDeleteAccountFailed": "No se pudo eliminar tu cuenta."
 }

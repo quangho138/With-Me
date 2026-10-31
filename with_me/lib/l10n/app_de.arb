@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Trotzdem abmelden",
   "menuStayLoggedIn": "Angemeldet bleiben",
   "settingsExportFailed": "Deine Daten konnten nicht exportiert werden. Versuche es noch einmal.",
+  "settingsSyncSavedAt": "Um {time} in deinem Konto gespeichert",
+  "settingsSyncSavedOn": "Am {date} in deinem Konto gespeichert",
+  "settingsSyncFailing": "Deine letzten Änderungen sind seit dem {date} nicht in deinem Konto angekommen. Sie sind auf diesem Gerät sicher und werden gesendet, sobald die Verbindung wieder funktioniert.",
   "settingsDeleteAccountFailed": "Dein Konto konnte nicht gelöscht werden."
 }

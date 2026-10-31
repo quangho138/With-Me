@@ -2342,5 +2342,20 @@ class AppLocalizationsVi extends AppLocalizations {
       'Không xuất được dữ liệu của bạn. Hãy thử lại.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Đã lưu vào tài khoản lúc $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Đã lưu vào tài khoản ngày $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Từ ngày $date, các thay đổi mới nhất chưa đến được tài khoản của bạn. Chúng vẫn an toàn trên điện thoại này và sẽ được gửi khi kết nối hoạt động lại.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'Không xóa được tài khoản của bạn.';
 }

@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Yine de çıkış yap",
   "menuStayLoggedIn": "Girişli kal",
   "settingsExportFailed": "Verilerin dışa aktarılamadı. Tekrar dene.",
+  "settingsSyncSavedAt": "Saat {time} itibarıyla hesabına kaydedildi",
+  "settingsSyncSavedOn": "{date} tarihinde hesabına kaydedildi",
+  "settingsSyncFailing": "Son değişikliklerin {date} tarihinden beri hesabına ulaşmadı. Bu telefonda güvende ve bağlantı yeniden çalıştığında gönderilecek.",
   "settingsDeleteAccountFailed": "Hesabın silinemedi."
 }

@@ -2338,5 +2338,20 @@ class AppLocalizationsTr extends AppLocalizations {
       'Verilerin dışa aktarılamadı. Tekrar dene.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Saat $time itibarıyla hesabına kaydedildi';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$date tarihinde hesabına kaydedildi';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Son değişikliklerin $date tarihinden beri hesabına ulaşmadı. Bu telefonda güvende ve bağlantı yeniden çalıştığında gönderilecek.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'Hesabın silinemedi.';
 }

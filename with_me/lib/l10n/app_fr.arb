@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Se déconnecter quand même",
   "menuStayLoggedIn": "Rester connecté",
   "settingsExportFailed": "Impossible d'exporter tes données. Réessaie.",
+  "settingsSyncSavedAt": "Enregistré dans ton compte à {time}",
+  "settingsSyncSavedOn": "Enregistré dans ton compte le {date}",
+  "settingsSyncFailing": "Tes dernières modifications n’ont pas atteint ton compte depuis le {date}. Elles sont en sécurité sur ce téléphone et seront envoyées quand la connexion fonctionnera à nouveau.",
   "settingsDeleteAccountFailed": "Impossible de supprimer ton compte."
 }

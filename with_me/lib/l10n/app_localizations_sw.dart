@@ -2358,5 +2358,20 @@ class AppLocalizationsSw extends AppLocalizations {
       'Imeshindwa kuhamisha data yako. Jaribu tena.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Imehifadhiwa kwenye akaunti yako saa $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Imehifadhiwa kwenye akaunti yako tarehe $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Mabadiliko yako ya karibuni hayajafika kwenye akaunti yako tangu $date. Yako salama kwenye simu hii na yatatumwa muunganisho ukifanya kazi tena.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'Imeshindwa kufuta akaunti yako.';
 }

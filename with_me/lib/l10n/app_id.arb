@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Tetap keluar",
   "menuStayLoggedIn": "Tetap masuk",
   "settingsExportFailed": "Tidak bisa mengekspor datamu. Coba lagi.",
+  "settingsSyncSavedAt": "Tersimpan di akunmu pukul {time}",
+  "settingsSyncSavedOn": "Tersimpan di akunmu pada {date}",
+  "settingsSyncFailing": "Perubahan terbarumu belum sampai ke akunmu sejak {date}. Semuanya aman di ponsel ini dan akan dikirim saat koneksi berfungsi lagi.",
   "settingsDeleteAccountFailed": "Tidak bisa menghapus akunmu."
 }

@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "それでもログアウト",
   "menuStayLoggedIn": "ログインしたままにする",
   "settingsExportFailed": "データをエクスポートできませんでした。もう一度お試しください。",
+  "settingsSyncSavedAt": "{time}にアカウントへ保存しました",
+  "settingsSyncSavedOn": "{date}にアカウントへ保存しました",
+  "settingsSyncFailing": "{date}から最近の変更がアカウントに届いていません。この端末に安全に保存されていて、接続が戻ると送信されます。",
   "settingsDeleteAccountFailed": "アカウントを削除できませんでした。"
 }

@@ -2337,5 +2337,20 @@ class AppLocalizationsBn extends AppLocalizations {
       'আপনার ডেটা এক্সপোর্ট করা যায়নি। আবার চেষ্টা করুন।';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$time-এ আপনার অ্যাকাউন্টে সেভ হয়েছে';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$date তারিখে আপনার অ্যাকাউন্টে সেভ হয়েছে';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$date থেকে আপনার সাম্প্রতিক পরিবর্তনগুলো অ্যাকাউন্টে পৌঁছায়নি। সেগুলো এই ডিভাইসে নিরাপদে আছে এবং সংযোগ আবার কাজ করলে পাঠানো হবে।';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'আপনার অ্যাকাউন্ট মোছা যায়নি।';
 }

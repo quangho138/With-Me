@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "تسجيل الخروج على أي حال",
   "menuStayLoggedIn": "البقاء مسجّلًا الدخول",
   "settingsExportFailed": "تعذّر تصدير بياناتك. حاول مرة أخرى.",
+  "settingsSyncSavedAt": "تم الحفظ في حسابك الساعة {time}",
+  "settingsSyncSavedOn": "تم الحفظ في حسابك يوم {date}",
+  "settingsSyncFailing": "لم تصل آخر تغييراتك إلى حسابك منذ {date}. إنها محفوظة بأمان على هذا الجهاز وسيتم إرسالها عندما يعمل الاتصال مجددًا.",
   "settingsDeleteAccountFailed": "تعذّر حذف حسابك."
 }

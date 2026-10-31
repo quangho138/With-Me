@@ -119,6 +119,39 @@ class SupabaseOnlineStore implements OnlineStore {
       (await _db.from('journal_entries').select('day').limit(1)).isNotEmpty;
 }
 
+/// What recent syncs did, for the line in Settings: when the phone last
+/// reached the account, and since when syncing has kept failing (null
+/// while it works). Both are kept in sync_state, so they survive a restart;
+/// logging out clears them with everything else.
+class SyncStatus {
+  const SyncStatus({this.lastSaved, this.failingSince});
+
+  final DateTime? lastSaved;
+  final DateTime? failingSince;
+}
+
+/// What the Settings line says.
+enum SyncLineKind {
+  /// Nothing to say yet: never synced, and not failing for long.
+  none,
+
+  /// "Saved to your account at 2:14 PM" (today) or "on 30 October".
+  saved,
+
+  /// Syncing has failed for a day or more: say so plainly, and that the
+  /// changes are safe on the phone. Shorter failures stay silent.
+  failing,
+}
+
+/// The Settings line for [status] at [now].
+SyncLineKind syncLineFor(SyncStatus status, DateTime now) {
+  final failing = status.failingSince;
+  if (failing != null && now.difference(failing) >= const Duration(days: 1)) {
+    return SyncLineKind.failing;
+  }
+  return status.lastSaved == null ? SyncLineKind.none : SyncLineKind.saved;
+}
+
 /// Keeps the phone and the account in step. The phone stays the main copy:
 /// screens always read the phone. Sync runs in the background, only while
 /// logged in to an account:
@@ -134,17 +167,61 @@ class SyncService {
     required OnlineStore online,
     Future<Database> Function()? open,
     DatabaseHelper? helper,
+    DateTime Function()? now,
   }) : _users = users,
        _online = online,
        _helper = helper,
+       _now = now ?? DateTime.now,
        _open = open ?? (() => DatabaseHelper().database);
 
   final UserRepository _users;
   final OnlineStore _online;
   final Future<Database> Function() _open;
   final DatabaseHelper? _helper;
+  final DateTime Function() _now;
 
   static const int _page = 200;
+
+  static const String _lastSavedKey = 'last_saved_at';
+  static const String _failingSinceKey = 'failing_since';
+
+  /// The latest [SyncStatus], for screens to listen to. Up to date after
+  /// [loadStatus] and after every sync.
+  final ValueNotifier<SyncStatus> status = ValueNotifier(const SyncStatus());
+
+  /// Reads the [SyncStatus] kept on the phone.
+  Future<SyncStatus> loadStatus() async {
+    final db = await _open();
+    DateTime? read(String? v) => v == null ? null : DateTime.tryParse(v);
+    final current = SyncStatus(
+      lastSaved: read(await _state(db, _lastSavedKey)),
+      failingSince: read(await _state(db, _failingSinceKey)),
+    );
+    status.value = current;
+    return current;
+  }
+
+  /// Keeps what a sync did: a success sets the time and ends any failing
+  /// stretch; a failure starts one if none is running. Guests record
+  /// nothing. A failure to record is ignored: it must never break sync.
+  Future<void> _record(SyncOutcome outcome) async {
+    if (outcome == SyncOutcome.notSignedIn) return;
+    try {
+      final db = await _open();
+      final now = _now().toIso8601String();
+      if (outcome == SyncOutcome.done) {
+        await _setState(db, _lastSavedKey, now);
+        await db.delete(
+          'sync_state',
+          where: 'key = ?',
+          whereArgs: [_failingSinceKey],
+        );
+      } else if (await _state(db, _failingSinceKey) == null) {
+        await _setState(db, _failingSinceKey, now);
+      }
+      await loadStatus();
+    } catch (_) {}
+  }
 
   Future<SyncOutcome>? _running;
   bool _again = false;
@@ -168,6 +245,7 @@ class SyncService {
     do {
       _again = false;
       outcome = await _syncOnce();
+      await _record(outcome);
     } while (_again && outcome == SyncOutcome.done);
     return outcome;
   }

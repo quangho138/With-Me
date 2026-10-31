@@ -2238,6 +2238,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsExportFailed => '无法导出你的数据。请再试一次。';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '已于 $time 保存到你的账户';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '已于$date保存到你的账户';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '自$date起，你最近的更改还没有到达你的账户。它们安全地保存在这部手机上，连接恢复后会自动发送。';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => '无法删除你的账户。';
 }
 
@@ -4473,6 +4488,21 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsExportFailed => '無法匯出你的資料。請再試一次。';
+
+  @override
+  String settingsSyncSavedAt(String time) {
+    return '已於 $time 儲存到你的帳戶';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '已於$date儲存到你的帳戶';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '自$date起，你最近的變更還沒有到達你的帳戶。它們安全地保存在這支手機上，連線恢復後會自動傳送。';
+  }
 
   @override
   String get settingsDeleteAccountFailed => '無法刪除你的帳戶。';
