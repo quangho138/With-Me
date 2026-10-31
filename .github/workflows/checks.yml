@@ -35,8 +35,11 @@ jobs:
       - name: Analyze
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
+      # The github reporter turns each failing test into a note on the
+      # check, with its name and error, so a failure can be read without
+      # downloading the whole log.
       - name: Tests
-        run: flutter test
+        run: flutter test --reporter github
 
       # Size check: the biggest files the app ships with. Not a pass/fail,
       # a number to watch in every review (big media makes the app slow to
