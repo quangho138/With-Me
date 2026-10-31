@@ -111,10 +111,7 @@ void main() {
 
     test('across the spring daylight saving change (8 Mar 2026)', () {
       // Late in the evening, so a count by hours would come out wrong.
-      expect(
-        back(DateTime(2026, 3, 9, 23, 30), DateTime(2026, 3, 8)),
-        isFalse,
-      );
+      expect(back(DateTime(2026, 3, 9, 23, 30), DateTime(2026, 3, 8)), isFalse);
       expect(back(DateTime(2026, 3, 9, 0, 30), DateTime(2026, 3, 7)), isTrue);
     });
 

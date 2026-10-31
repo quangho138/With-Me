@@ -152,23 +152,23 @@ class _CheckInScreenState extends State<CheckInScreen> {
   Widget _questions(BuildContext context) {
     final l = context.l10n;
     return ScenicPanel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ScenicHeading(l.checkinReflectHeading),
-            const SizedBox(height: 6),
-            Text(
-              l.checkinReflectIntro,
-              textAlign: TextAlign.center,
-              style: kScenicBody,
-            ),
-            const SizedBox(height: 12),
-            for (final entry in kReflectionPrompts.entries) ...[
-              _dropdown(context, entry.key, entry.value),
-              const SizedBox(height: 8),
-            ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ScenicHeading(l.checkinReflectHeading),
+          const SizedBox(height: 6),
+          Text(
+            l.checkinReflectIntro,
+            textAlign: TextAlign.center,
+            style: kScenicBody,
+          ),
+          const SizedBox(height: 12),
+          for (final entry in kReflectionPrompts.entries) ...[
+            _dropdown(context, entry.key, entry.value),
+            const SizedBox(height: 8),
           ],
-        ),
+        ],
+      ),
     );
   }
 

@@ -55,9 +55,10 @@ class _YourDayScreenState extends State<YourDayScreen> {
       // No database (the browser preview): show what was handed over.
     }
     try {
-      exercises =
-          (await AppRepositories.exercises.sessionsBetween(today, today))
-              .length;
+      exercises = (await AppRepositories.exercises.sessionsBetween(
+        today,
+        today,
+      )).length;
     } catch (_) {
       // Same: no exercises line.
     }

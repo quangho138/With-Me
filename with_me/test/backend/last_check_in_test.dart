@@ -32,8 +32,14 @@ void main() {
 
   for (final (what, entry) in [
     ('a mood only', CheckInEntry(day: DateTime(2026, 10, 25), mood: 'Happy')),
-    ('a control level only', CheckInEntry(day: DateTime(2026, 10, 25), stress: 2)),
-    ('a stressor only', CheckInEntry(day: DateTime(2026, 10, 25), area: 'Work')),
+    (
+      'a control level only',
+      CheckInEntry(day: DateTime(2026, 10, 25), stress: 2),
+    ),
+    (
+      'a stressor only',
+      CheckInEntry(day: DateTime(2026, 10, 25), area: 'Work'),
+    ),
   ]) {
     test('a day with $what counts', () async {
       final db = await freshDb();

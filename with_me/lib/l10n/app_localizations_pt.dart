@@ -1677,13 +1677,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get avatarThanksLine => 'Obrigado por fazer seu check-in hoje.';
 
   @override
-  String get avatarComfortLine => 'Estou aqui com você. Seja gentil consigo hoje.';
+  String get avatarComfortLine =>
+      'Estou aqui com você. Seja gentil consigo hoje.';
 
   @override
   String get avatarWelcomeLine => 'Que bom ver você de novo.';
 
   @override
-  String get avatarJournalThanksLine => 'Obrigado por tirar um momento para refletir.';
+  String get avatarJournalThanksLine =>
+      'Obrigado por tirar um momento para refletir.';
 
   @override
   String get yourDayCalmingOffer => 'Experimente um exercício para se acalmar';

@@ -36,7 +36,10 @@ class FakeExercises implements ExerciseRepository {
   }
 
   @override
-  Future<List<ExerciseSession>> sessionsBetween(DateTime from, DateTime to) async => [
+  Future<List<ExerciseSession>> sessionsBetween(
+    DateTime from,
+    DateTime to,
+  ) async => [
     for (var i = 0; i < count; i++)
       ExerciseSession(completedAt: from, exercise: 'breathing'),
   ];
@@ -243,13 +246,7 @@ const Map<String, List<String>> kOldYourDayLines = {
     'Ghi chép buổi tối',
     'việc. Bước bạn chọn sáng nay vẫn đang chờ — hai phút là đủ',
   ],
-  'zh': [
-    '早晨打卡',
-    '箱式呼吸 · 5轮',
-    '一小步：排练开场白',
-    '晚间记录',
-    '项。今早你选的那一步还在等你——两分钟就够了',
-  ],
+  'zh': ['早晨打卡', '箱式呼吸 · 5轮', '一小步：排练开场白', '晚间记录', '项。今早你选的那一步还在等你——两分钟就够了'],
   'zh_Hant': [
     '早晨打卡',
     '箱式呼吸 · 5輪',
@@ -443,7 +440,8 @@ void main() {
       await tester.pump(const Duration(seconds: 20));
       await tester.pump();
       expect(
-        tester.widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
+        tester
+            .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
             .reaction,
         AvatarReaction.wellDone,
       );
@@ -465,7 +463,8 @@ void main() {
       await tester.pump(const Duration(seconds: 15));
       await tester.pump();
       expect(
-        tester.widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
+        tester
+            .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
             .reaction,
         AvatarReaction.wellDone,
       );
@@ -485,7 +484,8 @@ void main() {
 
       expect(reflections.saved, hasLength(1));
       expect(
-        tester.widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
+        tester
+            .widget<AvatarReactionCard>(find.byType(AvatarReactionCard))
             .reaction,
         AvatarReaction.journalThanks,
       );

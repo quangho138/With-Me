@@ -1663,7 +1663,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get avatarThanksLine => 'आज चेक-इन करने के लिए धन्यवाद।';
 
   @override
-  String get avatarComfortLine => 'मैं आपके साथ हूँ। आज अपने साथ नरमी से पेश आएँ।';
+  String get avatarComfortLine =>
+      'मैं आपके साथ हूँ। आज अपने साथ नरमी से पेश आएँ।';
 
   @override
   String get avatarWelcomeLine => 'आपको फिर से देखकर अच्छा लगा।';

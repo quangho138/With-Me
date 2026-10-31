@@ -1666,13 +1666,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get avatarThanksLine => 'Cảm ơn bạn đã ghi nhận hôm nay.';
 
   @override
-  String get avatarComfortLine => 'Mình ở đây với bạn. Hôm nay hãy dịu dàng với chính mình nhé.';
+  String get avatarComfortLine =>
+      'Mình ở đây với bạn. Hôm nay hãy dịu dàng với chính mình nhé.';
 
   @override
   String get avatarWelcomeLine => 'Rất vui được gặp lại bạn.';
 
   @override
-  String get avatarJournalThanksLine => 'Cảm ơn bạn đã dành chút thời gian để suy ngẫm.';
+  String get avatarJournalThanksLine =>
+      'Cảm ơn bạn đã dành chút thời gian để suy ngẫm.';
 
   @override
   String get yourDayCalmingOffer => 'Thử một bài tập giúp bình tĩnh';

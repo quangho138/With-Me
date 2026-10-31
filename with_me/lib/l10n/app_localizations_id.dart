@@ -1663,13 +1663,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get avatarThanksLine => 'Terima kasih sudah check-in hari ini.';
 
   @override
-  String get avatarComfortLine => 'Aku di sini bersamamu. Bersikaplah lembut pada dirimu hari ini.';
+  String get avatarComfortLine =>
+      'Aku di sini bersamamu. Bersikaplah lembut pada dirimu hari ini.';
 
   @override
   String get avatarWelcomeLine => 'Senang bertemu kamu lagi.';
 
   @override
-  String get avatarJournalThanksLine => 'Terima kasih sudah meluangkan waktu untuk merenung.';
+  String get avatarJournalThanksLine =>
+      'Terima kasih sudah meluangkan waktu untuk merenung.';
 
   @override
   String get yourDayCalmingOffer => 'Coba latihan yang menenangkan';

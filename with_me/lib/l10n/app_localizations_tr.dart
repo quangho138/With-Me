@@ -1666,7 +1666,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get avatarWelcomeLine => 'Seni yeniden görmek güzel.';
 
   @override
-  String get avatarJournalThanksLine => 'Biraz durup düşünmeye zaman ayırdığın için teşekkürler.';
+  String get avatarJournalThanksLine =>
+      'Biraz durup düşünmeye zaman ayırdığın için teşekkürler.';
 
   @override
   String get yourDayCalmingOffer => 'Sakinleştirici bir egzersiz dene';

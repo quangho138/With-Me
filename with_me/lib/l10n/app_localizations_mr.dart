@@ -1669,13 +1669,15 @@ class AppLocalizationsMr extends AppLocalizations {
   String get avatarThanksLine => 'आज चेक-इन केल्याबद्दल धन्यवाद.';
 
   @override
-  String get avatarComfortLine => 'मी तुमच्यासोबत आहे. आज स्वतःशी हळुवारपणे वागा.';
+  String get avatarComfortLine =>
+      'मी तुमच्यासोबत आहे. आज स्वतःशी हळुवारपणे वागा.';
 
   @override
   String get avatarWelcomeLine => 'तुम्हाला पुन्हा पाहून आनंद झाला.';
 
   @override
-  String get avatarJournalThanksLine => 'थोडा वेळ थांबून विचार केल्याबद्दल धन्यवाद.';
+  String get avatarJournalThanksLine =>
+      'थोडा वेळ थांबून विचार केल्याबद्दल धन्यवाद.';
 
   @override
   String get yourDayCalmingOffer => 'मन शांत करणारा एक व्यायाम करून पाहा';

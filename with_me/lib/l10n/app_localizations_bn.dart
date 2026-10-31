@@ -1660,7 +1660,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get avatarThanksLine => 'আজ চেক-ইন করার জন্য ধন্যবাদ।';
 
   @override
-  String get avatarComfortLine => 'আমি আপনার পাশে আছি। আজ নিজের প্রতি একটু কোমল থাকুন।';
+  String get avatarComfortLine =>
+      'আমি আপনার পাশে আছি। আজ নিজের প্রতি একটু কোমল থাকুন।';
 
   @override
   String get avatarWelcomeLine => 'আবার দেখা হয়ে ভালো লাগছে।';

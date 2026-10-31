@@ -361,28 +361,26 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
     final a = _answers;
     final dimension = a.signDimension;
     return CheckInEntry(
-        day: day,
-        mood: a.mood == null ? null : _moodLabel(a.mood!),
-        perceivedControl: a.control,
-        stress: a.stress,
-        motivation: a.motivation,
-        area: a.area,
-        // Signs share the stressor's detail column, and only the chosen
-        // area's stressors and the chosen dimension's signs count; the others
-        // were left behind when the user changed their mind.
-        stressorDetail: [
-          ...a.stressors,
-          if (dimension != null) ...a.signs[dimension]!,
-        ],
-        stressorOther: a.stressorOther,
-        signDimension: dimension?.name,
-        signOther: dimension == null
-            ? null
-            : cleanOther(a.signOther[dimension]),
-        readiness: a.readiness,
-        intention: a.intention,
-        strategy: a.strategy,
-        action: a.action,
+      day: day,
+      mood: a.mood == null ? null : _moodLabel(a.mood!),
+      perceivedControl: a.control,
+      stress: a.stress,
+      motivation: a.motivation,
+      area: a.area,
+      // Signs share the stressor's detail column, and only the chosen
+      // area's stressors and the chosen dimension's signs count; the others
+      // were left behind when the user changed their mind.
+      stressorDetail: [
+        ...a.stressors,
+        if (dimension != null) ...a.signs[dimension]!,
+      ],
+      stressorOther: a.stressorOther,
+      signDimension: dimension?.name,
+      signOther: dimension == null ? null : cleanOther(a.signOther[dimension]),
+      readiness: a.readiness,
+      intention: a.intention,
+      strategy: a.strategy,
+      action: a.action,
       rating: a.rating > 0 ? a.rating : null,
     );
   }

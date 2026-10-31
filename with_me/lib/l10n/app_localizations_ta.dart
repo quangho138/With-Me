@@ -1697,7 +1697,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get avatarThanksLine => 'இன்று செக்-இன் செய்ததற்கு நன்றி.';
 
   @override
-  String get avatarComfortLine => 'நான் உங்களுடன் இருக்கிறேன். இன்று உங்களிடம் மென்மையாக இருங்கள்.';
+  String get avatarComfortLine =>
+      'நான் உங்களுடன் இருக்கிறேன். இன்று உங்களிடம் மென்மையாக இருங்கள்.';
 
   @override
   String get avatarWelcomeLine => 'உங்களை மீண்டும் பார்ப்பதில் மகிழ்ச்சி.';
@@ -1706,13 +1707,15 @@ class AppLocalizationsTa extends AppLocalizations {
   String get avatarJournalThanksLine => 'சற்று நேரம் சிந்தித்ததற்கு நன்றி.';
 
   @override
-  String get yourDayCalmingOffer => 'மனதை அமைதிப்படுத்தும் ஒரு பயிற்சியை முயற்சிக்கவும்';
+  String get yourDayCalmingOffer =>
+      'மனதை அமைதிப்படுத்தும் ஒரு பயிற்சியை முயற்சிக்கவும்';
 
   @override
   String get yourDayCheckInDone => 'இன்றைய செக்-இன் சேமிக்கப்பட்டது.';
 
   @override
-  String get yourDayNoCheckIn => 'இன்று இன்னும் எந்த செக்-இன்னும் சேமிக்கப்படவில்லை.';
+  String get yourDayNoCheckIn =>
+      'இன்று இன்னும் எந்த செக்-இன்னும் சேமிக்கப்படவில்லை.';
 
   @override
   String yourDayExercises(String count) {

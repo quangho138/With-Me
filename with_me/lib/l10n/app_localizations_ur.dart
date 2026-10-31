@@ -1670,7 +1670,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get avatarThanksLine => 'آج چیک اِن کرنے کا شکریہ۔';
 
   @override
-  String get avatarComfortLine => 'میں آپ کے ساتھ ہوں۔ آج اپنے ساتھ نرمی سے پیش آئیں۔';
+  String get avatarComfortLine =>
+      'میں آپ کے ساتھ ہوں۔ آج اپنے ساتھ نرمی سے پیش آئیں۔';
 
   @override
   String get avatarWelcomeLine => 'آپ کو دوبارہ دیکھ کر خوشی ہوئی۔';

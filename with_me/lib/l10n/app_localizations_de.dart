@@ -1693,7 +1693,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get avatarWelcomeLine => 'Schön, dich wiederzusehen.';
 
   @override
-  String get avatarJournalThanksLine => 'Danke, dass du dir einen Moment zum Nachdenken genommen hast.';
+  String get avatarJournalThanksLine =>
+      'Danke, dass du dir einen Moment zum Nachdenken genommen hast.';
 
   @override
   String get yourDayCalmingOffer => 'Eine beruhigende Übung ausprobieren';

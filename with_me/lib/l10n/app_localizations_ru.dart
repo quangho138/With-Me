@@ -1710,13 +1710,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get avatarThanksLine => 'Спасибо за сегодняшний чек-ин.';
 
   @override
-  String get avatarComfortLine => 'Я рядом с тобой. Будь бережнее к себе сегодня.';
+  String get avatarComfortLine =>
+      'Я рядом с тобой. Будь бережнее к себе сегодня.';
 
   @override
   String get avatarWelcomeLine => 'Рад снова тебя видеть.';
 
   @override
-  String get avatarJournalThanksLine => 'Спасибо, что нашлось время поразмышлять.';
+  String get avatarJournalThanksLine =>
+      'Спасибо, что нашлось время поразмышлять.';
 
   @override
   String get yourDayCalmingOffer => 'Попробовать успокаивающее упражнение';

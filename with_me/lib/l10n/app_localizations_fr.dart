@@ -1681,13 +1681,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get avatarThanksLine => 'Merci d’avoir fait ton bilan aujourd’hui.';
 
   @override
-  String get avatarComfortLine => 'Je suis là avec toi. Sois doux avec toi-même aujourd’hui.';
+  String get avatarComfortLine =>
+      'Je suis là avec toi. Sois doux avec toi-même aujourd’hui.';
 
   @override
   String get avatarWelcomeLine => 'Ça fait plaisir de te revoir.';
 
   @override
-  String get avatarJournalThanksLine => 'Merci d’avoir pris un moment pour réfléchir.';
+  String get avatarJournalThanksLine =>
+      'Merci d’avoir pris un moment pour réfléchir.';
 
   @override
   String get yourDayCalmingOffer => 'Essayer un exercice apaisant';
@@ -1696,7 +1698,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get yourDayCheckInDone => 'Le bilan du jour est enregistré.';
 
   @override
-  String get yourDayNoCheckIn => 'Aucun bilan enregistré aujourd’hui pour l’instant.';
+  String get yourDayNoCheckIn =>
+      'Aucun bilan enregistré aujourd’hui pour l’instant.';
 
   @override
   String yourDayExercises(String count) {

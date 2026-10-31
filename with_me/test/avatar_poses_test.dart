@@ -113,11 +113,31 @@ final List<PoseRow> table = [
   }, RealPose.think),
 
   PoseRow(8, 'no answer', (a, _) => a.readiness = null, RealPose.idle),
-  PoseRow(8, 'Not ready yet', (a, r) => a.readiness = _readiness(0, r), RealPose.sad),
-  PoseRow(8, 'A little ready', (a, r) => a.readiness = _readiness(1, r), RealPose.sad),
-  PoseRow(8, 'Somewhat ready', (a, r) => a.readiness = _readiness(2, r), RealPose.smirk),
+  PoseRow(
+    8,
+    'Not ready yet',
+    (a, r) => a.readiness = _readiness(0, r),
+    RealPose.sad,
+  ),
+  PoseRow(
+    8,
+    'A little ready',
+    (a, r) => a.readiness = _readiness(1, r),
+    RealPose.sad,
+  ),
+  PoseRow(
+    8,
+    'Somewhat ready',
+    (a, r) => a.readiness = _readiness(2, r),
+    RealPose.smirk,
+  ),
   PoseRow(8, 'Ready', (a, r) => a.readiness = _readiness(3, r), RealPose.happy),
-  PoseRow(8, 'Very ready', (a, r) => a.readiness = _readiness(4, r), RealPose.happy),
+  PoseRow(
+    8,
+    'Very ready',
+    (a, r) => a.readiness = _readiness(4, r),
+    RealPose.happy,
+  ),
 
   PoseRow(9, 'no strategy', (a, _) => a.strategy = null, RealPose.idle),
   PoseRow(9, 'a strategy picked', (a, r) {

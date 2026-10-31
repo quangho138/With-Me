@@ -1682,13 +1682,15 @@ class AppLocalizationsFil extends AppLocalizations {
   String get avatarThanksLine => 'Salamat sa pag-check-in ngayong araw.';
 
   @override
-  String get avatarComfortLine => 'Nandito ako para sa iyo. Maging mabait ka sa sarili mo ngayon.';
+  String get avatarComfortLine =>
+      'Nandito ako para sa iyo. Maging mabait ka sa sarili mo ngayon.';
 
   @override
   String get avatarWelcomeLine => 'Masaya akong makita ka ulit.';
 
   @override
-  String get avatarJournalThanksLine => 'Salamat sa paglaan ng sandali para magnilay.';
+  String get avatarJournalThanksLine =>
+      'Salamat sa paglaan ng sandali para magnilay.';
 
   @override
   String get yourDayCalmingOffer => 'Subukan ang isang nakakakalmang ehersisyo';

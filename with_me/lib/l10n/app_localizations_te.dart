@@ -1673,16 +1673,19 @@ class AppLocalizationsTe extends AppLocalizations {
   String get avatarThanksLine => 'ఈ రోజు చెక్-ఇన్ చేసినందుకు ధన్యవాదాలు.';
 
   @override
-  String get avatarComfortLine => 'నేను మీతోనే ఉన్నాను. ఈ రోజు మీ పట్ల మృదువుగా ఉండండి.';
+  String get avatarComfortLine =>
+      'నేను మీతోనే ఉన్నాను. ఈ రోజు మీ పట్ల మృదువుగా ఉండండి.';
 
   @override
   String get avatarWelcomeLine => 'మిమ్మల్ని మళ్లీ చూడటం సంతోషంగా ఉంది.';
 
   @override
-  String get avatarJournalThanksLine => 'కాసేపు ఆలోచించడానికి సమయం తీసుకున్నందుకు ధన్యవాదాలు.';
+  String get avatarJournalThanksLine =>
+      'కాసేపు ఆలోచించడానికి సమయం తీసుకున్నందుకు ధన్యవాదాలు.';
 
   @override
-  String get yourDayCalmingOffer => 'మనసును ప్రశాంతపరిచే ఒక వ్యాయామం ప్రయత్నించండి';
+  String get yourDayCalmingOffer =>
+      'మనసును ప్రశాంతపరిచే ఒక వ్యాయామం ప్రయత్నించండి';
 
   @override
   String get yourDayCheckInDone => 'ఈ రోజు చెక్-ఇన్ సేవ్ అయింది.';
