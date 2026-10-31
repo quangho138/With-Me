@@ -146,17 +146,17 @@ void main() {
       expectFourteenDays(m, midnight);
       expect(m.first, DateTime(2026, 10, 31, 0, 0));
 
-      const late = ClockTime(23, 59);
+      const lastMinute = ClockTime(23, 59);
       final l = dailyReminderTimes(
         now: DateTime(2026, 10, 30, 23, 58),
-        at: late,
+        at: lastMinute,
         checkedInToday: false,
       );
-      expectFourteenDays(l, late);
+      expectFourteenDays(l, lastMinute);
       expect(l.first, DateTime(2026, 10, 30, 23, 59));
       final after = dailyReminderTimes(
         now: DateTime(2026, 10, 30, 23, 59, 30),
-        at: late,
+        at: lastMinute,
         checkedInToday: false,
       );
       expect(after.first, DateTime(2026, 10, 31, 23, 59));

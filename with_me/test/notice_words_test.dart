@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:with_me/l10n/app_localizations.dart';

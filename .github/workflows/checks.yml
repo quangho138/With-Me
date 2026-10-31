@@ -32,8 +32,15 @@ jobs:
 
       # Code problems. Only real errors fail for now; the older warnings
       # are listed in the log so they can be cleaned up over time.
+      # On failure, each error is also added as a note on the check (file,
+      # line and message), so it can be read without the whole log.
       - name: Analyze
-        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+        run: |
+          flutter analyze --no-fatal-infos --no-fatal-warnings || {
+            dart analyze --format=machine . 2>/dev/null \
+              | awk -F'|' '$1=="ERROR" {printf "::error file=%s,line=%s,col=%s::%s\n", $4, $5, $6, $8}'
+            exit 1
+          }
 
       # The github reporter turns each failing test into a note on the
       # check, with its name and error, so a failure can be read without

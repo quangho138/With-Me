@@ -160,20 +160,22 @@ class ReminderService {
     );
     final lowToday =
         low != null &&
-        low.year == now.year &&
-        low.month == now.month &&
-        low.day == now.day;
+            low.year == now.year &&
+            low.month == now.month &&
+            low.day == now.day
+        ? low
+        : null;
     var exerciseSince = false;
-    if (lowToday) {
+    if (lowToday != null) {
       final sessions = await _exercises.sessionsBetween(now, now);
-      exerciseSince = sessions.any((x) => x.completedAt.isAfter(low));
+      exerciseSince = sessions.any((x) => x.completedAt.isAfter(lowToday));
     }
 
     final plan = planNotices(
       now: now,
       settings: s,
       checkedInToday: checkedInToday,
-      lowCheckInAt: lowToday ? low : null,
+      lowCheckInAt: lowToday,
       exerciseSinceLowCheckIn: exerciseSince,
       weeklyFactsReady: s.weekly && await _weeklyFactsReady(),
     );
