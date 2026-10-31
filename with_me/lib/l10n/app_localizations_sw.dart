@@ -1737,24 +1737,30 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dashProgressCheckInsYear => 'tathmini\nmwaka huu';
 
   @override
-  String get dashProgressPositiveTrend => 'Mwenendo mzuri';
-
-  @override
   String get dashProgressGettingStarted => 'Tunaanza';
 
   @override
   String get dashProgressKeepGoing => 'Endelea hivyo!';
 
   @override
-  String get dashProgressNoIntention => 'Bado hujaweka nia leo.';
+  String get dashTrendBetter => 'Wiki bora zaidi';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Nia ya leo: $intention · zoezi 1 limekamilika';
+  String get dashTrendSteady => 'Wiki tulivu';
+
+  @override
+  String get dashTrendHarder => 'Wiki ngumu zaidi';
+
+  @override
+  String get dashTrendCaption => 'Ikilinganishwa na wiki iliyopita';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'Mpango wa leo: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'kuwa na utulivu zaidi';
+  String get dashProgressNoIntention => 'Bado hujaweka nia leo.';
 
   @override
   String get dashDailyLogTitle => 'Daftari la Kila Siku';

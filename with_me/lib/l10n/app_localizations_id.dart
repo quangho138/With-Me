@@ -1726,25 +1726,31 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashProgressCheckInsYear => 'check-in\ntahun ini';
 
   @override
-  String get dashProgressPositiveTrend => 'Tren positif';
-
-  @override
   String get dashProgressGettingStarted => 'Baru memulai';
 
   @override
   String get dashProgressKeepGoing => 'Terus semangat!';
 
   @override
-  String get dashProgressNoIntention =>
-      'Belum ada niat yang ditetapkan hari ini.';
+  String get dashTrendBetter => 'Minggu lebih baik';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Niat hari ini: $intention · 1 latihan selesai';
+  String get dashTrendSteady => 'Minggu stabil';
+
+  @override
+  String get dashTrendHarder => 'Minggu lebih berat';
+
+  @override
+  String get dashTrendCaption => 'Dibanding minggu lalu';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'Rencana hari ini: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'merasa lebih tenang';
+  String get dashProgressNoIntention =>
+      'Belum ada niat yang ditetapkan hari ini.';
 
   @override
   String get dashDailyLogTitle => 'Catatan Harian';

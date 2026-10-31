@@ -1738,25 +1738,31 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashProgressCheckInsYear => 'registros\neste año';
 
   @override
-  String get dashProgressPositiveTrend => 'Tendencia positiva';
-
-  @override
   String get dashProgressGettingStarted => 'Empezando';
 
   @override
   String get dashProgressKeepGoing => '¡Sigue así!';
 
   @override
-  String get dashProgressNoIntention =>
-      'Todavía no hay una intención para hoy.';
+  String get dashTrendBetter => 'Mejor semana';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Intención de hoy: $intention · 1 ejercicio hecho';
+  String get dashTrendSteady => 'Semana estable';
+
+  @override
+  String get dashTrendHarder => 'Semana más difícil';
+
+  @override
+  String get dashTrendCaption => 'Comparada con la semana pasada';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'Plan de hoy: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'sentir más calma';
+  String get dashProgressNoIntention =>
+      'Todavía no hay una intención para hoy.';
 
   @override
   String get dashDailyLogTitle => 'Registro diario';

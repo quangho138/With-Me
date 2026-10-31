@@ -1722,24 +1722,30 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashProgressCheckInsYear => 'চেক-ইন\nএই বছরে';
 
   @override
-  String get dashProgressPositiveTrend => 'ইতিবাচক প্রবণতা';
-
-  @override
   String get dashProgressGettingStarted => 'শুরু হচ্ছে';
 
   @override
   String get dashProgressKeepGoing => 'চালিয়ে যান!';
 
   @override
-  String get dashProgressNoIntention => 'আজ এখনও কোনো ইচ্ছা ঠিক করা হয়নি।';
+  String get dashTrendBetter => 'ভালো সপ্তাহ';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'আজকের ইচ্ছা: $intention · 1টি অনুশীলন শেষ';
+  String get dashTrendSteady => 'স্থির সপ্তাহ';
+
+  @override
+  String get dashTrendHarder => 'কঠিন সপ্তাহ';
+
+  @override
+  String get dashTrendCaption => 'গত সপ্তাহের সাথে তুলনা';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'আজকের পরিকল্পনা: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'আরও শান্ত বোধ করা';
+  String get dashProgressNoIntention => 'আজ এখনও কোনো ইচ্ছা ঠিক করা হয়নি।';
 
   @override
   String get dashDailyLogTitle => 'দৈনিক লগ';

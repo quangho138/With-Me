@@ -1745,25 +1745,31 @@ class AppLocalizationsFil extends AppLocalizations {
   String get dashProgressCheckInsYear => 'check-in\nngayong taon';
 
   @override
-  String get dashProgressPositiveTrend => 'Positibong takbo';
-
-  @override
   String get dashProgressGettingStarted => 'Nagsisimula pa lang';
 
   @override
   String get dashProgressKeepGoing => 'Ituloy mo lang!';
 
   @override
-  String get dashProgressNoIntention =>
-      'Wala ka pang itinakdang hangarin ngayong araw.';
+  String get dashTrendBetter => 'Mas magaang linggo';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Hangarin ngayong araw: $intention · 1 ehersisyo ang tapos';
+  String get dashTrendSteady => 'Panatag na linggo';
+
+  @override
+  String get dashTrendHarder => 'Mas mabigat na linggo';
+
+  @override
+  String get dashTrendCaption => 'Kumpara sa nakaraang linggo';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'Plano ngayon: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'maging mas kalmado';
+  String get dashProgressNoIntention =>
+      'Wala ka pang itinakdang hangarin ngayong araw.';
 
   @override
   String get dashDailyLogTitle => 'Talaarawan';

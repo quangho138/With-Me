@@ -1737,24 +1737,30 @@ class AppLocalizationsTe extends AppLocalizations {
   String get dashProgressCheckInsYear => 'చెక్-ఇన్‌లు\nఈ సంవత్సరం';
 
   @override
-  String get dashProgressPositiveTrend => 'సానుకూల ధోరణి';
-
-  @override
   String get dashProgressGettingStarted => 'ప్రారంభ దశ';
 
   @override
   String get dashProgressKeepGoing => 'ఇలాగే కొనసాగండి!';
 
   @override
-  String get dashProgressNoIntention => 'ఈ రోజు ఇంకా సంకల్పం పెట్టుకోలేదు.';
+  String get dashTrendBetter => 'మెరుగైన వారం';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'ఈ రోజు సంకల్పం: $intention · 1 వ్యాయామం పూర్తి';
+  String get dashTrendSteady => 'స్థిరమైన వారం';
+
+  @override
+  String get dashTrendHarder => 'కష్టమైన వారం';
+
+  @override
+  String get dashTrendCaption => 'గత వారంతో పోలిస్తే';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'ఈ రోజు ప్లాన్: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'మరింత ప్రశాంతత';
+  String get dashProgressNoIntention => 'ఈ రోజు ఇంకా సంకల్పం పెట్టుకోలేదు.';
 
   @override
   String get dashDailyLogTitle => 'రోజువారీ లాగ్';

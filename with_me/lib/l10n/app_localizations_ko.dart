@@ -1657,24 +1657,30 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashProgressCheckInsYear => '올해\n체크인';
 
   @override
-  String get dashProgressPositiveTrend => '좋은 흐름';
-
-  @override
   String get dashProgressGettingStarted => '첫걸음';
 
   @override
   String get dashProgressKeepGoing => '이대로 계속!';
 
   @override
-  String get dashProgressNoIntention => '오늘의 다짐을 아직 정하지 않았어요.';
+  String get dashTrendBetter => '더 나은 한 주';
 
   @override
-  String dashProgressIntention(String intention) {
-    return '오늘의 다짐: $intention · 연습 1회 완료';
+  String get dashTrendSteady => '평온한 한 주';
+
+  @override
+  String get dashTrendHarder => '더 힘든 한 주';
+
+  @override
+  String get dashTrendCaption => '지난주와 비교';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return '오늘의 계획: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => '더 차분해지기';
+  String get dashProgressNoIntention => '오늘의 다짐을 아직 정하지 않았어요.';
 
   @override
   String get dashDailyLogTitle => '하루 기록';

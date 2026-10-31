@@ -1650,24 +1650,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashProgressCheckInsYear => '今年\n打卡次数';
 
   @override
-  String get dashProgressPositiveTrend => '积极趋势';
-
-  @override
   String get dashProgressGettingStarted => '刚刚起步';
 
   @override
   String get dashProgressKeepGoing => '继续加油！';
 
   @override
-  String get dashProgressNoIntention => '今天还没有设定目标。';
+  String get dashTrendBetter => '更好的一周';
 
   @override
-  String dashProgressIntention(String intention) {
-    return '今日目标：$intention · 已完成1次练习';
+  String get dashTrendSteady => '平稳的一周';
+
+  @override
+  String get dashTrendHarder => '更难的一周';
+
+  @override
+  String get dashTrendCaption => '与上周相比';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return '今天的计划：$plan';
   }
 
   @override
-  String get dashProgressIntentionSample => '感觉更平静';
+  String get dashProgressNoIntention => '今天还没有设定目标。';
 
   @override
   String get dashDailyLogTitle => '每日记录';
@@ -3902,24 +3908,30 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashProgressCheckInsYear => '今年\n打卡次數';
 
   @override
-  String get dashProgressPositiveTrend => '積極趨勢';
-
-  @override
   String get dashProgressGettingStarted => '剛剛起步';
 
   @override
   String get dashProgressKeepGoing => '繼續加油！';
 
   @override
-  String get dashProgressNoIntention => '今天還沒有設定目標。';
+  String get dashTrendBetter => '更好的一週';
 
   @override
-  String dashProgressIntention(String intention) {
-    return '今日目標：$intention · 已完成1次練習';
+  String get dashTrendSteady => '平穩的一週';
+
+  @override
+  String get dashTrendHarder => '更難的一週';
+
+  @override
+  String get dashTrendCaption => '與上週相比';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return '今天的計畫：$plan';
   }
 
   @override
-  String get dashProgressIntentionSample => '感覺更平靜';
+  String get dashProgressNoIntention => '今天還沒有設定目標。';
 
   @override
   String get dashDailyLogTitle => '每日記錄';
