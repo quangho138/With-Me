@@ -2361,5 +2361,20 @@ class AppLocalizationsTe extends AppLocalizations {
       'మీ డేటాను ఎగుమతి చేయలేకపోయాం. మళ్లీ ప్రయత్నించండి.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$timeకి మీ ఖాతాలో సేవ్ అయింది';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$dateన మీ ఖాతాలో సేవ్ అయింది';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$date నుండి మీ తాజా మార్పులు మీ ఖాతాకు చేరలేదు. అవి ఈ ఫోన్‌లో సురక్షితంగా ఉన్నాయి, కనెక్షన్ మళ్లీ పనిచేసినప్పుడు పంపబడతాయి.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'మీ ఖాతాను తొలగించలేకపోయాం.';
 }

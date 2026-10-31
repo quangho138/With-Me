@@ -2251,5 +2251,20 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsExportFailed => 'データをエクスポートできませんでした。もう一度お試しください。';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$timeにアカウントへ保存しました';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$dateにアカウントへ保存しました';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$dateから最近の変更がアカウントに届いていません。この端末に安全に保存されていて、接続が戻ると送信されます。';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'アカウントを削除できませんでした。';
 }

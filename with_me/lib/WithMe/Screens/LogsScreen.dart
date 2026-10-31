@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
+import '../../Repositories/check_in_repository.dart';
+import '../../Repositories/reflection_repository.dart';
 import '../../l10n/l10n.dart';
 import '../../Repositories/app_repositories.dart';
 import '../Components/WithMeCards.dart';
@@ -38,6 +40,20 @@ class _LogsScreenState extends State<LogsScreen> {
   @override
   void initState() {
     super.initState();
+    // Sync can bring days from the account while this screen is open.
+    CheckInRepository.saves.addListener(_load);
+    ReflectionRepository.saves.addListener(_load);
+    _load();
+  }
+
+  @override
+  void dispose() {
+    CheckInRepository.saves.removeListener(_load);
+    ReflectionRepository.saves.removeListener(_load);
+    super.dispose();
+  }
+
+  void _load() {
     AppRepositories.reflections
         .all()
         .catchError((_) {

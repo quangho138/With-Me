@@ -2348,5 +2348,20 @@ class AppLocalizationsMr extends AppLocalizations {
       'तुमचा डेटा एक्सपोर्ट करता आला नाही. पुन्हा प्रयत्न करा.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$time वाजता तुमच्या खात्यात सेव्ह झाले';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$date रोजी तुमच्या खात्यात सेव्ह झाले';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$date पासून तुमचे नवीन बदल तुमच्या खात्यात पोहोचलेले नाहीत. ते या फोनवर सुरक्षित आहेत आणि कनेक्शन पुन्हा चालू झाल्यावर पाठवले जातील.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'तुमचे खाते हटवता आले नाही.';
 }

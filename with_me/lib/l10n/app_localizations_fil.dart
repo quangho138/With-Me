@@ -2372,5 +2372,20 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi ma-export ang iyong data. Subukan ulit.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Na-save sa account mo nang $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Na-save sa account mo noong $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Hindi pa nakakarating sa account mo ang mga pinakabagong pagbabago mula noong $date. Ligtas ang mga ito sa phone na ito at ipapadala kapag gumana ulit ang koneksyon.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'Hindi mabura ang iyong account.';
 }

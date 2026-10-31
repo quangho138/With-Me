@@ -2391,5 +2391,20 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось экспортировать данные. Попробуй ещё раз.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Сохранено в аккаунте в $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Сохранено в аккаунте $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Твои последние изменения не доходят до аккаунта с $date. Они в безопасности на этом телефоне и будут отправлены, когда связь заработает снова.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'Не удалось удалить аккаунт.';
 }

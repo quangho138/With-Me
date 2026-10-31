@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Всё равно выйти",
   "menuStayLoggedIn": "Остаться в аккаунте",
   "settingsExportFailed": "Не удалось экспортировать данные. Попробуй ещё раз.",
+  "settingsSyncSavedAt": "Сохранено в аккаунте в {time}",
+  "settingsSyncSavedOn": "Сохранено в аккаунте {date}",
+  "settingsSyncFailing": "Твои последние изменения не доходят до аккаунта с {date}. Они в безопасности на этом телефоне и будут отправлены, когда связь заработает снова.",
   "settingsDeleteAccountFailed": "Не удалось удалить аккаунт."
 }

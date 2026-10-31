@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
+import '../../Repositories/check_in_repository.dart';
 import '../../l10n/l10n.dart';
 import '../../l10n/labels.dart';
 import '../../Repositories/app_repositories.dart';
@@ -36,7 +37,15 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
   @override
   void initState() {
     super.initState();
+    // Sync can bring days from the account while this screen is open.
+    CheckInRepository.saves.addListener(_load);
     _load();
+  }
+
+  @override
+  void dispose() {
+    CheckInRepository.saves.removeListener(_load);
+    super.dispose();
   }
 
   Future<void> _load() async {

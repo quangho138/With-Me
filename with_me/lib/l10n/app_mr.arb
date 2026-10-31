@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "तरीही लॉग आउट करा",
   "menuStayLoggedIn": "लॉग इन राहा",
   "settingsExportFailed": "तुमचा डेटा एक्सपोर्ट करता आला नाही. पुन्हा प्रयत्न करा.",
+  "settingsSyncSavedAt": "{time} वाजता तुमच्या खात्यात सेव्ह झाले",
+  "settingsSyncSavedOn": "{date} रोजी तुमच्या खात्यात सेव्ह झाले",
+  "settingsSyncFailing": "{date} पासून तुमचे नवीन बदल तुमच्या खात्यात पोहोचलेले नाहीत. ते या फोनवर सुरक्षित आहेत आणि कनेक्शन पुन्हा चालू झाल्यावर पाठवले जातील.",
   "settingsDeleteAccountFailed": "तुमचे खाते हटवता आले नाही."
 }

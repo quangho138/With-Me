@@ -2385,5 +2385,20 @@ class AppLocalizationsTa extends AppLocalizations {
       'உங்கள் தரவை ஏற்றுமதி செய்ய முடியவில்லை. மீண்டும் முயலுங்கள்.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$time மணிக்கு உங்கள் கணக்கில் சேமிக்கப்பட்டது';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$date அன்று உங்கள் கணக்கில் சேமிக்கப்பட்டது';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$date முதல் உங்கள் சமீபத்திய மாற்றங்கள் உங்கள் கணக்கை அடையவில்லை. அவை இந்தச் சாதனத்தில் பாதுகாப்பாக உள்ளன, இணைப்பு மீண்டும் வேலை செய்யும்போது அனுப்பப்படும்.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'உங்கள் கணக்கை நீக்க முடியவில்லை.';
 }

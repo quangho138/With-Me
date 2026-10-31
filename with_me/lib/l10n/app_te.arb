@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "అయినా లాగ్ అవుట్ చేయండి",
   "menuStayLoggedIn": "లాగిన్‌లోనే ఉండండి",
   "settingsExportFailed": "మీ డేటాను ఎగుమతి చేయలేకపోయాం. మళ్లీ ప్రయత్నించండి.",
+  "settingsSyncSavedAt": "{time}కి మీ ఖాతాలో సేవ్ అయింది",
+  "settingsSyncSavedOn": "{date}న మీ ఖాతాలో సేవ్ అయింది",
+  "settingsSyncFailing": "{date} నుండి మీ తాజా మార్పులు మీ ఖాతాకు చేరలేదు. అవి ఈ ఫోన్‌లో సురక్షితంగా ఉన్నాయి, కనెక్షన్ మళ్లీ పనిచేసినప్పుడు పంపబడతాయి.",
   "settingsDeleteAccountFailed": "మీ ఖాతాను తొలగించలేకపోయాం."
 }

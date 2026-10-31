@@ -2369,6 +2369,21 @@ class AppLocalizationsFr extends AppLocalizations {
       'Impossible d\'exporter tes données. Réessaie.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Enregistré dans ton compte à $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Enregistré dans ton compte le $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Tes dernières modifications n’ont pas atteint ton compte depuis le $date. Elles sont en sécurité sur ce téléphone et seront envoyées quand la connexion fonctionnera à nouveau.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed =>
       'Impossible de supprimer ton compte.';
 }

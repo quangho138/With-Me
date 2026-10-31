@@ -2390,5 +2390,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsExportFailed => 'تعذّر تصدير بياناتك. حاول مرة أخرى.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'تم الحفظ في حسابك الساعة $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'تم الحفظ في حسابك يوم $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'لم تصل آخر تغييراتك إلى حسابك منذ $date. إنها محفوظة بأمان على هذا الجهاز وسيتم إرسالها عندما يعمل الاتصال مجددًا.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'تعذّر حذف حسابك.';
 }

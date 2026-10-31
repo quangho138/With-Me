@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "그래도 로그아웃",
   "menuStayLoggedIn": "로그인 유지",
   "settingsExportFailed": "데이터를 내보내지 못했어요. 다시 시도해 주세요.",
+  "settingsSyncSavedAt": "{time}에 계정에 저장됨",
+  "settingsSyncSavedOn": "{date}에 계정에 저장됨",
+  "settingsSyncFailing": "{date}부터 최근 변경 사항이 계정에 전달되지 않았어요. 이 기기에 안전하게 보관되어 있고, 연결이 다시 되면 보내져요.",
   "settingsDeleteAccountFailed": "계정을 삭제하지 못했어요."
 }

@@ -2348,5 +2348,20 @@ class AppLocalizationsUr extends AppLocalizations {
       'آپ کا ڈیٹا ایکسپورٹ نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$time پر آپ کے اکاؤنٹ میں محفوظ ہوا';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$date کو آپ کے اکاؤنٹ میں محفوظ ہوا';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$date سے آپ کی تازہ تبدیلیاں آپ کے اکاؤنٹ تک نہیں پہنچیں۔ وہ اس فون پر محفوظ ہیں اور کنکشن دوبارہ چلنے پر بھیج دی جائیں گی۔';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'آپ کا اکاؤنٹ حذف نہیں ہو سکا۔';
 }

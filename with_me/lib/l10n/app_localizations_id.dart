@@ -2345,5 +2345,20 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsExportFailed => 'Tidak bisa mengekspor datamu. Coba lagi.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return 'Tersimpan di akunmu pukul $time';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return 'Tersimpan di akunmu pada $date';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return 'Perubahan terbarumu belum sampai ke akunmu sejak $date. Semuanya aman di ponsel ini dan akan dikirim saat koneksi berfungsi lagi.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => 'Tidak bisa menghapus akunmu.';
 }

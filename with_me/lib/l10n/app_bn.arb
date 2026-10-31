@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "তবুও লগ আউট করুন",
   "menuStayLoggedIn": "লগ ইন থাকুন",
   "settingsExportFailed": "আপনার ডেটা এক্সপোর্ট করা যায়নি। আবার চেষ্টা করুন।",
+  "settingsSyncSavedAt": "{time}-এ আপনার অ্যাকাউন্টে সেভ হয়েছে",
+  "settingsSyncSavedOn": "{date} তারিখে আপনার অ্যাকাউন্টে সেভ হয়েছে",
+  "settingsSyncFailing": "{date} থেকে আপনার সাম্প্রতিক পরিবর্তনগুলো অ্যাকাউন্টে পৌঁছায়নি। সেগুলো এই ডিভাইসে নিরাপদে আছে এবং সংযোগ আবার কাজ করলে পাঠানো হবে।",
   "settingsDeleteAccountFailed": "আপনার অ্যাকাউন্ট মোছা যায়নি।"
 }

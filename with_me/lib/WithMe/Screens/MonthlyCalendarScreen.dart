@@ -42,6 +42,8 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
   @override
   void initState() {
     super.initState();
+    // Sync can bring days from the account while this screen is open.
+    CheckInRepository.saves.addListener(_load);
     _load();
     AppRepositories.users
         .displayName()
@@ -49,6 +51,12 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
           if (mounted) setState(() => _name = n);
         })
         .catchError((_) {});
+  }
+
+  @override
+  void dispose() {
+    CheckInRepository.saves.removeListener(_load);
+    super.dispose();
   }
 
   static bool _isToday(DateTime date) {

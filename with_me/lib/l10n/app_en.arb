@@ -3104,5 +3104,32 @@
   "menuLogOutAnyway": "Log out anyway",
   "menuStayLoggedIn": "Stay logged in",
   "settingsExportFailed": "Couldn't export your data. Try again.",
+  "settingsSyncSavedAt": "Saved to your account at {time}",
+  "@settingsSyncSavedAt": {
+    "description": "Settings, logged in: the phone last reached the account today. {time} is a clock time, e.g. '2:14 PM'.",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsSyncSavedOn": "Saved to your account on {date}",
+  "@settingsSyncSavedOn": {
+    "description": "Settings, logged in: the phone last reached the account on an earlier day. {date} is e.g. '30 October'.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsSyncFailing": "Your latest changes have not reached your account since {date}. They are safe on this phone and will be sent when the connection works again.",
+  "@settingsSyncFailing": {
+    "description": "Settings, logged in: syncing has failed for a day or more. {date} is when it started failing. Calm, no blame.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "settingsDeleteAccountFailed": "Couldn't delete your account."
 }

@@ -1,15 +1,19 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat;
 import 'package:share_plus/share_plus.dart';
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/export_service.dart';
+import '../../Repositories/sync_service.dart';
 import '../../Repositories/user_repository.dart';
 import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/WithMeCharts.dart' show dateLocale;
+import '../Data/Today.dart';
 import '../Locale/AppLanguage.dart';
 import '../Speech/SpeechService.dart';
 import '../Theme/WithMeTheme.dart';
@@ -37,6 +41,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool _sound = true;
   bool _haptics = true;
   bool _voice = true;
+
+  /// Logged in to an account, so the sync line is shown. Guests never sync.
+  bool _account = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSync();
+  }
+
+  Future<void> _loadSync() async {
+    try {
+      if (await AppRepositories.users.session() != SessionKind.account) {
+        return;
+      }
+      await AppRepositories.sync.loadStatus();
+    } catch (_) {
+      return; // No account or no database: no line.
+    }
+    if (mounted) setState(() => _account = true);
+  }
+
+  /// "Saved to your account at 2:14 PM", "... on 30 October", or, after a
+  /// day or more of failed syncs, a plain note that the changes are safe on
+  /// this phone. Null when there is nothing to say.
+  String? _syncLine(AppLocalizations l, SyncStatus status) {
+    final now = Today.now();
+    final locale = Localizations.maybeLocaleOf(context) == null
+        ? null
+        : dateLocale(context);
+    final known = locale != null && DateFormat.localeExists(locale)
+        ? locale
+        : null;
+    String date(DateTime d) => DateFormat('d MMMM', known).format(d);
+    bool isToday(DateTime d) =>
+        d.year == now.year && d.month == now.month && d.day == now.day;
+    switch (syncLineFor(status, now)) {
+      case SyncLineKind.none:
+        return null;
+      case SyncLineKind.failing:
+        return l.settingsSyncFailing(date(status.failingSince!.toLocal()));
+      case SyncLineKind.saved:
+        final saved = status.lastSaved!.toLocal();
+        return isToday(saved)
+            ? l.settingsSyncSavedAt(DateFormat.jm(known).format(saved))
+            : l.settingsSyncSavedOn(date(saved));
+    }
+  }
 
   void _notWired(String what) => ScaffoldMessenger.of(
     context,
@@ -147,6 +199,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (_account)
+            ValueListenableBuilder<SyncStatus>(
+              valueListenable: AppRepositories.sync.status,
+              builder: (context, status, _) {
+                final line = _syncLine(l, status);
+                if (line == null) return const SizedBox.shrink();
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: ScenicPanel(
+                    padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                    child: Row(
+                      children: [
+                        Icon(
+                          syncLineFor(status, Today.now()) ==
+                                  SyncLineKind.failing
+                              ? Icons.cloud_off_rounded
+                              : Icons.cloud_done_rounded,
+                          size: 22,
+                          color: ScenicColors.pillBottom,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(child: Text(line, style: kScenicBody)),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
           ScenicToggleRow(
             label: l.settingsSoundEffects,
             icon: Icons.volume_up_rounded,

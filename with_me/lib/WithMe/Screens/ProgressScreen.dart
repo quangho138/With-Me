@@ -43,7 +43,15 @@ class _ProgressScreenState extends State<ProgressScreen> {
   @override
   void initState() {
     super.initState();
+    // Sync can bring days from the account while this screen is open.
+    CheckInRepository.saves.addListener(_load);
     _load();
+  }
+
+  @override
+  void dispose() {
+    CheckInRepository.saves.removeListener(_load);
+    super.dispose();
   }
 
   Future<void> _load() async {

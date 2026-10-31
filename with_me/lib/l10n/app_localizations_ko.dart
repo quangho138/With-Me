@@ -2250,5 +2250,20 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsExportFailed => '데이터를 내보내지 못했어요. 다시 시도해 주세요.';
 
   @override
+  String settingsSyncSavedAt(String time) {
+    return '$time에 계정에 저장됨';
+  }
+
+  @override
+  String settingsSyncSavedOn(String date) {
+    return '$date에 계정에 저장됨';
+  }
+
+  @override
+  String settingsSyncFailing(String date) {
+    return '$date부터 최근 변경 사항이 계정에 전달되지 않았어요. 이 기기에 안전하게 보관되어 있고, 연결이 다시 되면 보내져요.';
+  }
+
+  @override
   String get settingsDeleteAccountFailed => '계정을 삭제하지 못했어요.';
 }

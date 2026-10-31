@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "仍然退出登录",
   "menuStayLoggedIn": "保持登录",
   "settingsExportFailed": "无法导出你的数据。请再试一次。",
+  "settingsSyncSavedAt": "已于 {time} 保存到你的账户",
+  "settingsSyncSavedOn": "已于{date}保存到你的账户",
+  "settingsSyncFailing": "自{date}起，你最近的更改还没有到达你的账户。它们安全地保存在这部手机上，连接恢复后会自动发送。",
   "settingsDeleteAccountFailed": "无法删除你的账户。"
 }

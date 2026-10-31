@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "Sair mesmo assim",
   "menuStayLoggedIn": "Continuar conectado",
   "settingsExportFailed": "Não foi possível exportar seus dados. Tente de novo.",
+  "settingsSyncSavedAt": "Salvo na sua conta às {time}",
+  "settingsSyncSavedOn": "Salvo na sua conta em {date}",
+  "settingsSyncFailing": "Suas últimas alterações não chegam à sua conta desde {date}. Elas estão seguras neste aparelho e serão enviadas quando a conexão voltar a funcionar.",
   "settingsDeleteAccountFailed": "Não foi possível excluir sua conta."
 }

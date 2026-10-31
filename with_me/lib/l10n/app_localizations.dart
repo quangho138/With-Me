@@ -4007,6 +4007,24 @@ abstract class AppLocalizations {
   /// **'Couldn\'t export your data. Try again.'**
   String get settingsExportFailed;
 
+  /// Settings, logged in: the phone last reached the account today. {time} is a clock time, e.g. '2:14 PM'.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to your account at {time}'**
+  String settingsSyncSavedAt(String time);
+
+  /// Settings, logged in: the phone last reached the account on an earlier day. {date} is e.g. '30 October'.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to your account on {date}'**
+  String settingsSyncSavedOn(String date);
+
+  /// Settings, logged in: syncing has failed for a day or more. {date} is when it started failing. Calm, no blame.
+  ///
+  /// In en, this message translates to:
+  /// **'Your latest changes have not reached your account since {date}. They are safe on this phone and will be sent when the connection works again.'**
+  String settingsSyncFailing(String date);
+
   /// No description provided for @settingsDeleteAccountFailed.
   ///
   /// In en, this message translates to:

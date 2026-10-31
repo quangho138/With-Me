@@ -644,5 +644,8 @@
   "menuLogOutAnyway": "仍然登出",
   "menuStayLoggedIn": "保持登入",
   "settingsExportFailed": "無法匯出你的資料。請再試一次。",
+  "settingsSyncSavedAt": "已於 {time} 儲存到你的帳戶",
+  "settingsSyncSavedOn": "已於{date}儲存到你的帳戶",
+  "settingsSyncFailing": "自{date}起，你最近的變更還沒有到達你的帳戶。它們安全地保存在這支手機上，連線恢復後會自動傳送。",
   "settingsDeleteAccountFailed": "無法刪除你的帳戶。"
 }
