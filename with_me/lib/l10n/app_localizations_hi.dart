@@ -1611,7 +1611,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dashDayStrategy => 'रणनीति';
 
   @override
-  String get dashEntryLocked => 'लॉक — एंट्री 24 घंटे तक ही बदली जा सकती है।';
+  String get dashEntryLocked =>
+      'लॉक है: एंट्री उसी दिन और अगले दिन बदली जा सकती है।';
 
   @override
   String get dashEntryEditable => 'इस एंट्री को आज अभी भी बदला जा सकता है।';
@@ -1693,6 +1694,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date का चेक-इन सेव हो गया है।';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'इसे भरने के लिए धन्यवाद।';
+
+  @override
+  String get noticeDailyBody => 'आपका चेक-इन तैयार है, जब भी आप चाहें।';
+
+  @override
+  String get noticeNudgeBody =>
+      'साँस लेने का एक छोटा अभ्यास तैयार है, जब भी आप चाहें।';
+
+  @override
+  String get noticeWeeklyBody =>
+      'With Me में आपका हफ़्ता देखने के लिए तैयार है।';
 
   @override
   String get dashProgressTitle => 'आपकी प्रगति';

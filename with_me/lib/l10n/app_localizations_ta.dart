@@ -1645,7 +1645,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'பூட்டப்பட்டது — பதிவுகளை 24 மணி நேரம் வரை மட்டுமே திருத்தலாம்.';
+      'பூட்டப்பட்டது: பதிவுகளை அதே நாளிலும் அடுத்த நாளிலும் மாற்றலாம்.';
 
   @override
   String get dashEntryEditable => 'இந்தப் பதிவை இன்று இன்னும் திருத்தலாம்.';
@@ -1729,6 +1729,21 @@ class AppLocalizationsTa extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date செக்-இன் சேமிக்கப்பட்டது.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'இதை நிரப்பியதற்கு நன்றி.';
+
+  @override
+  String get noticeDailyBody =>
+      'உங்கள் செக்-இன் தயாராக உள்ளது, நீங்கள் விரும்பும்போது.';
+
+  @override
+  String get noticeNudgeBody =>
+      'ஒரு சிறிய மூச்சுப் பயிற்சி தயாராக உள்ளது, எப்போது வேண்டுமானாலும்.';
+
+  @override
+  String get noticeWeeklyBody =>
+      'With Me-இல் உங்கள் வாரம் பார்க்கத் தயாராக உள்ளது.';
 
   @override
   String get dashProgressTitle => 'உங்கள் முன்னேற்றம்';

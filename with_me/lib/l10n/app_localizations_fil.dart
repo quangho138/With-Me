@@ -1629,7 +1629,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Naka-lock — puwedeng i-edit ang mga tala sa loob ng 24 oras.';
+      'Naka-lock: mababago ang mga entry sa mismong araw at sa susunod na araw.';
 
   @override
   String get dashEntryEditable =>
@@ -1713,6 +1713,19 @@ class AppLocalizationsFil extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'Na-save na ang check-in para sa $date.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Salamat sa pagpuno nito.';
+
+  @override
+  String get noticeDailyBody => 'Handa na ang check-in mo kapag handa ka na.';
+
+  @override
+  String get noticeNudgeBody =>
+      'May maikling ehersisyo sa paghinga kapag gusto mo.';
+
+  @override
+  String get noticeWeeklyBody => 'Handa nang tingnan ang linggo mo sa With Me.';
 
   @override
   String get dashProgressTitle => 'Ang Iyong Progreso';

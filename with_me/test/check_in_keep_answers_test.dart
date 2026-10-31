@@ -181,6 +181,9 @@ void main() {
       expect(screen.reaction, AvatarReaction.thanks);
       expect(find.text(en.yourDayCheckInDoneOn('30 October')), findsOneWidget);
       expect(find.text(en.yourDayCheckInDone), findsNothing);
+      // The thank-you does not say today either.
+      expect(find.text(en.avatarThanksEarlierLine), findsOneWidget);
+      expect(find.text(en.avatarThanksLine), findsNothing);
     });
 
     testWidgets("today's check-in still says today", (tester) async {
