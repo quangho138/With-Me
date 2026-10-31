@@ -1688,6 +1688,14 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Isi check-in kemarin';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'Check-in untuk $date sudah tersimpan.';
+  }
+
+  @override
   String get dashProgressTitle => 'Perkembanganmu';
 
   @override

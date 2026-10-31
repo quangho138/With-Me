@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Na-save na ang check-in mo ngayong araw.",
   "yourDayNoCheckIn": "Wala pang na-save na check-in ngayong araw.",
   "yourDayExercises": "Mga ehersisyong natapos ngayon: {count}",
+  "dashFillInYesterday": "Punan ang check-in kahapon",
+  "yourDayCheckInDoneOn": "Na-save na ang check-in para sa {date}.",
   "dashProgressTitle": "Ang Iyong Progreso",
   "dashProgressTabWeek": "Linggo",
   "dashProgressTabMonth": "Buwan",

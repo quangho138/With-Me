@@ -2314,6 +2314,19 @@
       }
     }
   },
+  "dashFillInYesterday": "Fill in yesterday's check-in",
+  "@dashFillInYesterday": {
+    "description": "Button on yesterday's day detail: opens yesterday's check-in to fill in or change it."
+  },
+  "yourDayCheckInDoneOn": "The check-in for {date} is saved.",
+  "@yourDayCheckInDoneOn": {
+    "description": "Your day, after filling in an earlier day's check-in. {date} is that day, e.g. '30 October'.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "dashProgressTitle": "Your Progress",
   "@dashProgressTitle": {
     "description": "Title of the progress screen."

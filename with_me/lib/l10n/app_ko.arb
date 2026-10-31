@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "오늘의 체크인을 저장했어요.",
   "yourDayNoCheckIn": "오늘은 아직 저장된 체크인이 없어요.",
   "yourDayExercises": "오늘 마친 운동: {count}",
+  "dashFillInYesterday": "어제 체크인 작성하기",
+  "yourDayCheckInDoneOn": "{date} 체크인을 저장했어요.",
   "dashProgressTitle": "나의 성장",
   "dashProgressTabWeek": "주간",
   "dashProgressTabMonth": "월간",

@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Lần ghi nhận hôm nay đã được lưu.",
   "yourDayNoCheckIn": "Hôm nay chưa có lần ghi nhận nào được lưu.",
   "yourDayExercises": "Bài tập đã hoàn thành hôm nay: {count}",
+  "dashFillInYesterday": "Điền lần ghi nhận hôm qua",
+  "yourDayCheckInDoneOn": "Lần ghi nhận ngày {date} đã được lưu.",
   "dashProgressTitle": "Tiến trình của bạn",
   "dashProgressTabWeek": "Tuần",
   "dashProgressTabMonth": "Tháng",

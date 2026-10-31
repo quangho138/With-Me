@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "آج کا چیک اِن محفوظ ہو گیا ہے۔",
   "yourDayNoCheckIn": "آج ابھی تک کوئی چیک اِن محفوظ نہیں ہوا۔",
   "yourDayExercises": "آج مکمل کی گئی مشقیں: {count}",
+  "dashFillInYesterday": "کل کا چیک اِن مکمل کریں",
+  "yourDayCheckInDoneOn": "{date} کا چیک اِن محفوظ ہو گیا ہے۔",
   "dashProgressTitle": "آپ کی پیش رفت",
   "dashProgressTabWeek": "ہفتہ",
   "dashProgressTabMonth": "مہینہ",

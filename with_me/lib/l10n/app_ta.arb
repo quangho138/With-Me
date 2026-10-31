@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "இன்றைய செக்-இன் சேமிக்கப்பட்டது.",
   "yourDayNoCheckIn": "இன்று இன்னும் எந்த செக்-இன்னும் சேமிக்கப்படவில்லை.",
   "yourDayExercises": "இன்று முடித்த பயிற்சிகள்: {count}",
+  "dashFillInYesterday": "நேற்றைய செக்-இன்னை நிரப்புங்கள்",
+  "yourDayCheckInDoneOn": "{date} செக்-இன் சேமிக்கப்பட்டது.",
   "dashProgressTitle": "உங்கள் முன்னேற்றம்",
   "dashProgressTabWeek": "வாரம்",
   "dashProgressTabMonth": "மாதம்",

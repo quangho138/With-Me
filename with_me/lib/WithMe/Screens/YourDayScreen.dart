@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
@@ -7,6 +8,7 @@ import '../../l10n/labels.dart';
 import '../Components/AvatarReactionCard.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Data/Today.dart';
 import '../Data/avatar_reactions.dart';
 import '../Mascot/RealMascot.dart';
@@ -69,6 +71,17 @@ class _YourDayScreenState extends State<YourDayScreen> {
     });
   }
 
+  /// "30 October", in the reader's language (English without its data).
+  static String _dateOf(BuildContext context, DateTime day) {
+    final locale = Localizations.maybeLocaleOf(context) == null
+        ? null
+        : dateLocale(context);
+    return DateFormat(
+      'd MMMM',
+      locale != null && DateFormat.localeExists(locale) ? locale : null,
+    ).format(day);
+  }
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
@@ -78,7 +91,12 @@ class _YourDayScreenState extends State<YourDayScreen> {
     final action = entry?.action;
 
     final lines = <String>[
-      entry == null ? l.yourDayNoCheckIn : l.yourDayCheckInDone,
+      entry == null
+          ? l.yourDayNoCheckIn
+          : calendarDaysBetween(entry.day, Today.now()) == 0
+          ? l.yourDayCheckInDone
+          // Yesterday's check-in, filled in today: say which day was saved.
+          : l.yourDayCheckInDoneOn(_dateOf(context, entry.day)),
       if (strategy != null) l.checkinDetailStrategy(context.label(strategy)),
       if (action != null) l.checkinDetailAction(context.label(action)),
       if (_exercises > 0) l.yourDayExercises('$_exercises'),

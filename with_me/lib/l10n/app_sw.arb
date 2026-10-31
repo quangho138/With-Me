@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Tathmini ya leo imehifadhiwa.",
   "yourDayNoCheckIn": "Bado hakuna tathmini iliyohifadhiwa leo.",
   "yourDayExercises": "Mazoezi yaliyokamilika leo: {count}",
+  "dashFillInYesterday": "Jaza tathmini ya jana",
+  "yourDayCheckInDoneOn": "Tathmini ya {date} imehifadhiwa.",
   "dashProgressTitle": "Maendeleo Yako",
   "dashProgressTabWeek": "Wiki",
   "dashProgressTabMonth": "Mwezi",

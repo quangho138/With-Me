@@ -1684,6 +1684,14 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Fill in yesterday\'s check-in';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'The check-in for $date is saved.';
+  }
+
+  @override
   String get dashProgressTitle => 'Your Progress';
 
   @override

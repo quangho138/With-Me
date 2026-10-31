@@ -1735,6 +1735,14 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Заполнить вчерашний чек-ин';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'Чек-ин за $date сохранён.';
+  }
+
+  @override
   String get dashProgressTitle => 'Твой прогресс';
 
   @override

@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Der Check-in von heute ist gespeichert.",
   "yourDayNoCheckIn": "Heute ist noch kein Check-in gespeichert.",
   "yourDayExercises": "Heute beendete Übungen: {count}",
+  "dashFillInYesterday": "Check-in von gestern ausfüllen",
+  "yourDayCheckInDoneOn": "Der Check-in für den {date} ist gespeichert.",
   "dashProgressTitle": "Dein Fortschritt",
   "dashProgressTabWeek": "Woche",
   "dashProgressTabMonth": "Monat",

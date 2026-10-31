@@ -1620,6 +1620,14 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => '昨日のチェックインを入力する';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$dateのチェックインを保存しました。';
+  }
+
+  @override
   String get dashProgressTitle => 'あなたのあゆみ';
 
   @override

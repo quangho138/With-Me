@@ -1738,6 +1738,14 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'أكمل تسجيل حالة الأمس';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'تم حفظ تسجيل الحالة ليوم $date.';
+  }
+
+  @override
   String get dashProgressTitle => 'تقدّمك';
 
   @override

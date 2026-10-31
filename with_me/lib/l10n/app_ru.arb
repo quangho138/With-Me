@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Сегодняшний чек-ин сохранён.",
   "yourDayNoCheckIn": "Сегодня ещё нет сохранённого чек-ина.",
   "yourDayExercises": "Завершено упражнений сегодня: {count}",
+  "dashFillInYesterday": "Заполнить вчерашний чек-ин",
+  "yourDayCheckInDoneOn": "Чек-ин за {date} сохранён.",
   "dashProgressTitle": "Твой прогресс",
   "dashProgressTabWeek": "Неделя",
   "dashProgressTabMonth": "Месяц",

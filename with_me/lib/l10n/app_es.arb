@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "El registro de hoy está guardado.",
   "yourDayNoCheckIn": "Todavía no hay ningún registro guardado hoy.",
   "yourDayExercises": "Ejercicios terminados hoy: {count}",
+  "dashFillInYesterday": "Completar el registro de ayer",
+  "yourDayCheckInDoneOn": "El registro del {date} está guardado.",
   "dashProgressTitle": "Tu progreso",
   "dashProgressTabWeek": "Semana",
   "dashProgressTabMonth": "Mes",

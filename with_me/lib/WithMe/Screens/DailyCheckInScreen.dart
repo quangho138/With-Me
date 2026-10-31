@@ -55,7 +55,12 @@ class DailyCheckInScreen extends StatefulWidget {
     super.key,
     this.initialStep = 0,
     this.readAloud = false,
+    this.day,
   }) : assert(initialStep >= 0 && initialStep < pageCount);
+
+  /// The day this check-in is for. Null is today; the day detail screen
+  /// passes yesterday, which can still be filled in (decided 30 Oct, D12).
+  final DateTime? day;
 
   /// Which page to open on. The calendar lists every page, and tapping one
   /// starts there.
@@ -175,8 +180,16 @@ class DailyCheckInScreen extends StatefulWidget {
   State<DailyCheckInScreen> createState() => _DailyCheckInScreenState();
 }
 
-class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
+class _DailyCheckInScreenState extends State<DailyCheckInScreen>
+    with WidgetsBindingObserver {
   final _answers = CheckInAnswers();
+
+  /// The day the answers are loaded from and saved to.
+  late final DateTime _day = widget.day ?? Today.now();
+
+  /// Set once the check-in is finished, so leaving afterwards does not save
+  /// the answers a second time.
+  bool _finished = false;
 
   /// Where this visit began. The stressor and signs pages cannot open on
   /// their own - each needs the choice before it (the area, or body /
@@ -206,6 +219,7 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _loadSaved();
     if (widget.readAloud) {
       // The line starts once the first frame has put the page on screen;
@@ -252,16 +266,43 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     SpeechService.instance.stop(owner: this);
     _mouth.dispose();
     super.dispose();
   }
 
-  /// Starts the pages from today's saved check-in, if there is one.
+  /// The app going to the background (or being closed) keeps what was
+  /// answered so far.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.hidden ||
+        state == AppLifecycleState.detached) {
+      _keepAnswers();
+    }
+  }
+
+  /// Saves the answers given so far when the person leaves before
+  /// finishing - Back, or the app put away - so nothing they answered is
+  /// lost. Opening the check-in again starts from them. Finishing saves
+  /// them the usual way instead. A failed save is silent here: the person
+  /// is already leaving.
+  Future<void> _keepAnswers() async {
+    if (!_touched || _finished || _saving) return;
+    try {
+      await AppRepositories.checkIns.save(_entry(_day));
+      CheckInRepository.saves.value++;
+    } catch (_) {
+      // No database (the browser preview), or the write failed.
+    }
+  }
+
+  /// Starts the pages from the day's saved check-in, if there is one.
   Future<void> _loadSaved() async {
     CheckInEntry? saved;
     try {
-      saved = await AppRepositories.checkIns.entryOn(Today.now());
+      saved = await AppRepositories.checkIns.entryOn(_day);
     } catch (_) {
       // No database (the browser preview) - start blank.
       return;
@@ -306,8 +347,9 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Future<void> _finish() async {
     if (_saving) return;
     _saving = true;
+    _finished = true;
     final today = Today.now();
-    final entry = _entry(today);
+    final entry = _entry(_day);
 
     // The last checked-in day before today, for "back after a gap".
     DateTime? lastDay;
@@ -392,119 +434,126 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
   Widget build(BuildContext context) {
     // Every page sits on the beach, in the V2 reference's language: cream
     // speech bubble, sage tiles, the rendered companion, the teal pill.
-    return Scaffold(
-      body: ScenicBackdrop(
-        scene: 'sunset',
-        child: LayoutBuilder(
-          builder: (context, box) {
-            final h = box.maxHeight;
-            final w = box.maxWidth;
-            final insets = MediaQuery.paddingOf(context);
-            // Phone proportions on a tablet or a landscape window: the
-            // bubble and pill keep to a column rather than stretching.
-            final side = math.max(w * 0.07, (w - 480) / 2);
-            final pillSide = math.max(w * 0.1, (w - 420) / 2);
+    // Leaving before Finish (Back, or the phone's back gesture) keeps the
+    // answers so far.
+    return PopScope(
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) _keepAnswers();
+      },
+      child: Scaffold(
+        body: ScenicBackdrop(
+          scene: 'sunset',
+          child: LayoutBuilder(
+            builder: (context, box) {
+              final h = box.maxHeight;
+              final w = box.maxWidth;
+              final insets = MediaQuery.paddingOf(context);
+              // Phone proportions on a tablet or a landscape window: the
+              // bubble and pill keep to a column rather than stretching.
+              final side = math.max(w * 0.07, (w - 480) / 2);
+              final pillSide = math.max(w * 0.1, (w - 420) / 2);
 
-            return CustomMultiChildLayout(
-              delegate: _ScenicPageLayout(
-                insets: insets,
-                // The area grid and everything after it are tall, so the
-                // companion sits smaller there, as on the reference.
-                maxMascot: _index >= DailyCheckInScreen.areaPage
-                    ? h * 0.36
-                    : h * 0.45,
-              ),
-              children: [
-                // Painted first, so on a short screen the bubble overlaps
-                // the companion rather than the other way round.
-                LayoutId(
-                  id: _ScenicSlot.mascot,
-                  child: LayoutBuilder(
-                    builder: (context, slot) => Align(
-                      alignment: Alignment.bottomCenter,
-                      child: ValueListenableBuilder<bool>(
-                        valueListenable: _mouth,
-                        builder: (context, talking, _) => RealMascot(
-                          // A line on a page already answered (a saved
-                          // check-in, or a page visited before) is said in
-                          // the page's waiting pose, which has the mouths.
-                          // That pose holds from the moment the line is due,
-                          // through the wait for the audio, so nothing
-                          // changes but the mouth when it starts; the
-                          // answer's reaction shows when it ends.
-                          pose: _mouth.saying ? _waitingPose : _realPose,
-                          height: slot.maxHeight,
-                          talking: talking,
-                          mouthTimeline: _mouth.timeline,
+              return CustomMultiChildLayout(
+                delegate: _ScenicPageLayout(
+                  insets: insets,
+                  // The area grid and everything after it are tall, so the
+                  // companion sits smaller there, as on the reference.
+                  maxMascot: _index >= DailyCheckInScreen.areaPage
+                      ? h * 0.36
+                      : h * 0.45,
+                ),
+                children: [
+                  // Painted first, so on a short screen the bubble overlaps
+                  // the companion rather than the other way round.
+                  LayoutId(
+                    id: _ScenicSlot.mascot,
+                    child: LayoutBuilder(
+                      builder: (context, slot) => Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ValueListenableBuilder<bool>(
+                          valueListenable: _mouth,
+                          builder: (context, talking, _) => RealMascot(
+                            // A line on a page already answered (a saved
+                            // check-in, or a page visited before) is said in
+                            // the page's waiting pose, which has the mouths.
+                            // That pose holds from the moment the line is due,
+                            // through the wait for the audio, so nothing
+                            // changes but the mouth when it starts; the
+                            // answer's reaction shows when it ends.
+                            pose: _mouth.saying ? _waitingPose : _realPose,
+                            height: slot.maxHeight,
+                            talking: talking,
+                            mouthTimeline: _mouth.timeline,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                LayoutId(
-                  id: _ScenicSlot.header,
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 8),
-                      ScenicBack(onTap: _back),
-                      Expanded(
-                        child: Center(
-                          child: _index == 0
-                              ? const SizedBox.shrink()
-                              : ScenicProgress(
-                                  value: (_index + 1) / _pageCount,
-                                  width: math.min(w * 0.36, 180),
-                                ),
+                  LayoutId(
+                    id: _ScenicSlot.header,
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 8),
+                        ScenicBack(onTap: _back),
+                        Expanded(
+                          child: Center(
+                            child: _index == 0
+                                ? const SizedBox.shrink()
+                                : ScenicProgress(
+                                    value: (_index + 1) / _pageCount,
+                                    width: math.min(w * 0.36, 180),
+                                  ),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 48,
-                        child: _index == 0 ? _settingsGear(context) : null,
-                      ),
-                    ],
+                        SizedBox(
+                          width: 48,
+                          child: _index == 0 ? _settingsGear(context) : null,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                LayoutId(
-                  id: _ScenicSlot.content,
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: side),
-                    child: AnimatedSwitcher(
-                      duration: WithMeMotion.medium,
-                      layoutBuilder: (current, previous) => Stack(
-                        alignment: Alignment.topCenter,
-                        children: [...previous, ?current],
-                      ),
-                      transitionBuilder: (child, animation) => FadeTransition(
-                        opacity: animation,
-                        child: SlideTransition(
-                          position: Tween<Offset>(
-                            begin: Offset(_forward ? 0.08 : -0.08, 0),
-                            end: Offset.zero,
-                          ).animate(animation),
-                          child: child,
+                  LayoutId(
+                    id: _ScenicSlot.content,
+                    child: SingleChildScrollView(
+                      padding: EdgeInsets.symmetric(horizontal: side),
+                      child: AnimatedSwitcher(
+                        duration: WithMeMotion.medium,
+                        layoutBuilder: (current, previous) => Stack(
+                          alignment: Alignment.topCenter,
+                          children: [...previous, ?current],
                         ),
-                      ),
-                      child: KeyedSubtree(
-                        key: ValueKey(_index),
-                        child: _scenicContent(),
+                        transitionBuilder: (child, animation) => FadeTransition(
+                          opacity: animation,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: Offset(_forward ? 0.08 : -0.08, 0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        ),
+                        child: KeyedSubtree(
+                          key: ValueKey(_index),
+                          child: _scenicContent(),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                LayoutId(
-                  id: _ScenicSlot.action,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: pillSide),
-                    child: ScenicPill(
-                      label: _actionLabel(context.l10n),
-                      height: 60,
-                      onPressed: _answered ? _next : null,
+                  LayoutId(
+                    id: _ScenicSlot.action,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: pillSide),
+                      child: ScenicPill(
+                        label: _actionLabel(context.l10n),
+                        height: 60,
+                        onPressed: _answered ? _next : null,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
@@ -681,7 +730,11 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen> {
       case 9:
         return _StrategyStep(answers: _answers, onChanged: _touch);
       default:
-        return _StrategyDetailStep(answers: _answers, onChanged: _touch);
+        return _StrategyDetailStep(
+          answers: _answers,
+          onChanged: _touch,
+          day: _day,
+        );
     }
   }
 
@@ -1650,14 +1703,20 @@ class _DialogField extends StatelessWidget {
 // --- image23 ----------------------------------------------------------------
 
 class _StrategyDetailStep extends StatelessWidget {
-  const _StrategyDetailStep({required this.answers, required this.onChanged});
+  const _StrategyDetailStep({
+    required this.answers,
+    required this.onChanged,
+    required this.day,
+  });
 
   final CheckInAnswers answers;
   final void Function(VoidCallback) onChanged;
 
+  /// The day the check-in is for, shown as its date.
+  final DateTime day;
+
   @override
   Widget build(BuildContext context) {
-    final now = DateTime.now();
     final l = context.l10n;
     final locale = Localizations.maybeLocaleOf(context) == null
         ? null
@@ -1667,7 +1726,7 @@ class _StrategyDetailStep extends StatelessWidget {
     final date = DateFormat(
       'd MMMM y',
       locale != null && DateFormat.localeExists(locale) ? locale : null,
-    ).format(now);
+    ).format(day);
 
     return SpeechBubble(
       tailAt: 0.62,

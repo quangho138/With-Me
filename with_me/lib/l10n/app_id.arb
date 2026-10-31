@@ -449,6 +449,8 @@
   "yourDayCheckInDone": "Check-in hari ini sudah tersimpan.",
   "yourDayNoCheckIn": "Belum ada check-in yang tersimpan hari ini.",
   "yourDayExercises": "Latihan yang selesai hari ini: {count}",
+  "dashFillInYesterday": "Isi check-in kemarin",
+  "yourDayCheckInDoneOn": "Check-in untuk {date} sudah tersimpan.",
   "dashProgressTitle": "Perkembanganmu",
   "dashProgressTabWeek": "Minggu",
   "dashProgressTabMonth": "Bulan",

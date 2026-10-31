@@ -1707,6 +1707,14 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'Remplir le bilan d’hier';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return 'Le bilan du $date est enregistré.';
+  }
+
+  @override
   String get dashProgressTitle => 'Tes progrès';
 
   @override

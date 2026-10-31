@@ -1699,6 +1699,14 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => 'నిన్నటి చెక్-ఇన్ పూరించండి';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date చెక్-ఇన్ సేవ్ అయింది.';
+  }
+
+  @override
   String get dashProgressTitle => 'మీ పురోగతి';
 
   @override

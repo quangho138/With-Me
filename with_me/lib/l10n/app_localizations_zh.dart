@@ -1612,6 +1612,14 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get dashFillInYesterday => '补填昨天的打卡';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date的打卡已保存。';
+  }
+
+  @override
   String get dashProgressTitle => '你的进展';
 
   @override
@@ -3838,6 +3846,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   @override
   String yourDayExercises(String count) {
     return '今天完成的練習：$count';
+  }
+
+  @override
+  String get dashFillInYesterday => '補填昨天的打卡';
+
+  @override
+  String yourDayCheckInDoneOn(String date) {
+    return '$date的打卡已儲存。';
   }
 
   @override
