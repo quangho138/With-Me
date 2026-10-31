@@ -1694,58 +1694,32 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dashYourDayTitle => 'உங்கள் நாள்';
 
   @override
-  String get dashYourDayDoItNow => 'இப்போதே செய்க';
+  String get avatarThanksLine => 'இன்று செக்-இன் செய்ததற்கு நன்றி.';
 
   @override
-  String get dashTaskMorningCheckIn => 'காலை செக்-இன்';
+  String get avatarComfortLine =>
+      'நான் உங்களுடன் இருக்கிறேன். இன்று உங்களிடம் மென்மையாக இருங்கள்.';
 
   @override
-  String get dashTaskBoxBreathing => 'சதுர சுவாசம் · 5 சுற்றுகள்';
+  String get avatarWelcomeLine => 'உங்களை மீண்டும் பார்ப்பதில் மகிழ்ச்சி.';
 
   @override
-  String get dashTaskOneStep => 'ஒரு அடி: தொடக்கத்தை ஒத்திகை பாருங்கள்';
+  String get avatarJournalThanksLine => 'சற்று நேரம் சிந்தித்ததற்கு நன்றி.';
 
   @override
-  String get dashTaskEveningLog => 'மாலைப் பதிவு';
+  String get yourDayCalmingOffer =>
+      'மனதை அமைதிப்படுத்தும் ஒரு பயிற்சியை முயற்சிக்கவும்';
 
   @override
-  String get dashTaskDone => 'முடிந்தது';
+  String get yourDayCheckInDone => 'இன்றைய செக்-இன் சேமிக்கப்பட்டது.';
 
   @override
-  String get dashTaskNow => 'இப்போது';
+  String get yourDayNoCheckIn =>
+      'இன்று இன்னும் எந்த செக்-இன்னும் சேமிக்கப்படவில்லை.';
 
   @override
-  String get dashTaskLater => 'பிறகு';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => 'பூஜ்ஜியம்';
-
-  @override
-  String get dashNumberOne => 'ஒன்று';
-
-  @override
-  String get dashNumberTwo => 'இரண்டு';
-
-  @override
-  String get dashNumberThree => 'மூன்று';
-
-  @override
-  String get dashNumberFour => 'நான்கு';
-
-  @override
-  String get dashNumberFive => 'ஐந்து';
-
-  @override
-  String get dashNumberSix => 'ஆறு';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$total பணிகளில் முடிந்தவை: $done. இன்று காலை நீங்கள் தேர்ந்தெடுத்த அடி இன்னும் காத்திருக்கிறது — இரண்டு நிமிடங்கள் போதும்.';
+  String yourDayExercises(String count) {
+    return 'இன்று முடித்த பயிற்சிகள்: $count';
   }
 
   @override

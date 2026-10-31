@@ -1663,58 +1663,31 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashYourDayTitle => 'Ngày của bạn';
 
   @override
-  String get dashYourDayDoItNow => 'Làm ngay';
+  String get avatarThanksLine => 'Cảm ơn bạn đã ghi nhận hôm nay.';
 
   @override
-  String get dashTaskMorningCheckIn => 'Ghi nhận buổi sáng';
+  String get avatarComfortLine =>
+      'Mình ở đây với bạn. Hôm nay hãy dịu dàng với chính mình nhé.';
 
   @override
-  String get dashTaskBoxBreathing => 'Thở hộp · 5 chu kỳ';
+  String get avatarWelcomeLine => 'Rất vui được gặp lại bạn.';
 
   @override
-  String get dashTaskOneStep => 'Một bước: tập trước phần mở đầu';
+  String get avatarJournalThanksLine =>
+      'Cảm ơn bạn đã dành chút thời gian để suy ngẫm.';
 
   @override
-  String get dashTaskEveningLog => 'Ghi chép buổi tối';
+  String get yourDayCalmingOffer => 'Thử một bài tập giúp bình tĩnh';
 
   @override
-  String get dashTaskDone => 'XONG';
+  String get yourDayCheckInDone => 'Lần ghi nhận hôm nay đã được lưu.';
 
   @override
-  String get dashTaskNow => 'NGAY';
+  String get yourDayNoCheckIn => 'Hôm nay chưa có lần ghi nhận nào được lưu.';
 
   @override
-  String get dashTaskLater => 'ĐỂ SAU';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => 'Không';
-
-  @override
-  String get dashNumberOne => 'Một';
-
-  @override
-  String get dashNumberTwo => 'Hai';
-
-  @override
-  String get dashNumberThree => 'Ba';
-
-  @override
-  String get dashNumberFour => 'Bốn';
-
-  @override
-  String get dashNumberFive => 'Năm';
-
-  @override
-  String get dashNumberSix => 'Sáu';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return 'Đã xong $done trên $total việc. Bước bạn chọn sáng nay vẫn đang chờ — hai phút là đủ.';
+  String yourDayExercises(String count) {
+    return 'Bài tập đã hoàn thành hôm nay: $count';
   }
 
   @override

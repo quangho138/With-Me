@@ -2783,113 +2783,59 @@ abstract class AppLocalizations {
   /// **'{date} · {time}'**
   String dashLogsOnDate(String date, String time);
 
-  /// Title of the screen listing today's tasks.
+  /// Title of the screen shown after the daily check-in: what was saved today and the companion's reaction.
   ///
   /// In en, this message translates to:
   /// **'Your day'**
   String get dashYourDayTitle;
 
-  /// Button that opens the exercises to do the waiting step.
+  /// What the companion says after a check-in is finished (reaction: thanks).
   ///
   /// In en, this message translates to:
-  /// **'Do it now'**
-  String get dashYourDayDoItNow;
+  /// **'Thank you for checking in today.'**
+  String get avatarThanksLine;
 
-  /// A task on the Your day list.
+  /// What the companion says after a check-in with an Angry or Sad mood (reaction: comfort). Soft, no medical words.
   ///
   /// In en, this message translates to:
-  /// **'Morning check-in'**
-  String get dashTaskMorningCheckIn;
+  /// **'I\'m here with you. Be gentle with yourself today.'**
+  String get avatarComfortLine;
 
-  /// A task on the Your day list: a breathing exercise done five times.
+  /// What the companion says when the person checks in after at least one day away (reaction: welcome). Never mention missed days.
   ///
   /// In en, this message translates to:
-  /// **'Box breathing · 5 cycles'**
-  String get dashTaskBoxBreathing;
+  /// **'Good to see you again.'**
+  String get avatarWelcomeLine;
 
-  /// A task on the Your day list: a small step the user chose, practising how they will start (e.g. a talk).
+  /// What the companion says after a five W's reflection is saved.
   ///
   /// In en, this message translates to:
-  /// **'One step: rehearse the opening'**
-  String get dashTaskOneStep;
+  /// **'Thank you for taking a moment to reflect.'**
+  String get avatarJournalThanksLine;
 
-  /// A task on the Your day list.
+  /// Button on Your day after a low mood check-in; opens the exercise chooser.
   ///
   /// In en, this message translates to:
-  /// **'Evening log'**
-  String get dashTaskEveningLog;
+  /// **'Try a calming exercise'**
+  String get yourDayCalmingOffer;
 
-  /// Status chip on a finished task. All capitals in English.
+  /// Your day: today's check-in has been saved.
   ///
   /// In en, this message translates to:
-  /// **'DONE'**
-  String get dashTaskDone;
+  /// **'Today\'s check-in is saved.'**
+  String get yourDayCheckInDone;
 
-  /// Status chip on the task to do now. All capitals in English.
+  /// Your day, opened when nothing has been saved today.
   ///
   /// In en, this message translates to:
-  /// **'NOW'**
-  String get dashTaskNow;
+  /// **'No check-in saved today yet.'**
+  String get yourDayNoCheckIn;
 
-  /// Status chip on a task for later. All capitals in English.
+  /// Your day: how many breathing or sigh exercises were finished today.
   ///
   /// In en, this message translates to:
-  /// **'LATER'**
-  String get dashTaskLater;
-
-  /// Screen reader label of a task, e.g. 'Evening log, LATER'.
-  ///
-  /// In en, this message translates to:
-  /// **'{task}, {state}'**
-  String dashTaskSemantics(String task, String state);
-
-  /// The number 0 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'Zero'**
-  String get dashNumberZero;
-
-  /// The number 1 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'One'**
-  String get dashNumberOne;
-
-  /// The number 2 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'Two'**
-  String get dashNumberTwo;
-
-  /// The number 3 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'Three'**
-  String get dashNumberThree;
-
-  /// The number 4 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'Four'**
-  String get dashNumberFour;
-
-  /// The number 5 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'Five'**
-  String get dashNumberFive;
-
-  /// The number 6 spelled out with a capital, used in the Your day summary ('Two of Four done.').
-  ///
-  /// In en, this message translates to:
-  /// **'Six'**
-  String get dashNumberSix;
-
-  /// Encouraging summary on the Your day screen. done and total are spelled-out numbers.
-  ///
-  /// In en, this message translates to:
-  /// **'{done} of {total} done. The step you chose this morning is still waiting — two minutes is enough.'**
-  String dashYourDaySummary(String done, String total);
+  /// **'Exercises finished today: {count}'**
+  String yourDayExercises(String count);
 
   /// Title of the progress screen.
   ///

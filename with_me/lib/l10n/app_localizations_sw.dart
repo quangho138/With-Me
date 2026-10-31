@@ -1673,58 +1673,29 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dashYourDayTitle => 'Siku yako';
 
   @override
-  String get dashYourDayDoItNow => 'Fanya sasa';
+  String get avatarThanksLine => 'Asante kwa kujitathmini leo.';
 
   @override
-  String get dashTaskMorningCheckIn => 'Tathmini ya asubuhi';
+  String get avatarComfortLine => 'Niko hapa pamoja nawe. Jionee huruma leo.';
 
   @override
-  String get dashTaskBoxBreathing => 'Upumuaji wa mraba · mizunguko 5';
+  String get avatarWelcomeLine => 'Nafurahi kukuona tena.';
 
   @override
-  String get dashTaskOneStep => 'Hatua moja: jizoeze utangulizi';
+  String get avatarJournalThanksLine => 'Asante kwa kuchukua muda kutafakari.';
 
   @override
-  String get dashTaskEveningLog => 'Kumbukumbu ya jioni';
+  String get yourDayCalmingOffer => 'Jaribu zoezi la kutuliza';
 
   @override
-  String get dashTaskDone => 'IMEKAMILIKA';
+  String get yourDayCheckInDone => 'Tathmini ya leo imehifadhiwa.';
 
   @override
-  String get dashTaskNow => 'SASA';
+  String get yourDayNoCheckIn => 'Bado hakuna tathmini iliyohifadhiwa leo.';
 
   @override
-  String get dashTaskLater => 'BAADAYE';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => 'Sifuri';
-
-  @override
-  String get dashNumberOne => 'Moja';
-
-  @override
-  String get dashNumberTwo => 'Mbili';
-
-  @override
-  String get dashNumberThree => 'Tatu';
-
-  @override
-  String get dashNumberFour => 'Nne';
-
-  @override
-  String get dashNumberFive => 'Tano';
-
-  @override
-  String get dashNumberSix => 'Sita';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$done kati ya $total zimekamilika. Hatua uliyochagua asubuhi hii bado inakusubiri — dakika mbili zinatosha.';
+  String yourDayExercises(String count) {
+    return 'Mazoezi yaliyokamilika leo: $count';
   }
 
   @override

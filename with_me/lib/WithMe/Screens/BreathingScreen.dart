@@ -3,9 +3,11 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../Components/WithMeCards.dart';
+import '../Components/AvatarReactionCard.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
 import '../Exercise/AmbientAudio.dart';
+import '../Data/avatar_reactions.dart';
 import '../Exercise/BreathSession.dart';
 import '../Exercise/NatureVideo.dart';
 import '../../l10n/l10n.dart';
@@ -285,6 +287,12 @@ class _BreathingScreenState extends State<BreathingScreen>
                 ],
               ),
               const SizedBox(height: 12),
+              // The companion's "well done" (graded core feature A, E4),
+              // above the path so the bottom button never covers it.
+              if (complete) ...[
+                const AvatarReactionCard(reaction: AvatarReaction.wellDone),
+                const SizedBox(height: 12),
+              ],
               SizedBox(
                 height: (MediaQuery.sizeOf(context).height * .58).clamp(
                   300.0,
@@ -305,12 +313,6 @@ class _BreathingScreenState extends State<BreathingScreen>
                 ),
               ),
               const SizedBox(height: 18),
-              if (complete)
-                Text(
-                  l.exerciseMadeTimeForYourself,
-                  textAlign: TextAlign.center,
-                  style: WithMeText.caption.copyWith(color: Colors.white),
-                ),
               if (_audioFailed)
                 TextButton(
                   onPressed: _syncAudio,

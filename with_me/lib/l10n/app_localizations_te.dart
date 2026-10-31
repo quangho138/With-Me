@@ -1670,58 +1670,32 @@ class AppLocalizationsTe extends AppLocalizations {
   String get dashYourDayTitle => 'మీ రోజు';
 
   @override
-  String get dashYourDayDoItNow => 'ఇప్పుడే చేయండి';
+  String get avatarThanksLine => 'ఈ రోజు చెక్-ఇన్ చేసినందుకు ధన్యవాదాలు.';
 
   @override
-  String get dashTaskMorningCheckIn => 'ఉదయం చెక్-ఇన్';
+  String get avatarComfortLine =>
+      'నేను మీతోనే ఉన్నాను. ఈ రోజు మీ పట్ల మృదువుగా ఉండండి.';
 
   @override
-  String get dashTaskBoxBreathing => 'బాక్స్ బ్రీతింగ్ · 5 చక్రాలు';
+  String get avatarWelcomeLine => 'మిమ్మల్ని మళ్లీ చూడటం సంతోషంగా ఉంది.';
 
   @override
-  String get dashTaskOneStep => 'ఒక అడుగు: ప్రారంభాన్ని సాధన చేయండి';
+  String get avatarJournalThanksLine =>
+      'కాసేపు ఆలోచించడానికి సమయం తీసుకున్నందుకు ధన్యవాదాలు.';
 
   @override
-  String get dashTaskEveningLog => 'సాయంత్రం లాగ్';
+  String get yourDayCalmingOffer =>
+      'మనసును ప్రశాంతపరిచే ఒక వ్యాయామం ప్రయత్నించండి';
 
   @override
-  String get dashTaskDone => 'పూర్తి';
+  String get yourDayCheckInDone => 'ఈ రోజు చెక్-ఇన్ సేవ్ అయింది.';
 
   @override
-  String get dashTaskNow => 'ఇప్పుడు';
+  String get yourDayNoCheckIn => 'ఈ రోజు ఇంకా ఏ చెక్-ఇన్ సేవ్ కాలేదు.';
 
   @override
-  String get dashTaskLater => 'తర్వాత';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task, $state';
-  }
-
-  @override
-  String get dashNumberZero => 'సున్నా';
-
-  @override
-  String get dashNumberOne => 'ఒకటి';
-
-  @override
-  String get dashNumberTwo => 'రెండు';
-
-  @override
-  String get dashNumberThree => 'మూడు';
-
-  @override
-  String get dashNumberFour => 'నాలుగు';
-
-  @override
-  String get dashNumberFive => 'ఐదు';
-
-  @override
-  String get dashNumberSix => 'ఆరు';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$total పనుల్లో $done పూర్తి. ఈ ఉదయం మీరు ఎంచుకున్న అడుగు ఇంకా మీ కోసం ఎదురుచూస్తోంది — రెండు నిమిషాలు చాలు.';
+  String yourDayExercises(String count) {
+    return 'ఈ రోజు పూర్తి చేసిన వ్యాయామాలు: $count';
   }
 
   @override

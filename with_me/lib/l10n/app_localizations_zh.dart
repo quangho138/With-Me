@@ -1586,58 +1586,29 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashYourDayTitle => '你的今天';
 
   @override
-  String get dashYourDayDoItNow => '现在就做';
+  String get avatarThanksLine => '谢谢你今天来打卡。';
 
   @override
-  String get dashTaskMorningCheckIn => '早晨打卡';
+  String get avatarComfortLine => '我在这里陪着你。今天对自己温柔一点。';
 
   @override
-  String get dashTaskBoxBreathing => '箱式呼吸 · 5轮';
+  String get avatarWelcomeLine => '很高兴再次见到你。';
 
   @override
-  String get dashTaskOneStep => '一小步：排练开场白';
+  String get avatarJournalThanksLine => '谢谢你花一点时间来反思。';
 
   @override
-  String get dashTaskEveningLog => '晚间记录';
+  String get yourDayCalmingOffer => '试试一个让人平静的练习';
 
   @override
-  String get dashTaskDone => '完成';
+  String get yourDayCheckInDone => '今天的打卡已保存。';
 
   @override
-  String get dashTaskNow => '现在';
+  String get yourDayNoCheckIn => '今天还没有保存打卡。';
 
   @override
-  String get dashTaskLater => '稍后';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task，$state';
-  }
-
-  @override
-  String get dashNumberZero => '零';
-
-  @override
-  String get dashNumberOne => '一';
-
-  @override
-  String get dashNumberTwo => '两';
-
-  @override
-  String get dashNumberThree => '三';
-
-  @override
-  String get dashNumberFour => '四';
-
-  @override
-  String get dashNumberFive => '五';
-
-  @override
-  String get dashNumberSix => '六';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$total项中已完成$done项。今早你选的那一步还在等你——两分钟就够了。';
+  String yourDayExercises(String count) {
+    return '今天完成的练习：$count';
   }
 
   @override
@@ -3844,58 +3815,29 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashYourDayTitle => '你的今天';
 
   @override
-  String get dashYourDayDoItNow => '現在就做';
+  String get avatarThanksLine => '謝謝你今天來打卡。';
 
   @override
-  String get dashTaskMorningCheckIn => '早晨打卡';
+  String get avatarComfortLine => '我在這裡陪著你。今天對自己溫柔一點。';
 
   @override
-  String get dashTaskBoxBreathing => '箱式呼吸 · 5輪';
+  String get avatarWelcomeLine => '很高興再次見到你。';
 
   @override
-  String get dashTaskOneStep => '一小步：排練開場白';
+  String get avatarJournalThanksLine => '謝謝你花一點時間來反思。';
 
   @override
-  String get dashTaskEveningLog => '晚間記錄';
+  String get yourDayCalmingOffer => '試試一個讓人平靜的練習';
 
   @override
-  String get dashTaskDone => '完成';
+  String get yourDayCheckInDone => '今天的打卡已儲存。';
 
   @override
-  String get dashTaskNow => '現在';
+  String get yourDayNoCheckIn => '今天還沒有儲存打卡。';
 
   @override
-  String get dashTaskLater => '稍後';
-
-  @override
-  String dashTaskSemantics(String task, String state) {
-    return '$task，$state';
-  }
-
-  @override
-  String get dashNumberZero => '零';
-
-  @override
-  String get dashNumberOne => '一';
-
-  @override
-  String get dashNumberTwo => '兩';
-
-  @override
-  String get dashNumberThree => '三';
-
-  @override
-  String get dashNumberFour => '四';
-
-  @override
-  String get dashNumberFive => '五';
-
-  @override
-  String get dashNumberSix => '六';
-
-  @override
-  String dashYourDaySummary(String done, String total) {
-    return '$total項中已完成$done項。今早你選的那一步還在等你——兩分鐘就夠了。';
+  String yourDayExercises(String count) {
+    return '今天完成的練習：$count';
   }
 
   @override

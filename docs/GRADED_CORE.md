@@ -60,8 +60,8 @@ Page numbers follow the check-in, starting at 0. "No answer" means the page is o
 | 3 | Motivation | 5 | excited |
 | 4 | Where stress comes from | no area picked | think |
 | 4 | Where stress comes from | an area picked | sad |
-| 5 | What is weighing on you | no answer | idle |
-| 5 | What is weighing on you | a pick or written Other | think |
+| 5 | What is weighing on you | no answer on the area chosen on page 4 | idle |
+| 5 | What is weighing on you | a pick or written Other on the area chosen on page 4 | think |
 | 6 | Body, feelings, mind or behavior | none picked | idle |
 | 6 | Body, feelings, mind or behavior | one picked | smirk |
 | 7 | How stress is showing up | no answer on the page chosen on page 6 | idle |
@@ -81,11 +81,11 @@ Page numbers follow the check-in, starting at 0. "No answer" means the page is o
 | 10 | Strategy rating | 4 | happy |
 | 10 | Strategy rating | 5 | happy |
 
-That is 46 pairs. The table matches what the app does today (DailyCheckInScreen._poseFor on develop, commit 239ca97, unchanged since 15043b1). The test checks the code against this table, not the other way round.
+That is 46 pairs. Corrected 30 October, before any code: page 5, like page 7, reads its answer on the choice made on the page before it (CheckInAnswers.hasStressors reads the area chosen on page 4); the first version of this table and of A2 left that out. The table matches what the app does today (DailyCheckInScreen._poseFor on develop, commit 239ca97, unchanged since 15043b1). The test checks the code against this table, not the other way round.
 
 ### 2.2 Events and reactions
 
-A "checked-in day" is a day with a mood, a control level or a stressor saved: the same rule the calendar uses.
+A "checked-in day" is a day with a mood, a control level or a stressor saved. (The calendar reads the same three tables, but it draws no mark for a day that has only a control level of 1 to 3; that is how the calendar draws, not a different rule for this event.)
 
 | Event | When it happens | Reaction |
 |---|---|---|
@@ -104,7 +104,7 @@ Days are calendar dates in the phone's time zone, counted on dates, never by sub
 
 A1. Every pair. A table test feeds each of the 46 rows to the pose function. Pass: 46 of 46.
 
-A2. One page, one rule. Answers on other pages never change the pose of the current page, with one stated exception: page 7's answer is read on the signs page chosen on page 6 (as the table says). A test fills every other page with random answers (1,000 random sets) and checks the current page's pose still matches the table. Pass: 1,000 of 1,000.
+A2. One page, one rule. Answers on other pages never change the pose of the current page, with two stated exceptions: page 5's answer is read on the area chosen on page 4, and page 7's answer is read on the signs page chosen on page 6 (as the table says). A test fills every other page with random answers (1,000 random sets) and checks the current page's pose still matches the table. Pass: 1,000 of 1,000.
 
 A3. Every event. A table test feeds each event alone to the reaction function. Pass: 5 of 5.
 

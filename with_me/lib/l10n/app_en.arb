@@ -2275,88 +2275,41 @@
   },
   "dashYourDayTitle": "Your day",
   "@dashYourDayTitle": {
-    "description": "Title of the screen listing today's tasks."
+    "description": "Title of the screen shown after the daily check-in: what was saved today and the companion's reaction."
   },
-  "dashYourDayDoItNow": "Do it now",
-  "@dashYourDayDoItNow": {
-    "description": "Button that opens the exercises to do the waiting step."
+  "avatarThanksLine": "Thank you for checking in today.",
+  "@avatarThanksLine": {
+    "description": "What the companion says after a check-in is finished (reaction: thanks)."
   },
-  "dashTaskMorningCheckIn": "Morning check-in",
-  "@dashTaskMorningCheckIn": {
-    "description": "A task on the Your day list."
+  "avatarComfortLine": "I'm here with you. Be gentle with yourself today.",
+  "@avatarComfortLine": {
+    "description": "What the companion says after a check-in with an Angry or Sad mood (reaction: comfort). Soft, no medical words."
   },
-  "dashTaskBoxBreathing": "Box breathing · 5 cycles",
-  "@dashTaskBoxBreathing": {
-    "description": "A task on the Your day list: a breathing exercise done five times."
+  "avatarWelcomeLine": "Good to see you again.",
+  "@avatarWelcomeLine": {
+    "description": "What the companion says when the person checks in after at least one day away (reaction: welcome). Never mention missed days."
   },
-  "dashTaskOneStep": "One step: rehearse the opening",
-  "@dashTaskOneStep": {
-    "description": "A task on the Your day list: a small step the user chose, practising how they will start (e.g. a talk)."
+  "avatarJournalThanksLine": "Thank you for taking a moment to reflect.",
+  "@avatarJournalThanksLine": {
+    "description": "What the companion says after a five W's reflection is saved."
   },
-  "dashTaskEveningLog": "Evening log",
-  "@dashTaskEveningLog": {
-    "description": "A task on the Your day list."
+  "yourDayCalmingOffer": "Try a calming exercise",
+  "@yourDayCalmingOffer": {
+    "description": "Button on Your day after a low mood check-in; opens the exercise chooser."
   },
-  "dashTaskDone": "DONE",
-  "@dashTaskDone": {
-    "description": "Status chip on a finished task. All capitals in English."
+  "yourDayCheckInDone": "Today's check-in is saved.",
+  "@yourDayCheckInDone": {
+    "description": "Your day: today's check-in has been saved."
   },
-  "dashTaskNow": "NOW",
-  "@dashTaskNow": {
-    "description": "Status chip on the task to do now. All capitals in English."
+  "yourDayNoCheckIn": "No check-in saved today yet.",
+  "@yourDayNoCheckIn": {
+    "description": "Your day, opened when nothing has been saved today."
   },
-  "dashTaskLater": "LATER",
-  "@dashTaskLater": {
-    "description": "Status chip on a task for later. All capitals in English."
-  },
-  "dashTaskSemantics": "{task}, {state}",
-  "@dashTaskSemantics": {
-    "description": "Screen reader label of a task, e.g. 'Evening log, LATER'.",
+  "yourDayExercises": "Exercises finished today: {count}",
+  "@yourDayExercises": {
+    "description": "Your day: how many breathing or sigh exercises were finished today.",
     "placeholders": {
-      "task": {
-        "type": "String"
-      },
-      "state": {
-        "type": "String"
-      }
-    }
-  },
-  "dashNumberZero": "Zero",
-  "@dashNumberZero": {
-    "description": "The number 0 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashNumberOne": "One",
-  "@dashNumberOne": {
-    "description": "The number 1 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashNumberTwo": "Two",
-  "@dashNumberTwo": {
-    "description": "The number 2 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashNumberThree": "Three",
-  "@dashNumberThree": {
-    "description": "The number 3 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashNumberFour": "Four",
-  "@dashNumberFour": {
-    "description": "The number 4 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashNumberFive": "Five",
-  "@dashNumberFive": {
-    "description": "The number 5 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashNumberSix": "Six",
-  "@dashNumberSix": {
-    "description": "The number 6 spelled out with a capital, used in the Your day summary ('Two of Four done.')."
-  },
-  "dashYourDaySummary": "{done} of {total} done. The step you chose this morning is still waiting — two minutes is enough.",
-  "@dashYourDaySummary": {
-    "description": "Encouraging summary on the Your day screen. done and total are spelled-out numbers.",
-    "placeholders": {
-      "done": {
-        "type": "String"
-      },
-      "total": {
+      "count": {
         "type": "String"
       }
     }
