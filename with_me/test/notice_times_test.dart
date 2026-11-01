@@ -330,6 +330,28 @@ void main() {
     });
   });
 
+  group('the one-time reminder (Stay on Track)', () {
+    final now = DateTime(2026, 10, 28, 12);
+    List<PlannedNotice> plan(DateTime at) => planNotices(
+      now: now,
+      settings: NoticeSettings(onceAt: at, quiet: kDefaultQuietHours),
+      checkedInToday: false,
+    );
+
+    test('ahead: scheduled once, at its time', () {
+      final p = plan(DateTime(2026, 10, 28, 15));
+      expect(p, hasLength(1));
+      expect(p.single.kind, NoticeKind.once);
+      expect(p.single.at, DateTime(2026, 10, 28, 15));
+    });
+    test('passed: gone', () {
+      expect(plan(DateTime(2026, 10, 28, 11, 59)), isEmpty);
+    });
+    test('the time the person chose is kept, even inside quiet hours', () {
+      expect(plan(DateTime(2026, 10, 28, 23)), hasLength(1));
+    });
+  });
+
   group('saved clock times', () {
     test('read back what they save', () {
       for (final t in const [

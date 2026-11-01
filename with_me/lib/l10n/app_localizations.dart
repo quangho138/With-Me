@@ -539,6 +539,30 @@ abstract class AppLocalizations {
   /// **'{start} – {end}'**
   String settingsQuietHoursRange(String start, String end);
 
+  /// Shown when the phone refused permission to show notifications; the switch went back to off.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off for With Me. You can allow them in your phone\'s settings.'**
+  String get settingsNotificationsDenied;
+
+  /// Notifications screen on the web or a computer, which cannot schedule reminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders work in the With Me phone app.'**
+  String get settingsNotificationsPhoneOnly;
+
+  /// Notifications screen, when the phone does not allow exact alarm times (Android 14+).
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders may come a few minutes late. Allow exact times so they arrive on time.'**
+  String get settingsExactTimesNote;
+
+  /// Button that opens the phone's setting for exact alarm times ('Alarms & reminders').
+  ///
+  /// In en, this message translates to:
+  /// **'Allow exact times'**
+  String get settingsExactTimesAllow;
+
   /// Title of the Help screen (questions and answers), and its row in the menu.
   ///
   /// In en, this message translates to:
@@ -2837,6 +2861,12 @@ abstract class AppLocalizations {
   /// **'Exercises finished today: {count}'**
   String yourDayExercises(String count);
 
+  /// Link on Your day that opens Stay on Track, to set a reminder for the next check-in.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a reminder'**
+  String get yourDaySetReminder;
+
   /// Button on yesterday's day detail: opens yesterday's check-in to fill in or change it.
   ///
   /// In en, this message translates to:
@@ -3182,7 +3212,7 @@ abstract class AppLocalizations {
   /// Message after saving a reminder; reminders are not actually scheduled yet.
   ///
   /// In en, this message translates to:
-  /// **'Reminder saved. Scheduling comes later.'**
+  /// **'Reminder saved.'**
   String get dashReminderSaved;
 
   /// Screen-reader label of the back arrow at the top of a screen.

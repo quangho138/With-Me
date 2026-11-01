@@ -230,6 +230,21 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me bildirimleri kapalı. Telefonunun ayarlarından izin verebilirsin.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Hatırlatmalar With Me telefon uygulamasında çalışır.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Hatırlatmalar birkaç dakika geç gelebilir. Zamanında gelmeleri için tam saatlere izin ver.';
+
+  @override
+  String get settingsExactTimesAllow => 'Tam saatlere izin ver';
+
+  @override
   String get helpTitle => 'Yardım';
 
   @override
@@ -1684,6 +1699,9 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Hatırlatma kur';
+
+  @override
   String get dashFillInYesterday => 'Dünkü durum kaydını doldur';
 
   @override
@@ -1873,8 +1891,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashReminderSave => 'Hatırlatıcıyı Kaydet';
 
   @override
-  String get dashReminderSaved =>
-      'Hatırlatıcı kaydedildi. Zamanlama daha sonra gelecek.';
+  String get dashReminderSaved => 'Hatırlatma kaydedildi.';
 
   @override
   String get commonBack => 'Geri';

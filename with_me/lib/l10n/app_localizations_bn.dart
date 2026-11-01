@@ -231,6 +231,21 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me-এর জন্য নোটিফিকেশন বন্ধ আছে। আপনার ফোনের সেটিংসে গিয়ে চালু করতে পারেন।';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'রিমাইন্ডার With Me ফোন অ্যাপে কাজ করে।';
+
+  @override
+  String get settingsExactTimesNote =>
+      'রিমাইন্ডার কয়েক মিনিট দেরিতে আসতে পারে। ঠিক সময়ে পেতে সঠিক সময়ের অনুমতি দিন।';
+
+  @override
+  String get settingsExactTimesAllow => 'সঠিক সময়ের অনুমতি দিন';
+
+  @override
   String get helpTitle => 'সাহায্য';
 
   @override
@@ -1684,6 +1699,9 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'রিমাইন্ডার সেট করুন';
+
+  @override
   String get dashFillInYesterday => 'গতকালের চেক-ইন পূরণ করুন';
 
   @override
@@ -1872,8 +1890,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashReminderSave => 'রিমাইন্ডার সেভ করুন';
 
   @override
-  String get dashReminderSaved =>
-      'রিমাইন্ডার সেভ হয়েছে। সময়মতো পাঠানোর ব্যবস্থা পরে আসবে।';
+  String get dashReminderSaved => 'রিমাইন্ডার সেভ হয়েছে।';
 
   @override
   String get commonBack => 'পিছনে';

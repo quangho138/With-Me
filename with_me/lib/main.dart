@@ -11,6 +11,8 @@ import 'Repositories/app_repositories.dart';
 import 'Repositories/sync_service.dart';
 import 'Repositories/user_repository.dart';
 
+import 'Repositories/phone_notifications.dart';
+import 'Repositories/reminder_service.dart';
 import 'WithMe/Locale/AppLanguage.dart';
 import 'WithMe/Screens/AboutScreen.dart';
 import 'WithMe/Screens/BeforeWeStartScreen.dart';
@@ -107,6 +109,26 @@ Future<void> main() async {
   // Sync now, when the app comes back to the front, and after each
   // check-in. It does nothing for guests or while offline.
   SyncTriggers.start(AppRepositories.sync);
+
+  // Reminders on the phone (feature E). Phones only: the web and desktop
+  // builds cannot schedule them reliably, so they keep the empty layer.
+  if (PhoneNotifications.supported) {
+    AppRepositories.reminders = ReminderService(
+      layer: PhoneNotifications(
+        // The notice text follows the language the app shows.
+        words: () => lookupAppLocalizations(
+          AppLanguage.instance.value ??
+              AppLanguage.resolve(
+                WidgetsBinding.instance.platformDispatcher.locales,
+              ),
+        ),
+      ),
+      settings: AppRepositories.settings,
+      checkIns: AppRepositories.checkIns,
+      exercises: AppRepositories.exercises,
+    );
+  }
+  ReminderTriggers.start(AppRepositories.reminders);
 }
 
 /// With Me.

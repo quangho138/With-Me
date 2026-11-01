@@ -42,11 +42,15 @@ jobs:
             exit 1
           }
 
-      # The github reporter turns each failing test into a note on the
-      # check, with its name and error, so a failure can be read without
+      # Each failing test also becomes a note on the check, with its name
+      # and the start of its error, so a failure can be read without
       # downloading the whole log.
       - name: Tests
-        run: flutter test --reporter github
+        run: |
+          flutter test --reporter github --file-reporter json:test-results.json || {
+            python3 ../.github/scripts/failed_tests.py test-results.json
+            exit 1
+          }
 
       # The reminder times again in New York time, so the daylight saving
       # cases cross a real change (graded core E1, E3; 8 Mar and 1 Nov 2026).

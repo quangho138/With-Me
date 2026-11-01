@@ -227,6 +227,18 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied => 'With Me 的通知已关闭。你可以在手机设置中允许通知。';
+
+  @override
+  String get settingsNotificationsPhoneOnly => '提醒在 With Me 手机应用中使用。';
+
+  @override
+  String get settingsExactTimesNote => '提醒可能会晚几分钟。允许精确时间，提醒就能准时到达。';
+
+  @override
+  String get settingsExactTimesAllow => '允许精确时间';
+
+  @override
   String get helpTitle => '帮助';
 
   @override
@@ -1612,6 +1624,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => '设置提醒';
+
+  @override
   String get dashFillInYesterday => '补填昨天的打卡';
 
   @override
@@ -1796,7 +1811,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashReminderSave => '保存提醒';
 
   @override
-  String get dashReminderSaved => '提醒已保存。定时功能稍后推出。';
+  String get dashReminderSaved => '提醒已保存。';
 
   @override
   String get commonBack => '返回';
@@ -2489,6 +2504,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String settingsQuietHoursRange(String start, String end) {
     return '$start – $end';
   }
+
+  @override
+  String get settingsNotificationsDenied => 'With Me 的通知已關閉。你可以在手機設定中允許通知。';
+
+  @override
+  String get settingsNotificationsPhoneOnly => '提醒在 With Me 手機應用程式中使用。';
+
+  @override
+  String get settingsExactTimesNote => '提醒可能會晚幾分鐘。允許精確時間，提醒就能準時到達。';
+
+  @override
+  String get settingsExactTimesAllow => '允許精確時間';
 
   @override
   String get helpTitle => '幫助';
@@ -3876,6 +3903,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
+  String get yourDaySetReminder => '設定提醒';
+
+  @override
   String get dashFillInYesterday => '補填昨天的打卡';
 
   @override
@@ -4060,7 +4090,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashReminderSave => '儲存提醒';
 
   @override
-  String get dashReminderSaved => '提醒已儲存。定時功能稍後推出。';
+  String get dashReminderSaved => '提醒已儲存。';
 
   @override
   String get commonBack => '返回';

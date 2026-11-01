@@ -230,6 +230,21 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'الإشعارات متوقفة لتطبيق With Me. يمكنك السماح بها من إعدادات هاتفك.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'تعمل التذكيرات في تطبيق With Me على الهاتف.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'قد تصل التذكيرات متأخرة بضع دقائق. اسمح بالأوقات الدقيقة لتصل في موعدها.';
+
+  @override
+  String get settingsExactTimesAllow => 'السماح بالأوقات الدقيقة';
+
+  @override
   String get helpTitle => 'المساعدة';
 
   @override
@@ -1739,6 +1754,9 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'اضبط تذكيرًا';
+
+  @override
   String get dashFillInYesterday => 'أكمل تسجيل حالة الأمس';
 
   @override
@@ -1931,7 +1949,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashReminderSave => 'حفظ التذكير';
 
   @override
-  String get dashReminderSaved => 'تم حفظ التذكير. الجدولة ستأتي لاحقًا.';
+  String get dashReminderSaved => 'تم حفظ التذكير.';
 
   @override
   String get commonBack => 'رجوع';

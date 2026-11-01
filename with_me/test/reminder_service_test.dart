@@ -3,91 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:with_me/Repositories/check_in_repository.dart';
 import 'package:with_me/Repositories/exercise_repository.dart';
 import 'package:with_me/Repositories/reminder_service.dart';
-import 'package:with_me/Repositories/settings_repository.dart';
 import 'package:with_me/WithMe/Data/notice_times.dart';
+
+import 'support/fake_reminders.dart';
 
 /// Graded core E5, E6 and E7 (docs/GRADED_CORE.md, section 4): what the
 /// reminder service hands to the phone, checked with a fake notification
 /// layer. All data here is made up.
-
-/// What the phone has scheduled right now.
-class FakeLayer implements NotificationLayer {
-  FakeLayer({this.allow = true});
-
-  bool allow;
-  int asked = 0;
-  final Map<int, (DateTime, NoticeKind)> scheduled = {};
-
-  List<DateTime> of(NoticeKind kind) => [
-    for (final e in scheduled.values)
-      if (e.$2 == kind) e.$1,
-  ]..sort();
-
-  @override
-  Future<bool> askPermission() async {
-    asked++;
-    return allow;
-  }
-
-  @override
-  Future<void> cancelAll() async => scheduled.clear();
-
-  @override
-  Future<void> schedule({
-    required int id,
-    required DateTime at,
-    required NoticeKind kind,
-  }) async {
-    scheduled[id] = (at, kind);
-  }
-}
-
-class MemorySettings implements SettingsRepository {
-  final Map<String, String> values = {};
-
-  @override
-  Future<bool?> readBool(String key) async => switch (values[key]) {
-    'true' => true,
-    'false' => false,
-    _ => null,
-  };
-
-  @override
-  Future<void> writeBool(String key, bool value) async =>
-      values[key] = '$value';
-
-  @override
-  Future<String?> readString(String key) async => values[key];
-
-  @override
-  Future<void> writeString(String key, String value) async =>
-      values[key] = value;
-
-  @override
-  Future<void> remove(String key) async => values.remove(key);
-}
-
-/// Today's check-in, or none, without a database.
-class TodayCheckIn extends LocalCheckInRepository {
-  CheckInEntry? today;
-
-  @override
-  Future<CheckInEntry?> entryOn(DateTime day) async => today;
-}
-
-class MemoryExercises implements ExerciseRepository {
-  final List<ExerciseSession> sessions = [];
-
-  @override
-  Future<void> recordCompleted(ExerciseSession session) async =>
-      sessions.add(session);
-
-  @override
-  Future<List<ExerciseSession>> sessionsBetween(
-    DateTime from,
-    DateTime to,
-  ) async => sessions;
-}
 
 void main() {
   late FakeLayer layer;
@@ -103,8 +25,9 @@ void main() {
     settings = MemorySettings();
     checkIns = TodayCheckIn();
     exercises = MemoryExercises();
-    // Wednesday 28 October 2026, 8 in the morning.
-    now = DateTime(2026, 10, 28, 8);
+    // Wednesday 28 October 2026, 7 in the morning (before the 8:00
+    // default reminder time).
+    now = DateTime(2026, 10, 28, 7);
     factsReady = true;
     service = ReminderService(
       layer: layer,
@@ -126,12 +49,17 @@ void main() {
   });
 
   group('E5: off means off', () {
-    for (final kind in NoticeKind.values) {
+    // The three kinds with a switch (the one-time reminder has none).
+    for (final kind in [
+      NoticeKind.daily,
+      NoticeKind.nudge,
+      NoticeKind.weekly,
+    ]) {
       test('${kind.name}: on schedules it, off schedules none and cancels '
           'what was there', () async {
         if (kind == NoticeKind.nudge) {
           await service.checkInFinished(
-            at: DateTime(2026, 10, 28, 7, 30),
+            at: DateTime(2026, 10, 28, 6, 30),
             lowMood: true,
           );
         }
@@ -177,13 +105,13 @@ void main() {
         'the rest', () async {
       await service.setOn(NoticeKind.daily, true);
       final before = layer.of(NoticeKind.daily);
-      expect(before.first, DateTime(2026, 10, 28, 9));
+      expect(before.first, DateTime(2026, 10, 28, 8));
 
       checkIns.today = CheckInEntry(day: now, mood: 'Happy');
       await service.checkInFinished(at: now, lowMood: false);
       final after = layer.of(NoticeKind.daily);
       expect(after, hasLength(14));
-      expect(after.first, DateTime(2026, 10, 29, 9));
+      expect(after.first, DateTime(2026, 10, 29, 8));
       // Every later reminder is still there.
       expect(after.toSet().containsAll(before.skip(1)), isTrue);
     });
@@ -245,6 +173,82 @@ void main() {
     expect(layer.of(NoticeKind.daily).first, DateTime(2026, 10, 28, 21, 30));
 
     await service.setQuietHours(null, null);
-    expect((await service.settings()).quiet, isNull);
+    // Cleared quiet hours go back to the default, 22:00 to 07:30.
+    final back = (await service.settings()).quiet!;
+    expect(back.start, kDefaultQuietHours.start);
+    expect(back.end, kDefaultQuietHours.end);
+  });
+
+  group("the PO's defaults", () {
+    test('8:00 reminder time and quiet hours 22:00 to 07:30', () async {
+      final s = await service.settings();
+      expect(s.dailyAt, const ClockTime(8, 0));
+      expect(s.quiet!.start, const ClockTime(22, 0));
+      expect(s.quiet!.end, const ClockTime(7, 30));
+    });
+  });
+
+  group('Save on the Notifications screen (apply)', () {
+    test('turning switches on asks once and schedules them', () async {
+      final ok = await service.apply(
+        const NoticeSettings(daily: true, weekly: true),
+      );
+      expect(ok, isTrue);
+      expect(layer.asked, 1);
+      expect(layer.of(NoticeKind.daily), hasLength(14));
+      expect(layer.of(NoticeKind.weekly), [DateTime(2026, 11, 1, 18)]);
+    });
+
+    test(
+      'refused: what was being turned on stays off, the rest is kept',
+      () async {
+        await service.apply(const NoticeSettings(daily: true));
+        layer.allow = false;
+        final ok = await service.apply(
+          const NoticeSettings(
+            daily: true,
+            weekly: true,
+            dailyAt: ClockTime(9, 15),
+          ),
+        );
+        expect(ok, isFalse);
+        final s = await service.settings();
+        expect(s.daily, isTrue, reason: 'already on, kept');
+        expect(s.weekly, isFalse, reason: 'refused, stays off');
+        expect(s.dailyAt, const ClockTime(9, 15));
+        expect(layer.of(NoticeKind.weekly), isEmpty);
+      },
+    );
+
+    test('turning everything off never asks and cancels all', () async {
+      await service.apply(const NoticeSettings(daily: true, nudge: true));
+      final asked = layer.asked;
+      await service.apply(const NoticeSettings());
+      expect(layer.asked, asked);
+      expect(layer.scheduled, isEmpty);
+    });
+  });
+
+  group('one reminder (Stay on Track)', () {
+    test('is scheduled once at the time chosen', () async {
+      final at = DateTime(2026, 10, 28, 10, 15);
+      expect(await service.remindOnce(at), isTrue);
+      expect(layer.of(NoticeKind.once), [at]);
+      expect(layer.of(NoticeKind.daily), isEmpty);
+    });
+
+    test('refused: nothing is saved or scheduled', () async {
+      layer.allow = false;
+      expect(await service.remindOnce(DateTime(2026, 10, 28, 10)), isFalse);
+      expect((await service.settings()).onceAt, isNull);
+      expect(layer.scheduled, isEmpty);
+    });
+
+    test('once its time has passed it is not scheduled again', () async {
+      await service.remindOnce(DateTime(2026, 10, 28, 10));
+      now = DateTime(2026, 10, 28, 10, 1);
+      await service.refresh(force: true);
+      expect(layer.of(NoticeKind.once), isEmpty);
+    });
   });
 }

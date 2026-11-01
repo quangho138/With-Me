@@ -83,6 +83,17 @@ const ClockTime kNudgeLatest = ClockTime(20, 0);
 /// The weekly summary: Sundays at 18:00.
 const ClockTime kWeeklySummaryAt = ClockTime(18, 0);
 
+/// The daily reminder's time until the person picks one: 8:00, as on the
+/// PO's Profile and Stay on Track screens.
+const ClockTime kDefaultDailyAt = ClockTime(8, 0);
+
+/// Quiet hours until the person changes them: 22:00 to 07:30, as on the
+/// PO's Notifications screen. Nobody gets a nudge or a summary at night.
+const QuietHours kDefaultQuietHours = QuietHours(
+  ClockTime(22, 0),
+  ClockTime(7, 30),
+);
+
 /// The next [kDailyRemindersAhead] daily reminders at [at], one per
 /// calendar day with no gaps. The first is today only when [now] is before
 /// today's time and the person has not checked in today; otherwise it is
@@ -152,17 +163,20 @@ DateTime? weeklySummaryTime({
   return at;
 }
 
-/// The kinds of notice (decided 30 Oct).
-enum NoticeKind { daily, nudge, weekly }
+/// The kinds of notice (decided 30 Oct), plus [once]: the one-time
+/// reminder the person sets on the Stay on Track screen ("Later today",
+/// "Tomorrow morning", a custom time). It uses the daily reminder's words.
+enum NoticeKind { daily, nudge, weekly, once }
 
 /// What the person chose in the Notifications settings.
 class NoticeSettings {
   const NoticeSettings({
     this.daily = false,
-    this.dailyAt = const ClockTime(9, 0),
+    this.dailyAt = kDefaultDailyAt,
     this.nudge = false,
     this.weekly = false,
     this.quiet,
+    this.onceAt,
   });
 
   final bool daily;
@@ -170,14 +184,33 @@ class NoticeSettings {
   final bool nudge;
   final bool weekly;
 
-  /// Null when quiet hours are off.
+  /// Null when there are no quiet hours.
   final QuietHours? quiet;
+
+  /// The one-time reminder, or null for none.
+  final DateTime? onceAt;
 
   bool isOn(NoticeKind kind) => switch (kind) {
     NoticeKind.daily => daily,
     NoticeKind.nudge => nudge,
     NoticeKind.weekly => weekly,
+    NoticeKind.once => onceAt != null,
   };
+
+  NoticeSettings copyWith({
+    bool? daily,
+    ClockTime? dailyAt,
+    bool? nudge,
+    bool? weekly,
+    QuietHours? quiet,
+  }) => NoticeSettings(
+    daily: daily ?? this.daily,
+    dailyAt: dailyAt ?? this.dailyAt,
+    nudge: nudge ?? this.nudge,
+    weekly: weekly ?? this.weekly,
+    quiet: quiet ?? this.quiet,
+    onceAt: onceAt,
+  );
 }
 
 /// One notice to hand to the phone.
@@ -192,8 +225,9 @@ class PlannedNotice {
 }
 
 /// Every notice to schedule now, from the settings and today's facts.
-/// A kind that is off gives none. The daily reminder keeps the time the
-/// person chose, even inside quiet hours; nudges and summaries do not.
+/// A kind that is off gives none. The daily reminder and the one-time
+/// reminder keep the time the person chose, even inside quiet hours;
+/// nudges and summaries do not. A one-time reminder already past is gone.
 List<PlannedNotice> planNotices({
   required DateTime now,
   required NoticeSettings settings,
@@ -228,5 +262,7 @@ List<PlannedNotice> planNotices({
         PlannedNotice(NoticeKind.daily, at),
     if (nudge != null) PlannedNotice(NoticeKind.nudge, nudge),
     if (weekly != null) PlannedNotice(NoticeKind.weekly, weekly),
+    if (settings.onceAt != null && settings.onceAt!.isAfter(now))
+      PlannedNotice(NoticeKind.once, settings.onceAt!),
   ];
 }

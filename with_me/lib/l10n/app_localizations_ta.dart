@@ -232,6 +232,21 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me அறிவிப்புகள் அணைக்கப்பட்டுள்ளன. உங்கள் தொலைபேசி அமைப்புகளில் அவற்றை அனுமதிக்கலாம்.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'நினைவூட்டல்கள் With Me தொலைபேசி செயலியில் செயல்படும்.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'நினைவூட்டல்கள் சில நிமிடங்கள் தாமதமாக வரலாம். சரியான நேரத்தில் வர துல்லியமான நேரத்தை அனுமதிக்கவும்.';
+
+  @override
+  String get settingsExactTimesAllow => 'துல்லியமான நேரத்தை அனுமதி';
+
+  @override
   String get helpTitle => 'உதவி';
 
   @override
@@ -1723,6 +1738,9 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'நினைவூட்டலை அமைக்கவும்';
+
+  @override
   String get dashFillInYesterday => 'நேற்றைய செக்-இன்னை நிரப்புங்கள்';
 
   @override
@@ -1916,8 +1934,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dashReminderSave => 'நினைவூட்டலைச் சேமி';
 
   @override
-  String get dashReminderSaved =>
-      'நினைவூட்டல் சேமிக்கப்பட்டது. நேரத்தை அமைக்கும் வசதி பின்னர் வரும்.';
+  String get dashReminderSaved => 'நினைவூட்டல் சேமிக்கப்பட்டது.';
 
   @override
   String get commonBack => 'பின்செல்';

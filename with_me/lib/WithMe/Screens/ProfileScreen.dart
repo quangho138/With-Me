@@ -5,6 +5,7 @@ import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
+import '../Data/notice_times.dart';
 
 /// `image4.png` — My Profile.
 ///
@@ -22,8 +23,11 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final _name = TextEditingController();
   final _email = TextEditingController();
+
+  /// The daily check-in time: the reminder's time (feature E), saved with
+  /// the rest of the profile by Save.
+  ClockTime _checkInAt = kDefaultDailyAt;
   final _checkInTime = TextEditingController();
-  bool _timeFilled = false;
 
   int _checkIns = 0;
   int _exercises = 0;
@@ -32,17 +36,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     super.initState();
     _load();
+    _loadCheckInTime();
+  }
+
+  Future<void> _loadCheckInTime() async {
+    try {
+      final at = (await AppRepositories.reminders.settings()).dailyAt;
+      if (mounted) setState(() => _setCheckInAt(at));
+    } catch (_) {
+      // No database (the browser preview): keep the default.
+    }
+  }
+
+  Future<void> _pickCheckInTime() async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: _checkInAt.hour, minute: _checkInAt.minute),
+    );
+    if (picked == null) return;
+    setState(() => _setCheckInAt(ClockTime(picked.hour, picked.minute)));
+  }
+
+  /// The time and its text in the field, "8:00 AM" written the reader's way.
+  void _setCheckInAt(ClockTime at) {
+    _checkInAt = at;
+    _checkInTime.text = MaterialLocalizations.of(
+      context,
+    ).formatTimeOfDay(TimeOfDay(hour: at.hour, minute: at.minute));
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // 8 in the morning, written the reader's way ("8:00 AM" in English).
-    if (_timeFilled) return;
-    _timeFilled = true;
-    _checkInTime.text = MaterialLocalizations.of(
-      context,
-    ).formatTimeOfDay(const TimeOfDay(hour: 8, minute: 0));
+    if (_checkInTime.text.isEmpty) _setCheckInAt(_checkInAt);
   }
 
   Future<void> _load() async {
@@ -88,6 +114,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var saved = true;
     try {
       await AppRepositories.users.saveDisplayName(_name.text.trim());
+    } catch (_) {
+      saved = false;
+    }
+    try {
+      await AppRepositories.reminders.setDailyTime(_checkInAt);
     } catch (_) {
       saved = false;
     }
@@ -166,11 +197,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   border: kScenicFieldRing,
                 ),
                 const SizedBox(height: 14),
-                WithMeField(
-                  label: l.accountCheckInTime,
-                  controller: _checkInTime,
-                  fill: Colors.white,
-                  border: kScenicFieldRing,
+                // The PO's field; tapping it opens the clock.
+                GestureDetector(
+                  key: const ValueKey('check-in-time'),
+                  behavior: HitTestBehavior.opaque,
+                  onTap: _pickCheckInTime,
+                  child: AbsorbPointer(
+                    child: WithMeField(
+                      label: l.accountCheckInTime,
+                      controller: _checkInTime,
+                      fill: Colors.white,
+                      border: kScenicFieldRing,
+                    ),
+                  ),
                 ),
               ],
             ),

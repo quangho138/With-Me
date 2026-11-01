@@ -232,6 +232,21 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Las notificaciones de With Me están desactivadas. Puedes permitirlas en los ajustes de tu teléfono.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Los recordatorios funcionan en la app de With Me para teléfono.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Los recordatorios pueden llegar unos minutos tarde. Permite horas exactas para que lleguen a tiempo.';
+
+  @override
+  String get settingsExactTimesAllow => 'Permitir horas exactas';
+
+  @override
   String get helpTitle => 'Ayuda';
 
   @override
@@ -1700,6 +1715,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Crear un recordatorio';
+
+  @override
   String get dashFillInYesterday => 'Completar el registro de ayer';
 
   @override
@@ -1891,8 +1909,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashReminderSave => 'Guardar recordatorio';
 
   @override
-  String get dashReminderSaved =>
-      'Recordatorio guardado. La programación llegará más adelante.';
+  String get dashReminderSaved => 'Recordatorio guardado.';
 
   @override
   String get commonBack => 'Atrás';

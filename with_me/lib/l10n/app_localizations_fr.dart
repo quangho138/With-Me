@@ -232,6 +232,21 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Les notifications de With Me sont désactivées. Tu peux les autoriser dans les réglages de ton téléphone.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Les rappels fonctionnent dans l’appli With Me sur téléphone.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Les rappels peuvent arriver avec quelques minutes de retard. Autorise les heures exactes pour qu’ils arrivent à l’heure.';
+
+  @override
+  String get settingsExactTimesAllow => 'Autoriser les heures exactes';
+
+  @override
   String get helpTitle => 'Aide';
 
   @override
@@ -1707,6 +1722,9 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Programmer un rappel';
+
+  @override
   String get dashFillInYesterday => 'Remplir le bilan d’hier';
 
   @override
@@ -1898,8 +1916,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dashReminderSave => 'Enregistrer le rappel';
 
   @override
-  String get dashReminderSaved =>
-      'Rappel enregistré. La programmation arrivera plus tard.';
+  String get dashReminderSaved => 'Rappel enregistré.';
 
   @override
   String get commonBack => 'Retour';

@@ -227,6 +227,21 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me の通知はオフになっています。スマートフォンの設定で許可できます。';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'リマインダーはスマートフォンの With Me アプリで使えます。';
+
+  @override
+  String get settingsExactTimesNote =>
+      'リマインダーが数分遅れることがあります。正確な時刻を許可すると、時間どおりに届きます。';
+
+  @override
+  String get settingsExactTimesAllow => '正確な時刻を許可';
+
+  @override
   String get helpTitle => 'ヘルプ';
 
   @override
@@ -1620,6 +1635,9 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'リマインダーを設定';
+
+  @override
   String get dashFillInYesterday => '昨日のチェックインを入力する';
 
   @override
@@ -1805,7 +1823,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dashReminderSave => 'リマインダーを保存';
 
   @override
-  String get dashReminderSaved => 'リマインダーを保存しました。通知の予約は今後対応予定です。';
+  String get dashReminderSaved => 'リマインダーを保存しました。';
 
   @override
   String get commonBack => '戻る';

@@ -232,6 +232,21 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Naka-off ang mga notification para sa With Me. Puwede mo silang payagan sa settings ng phone mo.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Gumagana ang mga paalala sa With Me app sa phone.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Puwedeng mahuli nang ilang minuto ang mga paalala. Payagan ang eksaktong oras para dumating sila sa tamang oras.';
+
+  @override
+  String get settingsExactTimesAllow => 'Payagan ang eksaktong oras';
+
+  @override
   String get helpTitle => 'Tulong';
 
   @override
@@ -1707,6 +1722,9 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Magtakda ng paalala';
+
+  @override
   String get dashFillInYesterday => 'Punan ang check-in kahapon';
 
   @override
@@ -1898,8 +1916,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get dashReminderSave => 'I-save ang Paalala';
 
   @override
-  String get dashReminderSaved =>
-      'Na-save ang paalala. Susunod pa ang pag-iskedyul.';
+  String get dashReminderSaved => 'Na-save ang paalala.';
 
   @override
   String get commonBack => 'Bumalik';

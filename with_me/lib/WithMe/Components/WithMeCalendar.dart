@@ -37,6 +37,9 @@ extension DayMarkInfo on DayMark {
 /// Today is ringed in heavy teal with a bold numeral; a selected day that
 /// is not today gets a thinner dark ring, so the two never read alike.
 class MonthCalendar extends StatelessWidget {
+  /// The key on today's cell in the month grid.
+  static const Key todayKey = ValueKey('calendar-today');
+
   const MonthCalendar({
     super.key,
     required this.month,
@@ -166,6 +169,9 @@ class MonthCalendar extends StatelessWidget {
         : ScenicColors.ink;
 
     return GestureDetector(
+      // Today's own cell, so tests can find it even when the same number
+      // also shows greyed in a neighbouring month's spill-over row.
+      key: isToday ? MonthCalendar.todayKey : null,
       onTap: inMonth && onSelect != null
           ? () => onSelect!(DateTime(month.year, month.month, dayNumber))
           : null,

@@ -331,6 +331,22 @@
       }
     }
   },
+  "settingsNotificationsDenied": "Notifications are off for With Me. You can allow them in your phone's settings.",
+  "@settingsNotificationsDenied": {
+    "description": "Shown when the phone refused permission to show notifications; the switch went back to off."
+  },
+  "settingsNotificationsPhoneOnly": "Reminders work in the With Me phone app.",
+  "@settingsNotificationsPhoneOnly": {
+    "description": "Notifications screen on the web or a computer, which cannot schedule reminders."
+  },
+  "settingsExactTimesNote": "Reminders may come a few minutes late. Allow exact times so they arrive on time.",
+  "@settingsExactTimesNote": {
+    "description": "Notifications screen, when the phone does not allow exact alarm times (Android 14+)."
+  },
+  "settingsExactTimesAllow": "Allow exact times",
+  "@settingsExactTimesAllow": {
+    "description": "Button that opens the phone's setting for exact alarm times ('Alarms & reminders')."
+  },
   "helpTitle": "Help",
   "@helpTitle": {
     "description": "Title of the Help screen (questions and answers), and its row in the menu."
@@ -2314,6 +2330,10 @@
       }
     }
   },
+  "yourDaySetReminder": "Set a reminder",
+  "@yourDaySetReminder": {
+    "description": "Link on Your day that opens Stay on Track, to set a reminder for the next check-in."
+  },
   "dashFillInYesterday": "Fill in yesterday's check-in",
   "@dashFillInYesterday": {
     "description": "Button on yesterday's day detail: opens yesterday's check-in to fill in or change it."
@@ -2562,7 +2582,7 @@
   "@dashReminderSave": {
     "description": "Button that saves the reminder."
   },
-  "dashReminderSaved": "Reminder saved. Scheduling comes later.",
+  "dashReminderSaved": "Reminder saved.",
   "@dashReminderSaved": {
     "description": "Message after saving a reminder; reminders are not actually scheduled yet."
   },
