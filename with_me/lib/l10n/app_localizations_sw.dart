@@ -35,9 +35,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settingsHaptics => 'Mtetemo';
 
   @override
-  String get settingsVoiceInput => 'Kujibu kwa sauti';
-
-  @override
   String get settingsReadAloud => 'Soma kwa sauti';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settingsTextSize => 'Ukubwa wa maandishi';
 
   @override
-  String get settingsTheme => 'Mandhari';
+  String get settingsTextSizeSmall => 'Ndogo';
 
   @override
-  String get settingsThemeSunset => 'Machweo';
+  String get settingsTextSizeDefault => 'Kawaida';
+
+  @override
+  String get settingsTextSizeLarge => 'Kubwa';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Kubwa sana';
 
   @override
   String get settingsPrivacy => 'Faragha na data';

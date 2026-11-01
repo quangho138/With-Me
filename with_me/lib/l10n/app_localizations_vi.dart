@@ -35,9 +35,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsHaptics => 'Rung phản hồi';
 
   @override
-  String get settingsVoiceInput => 'Nhập bằng giọng nói';
-
-  @override
   String get settingsReadAloud => 'Đọc to';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsTextSize => 'Cỡ chữ';
 
   @override
-  String get settingsTheme => 'Chủ đề';
+  String get settingsTextSizeSmall => 'Nhỏ';
 
   @override
-  String get settingsThemeSunset => 'Hoàng hôn';
+  String get settingsTextSizeDefault => 'Mặc định';
+
+  @override
+  String get settingsTextSizeLarge => 'Lớn';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Rất lớn';
 
   @override
   String get settingsPrivacy => 'Quyền riêng tư & dữ liệu';

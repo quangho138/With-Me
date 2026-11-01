@@ -35,9 +35,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsHaptics => '진동';
 
   @override
-  String get settingsVoiceInput => '음성 입력';
-
-  @override
   String get settingsReadAloud => '읽어 주기';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsTextSize => '글자 크기';
 
   @override
-  String get settingsTheme => '테마';
+  String get settingsTextSizeSmall => '작게';
 
   @override
-  String get settingsThemeSunset => '노을';
+  String get settingsTextSizeDefault => '기본';
+
+  @override
+  String get settingsTextSizeLarge => '크게';
+
+  @override
+  String get settingsTextSizeExtraLarge => '아주 크게';
 
   @override
   String get settingsPrivacy => '개인정보 및 데이터';
