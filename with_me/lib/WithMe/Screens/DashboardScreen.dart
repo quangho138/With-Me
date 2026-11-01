@@ -8,6 +8,7 @@ import '../Data/CheckInSteps.dart';
 import '../Data/DashboardStats.dart';
 import '../Data/Today.dart';
 import '../Theme/WithMeTheme.dart';
+import 'ProgressScreen.dart';
 import 'WeekChartScreen.dart';
 
 /// The dashboard: five cards, each for a page of charts. Like choosing an
@@ -164,6 +165,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
               if (i > 0) SizedBox(height: short ? 6 : 12),
               cards[i],
             ],
+            // Your Progress (image37), part of the PO's dashboard section:
+            // the weekly insight (feature F) and today's plan.
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton.icon(
+                key: const ValueKey('dashboard-progress'),
+                icon: const Icon(
+                  Icons.insights_rounded,
+                  size: 20,
+                  color: ScenicColors.pillBottom,
+                ),
+                label: Text(
+                  l.dashProgressTitle,
+                  style: kScenicBody.copyWith(
+                    fontSize: 16,
+                    color: ScenicColors.pillBottom,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const ProgressScreen(),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
