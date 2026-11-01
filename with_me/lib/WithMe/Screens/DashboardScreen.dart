@@ -125,6 +125,43 @@ class _DashboardScreenState extends State<DashboardScreen> {
     // still fit without scrolling.
     final short = MediaQuery.sizeOf(context).height < 700;
     return ScenicScaffold(
+      // Your Progress (image37), part of the PO's dashboard section: the
+      // weekly insight (feature F) and today's plan. In the header's free
+      // corner, so the five cards still fit one screen.
+      trailing: Semantics(
+        button: true,
+        label: l.dashProgressTitle,
+        excludeSemantics: true,
+        child: Tooltip(
+          message: l.dashProgressTitle,
+          child: GestureDetector(
+            key: const ValueKey('dashboard-progress'),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const ProgressScreen()),
+            ),
+            child: Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: ScenicColors.bubble.withValues(alpha: 0.95),
+                shape: BoxShape.circle,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x33000000),
+                    blurRadius: 8,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: const Icon(
+                Icons.insights_rounded,
+                size: 24,
+                color: ScenicColors.pillBottom,
+              ),
+            ),
+          ),
+        ),
+      ),
       action: FocusableActionDetector(
         key: const ValueKey('dashboard-continue'),
         onShowFocusHighlight: (v) => setState(() => _continueFocused = v),
@@ -165,32 +202,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               if (i > 0) SizedBox(height: short ? 6 : 12),
               cards[i],
             ],
-            // Your Progress (image37), part of the PO's dashboard section:
-            // the weekly insight (feature F) and today's plan.
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: TextButton.icon(
-                key: const ValueKey('dashboard-progress'),
-                icon: const Icon(
-                  Icons.insights_rounded,
-                  size: 20,
-                  color: ScenicColors.pillBottom,
-                ),
-                label: Text(
-                  l.dashProgressTitle,
-                  style: kScenicBody.copyWith(
-                    fontSize: 16,
-                    color: ScenicColors.pillBottom,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => const ProgressScreen(),
-                  ),
-                ),
-              ),
-            ),
           ],
         ),
       ),
