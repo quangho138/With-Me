@@ -484,29 +484,58 @@ class SyncService {
 
   // --- Download -------------------------------------------------------
 
-  /// True when any day on the phone changed.
-  Future<bool> _downloadDays() async {
+  /// How far back each download looks again. A row that was still being
+  /// saved when the phone last looked gets a server time a little before
+  /// rows the phone already saw; looking back this far still catches it
+  /// (feature D3). Rows seen twice change nothing the second time.
+  static const Duration lookBack = Duration(minutes: 10);
+
+  /// Downloads one table page by page from [cursorKey], applying each row
+  /// with [apply]. The cursor only moves forward. True when the phone
+  /// changed.
+  Future<bool> _download(
+    String cursorKey,
+    Future<List<Map<String, dynamic>>> Function(String? cursor, int limit)
+    since,
+    Future<bool> Function(Database db, Map<String, dynamic> row) apply,
+  ) async {
     final db = await _open();
+    final saved = await _state(db, cursorKey);
+    var newest = saved == null ? null : DateTime.parse(saved);
+    var from = newest?.subtract(lookBack).toUtc().toIso8601String();
     var changed = false;
     while (true) {
-      final cursor = await _state(db, 'check_ins_cursor');
-      final rows = await _online.checkInsSince(cursor, _page);
+      final rows = await since(from, _page);
       for (final row in rows) {
-        changed |= await _applyDay(db, row);
+        changed |= await apply(db, row);
       }
       if (rows.isNotEmpty) {
-        await _setState(
-          db,
-          'check_ins_cursor',
-          rows.last['synced_at'] as String,
-        );
-      } else if (cursor == null) {
-        // Nothing online yet: remember that this account has been
-        // downloaded once, so the "add or discard" question is not asked.
-        await _setState(db, 'check_ins_cursor', '1970-01-01T00:00:00Z');
+        from = rows.last['synced_at'] as String;
+        final last = DateTime.parse(from);
+        if (newest == null || last.isAfter(newest)) {
+          newest = last;
+          await _setState(db, cursorKey, from);
+        }
       }
       if (rows.length < _page) return changed;
     }
+  }
+
+  /// True when any day on the phone changed.
+  Future<bool> _downloadDays() async {
+    final db = await _open();
+    final firstTime = await _state(db, 'check_ins_cursor') == null;
+    final changed = await _download(
+      'check_ins_cursor',
+      _online.checkInsSince,
+      _applyDay,
+    );
+    if (firstTime && await _state(db, 'check_ins_cursor') == null) {
+      // Nothing online yet: remember that this account has been
+      // downloaded once, so the "add or discard" question is not asked.
+      await _setState(db, 'check_ins_cursor', '1970-01-01T00:00:00Z');
+    }
+    return changed;
   }
 
   /// Saves one downloaded day on the phone, unless the phone has a newer
@@ -520,11 +549,20 @@ class SyncService {
       whereArgs: [day],
       limit: 1,
     );
-    // Newest edit wins: keep the phone's copy unless the online one is
-    // newer. (A newer phone edit still waiting to upload will win online.)
-    if (marks.isNotEmpty &&
-        !online.isAfter(DateTime.parse(marks.first['changedAt'] as String))) {
-      return false;
+    // Newest edit wins: keep the phone's copy if it is newer. (A newer
+    // phone edit still waiting to upload will win online.)
+    if (marks.isNotEmpty) {
+      final phone = DateTime.parse(marks.first['changedAt'] as String);
+      if (online.isBefore(phone)) return false;
+      if (online.isAtSameMomentAs(phone)) {
+        // Two phones edited at the very same time: the server kept the copy
+        // it got first, so every phone takes that one. Nothing to do when
+        // the phone already holds it.
+        final entry = await LocalCheckInRepository(
+          open: () async => db,
+        ).entryOn(DateTime.parse(day));
+        if (sameContent(onlineRow(day, entry, ''), row)) return false;
+      }
     }
 
     final deleted = row['deleted'] == true;
@@ -552,6 +590,22 @@ class SyncService {
         'pending': 0,
       }, conflictAlgorithm: ConflictAlgorithm.replace);
     });
+    return true;
+  }
+
+  /// Whether [phone] (a row built on this phone) holds the same answers as
+  /// the downloaded [online] row. Edit and server times are not compared.
+  @visibleForTesting
+  static bool sameContent(
+    Map<String, Object?> phone,
+    Map<String, dynamic> online,
+  ) {
+    for (final e in phone.entries) {
+      if (e.key == 'updated_at' || e.key == 'synced_at') continue;
+      final other = online[e.key] ?? (e.key == 'deleted' ? false : null);
+      // Numbers compare by value (1 and 1.0 are the same).
+      if (e.value != other) return false;
+    }
     return true;
   }
 
@@ -583,21 +637,8 @@ class SyncService {
   }
 
   /// True when any journal day on the phone changed.
-  Future<bool> _downloadJournal() async {
-    final db = await _open();
-    var changed = false;
-    while (true) {
-      final cursor = await _state(db, 'journal_cursor');
-      final rows = await _online.journalSince(cursor, _page);
-      for (final row in rows) {
-        changed |= await _applyJournalDay(db, row);
-      }
-      if (rows.isNotEmpty) {
-        await _setState(db, 'journal_cursor', rows.last['synced_at'] as String);
-      }
-      if (rows.length < _page) return changed;
-    }
-  }
+  Future<bool> _downloadJournal() =>
+      _download('journal_cursor', _online.journalSince, _applyJournalDay);
 
   /// Saves one downloaded journal day, unless the phone has a newer edit of
   /// it. True when the phone changed.
@@ -610,9 +651,21 @@ class SyncService {
       whereArgs: [day],
       limit: 1,
     );
-    if (marks.isNotEmpty &&
-        !online.isAfter(DateTime.parse(marks.first['changedAt'] as String))) {
-      return false;
+    if (marks.isNotEmpty) {
+      final phone = DateTime.parse(marks.first['changedAt'] as String);
+      if (online.isBefore(phone)) return false;
+      if (online.isAtSameMomentAs(phone)) {
+        // Same edit time on two phones: the server's copy, as for days.
+        final entries = await LocalReflectionRepository(
+          open: () async => db,
+        ).on(DateTime.parse(day));
+        final mine = journalRow(
+          day,
+          entries.isEmpty ? null : entries.first,
+          '',
+        );
+        if (sameContent(mine, row)) return false;
+      }
     }
     await db.transaction((txn) async {
       await txn.delete(
@@ -642,46 +695,32 @@ class SyncService {
   }
 
   /// True when any exercise was added to the phone.
-  Future<bool> _downloadExercises() async {
-    final db = await _open();
-    var changed = false;
-    while (true) {
-      final cursor = await _state(db, 'exercises_cursor');
-      final rows = await _online.exercisesSince(cursor, _page);
-      for (final row in rows) {
-        if (row['deleted'] == true) continue;
-        final id = row['id'] as String;
-        final known = await db.query(
-          'exercise_sessions',
-          where: 'uuid = ?',
-          whereArgs: [id],
-          limit: 1,
-        );
-        if (known.isNotEmpty) continue;
-        final completed = DateTime.parse(
-          row['completed_at'] as String,
-        ).toLocal();
-        await db.insert('exercise_sessions', {
-          'uuid': id,
-          'pending': 0,
-          'date': DatabaseHelper.dateKey(completed),
-          'exercise': row['exercise'],
-          'pattern': row['pattern'],
-          'cycles': row['cycles'],
-          'sound': row['sound'],
-          'completedAt': completed.toIso8601String(),
-        });
-        changed = true;
-      }
-      if (rows.isNotEmpty) {
-        await _setState(
-          db,
-          'exercises_cursor',
-          rows.last['synced_at'] as String,
-        );
-      }
-      if (rows.length < _page) return changed;
-    }
+  Future<bool> _downloadExercises() =>
+      _download('exercises_cursor', _online.exercisesSince, _applyExercise);
+
+  /// Adds one downloaded exercise, unless the phone already has it.
+  Future<bool> _applyExercise(Database db, Map<String, dynamic> row) async {
+    if (row['deleted'] == true) return false;
+    final id = row['id'] as String;
+    final known = await db.query(
+      'exercise_sessions',
+      where: 'uuid = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (known.isNotEmpty) return false;
+    final completed = DateTime.parse(row['completed_at'] as String).toLocal();
+    await db.insert('exercise_sessions', {
+      'uuid': id,
+      'pending': 0,
+      'date': DatabaseHelper.dateKey(completed),
+      'exercise': row['exercise'],
+      'pattern': row['pattern'],
+      'cycles': row['cycles'],
+      'sound': row['sound'],
+      'completedAt': completed.toIso8601String(),
+    });
+    return true;
   }
 
   Future<void> _downloadName() async {
@@ -691,9 +730,15 @@ class SyncService {
     if (name == null || onlineAt == null) return;
     final db = await _open();
     final localAt = await _state(db, 'name_changed_at');
-    if (localAt != null &&
-        !DateTime.parse(onlineAt).isAfter(DateTime.parse(localAt))) {
-      return;
+    if (localAt != null) {
+      final online = DateTime.parse(onlineAt);
+      final phone = DateTime.parse(localAt);
+      if (online.isBefore(phone)) return;
+      // Same time on two phones: the server's name, as for days.
+      if (online.isAtSameMomentAs(phone) &&
+          name == await _users.displayName()) {
+        return;
+      }
     }
     await db.transaction((txn) async {
       await txn.delete('user');
