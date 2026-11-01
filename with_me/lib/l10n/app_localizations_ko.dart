@@ -1545,7 +1545,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashDayStrategy => '전략';
 
   @override
-  String get dashEntryLocked => '잠김 — 기록은 24시간 동안만 수정할 수 있어요.';
+  String get dashEntryLocked => '잠김: 기록은 그날과 다음 날까지 바꿀 수 있어요.';
 
   @override
   String get dashEntryEditable => '이 기록은 오늘까지 수정할 수 있어요.';
@@ -1625,6 +1625,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date 체크인을 저장했어요.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => '작성해 줘서 고마워요.';
+
+  @override
+  String get noticeDailyBody => '원할 때 체크인할 수 있어요.';
+
+  @override
+  String get noticeNudgeBody => '짧은 호흡 운동이 언제든 준비되어 있어요.';
+
+  @override
+  String get noticeWeeklyBody => 'With Me에서 보낸 한 주를 볼 수 있어요.';
 
   @override
   String get dashProgressTitle => '나의 성장';

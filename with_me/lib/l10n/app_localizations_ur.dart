@@ -1617,7 +1617,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'لاک — اندراج میں صرف 24 گھنٹے تک تبدیلی کی جا سکتی ہے۔';
+      'مقفل: اندراجات اسی دن اور اگلے دن تبدیل کیے جا سکتے ہیں۔';
 
   @override
   String get dashEntryEditable =>
@@ -1700,6 +1700,19 @@ class AppLocalizationsUr extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date کا چیک اِن محفوظ ہو گیا ہے۔';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'اسے پُر کرنے کا شکریہ۔';
+
+  @override
+  String get noticeDailyBody => 'آپ کا چیک اِن تیار ہے، جب آپ چاہیں۔';
+
+  @override
+  String get noticeNudgeBody => 'سانس کی ایک مختصر مشق تیار ہے، جب چاہیں۔';
+
+  @override
+  String get noticeWeeklyBody =>
+      'With Me میں آپ کا ہفتہ دیکھنے کے لیے تیار ہے۔';
 
   @override
   String get dashProgressTitle => 'آپ کی پیش رفت';

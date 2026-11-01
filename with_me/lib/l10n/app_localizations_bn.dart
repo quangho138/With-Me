@@ -1608,7 +1608,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'লক করা — এন্ট্রি 24 ঘণ্টা পর্যন্ত বদলানো যায়।';
+      'লক করা: এন্ট্রি তার নিজের দিনে এবং পরের দিনে বদলানো যায়।';
 
   @override
   String get dashEntryEditable => 'আজ আপনি এখনও এই এন্ট্রি বদলাতে পারেন।';
@@ -1690,6 +1690,18 @@ class AppLocalizationsBn extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date তারিখের চেক-ইন সেভ হয়েছে।';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'এটি পূরণ করার জন্য ধন্যবাদ।';
+
+  @override
+  String get noticeDailyBody => 'আপনার চেক-ইন প্রস্তুত, যখন আপনি চান।';
+
+  @override
+  String get noticeNudgeBody => 'একটি ছোট শ্বাসের ব্যায়াম আছে, যখনই চান।';
+
+  @override
+  String get noticeWeeklyBody => 'With Me-তে আপনার সপ্তাহ দেখার জন্য প্রস্তুত।';
 
   @override
   String get dashProgressTitle => 'আপনার অগ্রগতি';

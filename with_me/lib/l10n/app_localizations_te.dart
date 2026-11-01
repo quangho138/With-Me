@@ -1621,7 +1621,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'లాక్ అయింది — నమోదులను 24 గంటల వరకే మార్చవచ్చు.';
+      'లాక్ అయింది: ఎంట్రీలను అదే రోజు మరియు మరుసటి రోజు మార్చవచ్చు.';
 
   @override
   String get dashEntryEditable => 'ఈ నమోదును మీరు ఈ రోజు ఇంకా మార్చవచ్చు.';
@@ -1705,6 +1705,20 @@ class AppLocalizationsTe extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$date చెక్-ఇన్ సేవ్ అయింది.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'దీన్ని పూరించినందుకు ధన్యవాదాలు.';
+
+  @override
+  String get noticeDailyBody =>
+      'మీ చెక్-ఇన్ సిద్ధంగా ఉంది, మీకు కావలసినప్పుడు.';
+
+  @override
+  String get noticeNudgeBody =>
+      'చిన్న శ్వాస వ్యాయామం సిద్ధంగా ఉంది, ఎప్పుడైనా.';
+
+  @override
+  String get noticeWeeklyBody => 'With Meలో మీ వారం చూడటానికి సిద్ధంగా ఉంది.';
 
   @override
   String get dashProgressTitle => 'మీ పురోగతి';

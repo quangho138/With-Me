@@ -2708,7 +2708,7 @@ abstract class AppLocalizations {
   /// Notice on an older day's page: it can no longer be changed.
   ///
   /// In en, this message translates to:
-  /// **'Locked — entries can be edited for 24 hours.'**
+  /// **'Locked: entries can be changed on their own day and the day after.'**
   String get dashEntryLocked;
 
   /// Notice on today's page: it can still be changed.
@@ -2848,6 +2848,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The check-in for {date} is saved.'**
   String yourDayCheckInDoneOn(String date);
+
+  /// What the companion says after an earlier day's check-in (yesterday) is filled in. Do not say 'today'.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for filling this in.'**
+  String get avatarThanksEarlierLine;
+
+  /// Phone notification, daily check-in reminder. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your check-in is ready when you are.'**
+  String get noticeDailyBody;
+
+  /// Phone notification on a hard day, offering a breathing exercise. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'A short breathing exercise is here whenever you want it.'**
+  String get noticeNudgeBody;
+
+  /// Phone notification, Sundays: the weekly insights are ready. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your week in With Me is ready to look at.'**
+  String get noticeWeeklyBody;
 
   /// Title of the progress screen.
   ///

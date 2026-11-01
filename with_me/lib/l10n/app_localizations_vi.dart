@@ -1614,7 +1614,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Đã khóa — chỉ có thể sửa mục ghi trong vòng 24 giờ.';
+      'Đã khóa: có thể sửa mục ghi trong chính ngày đó và ngày hôm sau.';
 
   @override
   String get dashEntryEditable => 'Hôm nay bạn vẫn có thể sửa mục này.';
@@ -1697,6 +1697,20 @@ class AppLocalizationsVi extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'Lần ghi nhận ngày $date đã được lưu.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Cảm ơn bạn đã điền vào.';
+
+  @override
+  String get noticeDailyBody => 'Lần ghi nhận đang chờ bạn, lúc nào cũng được.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Một bài tập thở ngắn đang chờ bạn, bất cứ lúc nào.';
+
+  @override
+  String get noticeWeeklyBody =>
+      'Tuần của bạn trong With Me đã sẵn sàng để xem.';
 
   @override
   String get dashProgressTitle => 'Tiến trình của bạn';

@@ -1546,7 +1546,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dashDayStrategy => '対処法';
 
   @override
-  String get dashEntryLocked => 'ロック中 — 記録は24時間以内なら編集できます。';
+  String get dashEntryLocked => 'ロック中：記録はその日と翌日まで変更できます。';
 
   @override
   String get dashEntryEditable => 'この記録は、今日のうちならまだ編集できます。';
@@ -1626,6 +1626,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return '$dateのチェックインを保存しました。';
   }
+
+  @override
+  String get avatarThanksEarlierLine => '記入してくれてありがとう。';
+
+  @override
+  String get noticeDailyBody => 'チェックインはいつでもどうぞ。';
+
+  @override
+  String get noticeNudgeBody => '短い呼吸の練習を、好きなときにどうぞ。';
+
+  @override
+  String get noticeWeeklyBody => 'With Meでの1週間をふり返れます。';
 
   @override
   String get dashProgressTitle => 'あなたのあゆみ';

@@ -1624,7 +1624,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Bloqueado: los registros se pueden editar durante 24 horas.';
+      'Bloqueado: las entradas se pueden cambiar el mismo día y el día siguiente.';
 
   @override
   String get dashEntryEditable => 'Todavía puedes editar este registro hoy.';
@@ -1706,6 +1706,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'El registro del $date está guardado.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Gracias por completarlo.';
+
+  @override
+  String get noticeDailyBody => 'Tu registro está listo cuando quieras.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Hay un ejercicio corto de respiración para cuando quieras.';
+
+  @override
+  String get noticeWeeklyBody => 'Tu semana en With Me está lista para ver.';
 
   @override
   String get dashProgressTitle => 'Tu progreso';

@@ -1610,7 +1610,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashDayStrategy => 'Strategi';
 
   @override
-  String get dashEntryLocked => 'Terkunci — catatan bisa diubah selama 24 jam.';
+  String get dashEntryLocked =>
+      'Terkunci: entri bisa diubah pada harinya dan sehari sesudahnya.';
 
   @override
   String get dashEntryEditable =>
@@ -1694,6 +1695,19 @@ class AppLocalizationsId extends AppLocalizations {
   String yourDayCheckInDoneOn(String date) {
     return 'Check-in untuk $date sudah tersimpan.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Terima kasih sudah mengisinya.';
+
+  @override
+  String get noticeDailyBody => 'Check-in kamu siap kapan pun kamu mau.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Latihan napas singkat siap kapan pun kamu mau.';
+
+  @override
+  String get noticeWeeklyBody => 'Minggumu di With Me siap dilihat.';
 
   @override
   String get dashProgressTitle => 'Perkembanganmu';

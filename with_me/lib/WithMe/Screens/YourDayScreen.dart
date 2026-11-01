@@ -87,13 +87,15 @@ class _YourDayScreenState extends State<YourDayScreen> {
     final l = context.l10n;
     final reaction = widget.reaction;
     final entry = _entry;
+    final earlierDay =
+        entry != null && calendarDaysBetween(entry.day, Today.now()) != 0;
     final strategy = entry?.strategy;
     final action = entry?.action;
 
     final lines = <String>[
       entry == null
           ? l.yourDayNoCheckIn
-          : calendarDaysBetween(entry.day, Today.now()) == 0
+          : !earlierDay
           ? l.yourDayCheckInDone
           // Yesterday's check-in, filled in today: say which day was saved.
           : l.yourDayCheckInDoneOn(_dateOf(context, entry.day)),
@@ -125,7 +127,10 @@ class _YourDayScreenState extends State<YourDayScreen> {
           if (reaction != null) ...[
             ScenicPanel(
               child: Text(
-                reactionLine(l, reaction),
+                // Filling in yesterday: thank them without saying "today".
+                reaction == AvatarReaction.thanks && earlierDay
+                    ? l.avatarThanksEarlierLine
+                    : reactionLine(l, reaction),
                 textAlign: TextAlign.center,
                 style: kScenicBody.copyWith(fontSize: 18),
               ),
