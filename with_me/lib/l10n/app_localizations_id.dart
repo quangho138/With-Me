@@ -231,6 +231,21 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Notifikasi With Me sedang mati. Kamu bisa mengizinkannya di pengaturan ponselmu.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Pengingat berfungsi di aplikasi With Me di ponsel.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Pengingat bisa datang terlambat beberapa menit. Izinkan waktu tepat agar datang tepat waktu.';
+
+  @override
+  String get settingsExactTimesAllow => 'Izinkan waktu tepat';
+
+  @override
   String get helpTitle => 'Bantuan';
 
   @override
@@ -1610,7 +1625,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashDayStrategy => 'Strategi';
 
   @override
-  String get dashEntryLocked => 'Terkunci — catatan bisa diubah selama 24 jam.';
+  String get dashEntryLocked =>
+      'Terkunci: entri bisa diubah pada harinya dan sehari sesudahnya.';
 
   @override
   String get dashEntryEditable =>
@@ -1688,12 +1704,28 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Atur pengingat';
+
+  @override
   String get dashFillInYesterday => 'Isi check-in kemarin';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return 'Check-in untuk $date sudah tersimpan.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Terima kasih sudah mengisinya.';
+
+  @override
+  String get noticeDailyBody => 'Check-in kamu siap kapan pun kamu mau.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Latihan napas singkat siap kapan pun kamu mau.';
+
+  @override
+  String get noticeWeeklyBody => 'Minggumu di With Me siap dilihat.';
 
   @override
   String get dashProgressTitle => 'Perkembanganmu';
@@ -1872,7 +1904,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashReminderSave => 'Simpan Pengingat';
 
   @override
-  String get dashReminderSaved => 'Pengingat tersimpan. Penjadwalan menyusul.';
+  String get dashReminderSaved => 'Pengingat tersimpan.';
 
   @override
   String get commonBack => 'Kembali';

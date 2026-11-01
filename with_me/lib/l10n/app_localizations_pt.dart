@@ -232,6 +232,21 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'As notificações do With Me estão desativadas. Você pode permiti-las nas configurações do seu telefone.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Os lembretes funcionam no app With Me para celular.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Os lembretes podem chegar alguns minutos atrasados. Permita horários exatos para que cheguem na hora.';
+
+  @override
+  String get settingsExactTimesAllow => 'Permitir horários exatos';
+
+  @override
   String get helpTitle => 'Ajuda';
 
   @override
@@ -1625,7 +1640,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Bloqueado — os registros podem ser editados por 24 horas.';
+      'Bloqueado: as entradas podem ser alteradas no próprio dia e no dia seguinte.';
 
   @override
   String get dashEntryEditable => 'Você ainda pode editar este registro hoje.';
@@ -1702,12 +1717,28 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Criar um lembrete';
+
+  @override
   String get dashFillInYesterday => 'Preencher o check-in de ontem';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return 'O check-in de $date está salvo.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Obrigado por preencher.';
+
+  @override
+  String get noticeDailyBody => 'Seu check-in está pronto quando você quiser.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Um exercício curto de respiração está aqui quando você quiser.';
+
+  @override
+  String get noticeWeeklyBody => 'Sua semana no With Me está pronta para ver.';
 
   @override
   String get dashProgressTitle => 'Seu progresso';
@@ -1885,7 +1916,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get dashReminderSave => 'Salvar lembrete';
 
   @override
-  String get dashReminderSaved => 'Lembrete salvo. O agendamento vem depois.';
+  String get dashReminderSaved => 'Lembrete salvo.';
 
   @override
   String get commonBack => 'Voltar';

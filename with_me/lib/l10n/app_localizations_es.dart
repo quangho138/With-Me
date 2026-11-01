@@ -232,6 +232,21 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Las notificaciones de With Me están desactivadas. Puedes permitirlas en los ajustes de tu teléfono.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Los recordatorios funcionan en la app de With Me para teléfono.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Los recordatorios pueden llegar unos minutos tarde. Permite horas exactas para que lleguen a tiempo.';
+
+  @override
+  String get settingsExactTimesAllow => 'Permitir horas exactas';
+
+  @override
   String get helpTitle => 'Ayuda';
 
   @override
@@ -1624,7 +1639,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Bloqueado: los registros se pueden editar durante 24 horas.';
+      'Bloqueado: las entradas se pueden cambiar el mismo día y el día siguiente.';
 
   @override
   String get dashEntryEditable => 'Todavía puedes editar este registro hoy.';
@@ -1700,12 +1715,28 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Crear un recordatorio';
+
+  @override
   String get dashFillInYesterday => 'Completar el registro de ayer';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return 'El registro del $date está guardado.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Gracias por completarlo.';
+
+  @override
+  String get noticeDailyBody => 'Tu registro está listo cuando quieras.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Hay un ejercicio corto de respiración para cuando quieras.';
+
+  @override
+  String get noticeWeeklyBody => 'Tu semana en With Me está lista para ver.';
 
   @override
   String get dashProgressTitle => 'Tu progreso';
@@ -1884,8 +1915,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashReminderSave => 'Guardar recordatorio';
 
   @override
-  String get dashReminderSaved =>
-      'Recordatorio guardado. La programación llegará más adelante.';
+  String get dashReminderSaved => 'Recordatorio guardado.';
 
   @override
   String get commonBack => 'Atrás';

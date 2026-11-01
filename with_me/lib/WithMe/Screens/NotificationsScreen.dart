@@ -1,116 +1,268 @@
 import 'package:flutter/material.dart';
 
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/phone_notifications.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
+import '../Data/notice_times.dart';
 
-/// `image42.png` — Notifications.
+/// `image42.png` - Notifications (graded core feature E), in the PO's
+/// layout: the toggle rows, the quiet hours field, then Save.
 ///
-/// Four toggle rows, a quiet-hours field, then Save.
+/// Three kinds of notice (decided 30 Oct; Encouragement was removed): the
+/// daily check-in reminder, the exercise nudge on a low mood day, and the
+/// weekly summary. Quiet hours (10 PM to 7:30 AM until changed) keep
+/// nudges and summaries away at night; tapping the field picks the start,
+/// then the end. The reminder's time is set where the PO put it: Profile
+/// (Check-in time) and Stay on Track.
 ///
-/// Nothing is scheduled: the project has no notifications plugin, so these are
-/// preferences with no delivery behind them yet.
+/// Nothing changes until Save. Save asks the phone for permission when a
+/// switch is being turned on; if it is refused, those switches go back to
+/// off and a short message says how to allow it later.
+///
+/// When a notice is on but the phone does not allow exact times (Android
+/// 14 and newer ask once), a short note explains that reminders may come a
+/// few minutes late, with a button to the phone's setting.
+///
+/// Phones only: the web and desktop builds cannot schedule reminders
+/// reliably, so they show a note instead of the switches.
 class NotificationsScreen extends StatefulWidget {
-  const NotificationsScreen({super.key});
+  const NotificationsScreen({super.key, this.phone});
 
   static const String route = '/notifications';
+
+  /// Whether this build can schedule notices. Null asks the platform; tests
+  /// set it.
+  final bool? phone;
 
   @override
   State<NotificationsScreen> createState() => _NotificationsScreenState();
 }
 
-class _NotificationsScreenState extends State<NotificationsScreen> {
-  bool _dailyCheckIn = true;
-  bool _exerciseNudge = false;
-  bool _weeklySummary = true;
-  bool _encouragement = true;
+class _NotificationsScreenState extends State<NotificationsScreen>
+    with WidgetsBindingObserver {
+  /// The choices on screen, saved only by Save.
+  NoticeSettings? _choices;
+  bool _saving = false;
+
+  /// Whether the phone lets notices come at the exact minute.
+  bool _exact = true;
 
   final _quietHours = TextEditingController();
-  bool _hoursFilled = false;
+
+  bool get _phone => widget.phone ?? PhoneNotifications.supported;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // 10 at night to half past 7, written the reader's way
-    // ("10:00 PM – 7:30 AM" in English).
-    if (_hoursFilled) return;
-    _hoursFilled = true;
-    final clock = MaterialLocalizations.of(context);
-    _quietHours.text = context.l10n.settingsQuietHoursRange(
-      clock.formatTimeOfDay(const TimeOfDay(hour: 22, minute: 0)),
-      clock.formatTimeOfDay(const TimeOfDay(hour: 7, minute: 30)),
-    );
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    if (_phone) {
+      _load();
+      _checkExact();
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _quietHours.dispose();
     super.dispose();
+  }
+
+  /// Back from the phone's settings: exact times may be allowed now.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && _phone) _checkExact();
+  }
+
+  Future<void> _checkExact() async {
+    var exact = true;
+    try {
+      exact = await AppRepositories.reminders.exactTimesAllowed();
+    } catch (_) {}
+    if (mounted) setState(() => _exact = exact);
+  }
+
+  Future<void> _askExact() async {
+    try {
+      await AppRepositories.reminders.askExactTimes();
+    } catch (_) {}
+    await _checkExact();
+  }
+
+  Future<void> _load() async {
+    NoticeSettings settings;
+    try {
+      settings = await AppRepositories.reminders.settings();
+    } catch (_) {
+      settings = const NoticeSettings(quiet: kDefaultQuietHours);
+    }
+    if (mounted) setState(() => _setChoices(settings));
+  }
+
+  /// The choices, and the quiet hours written in their field the reader's
+  /// way ("10:00 PM – 7:30 AM").
+  void _setChoices(NoticeSettings c) {
+    _choices = c;
+    final quiet = c.quiet ?? kDefaultQuietHours;
+    _quietHours.text = context.l10n.settingsQuietHoursRange(
+      _clock(quiet.start),
+      _clock(quiet.end),
+    );
+  }
+
+  String _clock(ClockTime t) => MaterialLocalizations.of(
+    context,
+  ).formatTimeOfDay(TimeOfDay(hour: t.hour, minute: t.minute));
+
+  Future<ClockTime?> _pick(ClockTime from) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: from.hour, minute: from.minute),
+    );
+    return picked == null ? null : ClockTime(picked.hour, picked.minute);
+  }
+
+  /// Start, then end.
+  Future<void> _pickQuietHours() async {
+    final quiet = _choices!.quiet ?? kDefaultQuietHours;
+    final start = await _pick(quiet.start);
+    if (start == null || !mounted) return;
+    final end = await _pick(quiet.end);
+    if (end == null || !mounted) return;
+    setState(
+      () => _setChoices(_choices!.copyWith(quiet: QuietHours(start, end))),
+    );
+  }
+
+  Future<void> _save() async {
+    final l = context.l10n;
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+    setState(() => _saving = true);
+    var allowed = true;
+    try {
+      allowed = await AppRepositories.reminders.apply(_choices!);
+    } catch (_) {
+      allowed = false;
+    }
+    if (!mounted) return;
+    setState(() => _saving = false);
+    if (!allowed) {
+      // The switches being turned on stayed off: show what was saved.
+      messenger.showSnackBar(
+        SnackBar(content: Text(l.settingsNotificationsDenied)),
+      );
+      await _load();
+      return;
+    }
+    messenger.showSnackBar(
+      SnackBar(content: Text(l.settingsNotificationsSaved)),
+    );
+    navigator.pop();
   }
 
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
+    final c = _choices;
     return ScenicScaffold(
       title: l.settingsNotificationsTitle,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
-      action: ScenicPill(
-        label: l.commonSave,
-        height: 58,
-        onPressed: () {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(l.settingsNotificationsSaved)));
-          Navigator.of(context).pop();
-        },
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ScenicToggleRow(
-            label: l.settingsDailyReminder,
-            icon: Icons.wb_sunny_rounded,
-            iconColor: const Color(0xFFEE9A3E),
-            value: _dailyCheckIn,
-            onChanged: (v) => setState(() => _dailyCheckIn = v),
-          ),
-          const SizedBox(height: 10),
-          ScenicToggleRow(
-            label: l.settingsExerciseNudge,
-            icon: Icons.spa_rounded,
-            iconColor: const Color(0xFF3E9C8C),
-            value: _exerciseNudge,
-            onChanged: (v) => setState(() => _exerciseNudge = v),
-          ),
-          const SizedBox(height: 10),
-          ScenicToggleRow(
-            label: l.settingsWeeklySummary,
-            icon: Icons.insights_rounded,
-            iconColor: const Color(0xFF1C7C84),
-            value: _weeklySummary,
-            onChanged: (v) => setState(() => _weeklySummary = v),
-          ),
-          const SizedBox(height: 10),
-          ScenicToggleRow(
-            label: l.settingsEncouragement,
-            icon: Icons.favorite_rounded,
-            iconColor: const Color(0xFFD2557F),
-            value: _encouragement,
-            onChanged: (v) => setState(() => _encouragement = v),
-          ),
-          const SizedBox(height: 12),
-          ScenicPanel(
-            child: WithMeField(
-              label: l.settingsQuietHours,
-              controller: _quietHours,
-              fill: Colors.white,
-              border: kScenicFieldRing,
+      action: !_phone || c == null
+          ? null
+          : ScenicPill(
+              label: l.commonSave,
+              height: 58,
+              onPressed: _saving ? null : _save,
             ),
-          ),
-        ],
-      ),
+      child: !_phone
+          ? ScenicPanel(
+              child: Text(
+                l.settingsNotificationsPhoneOnly,
+                textAlign: TextAlign.center,
+                style: kScenicBody,
+              ),
+            )
+          : c == null
+          ? const SizedBox.shrink()
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                ScenicToggleRow(
+                  label: l.settingsDailyReminder,
+                  icon: Icons.wb_sunny_rounded,
+                  iconColor: const Color(0xFFEE9A3E),
+                  value: c.daily,
+                  onChanged: (v) =>
+                      setState(() => _choices = c.copyWith(daily: v)),
+                ),
+                const SizedBox(height: 10),
+                ScenicToggleRow(
+                  label: l.settingsExerciseNudge,
+                  icon: Icons.spa_rounded,
+                  iconColor: const Color(0xFF3E9C8C),
+                  value: c.nudge,
+                  onChanged: (v) =>
+                      setState(() => _choices = c.copyWith(nudge: v)),
+                ),
+                const SizedBox(height: 10),
+                ScenicToggleRow(
+                  label: l.settingsWeeklySummary,
+                  icon: Icons.insights_rounded,
+                  iconColor: const Color(0xFF1C7C84),
+                  value: c.weekly,
+                  onChanged: (v) =>
+                      setState(() => _choices = c.copyWith(weekly: v)),
+                ),
+                if (!_exact && (c.daily || c.nudge || c.weekly)) ...[
+                  const SizedBox(height: 12),
+                  ScenicPanel(
+                    key: const ValueKey('exact-times'),
+                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(l.settingsExactTimesNote, style: kScenicBody),
+                        Align(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: TextButton(
+                            onPressed: _askExact,
+                            child: Text(
+                              l.settingsExactTimesAllow,
+                              style: kScenicBody.copyWith(
+                                color: ScenicColors.pillBottom,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 12),
+                ScenicPanel(
+                  // Looks like the PO's field; tapping it opens the clock.
+                  child: GestureDetector(
+                    key: const ValueKey('quiet-hours'),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: _pickQuietHours,
+                    child: AbsorbPointer(
+                      child: WithMeField(
+                        label: l.settingsQuietHours,
+                        controller: _quietHours,
+                        fill: Colors.white,
+                        border: kScenicFieldRing,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

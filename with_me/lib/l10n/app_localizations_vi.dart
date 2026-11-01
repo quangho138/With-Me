@@ -231,6 +231,21 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Thông báo của With Me đang tắt. Bạn có thể cho phép trong cài đặt điện thoại.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Lời nhắc hoạt động trong ứng dụng With Me trên điện thoại.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Lời nhắc có thể đến trễ vài phút. Hãy cho phép giờ chính xác để chúng đến đúng giờ.';
+
+  @override
+  String get settingsExactTimesAllow => 'Cho phép giờ chính xác';
+
+  @override
   String get helpTitle => 'Trợ giúp';
 
   @override
@@ -1614,7 +1629,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Đã khóa — chỉ có thể sửa mục ghi trong vòng 24 giờ.';
+      'Đã khóa: có thể sửa mục ghi trong chính ngày đó và ngày hôm sau.';
 
   @override
   String get dashEntryEditable => 'Hôm nay bạn vẫn có thể sửa mục này.';
@@ -1691,12 +1706,29 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Đặt lời nhắc';
+
+  @override
   String get dashFillInYesterday => 'Điền lần ghi nhận hôm qua';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return 'Lần ghi nhận ngày $date đã được lưu.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Cảm ơn bạn đã điền vào.';
+
+  @override
+  String get noticeDailyBody => 'Lần ghi nhận đang chờ bạn, lúc nào cũng được.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Một bài tập thở ngắn đang chờ bạn, bất cứ lúc nào.';
+
+  @override
+  String get noticeWeeklyBody =>
+      'Tuần của bạn trong With Me đã sẵn sàng để xem.';
 
   @override
   String get dashProgressTitle => 'Tiến trình của bạn';
@@ -1872,8 +1904,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashReminderSave => 'Lưu lời nhắc';
 
   @override
-  String get dashReminderSaved =>
-      'Đã lưu lời nhắc. Tính năng hẹn giờ sẽ có sau.';
+  String get dashReminderSaved => 'Đã lưu lời nhắc.';
 
   @override
   String get commonBack => 'Quay lại';

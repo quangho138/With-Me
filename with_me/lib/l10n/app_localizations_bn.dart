@@ -231,6 +231,21 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me-এর জন্য নোটিফিকেশন বন্ধ আছে। আপনার ফোনের সেটিংসে গিয়ে চালু করতে পারেন।';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'রিমাইন্ডার With Me ফোন অ্যাপে কাজ করে।';
+
+  @override
+  String get settingsExactTimesNote =>
+      'রিমাইন্ডার কয়েক মিনিট দেরিতে আসতে পারে। ঠিক সময়ে পেতে সঠিক সময়ের অনুমতি দিন।';
+
+  @override
+  String get settingsExactTimesAllow => 'সঠিক সময়ের অনুমতি দিন';
+
+  @override
   String get helpTitle => 'সাহায্য';
 
   @override
@@ -1608,7 +1623,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'লক করা — এন্ট্রি 24 ঘণ্টা পর্যন্ত বদলানো যায়।';
+      'লক করা: এন্ট্রি তার নিজের দিনে এবং পরের দিনে বদলানো যায়।';
 
   @override
   String get dashEntryEditable => 'আজ আপনি এখনও এই এন্ট্রি বদলাতে পারেন।';
@@ -1684,12 +1699,27 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'রিমাইন্ডার সেট করুন';
+
+  @override
   String get dashFillInYesterday => 'গতকালের চেক-ইন পূরণ করুন';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return '$date তারিখের চেক-ইন সেভ হয়েছে।';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'এটি পূরণ করার জন্য ধন্যবাদ।';
+
+  @override
+  String get noticeDailyBody => 'আপনার চেক-ইন প্রস্তুত, যখন আপনি চান।';
+
+  @override
+  String get noticeNudgeBody => 'একটি ছোট শ্বাসের ব্যায়াম আছে, যখনই চান।';
+
+  @override
+  String get noticeWeeklyBody => 'With Me-তে আপনার সপ্তাহ দেখার জন্য প্রস্তুত।';
 
   @override
   String get dashProgressTitle => 'আপনার অগ্রগতি';
@@ -1866,8 +1896,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashReminderSave => 'রিমাইন্ডার সেভ করুন';
 
   @override
-  String get dashReminderSaved =>
-      'রিমাইন্ডার সেভ হয়েছে। সময়মতো পাঠানোর ব্যবস্থা পরে আসবে।';
+  String get dashReminderSaved => 'রিমাইন্ডার সেভ হয়েছে।';
 
   @override
   String get commonBack => 'পিছনে';

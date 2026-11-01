@@ -230,6 +230,21 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'Notifications are off for With Me. You can allow them in your phone\'s settings.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Reminders work in the With Me phone app.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Reminders may come a few minutes late. Allow exact times so they arrive on time.';
+
+  @override
+  String get settingsExactTimesAllow => 'Allow exact times';
+
+  @override
   String get helpTitle => 'Help';
 
   @override
@@ -1607,7 +1622,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashDayStrategy => 'Strategy';
 
   @override
-  String get dashEntryLocked => 'Locked — entries can be edited for 24 hours.';
+  String get dashEntryLocked =>
+      'Locked: entries can be changed on their own day and the day after.';
 
   @override
   String get dashEntryEditable => 'You can still edit this entry today.';
@@ -1684,12 +1700,28 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Set a reminder';
+
+  @override
   String get dashFillInYesterday => 'Fill in yesterday\'s check-in';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return 'The check-in for $date is saved.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Thank you for filling this in.';
+
+  @override
+  String get noticeDailyBody => 'Your check-in is ready when you are.';
+
+  @override
+  String get noticeNudgeBody =>
+      'A short breathing exercise is here whenever you want it.';
+
+  @override
+  String get noticeWeeklyBody => 'Your week in With Me is ready to look at.';
 
   @override
   String get dashProgressTitle => 'Your Progress';
@@ -1865,7 +1897,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashReminderSave => 'Save Reminder';
 
   @override
-  String get dashReminderSaved => 'Reminder saved. Scheduling comes later.';
+  String get dashReminderSaved => 'Reminder saved.';
 
   @override
   String get commonBack => 'Back';

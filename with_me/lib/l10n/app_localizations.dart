@@ -539,6 +539,30 @@ abstract class AppLocalizations {
   /// **'{start} – {end}'**
   String settingsQuietHoursRange(String start, String end);
 
+  /// Shown when the phone refused permission to show notifications; the switch went back to off.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off for With Me. You can allow them in your phone\'s settings.'**
+  String get settingsNotificationsDenied;
+
+  /// Notifications screen on the web or a computer, which cannot schedule reminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders work in the With Me phone app.'**
+  String get settingsNotificationsPhoneOnly;
+
+  /// Notifications screen, when the phone does not allow exact alarm times (Android 14+).
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders may come a few minutes late. Allow exact times so they arrive on time.'**
+  String get settingsExactTimesNote;
+
+  /// Button that opens the phone's setting for exact alarm times ('Alarms & reminders').
+  ///
+  /// In en, this message translates to:
+  /// **'Allow exact times'**
+  String get settingsExactTimesAllow;
+
   /// Title of the Help screen (questions and answers), and its row in the menu.
   ///
   /// In en, this message translates to:
@@ -2708,7 +2732,7 @@ abstract class AppLocalizations {
   /// Notice on an older day's page: it can no longer be changed.
   ///
   /// In en, this message translates to:
-  /// **'Locked — entries can be edited for 24 hours.'**
+  /// **'Locked: entries can be changed on their own day and the day after.'**
   String get dashEntryLocked;
 
   /// Notice on today's page: it can still be changed.
@@ -2837,6 +2861,12 @@ abstract class AppLocalizations {
   /// **'Exercises finished today: {count}'**
   String yourDayExercises(String count);
 
+  /// Link on Your day that opens Stay on Track, to set a reminder for the next check-in.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a reminder'**
+  String get yourDaySetReminder;
+
   /// Button on yesterday's day detail: opens yesterday's check-in to fill in or change it.
   ///
   /// In en, this message translates to:
@@ -2848,6 +2878,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The check-in for {date} is saved.'**
   String yourDayCheckInDoneOn(String date);
+
+  /// What the companion says after an earlier day's check-in (yesterday) is filled in. Do not say 'today'.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for filling this in.'**
+  String get avatarThanksEarlierLine;
+
+  /// Phone notification, daily check-in reminder. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your check-in is ready when you are.'**
+  String get noticeDailyBody;
+
+  /// Phone notification on a hard day, offering a breathing exercise. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'A short breathing exercise is here whenever you want it.'**
+  String get noticeNudgeBody;
+
+  /// Phone notification, Sundays: the weekly insights are ready. Others may see the lock screen: never mention mood, stress or feelings.
+  ///
+  /// In en, this message translates to:
+  /// **'Your week in With Me is ready to look at.'**
+  String get noticeWeeklyBody;
 
   /// Title of the progress screen.
   ///
@@ -3170,7 +3224,7 @@ abstract class AppLocalizations {
   /// Message after saving a reminder; reminders are not actually scheduled yet.
   ///
   /// In en, this message translates to:
-  /// **'Reminder saved. Scheduling comes later.'**
+  /// **'Reminder saved.'**
   String get dashReminderSaved;
 
   /// Screen-reader label of the back arrow at the top of a screen.

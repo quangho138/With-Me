@@ -230,6 +230,21 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me bildirimleri kapalı. Telefonunun ayarlarından izin verebilirsin.';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'Hatırlatmalar With Me telefon uygulamasında çalışır.';
+
+  @override
+  String get settingsExactTimesNote =>
+      'Hatırlatmalar birkaç dakika geç gelebilir. Zamanında gelmeleri için tam saatlere izin ver.';
+
+  @override
+  String get settingsExactTimesAllow => 'Tam saatlere izin ver';
+
+  @override
   String get helpTitle => 'Yardım';
 
   @override
@@ -1608,7 +1623,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get dashEntryLocked =>
-      'Kilitli. Kayıtlar 24 saat boyunca düzenlenebilir.';
+      'Kilitli: kayıtlar kendi gününde ve ertesi gün değiştirilebilir.';
 
   @override
   String get dashEntryEditable => 'Bu kaydı bugün hâlâ düzenleyebilirsin.';
@@ -1684,12 +1699,28 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'Hatırlatma kur';
+
+  @override
   String get dashFillInYesterday => 'Dünkü durum kaydını doldur';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return '$date durum kaydı kaydedildi.';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'Bunu doldurduğun için teşekkürler.';
+
+  @override
+  String get noticeDailyBody => 'Durum kaydın hazır, ne zaman istersen.';
+
+  @override
+  String get noticeNudgeBody =>
+      'Kısa bir nefes egzersizi, ne zaman istersen hazır.';
+
+  @override
+  String get noticeWeeklyBody => 'With Me\'deki haftan bakmaya hazır.';
 
   @override
   String get dashProgressTitle => 'İlerlemen';
@@ -1866,8 +1897,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashReminderSave => 'Hatırlatıcıyı Kaydet';
 
   @override
-  String get dashReminderSaved =>
-      'Hatırlatıcı kaydedildi. Zamanlama daha sonra gelecek.';
+  String get dashReminderSaved => 'Hatırlatma kaydedildi.';
 
   @override
   String get commonBack => 'Geri';

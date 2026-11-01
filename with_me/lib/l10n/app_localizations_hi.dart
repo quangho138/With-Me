@@ -231,6 +231,21 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get settingsNotificationsDenied =>
+      'With Me के लिए सूचनाएँ बंद हैं। आप अपने फ़ोन की सेटिंग में इन्हें चालू कर सकते हैं।';
+
+  @override
+  String get settingsNotificationsPhoneOnly =>
+      'रिमाइंडर With Me फ़ोन ऐप में काम करते हैं।';
+
+  @override
+  String get settingsExactTimesNote =>
+      'रिमाइंडर कुछ मिनट देर से आ सकते हैं। समय पर पाने के लिए सटीक समय की अनुमति दें।';
+
+  @override
+  String get settingsExactTimesAllow => 'सटीक समय की अनुमति दें';
+
+  @override
   String get helpTitle => 'मदद';
 
   @override
@@ -1611,7 +1626,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dashDayStrategy => 'रणनीति';
 
   @override
-  String get dashEntryLocked => 'लॉक — एंट्री 24 घंटे तक ही बदली जा सकती है।';
+  String get dashEntryLocked =>
+      'लॉक है: एंट्री उसी दिन और अगले दिन बदली जा सकती है।';
 
   @override
   String get dashEntryEditable => 'इस एंट्री को आज अभी भी बदला जा सकता है।';
@@ -1687,12 +1703,29 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
+  String get yourDaySetReminder => 'रिमाइंडर सेट करें';
+
+  @override
   String get dashFillInYesterday => 'कल का चेक-इन भरें';
 
   @override
   String yourDayCheckInDoneOn(String date) {
     return '$date का चेक-इन सेव हो गया है।';
   }
+
+  @override
+  String get avatarThanksEarlierLine => 'इसे भरने के लिए धन्यवाद।';
+
+  @override
+  String get noticeDailyBody => 'आपका चेक-इन तैयार है, जब भी आप चाहें।';
+
+  @override
+  String get noticeNudgeBody =>
+      'साँस लेने का एक छोटा अभ्यास तैयार है, जब भी आप चाहें।';
+
+  @override
+  String get noticeWeeklyBody =>
+      'With Me में आपका हफ़्ता देखने के लिए तैयार है।';
 
   @override
   String get dashProgressTitle => 'आपकी प्रगति';
@@ -1870,8 +1903,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dashReminderSave => 'रिमाइंडर सेव करें';
 
   @override
-  String get dashReminderSaved =>
-      'रिमाइंडर सेव हो गया। शेड्यूल करने की सुविधा बाद में आएगी।';
+  String get dashReminderSaved => 'रिमाइंडर सेव हो गया।';
 
   @override
   String get commonBack => 'वापस';
