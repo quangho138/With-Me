@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "الإشعارات متوقفة لتطبيق With Me. يمكنك السماح بها من إعدادات هاتفك.",
   "settingsNotificationsPhoneOnly": "تعمل التذكيرات في تطبيق With Me على الهاتف.",
+  "settingsExactTimesNote": "قد تصل التذكيرات متأخرة بضع دقائق. اسمح بالأوقات الدقيقة لتصل في موعدها.",
+  "settingsExactTimesAllow": "السماح بالأوقات الدقيقة",
   "helpTitle": "المساعدة",
   "helpWhatIsQuestion": "ما هو {appName}؟",
   "helpWhatIsAnswer": "{appName} تطبيق للصحة النفسية وإدارة التوتر، صُمّم ليساعدك على تتبّع أنماطك العاطفية وممارسة اليقظة الذهنية.",

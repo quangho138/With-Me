@@ -144,6 +144,27 @@ void main() {
       expect(layer.scheduled, isEmpty);
     });
 
+    testWidgets('without exact times: a note and a button to allow them', (
+      tester,
+    ) async {
+      layer.exact = false;
+      await open(tester, const NotificationsScreen(phone: true));
+      // Nothing on yet: no note.
+      expect(find.text(en.settingsExactTimesNote), findsNothing);
+      await toggle(tester, en.settingsDailyReminder);
+      expect(find.text(en.settingsExactTimesNote), findsOneWidget);
+      await tester.ensureVisible(find.text(en.settingsExactTimesAllow));
+      await tester.tap(find.text(en.settingsExactTimesAllow));
+      await settle(tester);
+      expect(layer.askedExact, 1);
+    });
+
+    testWidgets('with exact times allowed: no note', (tester) async {
+      await open(tester, const NotificationsScreen(phone: true));
+      await toggle(tester, en.settingsDailyReminder);
+      expect(find.text(en.settingsExactTimesNote), findsNothing);
+    });
+
     testWidgets('the web and desktop show a note instead of switches', (
       tester,
     ) async {
@@ -170,6 +191,19 @@ void main() {
       expect(layer.of(NoticeKind.daily), hasLength(14));
       expect(find.byType(ReminderScreen), findsNothing);
       expect(find.text(en.dashReminderSaved), findsOneWidget);
+    });
+
+    testWidgets("Tomorrow morning keeps the person's own time", (tester) async {
+      await AppRepositories.reminders.setDailyTime(const ClockTime(10, 50));
+      await open(tester, const ReminderScreen(phone: true));
+      await save(tester, en.dashReminderSave);
+      final s = await AppRepositories.reminders.settings();
+      expect(s.daily, isTrue);
+      expect(
+        s.dailyAt,
+        const ClockTime(10, 50),
+        reason: 'not replaced by 8:00',
+      );
     });
 
     testWidgets('Later today, not every day: one reminder in about 3 hours', (

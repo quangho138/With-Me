@@ -551,6 +551,18 @@ abstract class AppLocalizations {
   /// **'Reminders work in the With Me phone app.'**
   String get settingsNotificationsPhoneOnly;
 
+  /// Notifications screen, when the phone does not allow exact alarm times (Android 14+).
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders may come a few minutes late. Allow exact times so they arrive on time.'**
+  String get settingsExactTimesNote;
+
+  /// Button that opens the phone's setting for exact alarm times ('Alarms & reminders').
+  ///
+  /// In en, this message translates to:
+  /// **'Allow exact times'**
+  String get settingsExactTimesAllow;
+
   /// Title of the Help screen (questions and answers), and its row in the menu.
   ///
   /// In en, this message translates to:

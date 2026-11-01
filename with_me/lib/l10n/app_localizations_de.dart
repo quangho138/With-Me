@@ -240,6 +240,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Erinnerungen funktionieren in der With Me App auf dem Handy.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Erinnerungen können ein paar Minuten zu spät kommen. Erlaube genaue Zeiten, damit sie pünktlich sind.';
+
+  @override
+  String get settingsExactTimesAllow => 'Genaue Zeiten erlauben';
+
+  @override
   String get helpTitle => 'Hilfe';
 
   @override

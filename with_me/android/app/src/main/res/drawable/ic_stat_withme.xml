@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The notice icon (feature E): the companion's silhouette - round head,
+     two sprout leaves, happy closed eyes and the glowing heart it holds.
+     Android shows notice icons as a white shape on its own colour. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M11.7,7.1 Q8.7,3.5 5.6,5.3 Q8.3,8.4 11.7,7.1 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M12.3,7.1 Q14.4,2.3 18.7,3.6 Q16.9,7.9 12.3,7.1 Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M3.4,15.2 a8.6,8.6 0 1,0 17.2,0 a8.6,8.6 0 1,0 -17.2,0 Z M7.6,14.1 q1.4,-2.3 2.8,0 q-1.4,-1.05 -2.8,0 Z M13.6,14.1 q1.4,-2.3 2.8,0 q-1.4,-1.05 -2.8,0 Z M12,21.1 C10.1,19.8 9.2,18.7 9.2,17.6 C9.2,16.8 9.8,16.2 10.6,16.2 C11.2,16.2 11.7,16.6 12,17.1 C12.3,16.6 12.8,16.2 13.4,16.2 C14.2,16.2 14.8,16.8 14.8,17.6 C14.8,18.7 13.9,19.8 12,21.1 Z" />
+</vector>

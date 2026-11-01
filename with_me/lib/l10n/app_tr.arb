@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "With Me bildirimleri kapalı. Telefonunun ayarlarından izin verebilirsin.",
   "settingsNotificationsPhoneOnly": "Hatırlatmalar With Me telefon uygulamasında çalışır.",
+  "settingsExactTimesNote": "Hatırlatmalar birkaç dakika geç gelebilir. Zamanında gelmeleri için tam saatlere izin ver.",
+  "settingsExactTimesAllow": "Tam saatlere izin ver",
   "helpTitle": "Yardım",
   "helpWhatIsQuestion": "{appName} nedir?",
   "helpWhatIsAnswer": "{appName}, duygusal örüntülerini takip etmene ve farkındalık pratiği yapmana yardımcı olmak için tasarlanmış bir ruhsal iyi oluş ve stres yönetimi uygulamasıdır.",

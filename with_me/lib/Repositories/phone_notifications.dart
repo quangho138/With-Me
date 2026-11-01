@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/painting.dart' show Color;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
@@ -12,10 +13,12 @@ import 'reminder_service.dart';
 /// through flutter_local_notifications (graded core feature E). Android and
 /// iPhone only; the web and desktop builds use [NoNotifications].
 ///
-/// Android may show a notice a little late to save battery (an inexact
-/// alarm, so no extra permission is needed); up to 15 minutes late counts
-/// as on time (GRADED_CORE E9). Scheduled notices survive a restart: the
-/// plugin's boot receiver (AndroidManifest.xml) puts them back.
+/// Notices come at the exact minute when the person allows exact times
+/// ("Alarms & reminders", off by default on Android 14 and newer; the
+/// Notifications screen offers it). Without it they fall back to inexact
+/// alarms, which can be minutes late, and never fail. Scheduled notices
+/// survive a restart: the plugin's boot receiver (AndroidManifest.xml)
+/// puts them back.
 class PhoneNotifications implements NotificationLayer {
   PhoneNotifications({required this.words});
 
@@ -24,6 +27,17 @@ class PhoneNotifications implements NotificationLayer {
 
   final FlutterLocalNotificationsPlugin _plugin =
       FlutterLocalNotificationsPlugin();
+
+  /// The companion's silhouette (android/app/src/main/res/drawable).
+  static const String _icon = 'ic_stat_withme';
+
+  /// The companion's teal, behind the icon in the notification shade.
+  static const Color _teal = Color(0xFF3E9C8C);
+
+  AndroidFlutterLocalNotificationsPlugin? get _android => _plugin
+      .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin
+      >();
   Future<void>? _ready;
 
   /// Whether this build can schedule notices at all.
@@ -43,7 +57,7 @@ class PhoneNotifications implements NotificationLayer {
     }
     await _plugin.initialize(
       settings: const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        android: AndroidInitializationSettings(_icon),
         // Permission is asked when a switch is turned on, not at start.
         iOS: DarwinInitializationSettings(
           requestAlertPermission: false,
@@ -58,11 +72,7 @@ class PhoneNotifications implements NotificationLayer {
   Future<bool> askPermission() async {
     await _start();
     if (defaultTargetPlatform == TargetPlatform.android) {
-      final android = _plugin
-          .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin
-          >();
-      return await android?.requestNotificationsPermission() ?? false;
+      return await _android?.requestNotificationsPermission() ?? false;
     }
     final ios = _plugin
         .resolvePlatformSpecificImplementation<
@@ -75,6 +85,26 @@ class PhoneNotifications implements NotificationLayer {
   Future<void> cancelAll() async {
     await _start();
     await _plugin.cancelAll();
+  }
+
+  @override
+  Future<bool> exactTimesAllowed() async {
+    if (defaultTargetPlatform != TargetPlatform.android) return true;
+    await _start();
+    try {
+      return await _android?.canScheduleExactNotifications() ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  @override
+  Future<void> askExactTimes() async {
+    if (defaultTargetPlatform != TargetPlatform.android) return;
+    await _start();
+    try {
+      await _android?.requestExactAlarmsPermission();
+    } catch (_) {}
   }
 
   @override
@@ -105,24 +135,41 @@ class PhoneNotifications implements NotificationLayer {
         l.noticeWeeklyBody,
       ),
     };
-    await _plugin.zonedSchedule(
-      id: id,
-      // The same clock time on the phone's calendar, in its time zone.
-      scheduledDate: tz.TZDateTime(
-        tz.local,
-        at.year,
-        at.month,
-        at.day,
-        at.hour,
-        at.minute,
-      ),
-      notificationDetails: NotificationDetails(
-        android: AndroidNotificationDetails(channel, name),
-        iOS: const DarwinNotificationDetails(),
-      ),
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-      title: l.appTitle,
-      body: body,
-    );
+    Future<void> scheduleWith(AndroidScheduleMode mode) =>
+        _plugin.zonedSchedule(
+          id: id,
+          // The same clock time on the phone's calendar, in its time zone.
+          scheduledDate: tz.TZDateTime(
+            tz.local,
+            at.year,
+            at.month,
+            at.day,
+            at.hour,
+            at.minute,
+          ),
+          notificationDetails: NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel,
+              name,
+              icon: _icon,
+              color: _teal,
+            ),
+            iOS: const DarwinNotificationDetails(),
+          ),
+          androidScheduleMode: mode,
+          title: l.appTitle,
+          body: body,
+        );
+
+    // Exact when allowed, otherwise inexact. If exact is refused at the
+    // last moment (the setting was just turned off), inexact instead:
+    // a reminder a little late is better than no reminder.
+    if (await exactTimesAllowed()) {
+      try {
+        await scheduleWith(AndroidScheduleMode.exactAllowWhileIdle);
+        return;
+      } catch (_) {}
+    }
+    await scheduleWith(AndroidScheduleMode.inexactAllowWhileIdle);
   }
 }

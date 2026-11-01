@@ -238,6 +238,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعمل التذكيرات في تطبيق With Me على الهاتف.';
 
   @override
+  String get settingsExactTimesNote =>
+      'قد تصل التذكيرات متأخرة بضع دقائق. اسمح بالأوقات الدقيقة لتصل في موعدها.';
+
+  @override
+  String get settingsExactTimesAllow => 'السماح بالأوقات الدقيقة';
+
+  @override
   String get helpTitle => 'المساعدة';
 
   @override

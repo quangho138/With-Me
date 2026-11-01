@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "Benachrichtigungen sind für With Me aus. Du kannst sie in den Einstellungen deines Handys erlauben.",
   "settingsNotificationsPhoneOnly": "Erinnerungen funktionieren in der With Me App auf dem Handy.",
+  "settingsExactTimesNote": "Erinnerungen können ein paar Minuten zu spät kommen. Erlaube genaue Zeiten, damit sie pünktlich sind.",
+  "settingsExactTimesAllow": "Genaue Zeiten erlauben",
   "helpTitle": "Hilfe",
   "helpWhatIsQuestion": "Was ist {appName}?",
   "helpWhatIsAnswer": "{appName} ist eine App für mentales Wohlbefinden und Stressbewältigung. Sie hilft dir, deine emotionalen Muster zu verfolgen und Achtsamkeit zu üben.",

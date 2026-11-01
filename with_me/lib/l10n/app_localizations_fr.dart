@@ -240,6 +240,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les rappels fonctionnent dans l’appli With Me sur téléphone.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Les rappels peuvent arriver avec quelques minutes de retard. Autorise les heures exactes pour qu’ils arrivent à l’heure.';
+
+  @override
+  String get settingsExactTimesAllow => 'Autoriser les heures exactes';
+
+  @override
   String get helpTitle => 'Aide';
 
   @override

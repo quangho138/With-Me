@@ -240,6 +240,13 @@ class AppLocalizationsFil extends AppLocalizations {
       'Gumagana ang mga paalala sa With Me app sa phone.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Puwedeng mahuli nang ilang minuto ang mga paalala. Payagan ang eksaktong oras para dumating sila sa tamang oras.';
+
+  @override
+  String get settingsExactTimesAllow => 'Payagan ang eksaktong oras';
+
+  @override
   String get helpTitle => 'Tulong';
 
   @override

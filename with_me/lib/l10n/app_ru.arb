@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "Уведомления With Me выключены. Их можно разрешить в настройках телефона.",
   "settingsNotificationsPhoneOnly": "Напоминания работают в приложении With Me на телефоне.",
+  "settingsExactTimesNote": "Напоминания могут приходить на несколько минут позже. Разреши точное время, чтобы они приходили вовремя.",
+  "settingsExactTimesAllow": "Разрешить точное время",
   "helpTitle": "Помощь",
   "helpWhatIsQuestion": "Что такое {appName}?",
   "helpWhatIsAnswer": "{appName} — приложение для душевного благополучия и управления стрессом. Оно помогает отслеживать эмоциональные закономерности и практиковать осознанность.",

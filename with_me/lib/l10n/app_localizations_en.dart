@@ -238,6 +238,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Reminders work in the With Me phone app.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Reminders may come a few minutes late. Allow exact times so they arrive on time.';
+
+  @override
+  String get settingsExactTimesAllow => 'Allow exact times';
+
+  @override
   String get helpTitle => 'Help';
 
   @override

@@ -233,6 +233,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsNotificationsPhoneOnly => '提醒在 With Me 手机应用中使用。';
 
   @override
+  String get settingsExactTimesNote => '提醒可能会晚几分钟。允许精确时间，提醒就能准时到达。';
+
+  @override
+  String get settingsExactTimesAllow => '允许精确时间';
+
+  @override
   String get helpTitle => '帮助';
 
   @override
@@ -2504,6 +2510,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsNotificationsPhoneOnly => '提醒在 With Me 手機應用程式中使用。';
+
+  @override
+  String get settingsExactTimesNote => '提醒可能會晚幾分鐘。允許精確時間，提醒就能準時到達。';
+
+  @override
+  String get settingsExactTimesAllow => '允許精確時間';
 
   @override
   String get helpTitle => '幫助';

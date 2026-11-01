@@ -18,6 +18,14 @@ abstract class NotificationLayer {
   /// Removes every notice this app scheduled.
   Future<void> cancelAll();
 
+  /// Whether the phone lets notices come at the exact minute. Android 14
+  /// and newer ask the person once ("Alarms & reminders"); without it,
+  /// notices can come minutes late.
+  Future<bool> exactTimesAllowed();
+
+  /// Opens the phone's setting that allows exact times.
+  Future<void> askExactTimes();
+
   /// Schedules one notice at [at] (a clock time on the phone's calendar).
   Future<void> schedule({
     required int id,
@@ -36,6 +44,12 @@ class NoNotifications implements NotificationLayer {
 
   @override
   Future<void> cancelAll() async {}
+
+  @override
+  Future<bool> exactTimesAllowed() async => true;
+
+  @override
+  Future<void> askExactTimes() async {}
 
   @override
   Future<void> schedule({
@@ -158,6 +172,14 @@ class ReminderService {
     await refresh(force: true);
     return true;
   }
+
+  /// Whether notices can come at the exact minute (see
+  /// [NotificationLayer.exactTimesAllowed]).
+  Future<bool> exactTimesAllowed() => layer.exactTimesAllowed();
+
+  /// Opens the phone's setting for exact times. Coming back to the app
+  /// refreshes the schedule (ReminderTriggers), so it takes effect.
+  Future<void> askExactTimes() => layer.askExactTimes();
 
   /// The daily reminder's time, chosen by the person.
   Future<void> setDailyTime(ClockTime at) async {

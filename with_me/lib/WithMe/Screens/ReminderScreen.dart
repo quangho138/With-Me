@@ -16,7 +16,8 @@ import '../Theme/WithMeTheme.dart';
 ///
 /// Three timing choices and a repeat toggle, in the PO's layout:
 /// - Later today: in 3 hours, on the next quarter hour;
-/// - Tomorrow morning: at 8:00;
+/// - Tomorrow morning: at the person's daily check-in time (8:00 until
+///   they pick one), so it never quietly replaces that time;
 /// - Custom time: a time picked on the clock (today if still ahead,
 ///   otherwise tomorrow).
 /// With Every day on, that time becomes the daily check-in reminder
@@ -40,7 +41,21 @@ class _ReminderScreenState extends State<ReminderScreen> {
   bool _everyDay = true;
   ClockTime? _custom;
 
-  static const ClockTime _tomorrowMorning = ClockTime(8, 0);
+  /// The person's daily check-in time, for Tomorrow morning.
+  ClockTime _tomorrowMorning = kDefaultDailyAt;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTime();
+  }
+
+  Future<void> _loadTime() async {
+    try {
+      final at = (await AppRepositories.reminders.settings()).dailyAt;
+      if (mounted) setState(() => _tomorrowMorning = at);
+    } catch (_) {}
+  }
 
   bool get _phone => widget.phone ?? PhoneNotifications.supported;
 

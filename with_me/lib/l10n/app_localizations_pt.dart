@@ -240,6 +240,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'Os lembretes funcionam no app With Me para celular.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Os lembretes podem chegar alguns minutos atrasados. Permita horários exatos para que cheguem na hora.';
+
+  @override
+  String get settingsExactTimesAllow => 'Permitir horários exatos';
+
+  @override
   String get helpTitle => 'Ajuda';
 
   @override

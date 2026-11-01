@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "Thông báo của With Me đang tắt. Bạn có thể cho phép trong cài đặt điện thoại.",
   "settingsNotificationsPhoneOnly": "Lời nhắc hoạt động trong ứng dụng With Me trên điện thoại.",
+  "settingsExactTimesNote": "Lời nhắc có thể đến trễ vài phút. Hãy cho phép giờ chính xác để chúng đến đúng giờ.",
+  "settingsExactTimesAllow": "Cho phép giờ chính xác",
   "helpTitle": "Trợ giúp",
   "helpWhatIsQuestion": "{appName} là gì?",
   "helpWhatIsAnswer": "{appName} là ứng dụng chăm sóc sức khỏe tinh thần và quản lý căng thẳng, giúp bạn theo dõi các khuôn mẫu cảm xúc và thực hành chánh niệm.",

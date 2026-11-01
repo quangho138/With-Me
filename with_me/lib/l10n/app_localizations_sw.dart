@@ -240,6 +240,13 @@ class AppLocalizationsSw extends AppLocalizations {
       'Vikumbusho hufanya kazi kwenye programu ya With Me ya simu.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Vikumbusho vinaweza kuchelewa dakika chache. Ruhusu muda kamili ili vifike kwa wakati.';
+
+  @override
+  String get settingsExactTimesAllow => 'Ruhusu muda kamili';
+
+  @override
   String get helpTitle => 'Msaada';
 
   @override

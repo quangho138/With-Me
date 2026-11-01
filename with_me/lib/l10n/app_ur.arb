@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "With Me کی اطلاعات بند ہیں۔ آپ اپنے فون کی سیٹنگز میں انہیں اجازت دے سکتے ہیں۔",
   "settingsNotificationsPhoneOnly": "یاد دہانیاں With Me فون ایپ میں کام کرتی ہیں۔",
+  "settingsExactTimesNote": "یاد دہانیاں چند منٹ دیر سے آ سکتی ہیں۔ وقت پر آنے کے لیے درست وقت کی اجازت دیں۔",
+  "settingsExactTimesAllow": "درست وقت کی اجازت دیں",
   "helpTitle": "مدد",
   "helpWhatIsQuestion": "{appName} کیا ہے؟",
   "helpWhatIsAnswer": "{appName} ذہنی صحت اور تناؤ سے نمٹنے کی ایک ایپ ہے، جو آپ کو اپنے جذبات کے پیٹرن پر نظر رکھنے اور مائنڈفلنیس کی مشق کرنے میں مدد کے لیے بنائی گئی ہے۔",

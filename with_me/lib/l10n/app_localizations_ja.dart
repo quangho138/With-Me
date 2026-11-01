@@ -235,6 +235,13 @@ class AppLocalizationsJa extends AppLocalizations {
       'リマインダーはスマートフォンの With Me アプリで使えます。';
 
   @override
+  String get settingsExactTimesNote =>
+      'リマインダーが数分遅れることがあります。正確な時刻を許可すると、時間どおりに届きます。';
+
+  @override
+  String get settingsExactTimesAllow => '正確な時刻を許可';
+
+  @override
   String get helpTitle => 'ヘルプ';
 
   @override

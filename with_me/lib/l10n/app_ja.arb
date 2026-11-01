@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start}～{end}",
   "settingsNotificationsDenied": "With Me の通知はオフになっています。スマートフォンの設定で許可できます。",
   "settingsNotificationsPhoneOnly": "リマインダーはスマートフォンの With Me アプリで使えます。",
+  "settingsExactTimesNote": "リマインダーが数分遅れることがあります。正確な時刻を許可すると、時間どおりに届きます。",
+  "settingsExactTimesAllow": "正確な時刻を許可",
   "helpTitle": "ヘルプ",
   "helpWhatIsQuestion": "{appName}とは？",
   "helpWhatIsAnswer": "{appName}は、気持ちのパターンを記録し、マインドフルネスを練習できるよう設計された、心のウェルネスとストレスケアのアプリです。",

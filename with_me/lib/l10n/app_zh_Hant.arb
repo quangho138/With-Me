@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "With Me 的通知已關閉。你可以在手機設定中允許通知。",
   "settingsNotificationsPhoneOnly": "提醒在 With Me 手機應用程式中使用。",
+  "settingsExactTimesNote": "提醒可能會晚幾分鐘。允許精確時間，提醒就能準時到達。",
+  "settingsExactTimesAllow": "允許精確時間",
   "helpTitle": "幫助",
   "helpWhatIsQuestion": "{appName}是什麼？",
   "helpWhatIsAnswer": "{appName}是一款心理健康與壓力管理應用，幫助你追蹤情緒規律、練習正念。",

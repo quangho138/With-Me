@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "Les notifications de With Me sont désactivées. Tu peux les autoriser dans les réglages de ton téléphone.",
   "settingsNotificationsPhoneOnly": "Les rappels fonctionnent dans l’appli With Me sur téléphone.",
+  "settingsExactTimesNote": "Les rappels peuvent arriver avec quelques minutes de retard. Autorise les heures exactes pour qu’ils arrivent à l’heure.",
+  "settingsExactTimesAllow": "Autoriser les heures exactes",
   "helpTitle": "Aide",
   "helpWhatIsQuestion": "Qu’est-ce que {appName} ?",
   "helpWhatIsAnswer": "{appName} est une application de bien-être mental et de gestion du stress, conçue pour t’aider à suivre tes schémas émotionnels et à pratiquer la pleine conscience.",

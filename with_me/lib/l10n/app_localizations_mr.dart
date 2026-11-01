@@ -240,6 +240,13 @@ class AppLocalizationsMr extends AppLocalizations {
       'रिमाइंडर With Me फोन अॅपमध्ये काम करतात.';
 
   @override
+  String get settingsExactTimesNote =>
+      'रिमाइंडर काही मिनिटे उशिरा येऊ शकतात. वेळेवर मिळण्यासाठी अचूक वेळेची परवानगी द्या.';
+
+  @override
+  String get settingsExactTimesAllow => 'अचूक वेळेची परवानगी द्या';
+
+  @override
   String get helpTitle => 'मदत';
 
   @override

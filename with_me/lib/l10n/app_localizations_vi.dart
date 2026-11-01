@@ -239,6 +239,13 @@ class AppLocalizationsVi extends AppLocalizations {
       'Lời nhắc hoạt động trong ứng dụng With Me trên điện thoại.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Lời nhắc có thể đến trễ vài phút. Hãy cho phép giờ chính xác để chúng đến đúng giờ.';
+
+  @override
+  String get settingsExactTimesAllow => 'Cho phép giờ chính xác';
+
+  @override
   String get helpTitle => 'Trợ giúp';
 
   @override

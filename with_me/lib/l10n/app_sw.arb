@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "Arifa za With Me zimezimwa. Unaweza kuziruhusu kwenye mipangilio ya simu yako.",
   "settingsNotificationsPhoneOnly": "Vikumbusho hufanya kazi kwenye programu ya With Me ya simu.",
+  "settingsExactTimesNote": "Vikumbusho vinaweza kuchelewa dakika chache. Ruhusu muda kamili ili vifike kwa wakati.",
+  "settingsExactTimesAllow": "Ruhusu muda kamili",
   "helpTitle": "Msaada",
   "helpWhatIsQuestion": "{appName} ni nini?",
   "helpWhatIsAnswer": "{appName} ni programu ya ustawi wa akili na udhibiti wa msongo wa mawazo, iliyoundwa kukusaidia kufuatilia mienendo ya hisia zako na kujizoeza kuwa makini na wakati uliopo.",

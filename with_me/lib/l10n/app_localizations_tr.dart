@@ -238,6 +238,13 @@ class AppLocalizationsTr extends AppLocalizations {
       'Hatırlatmalar With Me telefon uygulamasında çalışır.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Hatırlatmalar birkaç dakika geç gelebilir. Zamanında gelmeleri için tam saatlere izin ver.';
+
+  @override
+  String get settingsExactTimesAllow => 'Tam saatlere izin ver';
+
+  @override
   String get helpTitle => 'Yardım';
 
   @override

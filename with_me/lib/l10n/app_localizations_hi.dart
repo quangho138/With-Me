@@ -239,6 +239,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'रिमाइंडर With Me फ़ोन ऐप में काम करते हैं।';
 
   @override
+  String get settingsExactTimesNote =>
+      'रिमाइंडर कुछ मिनट देर से आ सकते हैं। समय पर पाने के लिए सटीक समय की अनुमति दें।';
+
+  @override
+  String get settingsExactTimesAllow => 'सटीक समय की अनुमति दें';
+
+  @override
   String get helpTitle => 'मदद';
 
   @override

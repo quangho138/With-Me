@@ -240,6 +240,13 @@ class AppLocalizationsTe extends AppLocalizations {
       'రిమైండర్లు With Me ఫోన్ యాప్‌లో పనిచేస్తాయి.';
 
   @override
+  String get settingsExactTimesNote =>
+      'రిమైండర్లు కొన్ని నిమిషాలు ఆలస్యంగా రావచ్చు. సమయానికి రావడానికి ఖచ్చితమైన సమయాన్ని అనుమతించండి.';
+
+  @override
+  String get settingsExactTimesAllow => 'ఖచ్చితమైన సమయాన్ని అనుమతించండి';
+
+  @override
   String get helpTitle => 'సహాయం';
 
   @override

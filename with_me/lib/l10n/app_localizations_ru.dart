@@ -240,6 +240,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Напоминания работают в приложении With Me на телефоне.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Напоминания могут приходить на несколько минут позже. Разреши точное время, чтобы они приходили вовремя.';
+
+  @override
+  String get settingsExactTimesAllow => 'Разрешить точное время';
+
+  @override
   String get helpTitle => 'Помощь';
 
   @override

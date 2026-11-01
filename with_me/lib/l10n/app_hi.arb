@@ -69,6 +69,8 @@
   "settingsQuietHoursRange": "{start} – {end}",
   "settingsNotificationsDenied": "With Me के लिए सूचनाएँ बंद हैं। आप अपने फ़ोन की सेटिंग में इन्हें चालू कर सकते हैं।",
   "settingsNotificationsPhoneOnly": "रिमाइंडर With Me फ़ोन ऐप में काम करते हैं।",
+  "settingsExactTimesNote": "रिमाइंडर कुछ मिनट देर से आ सकते हैं। समय पर पाने के लिए सटीक समय की अनुमति दें।",
+  "settingsExactTimesAllow": "सटीक समय की अनुमति दें",
   "helpTitle": "मदद",
   "helpWhatIsQuestion": "{appName} क्या है?",
   "helpWhatIsAnswer": "{appName} मानसिक सेहत और तनाव प्रबंधन का एक ऐप है, जो आपकी भावनाओं के पैटर्न पर नज़र रखने और माइंडफ़ुलनेस का अभ्यास करने में मदद के लिए बनाया गया है।",

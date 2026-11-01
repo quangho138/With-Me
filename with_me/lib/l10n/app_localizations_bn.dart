@@ -239,6 +239,13 @@ class AppLocalizationsBn extends AppLocalizations {
       'রিমাইন্ডার With Me ফোন অ্যাপে কাজ করে।';
 
   @override
+  String get settingsExactTimesNote =>
+      'রিমাইন্ডার কয়েক মিনিট দেরিতে আসতে পারে। ঠিক সময়ে পেতে সঠিক সময়ের অনুমতি দিন।';
+
+  @override
+  String get settingsExactTimesAllow => 'সঠিক সময়ের অনুমতি দিন';
+
+  @override
   String get helpTitle => 'সাহায্য';
 
   @override

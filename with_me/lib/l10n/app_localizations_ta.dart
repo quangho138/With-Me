@@ -240,6 +240,13 @@ class AppLocalizationsTa extends AppLocalizations {
       'நினைவூட்டல்கள் With Me தொலைபேசி செயலியில் செயல்படும்.';
 
   @override
+  String get settingsExactTimesNote =>
+      'நினைவூட்டல்கள் சில நிமிடங்கள் தாமதமாக வரலாம். சரியான நேரத்தில் வர துல்லியமான நேரத்தை அனுமதிக்கவும்.';
+
+  @override
+  String get settingsExactTimesAllow => 'துல்லியமான நேரத்தை அனுமதி';
+
+  @override
   String get helpTitle => 'உதவி';
 
   @override

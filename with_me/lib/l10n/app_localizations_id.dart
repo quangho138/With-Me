@@ -239,6 +239,13 @@ class AppLocalizationsId extends AppLocalizations {
       'Pengingat berfungsi di aplikasi With Me di ponsel.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Pengingat bisa datang terlambat beberapa menit. Izinkan waktu tepat agar datang tepat waktu.';
+
+  @override
+  String get settingsExactTimesAllow => 'Izinkan waktu tepat';
+
+  @override
   String get helpTitle => 'Bantuan';
 
   @override

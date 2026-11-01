@@ -30,6 +30,18 @@ class FakeLayer implements NotificationLayer {
   @override
   Future<void> cancelAll() async => scheduled.clear();
 
+  /// Whether the phone allows exact times, and how often it was asked.
+  bool exact = true;
+  int askedExact = 0;
+
+  @override
+  Future<bool> exactTimesAllowed() async => exact;
+
+  @override
+  Future<void> askExactTimes() async {
+    askedExact++;
+  }
+
   @override
   Future<void> schedule({
     required int id,

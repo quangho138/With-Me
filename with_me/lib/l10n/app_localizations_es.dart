@@ -240,6 +240,13 @@ class AppLocalizationsEs extends AppLocalizations {
       'Los recordatorios funcionan en la app de With Me para teléfono.';
 
   @override
+  String get settingsExactTimesNote =>
+      'Los recordatorios pueden llegar unos minutos tarde. Permite horas exactas para que lleguen a tiempo.';
+
+  @override
+  String get settingsExactTimesAllow => 'Permitir horas exactas';
+
+  @override
   String get helpTitle => 'Ayuda';
 
   @override

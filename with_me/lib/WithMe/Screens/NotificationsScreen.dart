@@ -22,6 +22,10 @@ import '../Data/notice_times.dart';
 /// switch is being turned on; if it is refused, those switches go back to
 /// off and a short message says how to allow it later.
 ///
+/// When a notice is on but the phone does not allow exact times (Android
+/// 14 and newer ask once), a short note explains that reminders may come a
+/// few minutes late, with a button to the phone's setting.
+///
 /// Phones only: the web and desktop builds cannot schedule reminders
 /// reliably, so they show a note instead of the switches.
 class NotificationsScreen extends StatefulWidget {
@@ -37,10 +41,14 @@ class NotificationsScreen extends StatefulWidget {
   State<NotificationsScreen> createState() => _NotificationsScreenState();
 }
 
-class _NotificationsScreenState extends State<NotificationsScreen> {
+class _NotificationsScreenState extends State<NotificationsScreen>
+    with WidgetsBindingObserver {
   /// The choices on screen, saved only by Save.
   NoticeSettings? _choices;
   bool _saving = false;
+
+  /// Whether the phone lets notices come at the exact minute.
+  bool _exact = true;
 
   final _quietHours = TextEditingController();
 
@@ -49,13 +57,39 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   void initState() {
     super.initState();
-    if (_phone) _load();
+    WidgetsBinding.instance.addObserver(this);
+    if (_phone) {
+      _load();
+      _checkExact();
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _quietHours.dispose();
     super.dispose();
+  }
+
+  /// Back from the phone's settings: exact times may be allowed now.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && _phone) _checkExact();
+  }
+
+  Future<void> _checkExact() async {
+    var exact = true;
+    try {
+      exact = await AppRepositories.reminders.exactTimesAllowed();
+    } catch (_) {}
+    if (mounted) setState(() => _exact = exact);
+  }
+
+  Future<void> _askExact() async {
+    try {
+      await AppRepositories.reminders.askExactTimes();
+    } catch (_) {}
+    await _checkExact();
   }
 
   Future<void> _load() async {
@@ -184,6 +218,32 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   onChanged: (v) =>
                       setState(() => _choices = c.copyWith(weekly: v)),
                 ),
+                if (!_exact && (c.daily || c.nudge || c.weekly)) ...[
+                  const SizedBox(height: 12),
+                  ScenicPanel(
+                    key: const ValueKey('exact-times'),
+                    padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(l.settingsExactTimesNote, style: kScenicBody),
+                        Align(
+                          alignment: AlignmentDirectional.centerEnd,
+                          child: TextButton(
+                            onPressed: _askExact,
+                            child: Text(
+                              l.settingsExactTimesAllow,
+                              style: kScenicBody.copyWith(
+                                color: ScenicColors.pillBottom,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 12),
                 ScenicPanel(
                   // Looks like the PO's field; tapping it opens the clock.

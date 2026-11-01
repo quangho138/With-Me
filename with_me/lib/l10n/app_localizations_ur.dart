@@ -240,6 +240,13 @@ class AppLocalizationsUr extends AppLocalizations {
       'یاد دہانیاں With Me فون ایپ میں کام کرتی ہیں۔';
 
   @override
+  String get settingsExactTimesNote =>
+      'یاد دہانیاں چند منٹ دیر سے آ سکتی ہیں۔ وقت پر آنے کے لیے درست وقت کی اجازت دیں۔';
+
+  @override
+  String get settingsExactTimesAllow => 'درست وقت کی اجازت دیں';
+
+  @override
   String get helpTitle => 'مدد';
 
   @override
