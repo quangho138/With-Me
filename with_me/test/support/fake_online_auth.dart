@@ -128,6 +128,22 @@ class FakeOnlineAuth implements OnlineAuth {
   }
 
   @override
+  bool get hasPassword => (_current?.password ?? '').isNotEmpty;
+
+  /// The address the last "change email" asked for, until confirmed.
+  String? emailChangeTo;
+
+  @override
+  Future<void> changeEmail(String email) async {
+    if (offline) throw const AccountException(AccountProblem.noInternet);
+    if (_current == null) throw const AccountException(AccountProblem.unknown);
+    if (_accounts.containsKey(email)) {
+      throw const AccountException(AccountProblem.emailInUse);
+    }
+    emailChangeTo = email;
+  }
+
+  @override
   Future<void> deleteAccount() async {
     if (offline) throw const AccountException(AccountProblem.noInternet);
     final me = _current;

@@ -477,6 +477,34 @@ class AppLocalizationsVi extends AppLocalizations {
   String get accountWithMeSince => 'Đồng hành cùng mình từ hôm nay';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'Bên mình từ $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'Chưa có tài khoản trên điện thoại này';
+
+  @override
+  String get accountChangeEmail => 'Đổi email';
+
+  @override
+  String get accountChangePassword => 'Đổi mật khẩu';
+
+  @override
+  String get accountNewEmail => 'Email mới';
+
+  @override
+  String get accountCurrentPassword => 'Mật khẩu hiện tại';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Sắp xong rồi. Hãy mở liên kết trong email chúng tôi gửi để xác nhận. Trước đó, email của bạn vẫn giữ nguyên.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Đã đăng nhập bằng Google. Hãy đổi email hoặc mật khẩu trong Google.';
+
+  @override
   String get accountCheckInTime => 'Giờ ghi nhận hằng ngày';
 
   @override

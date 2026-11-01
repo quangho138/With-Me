@@ -477,6 +477,34 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountWithMeSince => 'Bersamaku sejak hari ini';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'Bersamaku sejak $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'Tidak ada akun di ponsel ini';
+
+  @override
+  String get accountChangeEmail => 'Ubah email';
+
+  @override
+  String get accountChangePassword => 'Ubah kata sandi';
+
+  @override
+  String get accountNewEmail => 'Email baru';
+
+  @override
+  String get accountCurrentPassword => 'Kata sandi saat ini';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Hampir selesai. Buka tautan yang kami kirim lewat email untuk konfirmasi. Sampai saat itu, email kamu tetap sama.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Masuk dengan Google. Ubah email atau kata sandi kamu di Google.';
+
+  @override
   String get accountCheckInTime => 'Waktu check-in harian';
 
   @override

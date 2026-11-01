@@ -476,6 +476,34 @@ class AppLocalizationsTe extends AppLocalizations {
   String get accountWithMeSince => 'ఈ రోజు నుండి నాతో';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '$date నుండి నాతో';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'ఈ ఫోన్‌లో ఖాతా లేదు';
+
+  @override
+  String get accountChangeEmail => 'ఈమెయిల్ మార్చండి';
+
+  @override
+  String get accountChangePassword => 'పాస్‌వర్డ్ మార్చండి';
+
+  @override
+  String get accountNewEmail => 'కొత్త ఈమెయిల్';
+
+  @override
+  String get accountCurrentPassword => 'ప్రస్తుత పాస్‌వర్డ్';
+
+  @override
+  String get accountEmailChangeSent =>
+      'దాదాపు పూర్తయింది. నిర్ధారించడానికి మేము ఈమెయిల్‌లో పంపిన లింక్‌ను తెరవండి. అప్పటి వరకు మీ ఈమెయిల్ అలాగే ఉంటుంది.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Googleతో సైన్ ఇన్ చేశారు. మీ ఈమెయిల్ లేదా పాస్‌వర్డ్‌ను Googleలో మార్చండి.';
+
+  @override
   String get accountCheckInTime => 'రోజువారీ చెక్-ఇన్ సమయం';
 
   @override

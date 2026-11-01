@@ -78,6 +78,28 @@ abstract class UserRepository {
   /// this phone like [completeOutsideLogin]. Throws [AccountException].
   Future<void> setNewPassword(String password);
 
+  /// The logged-in account's email, or null for a guest.
+  String? get accountEmail;
+
+  /// Whether Profile can change the email and password. False for a guest
+  /// and for an account made with Google (Google holds those).
+  bool get canChangeLogin;
+
+  /// Profile's "Change email". Checks [currentPassword] first, then asks
+  /// Supabase to move the account to [newEmail]: nothing changes until the
+  /// link in the confirmation email is opened. Throws [AccountException].
+  Future<void> changeEmail({
+    required String currentPassword,
+    required String newEmail,
+  });
+
+  /// Profile's "Change password". Checks [currentPassword] first. Throws
+  /// [AccountException].
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  });
+
   /// Logins that arrive from outside the app's screens: an email link or
   /// the return from Google ([OnlineAuthEvent.signedIn]), or a reset link
   /// ([OnlineAuthEvent.passwordRecovery]).
@@ -223,6 +245,48 @@ class AppUserRepository implements UserRepository {
   Future<void> setNewPassword(String password) async {
     await _auth.setNewPassword(password);
     await completeOutsideLogin();
+  }
+
+  @override
+  String? get accountEmail => _auth.currentEmail;
+
+  @override
+  bool get canChangeLogin => _auth.currentUserId != null && _auth.hasPassword;
+
+  /// Logs in again with the current password, so a phone left unlocked
+  /// cannot be used to take over the account. The phone stays as it is.
+  Future<void> _checkPassword(String password) async {
+    final email = _auth.currentEmail;
+    if (email == null || !_auth.hasPassword) {
+      throw const AccountException(AccountProblem.unknown);
+    }
+    _ownLoginRunning = true;
+    try {
+      await _auth.signIn(email, password);
+    } finally {
+      _ownLoginRunning = false;
+    }
+  }
+
+  @override
+  Future<void> changeEmail({
+    required String currentPassword,
+    required String newEmail,
+  }) async {
+    final email = _clean(newEmail);
+    if (email.isEmpty) throw const AccountException(AccountProblem.enterEmail);
+    await _checkPassword(currentPassword);
+    if (email == _clean(_auth.currentEmail ?? '')) return;
+    await _auth.changeEmail(email);
+  }
+
+  @override
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    await _checkPassword(currentPassword);
+    await _auth.setNewPassword(newPassword);
   }
 
   @override

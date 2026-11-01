@@ -673,6 +673,43 @@
   "@accountWithMeSince": {
     "description": "Under the person's name on the profile card: how long they have used the app. 'With me' speaks as the companion."
   },
+  "accountWithMeSinceDate": "With me since {date}",
+  "@accountWithMeSinceDate": {
+    "description": "Profile, under the name: the date of the first check-in, for example 3 October 2026.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "accountNoAccountEmail": "No account on this phone",
+  "@accountNoAccountEmail": {
+    "description": "Profile email field when the app is used without an account."
+  },
+  "accountChangeEmail": "Change email",
+  "@accountChangeEmail": {
+    "description": "Profile button and window title to change the account email."
+  },
+  "accountChangePassword": "Change password",
+  "@accountChangePassword": {
+    "description": "Profile button and window title to change the account password."
+  },
+  "accountNewEmail": "New email",
+  "@accountNewEmail": {
+    "description": "Field label: the new email address."
+  },
+  "accountCurrentPassword": "Current password",
+  "@accountCurrentPassword": {
+    "description": "Field label: the password used now, asked before a change."
+  },
+  "accountEmailChangeSent": "Almost done. Open the link we emailed you to confirm. Until then, your email stays the same.",
+  "@accountEmailChangeSent": {
+    "description": "After asking to change the email: a confirmation link was emailed."
+  },
+  "accountGoogleManaged": "Signed in with Google. Change your email or password with Google.",
+  "@accountGoogleManaged": {
+    "description": "Profile, under the email of an account made with Google."
+  },
   "accountCheckInTime": "Daily check-in time",
   "@accountCheckInTime": {
     "description": "Label of the field for the time of the daily check-in."

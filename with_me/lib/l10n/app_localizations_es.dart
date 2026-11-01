@@ -481,6 +481,34 @@ class AppLocalizationsEs extends AppLocalizations {
   String get accountWithMeSince => 'Conmigo desde hoy';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'Conmigo desde el $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'No hay cuenta en este teléfono';
+
+  @override
+  String get accountChangeEmail => 'Cambiar correo';
+
+  @override
+  String get accountChangePassword => 'Cambiar contraseña';
+
+  @override
+  String get accountNewEmail => 'Correo nuevo';
+
+  @override
+  String get accountCurrentPassword => 'Contraseña actual';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Casi listo. Abre el enlace que te enviamos por correo para confirmar. Hasta entonces, tu correo sigue igual.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Sesión iniciada con Google. Cambia tu correo o contraseña en Google.';
+
+  @override
   String get accountCheckInTime => 'Hora del registro diario';
 
   @override

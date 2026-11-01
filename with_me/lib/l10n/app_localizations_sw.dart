@@ -479,6 +479,34 @@ class AppLocalizationsSw extends AppLocalizations {
   String get accountWithMeSince => 'Nami tangu leo';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'Pamoja nami tangu $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'Hakuna akaunti kwenye simu hii';
+
+  @override
+  String get accountChangeEmail => 'Badilisha barua pepe';
+
+  @override
+  String get accountChangePassword => 'Badilisha nenosiri';
+
+  @override
+  String get accountNewEmail => 'Barua pepe mpya';
+
+  @override
+  String get accountCurrentPassword => 'Nenosiri la sasa';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Karibu kumaliza. Fungua kiungo tulichokutumia kwa barua pepe ili kuthibitisha. Hadi hapo, barua pepe yako inabaki ile ile.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Umeingia kwa Google. Badilisha barua pepe au nenosiri lako kwenye Google.';
+
+  @override
   String get accountCheckInTime => 'Muda wa tathmini ya kila siku';
 
   @override

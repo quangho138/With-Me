@@ -481,6 +481,34 @@ class AppLocalizationsFil extends AppLocalizations {
   String get accountWithMeSince => 'Kasama ko mula ngayong araw';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'Kasama ko mula $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'Walang account sa phone na ito';
+
+  @override
+  String get accountChangeEmail => 'Palitan ang email';
+
+  @override
+  String get accountChangePassword => 'Palitan ang password';
+
+  @override
+  String get accountNewEmail => 'Bagong email';
+
+  @override
+  String get accountCurrentPassword => 'Kasalukuyang password';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Malapit na. Buksan ang link na ipinadala namin sa email para kumpirmahin. Hanggang doon, pareho pa rin ang email mo.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Naka-sign in gamit ang Google. Palitan ang email o password mo sa Google.';
+
+  @override
   String get accountCheckInTime => 'Oras ng araw-araw na check-in';
 
   @override

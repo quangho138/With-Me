@@ -481,6 +481,34 @@ class AppLocalizationsTa extends AppLocalizations {
   String get accountWithMeSince => 'இன்று முதல் என்னுடன்';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '$date முதல் என்னுடன்';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'இந்த போனில் கணக்கு இல்லை';
+
+  @override
+  String get accountChangeEmail => 'மின்னஞ்சலை மாற்று';
+
+  @override
+  String get accountChangePassword => 'கடவுச்சொல்லை மாற்று';
+
+  @override
+  String get accountNewEmail => 'புதிய மின்னஞ்சல்';
+
+  @override
+  String get accountCurrentPassword => 'தற்போதைய கடவுச்சொல்';
+
+  @override
+  String get accountEmailChangeSent =>
+      'கிட்டத்தட்ட முடிந்தது. உறுதிப்படுத்த நாங்கள் அனுப்பிய மின்னஞ்சல் இணைப்பைத் திறக்கவும். அதுவரை உங்கள் மின்னஞ்சல் அப்படியே இருக்கும்.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Google மூலம் உள்நுழைந்துள்ளீர்கள். உங்கள் மின்னஞ்சல் அல்லது கடவுச்சொல்லை Google-இல் மாற்றவும்.';
+
+  @override
   String get accountCheckInTime => 'தினசரி செக்-இன் நேரம்';
 
   @override

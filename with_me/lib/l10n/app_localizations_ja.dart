@@ -463,6 +463,34 @@ class AppLocalizationsJa extends AppLocalizations {
   String get accountWithMeSince => '今日からいっしょ';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '$dateから一緒に';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'このスマホにアカウントはありません';
+
+  @override
+  String get accountChangeEmail => 'メールを変更';
+
+  @override
+  String get accountChangePassword => 'パスワードを変更';
+
+  @override
+  String get accountNewEmail => '新しいメール';
+
+  @override
+  String get accountCurrentPassword => '今のパスワード';
+
+  @override
+  String get accountEmailChangeSent =>
+      'あと少しです。確認のため、メールで送ったリンクを開いてください。それまでメールアドレスは変わりません。';
+
+  @override
+  String get accountGoogleManaged =>
+      'Googleでログインしています。メールとパスワードはGoogleで変更してください。';
+
+  @override
   String get accountCheckInTime => '毎日のチェックインの時刻';
 
   @override
