@@ -11,6 +11,7 @@ import 'package:with_me/WithMe/Components/ScenicKit.dart';
 import 'package:with_me/WithMe/Data/CheckInSteps.dart';
 import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
 import 'package:with_me/WithMe/Mascot/RealMascot.dart';
+import 'package:with_me/WithMe/Components/WithMeCalendar.dart';
 import 'package:with_me/WithMe/Screens/DailyCheckInScreen.dart';
 import 'package:with_me/WithMe/Screens/MonthlyCalendarScreen.dart';
 import 'package:with_me/WithMe/Screens/SettingsScreen.dart';
@@ -452,7 +453,9 @@ void main() {
         ),
       );
       await settle(tester);
-      await tester.tap(find.text(DateTime.now().day.toString()).last);
+      // Today's own cell: on the 1st, a greyed "1" from next month also
+      // shows in the last row.
+      await tester.tap(find.byKey(MonthCalendar.todayKey));
       await settle(tester);
     }
 
