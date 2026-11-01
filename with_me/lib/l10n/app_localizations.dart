@@ -2963,12 +2963,6 @@ abstract class AppLocalizations {
   /// **'check-ins\nthis year'**
   String get dashProgressCheckInsYear;
 
-  /// Stat tile text once the user has checked in a few times.
-  ///
-  /// In en, this message translates to:
-  /// **'Positive trend'**
-  String get dashProgressPositiveTrend;
-
   /// Stat tile text before the user has checked in a few times.
   ///
   /// In en, this message translates to:
@@ -2981,23 +2975,41 @@ abstract class AppLocalizations {
   /// **'Keep going!'**
   String get dashProgressKeepGoing;
 
+  /// Progress tile, large: this week's mood is higher than last week's. Short, kind, no judgement.
+  ///
+  /// In en, this message translates to:
+  /// **'Better week'**
+  String get dashTrendBetter;
+
+  /// Progress tile, large: this week's mood is about the same as last week's.
+  ///
+  /// In en, this message translates to:
+  /// **'Steady week'**
+  String get dashTrendSteady;
+
+  /// Progress tile, large: this week's mood is lower than last week's. Gentle: a harder week, never a failure.
+  ///
+  /// In en, this message translates to:
+  /// **'Harder week'**
+  String get dashTrendHarder;
+
+  /// Progress tile, small, under Better week / Steady week / Harder week.
+  ///
+  /// In en, this message translates to:
+  /// **'Mood compared with last week'**
+  String get dashTrendCaption;
+
+  /// Progress screen: the action picked in today's check-in. {plan} is shown in bold, e.g. 'Walking'.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s plan: {plan}'**
+  String dashProgressPlan(String plan);
+
   /// Shown when the user has not set an intention today.
   ///
   /// In en, this message translates to:
   /// **'No intention set today yet.'**
   String get dashProgressNoIntention;
-
-  /// The day's intention, shown in bold, inside a summary line.
-  ///
-  /// In en, this message translates to:
-  /// **'Today\'s intention: {intention} · 1 exercise done'**
-  String dashProgressIntention(String intention);
-
-  /// Example intention shown on the progress screen, lower case, completing 'Today's intention: …'.
-  ///
-  /// In en, this message translates to:
-  /// **'feel calmer'**
-  String get dashProgressIntentionSample;
 
   /// Title of the monthly calendar screen.
   ///

@@ -2403,10 +2403,6 @@
   "@dashProgressCheckInsYear": {
     "description": "Caption under the number of check-ins this year. Keep the line break."
   },
-  "dashProgressPositiveTrend": "Positive trend",
-  "@dashProgressPositiveTrend": {
-    "description": "Stat tile text once the user has checked in a few times."
-  },
   "dashProgressGettingStarted": "Getting started",
   "@dashProgressGettingStarted": {
     "description": "Stat tile text before the user has checked in a few times."
@@ -2415,22 +2411,34 @@
   "@dashProgressKeepGoing": {
     "description": "Encouraging caption on a stat tile."
   },
-  "dashProgressNoIntention": "No intention set today yet.",
-  "@dashProgressNoIntention": {
-    "description": "Shown when the user has not set an intention today."
+  "dashTrendBetter": "Better week",
+  "@dashTrendBetter": {
+    "description": "Progress tile, large: this week's mood is higher than last week's. Short, kind, no judgement."
   },
-  "dashProgressIntention": "Today's intention: {intention} · 1 exercise done",
-  "@dashProgressIntention": {
-    "description": "The day's intention, shown in bold, inside a summary line.",
+  "dashTrendSteady": "Steady week",
+  "@dashTrendSteady": {
+    "description": "Progress tile, large: this week's mood is about the same as last week's."
+  },
+  "dashTrendHarder": "Harder week",
+  "@dashTrendHarder": {
+    "description": "Progress tile, large: this week's mood is lower than last week's. Gentle: a harder week, never a failure."
+  },
+  "dashTrendCaption": "Mood compared with last week",
+  "@dashTrendCaption": {
+    "description": "Progress tile, small, under Better week / Steady week / Harder week."
+  },
+  "dashProgressPlan": "Today's plan: {plan}",
+  "@dashProgressPlan": {
+    "description": "Progress screen: the action picked in today's check-in. {plan} is shown in bold, e.g. 'Walking'.",
     "placeholders": {
-      "intention": {
+      "plan": {
         "type": "String"
       }
     }
   },
-  "dashProgressIntentionSample": "feel calmer",
-  "@dashProgressIntentionSample": {
-    "description": "Example intention shown on the progress screen, lower case, completing 'Today's intention: …'."
+  "dashProgressNoIntention": "No intention set today yet.",
+  "@dashProgressNoIntention": {
+    "description": "Shown when the user has not set an intention today."
   },
   "dashDailyLogTitle": "Daily Log",
   "@dashDailyLogTitle": {

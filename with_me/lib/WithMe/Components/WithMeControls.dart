@@ -827,6 +827,14 @@ class WithMeBottomNav extends StatelessWidget {
 
   static const List<String> labels = ['Home', 'Tools', 'Progress', 'More'];
 
+  /// One icon per place (they were grey placeholder squares).
+  static const List<IconData> icons = [
+    Icons.home_rounded,
+    Icons.self_improvement_rounded,
+    Icons.insights_rounded,
+    Icons.menu_rounded,
+  ];
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
@@ -849,15 +857,12 @@ class WithMeBottomNav extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: 20,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: i == index
-                            ? WithMeColors.teal
-                            : WithMeColors.slate,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
+                    Icon(
+                      icons[i],
+                      size: 24,
+                      color: i == index
+                          ? WithMeColors.teal
+                          : WithMeColors.slate,
                     ),
                     const SizedBox(height: 6),
                     Text(

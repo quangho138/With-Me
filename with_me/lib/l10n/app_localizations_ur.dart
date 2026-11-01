@@ -1763,24 +1763,30 @@ class AppLocalizationsUr extends AppLocalizations {
   String get dashProgressCheckInsYear => 'چیک اِن\nاس سال';
 
   @override
-  String get dashProgressPositiveTrend => 'اچھا رجحان';
-
-  @override
   String get dashProgressGettingStarted => 'آغاز ہو رہا ہے';
 
   @override
   String get dashProgressKeepGoing => 'لگے رہیں!';
 
   @override
-  String get dashProgressNoIntention => 'آج ابھی کوئی ارادہ طے نہیں ہوا۔';
+  String get dashTrendBetter => 'بہتر ہفتہ';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'آج کا ارادہ: $intention · 1 مشق مکمل';
+  String get dashTrendSteady => 'متوازن ہفتہ';
+
+  @override
+  String get dashTrendHarder => 'مشکل ہفتہ';
+
+  @override
+  String get dashTrendCaption => 'پچھلے ہفتے کے مقابلے میں';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'آج کا منصوبہ: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'زیادہ سکون محسوس کرنا';
+  String get dashProgressNoIntention => 'آج ابھی کوئی ارادہ طے نہیں ہوا۔';
 
   @override
   String get dashDailyLogTitle => 'روزانہ لاگ';

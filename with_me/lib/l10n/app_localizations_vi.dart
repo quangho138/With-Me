@@ -1761,24 +1761,30 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashProgressCheckInsYear => 'lần ghi nhận\nnăm nay';
 
   @override
-  String get dashProgressPositiveTrend => 'Xu hướng tích cực';
-
-  @override
   String get dashProgressGettingStarted => 'Mới bắt đầu';
 
   @override
   String get dashProgressKeepGoing => 'Cứ tiếp tục nhé!';
 
   @override
-  String get dashProgressNoIntention => 'Hôm nay bạn chưa đặt ý định nào.';
+  String get dashTrendBetter => 'Tuần tốt hơn';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Ý định hôm nay: $intention · Đã xong 1 bài tập';
+  String get dashTrendSteady => 'Tuần ổn định';
+
+  @override
+  String get dashTrendHarder => 'Tuần vất vả hơn';
+
+  @override
+  String get dashTrendCaption => 'So với tuần trước';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'Kế hoạch hôm nay: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'cảm thấy bình yên hơn';
+  String get dashProgressNoIntention => 'Hôm nay bạn chưa đặt ý định nào.';
 
   @override
   String get dashDailyLogTitle => 'Nhật ký hằng ngày';

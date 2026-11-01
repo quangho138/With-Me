@@ -16,7 +16,7 @@ What we build instead:
 - KEPT: the avatar pairs and reactions to events (feature A), and the calming offer for a low mood (feature A).
 - DROPPED: the streak and rewards. Reason: a streak resets after one missed day, and in a wellbeing app that can make people feel they failed, which is the opposite of what the app is for.
 - SET ASIDE FOR NOW: the user test. Reason: the team chose to spend the remaining weeks on features a daily user needs and on measured tests of them. If there is time after Sprint 4, it can be run as a short anonymous survey with made-up test accounts. Until then this document does not claim anything about how accompanied people feel.
-- ADDED: an evaluation of sync reliability (feature D), real daily reminders on the phone (feature E), and weekly insights from the person's own check-ins (feature F). The app also became available in 22 languages at the Product Owner's request; that is not part of the graded core.
+- ADDED: an evaluation of sync reliability (feature D), real daily reminders on the phone (feature E), and weekly insights from the person's own check-ins (feature F). (Feature F was narrowed on 31 October to fit the PO's Progress screen; see section 5.) The app also became available in 22 languages at the Product Owner's request; that is not part of the graded core.
 
 All four features below are committed. None is optional.
 This decision is posted to the team channel and shared with the Product Owner.
@@ -184,7 +184,7 @@ Pass: 8 of 8.
 
 E2. Exercise nudge. Table test: low mood checked in at 10:00 gives a nudge at 15:00; at 14:00 gives 16:00; at 18:30 gives 20:30, which is skipped (after 20:00); not low mood gives none; an exercise finished after the check-in cancels it; a nudge inside quiet hours is skipped; never more than one a day. Pass: all cases.
 
-E3. Weekly summary. Table test: scheduled for Sunday 18:00 only when the weekly insights have facts to show (feature F's minimum); none when they do not; skipped when 18:00 falls inside quiet hours; across a month end and a daylight saving change. Pass: all cases.
+E3. Weekly summary. Table test: scheduled for Sunday 18:00 only when the weekly insights have facts to show (feature F's minimum: enough moods in both weeks, section 5); none when they do not; skipped when 18:00 falls inside quiet hours; across a month end and a daylight saving change. Pass: all cases.
 
 E4. Quiet hours. Table test with quiet hours that stay within one day and ones that cross midnight (for example 22:00 to 07:00): nudges and summaries inside them are skipped, the daily reminder is kept. Pass: all cases.
 
@@ -201,34 +201,32 @@ E9. On a real phone, by hand (Sprint 5 walkthrough): on an Android emulator, a d
 
 ## 5. Feature F: weekly insights
 
-What it is: three plain facts worked out from the person's own check-ins, shown on the dashboard. They describe; they never judge or diagnose.
+Changed 31 October, before any F code (Quang: stay with the PO's design and what a user is comfortable with). The first version added a new dashboard card with three facts. The PO's design already has the place for this: the Progress screen (image37) has a trend tile and a "Today's intention" line, and her Notifications screen has a "Weekly insight summary" switch. Today the tile says "Positive trend" whenever there are 3 or more check-ins, even after a harder week, and the line shows the sample "feel calmer · 1 exercise done" to everyone. Feature F makes those parts true instead of adding a screen. Two facts of the first version are dropped: the highest stress weekday and the most common stress source. Her design has no place for the first, and her Stress Levels page already shows where stress comes from.
 
-How it is built: one pure function takes saved check-ins and today's date and returns the three facts, or none.
+What it is, on the PO's Progress screen:
+- The trend tile compares this week's mood with last week's, in plain words: "Better week", "Steady week" or "Harder week", under it "Mood compared with last week". Without enough check-ins it says "Getting started" and "Keep going!", as the design does.
+- The intention line shows the action picked in today's check-in ("Today's plan: Walking"), or that none is set yet. No sample text.
+- The weekly summary notice (feature E, E3) is sent only when the comparison has enough check-ins.
+
+How it is built: one pure function takes saved moods and today's date and returns better, steady, harder or not enough. The screen and the weekly summary both use it.
 
 Definitions:
-- "The last 28 days" means today and the 27 calendar days before it, counted on calendar dates, never by subtracting hours.
-- Stress is the 1 to 5 answer the person gave (the phone stores 6 minus stress as the control level; the function turns it back).
-- Mood score: Angry 1, Sad 2, Indifferent 3, Happy 4, Excited 5 (MoodFace.score).
-- Saved answers are in English whatever language is shown; the facts are worked out on the saved values and only then translated.
-
-### The three facts
-
-1. Highest stress day of the week: the weekday with the highest average stress in the last 28 days. Shown only with at least 7 days that have a stress answer, and a weekday can only be named if it has at least 2 answers of its own. If two or more weekdays tie for highest, no day is named and the app says no single day stands out.
-2. Most common stress source: the area picked most often in the last 28 days (Home, Work, School or Social; a written source counts as Other). Same minimum of 7 answers. A tie names no area.
-3. Mood this week compared with last week: average mood score of the last 7 days against the 7 days before. Needs at least 3 moods in each week. A difference of 0.5 or more is "higher" or "lower"; less than 0.5 is "about the same".
-
-With fewer than 7 check-ins in the last 28 days, no facts are shown, only a kind note that patterns appear after a few more check-ins.
-The numbers 7, 2, 3 and 0.5 are the team's proposals; they may change before merging, never after without a new commit and reason.
+- "This week" is today and the 6 calendar days before it; "last week" is the 7 calendar days before those. Counted on calendar dates, never by subtracting hours.
+- Mood score: Angry 1, Sad 2, Indifferent 3, Happy 4, Excited 5 (MoodFace.score). Saved moods are in English whatever language is shown.
+- Enough: at least 3 days with a mood in each of the two weeks.
+- The average of this week minus the average of last week: 0.5 or more is "better", -0.5 or less is "harder", anything between is "steady". Exactly 0.5 counts as a change.
+- Days after today are ignored.
+The numbers 3 and 0.5 are the team's proposals; they may change before merging, never after without a new commit and reason.
 
 ### Criteria
 
-F1. Known answers. A table of made-up data sets, each with the answer worked out by hand: too few check-ins; a clear highest day; a highest day with only 1 answer (not named); a two-day tie; a clear top area; an area tie; written Other sources; mood higher, lower, about the same, and exactly 0.5; a week with only 2 moods; data older than 28 days that must be ignored; days after today that must be ignored. Pass: every case.
+F1. Known answers. A table of made-up mood sets, each worked out by hand: no moods; 2 moods in one week (not enough); exactly 3 in each (enough); better; harder; steady; exactly +0.5 and exactly -0.5; a difference of 0.49; moods older than 14 days that must be ignored; moods after today that must be ignored; older words from before the five faces (counted as the dashboard counts them). Pass: every case.
 
-F2. Random check. 1,000 random made-up data sets. For each, the result is compared with a second, deliberately simple counter written separately inside the test. Pass: 1,000 of 1,000 agree.
+F2. Random check. 1,000 random made-up mood sets. Each result is compared with a second, deliberately simple counter written separately inside the test. Pass: 1,000 of 1,000 agree.
 
-F3. Calendar safe. The 28 day and 7 day windows give the right days across a month end, a year end, a leap day and both 2026 daylight saving changes. Pass: all.
+F3. Calendar safe. The two 7-day windows hold the right dates across a month end, a year end (31 Dec to 1 Jan), a leap day (29 Feb 2028) and both 2026 US daylight saving changes (8 Mar and 1 Nov). Pass: all.
 
-F4. The words. Every sentence the insights can show, in all 22 languages, is checked against a list of words that must not appear (in English: diagnose, disorder, depression, anxiety, symptom, should, must, and their translations). Pass: none found.
+F4. The words. Every sentence the tile and the line can show, in all 22 languages, is checked against a list of words that must not appear (in English: diagnose, disorder, depression, anxiety, symptom, should, must, and their translations). Pass: none found.
 
 F5. Uses a fixed clock. The function takes today as an input (Today.now() on screens), so tests fix the date. Pass: checked in code review.
 

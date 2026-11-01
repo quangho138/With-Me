@@ -1753,24 +1753,30 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashProgressCheckInsYear => 'bu yılki\ndurum kaydı';
 
   @override
-  String get dashProgressPositiveTrend => 'Olumlu eğilim';
-
-  @override
   String get dashProgressGettingStarted => 'Yeni başlıyorsun';
 
   @override
   String get dashProgressKeepGoing => 'Böyle devam!';
 
   @override
-  String get dashProgressNoIntention => 'Bugün için henüz niyet belirlenmedi.';
+  String get dashTrendBetter => 'Daha iyi bir hafta';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Bugünün niyeti: $intention · 1 egzersiz tamamlandı';
+  String get dashTrendSteady => 'Dengeli bir hafta';
+
+  @override
+  String get dashTrendHarder => 'Daha zor bir hafta';
+
+  @override
+  String get dashTrendCaption => 'Geçen haftaya göre';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'Bugünün planı: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'daha sakin hissetmek';
+  String get dashProgressNoIntention => 'Bugün için henüz niyet belirlenmedi.';
 
   @override
   String get dashDailyLogTitle => 'Günlük Kayıt';

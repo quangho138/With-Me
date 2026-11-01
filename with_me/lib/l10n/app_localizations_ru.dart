@@ -1805,24 +1805,30 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dashProgressCheckInsYear => 'чек-ины\nза год';
 
   @override
-  String get dashProgressPositiveTrend => 'Хорошая динамика';
-
-  @override
   String get dashProgressGettingStarted => 'Начало пути';
 
   @override
   String get dashProgressKeepGoing => 'Продолжай!';
 
   @override
-  String get dashProgressNoIntention => 'Намерение на сегодня ещё не выбрано.';
+  String get dashTrendBetter => 'Неделя лучше';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'Намерение на сегодня: $intention · 1 упражнение выполнено';
+  String get dashTrendSteady => 'Ровная неделя';
+
+  @override
+  String get dashTrendHarder => 'Неделя труднее';
+
+  @override
+  String get dashTrendCaption => 'По сравнению с прошлой неделей';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'План на сегодня: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'стать спокойнее';
+  String get dashProgressNoIntention => 'Намерение на сегодня ещё не выбрано.';
 
   @override
   String get dashDailyLogTitle => 'Дневник';

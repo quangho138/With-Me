@@ -1688,24 +1688,30 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dashProgressCheckInsYear => '今年の\nチェックイン';
 
   @override
-  String get dashProgressPositiveTrend => 'いい傾向';
-
-  @override
   String get dashProgressGettingStarted => 'はじめの一歩';
 
   @override
   String get dashProgressKeepGoing => 'その調子！';
 
   @override
-  String get dashProgressNoIntention => '今日の心がけはまだ決まっていません。';
+  String get dashTrendBetter => 'よい1週間';
 
   @override
-  String dashProgressIntention(String intention) {
-    return '今日の心がけ：$intention · エクササイズ1回完了';
+  String get dashTrendSteady => 'おだやかな1週間';
+
+  @override
+  String get dashTrendHarder => '大変な1週間';
+
+  @override
+  String get dashTrendCaption => '先週とくらべて';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return '今日のプラン：$plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'もっと穏やかな気持ちになる';
+  String get dashProgressNoIntention => '今日の心がけはまだ決まっていません。';
 
   @override
   String get dashDailyLogTitle => '毎日の記録';

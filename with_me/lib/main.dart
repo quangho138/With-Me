@@ -13,6 +13,8 @@ import 'Repositories/user_repository.dart';
 
 import 'Repositories/phone_notifications.dart';
 import 'Repositories/reminder_service.dart';
+import 'WithMe/Data/Today.dart';
+import 'WithMe/Data/weekly_insights.dart';
 import 'WithMe/Locale/AppLanguage.dart';
 import 'WithMe/Screens/AboutScreen.dart';
 import 'WithMe/Screens/BeforeWeStartScreen.dart';
@@ -46,6 +48,17 @@ import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
 import 'l10n/app_localizations.dart';
+
+/// Whether this week's mood can be compared with last week's (feature F,
+/// GRADED_CORE section 5): the weekly summary notice waits for it.
+Future<bool> weeklyInsightReady() async {
+  final today = Today.now();
+  final moods = await AppRepositories.checkIns.moodsBetween(
+    DateTime(today.year, today.month, today.day - 13),
+    today,
+  );
+  return moodTrend(moodsByDay: moods, today: today) != MoodTrend.notEnough;
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -126,6 +139,9 @@ Future<void> main() async {
       settings: AppRepositories.settings,
       checkIns: AppRepositories.checkIns,
       exercises: AppRepositories.exercises,
+      // The weekly summary (E3) goes out only when the Progress screen's
+      // weekly insight has enough check-ins to say something (feature F).
+      weeklyFactsReady: weeklyInsightReady,
     );
   }
   ReminderTriggers.start(AppRepositories.reminders);

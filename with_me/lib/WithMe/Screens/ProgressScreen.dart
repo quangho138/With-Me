@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
+import '../../l10n/labels.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/check_in_repository.dart';
-import '../Components/ScenicKit.dart';
 import '../Components/WithMeCards.dart';
 import '../Components/WithMeCharts.dart';
 import '../Components/WithMeControls.dart';
 import '../Components/WithMeScaffold.dart';
+import '../Data/Today.dart';
+import '../Data/weekly_insights.dart';
 import '../Theme/WithMeTheme.dart';
 import 'DashboardScreen.dart';
 import 'ExerciseChooseScreen.dart';
@@ -19,6 +21,11 @@ import 'MenuScreen.dart';
 /// The only screen in the design with the bottom nav bar. Week / Month / Year
 /// tabs over a stress sparkline and a mood column, two stat tiles, and today's
 /// intention.
+///
+/// The second tile is the weekly insight (graded core feature F): this
+/// week's mood compared with last week's ([moodTrend]), in plain words, or
+/// "Getting started" until there are enough check-ins. The intention line
+/// shows the action picked in today's check-in.
 ///
 /// The mockup highlights Home in the nav bar while showing Progress. Treated
 /// as a slip in the mockup — highlighting the screen you are on is what the
@@ -37,6 +44,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
   List<double> _stress = const [];
   List<double> _mood = const [];
   int _checkIns = 0;
+  MoodTrend _trend = MoodTrend.notEnough;
+
+  /// The action picked in today's check-in, as saved (English), or null.
+  String? _plan;
 
   static const List<int> _spans = [7, 30, 365];
 
@@ -56,8 +67,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
 
   Future<void> _load() async {
     final days = _spans[_range];
-    final today = DateTime.now();
-    final from = today.subtract(Duration(days: days - 1));
+    final today = Today.now();
+    DateTime back(int n) => DateTime(today.year, today.month, today.day - n);
+    final from = back(days - 1);
     final stress = <double>[];
     final mood = <double>[];
     var checkIns = 0;
@@ -66,9 +78,14 @@ class _ProgressScreenState extends State<ProgressScreen> {
     // otherwise be 730 round trips to open one screen.
     Map<String, int> gauges;
     Map<String, String> moods;
+    var twoWeeks = const <String, String>{};
+    String? plan;
     try {
-      gauges = await AppRepositories.checkIns.controlLevelsBetween(from, today);
-      moods = await AppRepositories.checkIns.moodsBetween(from, today);
+      final checkIns = AppRepositories.checkIns;
+      gauges = await checkIns.controlLevelsBetween(from, today);
+      moods = await checkIns.moodsBetween(from, today);
+      twoWeeks = await checkIns.moodsBetween(back(13), today);
+      plan = (await checkIns.entryOn(today))?.action;
     } catch (_) {
       // A device that cannot open its database should still show the empty
       // state rather than throw. sqflite has no web implementation, so this
@@ -78,18 +95,21 @@ class _ProgressScreenState extends State<ProgressScreen> {
     }
 
     // Year view would be 365 points; sample it down to keep the sparkline
-    // readable at 342 pt wide.
+    // readable at 342 pt wide. The samples end on today, so the latest day
+    // is always drawn.
     final step = days > 60 ? days ~/ 30 : 1;
 
-    for (var back = days - 1; back >= 0; back -= step) {
-      final key = dayKey(today.subtract(Duration(days: back)));
+    for (var n = (days - 1) ~/ step * step; n >= 0; n -= step) {
+      final key = dayKey(back(n));
       final gauge = gauges[key];
       final m = moods[key];
       if (gauge != null) stress.add((6 - gauge).toDouble());
-      if (m != null) {
-        mood.add(_moodScore(m));
-        checkIns++;
-      }
+      if (m != null) mood.add(_moodScore(m));
+    }
+
+    // The count is every day with a mood, not only the sampled ones.
+    for (var n = 0; n < days; n++) {
+      if (moods[dayKey(back(n))] != null) checkIns++;
     }
 
     if (!mounted) return;
@@ -97,24 +117,13 @@ class _ProgressScreenState extends State<ProgressScreen> {
       _stress = stress;
       _mood = mood.length <= 4 ? mood : mood.sublist(mood.length - 4);
       _checkIns = checkIns;
+      _trend = moodTrend(moodsByDay: twoWeeks, today: today);
+      _plan = plan;
     });
   }
 
   /// The five check-in feelings, then the older words.
-  static double _moodScore(String mood) {
-    final face = MoodFaceInfo.fromLabel(mood);
-    if (face != null) return face.score.toDouble();
-    return _oldMoodScore(mood);
-  }
-
-  static double _oldMoodScore(String mood) => switch (mood.toLowerCase()) {
-    'not good' || 'rough' => 1,
-    'low' => 2,
-    'okay' => 3,
-    'good' || 'pretty good' => 4,
-    'great' => 5,
-    _ => 3,
-  };
+  static double _moodScore(String mood) => moodScore(mood).toDouble();
 
   void _navigate(int index) {
     if (index == 2) return;
@@ -134,8 +143,17 @@ class _ProgressScreenState extends State<ProgressScreen> {
       1 => l.dashProgressCheckInsMonth,
       _ => l.dashProgressCheckInsYear,
     };
-    // The intention is set in bold teal in the sentence around it.
-    final intention = l.dashProgressIntention('\u0000').split('\u0000');
+    // Today's plan is set in bold teal in the sentence around it.
+    final planLine = l.dashProgressPlan('\u0000').split('\u0000');
+    final (trendValue, trendCaption) = switch (_trend) {
+      MoodTrend.notEnough => (
+        l.dashProgressGettingStarted,
+        l.dashProgressKeepGoing,
+      ),
+      MoodTrend.better => (l.dashTrendBetter, l.dashTrendCaption),
+      MoodTrend.steady => (l.dashTrendSteady, l.dashTrendCaption),
+      MoodTrend.harder => (l.dashTrendHarder, l.dashTrendCaption),
+    };
 
     return WithMeScaffold(
       title: l.dashProgressTitle,
@@ -194,10 +212,8 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 child: StatTile(
                   tinted: true,
                   minHeight: 109,
-                  value: _checkIns >= 3
-                      ? l.dashProgressPositiveTrend
-                      : l.dashProgressGettingStarted,
-                  caption: l.dashProgressKeepGoing,
+                  value: trendValue,
+                  caption: trendCaption,
                 ),
               ),
             ],
@@ -214,7 +230,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                 MaterialPageRoute(builder: (_) => const DashboardScreen()),
               ),
               behavior: HitTestBehavior.opaque,
-              child: _checkIns == 0
+              child: _plan == null
                   ? Text(
                       l.dashProgressNoIntention,
                       style: WithMeText.body.copyWith(color: WithMeColors.ink),
@@ -226,15 +242,15 @@ class _ProgressScreenState extends State<ProgressScreen> {
                           color: WithMeColors.ink,
                         ),
                         children: [
-                          TextSpan(text: intention.first),
+                          TextSpan(text: planLine.first),
                           TextSpan(
-                            text: l.dashProgressIntentionSample,
+                            text: context.label(_plan!),
                             style: WithMeText.body.copyWith(
                               fontWeight: FontWeight.w700,
                               color: WithMeColors.teal,
                             ),
                           ),
-                          TextSpan(text: intention.skip(1).join()),
+                          TextSpan(text: planLine.skip(1).join()),
                         ],
                       ),
                     ),

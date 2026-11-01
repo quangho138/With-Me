@@ -1807,24 +1807,30 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashProgressCheckInsYear => 'تسجيلات الحالة\nهذه السنة';
 
   @override
-  String get dashProgressPositiveTrend => 'اتجاه إيجابي';
-
-  @override
   String get dashProgressGettingStarted => 'البداية';
 
   @override
   String get dashProgressKeepGoing => 'إلى الأمام!';
 
   @override
-  String get dashProgressNoIntention => 'لم تُحدَّد نية لليوم بعد.';
+  String get dashTrendBetter => 'أسبوع أفضل';
 
   @override
-  String dashProgressIntention(String intention) {
-    return 'نية اليوم: $intention · تم إنجاز تمرين واحد';
+  String get dashTrendSteady => 'أسبوع مستقر';
+
+  @override
+  String get dashTrendHarder => 'أسبوع أصعب';
+
+  @override
+  String get dashTrendCaption => 'مقارنةً بالأسبوع الماضي';
+
+  @override
+  String dashProgressPlan(String plan) {
+    return 'خطة اليوم: $plan';
   }
 
   @override
-  String get dashProgressIntentionSample => 'الشعور بهدوء أكبر';
+  String get dashProgressNoIntention => 'لم تُحدَّد نية لليوم بعد.';
 
   @override
   String get dashDailyLogTitle => 'اليوميات';
