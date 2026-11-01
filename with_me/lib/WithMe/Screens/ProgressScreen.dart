@@ -95,18 +95,21 @@ class _ProgressScreenState extends State<ProgressScreen> {
     }
 
     // Year view would be 365 points; sample it down to keep the sparkline
-    // readable at 342 pt wide.
+    // readable at 342 pt wide. The samples end on today, so the latest day
+    // is always drawn.
     final step = days > 60 ? days ~/ 30 : 1;
 
-    for (var n = days - 1; n >= 0; n -= step) {
+    for (var n = (days - 1) ~/ step * step; n >= 0; n -= step) {
       final key = dayKey(back(n));
       final gauge = gauges[key];
       final m = moods[key];
       if (gauge != null) stress.add((6 - gauge).toDouble());
-      if (m != null) {
-        mood.add(_moodScore(m));
-        checkIns++;
-      }
+      if (m != null) mood.add(_moodScore(m));
+    }
+
+    // The count is every day with a mood, not only the sampled ones.
+    for (var n = 0; n < days; n++) {
+      if (moods[dayKey(back(n))] != null) checkIns++;
     }
 
     if (!mounted) return;
