@@ -35,9 +35,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settingsHaptics => 'وائبریشن';
 
   @override
-  String get settingsVoiceInput => 'بول کر جواب دیں';
-
-  @override
   String get settingsReadAloud => 'پڑھ کر سنائیں';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settingsTextSize => 'متن کا سائز';
 
   @override
-  String get settingsTheme => 'تھیم';
+  String get settingsTextSizeSmall => 'چھوٹا';
 
   @override
-  String get settingsThemeSunset => 'ڈھلتا سورج';
+  String get settingsTextSizeDefault => 'عام';
+
+  @override
+  String get settingsTextSizeLarge => 'بڑا';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'بہت بڑا';
 
   @override
   String get settingsPrivacy => 'رازداری اور ڈیٹا';

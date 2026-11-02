@@ -38,10 +38,6 @@
   "@settingsHaptics": {
     "description": "Settings toggle: vibration feedback on or off."
   },
-  "settingsVoiceInput": "Voice input",
-  "@settingsVoiceInput": {
-    "description": "Settings toggle: speaking answers instead of typing them."
-  },
   "settingsReadAloud": "Read aloud",
   "@settingsReadAloud": {
     "description": "Settings toggle: whether the companion speaks its words out loud. Also named in other messages, so keep it consistent."
@@ -58,13 +54,21 @@
   "@settingsTextSize": {
     "description": "Settings row for making the text bigger or smaller."
   },
-  "settingsTheme": "Theme",
-  "@settingsTheme": {
-    "description": "Settings row for the app's colour theme."
+  "settingsTextSizeSmall": "Small",
+  "@settingsTextSizeSmall": {
+    "description": "Text size choice: smaller than normal."
   },
-  "settingsThemeSunset": "Sunset",
-  "@settingsThemeSunset": {
-    "description": "Name of the current colour theme, shown next to the Theme row."
+  "settingsTextSizeDefault": "Default",
+  "@settingsTextSizeDefault": {
+    "description": "Text size choice: the normal size."
+  },
+  "settingsTextSizeLarge": "Large",
+  "@settingsTextSizeLarge": {
+    "description": "Text size choice: bigger than normal."
+  },
+  "settingsTextSizeExtraLarge": "Extra large",
+  "@settingsTextSizeExtraLarge": {
+    "description": "Text size choice: the biggest."
   },
   "settingsPrivacy": "Privacy & data",
   "@settingsPrivacy": {

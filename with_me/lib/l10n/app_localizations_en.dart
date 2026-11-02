@@ -35,9 +35,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsHaptics => 'Haptics';
 
   @override
-  String get settingsVoiceInput => 'Voice input';
-
-  @override
   String get settingsReadAloud => 'Read aloud';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsTextSize => 'Text size';
 
   @override
-  String get settingsTheme => 'Theme';
+  String get settingsTextSizeSmall => 'Small';
 
   @override
-  String get settingsThemeSunset => 'Sunset';
+  String get settingsTextSizeDefault => 'Default';
+
+  @override
+  String get settingsTextSizeLarge => 'Large';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Extra large';
 
   @override
   String get settingsPrivacy => 'Privacy & data';

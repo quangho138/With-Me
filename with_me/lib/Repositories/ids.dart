@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+
 /// A new random id in the standard "uuid" form, for example
 /// 3f2b9c1e-8d4a-4b6f-9a2e-1c7d5e0f4a3b. Made on the phone, so the same
 /// exercise has the same id here and online, and is never counted twice.
@@ -13,5 +15,10 @@ String newId() {
       '${hex.substring(12, 16)}-${hex.substring(16, 20)}-${hex.substring(20)}';
 }
 
+/// The clock behind [nowStamp]. Tests set it, for example so that two
+/// phones edit the same day at exactly the same time (feature D).
+@visibleForTesting
+DateTime Function() stampClock = DateTime.now;
+
 /// The time now, in the one format sync stores and compares (UTC, ISO).
-String nowStamp() => DateTime.now().toUtc().toIso8601String();
+String nowStamp() => stampClock().toUtc().toIso8601String();

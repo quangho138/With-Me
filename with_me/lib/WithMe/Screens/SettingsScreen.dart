@@ -16,6 +16,7 @@ import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Data/Today.dart';
 import '../Locale/AppLanguage.dart';
 import '../Speech/SpeechService.dart';
+import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
 import 'LanguageScreen.dart';
 import 'VoiceSettingsScreen.dart';
@@ -23,11 +24,11 @@ import 'WelcomeScreen.dart';
 
 /// `image41.png` — Settings.
 ///
-/// Four toggle rows, then six 55 pt rows, the last of them destructive.
+/// Toggle rows, then 55 pt rows, the last of them destructive.
 ///
-/// Read aloud is the only toggle that is saved: it decides whether the
-/// companion speaks, and is kept on this device. Read aloud voice, under it, opens
-/// how the companion sounds.
+/// Haptics and Read aloud are saved on this device, like the language and
+/// the text size. Read aloud voice, under Read aloud, opens how the
+/// companion sounds. Theme and Voice input were removed (30 Oct, D4 and D5).
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -39,8 +40,6 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _sound = true;
-  bool _haptics = true;
-  bool _voice = true;
 
   /// Logged in to an account, so the sync line is shown. Guests never sync.
   bool _account = false;
@@ -87,6 +86,76 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return isToday(saved)
             ? l.settingsSyncSavedAt(DateFormat.jm(known).format(saved))
             : l.settingsSyncSavedOn(date(saved));
+    }
+  }
+
+  static String sizeName(AppLocalizations l, TextSize size) => switch (size) {
+    TextSize.small => l.settingsTextSizeSmall,
+    TextSize.standard => l.settingsTextSizeDefault,
+    TextSize.large => l.settingsTextSizeLarge,
+    TextSize.extraLarge => l.settingsTextSizeExtraLarge,
+  };
+
+  /// The four sizes in one small window. Picking one changes the whole app
+  /// at once and saves it; the window closes so the person sees the result.
+  Future<void> _pickTextSize() async {
+    final picked = await showDialog<TextSize>(
+      context: context,
+      builder: (context) {
+        final l = context.l10n;
+        final current = AppFeel.instance.textSize.value;
+        return AlertDialog(
+          backgroundColor: ScenicColors.bubble,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          title: ScenicHeading(l.settingsTextSize, size: 21),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final size in TextSize.values)
+                Semantics(
+                  button: true,
+                  selected: size == current,
+                  child: InkWell(
+                    key: ValueKey('text-size-${size.saved}'),
+                    borderRadius: BorderRadius.circular(14),
+                    onTap: () => Navigator.of(context).pop(size),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 6,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              sizeName(l, size),
+                              style: kScenicBody.copyWith(
+                                fontSize: 16 * size.factor,
+                              ),
+                            ),
+                          ),
+                          if (size == current)
+                            const Icon(
+                              Icons.check_rounded,
+                              color: ScenicColors.pillBottom,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+    if (picked == null) return;
+    try {
+      await AppFeel.instance.setTextSize(picked);
+    } catch (_) {
+      // Shown now, just not kept for next time (no database).
     }
   }
 
@@ -160,6 +229,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // else, so the app goes back to the phone's own language.
       SpeechService.instance.forgetSetting();
       AppLanguage.instance.value = null;
+      AppFeel.instance.forget();
     } on AccountException catch (e) {
       // Nothing was deleted (for example, no internet). Say why.
       if (!mounted) return;
@@ -234,20 +304,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onChanged: (v) => setState(() => _sound = v),
           ),
           gap(),
-          ScenicToggleRow(
-            label: l.settingsHaptics,
-            icon: Icons.vibration_rounded,
-            iconColor: const Color(0xFF3E9C8C),
-            value: _haptics,
-            onChanged: (v) => setState(() => _haptics = v),
-          ),
-          gap(),
-          ScenicToggleRow(
-            label: l.settingsVoiceInput,
-            icon: Icons.mic_rounded,
-            iconColor: const Color(0xFFD2557F),
-            value: _voice,
-            onChanged: (v) => setState(() => _voice = v),
+          ValueListenableBuilder<bool>(
+            valueListenable: AppFeel.instance.haptics,
+            builder: (context, on, _) => ScenicToggleRow(
+              label: l.settingsHaptics,
+              icon: Icons.vibration_rounded,
+              iconColor: const Color(0xFF3E9C8C),
+              value: on,
+              // Changed now even when it cannot be kept (no database).
+              onChanged: (v) => AppFeel.instance
+                  .setHaptics(v)
+                  .then((_) {}, onError: (Object _) {}),
+            ),
           ),
           gap(),
           ValueListenableBuilder<bool>(
@@ -289,19 +357,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           gap(),
-          ScenicRow(
-            label: l.settingsTextSize,
-            icon: Icons.text_fields_rounded,
-            iconColor: const Color(0xFFEE9A3E),
-            onTap: () => _notWired(l.settingsTextSize),
-          ),
-          gap(),
-          ScenicRow(
-            label: l.settingsTheme,
-            trailing: l.settingsThemeSunset,
-            icon: Icons.palette_rounded,
-            iconColor: const Color(0xFFD2557F),
-            onTap: () => _notWired(l.settingsTheme),
+          ValueListenableBuilder<TextSize>(
+            valueListenable: AppFeel.instance.textSize,
+            builder: (context, size, _) => ScenicRow(
+              label: l.settingsTextSize,
+              trailing: sizeName(l, size),
+              icon: Icons.text_fields_rounded,
+              iconColor: const Color(0xFFEE9A3E),
+              onTap: _pickTextSize,
+            ),
           ),
           const SizedBox(height: 16),
           ScenicRow(

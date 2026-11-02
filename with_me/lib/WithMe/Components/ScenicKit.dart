@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
 import '../../l10n/l10n.dart';
 import '../../l10n/labels.dart';
@@ -169,7 +170,7 @@ class ScenicPill extends StatelessWidget {
       child: Opacity(
         opacity: enabled ? 1 : 0.55,
         child: GestureDetector(
-          onTap: onPressed,
+          onTap: withTap(onPressed),
           behavior: HitTestBehavior.opaque,
           child: Container(
             height: height,
@@ -336,7 +337,7 @@ class ScenicBack extends StatelessWidget {
     label: context.l10n.commonBack,
     excludeSemantics: true,
     child: GestureDetector(
-      onTap: onTap,
+      onTap: withTap(onTap),
       behavior: HitTestBehavior.opaque,
       child: SizedBox(
         width: 40,
@@ -478,7 +479,7 @@ class NumberChoice extends StatelessWidget {
     label: '$i',
     excludeSemantics: true,
     child: GestureDetector(
-      onTap: () => onChanged(i),
+      onTap: withTap(() => onChanged(i)),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: WithMeMotion.fast,
@@ -662,7 +663,7 @@ class _FaceChoice extends StatelessWidget {
       label: word,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: withTap(onTap),
         behavior: HitTestBehavior.opaque,
         child: AnimatedContainer(
           duration: WithMeMotion.fast,
@@ -924,7 +925,7 @@ class _ControlScaleState extends State<ControlScale> {
       final enabled =
           value == null || (by < 0 ? value > 1 : value < ControlScale.steps);
       return GestureDetector(
-        onTap: enabled ? () => _step(by) : null,
+        onTap: enabled ? withTap(() => _step(by)) : null,
         behavior: HitTestBehavior.opaque,
         child: SizedBox(
           width: 48,
@@ -1279,7 +1280,7 @@ class _ScenicTileState extends State<ScenicTile> {
       label: widget.label,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: widget.onTap,
+        onTap: withTap(widget.onTap),
         onTapDown: (_) => _press(true),
         onTapUp: (_) => _press(false),
         onTapCancel: () => _press(false),

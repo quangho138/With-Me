@@ -35,9 +35,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsHaptics => '触感反馈';
 
   @override
-  String get settingsVoiceInput => '语音输入';
-
-  @override
   String get settingsReadAloud => '朗读';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTextSize => '文字大小';
 
   @override
-  String get settingsTheme => '主题';
+  String get settingsTextSizeSmall => '小';
 
   @override
-  String get settingsThemeSunset => '日落';
+  String get settingsTextSizeDefault => '默认';
+
+  @override
+  String get settingsTextSizeLarge => '大';
+
+  @override
+  String get settingsTextSizeExtraLarge => '特大';
 
   @override
   String get settingsPrivacy => '隐私与数据';
@@ -2349,9 +2352,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsHaptics => '觸感反饋';
 
   @override
-  String get settingsVoiceInput => '語音輸入';
-
-  @override
   String get settingsReadAloud => '朗讀';
 
   @override
@@ -2364,10 +2364,16 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsTextSize => '文字大小';
 
   @override
-  String get settingsTheme => '主題';
+  String get settingsTextSizeSmall => '小';
 
   @override
-  String get settingsThemeSunset => '日落';
+  String get settingsTextSizeDefault => '預設';
+
+  @override
+  String get settingsTextSizeLarge => '大';
+
+  @override
+  String get settingsTextSizeExtraLarge => '特大';
 
   @override
   String get settingsPrivacy => '隱私與資料';

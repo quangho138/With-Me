@@ -46,6 +46,7 @@ import 'WithMe/Screens/TriggersSignsScreen.dart';
 import 'WithMe/Screens/WelcomeScreen.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
+import 'WithMe/Theme/AppFeel.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
 import 'l10n/app_localizations.dart';
 
@@ -104,6 +105,14 @@ Future<void> main() async {
     await AppLanguage.instance.load().timeout(const Duration(seconds: 3));
   } catch (e) {
     debugPrint('Language setting not loaded yet: $e');
+  }
+
+  // Text size and haptics, read before the first screen so the text does
+  // not change size after it opens. Until read, Default and on.
+  try {
+    await AppFeel.instance.load().timeout(const Duration(seconds: 3));
+  } catch (e) {
+    debugPrint('Text size and haptics not loaded yet: $e');
   }
 
   // The database is not wiped on launch — the logs have to survive a restart.
@@ -177,10 +186,13 @@ class WithMeApp extends StatelessWidget {
   Widget _app(Locale? chosen) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      // Finishes logins that arrive through the deep link (stage 3).
-      builder: (context, child) => OutsideLoginListener(
-        navigatorKey: navigatorKey,
-        child: child ?? const SizedBox.shrink(),
+      // The text size picked in Settings, for every screen at once, and
+      // the listener that finishes logins from the deep link (stage 3).
+      builder: (context, child) => AppTextSize(
+        child: OutsideLoginListener(
+          navigatorKey: navigatorKey,
+          child: child ?? const SizedBox.shrink(),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,

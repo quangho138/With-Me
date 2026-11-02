@@ -35,9 +35,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsHaptics => 'அதிர்வு';
 
   @override
-  String get settingsVoiceInput => 'குரல் உள்ளீடு';
-
-  @override
   String get settingsReadAloud => 'உரக்கப் படித்தல்';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsTextSize => 'எழுத்து அளவு';
 
   @override
-  String get settingsTheme => 'தீம்';
+  String get settingsTextSizeSmall => 'சிறியது';
 
   @override
-  String get settingsThemeSunset => 'சூரிய அஸ்தமனம்';
+  String get settingsTextSizeDefault => 'இயல்பு';
+
+  @override
+  String get settingsTextSizeLarge => 'பெரியது';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'மிகப் பெரியது';
 
   @override
   String get settingsPrivacy => 'தனியுரிமை & தரவு';

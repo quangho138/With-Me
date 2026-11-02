@@ -35,9 +35,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsHaptics => 'Pag-vibrate';
 
   @override
-  String get settingsVoiceInput => 'Pagsagot gamit ang boses';
-
-  @override
   String get settingsReadAloud => 'Basahin nang malakas';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsTextSize => 'Laki ng teksto';
 
   @override
-  String get settingsTheme => 'Tema';
+  String get settingsTextSizeSmall => 'Maliit';
 
   @override
-  String get settingsThemeSunset => 'Dapithapon';
+  String get settingsTextSizeDefault => 'Karaniwan';
+
+  @override
+  String get settingsTextSizeLarge => 'Malaki';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Napakalaki';
 
   @override
   String get settingsPrivacy => 'Privacy at data';

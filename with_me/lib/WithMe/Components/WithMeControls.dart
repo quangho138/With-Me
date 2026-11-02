@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
 import '../../l10n/l10n.dart';
 import '../../l10n/labels.dart';
@@ -69,7 +70,7 @@ class OptionRow extends StatelessWidget {
     final height = subtitle == null ? kOptionRowHeight : kDetailRowHeight;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: withTap(onTap),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: WithMeMotion.fast,
@@ -205,7 +206,7 @@ class OptionGridCard extends StatelessWidget {
     final chip = compact ? 22.0 : 26.0;
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: withTap(onTap),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: WithMeMotion.fast,
@@ -453,7 +454,7 @@ class WithMeButton extends StatelessWidget {
       child: Opacity(
         opacity: onPressed == null ? 0.45 : 1,
         child: GestureDetector(
-          onTap: onPressed,
+          onTap: withTap(onPressed),
           behavior: HitTestBehavior.opaque,
           child: Container(
             height: height,
@@ -509,7 +510,7 @@ class SegmentedTabs extends StatelessWidget {
           for (var i = 0; i < labels.length; i++)
             Expanded(
               child: GestureDetector(
-                onTap: () => onChanged(i),
+                onTap: withTap(() => onChanged(i)),
                 behavior: HitTestBehavior.opaque,
                 child: AnimatedContainer(
                   duration: WithMeMotion.fast,
@@ -906,7 +907,7 @@ class StarRating extends StatelessWidget {
       children: [
         for (var i = 1; i <= 5; i++)
           GestureDetector(
-            onTap: onChanged == null ? null : () => onChanged!(i),
+            onTap: onChanged == null ? null : withTap(() => onChanged!(i)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 3),
               child: Icon(

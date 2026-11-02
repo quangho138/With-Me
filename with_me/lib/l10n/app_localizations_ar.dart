@@ -35,9 +35,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsHaptics => 'الاهتزاز';
 
   @override
-  String get settingsVoiceInput => 'الإدخال الصوتي';
-
-  @override
   String get settingsReadAloud => 'القراءة بصوت عالٍ';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsTextSize => 'حجم النص';
 
   @override
-  String get settingsTheme => 'المظهر';
+  String get settingsTextSizeSmall => 'صغير';
 
   @override
-  String get settingsThemeSunset => 'الغروب';
+  String get settingsTextSizeDefault => 'عادي';
+
+  @override
+  String get settingsTextSizeLarge => 'كبير';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'كبير جدًا';
 
   @override
   String get settingsPrivacy => 'الخصوصية والبيانات';

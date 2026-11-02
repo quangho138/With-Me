@@ -35,9 +35,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsHaptics => 'バイブレーション';
 
   @override
-  String get settingsVoiceInput => '音声入力';
-
-  @override
   String get settingsReadAloud => '読み上げ';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsTextSize => '文字の大きさ';
 
   @override
-  String get settingsTheme => 'テーマ';
+  String get settingsTextSizeSmall => '小';
 
   @override
-  String get settingsThemeSunset => '夕焼け';
+  String get settingsTextSizeDefault => '標準';
+
+  @override
+  String get settingsTextSizeLarge => '大';
+
+  @override
+  String get settingsTextSizeExtraLarge => '特大';
 
   @override
   String get settingsPrivacy => 'プライバシーとデータ';

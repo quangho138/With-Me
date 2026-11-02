@@ -35,9 +35,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get settingsHaptics => 'వైబ్రేషన్';
 
   @override
-  String get settingsVoiceInput => 'వాయిస్ ఇన్‌పుట్';
-
-  @override
   String get settingsReadAloud => 'బిగ్గరగా చదవడం';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsTe extends AppLocalizations {
   String get settingsTextSize => 'అక్షరాల పరిమాణం';
 
   @override
-  String get settingsTheme => 'థీమ్';
+  String get settingsTextSizeSmall => 'చిన్నది';
 
   @override
-  String get settingsThemeSunset => 'సూర్యాస్తమయం';
+  String get settingsTextSizeDefault => 'సాధారణం';
+
+  @override
+  String get settingsTextSizeLarge => 'పెద్దది';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'చాలా పెద్దది';
 
   @override
   String get settingsPrivacy => 'గోప్యత & డేటా';

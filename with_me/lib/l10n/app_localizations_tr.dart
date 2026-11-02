@@ -35,9 +35,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsHaptics => 'Titreşim';
 
   @override
-  String get settingsVoiceInput => 'Sesli giriş';
-
-  @override
   String get settingsReadAloud => 'Sesli okuma';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsTextSize => 'Yazı boyutu';
 
   @override
-  String get settingsTheme => 'Tema';
+  String get settingsTextSizeSmall => 'Küçük';
 
   @override
-  String get settingsThemeSunset => 'Gün batımı';
+  String get settingsTextSizeDefault => 'Varsayılan';
+
+  @override
+  String get settingsTextSizeLarge => 'Büyük';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Çok büyük';
 
   @override
   String get settingsPrivacy => 'Gizlilik ve veriler';

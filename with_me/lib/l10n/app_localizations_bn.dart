@@ -35,9 +35,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsHaptics => 'ভাইব্রেশন';
 
   @override
-  String get settingsVoiceInput => 'বলে উত্তর দিন';
-
-  @override
   String get settingsReadAloud => 'পড়ে শোনানো';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsTextSize => 'লেখার আকার';
 
   @override
-  String get settingsTheme => 'থিম';
+  String get settingsTextSizeSmall => 'ছোট';
 
   @override
-  String get settingsThemeSunset => 'সূর্যাস্ত';
+  String get settingsTextSizeDefault => 'সাধারণ';
+
+  @override
+  String get settingsTextSizeLarge => 'বড়';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'অনেক বড়';
 
   @override
   String get settingsPrivacy => 'গোপনীয়তা ও ডেটা';

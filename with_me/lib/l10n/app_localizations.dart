@@ -185,12 +185,6 @@ abstract class AppLocalizations {
   /// **'Haptics'**
   String get settingsHaptics;
 
-  /// Settings toggle: speaking answers instead of typing them.
-  ///
-  /// In en, this message translates to:
-  /// **'Voice input'**
-  String get settingsVoiceInput;
-
   /// Settings toggle: whether the companion speaks its words out loud. Also named in other messages, so keep it consistent.
   ///
   /// In en, this message translates to:
@@ -215,17 +209,29 @@ abstract class AppLocalizations {
   /// **'Text size'**
   String get settingsTextSize;
 
-  /// Settings row for the app's colour theme.
+  /// Text size choice: smaller than normal.
   ///
   /// In en, this message translates to:
-  /// **'Theme'**
-  String get settingsTheme;
+  /// **'Small'**
+  String get settingsTextSizeSmall;
 
-  /// Name of the current colour theme, shown next to the Theme row.
+  /// Text size choice: the normal size.
   ///
   /// In en, this message translates to:
-  /// **'Sunset'**
-  String get settingsThemeSunset;
+  /// **'Default'**
+  String get settingsTextSizeDefault;
+
+  /// Text size choice: bigger than normal.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get settingsTextSizeLarge;
+
+  /// Text size choice: the biggest.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra large'**
+  String get settingsTextSizeExtraLarge;
 
   /// Row in Settings and in the menu about privacy and the person's data.
   ///
