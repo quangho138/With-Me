@@ -114,8 +114,7 @@ void main() {
       usePhone(tester, size.value);
       addTearDown(tester.view.reset);
       await open(tester, const MonthlyCalendarScreen());
-      final today = DateTime.now().day.toString();
-      await tester.tap(find.text(today).last);
+      await tester.tap(find.byKey(const ValueKey('calendar-today')));
       await settle(tester);
       await shoot(size.key, '11-calendar-today');
     });

@@ -31,7 +31,7 @@ class WithMeAboutScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'With Me',
+                  'With Me™',
                   textAlign: TextAlign.center,
                   style: WithMeText.wordmark.copyWith(
                     fontSize: 42,

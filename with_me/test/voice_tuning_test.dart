@@ -1,18 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
-import 'package:with_me/WithMe/Screens/SettingsScreen.dart';
-import 'package:with_me/WithMe/Screens/VoiceSettingsScreen.dart';
 import 'package:with_me/WithMe/Speech/SpeechEngine.dart';
 import 'package:with_me/WithMe/Speech/SpeechEngineDevice.dart';
 import 'package:with_me/WithMe/Speech/SpeechService.dart';
 import 'package:with_me/WithMe/Speech/SpeechVoice.dart';
-import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 
 import 'read_aloud_test.dart' show FakeEngine, MemorySettings;
-import 'support/check_in_walk.dart';
 
 /// How the companion sounds: the defaults, the sentence pacing, the voice
 /// ranking, the device engine's settings, and Settings > Voice.
@@ -293,163 +287,6 @@ void main() {
       final tts = DeviceSpeechEngine(android: true);
       expect(await tts.speak('Hello.', callbacks), isFalse);
       expect(last('speak'), isNull);
-    });
-  });
-
-  group('Settings > Voice', () {
-    setUpAll(() async {
-      await loadFonts();
-      stubPlatformChannels();
-    });
-
-    const best = SpeechVoice(
-      id: 'iol',
-      name: 'en-us-x-iol-local',
-      locale: 'en-US',
-      quality: 4,
-    );
-    const other = SpeechVoice(
-      id: 'rjs',
-      name: 'en-gb-x-rjs-local',
-      locale: 'en-GB',
-      quality: 4,
-    );
-
-    Future<void> openVoice(WidgetTester tester) async {
-      usePhone(tester, const Size(390, 844));
-      addTearDown(tester.view.reset);
-      engine.available = const [best, other];
-      await tester.pumpWidget(
-        MaterialApp(theme: buildWithMeTheme(), home: const SettingsScreen()),
-      );
-      await settle(tester);
-      await tester.tap(find.text('Read aloud voice'));
-      await settle(tester);
-      expect(find.byType(VoiceSettingsScreen), findsOneWidget);
-    }
-
-    Future<void> tap(WidgetTester tester, Key key) async {
-      await tester.ensureVisible(find.byKey(key));
-      await settle(tester);
-      await tester.tap(find.byKey(key));
-      await settle(tester);
-    }
-
-    testWidgets('lists the voices, best first, with Automatic ticked', (
-      tester,
-    ) async {
-      await install();
-      await openVoice(tester);
-      expect(find.text('Automatic'), findsOneWidget);
-      expect(
-        find.text('Uses Voice IOL, US English · High quality'),
-        findsOneWidget,
-      );
-      expect(find.text('Voice RJS'), findsOneWidget);
-      expect(find.text('UK English · High quality'), findsOneWidget);
-      expect(find.text('1.10×'), findsOneWidget);
-      expect(find.text('1.05×'), findsOneWidget);
-      expect(find.text('250 ms'), findsOneWidget);
-    });
-
-    testWidgets('choosing a voice saves it; Try it plays the greeting in it', (
-      tester,
-    ) async {
-      await install();
-      await openVoice(tester);
-      await tap(tester, const Key('voice-option-rjs'));
-      expect(speech.style.value.voice, 'rjs');
-      expect(settings.texts[SpeechService.voiceKey], 'rjs');
-
-      await tester.tap(find.byKey(const Key('voice-try')));
-      await tester.pump();
-      expect(engine.spoken, ['Hi!']);
-      expect(engine.styles.single.voice, 'rjs');
-
-      // Leaving the page stops the sample.
-      tester.state<NavigatorState>(find.byType(Navigator)).pop();
-      await tester.pump();
-      await tester.pump(const Duration(seconds: 1));
-      expect(find.byType(VoiceSettingsScreen), findsNothing);
-      expect(speech.playback.value, SpeechPlayback.idle);
-    });
-
-    testWidgets('dragging Speed saves the new speed', (tester) async {
-      await install();
-      await openVoice(tester);
-      final slider = find.descendant(
-        of: find.byKey(const Key('voice-speed')),
-        matching: find.byType(Slider),
-      );
-      await tester.drag(slider, const Offset(400, 0));
-      await settle(tester);
-      expect(speech.style.value.speed, SpeechStyle.maxSpeed);
-      expect(settings.texts[SpeechService.speedKey], '1.6');
-      expect(find.text('1.60×'), findsOneWidget);
-    });
-
-    testWidgets('Back to the default undoes every change', (tester) async {
-      await install(
-        saved: {SpeechService.voiceKey: 'rjs', SpeechService.speedKey: '1.4'},
-      );
-      await openVoice(tester);
-      await tap(tester, const Key('voice-reset'));
-      expect(speech.style.value, SpeechStyle.standard);
-      expect(find.text('1.10×'), findsOneWidget);
-    });
-
-    testWidgets('Read aloud off: Try it is dimmed and says why', (
-      tester,
-    ) async {
-      await install();
-      await speech.setEnabled(false);
-      await openVoice(tester);
-      expect(
-        find.text('Turn on Read aloud in Settings to hear it.'),
-        findsOneWidget,
-      );
-      await tester.tap(find.byKey(const Key('voice-try')));
-      await tester.pump();
-      expect(engine.spoken, isEmpty);
-    });
-
-    testWidgets('fits a small phone', (tester) async {
-      await install();
-      engine.available = const [best, other];
-      usePhone(tester, const Size(320, 568));
-      addTearDown(tester.view.reset);
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: buildWithMeTheme(),
-          home: const VoiceSettingsScreen(),
-        ),
-      );
-      await settle(tester);
-      expect(tester.takeException(), isNull);
-      await tester.ensureVisible(find.byKey(const Key('voice-reset')));
-      await settle(tester);
-      expect(tester.takeException(), isNull);
-    });
-
-    testWidgets('no on-device voice says so', (tester) async {
-      await install();
-      usePhone(tester, const Size(390, 844));
-      addTearDown(tester.view.reset);
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: buildWithMeTheme(),
-          home: const VoiceSettingsScreen(),
-        ),
-      );
-      // The empty list is asked for again a few times.
-      for (var i = 0; i < 6; i++) {
-        await tester.pump(const Duration(milliseconds: 700));
-      }
-      expect(
-        find.textContaining('No voice on this device can read aloud'),
-        findsOneWidget,
-      );
-      expect(find.byType(ScenicPanel), findsNWidgets(4));
     });
   });
 }

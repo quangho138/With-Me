@@ -167,7 +167,7 @@ void main() {
           .map((f) => f.path.split(RegExp(r'[\\/]')).last)
           .where((n) => n.endsWith('.mp3'));
       expect(clips, hasLength(16));
-      // Every language Chatterbox speaks has the same 17 lines.
+      // Every language Chatterbox speaks has the same 23 lines.
       for (final language in [
         ...['en', 'es', 'hi', 'ar', 'fr', 'pt', 'ru', 'ja'],
         ...['zh', 'de', 'tr', 'sw', 'ko'],
@@ -175,6 +175,9 @@ void main() {
         for (final name in [
           ...clips.map((n) => '$language/checkin/$n'),
           '$language/home/welcome_back.mp3',
+          for (final step in [1, 2, 3, 4, 5])
+            '$language/meditation/step$step.mp3',
+          '$language/meditation/done.mp3',
         ]) {
           expect(File('assets/audio/voice/$name').existsSync(), isTrue);
           final t = kMouthTimelines['audio/voice/$name'];

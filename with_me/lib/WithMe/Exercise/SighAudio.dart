@@ -1,6 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 
-/// One 14-second breath track, aligned to the exercise's elapsed clock.
+import '../Settings/AppVolume.dart';
+
+/// One 13-second breath track, aligned to the exercise's elapsed clock.
 class SighAudio {
   AudioPlayer? _player;
   Future<void> _queue = Future.value();
@@ -19,12 +21,13 @@ class SighAudio {
       if (!_loaded) {
         await player.setReleaseMode(ReleaseMode.loop);
         await player.setSource(AssetSource('audio/sigh-breath.wav'));
-        await player.setVolume(.65);
         _loaded = true;
       }
       if (_disposed || revision != _revision) return;
+      // Settings → Volume → Exercises scales the track's own level.
+      await player.setVolume(.65 * AppVolume.instance.exercise.value);
       await player.seek(
-        Duration(microseconds: elapsed.inMicroseconds % 14000000),
+        Duration(microseconds: elapsed.inMicroseconds % 13000000),
       );
       if (!_disposed && revision == _revision) await player.resume();
     });

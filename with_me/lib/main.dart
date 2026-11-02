@@ -40,6 +40,9 @@ import 'WithMe/Screens/SoundscapeScreen.dart';
 import 'WithMe/Screens/StrategiesActionsScreen.dart';
 import 'WithMe/Screens/TriggersSignsScreen.dart';
 import 'WithMe/Screens/WelcomeScreen.dart';
+import 'WithMe/Settings/AppVolume.dart';
+import 'WithMe/Settings/CompanionPlus.dart';
+import 'WithMe/Settings/FreeUses.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
@@ -80,6 +83,18 @@ Future<void> main() async {
     await SpeechService.instance.load().timeout(const Duration(seconds: 3));
   } catch (e) {
     debugPrint('Read aloud setting not loaded yet: $e');
+  }
+
+  // The two volumes and Companion Plus, kept on this device. Until they
+  // are read (or if that fails), full volume and no Plus.
+  try {
+    await Future.wait([
+      AppVolume.instance.load(),
+      CompanionPlus.instance.load(),
+      FreeUses.instance.load(),
+    ]).timeout(const Duration(seconds: 3));
+  } catch (e) {
+    debugPrint('Volume and membership settings not loaded yet: $e');
   }
 
   // The language picked in Settings, read before the first screen so it

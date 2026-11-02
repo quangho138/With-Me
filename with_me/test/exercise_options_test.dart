@@ -53,48 +53,45 @@ void main() {
       await t.pumpWidget(const SizedBox());
     });
   }
-  testWidgets(
-    'sigh plays two distinct quick inhales and completes chosen cycles',
-    (t) async {
-      t.view.physicalSize = const Size(390, 844);
-      t.view.devicePixelRatio = 1;
-      addTearDown(t.view.reset);
-      await t.pumpWidget(
-        MaterialApp(
-          theme: buildWithMeTheme(),
-          home: const ExerciseChooseScreen(),
-        ),
-      );
-      // The larger tiles put the last one below the fold on the default
-      // test screen, as on a short phone.
-      await t.ensureVisible(find.text('Physiological Sigh').first);
-      await t.pump();
-      await t.tap(find.text('Physiological Sigh').first, warnIfMissed: false);
-      await t.pump();
-      await t.tap(find.text('Continue').first, warnIfMissed: false);
-      await t.pump();
-      await t.pump(const Duration(milliseconds: 400));
-      expect(find.byType(SighScreen), findsOneWidget);
-      await t.tap(find.text('1'));
-      await t.pump();
-      await t.tap(find.text('Start breathing'));
-      await t.pump();
-      await t.pump(const Duration(seconds: 4));
-      expect(find.text('Quick inhale · 1'), findsOneWidget);
-      await t.pump(const Duration(seconds: 1));
-      expect(find.text('Quick inhale · 2'), findsOneWidget);
-      await t.tap(find.text('Pause'));
-      await t.pump();
-      await t.pump(const Duration(seconds: 10));
-      expect(find.text('Quick inhale · 2'), findsOneWidget);
-      await t.tap(find.text('Resume'));
-      await t.pump();
-      await t.pump(const Duration(seconds: 1));
-      expect(find.text('Long exhale'), findsOneWidget);
-      await t.pump(const Duration(seconds: 8));
-      expect(find.text('Session complete'), findsOneWidget);
-      expect(t.takeException(), isNull);
-      await t.pumpWidget(const SizedBox());
-    },
-  );
+  testWidgets('sigh plays one quick inhale and completes chosen cycles', (
+    t,
+  ) async {
+    t.view.physicalSize = const Size(390, 844);
+    t.view.devicePixelRatio = 1;
+    addTearDown(t.view.reset);
+    await t.pumpWidget(
+      MaterialApp(
+        theme: buildWithMeTheme(),
+        home: const ExerciseChooseScreen(),
+      ),
+    );
+    // The larger tiles put the last one below the fold on the default
+    // test screen, as on a short phone.
+    await t.ensureVisible(find.text('Physiological Sigh').first);
+    await t.pump();
+    await t.tap(find.text('Physiological Sigh').first, warnIfMissed: false);
+    await t.pump();
+    await t.tap(find.text('Continue').first, warnIfMissed: false);
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 400));
+    expect(find.byType(SighScreen), findsOneWidget);
+    await t.tap(find.text('1'));
+    await t.pump();
+    await t.tap(find.text('Start breathing'));
+    await t.pump();
+    await t.pump(const Duration(seconds: 4));
+    expect(find.text('Quick inhale'), findsOneWidget);
+    await t.tap(find.text('Pause'));
+    await t.pump();
+    await t.pump(const Duration(seconds: 10));
+    expect(find.text('Quick inhale'), findsOneWidget);
+    await t.tap(find.text('Resume'));
+    await t.pump();
+    await t.pump(const Duration(seconds: 1));
+    expect(find.text('Long exhale'), findsOneWidget);
+    await t.pump(const Duration(seconds: 8));
+    expect(find.text('Session complete'), findsOneWidget);
+    expect(t.takeException(), isNull);
+    await t.pumpWidget(const SizedBox());
+  });
 }

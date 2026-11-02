@@ -253,12 +253,23 @@ class SpeechService {
   /// has a mouth timeline, which tool/make_mouth_timelines.py writes for
   /// every clip it finds.
   static String? recordingFor(String clip, Locale locale) {
+    if (_bundled.isNotEmpty &&
+        !_bundled.split(',').contains(locale.languageCode)) {
+      return null;
+    }
     final generated = clip.replaceFirst(
       'audio/',
       'audio/voice/${locale.languageCode}/',
     );
     return kMouthTimelines.containsKey(generated) ? generated : null;
   }
+
+  /// A build for a small web preview can carry only some languages'
+  /// recordings (`--dart-define=WITHME_VOICE_LANGUAGES=en`); the others are
+  /// then read by the device's voice. Empty, as in the app: every language.
+  static const String _bundled = String.fromEnvironment(
+    'WITHME_VOICE_LANGUAGES',
+  );
 
   int? _say(String text, Object owner, [String? locale]) {
     final spoken = text.replaceAll(RegExp(r'\s+'), ' ').trim();
@@ -357,6 +368,37 @@ class SpeechService {
           }
         }, onError: (Object _) => _end(id));
     return id;
+  }
+
+  /// Whether [owner]'s utterance is still being said (or is held).
+  bool saying({required Object owner}) =>
+      _current != null && identical(owner, _owner);
+
+  /// Holds [owner]'s utterance where it is, so [resume] carries on from
+  /// the same word instead of starting the line again. Returns true when it
+  /// is held. The device's voice cannot be held on every platform, so spoken
+  /// text is stopped instead and false returned; the caller says it again.
+  bool pause({required Object owner}) {
+    final id = _current;
+    if (id == null || !identical(owner, _owner)) return false;
+    if (!_playingClip) {
+      _halt();
+      return false;
+    }
+    playback.value = SpeechPlayback(SpeechStatus.paused, id);
+    _player.pause();
+    return true;
+  }
+
+  /// Carries on [owner]'s utterance held by [pause]. Returns false when
+  /// there is none to carry on.
+  bool resume({required Object owner}) {
+    final id = _current;
+    if (id == null || !identical(owner, _owner) || !_playingClip) return false;
+    if (playback.value.status != SpeechStatus.paused) return true;
+    playback.value = SpeechPlayback(SpeechStatus.speaking, id);
+    _player.resume();
+    return true;
   }
 
   /// Stops the current utterance. With [owner], only if it is that owner's,

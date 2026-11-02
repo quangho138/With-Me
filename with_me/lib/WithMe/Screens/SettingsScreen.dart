@@ -11,10 +11,11 @@ import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Locale/AppLanguage.dart';
+import '../Settings/AppVolume.dart';
+import '../Settings/CompanionPlus.dart';
 import '../Speech/SpeechService.dart';
 import '../Theme/WithMeTheme.dart';
 import 'LanguageScreen.dart';
-import 'VoiceSettingsScreen.dart';
 import 'WelcomeScreen.dart';
 
 /// `image41.png` — Settings.
@@ -23,7 +24,8 @@ import 'WelcomeScreen.dart';
 ///
 /// Read aloud is the only toggle that is saved: it decides whether the
 /// companion speaks, and is kept on this device. Read aloud voice, under it, opens
-/// how the companion sounds.
+/// how the companion sounds. The two volume sliders under that are saved
+/// too (see [AppVolume]).
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -36,11 +38,6 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _sound = true;
   bool _haptics = true;
-  bool _voice = true;
-
-  void _notWired(String what) => ScaffoldMessenger.of(
-    context,
-  ).showSnackBar(SnackBar(content: Text(context.l10n.settingsNotWired(what))));
 
   /// Backend (stage 3, 2d): "Export my data" as one JSON file, handed to
   /// the phone's share menu (in the browser it downloads).
@@ -108,6 +105,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // else, so the app goes back to the phone's own language.
       SpeechService.instance.forgetSetting();
       AppLanguage.instance.value = null;
+      AppVolume.instance.forget();
+      CompanionPlus.instance.value = false;
     } on AccountException catch (e) {
       // Nothing was deleted (for example, no internet). Say why.
       if (!mounted) return;
@@ -162,14 +161,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onChanged: (v) => setState(() => _haptics = v),
           ),
           gap(),
-          ScenicToggleRow(
-            label: l.settingsVoiceInput,
-            icon: Icons.mic_rounded,
-            iconColor: const Color(0xFFD2557F),
-            value: _voice,
-            onChanged: (v) => setState(() => _voice = v),
-          ),
-          gap(),
           ValueListenableBuilder<bool>(
             valueListenable: SpeechService.instance.enabled,
             builder: (context, on, _) => ScenicToggleRow(
@@ -180,13 +171,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: SpeechService.instance.setEnabled,
             ),
           ),
+          const SizedBox(height: 16),
+          // Settings → Volume: the exercises' sounds and the companion's
+          // voice, each on its own slider. Saved when a slider is let go.
+          ValueListenableBuilder<double>(
+            valueListenable: AppVolume.instance.exercise,
+            builder: (context, volume, _) => ScenicSliderRow(
+              label: l.settingsVolumeExercise,
+              icon: Icons.spa_rounded,
+              iconColor: const Color(0xFF3E9C8C),
+              value: volume,
+              onChanged: (v) => AppVolume.instance.setExercise(v, save: false),
+              onChangeEnd: AppVolume.instance.setExercise,
+            ),
+          ),
           gap(),
-          ScenicRow(
-            label: l.settingsReadAloudVoice,
-            icon: Icons.graphic_eq_rounded,
-            iconColor: const Color(0xFF1C7C84),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const VoiceSettingsScreen()),
+          ValueListenableBuilder<double>(
+            valueListenable: AppVolume.instance.companion,
+            builder: (context, volume, _) => ScenicSliderRow(
+              label: l.settingsVolumeCompanion,
+              icon: Icons.volume_up_rounded,
+              iconColor: const Color(0xFF1C7C84),
+              value: volume,
+              onChanged: (v) => AppVolume.instance.setCompanion(v, save: false),
+              onChangeEnd: AppVolume.instance.setCompanion,
             ),
           ),
           const SizedBox(height: 16),
@@ -208,29 +216,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ).push(MaterialPageRoute(builder: (_) => const LanguageScreen())),
             ),
           ),
-          gap(),
-          ScenicRow(
-            label: l.settingsTextSize,
-            icon: Icons.text_fields_rounded,
-            iconColor: const Color(0xFFEE9A3E),
-            onTap: () => _notWired(l.settingsTextSize),
-          ),
-          gap(),
-          ScenicRow(
-            label: l.settingsTheme,
-            trailing: l.settingsThemeSunset,
-            icon: Icons.palette_rounded,
-            iconColor: const Color(0xFFD2557F),
-            onTap: () => _notWired(l.settingsTheme),
-          ),
           const SizedBox(height: 16),
-          ScenicRow(
-            label: l.settingsPrivacy,
-            icon: Icons.lock_rounded,
-            iconColor: const Color(0xFF1C7C84),
-            onTap: () => _notWired(l.settingsPrivacy),
-          ),
-          gap(),
           ScenicRow(
             label: l.settingsExportData,
             icon: Icons.download_rounded,

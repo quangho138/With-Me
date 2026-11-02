@@ -18,10 +18,11 @@ It is built for HR Vision Consulting as the Florida International University Com
 - **Check In (the five W's)**: a short reflection: who, what, when, where, why.
 - **Calendar and day detail**: every checked-in day is marked, and tapping a day shows what you answered.
 - **Progress and dashboard**: stress and mood trends over 7, 30 and 365 days, and where stress comes from.
-- **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh, with optional nature video and sound.
+- **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh (one deep inhale, one quick inhale, a long exhale), with optional nature video and sound.
+- **Companion Plus** ($3.99/month): unlocks a five-minute guided meditation in the forest, read aloud by the companion. Without Plus its tile is faded with a lock. There is no billing yet: "Start Plus" just turns it on for this device.
 - **Accounts**: sign up (with email confirmation), log in with email or Google and stay logged in, reset a forgotten password, or start without an account. One account per phone. Passwords are checked online and never stored on the phone.
-- **Languages**: 22 languages under Menu, Settings, Language, or the phone's own language when the app has it (English otherwise). The companion speaks in Adrian's recorded voice in 13 of them and uses the phone's voice in the rest. Answers are always saved in English, so sync, export and the dashboard work the same in every language. Details: `with_me/lib/l10n/README.md`.
-- **Profile and settings**: your name, your check-in and exercise counts, "Export my data" (one JSON file, ready to import elsewhere), and "Delete my account", which deletes the account online and everything on the phone.
+- **Languages**: 22 languages under Menu, Settings, Language, or the phone's own language when the app has it (English otherwise). The companion speaks in Adrian's recorded voice in 13 of them and uses the phone's voice in the rest. Answers are always saved in English, so sync, export and the dashboard work the same in every language. Details: `with_me/lib/l10n/README.md`. To add a language or its voice: `docs/ADDING_A_LANGUAGE.md`.
+- **Profile and settings**: your name, your check-in and exercise counts, two volume sliders (exercise sounds, and the companion's voice), "Export my data" (one JSON file, ready to import elsewhere), and "Delete my account", which deletes the account online and everything on the phone.
 
 ## How it is built
 
@@ -83,6 +84,8 @@ Useful targets:
 
 In the browser, a sample week of made-up check-ins is added automatically. Tap "Start without an account" on the welcome screen to see it.
 
+Developer build: add `--dart-define=WITHME_DEV=true` to `flutter run` or `flutter build`. A small "Plus on / Plus off" switch then appears at the top right of "Choose an exercise", to try the meditation with and without Companion Plus. Builds without the flag (every store build) leave the switch out of the app entirely.
+
 ## Test it
 
 ```
@@ -111,6 +114,7 @@ flutter test
 - Logging out clears the phone. Check-ins and the journal come back on the next login. If something has not reached the account yet (offline), the app warns first.
 - During the course, only made-up test data is used, never real personal data.
 - Details in `docs/BACKEND.md` and `supabase/`.
+- Every third-party package, font, clip, model and online service, with its licence, plus the data boundary and ethics notes: `docs/THIRD_PARTY_AND_REFERENCES.md`.
 
 ## Working on it
 

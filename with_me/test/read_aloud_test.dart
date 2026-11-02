@@ -9,6 +9,8 @@ import 'package:with_me/Database/LocalDatabase.dart';
 import 'package:with_me/Repositories/settings_repository.dart';
 import 'package:with_me/WithMe/Components/ScenicKit.dart';
 import 'package:with_me/WithMe/Data/CheckInSteps.dart';
+import 'package:with_me/WithMe/Exercise/GuidedScripts.dart';
+import 'package:with_me/WithMe/Exercise/ScriptRunner.dart';
 import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
 import 'package:with_me/WithMe/Mascot/RealMascot.dart';
 import 'package:with_me/WithMe/Screens/DailyCheckInScreen.dart';
@@ -18,6 +20,7 @@ import 'package:with_me/WithMe/Speech/ClipPlayer.dart';
 import 'package:with_me/WithMe/Speech/SpeechEngine.dart';
 import 'package:with_me/WithMe/Speech/SpeechService.dart';
 import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
+import 'package:with_me/l10n/app_localizations_en.dart';
 
 import 'support/check_in_walk.dart';
 
@@ -75,6 +78,14 @@ class FakeClips implements ClipPlayer {
 
   @override
   Future<void> stop() async => stops++;
+
+  int pauses = 0, resumes = 0;
+
+  @override
+  Future<void> pause() async => pauses++;
+
+  @override
+  Future<void> resume() async => resumes++;
 }
 
 /// Settings kept in memory.
@@ -339,6 +350,57 @@ void main() {
       expect(engine.stops, 1);
     });
 
+    test('pause holds a recording and resume carries it on', () async {
+      await install();
+      final id = speech.play(recording, owner: 1)!;
+      clips.callbacks.single.onStart();
+      expect(speech.pause(owner: 2), isFalse, reason: 'not that page\'s');
+      expect(speech.pause(owner: 1), isTrue);
+      expect(clips.pauses, 1);
+      expect(speech.playback.value, SpeechPlayback(SpeechStatus.paused, id));
+      expect(speech.saying(owner: 1), isTrue);
+      expect(speech.resume(owner: 1), isTrue);
+      expect(clips.resumes, 1);
+      expect(speech.playback.value, SpeechPlayback(SpeechStatus.speaking, id));
+      expect(clips.played, [recording], reason: 'never started again');
+      expect(clips.stops, 0);
+
+      // The phone's voice cannot be held, so it stops and says so.
+      speech.speak('Hello', owner: 1);
+      expect(speech.pause(owner: 1), isFalse);
+      expect(engine.stops, 1);
+      expect(speech.saying(owner: 1), isFalse);
+    });
+
+    test(
+      'a guided session paused mid-line carries on, never repeats',
+      () async {
+        await install();
+        final runner = ScriptRunner(
+          script: GuidedScripts.bodyScan,
+          words: AppLocalizationsEn(),
+          locale: const Locale('en'),
+          speech: speech,
+        );
+        runner.play();
+        expect(clips.played, hasLength(1));
+        clips.callbacks.single.onStart();
+        runner.pause();
+        expect(clips.pauses, 1);
+        runner.play();
+        expect(clips.resumes, 1);
+        expect(clips.played, hasLength(1), reason: 'the line is not restarted');
+
+        // Finished, then paused in the quiet after it: not said again.
+        clips.callbacks.single.onDone();
+        runner.pause();
+        runner.play();
+        expect(clips.played, hasLength(1));
+        expect(runner.stepLength(0), greaterThan(Duration.zero));
+        runner.dispose();
+      },
+    );
+
     test('a recording that cannot play leaves it idle', () async {
       await install();
       clips.accept = false;
@@ -452,7 +514,7 @@ void main() {
         ),
       );
       await settle(tester);
-      await tester.tap(find.text(DateTime.now().day.toString()).last);
+      await tester.tap(find.byKey(const ValueKey('calendar-today')));
       await settle(tester);
     }
 

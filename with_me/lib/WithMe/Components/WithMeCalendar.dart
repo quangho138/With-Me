@@ -166,6 +166,9 @@ class MonthCalendar extends StatelessWidget {
         : ScenicColors.ink;
 
     return GestureDetector(
+      // Lets tests find today's cell: its number can also show greyed as a
+      // spill-over day, as on the 1st.
+      key: isToday ? const ValueKey('calendar-today') : null,
       onTap: inMonth && onSelect != null
           ? () => onSelect!(DateTime(month.year, month.month, dayNumber))
           : null,

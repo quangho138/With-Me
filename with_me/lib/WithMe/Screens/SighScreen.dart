@@ -23,14 +23,12 @@ class _SighScreenState extends State<SighScreen>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   static List<String> labels(AppLocalizations l) => [
     l.exerciseSighDeepInhale,
-    l.exerciseSighQuickInhale(1),
-    l.exerciseSighQuickInhale(2),
+    l.exerciseSighQuickInhale,
     l.exerciseSighLongExhale,
   ];
   static List<String> cues(AppLocalizations l) => [
     l.exerciseSighCueDeepInhale,
     l.exerciseSighCueFirstSip,
-    l.exerciseSighCueSecondSip,
     l.exerciseSighCueLongExhale,
   ];
   int _cycles = 3;
@@ -54,7 +52,7 @@ class _SighScreenState extends State<SighScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _session = BreathSession(durations: const [4, 1, 1, 8], cycles: _cycles);
+    _session = BreathSession(durations: const [4, 1, 8], cycles: _cycles);
     _ticker = createTicker((elapsed) {
       final delta = elapsed - _last;
       _last = elapsed;
@@ -114,9 +112,8 @@ class _SighScreenState extends State<SighScreen>
     final inflation = _session.complete
         ? 0.0
         : switch (phase) {
-            0 => ui.lerpDouble(0, .72, progress)!,
-            1 => ui.lerpDouble(.72, .86, progress)!,
-            2 => ui.lerpDouble(.86, 1, progress)!,
+            0 => ui.lerpDouble(0, .8, progress)!,
+            1 => ui.lerpDouble(.8, 1, progress)!,
             _ => 1 - progress,
           };
     return WithMeScaffold(
@@ -179,7 +176,7 @@ class _SighScreenState extends State<SighScreen>
                       _cycles = n;
                       _session.dispose();
                       _session = BreathSession(
-                        durations: const [4, 1, 1, 8],
+                        durations: const [4, 1, 8],
                         cycles: n,
                       );
                     }),
@@ -190,7 +187,7 @@ class _SighScreenState extends State<SighScreen>
           const SizedBox(height: 16),
           Semantics(
             image: true,
-            label: phase == 3
+            label: phase == 2
                 ? l.exerciseLungsCompressing
                 : l.exerciseLungsExpanding,
             child: SizedBox(

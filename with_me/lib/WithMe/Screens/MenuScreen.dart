@@ -58,7 +58,7 @@ class MenuScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'With Me',
+                        'With Me™',
                         style: WithMeText.wordmark.copyWith(
                           fontSize: 30,
                           color: ScenicColors.ink,

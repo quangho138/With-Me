@@ -499,32 +499,6 @@ class AppLocalizationsVi extends AppLocalizations {
       'Hủy bất cứ lúc nào. Dù thế nào, ghi chép của bạn vẫn là của bạn.';
 
   @override
-  String get accountPlanFree => 'Miễn phí mãi mãi';
-
-  @override
-  String get accountPlanFreeBlurb =>
-      'Ghi nhận, nhật ký hằng ngày, bài tập thở và lịch. Không cần thẻ.';
-
-  @override
-  String get accountPlanPlus => 'Companion Plus · US\$4.99/tháng';
-
-  @override
-  String get accountPlanPlusBlurb =>
-      'Mọi âm cảnh · thiền có hướng dẫn · toàn bộ lịch sử nhận định · bản tóm tắt PDF để chia sẻ';
-
-  @override
-  String get accountCard => 'Thẻ';
-
-  @override
-  String get accountCardExpiry => 'Ngày hết hạn';
-
-  @override
-  String get accountCardExpiryHint => 'MM/YY';
-
-  @override
-  String get accountCardCvc => 'Mã CVC';
-
-  @override
   String get homeTitle => 'Trang chủ';
 
   @override
@@ -2062,9 +2036,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exerciseSighDeepInhale => 'Hít sâu';
 
   @override
-  String exerciseSighQuickInhale(int number) {
-    return 'Hít nhanh · $number';
-  }
+  String get exerciseSighQuickInhale => 'Hít nhanh';
 
   @override
   String get exerciseSighLongExhale => 'Thở ra dài';
@@ -2074,9 +2046,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get exerciseSighCueFirstSip => 'Hít thêm một ngụm khí nhỏ';
-
-  @override
-  String get exerciseSighCueSecondSip => 'Hít thêm một ngụm khí nhỏ nữa';
 
   @override
   String get exerciseSighCueLongExhale => 'Thở ra thật chậm';
@@ -2093,7 +2062,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get exerciseSighIntro =>
-      'Một lần hít sâu, hai lần hít nhanh, rồi một lần thở ra dài.';
+      'Một lần hít sâu, một lần hít nhanh, rồi một lần thở ra dài.';
 
   @override
   String get exerciseNumberOfCycles => 'Số chu kỳ';
@@ -2160,7 +2129,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exerciseFocusSubtitle => 'Thở 4 · 4 · 4';
 
   @override
-  String get exerciseSighSubtitle => 'Hít sâu · hai lần hít nhanh · thở ra';
+  String get exerciseSighSubtitle => 'Hít sâu · hít nhanh · thở ra';
 
   @override
   String get exerciseRestTitle => 'Thư giãn tâm trí';
@@ -2362,4 +2331,4903 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountFailed => 'Không xóa được tài khoản của bạn.';
+
+  @override
+  String get settingsVolumeExercise => 'Âm lượng bài tập';
+
+  @override
+  String get settingsVolumeCompanion => 'Âm lượng bạn đồng hành';
+
+  @override
+  String get accountPlusActive => 'Bạn đang có Companion Plus';
+
+  @override
+  String get accountPlusStarted =>
+      'Companion Plus đã bật. Không có khoản thanh toán nào.';
+
+  @override
+  String get exerciseMeditationTitle => 'Thiền có hướng dẫn';
+
+  @override
+  String get exerciseMeditationSubtitle => '5 phút · bình yên trong rừng';
+
+  @override
+  String get exerciseMeditationLocked => 'Đã khóa. Thuộc Companion Plus.';
+
+  @override
+  String get exerciseMeditationIntro =>
+      'Năm phút yên tĩnh trong rừng. Đọc theo lời hướng dẫn, hoặc nhắm mắt và lắng nghe.';
+
+  @override
+  String get exerciseMeditationStart => 'Bắt đầu thiền';
+
+  @override
+  String get exerciseMeditationAgain => 'Thiền lần nữa';
+
+  @override
+  String exerciseMeditationStepOf(int step, int total) {
+    return 'Bước $step/$total';
+  }
+
+  @override
+  String exerciseMeditationTimeLeft(String time) {
+    return 'Còn $time';
+  }
+
+  @override
+  String get exerciseMeditationStep1Title => 'Ổn định';
+
+  @override
+  String get exerciseMeditationStep1 =>
+      'Ngồi hoặc nằm thật thoải mái. Nhắm mắt lại, hoặc để ánh nhìn nghỉ ở một điểm.';
+
+  @override
+  String get exerciseMeditationStep2Title => 'Cảm nhận hơi thở';
+
+  @override
+  String get exerciseMeditationStep2 =>
+      'Để ý hơi thở đi vào và đi ra. Không cần thay đổi gì cả.';
+
+  @override
+  String get exerciseMeditationStep3Title => 'Thả lỏng';
+
+  @override
+  String get exerciseMeditationStep3 =>
+      'Mỗi lần thở ra, để hàm, vai và tay thả lỏng thêm một chút.';
+
+  @override
+  String get exerciseMeditationStep4Title => 'Lắng nghe';
+
+  @override
+  String get exerciseMeditationStep4 =>
+      'Lắng nghe khu rừng quanh bạn. Để mỗi âm thanh đến rồi đi.';
+
+  @override
+  String get exerciseMeditationStep5Title => 'Trở lại';
+
+  @override
+  String get exerciseMeditationStep5 =>
+      'Hít một hơi sâu hơn. Cử động các ngón tay, và mở mắt khi bạn sẵn sàng.';
+
+  @override
+  String get exerciseMeditationDoneTitle => 'Làm tốt lắm';
+
+  @override
+  String get exerciseMeditationDone =>
+      'Bạn đã dành cho mình năm phút bình yên. Hãy mang cảm giác này theo bạn.';
+
+  @override
+  String get exerciseFreeformTitle => 'Thiền thành viên';
+
+  @override
+  String get exerciseFreeformSubtitle =>
+      'Các buổi có hướng dẫn và bài thiền cho gia đình, công việc, học tập và giao tiếp';
+
+  @override
+  String get meditateGuidedHeading => 'Buổi có hướng dẫn';
+
+  @override
+  String get exerciseBodyScanTitle => 'Quét cơ thể';
+
+  @override
+  String get exerciseBodyScanSubtitle =>
+      'Nhận biết và thả lỏng từng phần cơ thể';
+
+  @override
+  String get exerciseMuscleTitle => 'Thả lỏng cơ';
+
+  @override
+  String get exerciseMuscleSubtitle => 'Căng rồi thả, từ bàn tay đến bàn chân';
+
+  @override
+  String exerciseUsesLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Còn $count lượt',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exerciseUsedUp =>
+      'Đã hết lượt miễn phí. Nâng cấp Plus để dùng tiếp.';
+
+  @override
+  String membershipUsedUp(String name) {
+    return 'Bạn đã dùng hết lượt miễn phí của $name. Nâng cấp Plus để tiếp tục.';
+  }
+
+  @override
+  String get membershipPlusName => 'With Me Plus';
+
+  @override
+  String get membershipTagline =>
+      'Mọi thứ bạn cần để kiểm soát căng thẳng và lo âu.';
+
+  @override
+  String get membershipPerkAreas =>
+      'Mọi phiên bản cho Gia đình, Công việc, Học tập và Giao tiếp';
+
+  @override
+  String get membershipPerkGuided =>
+      'Thiền có hướng dẫn, Quét cơ thể và Thả lỏng cơ không giới hạn';
+
+  @override
+  String get membershipPerkSos => 'Anxiety SOS bất cứ khi nào bạn cần';
+
+  @override
+  String get membershipYearly => 'Hằng năm';
+
+  @override
+  String get membershipYearlyPrice => 'US\$39.99/năm';
+
+  @override
+  String get membershipYearlyDetail => 'US\$3.33/tháng · thanh toán theo năm';
+
+  @override
+  String get membershipMonthly => 'Hằng tháng';
+
+  @override
+  String get membershipMonthlyPrice => 'US\$3.99/tháng';
+
+  @override
+  String get membershipMonthlyDetail => 'Thanh toán hằng tháng';
+
+  @override
+  String get membershipSave => 'Tiết kiệm 16%';
+
+  @override
+  String get meditateTitle => 'Thiền';
+
+  @override
+  String get meditateSubtitle => 'Bình yên, dù căng thẳng đến từ đâu';
+
+  @override
+  String get meditateGoPlus => 'Nâng cấp Plus';
+
+  @override
+  String get meditateSosTitle => 'SOS lo âu';
+
+  @override
+  String get meditateSosSubtitle =>
+      'Bạn đang cảm thấy ngay lúc này? 1 phút · Miễn phí';
+
+  @override
+  String get meditateByArea => 'Theo nguồn căng thẳng';
+
+  @override
+  String meditateSessions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count buổi',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get meditateSuggested => 'Từ lần ghi nhận hôm nay';
+
+  @override
+  String meditateMinutes(int count) {
+    return '$count phút';
+  }
+
+  @override
+  String get meditateDeadlineTitle => 'Áp lực hạn chót';
+
+  @override
+  String get meditateHomeTitle => 'Bình yên ở nhà';
+
+  @override
+  String get meditateSchoolTitle => 'Quá tải việc học';
+
+  @override
+  String get meditateSocialTitle => 'Lo lắng chuyện giao tiếp';
+
+  @override
+  String prepLength(int count) {
+    return 'Khoảng $count phút';
+  }
+
+  @override
+  String get prepHeadphones => 'Hãy dùng tai nghe để có trải nghiệm tốt nhất';
+
+  @override
+  String get prepOffline => 'Dùng được khi không có mạng. Không cần tải gì cả.';
+
+  @override
+  String get prepSafety =>
+      'Vui lòng đừng nghe khi đang lái xe hoặc làm việc gì cần toàn bộ sự chú ý. Bạn luôn tỉnh táo và làm chủ bản thân trong suốt thời gian đó, và có thể mở mắt bất cứ lúc nào.';
+
+  @override
+  String get prepCare =>
+      'Nội dung này hỗ trợ căng thẳng hằng ngày và không thay thế chăm sóc chuyên môn. Nếu lo âu trở nên quá sức hoặc kéo dài, hãy tìm đến chuyên gia có chuyên môn.';
+
+  @override
+  String get prepVersions => 'Phiên bản';
+
+  @override
+  String prepVersion(int number) {
+    return 'Phiên bản $number';
+  }
+
+  @override
+  String get prepVersionsNote =>
+      'Phiên bản 1 và 2 miễn phí. Các phiên bản còn lại dành cho thành viên.';
+
+  @override
+  String prepVersionSoon(int number) {
+    return 'Phiên bản $number sắp ra mắt.';
+  }
+
+  @override
+  String get prepCaptions => 'Hiện phụ đề';
+
+  @override
+  String get prepBegin => 'Bắt đầu';
+
+  @override
+  String playerResumeFrom(String step) {
+    return 'Tiếp tục từ \"$step\"';
+  }
+
+  @override
+  String get playerCaptionsOn => 'Đang bật phụ đề';
+
+  @override
+  String get playerCaptionsOff => 'Đang tắt phụ đề';
+
+  @override
+  String get afterHowFeel => 'Bây giờ bạn cảm thấy thế nào?';
+
+  @override
+  String get afterSaved => 'Đã lưu vào Nhật ký hằng ngày';
+
+  @override
+  String get afterAnchorTitle => 'Điểm neo của bạn';
+
+  @override
+  String get afterAnchorText =>
+      'Ngón cái + ngón tay, một hơi thở, mỗi lần một việc.';
+
+  @override
+  String get afterReminder => 'Đặt lời nhắc';
+
+  @override
+  String get stepArrive => 'Đến đây';
+
+  @override
+  String get stepBreathe => 'Hít thở';
+
+  @override
+  String get stepBodyScan => 'Quét cơ thể';
+
+  @override
+  String get stepReframe => 'Nhìn lại';
+
+  @override
+  String get stepReturn => 'Trở về';
+
+  @override
+  String get stepSettle => 'Để mọi thứ lắng xuống';
+
+  @override
+  String get stepHeadFace => 'Đầu và mặt';
+
+  @override
+  String get stepShouldersArms => 'Vai và cánh tay';
+
+  @override
+  String get stepChestBelly => 'Ngực và bụng';
+
+  @override
+  String get stepBackLegs => 'Lưng và chân';
+
+  @override
+  String get stepWholeBody => 'Toàn thân';
+
+  @override
+  String get stepHandsArms => 'Bàn tay và cánh tay';
+
+  @override
+  String get stepShouldersFace => 'Vai và mặt';
+
+  @override
+  String get stepChestStomach => 'Ngực và bụng';
+
+  @override
+  String get stepLegsFeet => 'Chân và bàn chân';
+
+  @override
+  String get stepRest => 'Nghỉ ngơi';
+
+  @override
+  String get scriptDeadline01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptDeadline02 =>
+      'Trong mười phút tới, hạn chót có thể chờ ngoài cửa. Nó vẫn sẽ ở đó khi bạn quay lại, và bạn sẽ đối mặt với nó bằng một tâm trí sáng suốt hơn.';
+
+  @override
+  String get scriptDeadline03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptDeadline04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… một vệt trên tường, mép bàn… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptDeadline05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptDeadline06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptDeadline07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptDeadline08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptDeadline09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptDeadline10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptDeadline11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptDeadline12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptDeadline13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptDeadline14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptDeadline15 => 'Bảy…';
+
+  @override
+  String get scriptDeadline16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptDeadline17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptDeadline18 => 'Bốn…';
+
+  @override
+  String get scriptDeadline19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptDeadline20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptDeadline21 => 'Và một.';
+
+  @override
+  String get scriptDeadline22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptDeadline23 =>
+      'Áp lực công việc thường ẩn ở vài chỗ quen thuộc. Chúng ta hãy ghé qua từng chỗ… và để nó dịu xuống.';
+
+  @override
+  String get scriptDeadline24 =>
+      'Bắt đầu với vầng trán. Nơi hay nhíu lại trước màn hình và email. Hãy tưởng tượng một bàn tay ấm áp đặt lên đó… vuốt cho nó phẳng lại…';
+
+  @override
+  String get scriptDeadline25 =>
+      'Giờ đến quai hàm. Để hai hàm răng hở ra một chút. Để lưỡi được nghỉ. Rất nhiều điều trong ngày bị giữ lại ở quai hàm… và giờ bạn có thể buông nó ra.';
+
+  @override
+  String get scriptDeadline26 =>
+      'Cổ và vai. Hãy hình dung chúng đã bị nhấc lên phía tai cả ngày… và giờ, với hơi thở ra tiếp theo… chúng hạ xuống. Nặng. Ấm.';
+
+  @override
+  String get scriptDeadline27 =>
+      'Đi xuống qua cánh tay… cổ tay, mỏi vì gõ phím… bàn tay. Để các ngón tay lỏng ra và yên lặng.';
+
+  @override
+  String get scriptDeadline28 =>
+      'Giờ đến ngực và bụng. Hãy để ý xem có chỗ nào thắt lại, một nút thắt của sự vội vã. Bạn không cần chống lại nó.';
+
+  @override
+  String get scriptDeadline29 =>
+      'Chỉ cần thở vào đó… và khi thở ra, hãy tưởng tượng nó nới lỏng… từng sợi một.';
+
+  @override
+  String get scriptDeadline30 =>
+      'Thắt lưng… hông… chân… xuống tận bàn chân trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptDeadline31 => 'Toàn thân bạn, bình yên, nặng nề và an toàn.';
+
+  @override
+  String get scriptDeadline32 =>
+      'Bây giờ hãy tưởng tượng bạn đang đứng trên một bãi biển yên tĩnh, giống như trong ứng dụng. Cát ấm dưới chân. Biển dâng vào… và rút ra… theo nhịp riêng của nó.';
+
+  @override
+  String get scriptDeadline33 =>
+      'Hãy để ý rằng sóng không bao giờ vội vàng. Mỗi con sóng đến… làm điều nó cần làm… rồi nhường chỗ cho con sóng tiếp theo.';
+
+  @override
+  String get scriptDeadline34 =>
+      'Công việc của bạn cũng có thể như vậy. Một con sóng. Một việc. Rồi việc tiếp theo.';
+
+  @override
+  String get scriptDeadline35 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptDeadline36 =>
+      'Giá trị của bạn không phải là khối lượng công việc.';
+
+  @override
+  String get scriptDeadline37 =>
+      'Bạn đã từng vượt qua những hạn chót trước đây, và bạn có thể vượt qua lần này.';
+
+  @override
+  String get scriptDeadline38 =>
+      'Một tâm trí bình tĩnh làm việc nhanh hơn một tâm trí hoảng loạn.';
+
+  @override
+  String get scriptDeadline39 => 'Làm tốt một việc là đủ.';
+
+  @override
+  String get scriptDeadline40 =>
+      'Bây giờ, nhẹ nhàng ấn đầu ngón cái vào đầu ngón trỏ.';
+
+  @override
+  String get scriptDeadline41 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mỗi lần một việc.';
+
+  @override
+  String get scriptDeadline42 =>
+      'Cảm nhận sự bình yên này tụ lại nơi đầu ngón tay. Từ giờ trở đi, mỗi khi áp lực công việc dâng lên… trong một cuộc họp, trước khi bấm gửi, khi tiếng đồng hồ nghe thật to…';
+
+  @override
+  String get scriptDeadline43 =>
+      'bạn có thể chạm ngón cái và ngón tay vào nhau, hít một hơi, và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptDeadline44 => 'Giờ hãy thả các ngón tay ra.';
+
+  @override
+  String get scriptDeadline45 =>
+      'Trước khi quay lại, hãy chọn một việc nhỏ bạn sẽ làm trong một giờ tới. Chỉ một việc thôi. Bước đầu tiên, không phải cả ngọn núi.';
+
+  @override
+  String get scriptDeadline46 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptDeadline47 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptDeadline48 => 'Một… cảm nhận chiếc ghế bên dưới.';
+
+  @override
+  String get scriptDeadline49 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptDeadline50 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptDeadline51 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptDeadline52 =>
+      'Và năm… mở mắt khi bạn sẵn sàng, bình tĩnh, sáng suốt và sẵn sàng.';
+
+  @override
+  String get scriptDeadline53 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mỗi lần một việc. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSos01 =>
+      'Mình đang ở đây với bạn. Lúc này bạn không cần phải giải quyết gì cả.';
+
+  @override
+  String get scriptSos02 =>
+      'Đặt một tay lên ngực. Hít vào chậm rãi đếm đến bốn… và thở ra đếm đến sáu.';
+
+  @override
+  String get scriptSos03 =>
+      'Giờ hãy cảm nhận bàn chân trên sàn. Ấn nhẹ chúng xuống. Bạn đang ở đây, và bạn an toàn.';
+
+  @override
+  String get scriptSos04 =>
+      'Thêm một hơi thở chậm nữa. Hít vào… và thở ra. Bạn làm tốt lắm.';
+
+  @override
+  String get scriptHomeFull09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptHomeFull08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptHomeFull10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptHomeFull11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptHomeFull12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptHomeFull13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptHomeFull15 => 'Bảy…';
+
+  @override
+  String get scriptHomeFull16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptHomeFull17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptHomeFull18 => 'Bốn…';
+
+  @override
+  String get scriptHomeFull19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptHomeFull20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptHomeFull21 => 'Và một.';
+
+  @override
+  String get scriptHomeFull22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptHomeFull29 =>
+      'Chỉ cần thở vào đó… và khi thở ra, hãy tưởng tượng nó nới lỏng… từng sợi một.';
+
+  @override
+  String get scriptHomeFull31 => 'Toàn thân bạn, bình yên, nặng nề và an toàn.';
+
+  @override
+  String get scriptHomeFull35 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptHomeFull40 =>
+      'Bây giờ, nhẹ nhàng ấn đầu ngón cái vào đầu ngón trỏ.';
+
+  @override
+  String get scriptHomeFull43 =>
+      'bạn có thể chạm ngón cái và ngón tay vào nhau, hít một hơi, và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptHomeFull44 => 'Giờ hãy thả các ngón tay ra.';
+
+  @override
+  String get scriptHomeFull46 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptHomeFull47 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptHomeFull49 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptHomeFull50 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptHomeFull01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptHomeFull02 =>
+      'Trong mười phút tới, mọi việc ở nhà đều có thể chờ. Việc nhà, tin nhắn, những người cần đến bạn. Họ vẫn sẽ ở đó khi bạn quay lại, và bạn sẽ đón họ bằng một trái tim dịu dàng hơn.';
+
+  @override
+  String get scriptHomeFull03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Ngả lưng ra sau, hoặc nằm xuống. Để hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptHomeFull04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… một góc phòng, một khoảng ánh sáng dịu… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptHomeFull05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptHomeFull06 =>
+      'Lúc này không có gì bạn cần phải sửa. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptHomeFull07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng nó có thể nghỉ ngơi.';
+
+  @override
+  String get scriptHomeFull14 => 'Tám… những âm thanh trong nhà trôi xa dần.';
+
+  @override
+  String get scriptHomeFull23 =>
+      'Căng thẳng ở nhà thường đọng lại ở vài chỗ quen thuộc. Chúng ta hãy ghé qua từng chỗ… và để nó dịu xuống.';
+
+  @override
+  String get scriptHomeFull24 =>
+      'Bắt đầu với vầng trán. Nơi hay căng lên khi trong nhà ồn ào. Hãy tưởng tượng một bàn tay ấm áp đặt lên đó… vuốt cho nó phẳng lại…';
+
+  @override
+  String get scriptHomeFull25 =>
+      'Giờ đến quai hàm. Để hai hàm răng hở ra một chút. Để lưỡi được nghỉ. Ở nhà có biết bao lời bị nén lại… và giờ bạn có thể buông chúng ra.';
+
+  @override
+  String get scriptHomeFull26 =>
+      'Cổ và vai. Hãy hình dung chúng đã gánh mọi việc và mọi người cần điều gì đó từ bạn… và giờ, với hơi thở ra tiếp theo… chúng hạ xuống. Nặng. Ấm.';
+
+  @override
+  String get scriptHomeFull27 =>
+      'Đi xuống qua cánh tay… đôi bàn tay đã nấu nướng, khuân vác, dọn dẹp và ôm ấp… Để các ngón tay lỏng ra và yên lặng.';
+
+  @override
+  String get scriptHomeFull28 =>
+      'Giờ đến ngực và bụng. Hãy để ý xem có cảm giác nặng nề nào không, một nút thắt lo lắng cho những người bạn thương. Bạn không cần chống lại nó.';
+
+  @override
+  String get scriptHomeFull30 =>
+      'Thắt lưng… hông… chân… xuống tận bàn chân. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptHomeFull32 =>
+      'Bây giờ hãy tưởng tượng bạn đang ngồi bên một ngọn lửa ấm, giống như trong ứng dụng. Ánh lửa trên gương mặt bạn. Tiếng củi nổ lách tách khe khẽ.';
+
+  @override
+  String get scriptHomeFull33 =>
+      'Hãy để ý rằng ngọn lửa không bao giờ vội vàng. Nó cháy chậm rãi và đều đặn… sưởi ấm cả căn phòng mà không cần cố gắng.';
+
+  @override
+  String get scriptHomeFull34 =>
+      'Ở nhà, bạn cũng có thể như vậy. Vững vàng. Ấm áp. Bạn không cần làm hết mọi thứ mới là đủ.';
+
+  @override
+  String get scriptHomeFull36 =>
+      'Mình có thể chăm sóc người khác mà vẫn chăm sóc bản thân.';
+
+  @override
+  String get scriptHomeFull37 =>
+      'Nghỉ ngơi không phải là thứ mình phải giành lấy mới có.';
+
+  @override
+  String get scriptHomeFull38 =>
+      'Mình không cần giải quyết mọi thứ trong hôm nay.';
+
+  @override
+  String get scriptHomeFull39 =>
+      'Sự bình yên trong nhà có thể bắt đầu từ mình.';
+
+  @override
+  String get scriptHomeFull41 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình thấy như ở nhà trong chính mình.';
+
+  @override
+  String get scriptHomeFull42 =>
+      'Cảm nhận sự bình yên này tụ lại nơi đầu ngón tay. Từ giờ trở đi, mỗi khi chuyện nhà trở nên nặng nề… một giọng nói cao lên, một đống việc nhà, một buổi tối dài…';
+
+  @override
+  String get scriptHomeFull45 =>
+      'Trước khi quay lại, hãy chọn một việc nhỏ tử tế bạn sẽ làm cho mình hôm nay. Chỉ một việc thôi. Một tách trà, vài phút yên tĩnh, đi ngủ sớm.';
+
+  @override
+  String get scriptHomeFull48 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptHomeFull51 => 'Bốn… năng lượng trở lại, ấm áp và vững vàng.';
+
+  @override
+  String get scriptHomeFull52 =>
+      'Và năm… mở mắt khi bạn sẵn sàng, bình tĩnh, thư thái và sẵn sàng.';
+
+  @override
+  String get scriptHomeFull53 =>
+      'Bạn làm tốt lắm. Hãy nhớ: bạn luôn có một mái nhà trong chính mình. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSchoolFull09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptSchoolFull08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptSchoolFull10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptSchoolFull11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptSchoolFull12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptSchoolFull13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptSchoolFull15 => 'Bảy…';
+
+  @override
+  String get scriptSchoolFull16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptSchoolFull17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptSchoolFull18 => 'Bốn…';
+
+  @override
+  String get scriptSchoolFull19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptSchoolFull20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptSchoolFull21 => 'Và một.';
+
+  @override
+  String get scriptSchoolFull22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptSchoolFull29 =>
+      'Chỉ cần thở vào đó… và khi thở ra, hãy tưởng tượng nó nới lỏng… từng sợi một.';
+
+  @override
+  String get scriptSchoolFull31 =>
+      'Toàn thân bạn, bình yên, nặng nề và an toàn.';
+
+  @override
+  String get scriptSchoolFull35 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptSchoolFull40 =>
+      'Bây giờ, nhẹ nhàng ấn đầu ngón cái vào đầu ngón trỏ.';
+
+  @override
+  String get scriptSchoolFull43 =>
+      'bạn có thể chạm ngón cái và ngón tay vào nhau, hít một hơi, và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptSchoolFull44 => 'Giờ hãy thả các ngón tay ra.';
+
+  @override
+  String get scriptSchoolFull46 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptSchoolFull47 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptSchoolFull49 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptSchoolFull50 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptSchoolFull01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSchoolFull02 =>
+      'Trong mười phút tới, việc học có thể chờ ngoài cửa. Ghi chép, bài tập, kỳ thi. Chúng vẫn sẽ ở đó khi bạn quay lại, và bạn sẽ đối mặt với chúng bằng một tâm trí sáng suốt hơn.';
+
+  @override
+  String get scriptSchoolFull03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptSchoolFull04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… một vệt trên tường, mép bàn học… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptSchoolFull05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptSchoolFull06 =>
+      'Không có gì bạn phải làm cho hoàn hảo. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptSchoolFull07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptSchoolFull14 =>
+      'Tám… những trang sách và áp lực trôi xa dần.';
+
+  @override
+  String get scriptSchoolFull23 =>
+      'Việc học thường để lại căng thẳng ở vài chỗ quen thuộc. Chúng ta hãy ghé qua từng chỗ… và để nó dịu xuống.';
+
+  @override
+  String get scriptSchoolFull24 =>
+      'Bắt đầu với vầng trán. Nơi hay nhíu lại trước sách vở và màn hình. Hãy tưởng tượng một bàn tay ấm áp đặt lên đó… vuốt cho nó phẳng lại…';
+
+  @override
+  String get scriptSchoolFull25 =>
+      'Giờ đến quai hàm. Để hai hàm răng hở ra một chút. Để lưỡi được nghỉ. Rất nhiều sự tập trung bị giữ lại ở quai hàm… và giờ bạn có thể buông nó ra.';
+
+  @override
+  String get scriptSchoolFull26 =>
+      'Cổ và vai. Hãy hình dung chúng đã cúi xuống sách vở và máy tính hàng giờ liền… và giờ, với hơi thở ra tiếp theo… chúng hạ xuống. Nặng. Ấm.';
+
+  @override
+  String get scriptSchoolFull27 =>
+      'Đi xuống qua cánh tay… cổ tay, mỏi vì viết… bàn tay. Để các ngón tay lỏng ra và yên lặng.';
+
+  @override
+  String get scriptSchoolFull28 =>
+      'Giờ đến ngực và bụng. Hãy để ý xem có chỗ nào thắt lại, một nút thắt lo lắng về điểm số hay những gì sắp tới. Bạn không cần chống lại nó.';
+
+  @override
+  String get scriptSchoolFull30 =>
+      'Thắt lưng… hông… chân… xuống tận bàn chân trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptSchoolFull32 =>
+      'Bây giờ hãy tưởng tượng bạn đang đứng giữa một cánh đồng tuyết yên tĩnh, giống như trong ứng dụng. Không khí mát lành, trong trẻo. Tuyết mềm rơi khắp xung quanh bạn.';
+
+  @override
+  String get scriptSchoolFull33 =>
+      'Hãy để ý rằng mỗi bông tuyết rơi theo nhịp riêng của nó. Nó không bao giờ vội vàng… chỉ nhẹ nhàng đáp xuống, rồi nhường chỗ cho bông tiếp theo.';
+
+  @override
+  String get scriptSchoolFull34 =>
+      'Việc học của bạn cũng có thể như vậy. Một trang. Một chủ đề. Rồi chủ đề tiếp theo.';
+
+  @override
+  String get scriptSchoolFull36 => 'Mình có giá trị hơn điểm số của mình.';
+
+  @override
+  String get scriptSchoolFull37 =>
+      'Mình đã từng học được những điều khó, và mình cũng có thể học được điều này.';
+
+  @override
+  String get scriptSchoolFull38 =>
+      'Một tâm trí được nghỉ ngơi nhớ được nhiều hơn một tâm trí hoảng loạn.';
+
+  @override
+  String get scriptSchoolFull39 => 'Những bước nhỏ mỗi ngày sẽ cộng dồn lại.';
+
+  @override
+  String get scriptSchoolFull41 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mỗi lần một trang.';
+
+  @override
+  String get scriptSchoolFull42 =>
+      'Cảm nhận sự bình yên này tụ lại nơi đầu ngón tay. Từ giờ trở đi, mỗi khi áp lực học hành dâng lên… trước một kỳ thi, trong thư viện đông người, khi danh sách việc cần làm dường như không bao giờ hết…';
+
+  @override
+  String get scriptSchoolFull45 =>
+      'Trước khi quay lại, hãy chọn một phần nhỏ bạn sẽ học tiếp theo. Chỉ một phần thôi. Trang đầu tiên, không phải cả cuốn sách.';
+
+  @override
+  String get scriptSchoolFull48 => 'Một… cảm nhận chiếc ghế bên dưới.';
+
+  @override
+  String get scriptSchoolFull51 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptSchoolFull52 =>
+      'Và năm… mở mắt khi bạn sẵn sàng, bình tĩnh, sáng suốt và sẵn sàng.';
+
+  @override
+  String get scriptSchoolFull53 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mỗi lần một trang. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSocialFull09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptSocialFull08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptSocialFull10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptSocialFull11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptSocialFull12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptSocialFull13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptSocialFull15 => 'Bảy…';
+
+  @override
+  String get scriptSocialFull16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptSocialFull17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptSocialFull18 => 'Bốn…';
+
+  @override
+  String get scriptSocialFull19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptSocialFull20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptSocialFull21 => 'Và một.';
+
+  @override
+  String get scriptSocialFull22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptSocialFull29 =>
+      'Chỉ cần thở vào đó… và khi thở ra, hãy tưởng tượng nó nới lỏng… từng sợi một.';
+
+  @override
+  String get scriptSocialFull31 =>
+      'Toàn thân bạn, bình yên, nặng nề và an toàn.';
+
+  @override
+  String get scriptSocialFull35 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptSocialFull40 =>
+      'Bây giờ, nhẹ nhàng ấn đầu ngón cái vào đầu ngón trỏ.';
+
+  @override
+  String get scriptSocialFull43 =>
+      'bạn có thể chạm ngón cái và ngón tay vào nhau, hít một hơi, và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptSocialFull44 => 'Giờ hãy thả các ngón tay ra.';
+
+  @override
+  String get scriptSocialFull46 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptSocialFull47 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptSocialFull49 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptSocialFull50 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptSocialFull01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSocialFull02 =>
+      'Trong mười phút tới, những gì người khác nghĩ có thể chờ ngoài cửa. Những cuộc trò chuyện, tin nhắn, việc nghĩ đi nghĩ lại những gì đã nói. Bạn sẽ quay lại với chúng bằng một tâm thế vững vàng hơn.';
+
+  @override
+  String get scriptSocialFull03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptSocialFull04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… một vệt trên tường, một khoảng ánh sáng… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptSocialFull05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptSocialFull06 =>
+      'Không có gì bạn phải nói hay làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptSocialFull07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptSocialFull14 => 'Tám… giọng nói của người khác trôi xa dần.';
+
+  @override
+  String get scriptSocialFull23 =>
+      'Nỗi lo khi giao tiếp thường ẩn ở vài chỗ quen thuộc trong cơ thể. Chúng ta hãy ghé qua từng chỗ… và để nó dịu xuống.';
+
+  @override
+  String get scriptSocialFull24 =>
+      'Bắt đầu với vầng trán. Nơi hay căng lên khi bạn băn khoăn ai đó nghĩ gì. Hãy tưởng tượng một bàn tay ấm áp đặt lên đó… vuốt cho nó phẳng lại…';
+
+  @override
+  String get scriptSocialFull25 =>
+      'Giờ đến quai hàm. Để hai hàm răng hở ra một chút. Để lưỡi được nghỉ. Biết bao lời chưa nói bị giữ lại ở quai hàm… và giờ bạn có thể buông chúng ra.';
+
+  @override
+  String get scriptSocialFull26 =>
+      'Cổ và vai. Hãy hình dung chúng đã gồng lên trước một căn phòng đầy người… và giờ, với hơi thở ra tiếp theo… chúng hạ xuống. Nặng. Ấm.';
+
+  @override
+  String get scriptSocialFull27 =>
+      'Đi xuống qua cánh tay… đôi bàn tay, có lẽ bồn chồn, không biết đặt ở đâu… Để các ngón tay lỏng ra và yên lặng.';
+
+  @override
+  String get scriptSocialFull28 =>
+      'Giờ đến ngực và bụng. Hãy để ý xem có cảm giác bồn chồn nào không, một nút thắt hồi hộp trước khi gặp mọi người. Bạn không cần chống lại nó.';
+
+  @override
+  String get scriptSocialFull30 =>
+      'Thắt lưng… hông… chân… xuống tận bàn chân trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải chứng minh.';
+
+  @override
+  String get scriptSocialFull32 =>
+      'Bây giờ hãy tưởng tượng bạn đang nằm trên một đồng cỏ rộng mở, giống như trong ứng dụng. Cỏ mềm bên dưới bạn. Một làn gió nhẹ thoảng qua.';
+
+  @override
+  String get scriptSocialFull33 =>
+      'Hãy để ý rằng cỏ nghiêng theo gió… mà không bao giờ gãy. Nó không níu giữ. Nó đung đưa, rồi lại lắng xuống.';
+
+  @override
+  String get scriptSocialFull34 =>
+      'Khi ở cùng mọi người, bạn cũng có thể như vậy. Để khoảnh khắc ấy trôi qua bạn… rồi trở về với chính mình.';
+
+  @override
+  String get scriptSocialFull36 =>
+      'Mình đã đủ đầy với con người thật của mình.';
+
+  @override
+  String get scriptSocialFull37 =>
+      'Hầu hết mọi người đang nghĩ về bản thân họ, không phải đang đánh giá mình.';
+
+  @override
+  String get scriptSocialFull38 => 'Mình được phép có chỗ đứng của mình.';
+
+  @override
+  String get scriptSocialFull39 => 'Một cuộc trò chuyện tử tế là đủ rồi.';
+
+  @override
+  String get scriptSocialFull41 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình thuộc về nơi này, đúng như con người mình.';
+
+  @override
+  String get scriptSocialFull42 =>
+      'Cảm nhận sự bình yên này tụ lại nơi đầu ngón tay. Từ giờ trở đi, mỗi khi nỗi lo dâng lên quanh mọi người… trước một bữa tiệc, trong một nhóm chat, khi bạn bước vào một căn phòng…';
+
+  @override
+  String get scriptSocialFull45 =>
+      'Trước khi quay lại, hãy chọn một việc nhỏ thân thiện bạn sẽ làm hôm nay. Chỉ một việc thôi. Một nụ cười, một tin nhắn cho bạn bè, một lời chào đơn giản.';
+
+  @override
+  String get scriptSocialFull48 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptSocialFull51 =>
+      'Bốn… năng lượng trở lại, bình tĩnh và tự tin.';
+
+  @override
+  String get scriptSocialFull52 =>
+      'Và năm… mở mắt khi bạn sẵn sàng, bình tĩnh, vững vàng và sẵn sàng.';
+
+  @override
+  String get scriptSocialFull53 =>
+      'Bạn làm tốt lắm. Hãy nhớ: bạn thuộc về nơi này, đúng như con người bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get afterAnchorHome =>
+      'Ngón cái + ngón tay, một hơi thở, mình thấy như ở nhà trong chính mình.';
+
+  @override
+  String get afterAnchorSchool =>
+      'Ngón cái + ngón tay, một hơi thở, mỗi lần một trang.';
+
+  @override
+  String get afterAnchorSocial =>
+      'Ngón cái + ngón tay, một hơi thở, mình thuộc về nơi này, đúng như con người mình.';
+
+  @override
+  String get meditateChildrenTitle => 'Cha mẹ kiên nhẫn';
+
+  @override
+  String get afterAnchorChildren =>
+      'Ba hơi thở chậm · “Vững vàng như ngọn hải đăng.”';
+
+  @override
+  String get scriptChildren01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptChildren02 =>
+      'Chăm sóc con cái tràn đầy yêu thương… và cũng đầy ồn ào, nhu cầu, chẳng lúc nào được nghỉ. Trong mười phút này, có người đang chăm sóc cho bạn.';
+
+  @override
+  String get scriptChildren03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptChildren04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptChildren05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptChildren06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptChildren07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptChildren08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptChildren09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptChildren10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptChildren11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptChildren12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptChildren13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptChildren14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptChildren15 => 'Bảy…';
+
+  @override
+  String get scriptChildren16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptChildren17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptChildren18 => 'Bốn…';
+
+  @override
+  String get scriptChildren19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptChildren20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptChildren21 => 'Và một.';
+
+  @override
+  String get scriptChildren22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptChildren23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptChildren24 =>
+      'Bắt đầu với đôi vai. Đôi vai bế các con, mang túi xách, gánh lo âu. Giờ hãy để chúng hạ xuống… nặng và ấm.';
+
+  @override
+  String get scriptChildren25 =>
+      'Quai hàm… để hai hàm răng hở ra. Đôi tay… mở ra, lòng bàn tay ngửa lên, như thể đặt mọi thứ xuống. Lúc này không có gì cần phải giữ.';
+
+  @override
+  String get scriptChildren26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptChildren27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptChildren28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptChildren29 =>
+      'Hãy tưởng tượng một ngọn hải đăng trên mỏm đá. Xung quanh nó, sóng vỗ, nô đùa, xô bờ và cười vang.';
+
+  @override
+  String get scriptChildren30 =>
+      'Ngọn hải đăng không đuổi theo sóng hay quát mắng chúng. Nó chỉ đứng đó, vững vàng và ấm áp, ánh sáng chậm rãi xoay vòng. Chính sự vững vàng ấy giữ cho mọi con thuyền được an toàn.';
+
+  @override
+  String get scriptChildren31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptChildren32 =>
+      'Bạn không cần là cha mẹ hoàn hảo mới là cha mẹ tốt.';
+
+  @override
+  String get scriptChildren33 =>
+      'Sự bình tĩnh của bạn dạy con nhiều hơn lời nói.';
+
+  @override
+  String get scriptChildren34 =>
+      'Dừng lại một chút trước khi đáp lời cũng không sao.';
+
+  @override
+  String get scriptChildren35 => 'Bây giờ, nhẹ nhàng hít thở ba hơi thật chậm.';
+
+  @override
+  String get scriptChildren36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: vững vàng như ngọn hải đăng.';
+
+  @override
+  String get scriptChildren37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi tiếng ồn dâng lên, khi nước mắt bắt đầu rơi, hay khi bạn thấy sự kiên nhẫn đang cạn dần, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptChildren38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptChildren39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptChildren40 =>
+      'Trước khi quay lại… hãy chọn một khoảnh khắc nhỏ hôm nay để chỉ đơn giản ở bên con, không vội vàng.';
+
+  @override
+  String get scriptChildren41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptChildren42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptChildren43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptChildren44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptChildren45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptChildren46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptChildren47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptChildren48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: vững vàng như ngọn hải đăng. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateFamilyTitle => 'Bình yên với gia đình';
+
+  @override
+  String get afterAnchorFamily =>
+      'Chắp hai lòng bàn tay · “Tử tế, và rõ ràng.”';
+
+  @override
+  String get scriptFamily01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptFamily02 =>
+      'Gia đình biết chính xác điều gì khiến ta dễ nổi nóng. Trong mười phút này, bạn có thể bước ra khỏi những vai trò cũ và chỉ đơn giản là chính mình.';
+
+  @override
+  String get scriptFamily03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptFamily04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptFamily05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptFamily06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptFamily07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptFamily08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptFamily09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptFamily10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptFamily11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptFamily12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptFamily13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptFamily14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptFamily15 => 'Bảy…';
+
+  @override
+  String get scriptFamily16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptFamily17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptFamily18 => 'Bốn…';
+
+  @override
+  String get scriptFamily19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptFamily20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptFamily21 => 'Và một.';
+
+  @override
+  String get scriptFamily22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptFamily23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptFamily24 =>
+      'Hãy đưa sự chú ý đến vùng bụng. Đây là nơi căng thẳng gia đình thường trú ngụ… một nút thắt, một cảm giác bồn chồn, một sự nặng nề. Hãy nhẹ nhàng thở vào đó.';
+
+  @override
+  String get scriptFamily25 =>
+      'Giờ đến vùng thắt lưng. Hãy tưởng tượng hơi ấm lan khắp nơi đó như nắng trên đá. Để nó được nghỉ ngơi khỏi sức nặng đã mang bấy lâu.';
+
+  @override
+  String get scriptFamily26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptFamily27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptFamily28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptFamily29 =>
+      'Hãy hình dung một khu vườn xinh đẹp có hàng rào cây xanh thấp bao quanh. Cánh cổng đang mở. Mọi người có thể ghé thăm, trò chuyện và cười đùa cùng bạn.';
+
+  @override
+  String get scriptFamily30 =>
+      'Và hàng rào vẫn ở đó. Lặng lẽ. Bảo vệ những gì đang lớn lên bên trong. Bạn quyết định khi nào cánh cổng mở… và khi nào nó đóng lại.';
+
+  @override
+  String get scriptFamily31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptFamily32 =>
+      'Bạn có thể yêu thương họ mà vẫn đặt ra những ranh giới tử tế.';
+
+  @override
+  String get scriptFamily33 => 'Những khuôn mẫu cũ không cần lặp lại hôm nay.';
+
+  @override
+  String get scriptFamily34 => 'Sự bình yên của bạn cũng quan trọng.';
+
+  @override
+  String get scriptFamily35 =>
+      'Bây giờ, nhẹ nhàng áp hai lòng bàn tay vào nhau.';
+
+  @override
+  String get scriptFamily36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: tử tế, và rõ ràng.';
+
+  @override
+  String get scriptFamily37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, trước một cuộc gọi gia đình, một chuyến thăm, hay một cuộc trò chuyện bạn vẫn ngại, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptFamily38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptFamily39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptFamily40 =>
+      'Trước khi quay lại… hãy nghĩ đến một ranh giới bạn muốn giữ trong tuần này… và cách bạn sẽ nói ra điều đó thật nhẹ nhàng.';
+
+  @override
+  String get scriptFamily41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptFamily42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptFamily43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptFamily44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptFamily45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptFamily46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptFamily47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptFamily48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: tử tế, và rõ ràng. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateChoresTitle => 'Đặt xuống gánh nặng trong đầu';
+
+  @override
+  String get afterAnchorChores => 'Xoay vai ra sau · “Một việc, rồi nghỉ.”';
+
+  @override
+  String get scriptChores01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptChores02 =>
+      'Bạn mang vác quá nhiều… những danh sách, những lời nhắc, những điều dường như chỉ mình bạn để ý. Trong mười phút này, bạn có thể đặt tất cả xuống.';
+
+  @override
+  String get scriptChores03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptChores04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptChores05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptChores06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptChores07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptChores08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptChores09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptChores10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptChores11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptChores12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptChores13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptChores14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptChores15 => 'Bảy…';
+
+  @override
+  String get scriptChores16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptChores17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptChores18 => 'Bốn…';
+
+  @override
+  String get scriptChores19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptChores20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptChores21 => 'Và một.';
+
+  @override
+  String get scriptChores22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptChores23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptChores24 =>
+      'Đôi vai và phần lưng trên. Hãy tưởng tượng mỗi việc bạn đang gánh là một vật nặng đặt ở đó. Giờ đây, theo từng hơi thở, cảm nhận chúng nhẹ dần.';
+
+  @override
+  String get scriptChores25 =>
+      'Để đôi tay nghỉ ngơi. Các ngón tay duỗi ra. Bạn không cầm điện thoại, không cầm danh sách, không cầm khăn lau hay túi xách. Chỉ có không khí.';
+
+  @override
+  String get scriptChores26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptChores27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptChores28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptChores29 =>
+      'Hãy tưởng tượng bạn đang đi trên cát ấm, hai tay xách những chiếc túi nặng.';
+
+  @override
+  String get scriptChores30 =>
+      'Từng chiếc một, bạn đặt chúng xuống. Đồ giặt. Bát đĩa. Các cuộc hẹn. Những điều bạn đang cố nhớ.';
+
+  @override
+  String get scriptChores31 =>
+      'Mỗi chiếc túi được đặt xuống, bước chân bạn lại nhẹ hơn. Những chiếc túi sẽ chờ. Chúng luôn chờ. Lúc này… bạn chỉ việc bước đi.';
+
+  @override
+  String get scriptChores32 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptChores33 =>
+      'Danh sách có thể chờ. Bạn được phép nghỉ ngơi trước.';
+
+  @override
+  String get scriptChores34 => 'Nhờ giúp đỡ là chia sẻ, không phải thất bại.';
+
+  @override
+  String get scriptChores35 => 'Xong còn hơn hoàn hảo.';
+
+  @override
+  String get scriptChores36 => 'Bây giờ, nhẹ nhàng xoay vai ra sau thật chậm.';
+
+  @override
+  String get scriptChores37 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: một việc, rồi nghỉ.';
+
+  @override
+  String get scriptChores38 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi danh sách như dài vô tận, hay khi bạn thấy mình đang vội từ việc này sang việc khác, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptChores39 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptChores40 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptChores41 =>
+      'Trước khi quay lại… hãy chọn một việc hôm nay bạn sẽ buông bỏ, hoặc nhờ người khác giúp.';
+
+  @override
+  String get scriptChores42 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptChores43 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptChores44 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptChores45 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptChores46 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptChores47 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptChores48 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptChores49 =>
+      'Bạn làm tốt lắm. Hãy nhớ: một việc, rồi nghỉ. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateMoneyTitle => 'Vững vàng với tiền bạc';
+
+  @override
+  String get afterAnchorMoney => 'Ấn chân xuống sàn · “Bám rễ và vững vàng.”';
+
+  @override
+  String get scriptMoney01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptMoney02 =>
+      'Nỗi lo tiền bạc có thể rất ồn ào, nhất là vào ban đêm. Trong mười phút này, những con số có thể chờ. Bạn an toàn ngay tại đây.';
+
+  @override
+  String get scriptMoney03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptMoney04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptMoney05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptMoney06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptMoney07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptMoney08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptMoney09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptMoney10 => 'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptMoney11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptMoney12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptMoney13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptMoney14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptMoney15 => 'Bảy…';
+
+  @override
+  String get scriptMoney16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptMoney17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptMoney18 => 'Bốn…';
+
+  @override
+  String get scriptMoney19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptMoney20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptMoney21 => 'Và một.';
+
+  @override
+  String get scriptMoney22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptMoney23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptMoney24 =>
+      'Hãy đưa sự chú ý đến vùng bụng. Căng thẳng về tiền bạc thường nằm ở đây, thắt lại và lo âu. Để nó phồng lên và xẹp xuống theo hơi thở. Mềm mại. Chậm rãi.';
+
+  @override
+  String get scriptMoney25 =>
+      'Giờ đến đôi chân và bàn chân. Cảm nhận mặt sàn bên dưới vững chắc thế nào. Nó nâng đỡ bạn hoàn toàn. Bạn không cần tự gồng mình lên.';
+
+  @override
+  String get scriptMoney26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptMoney27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptMoney28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptMoney29 =>
+      'Hãy tưởng tượng bạn là một cái cây trên ngọn đồi nhìn ra biển. Gió thổi… đôi khi rất mạnh.';
+
+  @override
+  String get scriptMoney30 =>
+      'Nhưng bên dưới bạn, rễ cây cắm sâu vào lòng đất, vươn rộng hơn cả cành lá. Dù thời tiết thế nào, bạn vẫn được giữ vững. Bạn đã bám rễ.';
+
+  @override
+  String get scriptMoney31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptMoney32 => 'Một bước đi rõ ràng đáng giá hơn trăm nỗi lo.';
+
+  @override
+  String get scriptMoney33 =>
+      'Bạn có thể bình tĩnh đối diện chuyện này, từng con số một.';
+
+  @override
+  String get scriptMoney34 => 'Giá trị của bạn không phải là số dư tài khoản.';
+
+  @override
+  String get scriptMoney35 => 'Bây giờ, nhẹ nhàng ấn chân thật chắc xuống sàn.';
+
+  @override
+  String get scriptMoney36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: bám rễ và vững vàng.';
+
+  @override
+  String get scriptMoney37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn mở một hóa đơn, kiểm tra số dư, hay bắt đầu lo lắng vào ban đêm, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptMoney38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptMoney39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptMoney40 =>
+      'Trước khi quay lại… hãy nghĩ đến một bước nhỏ, rõ ràng bạn có thể làm với tiền bạc trong tuần này. Chỉ một thôi.';
+
+  @override
+  String get scriptMoney41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptMoney42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptMoney43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptMoney44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptMoney45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptMoney46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptMoney47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptMoney48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: bám rễ và vững vàng. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateHomeResetTitle => 'Làm mới tổ ấm';
+
+  @override
+  String get afterAnchorHomeReset =>
+      'Một tiếng thở dài thật sâu · “Mình thấy như ở nhà trong chính mình.”';
+
+  @override
+  String get scriptHomeReset01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptHomeReset02 =>
+      'Đôi khi nhà chẳng còn giống nhà… quá ồn, quá bận, quá nhiều thứ. Trong mười phút này, chúng ta hãy tạo một không gian bình yên bên trong bạn.';
+
+  @override
+  String get scriptHomeReset03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptHomeReset04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptHomeReset05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptHomeReset06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptHomeReset07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptHomeReset08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptHomeReset09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptHomeReset10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptHomeReset11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptHomeReset12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptHomeReset13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptHomeReset14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptHomeReset15 => 'Bảy…';
+
+  @override
+  String get scriptHomeReset16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptHomeReset17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptHomeReset18 => 'Bốn…';
+
+  @override
+  String get scriptHomeReset19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptHomeReset20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptHomeReset21 => 'Và một.';
+
+  @override
+  String get scriptHomeReset22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptHomeReset23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptHomeReset24 =>
+      'Hãy tưởng tượng dòng nước ấm chậm rãi chảy qua người bạn, từ đỉnh đầu xuống tận bàn chân. Nước chảy đến đâu, căng thẳng tan đến đó.';
+
+  @override
+  String get scriptHomeReset25 =>
+      'Hãy để ý chỗ nào vẫn còn căng. Thở vào đó… và để nó cùng phần còn lại của cơ thể nghỉ ngơi.';
+
+  @override
+  String get scriptHomeReset26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptHomeReset27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptHomeReset28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptHomeReset29 =>
+      'Hãy tưởng tượng bạn đi khắp nhà và mở từng ô cửa sổ, từng cái một.';
+
+  @override
+  String get scriptHomeReset30 =>
+      'Làn gió biển trong lành thổi qua từng căn phòng… làm sạch không khí, mang đi tiếng ồn và sự nặng nề. Mọi thứ nhẹ nhàng hơn. Sạch sẽ hơn. Bình yên hơn.';
+
+  @override
+  String get scriptHomeReset31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptHomeReset32 =>
+      'Ngôi nhà có thể chứa rất nhiều thứ. Hãy để chúng chờ bên ngoài khoảnh khắc này.';
+
+  @override
+  String get scriptHomeReset33 =>
+      'Bạn có thể tạo một góc bình yên, ngay cả trong một ngôi nhà bận rộn.';
+
+  @override
+  String get scriptHomeReset34 => 'Ở đây, bạn được phép nghỉ ngơi.';
+
+  @override
+  String get scriptHomeReset35 =>
+      'Bây giờ, nhẹ nhàng thở ra một hơi dài và sâu.';
+
+  @override
+  String get scriptHomeReset36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình thấy như ở nhà trong chính mình.';
+
+  @override
+  String get scriptHomeReset37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi trong nhà thật hỗn loạn, hay khi bạn cần một chút thời gian cho riêng mình, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptHomeReset38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptHomeReset39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptHomeReset40 =>
+      'Trước khi quay lại… hãy chọn một góc nhỏ trong nhà mà bạn có thể làm cho bình yên hôm nay.';
+
+  @override
+  String get scriptHomeReset41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptHomeReset42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptHomeReset43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptHomeReset44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptHomeReset45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptHomeReset46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptHomeReset47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptHomeReset48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mình thấy như ở nhà trong chính mình. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateManagerTitle => 'Tự tin với cấp trên';
+
+  @override
+  String get afterAnchorManager =>
+      'Ngồi thẳng, cằm ngang · “Vững chãi và rõ ràng.”';
+
+  @override
+  String get scriptManager01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptManager02 =>
+      'Những cuộc họp với cấp trên có thể khiến ta thấy mình nhỏ bé, ngay cả khi ta đang làm tốt. Trong mười phút này, bạn có thể đứng thẳng lại bên trong chính mình.';
+
+  @override
+  String get scriptManager03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptManager04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptManager05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptManager06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptManager07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptManager08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptManager09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptManager10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptManager11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptManager12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptManager13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptManager14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptManager15 => 'Bảy…';
+
+  @override
+  String get scriptManager16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptManager17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptManager18 => 'Bốn…';
+
+  @override
+  String get scriptManager19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptManager20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptManager21 => 'Và một.';
+
+  @override
+  String get scriptManager22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptManager23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptManager24 =>
+      'Hãy đưa sự chú ý đến cổ họng. Để nó mở ra và dịu xuống… sẵn sàng cho một giọng nói bình tĩnh, rõ ràng.';
+
+  @override
+  String get scriptManager25 =>
+      'Giờ đến cột sống. Cảm nhận nó nhẹ nhàng kéo dài, từ thắt lưng lên tới đỉnh cổ. Thẳng, nhưng thư giãn.';
+
+  @override
+  String get scriptManager26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptManager27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptManager28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptManager29 =>
+      'Hãy hình dung một cái cây cao trên vách đá lộng gió. Những cơn gió mạnh ập đến, cái cây uốn mình, lá xào xạc.';
+
+  @override
+  String get scriptManager30 =>
+      'Nhưng nó không gãy. Nó uốn mình… rồi đứng thẳng trở lại. Mỗi cơn bão làm rễ cây mạnh hơn một chút. Cái cây ấy chính là bạn.';
+
+  @override
+  String get scriptManager31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptManager32 =>
+      'Góp ý là thông tin, không phải sự phán xét về con người bạn.';
+
+  @override
+  String get scriptManager33 => 'Bạn có thể nói rõ ràng và bình tĩnh.';
+
+  @override
+  String get scriptManager34 => 'Bạn đã xứng đáng với vị trí của mình ở đây.';
+
+  @override
+  String get scriptManager35 =>
+      'Bây giờ, nhẹ nhàng ngồi thẳng và để cằm giữ ngang.';
+
+  @override
+  String get scriptManager36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: vững chãi và rõ ràng.';
+
+  @override
+  String get scriptManager37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, trước một buổi gặp riêng, một buổi đánh giá, hay khi bạn bị hỏi một câu khó, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptManager38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptManager39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptManager40 =>
+      'Trước khi quay lại… hãy nghĩ đến một điều bạn muốn nói thật rõ ràng trong lần trò chuyện tới với cấp trên.';
+
+  @override
+  String get scriptManager41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptManager42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptManager43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptManager44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptManager45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptManager46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptManager47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptManager48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: vững chãi và rõ ràng. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateColleaguesTitle => 'Thoải mái với đồng nghiệp';
+
+  @override
+  String get afterAnchorColleagues => 'Thở ra thật chậm · “Để nó trôi qua.”';
+
+  @override
+  String get scriptColleagues01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptColleagues02 =>
+      'Chúng ta không chọn được những người mình làm việc cùng. Trong mười phút này, bạn không cần lo cho tâm trạng của bất kỳ ai. Chỉ hơi thở của chính bạn.';
+
+  @override
+  String get scriptColleagues03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptColleagues04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptColleagues05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptColleagues06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptColleagues07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptColleagues08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptColleagues09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptColleagues10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptColleagues11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptColleagues12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptColleagues13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptColleagues14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptColleagues15 => 'Bảy…';
+
+  @override
+  String get scriptColleagues16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptColleagues17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptColleagues18 => 'Bốn…';
+
+  @override
+  String get scriptColleagues19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptColleagues20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptColleagues21 => 'Và một.';
+
+  @override
+  String get scriptColleagues22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptColleagues23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptColleagues24 =>
+      'Hãy đưa sự chú ý đến quai hàm. Căng thẳng với người khác thường bị nghiến chặt ở đây. Để nó thả lỏng.';
+
+  @override
+  String get scriptColleagues25 =>
+      'Giờ đến vùng bụng. Nếu có một nút thắt bực bội, hãy nhẹ nhàng thở vào đó. Để nó mềm ra như sáp ấm.';
+
+  @override
+  String get scriptColleagues26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptColleagues27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptColleagues28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptColleagues29 =>
+      'Hãy tưởng tượng một dòng suối trong vắt chảy xuống sườn đồi. Trên đường đi có những hòn đá… có hòn nhỏ, có hòn lớn.';
+
+  @override
+  String get scriptColleagues30 =>
+      'Nước không chống lại đá. Nó chảy vòng qua chúng, thật dễ dàng, và tiếp tục trôi. Nó vẫn trong vắt. Bạn cũng có thể trôi như thế.';
+
+  @override
+  String get scriptColleagues31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptColleagues32 =>
+      'Bạn chỉ có thể kiểm soát phần của mình. Vậy là đủ.';
+
+  @override
+  String get scriptColleagues33 =>
+      'Tâm trạng của người khác không phải trách nhiệm của bạn.';
+
+  @override
+  String get scriptColleagues34 =>
+      'Bạn có thể tử tế mà vẫn giữ ranh giới của mình.';
+
+  @override
+  String get scriptColleagues35 =>
+      'Bây giờ, nhẹ nhàng thở ra thật chậm qua miệng.';
+
+  @override
+  String get scriptColleagues36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: để nó trôi qua.';
+
+  @override
+  String get scriptColleagues37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi lời nói của một đồng nghiệp làm bạn nhói lòng, hay khi bầu không khí văn phòng trở nên căng thẳng, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptColleagues38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptColleagues39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptColleagues40 =>
+      'Trước khi quay lại… hãy chọn một lần tương tác hôm nay mà bạn sẽ đón nhận bằng sự bình tĩnh thay vì phản ứng.';
+
+  @override
+  String get scriptColleagues41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptColleagues42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptColleagues43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptColleagues44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptColleagues45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptColleagues46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptColleagues47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptColleagues48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: để nó trôi qua. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateBurnoutTitle => 'Hồi phục sau kiệt sức';
+
+  @override
+  String get afterAnchorBurnout =>
+      'Đặt tay lên bụng · “Nạp đầy trước khi cho đi.”';
+
+  @override
+  String get scriptBurnout01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptBurnout02 =>
+      'Nếu bạn đang cạn kiệt, đây là nơi để nạp lại. Trong mười phút này, bạn không cần cho ai bất cứ điều gì.';
+
+  @override
+  String get scriptBurnout03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptBurnout04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptBurnout05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptBurnout06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptBurnout07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptBurnout08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptBurnout09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptBurnout10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptBurnout11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptBurnout12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptBurnout13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptBurnout14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptBurnout15 => 'Bảy…';
+
+  @override
+  String get scriptBurnout16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptBurnout17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptBurnout18 => 'Bốn…';
+
+  @override
+  String get scriptBurnout19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptBurnout20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptBurnout21 => 'Và một.';
+
+  @override
+  String get scriptBurnout22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptBurnout23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptBurnout24 =>
+      'Để toàn thân bạn trở nên nặng. Đầu nặng trên cổ. Hai tay nặng bên người. Đôi chân nặng trên sàn.';
+
+  @override
+  String get scriptBurnout25 =>
+      'Hãy để ý sự mệt mỏi mà không phán xét nó. Đó là một tín hiệu, không phải thất bại. Thở vào những nơi mệt mỏi… và để chúng nghỉ ngơi hoàn toàn.';
+
+  @override
+  String get scriptBurnout26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptBurnout27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptBurnout28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptBurnout29 =>
+      'Hãy tưởng tượng bạn đang nổi trên làn nước ấm, nông gần bờ. Biển nâng bạn lên. Bạn không cần phải bơi.';
+
+  @override
+  String get scriptBurnout30 =>
+      'Nắng sưởi ấm làn da, và với mỗi hơi thở, bạn cảm thấy nó tràn vào bên trong… chậm rãi nạp đầy bạn, như một cục pin đang sạc, từng phần trăm một.';
+
+  @override
+  String get scriptBurnout31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptBurnout32 =>
+      'Nghỉ ngơi không phải phần thưởng. Đó là điều cần thiết.';
+
+  @override
+  String get scriptBurnout33 => 'Bạn có giá trị hơn những gì bạn làm ra.';
+
+  @override
+  String get scriptBurnout34 => 'Hồi phục nhỏ cũng có ý nghĩa.';
+
+  @override
+  String get scriptBurnout35 => 'Bây giờ, nhẹ nhàng đặt một tay lên bụng.';
+
+  @override
+  String get scriptBurnout36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: nạp đầy trước khi cho đi.';
+
+  @override
+  String get scriptBurnout37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn thấy kiệt sức, hay trước khi nhận lời thêm một việc nữa, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptBurnout38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptBurnout39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptBurnout40 =>
+      'Trước khi quay lại… hãy chọn một cách nhỏ để bạn nghỉ ngơi hoặc nạp lại năng lượng hôm nay.';
+
+  @override
+  String get scriptBurnout41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptBurnout42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptBurnout43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptBurnout44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptBurnout45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptBurnout46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptBurnout47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptBurnout48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: nạp đầy trước khi cho đi. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateJobSecurityTitle => 'Đất vững dưới chân';
+
+  @override
+  String get afterAnchorJobSecurity =>
+      'Ấn bàn chân xuống · “Mặt đất vững chắc.”';
+
+  @override
+  String get scriptJobSecurity01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptJobSecurity02 =>
+      'Sự bấp bênh trong công việc có thể làm rung chuyển mặt đất dưới chân ta. Trong mười phút này, chúng ta hãy tìm lại mặt đất vững chắc.';
+
+  @override
+  String get scriptJobSecurity03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptJobSecurity04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptJobSecurity05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptJobSecurity06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptJobSecurity07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptJobSecurity08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptJobSecurity09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptJobSecurity10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptJobSecurity11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptJobSecurity12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptJobSecurity13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptJobSecurity14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptJobSecurity15 => 'Bảy…';
+
+  @override
+  String get scriptJobSecurity16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptJobSecurity17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptJobSecurity18 => 'Bốn…';
+
+  @override
+  String get scriptJobSecurity19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptJobSecurity20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptJobSecurity21 => 'Và một.';
+
+  @override
+  String get scriptJobSecurity22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptJobSecurity23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptJobSecurity24 =>
+      'Hãy đưa sự chú ý đến đôi chân. Cảm nhận chúng mạnh mẽ thế nào… chúng đã đưa bạn vượt qua mọi thử thách cho đến giờ.';
+
+  @override
+  String get scriptJobSecurity25 =>
+      'Giờ đến bàn chân. Nhẹ nhàng ấn chúng xuống sàn, và cảm nhận sàn đẩy ngược lại. Vững chắc. Vững vàng. Ở đây.';
+
+  @override
+  String get scriptJobSecurity26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptJobSecurity27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptJobSecurity28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptJobSecurity29 =>
+      'Hãy hình dung bạn đang đứng trên một tảng đá rộng, vững chắc bên bờ biển. Thủy triều lên… thủy triều xuống.';
+
+  @override
+  String get scriptJobSecurity30 =>
+      'Nước chuyển động khắp quanh bạn, nhưng tảng đá không hề nhúc nhích. Bạn có thể nhìn những đổi thay mà không bị cuốn đi.';
+
+  @override
+  String get scriptJobSecurity31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptJobSecurity32 =>
+      'Bạn có kỹ năng và lựa chọn, ngay cả khi mọi thứ có vẻ bấp bênh.';
+
+  @override
+  String get scriptJobSecurity33 =>
+      'Bạn đã từng thích nghi. Bạn sẽ lại làm được.';
+
+  @override
+  String get scriptJobSecurity34 => 'Hôm nay, bạn chỉ cần lo cho hôm nay.';
+
+  @override
+  String get scriptJobSecurity35 => 'Bây giờ, nhẹ nhàng ấn bàn chân xuống sàn.';
+
+  @override
+  String get scriptJobSecurity36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mặt đất vững chắc.';
+
+  @override
+  String get scriptJobSecurity37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn nghe tin đáng lo, hay khi tâm trí nhảy ngay đến điều tồi tệ nhất, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptJobSecurity38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptJobSecurity39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptJobSecurity40 =>
+      'Trước khi quay lại… hãy nghĩ đến một kỹ năng hay điểm mạnh luôn ở bên bạn, dù bạn làm việc ở đâu.';
+
+  @override
+  String get scriptJobSecurity41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptJobSecurity42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptJobSecurity43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptJobSecurity44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptJobSecurity45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptJobSecurity46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptJobSecurity47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptJobSecurity48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mặt đất vững chắc. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateWorkResetTitle => 'Làm mới sau giờ làm';
+
+  @override
+  String get afterAnchorWorkReset =>
+      'Gập máy tính, một hơi thở · “Tạm thế là xong.”';
+
+  @override
+  String get scriptWorkReset01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptWorkReset02 =>
+      'Có những ngày làm việc thật sự vất vả. Trong mười phút này, một ngày đã khép lại. Bạn có thể đặt nó xuống.';
+
+  @override
+  String get scriptWorkReset03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptWorkReset04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptWorkReset05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptWorkReset06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptWorkReset07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptWorkReset08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptWorkReset09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptWorkReset10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptWorkReset11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptWorkReset12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptWorkReset13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptWorkReset14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptWorkReset15 => 'Bảy…';
+
+  @override
+  String get scriptWorkReset16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptWorkReset17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptWorkReset18 => 'Bốn…';
+
+  @override
+  String get scriptWorkReset19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptWorkReset20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptWorkReset21 => 'Và một.';
+
+  @override
+  String get scriptWorkReset22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptWorkReset23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptWorkReset24 =>
+      'Bắt đầu với đôi mắt, mỏi mệt vì màn hình… rồi đến cổ và vai. Để từng chỗ thả lỏng khi sự chú ý lướt qua.';
+
+  @override
+  String get scriptWorkReset25 =>
+      'Hãy để ý tư thế bạn giữ bên bàn làm việc… và để cơ thể duỗi ra khỏi tư thế ấy. Lỏng ra. Tự do.';
+
+  @override
+  String get scriptWorkReset26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptWorkReset27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptWorkReset28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptWorkReset29 =>
+      'Hãy tưởng tượng bạn đóng cửa văn phòng sau lưng và bước thẳng ra một bãi biển lúc chiều tà.';
+
+  @override
+  String get scriptWorkReset30 =>
+      'Bầu trời màu cam dịu. Không khí mát lành. Với mỗi bước chân trên cát, ngày làm việc lùi xa hơn phía sau bạn.';
+
+  @override
+  String get scriptWorkReset31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptWorkReset32 => 'Mỗi lần một việc là đủ.';
+
+  @override
+  String get scriptWorkReset33 =>
+      'Một ngày khó khăn không phải là một cuộc đời khó khăn.';
+
+  @override
+  String get scriptWorkReset34 => 'Bạn có thể để công việc lại nơi làm việc.';
+
+  @override
+  String get scriptWorkReset35 =>
+      'Bây giờ, nhẹ nhàng gập máy tính hoặc tắt điện thoại và hít một hơi.';
+
+  @override
+  String get scriptWorkReset36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: tạm thế là xong.';
+
+  @override
+  String get scriptWorkReset37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi kết thúc ngày làm việc, hay khi bạn cần làm mới giữa các việc, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptWorkReset38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptWorkReset39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptWorkReset40 =>
+      'Trước khi quay lại… hãy chọn một điều bạn sẽ làm tối nay chẳng liên quan gì đến công việc.';
+
+  @override
+  String get scriptWorkReset41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptWorkReset42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptWorkReset43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptWorkReset44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptWorkReset45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptWorkReset46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptWorkReset47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptWorkReset48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: tạm thế là xong. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateHomeworkTitle => 'Tập trung làm bài tập';
+
+  @override
+  String get afterAnchorHomework => 'Hẹn giờ năm phút · “Cứ bắt đầu thôi.”';
+
+  @override
+  String get scriptHomework01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptHomework02 =>
+      'Đôi khi phần khó nhất của bài tập là bắt đầu. Trong mười phút này, bạn không cần bắt đầu gì cả. Chỉ cần nghỉ ngơi.';
+
+  @override
+  String get scriptHomework03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptHomework04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptHomework05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptHomework06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptHomework07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptHomework08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptHomework09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptHomework10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptHomework11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptHomework12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptHomework13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptHomework14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptHomework15 => 'Bảy…';
+
+  @override
+  String get scriptHomework16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptHomework17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptHomework18 => 'Bốn…';
+
+  @override
+  String get scriptHomework19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptHomework20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptHomework21 => 'Và một.';
+
+  @override
+  String get scriptHomework22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptHomework23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptHomework24 =>
+      'Hãy đưa sự chú ý đến đôi mắt và vầng trán. Để chúng dịu lại sau hàng giờ nhìn màn hình và trang sách.';
+
+  @override
+  String get scriptHomework25 =>
+      'Giờ đến cổ. Để đầu bạn cảm thấy nặng và được nâng đỡ, như đang tựa trên một chiếc gối êm.';
+
+  @override
+  String get scriptHomework26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptHomework27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptHomework28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptHomework29 =>
+      'Hãy tưởng tượng một đồi cát thoai thoải có những bậc thang mềm khắc vào. Bạn không nhìn lên đỉnh. Bạn chỉ bước một bước.';
+
+  @override
+  String get scriptHomework30 =>
+      'Rồi thêm một bước nữa. Và chẳng mấy chốc, bạn đã leo cao hơn mình tưởng. Bước nào cũng nhỏ.';
+
+  @override
+  String get scriptHomework31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptHomework32 =>
+      'Hãy bắt đầu từ việc nhỏ. Năm phút là một khởi đầu thật sự.';
+
+  @override
+  String get scriptHomework33 => 'Sự tập trung lớn dần khi bạn bắt đầu.';
+
+  @override
+  String get scriptHomework34 => 'Bạn không cần làm xong hết ngay bây giờ.';
+
+  @override
+  String get scriptHomework35 =>
+      'Bây giờ, nhẹ nhàng tưởng tượng bạn đặt hẹn giờ năm phút.';
+
+  @override
+  String get scriptHomework36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: cứ bắt đầu thôi.';
+
+  @override
+  String get scriptHomework37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn đang trì hoãn việc học, hay khi núi bài tập có vẻ quá lớn, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptHomework38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptHomework39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptHomework40 =>
+      'Trước khi quay lại… hãy chọn một việc bạn sẽ làm chỉ trong năm phút sau bài này.';
+
+  @override
+  String get scriptHomework41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptHomework42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptHomework43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptHomework44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptHomework45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptHomework46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptHomework47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptHomework48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: cứ bắt đầu thôi. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateGradesTitle => 'Vượt lên điểm số';
+
+  @override
+  String get afterAnchorGrades =>
+      'Đặt tay lên ngực · “Mình hơn cả một con điểm.”';
+
+  @override
+  String get scriptGrades01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptGrades02 =>
+      'Điểm số có thể khiến ta thấy như chúng quyết định mọi thứ. Trong mười phút này, bạn lớn hơn bất kỳ con số nào.';
+
+  @override
+  String get scriptGrades03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptGrades04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptGrades05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptGrades06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptGrades07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptGrades08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptGrades09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptGrades10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptGrades11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptGrades12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptGrades13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptGrades14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptGrades15 => 'Bảy…';
+
+  @override
+  String get scriptGrades16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptGrades17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptGrades18 => 'Bốn…';
+
+  @override
+  String get scriptGrades19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptGrades20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptGrades21 => 'Và một.';
+
+  @override
+  String get scriptGrades22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptGrades23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptGrades24 =>
+      'Hãy đưa sự chú ý đến lồng ngực. Áp lực thường nằm ở đây. Hãy nhẹ nhàng thở vào đó… và để nó rộng mở.';
+
+  @override
+  String get scriptGrades25 =>
+      'Giờ đến đôi vai, đang gánh những kỳ vọng từ chính bạn và từ người khác. Hãy để chúng hạ xuống. Lúc này bạn không cần gánh những điều đó.';
+
+  @override
+  String get scriptGrades26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptGrades27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptGrades28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptGrades29 =>
+      'Hãy tưởng tượng một cánh diều nhiều màu sắc bay cao trên bãi biển. Gió nâng nó lên rồi hạ nó xuống… nhưng nó vẫn tiếp tục bay.';
+
+  @override
+  String get scriptGrades30 =>
+      'Sợi dây diều được bạn nhẹ nhàng cầm trong tay. Không quá chặt. Vừa đủ thôi. Bạn cũng có thể giữ mục tiêu của mình như thế.';
+
+  @override
+  String get scriptGrades31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptGrades32 =>
+      'Điểm số là thông tin, không phải bản án về con người bạn.';
+
+  @override
+  String get scriptGrades33 => 'Cố gắng là trưởng thành, dù kết quả ra sao.';
+
+  @override
+  String get scriptGrades34 => 'Bạn được phép học theo nhịp của riêng mình.';
+
+  @override
+  String get scriptGrades35 => 'Bây giờ, nhẹ nhàng đặt một tay lên ngực.';
+
+  @override
+  String get scriptGrades36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình hơn cả một con điểm.';
+
+  @override
+  String get scriptGrades37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn nhận lại kết quả, hay bắt đầu so sánh mình với người khác, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptGrades38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptGrades39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptGrades40 =>
+      'Trước khi quay lại… hãy nghĩ đến một điều bạn đã học được trong tuần này, dù điểm số thế nào.';
+
+  @override
+  String get scriptGrades41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptGrades42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptGrades43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptGrades44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptGrades45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptGrades46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptGrades47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptGrades48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mình hơn cả một con điểm. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateTeachersTitle => 'Bình tĩnh lên tiếng';
+
+  @override
+  String get afterAnchorTeachers =>
+      'Thả lỏng lưỡi · “Giọng nói của mình có giá trị.”';
+
+  @override
+  String get scriptTeachers01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptTeachers02 =>
+      'Giơ tay hay lên tiếng có thể khiến ta thấy sợ. Trong mười phút này, chúng ta hãy cho giọng nói của bạn một nơi bình yên để lớn lên.';
+
+  @override
+  String get scriptTeachers03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptTeachers04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptTeachers05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptTeachers06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptTeachers07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptTeachers08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptTeachers09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptTeachers10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptTeachers11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptTeachers12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptTeachers13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptTeachers14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptTeachers15 => 'Bảy…';
+
+  @override
+  String get scriptTeachers16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptTeachers17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptTeachers18 => 'Bốn…';
+
+  @override
+  String get scriptTeachers19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptTeachers20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptTeachers21 => 'Và một.';
+
+  @override
+  String get scriptTeachers22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptTeachers23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptTeachers24 =>
+      'Hãy đưa sự chú ý đến cổ họng. Để nó thư giãn và mở ra. Nhẹ nhàng nuốt xuống.';
+
+  @override
+  String get scriptTeachers25 =>
+      'Giờ đến quai hàm và lưỡi. Để lưỡi nghỉ nhẹ nhàng trong miệng. Để quai hàm thả lỏng.';
+
+  @override
+  String get scriptTeachers26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptTeachers27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptTeachers28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptTeachers29 =>
+      'Hãy tưởng tượng giọng nói của bạn như một con sóng hiền hòa lăn vào bờ.';
+
+  @override
+  String get scriptTeachers30 =>
+      'Nó không cần phải lớn. Nó chỉ đơn giản đến nơi, rõ ràng và vững vàng, chạm vào bờ cát. Mọi người trên bãi biển đều nghe thấy.';
+
+  @override
+  String get scriptTeachers31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptTeachers32 =>
+      'Câu hỏi của bạn xứng đáng có chỗ. Đặt câu hỏi là một sức mạnh.';
+
+  @override
+  String get scriptTeachers33 =>
+      'Bạn có thể nói một cách bình tĩnh, ngay cả khi thấy hồi hộp.';
+
+  @override
+  String get scriptTeachers34 => 'Sai lầm là cách mọi người học hỏi.';
+
+  @override
+  String get scriptTeachers35 =>
+      'Bây giờ, nhẹ nhàng thả lỏng lưỡi và nuốt xuống.';
+
+  @override
+  String get scriptTeachers36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: giọng nói của mình có giá trị.';
+
+  @override
+  String get scriptTeachers37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, trước khi đặt câu hỏi trong lớp, hay khi nói chuyện với thầy cô, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptTeachers38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptTeachers39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptTeachers40 =>
+      'Trước khi quay lại… hãy chọn một câu hỏi bạn sẽ hỏi, hoặc một điều bạn sẽ nói, trong tuần này.';
+
+  @override
+  String get scriptTeachers41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptTeachers42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptTeachers43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptTeachers44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptTeachers45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptTeachers46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptTeachers47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptTeachers48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: giọng nói của mình có giá trị. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateClassmatesTitle => 'Hòa nhập';
+
+  @override
+  String get afterAnchorClassmates =>
+      'Một nụ cười nhẹ · “Mình thuộc về nơi này, đúng như con người mình.”';
+
+  @override
+  String get scriptClassmates01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptClassmates02 =>
+      'Mong muốn được thuộc về là điều rất con người. Trong mười phút này, bạn thuộc về ngay nơi đây, đúng như con người bạn.';
+
+  @override
+  String get scriptClassmates03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptClassmates04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptClassmates05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptClassmates06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptClassmates07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptClassmates08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptClassmates09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptClassmates10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptClassmates11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptClassmates12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptClassmates13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptClassmates14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptClassmates15 => 'Bảy…';
+
+  @override
+  String get scriptClassmates16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptClassmates17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptClassmates18 => 'Bốn…';
+
+  @override
+  String get scriptClassmates19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptClassmates20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptClassmates21 => 'Và một.';
+
+  @override
+  String get scriptClassmates22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptClassmates23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptClassmates24 =>
+      'Hãy đưa sự chú ý đến vùng bụng. Để ý bất kỳ nỗi lo nào về việc người khác nghĩ gì. Hãy nhẹ nhàng thở vào đó.';
+
+  @override
+  String get scriptClassmates25 =>
+      'Giờ đến đôi vai. Để chúng thả lỏng, hạ xa khỏi tai, như thể không ai đang nhìn.';
+
+  @override
+  String get scriptClassmates26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptClassmates27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptClassmates28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptClassmates29 =>
+      'Hãy hình dung một đàn chim bay trên biển. Cùng nhau… nhưng mỗi con có hình dáng riêng, nhịp điệu riêng.';
+
+  @override
+  String get scriptClassmates30 =>
+      'Không con chim nào cố trở thành con khác. Chúng bay cùng nhau vì mỗi con đều tự do.';
+
+  @override
+  String get scriptClassmates31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptClassmates32 =>
+      'Bạn thuộc về mà không cần trở thành một ai khác.';
+
+  @override
+  String get scriptClassmates33 =>
+      'Những người phù hợp sẽ quý con người thật của bạn.';
+
+  @override
+  String get scriptClassmates34 => 'Bạn có thể nói không mà vẫn được quý mến.';
+
+  @override
+  String get scriptClassmates35 =>
+      'Bây giờ, nhẹ nhàng để một nụ cười nhẹ hiện lên trên gương mặt.';
+
+  @override
+  String get scriptClassmates36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình thuộc về nơi này, đúng như con người mình.';
+
+  @override
+  String get scriptClassmates37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn cảm thấy bị bỏ rơi, hay bị ép phải trở thành một người không phải là mình, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptClassmates38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptClassmates39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptClassmates40 =>
+      'Trước khi quay lại… hãy nghĩ đến một người mà bạn thấy thoải mái khi ở bên, và cách bạn có thể dành thời gian cùng họ.';
+
+  @override
+  String get scriptClassmates41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptClassmates42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptClassmates43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptClassmates44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptClassmates45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptClassmates46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptClassmates47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptClassmates48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mình thuộc về nơi này, đúng như con người mình. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateSchoolResetTitle => 'Làm mới sau giờ học';
+
+  @override
+  String get afterAnchorSchoolReset => 'Vươn tay lên cao · “Trang giấy mới.”';
+
+  @override
+  String get scriptSchoolReset01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSchoolReset02 =>
+      'Trường học đòi hỏi ở bạn rất nhiều. Trong mười phút này, không có bài tập, không có bài kiểm tra, không có thời khóa biểu.';
+
+  @override
+  String get scriptSchoolReset03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptSchoolReset04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptSchoolReset05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptSchoolReset06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptSchoolReset07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptSchoolReset08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptSchoolReset09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptSchoolReset10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptSchoolReset11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptSchoolReset12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptSchoolReset13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptSchoolReset14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptSchoolReset15 => 'Bảy…';
+
+  @override
+  String get scriptSchoolReset16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptSchoolReset17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptSchoolReset18 => 'Bốn…';
+
+  @override
+  String get scriptSchoolReset19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptSchoolReset20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptSchoolReset21 => 'Và một.';
+
+  @override
+  String get scriptSchoolReset22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptSchoolReset23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptSchoolReset24 =>
+      'Hãy đưa sự chú ý đến lưng và vai, nơi chiếc ba lô nằm mỗi ngày. Để chúng duỗi ra và dịu lại.';
+
+  @override
+  String get scriptSchoolReset25 =>
+      'Để phần còn lại của cơ thể thư giãn, từ đầu xuống tận các ngón chân.';
+
+  @override
+  String get scriptSchoolReset26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptSchoolReset27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptSchoolReset28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptSchoolReset29 =>
+      'Hãy tưởng tượng bạn tháo chiếc ba lô nặng ở cửa trước và để nó lại đó.';
+
+  @override
+  String get scriptSchoolReset30 =>
+      'Không có nó, bạn thấy nhẹ nhõm. Bạn bước ra bãi cát… tự do hít thở, tự do là chính mình.';
+
+  @override
+  String get scriptSchoolReset31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptSchoolReset32 => 'Bạn đang học, và học thì cần thời gian.';
+
+  @override
+  String get scriptSchoolReset33 => 'Nghỉ ngơi cũng là một phần của việc học.';
+
+  @override
+  String get scriptSchoolReset34 => 'Ngày mai là một trang giấy mới.';
+
+  @override
+  String get scriptSchoolReset35 => 'Bây giờ, nhẹ nhàng vươn hai tay lên cao.';
+
+  @override
+  String get scriptSchoolReset36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: trang giấy mới.';
+
+  @override
+  String get scriptSchoolReset37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, sau một ngày học dài, hay trước khi bạn bắt đầu học bài, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptSchoolReset38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptSchoolReset39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptSchoolReset40 =>
+      'Trước khi quay lại… hãy chọn một điều bạn sẽ làm hôm nay chỉ để cho vui.';
+
+  @override
+  String get scriptSchoolReset41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptSchoolReset42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptSchoolReset43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptSchoolReset44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptSchoolReset45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptSchoolReset46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptSchoolReset47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptSchoolReset48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: trang giấy mới. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateConflictTitle => 'Sau một cuộc xung đột';
+
+  @override
+  String get afterAnchorConflict =>
+      'Mở rộng hai bàn tay · “Để cơn bão đi qua.”';
+
+  @override
+  String get scriptConflict01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptConflict02 =>
+      'Sau một cuộc cãi vã, những lời nói có thể cứ lặp đi lặp lại trong đầu. Trong mười phút này, bạn không cần lặp lại điều gì cả.';
+
+  @override
+  String get scriptConflict03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptConflict04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptConflict05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptConflict06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptConflict07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptConflict08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptConflict09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptConflict10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptConflict11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptConflict12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptConflict13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptConflict14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptConflict15 => 'Bảy…';
+
+  @override
+  String get scriptConflict16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptConflict17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptConflict18 => 'Bốn…';
+
+  @override
+  String get scriptConflict19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptConflict20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptConflict21 => 'Và một.';
+
+  @override
+  String get scriptConflict22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptConflict23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptConflict24 =>
+      'Hãy đưa sự chú ý đến quai hàm và nắm tay. Để chúng buông lỏng. Từ từ mở hai bàn tay ra.';
+
+  @override
+  String get scriptConflict25 =>
+      'Giờ đến lồng ngực. Nếu có hơi nóng hay nỗi đau, hãy thở vào đó. Để mỗi hơi thở ra làm nó dịu mát, như một làn gió biển.';
+
+  @override
+  String get scriptConflict26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptConflict27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptConflict28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptConflict29 =>
+      'Hãy tưởng tượng một cơn bão đi qua mặt biển. Mây đen, gió, mưa.';
+
+  @override
+  String get scriptConflict30 =>
+      'Rồi chậm rãi, những đám mây trôi đi. Bầu trời quang đãng. Mặt nước lặng yên. Cơn bão là thật… và nó đã qua.';
+
+  @override
+  String get scriptConflict31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptConflict32 =>
+      'Bạn có thể bị tổn thương mà vẫn chọn sự bình tĩnh.';
+
+  @override
+  String get scriptConflict33 => 'Bạn không cần thắng mới có được bình yên.';
+
+  @override
+  String get scriptConflict34 =>
+      'Việc hàn gắn có thể chờ đến khi bạn sẵn sàng.';
+
+  @override
+  String get scriptConflict35 =>
+      'Bây giờ, nhẹ nhàng mở hai bàn tay, lòng bàn tay ngửa lên.';
+
+  @override
+  String get scriptConflict36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: để cơn bão đi qua.';
+
+  @override
+  String get scriptConflict37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi cơn giận dâng lên, hay khi cuộc cãi vã bắt đầu tua lại trong đầu, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptConflict38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptConflict39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptConflict40 =>
+      'Trước khi quay lại… hãy quyết định xem có điều gì cần hàn gắn không, và khi nào bạn sẽ sẵn sàng. Không cần vội.';
+
+  @override
+  String get scriptConflict41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptConflict42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptConflict43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptConflict44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptConflict45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptConflict46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptConflict47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptConflict48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: để cơn bão đi qua. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateEventsTitle => 'Trước khi bước vào';
+
+  @override
+  String get afterAnchorEvents =>
+      'Ngón cái + ngón tay · “Mình là đủ, đúng như con người mình.”';
+
+  @override
+  String get scriptEvents01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptEvents02 =>
+      'Trước một sự kiện, cảm giác hồi hộp có thể dâng lên. Trong mười phút này, chúng ta hãy đến với sự bình yên trước khi bạn đến bất cứ nơi nào khác.';
+
+  @override
+  String get scriptEvents03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptEvents04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptEvents05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptEvents06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptEvents07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptEvents08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptEvents09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptEvents10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptEvents11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptEvents12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptEvents13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptEvents14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptEvents15 => 'Bảy…';
+
+  @override
+  String get scriptEvents16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptEvents17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptEvents18 => 'Bốn…';
+
+  @override
+  String get scriptEvents19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptEvents20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptEvents21 => 'Và một.';
+
+  @override
+  String get scriptEvents22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptEvents23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptEvents24 =>
+      'Hãy đưa sự chú ý đến vùng bụng. Để ý nguồn năng lượng bồn chồn ở đó. Hãy thở chậm vào đó.';
+
+  @override
+  String get scriptEvents25 =>
+      'Giờ đến đôi vai. Để chúng hạ xuống… và tưởng tượng bạn đã thư thái, đã thoải mái rồi.';
+
+  @override
+  String get scriptEvents26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptEvents27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptEvents28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptEvents29 =>
+      'Hãy hình dung bạn bước vào một căn phòng ngập trong ánh sáng vàng dịu.';
+
+  @override
+  String get scriptEvents30 =>
+      'Mọi người quay lại và mỉm cười. Có ai đó vẫy tay. Bạn thấy được chào đón, thật thoải mái. Bạn không cần gây ấn tượng với ai. Bạn chỉ đơn giản có mặt ở đây.';
+
+  @override
+  String get scriptEvents31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptEvents32 => 'Bạn không cần phải diễn. Là chính mình là đủ.';
+
+  @override
+  String get scriptEvents33 =>
+      'Hầu hết mọi người đang nghĩ về bản thân họ, chứ không phán xét bạn.';
+
+  @override
+  String get scriptEvents34 =>
+      'Bạn có thể bước ra ngoài hít thở bất cứ lúc nào.';
+
+  @override
+  String get scriptEvents35 =>
+      'Bây giờ, nhẹ nhàng chạm ngón cái và ngón trỏ vào nhau.';
+
+  @override
+  String get scriptEvents36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình là đủ, đúng như con người mình.';
+
+  @override
+  String get scriptEvents37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, ở cửa ra vào của một sự kiện, hay trước khi gặp người mới, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptEvents38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptEvents39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptEvents40 =>
+      'Trước khi quay lại… hãy chọn một việc nhỏ, dễ dàng bạn sẽ làm ở sự kiện tới… như một lời chào.';
+
+  @override
+  String get scriptEvents41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptEvents42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptEvents43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptEvents44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptEvents45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptEvents46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptEvents47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptEvents48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mình là đủ, đúng như con người mình. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateLonelinessTitle => 'Không bao giờ thật sự cô đơn';
+
+  @override
+  String get afterAnchorLoneliness => 'Ôm lấy chính mình · “Mình có mình.”';
+
+  @override
+  String get scriptLoneliness01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptLoneliness02 =>
+      'Cô đơn có thể nặng nề và lặng lẽ. Trong mười phút này, bạn không một mình. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptLoneliness03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptLoneliness04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptLoneliness05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptLoneliness06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptLoneliness07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptLoneliness08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptLoneliness09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptLoneliness10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptLoneliness11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptLoneliness12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptLoneliness13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptLoneliness14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptLoneliness15 => 'Bảy…';
+
+  @override
+  String get scriptLoneliness16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptLoneliness17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptLoneliness18 => 'Bốn…';
+
+  @override
+  String get scriptLoneliness19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptLoneliness20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptLoneliness21 => 'Và một.';
+
+  @override
+  String get scriptLoneliness22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptLoneliness23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptLoneliness24 =>
+      'Hãy đưa sự chú ý đến lồng ngực. Nhẹ nhàng thở vào đó, để nó thấy đầy đặn và ấm áp.';
+
+  @override
+  String get scriptLoneliness25 =>
+      'Giờ đến đôi tay. Từ từ vòng tay ôm lấy chính mình thật nhẹ nhàng. Cảm nhận hơi ấm từ sự chăm sóc của chính bạn.';
+
+  @override
+  String get scriptLoneliness26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptLoneliness27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptLoneliness28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptLoneliness29 =>
+      'Hãy hình dung bạn đang ngồi trên bãi biển lúc hoàng hôn. Bầu trời nhuộm màu vàng và hồng.';
+
+  @override
+  String get scriptLoneliness30 =>
+      'Bên cạnh bạn là người bạn đồng hành, lặng lẽ và hiền hậu, cùng bạn ngắm sóng. Không cần lời nào cả. Hai bạn đang ở bên nhau.';
+
+  @override
+  String get scriptLoneliness31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptLoneliness32 =>
+      'Cảm thấy cô đơn là một khoảnh khắc, không phải con người bạn.';
+
+  @override
+  String get scriptLoneliness33 => 'Bạn xứng đáng được kết nối.';
+
+  @override
+  String get scriptLoneliness34 => 'Chủ động tìm đến người khác là can đảm.';
+
+  @override
+  String get scriptLoneliness35 =>
+      'Bây giờ, nhẹ nhàng ôm lấy chính mình thật dịu dàng.';
+
+  @override
+  String get scriptLoneliness36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: mình có mình.';
+
+  @override
+  String get scriptLoneliness37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, vào những buổi tối cô đơn, hay bất cứ khi nào bạn thấy lạc lõng, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptLoneliness38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptLoneliness39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptLoneliness40 =>
+      'Trước khi quay lại… hãy nghĩ đến một cách nhỏ để bạn có thể kết nối với ai đó trong tuần này.';
+
+  @override
+  String get scriptLoneliness41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptLoneliness42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptLoneliness43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptLoneliness44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptLoneliness45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptLoneliness46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptLoneliness47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptLoneliness48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: mình có mình. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateSocialMediaTitle => 'Lướt ít hơn, thở nhiều hơn';
+
+  @override
+  String get afterAnchorSocialMedia =>
+      'Úp điện thoại xuống, một hơi thở · “Trở về hiện tại.”';
+
+  @override
+  String get scriptSocialMedia01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSocialMedia02 =>
+      'Lướt mạng có thể khiến ta mệt mỏi và hay so sánh. Trong mười phút này, màn hình đã tắt. Cuộc sống của bạn ở ngay đây.';
+
+  @override
+  String get scriptSocialMedia03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptSocialMedia04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptSocialMedia05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptSocialMedia06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptSocialMedia07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptSocialMedia08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptSocialMedia09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptSocialMedia10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptSocialMedia11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptSocialMedia12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptSocialMedia13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptSocialMedia14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptSocialMedia15 => 'Bảy…';
+
+  @override
+  String get scriptSocialMedia16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptSocialMedia17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptSocialMedia18 => 'Bốn…';
+
+  @override
+  String get scriptSocialMedia19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptSocialMedia20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptSocialMedia21 => 'Và một.';
+
+  @override
+  String get scriptSocialMedia22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptSocialMedia23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptSocialMedia24 =>
+      'Hãy đưa sự chú ý đến đôi mắt. Để chúng nghỉ sau hàng mi khép. Cảm nhận chúng dịu lại.';
+
+  @override
+  String get scriptSocialMedia25 =>
+      'Giờ đến cổ, vẫn thường cúi về phía màn hình. Và ngón cái, lúc nào cũng vuốt. Hãy để chúng yên.';
+
+  @override
+  String get scriptSocialMedia26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptSocialMedia27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptSocialMedia28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptSocialMedia29 =>
+      'Hãy tưởng tượng bạn úp điện thoại xuống bãi cát.';
+
+  @override
+  String get scriptSocialMedia30 =>
+      'Bạn ngước nhìn đường chân trời thật… rộng lớn, xanh thẳm, bất tận. Tiếng sóng. Làn gió. Khoảnh khắc này không thể đăng lên mạng, và nó thật đẹp.';
+
+  @override
+  String get scriptSocialMedia31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptSocialMedia32 =>
+      'Những khoảnh khắc nổi bật của họ không phải toàn bộ câu chuyện của bạn.';
+
+  @override
+  String get scriptSocialMedia33 =>
+      'Cuộc sống của bạn đang diễn ra ở đây, ngoài đời thực.';
+
+  @override
+  String get scriptSocialMedia34 =>
+      'Bạn có thể đóng ứng dụng và quay về với chính mình.';
+
+  @override
+  String get scriptSocialMedia35 =>
+      'Bây giờ, nhẹ nhàng úp điện thoại xuống và hít một hơi.';
+
+  @override
+  String get scriptSocialMedia36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: trở về hiện tại.';
+
+  @override
+  String get scriptSocialMedia37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, khi bạn thấy mình lướt mà chẳng suy nghĩ, hay thấy tệ hơn sau đó, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptSocialMedia38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptSocialMedia39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptSocialMedia40 =>
+      'Trước khi quay lại… hãy chọn một thời điểm hôm nay bạn sẽ cất điện thoại đi trong ba mươi phút.';
+
+  @override
+  String get scriptSocialMedia41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptSocialMedia42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptSocialMedia43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptSocialMedia44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptSocialMedia45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptSocialMedia46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptSocialMedia47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptSocialMedia48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: trở về hiện tại. Mình đang ở đây với bạn.';
+
+  @override
+  String get meditateSocialResetTitle => 'Làm mới sau giao tiếp';
+
+  @override
+  String get afterAnchorSocialReset =>
+      'Một hơi thở chậm · “Đã nạp đầy năng lượng.”';
+
+  @override
+  String get scriptSocialReset01 => 'Chào bạn. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptSocialReset02 =>
+      'Con người có thể làm ta cạn năng lượng, ngay cả những người ta thương yêu. Trong mười phút này, bạn có thể nạp lại năng lượng.';
+
+  @override
+  String get scriptSocialReset03 =>
+      'Hãy tìm một tư thế mà cơ thể được nâng đỡ. Hai bàn chân đặt phẳng trên sàn. Hai tay đặt ở bất cứ đâu chúng muốn nghỉ.';
+
+  @override
+  String get scriptSocialReset04 =>
+      'Bây giờ hãy để mắt bạn tìm một điểm nhỏ trước mặt… và chỉ đơn giản để ánh nhìn nghỉ ở đó.';
+
+  @override
+  String get scriptSocialReset05 =>
+      'Tiếp tục nhìn vào đó… và nhận ra mí mắt có thể bắt đầu nặng hơn một chút… chớp chậm hơn một chút.';
+
+  @override
+  String get scriptSocialReset06 =>
+      'Không có gì bạn phải làm cho đúng. Bất cứ khi nào chúng sẵn sàng… bạn có thể để đôi mắt khép lại.';
+
+  @override
+  String get scriptSocialReset07 =>
+      'Chúng ta cùng làm chậm hơi thở nhé. Hơi thở ra dài hơn cho cơ thể biết rằng bạn đang an toàn.';
+
+  @override
+  String get scriptSocialReset08 =>
+      'Hít vào… hai… ba… bốn. Và thở ra… hai… ba… bốn… năm… sáu.';
+
+  @override
+  String get scriptSocialReset09 =>
+      'Thêm lần nữa. Hít vào… hai… ba… bốn. Và thở ra thật chậm… để đôi vai hạ xuống… năm… sáu.';
+
+  @override
+  String get scriptSocialReset10 =>
+      'Tốt lắm. Giờ hãy để hơi thở tự tìm nhịp của nó.';
+
+  @override
+  String get scriptSocialReset11 =>
+      'Lát nữa mình sẽ đếm từ mười về một. Với mỗi con số, bạn có thể chìm sâu gấp đôi vào sự bình yên… và bạn không cần phải cố. Chỉ cần lắng nghe.';
+
+  @override
+  String get scriptSocialReset12 => 'Mười… buông bỏ.';
+
+  @override
+  String get scriptSocialReset13 => 'Chín… nhẹ nhàng hơn.';
+
+  @override
+  String get scriptSocialReset14 => 'Tám… tiếng ồn của ngày trôi xa dần.';
+
+  @override
+  String get scriptSocialReset15 => 'Bảy…';
+
+  @override
+  String get scriptSocialReset16 => 'Sáu… sâu hơn và bình yên hơn.';
+
+  @override
+  String get scriptSocialReset17 => 'Năm… đã được nửa đường, thật dễ chịu.';
+
+  @override
+  String get scriptSocialReset18 => 'Bốn…';
+
+  @override
+  String get scriptSocialReset19 => 'Ba… mỗi hơi thở đưa bạn xuống sâu hơn.';
+
+  @override
+  String get scriptSocialReset20 => 'Hai… gần đến rồi.';
+
+  @override
+  String get scriptSocialReset21 => 'Và một.';
+
+  @override
+  String get scriptSocialReset22 => 'Nghỉ ngơi ở đây. Yên tĩnh. An toàn.';
+
+  @override
+  String get scriptSocialReset23 =>
+      'Bây giờ chúng ta hãy chậm rãi đi qua cơ thể… và để sự căng thẳng dịu xuống, dù nó đang ẩn ở đâu.';
+
+  @override
+  String get scriptSocialReset24 =>
+      'Hãy chậm rãi di chuyển sự chú ý từ đầu đến chân. Ở đâu bạn thấy cạn kiệt, hãy hít vào nguồn năng lượng tươi mới.';
+
+  @override
+  String get scriptSocialReset25 =>
+      'Để toàn thân bạn nghỉ ngơi, nặng nề và dễ chịu.';
+
+  @override
+  String get scriptSocialReset26 =>
+      'Dành một chút thời gian để nhẹ nhàng tìm xem còn chỗ nào đang níu giữ… một vầng trán nhíu lại, một bàn tay nắm chặt, một hơi thở bị nín. Tìm thấy ở đâu, hãy hít vào… và khi thở ra, để nó tan đi.';
+
+  @override
+  String get scriptSocialReset27 =>
+      'Xuống qua hông… chân… tận bàn chân đặt trên sàn. Vững vàng. Được nâng đỡ. Lúc này không có gì cần phải gánh.';
+
+  @override
+  String get scriptSocialReset28 =>
+      'Toàn thân bạn… bình yên, nặng nề và an toàn. Hãy tận hưởng cảm giác này trong vài hơi thở lặng lẽ.';
+
+  @override
+  String get scriptSocialReset29 =>
+      'Hãy tưởng tượng một cuộc dạo bộ yên tĩnh dọc bờ biển. Chỉ có bạn và những con sóng.';
+
+  @override
+  String get scriptSocialReset30 =>
+      'Mỗi bước chân nạp lại năng lượng cho bạn. Biển không đòi hỏi gì ở bạn. Bạn chỉ cần bước đi, hít thở và hiện diện.';
+
+  @override
+  String get scriptSocialReset31 =>
+      'Và trong lúc bạn nghỉ ngơi ở đây, hãy để những lời này lắng vào một nơi sâu thẳm, nơi chúng có thể lặng lẽ làm việc cho bạn:';
+
+  @override
+  String get scriptSocialReset32 =>
+      'Bạn có quyền hiện diện đúng như con người mình.';
+
+  @override
+  String get scriptSocialReset33 =>
+      'Nạp năng lượng một mình là điều lành mạnh.';
+
+  @override
+  String get scriptSocialReset34 => 'Năng lượng của bạn đáng được bảo vệ.';
+
+  @override
+  String get scriptSocialReset35 => 'Bây giờ, nhẹ nhàng hít một hơi thật chậm.';
+
+  @override
+  String get scriptSocialReset36 =>
+      'Hít một hơi thật chậm… và thầm nói với chính mình: đã nạp đầy năng lượng.';
+
+  @override
+  String get scriptSocialReset37 =>
+      'Cảm nhận sự bình yên này đang tụ lại nơi đây. Từ giờ trở đi, sau những lúc giao tiếp xã hội, hay khi bạn thấy bị người khác rút cạn năng lượng, bạn có thể làm lại điều này… hít một hơi… và chính sự bình yên này sẽ quay lại, mỗi lần mạnh hơn một chút.';
+
+  @override
+  String get scriptSocialReset38 => 'Giờ hãy buông ra.';
+
+  @override
+  String get scriptSocialReset39 =>
+      'Giờ hãy nghỉ ngơi ở đây… không có gì phải làm, không có nơi nào phải đến… chỉ để sự bình yên lắng xuống, sâu hơn với mỗi hơi thở.';
+
+  @override
+  String get scriptSocialReset40 =>
+      'Trước khi quay lại… hãy chọn một cách bạn sẽ bảo vệ năng lượng của mình trong tuần này.';
+
+  @override
+  String get scriptSocialReset41 =>
+      'Hãy thấy mình đang làm việc đó một cách bình tĩnh.';
+
+  @override
+  String get scriptSocialReset42 =>
+      'Bây giờ mình sẽ đếm từ một đến năm. Với mỗi con số, bạn sẽ thấy tỉnh táo hơn, minh mẫn hơn… mang theo sự bình yên.';
+
+  @override
+  String get scriptSocialReset43 => 'Một… cảm nhận những gì bên dưới bạn.';
+
+  @override
+  String get scriptSocialReset44 => 'Hai… âm thanh trong phòng quay trở lại.';
+
+  @override
+  String get scriptSocialReset45 =>
+      'Ba… một hơi thở sâu hơn, cử động ngón tay và ngón chân.';
+
+  @override
+  String get scriptSocialReset46 =>
+      'Bốn… năng lượng trở lại, sáng suốt và tập trung.';
+
+  @override
+  String get scriptSocialReset47 =>
+      'Và năm… mở mắt khi bạn sẵn sàng… bình tĩnh, minh mẫn và sẵn sàng.';
+
+  @override
+  String get scriptSocialReset48 =>
+      'Bạn làm tốt lắm. Hãy nhớ: đã nạp đầy năng lượng. Mình đang ở đây với bạn.';
+
+  @override
+  String get scriptBodyScan01 =>
+      'Chào bạn. Mình đang ở đây với bạn. Hãy dành vài phút để cảm nhận cơ thể, từng phần một.';
+
+  @override
+  String get scriptBodyScan02 =>
+      'Ngồi hoặc nằm ở nơi thoải mái. Nhắm mắt lại, hoặc để ánh nhìn nghỉ trên sàn.';
+
+  @override
+  String get scriptBodyScan03 => 'Hít vào chậm rãi… và thở ra thật dài.';
+
+  @override
+  String get scriptBodyScan04 =>
+      'Đưa sự chú ý lên đỉnh đầu. Chỉ cần nhận biết những gì có ở đó: hơi ấm, cảm giác râm ran, hoặc không có gì cả.';
+
+  @override
+  String get scriptBodyScan05 =>
+      'Đi xuống trán và mắt. Nếu có chỗ căng, hãy để nó dịu đi khi bạn thở ra.';
+
+  @override
+  String get scriptBodyScan06 =>
+      'Giờ đến quai hàm. Để hai hàm răng hở ra một chút và lưỡi được nghỉ.';
+
+  @override
+  String get scriptBodyScan07 =>
+      'Để ý cổ và vai. Để chúng trở nên nặng và hạ xuống xa khỏi tai.';
+
+  @override
+  String get scriptBodyScan08 =>
+      'Cảm nhận cánh tay, khuỷu tay, cổ tay và bàn tay. Để các ngón tay nghỉ ngơi, lỏng và yên.';
+
+  @override
+  String get scriptBodyScan09 =>
+      'Đưa sự chú ý đến ngực. Cảm nhận nó nâng lên hạ xuống theo mỗi hơi thở, không cần thay đổi gì.';
+
+  @override
+  String get scriptBodyScan10 =>
+      'Để ý vùng bụng. Nếu thấy căng, hãy nhẹ nhàng thở vào đó, và để nó mềm ra.';
+
+  @override
+  String get scriptBodyScan11 =>
+      'Chuyển xuống thắt lưng và hông. Để chúng chìm vào thứ đang nâng đỡ bạn.';
+
+  @override
+  String get scriptBodyScan12 =>
+      'Cảm nhận đôi chân, đầu gối, và xuống tận bàn chân. Để ý chỗ chúng chạm sàn.';
+
+  @override
+  String get scriptBodyScan13 =>
+      'Giờ hãy cảm nhận toàn thân cùng lúc, từ đầu đến chân, đang thở thật bình yên.';
+
+  @override
+  String get scriptBodyScan14 =>
+      'Dù bạn nhận ra điều gì cũng đều ổn. Khi sẵn sàng, hãy cử động ngón tay, ngón chân, và mở mắt.';
+
+  @override
+  String get scriptMuscle01 =>
+      'Chào bạn. Mình đang ở đây với bạn. Chúng ta sẽ căng từng nhóm cơ trong vài giây, rồi thả lỏng. Đừng bao giờ siết đến mức đau.';
+
+  @override
+  String get scriptMuscle02 =>
+      'Ngồi thoải mái và hít vào chậm rãi… rồi thở ra.';
+
+  @override
+  String get scriptMuscle03 =>
+      'Nắm chặt hai bàn tay thành nắm đấm. Siết lại… và giữ.';
+
+  @override
+  String get scriptMuscle04 =>
+      'Và thả ra. Để bàn tay mở ra. Hãy để ý cảm giác khác biệt thế nào.';
+
+  @override
+  String get scriptMuscle05 => 'Giờ gập tay lại và căng cơ bắp tay trên. Giữ.';
+
+  @override
+  String get scriptMuscle06 => 'Và thả ra. Để cánh tay nghỉ ngơi, nặng và ấm.';
+
+  @override
+  String get scriptMuscle07 => 'Nhấc vai lên phía tai. Giữ ở đó.';
+
+  @override
+  String get scriptMuscle08 =>
+      'Và thả rơi xuống. Cảm nhận sự căng thẳng trượt đi.';
+
+  @override
+  String get scriptMuscle09 =>
+      'Nhăn cả khuôn mặt: nhắm chặt mắt và mím môi lại. Giữ.';
+
+  @override
+  String get scriptMuscle10 => 'Và thả ra. Để trán, mắt và quai hàm mềm lại.';
+
+  @override
+  String get scriptMuscle11 => 'Hít thật sâu và nín thở, căng ngực và bụng.';
+
+  @override
+  String get scriptMuscle12 => 'Và thở ra chậm rãi, để mọi thứ lỏng ra.';
+
+  @override
+  String get scriptMuscle13 => 'Ép hai đầu gối vào nhau và căng chân. Giữ.';
+
+  @override
+  String get scriptMuscle14 => 'Và thả lỏng. Để đôi chân trở nên nặng.';
+
+  @override
+  String get scriptMuscle15 => 'Co các ngón chân xuống và căng bàn chân. Giữ.';
+
+  @override
+  String get scriptMuscle16 =>
+      'Và thả ra. Cảm nhận bàn chân thả lỏng hoàn toàn.';
+
+  @override
+  String get scriptMuscle17 =>
+      'Giờ hãy để toàn thân nghỉ ngơi. Để ý xem nó bình yên và nặng nề thế nào.';
+
+  @override
+  String get scriptMuscle18 =>
+      'Khi sẵn sàng, hít một hơi sâu hơn, vươn vai một chút, và mở mắt.';
 }

@@ -1,6 +1,6 @@
 """Generate the Physiological Sigh breath track (see assets/audio/SIGH-CREDITS.md).
 
-One 14 s cycle - 4 s deep inhale, 1 s and 1 s quick inhales, 8 s exhale -
+One 13 s cycle - 4 s deep inhale, 1 s quick inhale, 8 s exhale -
 of shaped noise, so each phase is covered from start to end. Writes a mono
 44.1 kHz WAV to the path given; loudness is set afterwards with ffmpeg.
 Fixed seed, so the output is the same every run.
@@ -29,7 +29,7 @@ def phase(sec, kind, gain):
     else:
         y=shaped_noise(n,350,2200,-0.35)*env(n,0.12,0.45,'exhale')*wobble(n,0.5,0.06)
     return y*gain
-cyc=np.concatenate([phase(4,'in',0.32),phase(1,'in',0.26),phase(1,'in',0.26),phase(8,'out',0.30)])
+cyc=np.concatenate([phase(4,'in',0.32),phase(1,'in',0.26),phase(8,'out',0.30)])
 out=sys.argv[1]
 with wave.open(out,'wb') as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
