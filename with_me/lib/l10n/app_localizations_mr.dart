@@ -29,10 +29,13 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'साउंड इफेक्ट्स';
+  String get settingsHaptics => 'व्हायब्रेशन';
 
   @override
-  String get settingsHaptics => 'व्हायब्रेशन';
+  String get settingsAppVolume => 'ॲपचा आवाज';
+
+  @override
+  String get settingsSoftSounds => 'हलके आवाज';
 
   @override
   String get settingsReadAloud => 'वाचून दाखवा';

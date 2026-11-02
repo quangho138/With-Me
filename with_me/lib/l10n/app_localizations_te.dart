@@ -29,10 +29,13 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'సౌండ్ ఎఫెక్ట్‌లు';
+  String get settingsHaptics => 'వైబ్రేషన్';
 
   @override
-  String get settingsHaptics => 'వైబ్రేషన్';
+  String get settingsAppVolume => 'యాప్ వాల్యూమ్';
+
+  @override
+  String get settingsSoftSounds => 'మృదువైన శబ్దాలు';
 
   @override
   String get settingsReadAloud => 'బిగ్గరగా చదవడం';

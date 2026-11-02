@@ -29,10 +29,13 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Madoido ya sauti';
+  String get settingsHaptics => 'Mtetemo';
 
   @override
-  String get settingsHaptics => 'Mtetemo';
+  String get settingsAppVolume => 'Sauti ya programu';
+
+  @override
+  String get settingsSoftSounds => 'Sauti laini';
 
   @override
   String get settingsReadAloud => 'Soma kwa sauti';

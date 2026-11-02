@@ -29,10 +29,13 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'ஒலி விளைவுகள்';
+  String get settingsHaptics => 'அதிர்வு';
 
   @override
-  String get settingsHaptics => 'அதிர்வு';
+  String get settingsAppVolume => 'ஆப் ஒலியளவு';
+
+  @override
+  String get settingsSoftSounds => 'மென்மையான ஒலிகள்';
 
   @override
   String get settingsReadAloud => 'உரக்கப் படித்தல்';

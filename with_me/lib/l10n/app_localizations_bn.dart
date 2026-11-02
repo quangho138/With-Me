@@ -29,10 +29,13 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'সাউন্ড ইফেক্ট';
+  String get settingsHaptics => 'ভাইব্রেশন';
 
   @override
-  String get settingsHaptics => 'ভাইব্রেশন';
+  String get settingsAppVolume => 'অ্যাপের ভলিউম';
+
+  @override
+  String get settingsSoftSounds => 'মৃদু শব্দ';
 
   @override
   String get settingsReadAloud => 'পড়ে শোনানো';

@@ -9,6 +9,7 @@ import 'package:with_me/WithMe/Speech/SpeechEngine.dart';
 import 'package:with_me/WithMe/Speech/SpeechEngineDevice.dart';
 import 'package:with_me/WithMe/Speech/SpeechService.dart';
 import 'package:with_me/WithMe/Speech/SpeechVoice.dart';
+import 'package:with_me/WithMe/Theme/AppFeel.dart';
 import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 
 import 'read_aloud_test.dart' show FakeEngine, MemorySettings;
@@ -286,6 +287,25 @@ void main() {
       );
       expect(last('setSpeechRate')!.arguments, closeTo(0.7, 1e-9));
     });
+
+    test(
+      'Android: App volume (Settings) is sent, only when it changes',
+      () async {
+        final original = AppFeel.instance;
+        addTearDown(() => AppFeel.instance = original);
+        AppFeel.instance = AppFeel(settings: MemorySettings());
+        final v = voice('en-us-x-sfg-local');
+        answer([v], v);
+        final tts = DeviceSpeechEngine(android: true);
+        await tts.speak('One.', callbacks);
+        expect(last('setVolume')!.arguments, 1.0, reason: 'full by default');
+        await tts.speak('Two.', callbacks);
+        expect(calls.where((c) => c.method == 'setVolume'), hasLength(1));
+        AppFeel.instance.volume.value = 0.4;
+        await tts.speak('Three.', callbacks);
+        expect(last('setVolume')!.arguments, closeTo(0.4, 1e-9));
+      },
+    );
 
     test('Android: no on-device voice means silence', () async {
       final online = voice('en-us-x-iom-network', network: true);

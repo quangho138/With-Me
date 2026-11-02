@@ -29,10 +29,13 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Efeitos sonoros';
+  String get settingsHaptics => 'Vibração';
 
   @override
-  String get settingsHaptics => 'Vibração';
+  String get settingsAppVolume => 'Volume do app';
+
+  @override
+  String get settingsSoftSounds => 'Sons suaves';
 
   @override
   String get settingsReadAloud => 'Leitura em voz alta';

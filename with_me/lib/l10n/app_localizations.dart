@@ -173,17 +173,23 @@ abstract class AppLocalizations {
   /// **'{feature} is not wired up in this UI pass.'**
   String settingsNotWired(String feature);
 
-  /// Settings toggle: turn the app's sound effects on or off.
-  ///
-  /// In en, this message translates to:
-  /// **'Sound effects'**
-  String get settingsSoundEffects;
-
   /// Settings toggle: vibration feedback on or off.
   ///
   /// In en, this message translates to:
   /// **'Haptics'**
   String get settingsHaptics;
+
+  /// Settings slider: how loud the app's own sounds are (voice, nature sounds). Not the phone volume.
+  ///
+  /// In en, this message translates to:
+  /// **'App volume'**
+  String get settingsAppVolume;
+
+  /// Settings switch: gentle tap sounds and a soft chime when a check-in finishes.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft sounds'**
+  String get settingsSoftSounds;
 
   /// Settings toggle: whether the companion speaks its words out loud. Also named in other messages, so keep it consistent.
   ///

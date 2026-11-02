@@ -29,10 +29,13 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Hiệu ứng âm thanh';
+  String get settingsHaptics => 'Rung phản hồi';
 
   @override
-  String get settingsHaptics => 'Rung phản hồi';
+  String get settingsAppVolume => 'Âm lượng ứng dụng';
+
+  @override
+  String get settingsSoftSounds => 'Âm thanh nhẹ';
 
   @override
   String get settingsReadAloud => 'Đọc to';

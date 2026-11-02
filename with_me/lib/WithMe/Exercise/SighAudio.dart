@@ -1,5 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 
+import '../Theme/AppFeel.dart';
+
 /// One 14-second breath track, aligned to the exercise's elapsed clock.
 class SighAudio {
   AudioPlayer? _player;
@@ -19,9 +21,10 @@ class SighAudio {
       if (!_loaded) {
         await player.setReleaseMode(ReleaseMode.loop);
         await player.setSource(AssetSource('audio/sigh-breath.wav'));
-        await player.setVolume(.65);
         _loaded = true;
       }
+      // The breath's own level, with App volume (Settings) on top.
+      await player.setVolume(AppFeel.instance.loud(.65));
       if (_disposed || revision != _revision) return;
       await player.seek(
         Duration(microseconds: elapsed.inMicroseconds % 14000000),
