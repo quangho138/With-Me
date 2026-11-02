@@ -907,7 +907,9 @@ class StarRating extends StatelessWidget {
       children: [
         for (var i = 1; i <= 5; i++)
           GestureDetector(
-            onTap: onChanged == null ? null : withTap(() => onChanged!(i)),
+            onTap: onChanged == null
+                ? null
+                : withAnswerTap(() => onChanged!(i)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 3),
               child: Icon(

@@ -479,7 +479,7 @@ class NumberChoice extends StatelessWidget {
     label: '$i',
     excludeSemantics: true,
     child: GestureDetector(
-      onTap: withTap(() => onChanged(i)),
+      onTap: withAnswerTap(() => onChanged(i)),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: WithMeMotion.fast,
@@ -663,7 +663,7 @@ class _FaceChoice extends StatelessWidget {
       label: word,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: withTap(onTap),
+        onTap: withAnswerTap(onTap),
         behavior: HitTestBehavior.opaque,
         child: AnimatedContainer(
           duration: WithMeMotion.fast,
@@ -925,7 +925,7 @@ class _ControlScaleState extends State<ControlScale> {
       final enabled =
           value == null || (by < 0 ? value > 1 : value < ControlScale.steps);
       return GestureDetector(
-        onTap: enabled ? withTap(() => _step(by)) : null,
+        onTap: enabled ? withAnswerTap(() => _step(by)) : null,
         behavior: HitTestBehavior.opaque,
         child: SizedBox(
           width: 48,
@@ -1214,6 +1214,7 @@ class AreaTile extends StatelessWidget {
       label: label,
       selected: selected,
       onTap: onTap,
+      answer: true,
       height: 120,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -1248,7 +1249,12 @@ class ScenicTile extends StatefulWidget {
     required this.child,
     this.height,
     this.radius = 16,
+    this.answer = false,
   });
+
+  /// True for a check-in answer: it also plays the soft tap sound. Tiles
+  /// that open a screen (exercise chooser, dashboard) stay silent.
+  final bool answer;
 
   /// Announced to screen readers; the child is excluded from semantics.
   final String label;
@@ -1280,7 +1286,9 @@ class _ScenicTileState extends State<ScenicTile> {
       label: widget.label,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: withTap(widget.onTap),
+        onTap: widget.answer
+            ? withAnswerTap(widget.onTap)
+            : withTap(widget.onTap),
         onTapDown: (_) => _press(true),
         onTapUp: (_) => _press(false),
         onTapCancel: () => _press(false),
@@ -1442,6 +1450,7 @@ class ScenicChoiceTile extends StatelessWidget {
       label: label,
       selected: selected,
       onTap: onTap,
+      answer: true,
       height: height,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),

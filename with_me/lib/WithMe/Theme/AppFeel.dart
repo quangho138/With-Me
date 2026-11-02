@@ -116,13 +116,18 @@ class AppFeel {
     softSounds.value = true;
   }
 
-  /// A light tap feel when haptics is on, and the soft tap sound when soft
-  /// sounds are on. Phones without a motor, the browser and tests simply
-  /// feel nothing.
+  /// A light tap feel, when haptics is on: every shared button and answer.
+  /// Phones without a motor, the browser and tests simply feel nothing.
   void tap() {
-    if (haptics.value) {
-      HapticFeedback.lightImpact().then((_) {}, onError: (Object _) {});
-    }
+    if (!haptics.value) return;
+    HapticFeedback.lightImpact().then((_) {}, onError: (Object _) {});
+  }
+
+  /// An answer was picked (a mood face, a number, a check-in tile): the tap
+  /// feel and, when soft sounds are on, the soft tap sound. Buttons such as
+  /// Next and Back stay silent: a sound on every tap gets tiring (2 Nov).
+  void answer() {
+    tap();
     _softTap();
   }
 
@@ -172,10 +177,18 @@ class AppTextSize extends StatelessWidget {
 }
 
 /// [action] with a light tap feel first, or null when [action] is null (a
-/// dimmed button stays dimmed). Shared buttons and answers use this.
+/// dimmed button stays dimmed). Shared buttons use this.
 VoidCallback? withTap(VoidCallback? action) => action == null
     ? null
     : () {
         AppFeel.instance.tap();
+        action();
+      };
+
+/// Like [withTap], for answers: the tap feel and the soft tap sound.
+VoidCallback? withAnswerTap(VoidCallback? action) => action == null
+    ? null
+    : () {
+        AppFeel.instance.answer();
         action();
       };

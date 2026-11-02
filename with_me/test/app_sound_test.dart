@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:with_me/WithMe/Components/ScenicKit.dart';
 import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
 import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Screens/SettingsScreen.dart';
@@ -100,19 +101,25 @@ void main() {
   });
 
   group('soft sounds', () {
-    test('a tap plays the soft tap at the app volume', () async {
+    test('an answer plays the soft tap at the app volume', () async {
       final f = await install(volume: '0.6');
-      f.tap();
+      f.answer();
       expect(sounds.taps, [closeTo(0.6, 1e-9)]);
+    });
+
+    test('a button (not an answer) is silent', () async {
+      final f = await install();
+      f.tap();
+      expect(sounds.taps, isEmpty);
     });
 
     test('off, or volume at 0: nothing plays', () async {
       final f = await install(soft: false);
-      f.tap();
+      f.answer();
       f.chime();
       f.softSounds.value = true;
       f.volume.value = 0;
-      f.tap();
+      f.answer();
       f.chime();
       expect(sounds.taps, isEmpty);
       expect(sounds.chimes, isEmpty);
@@ -121,7 +128,7 @@ void main() {
     test('haptics off does not silence the soft tap', () async {
       final f = await install();
       f.haptics.value = false;
-      f.tap();
+      f.answer();
       expect(sounds.taps, hasLength(1));
     });
 
@@ -193,6 +200,37 @@ void main() {
       expect(find.text('0%'), findsOneWidget);
     });
 
+    testWidgets('a button is silent, an answer tile plays the tap', (
+      tester,
+    ) async {
+      await install();
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: buildWithMeTheme(),
+          home: Scaffold(
+            body: Column(
+              children: [
+                ScenicPill(label: 'Continue', onPressed: () {}),
+                SizedBox(
+                  width: 110,
+                  child: ScenicChoiceTile(
+                    label: 'Work',
+                    color: Colors.teal,
+                    selected: false,
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+      await tester.tap(find.byType(ScenicPill));
+      expect(sounds.taps, isEmpty, reason: 'buttons stay silent');
+      await tester.tap(find.byType(ScenicChoiceTile));
+      expect(sounds.taps, hasLength(1));
+    });
+
     testWidgets('finishing a check-in plays the chime once', (tester) async {
       usePhone(tester, const Size(390, 844));
       addTearDown(tester.view.reset);
@@ -201,7 +239,8 @@ void main() {
       await walkCheckIn(tester);
       expect(checkIns.saved, hasLength(1));
       expect(sounds.chimes, [closeTo(0.8, 1e-9)]);
-      expect(sounds.taps, isNotEmpty, reason: 'answers and buttons tapped');
+      // One soft tap per answer picked; Continue and Finish stay silent.
+      expect(sounds.taps, isNotEmpty, reason: 'answers were picked');
     });
 
     testWidgets('soft sounds off: a check-in is silent', (tester) async {

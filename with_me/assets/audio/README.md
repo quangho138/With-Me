@@ -1,6 +1,6 @@
 Nature sounds (waves, birds, forest, rain, fire): Mixkit free sound effects, one per scene, under the Sound Effects Free License (commercial use allowed). Each is a stretch of at most 45 s with softened highs, kept quiet so it stays in the background (the fire's wind swoosh filtered and gated out between crackles), with a crossfaded loop seam, built by tool/make_nature_sounds.py and shipped as AAC .m4a (tool/compress_media.sh). Sources are in tool/media-source/README.md. Mixkit Free License: https://mixkit.co/license/ (no attribution required; do not redistribute the raw files on their own).
 
-soft-tap.m4a and soft-chime.m4a: the Soft sounds (Settings), made from plain sine tones by tool/make_soft_sounds.sh, with no recording, so no licence applies. The tap plays on buttons and answers, the chime when a check-in finishes. Both mix with other sounds and never pause music.
+soft-tap.m4a and soft-chime.m4a: the Soft sounds (Settings), made from plain sine tones by tool/make_soft_sounds.py (chosen by Quang on 2 Nov after listening), with no recording, so no licence applies. The tap (soft wood, 0.18 s) plays when an answer is picked; the chime (low bowl, 1.6 s) when a check-in is saved. Both mix with other sounds and never pause music.
 
 sigh-breath.wav: a generated breath sound, filling each phase of the Physiological Sigh. See SIGH-CREDITS.md.
 

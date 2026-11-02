@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 
-/// Plays the two soft sounds: a short tap on buttons and answers, and a
-/// chime when a check-in finishes (Settings, Soft sounds; plan item 6).
+/// Plays the two soft sounds: a short tap when an answer is picked, and a
+/// chime when a check-in is saved (Settings, Soft sounds; plan item 6).
 ///
 /// The app sets the real one when it starts (main.dart). Until then, and in
 /// tests, [NoSoftSounds] plays nothing.
