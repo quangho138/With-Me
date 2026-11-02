@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "{date}から一緒に",
   "accountNoAccountEmail": "このスマホにアカウントはありません",
   "accountChangeEmail": "メールを変更",
+  "accountEmailChangeExplain": "確認用のリンクをメールでお送りします。リンクを開くまでメールアドレスは変わりません。",
   "accountChangePassword": "パスワードを変更",
   "accountNewEmail": "新しいメール",
   "accountCurrentPassword": "今のパスワード",

@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "{date} से मेरे साथ",
   "accountNoAccountEmail": "इस फ़ोन पर कोई खाता नहीं है",
   "accountChangeEmail": "ईमेल बदलें",
+  "accountEmailChangeExplain": "हम पुष्टि के लिए आपको ईमेल पर एक लिंक भेजेंगे। उसे खोलने के बाद ही आपका ईमेल बदलेगा।",
   "accountChangePassword": "पासवर्ड बदलें",
   "accountNewEmail": "नया ईमेल",
   "accountCurrentPassword": "मौजूदा पासवर्ड",

@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "Со мной с {date}",
   "accountNoAccountEmail": "На этом телефоне нет аккаунта",
   "accountChangeEmail": "Изменить почту",
+  "accountEmailChangeExplain": "Мы отправим вам ссылку для подтверждения. Почта изменится только после того, как вы её откроете.",
   "accountChangePassword": "Изменить пароль",
   "accountNewEmail": "Новая почта",
   "accountCurrentPassword": "Текущий пароль",

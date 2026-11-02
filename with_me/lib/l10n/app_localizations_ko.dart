@@ -473,6 +473,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get accountChangeEmail => '이메일 변경';
 
   @override
+  String get accountEmailChangeExplain =>
+      '확인용 링크를 이메일로 보내 드릴게요. 링크를 열어야 이메일이 바뀌어요.';
+
+  @override
   String get accountChangePassword => '비밀번호 변경';
 
   @override

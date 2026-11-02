@@ -487,6 +487,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get accountChangeEmail => 'ইমেল বদলান';
 
   @override
+  String get accountEmailChangeExplain =>
+      'নিশ্চিত করতে আমরা আপনাকে ইমেলে একটি লিংক পাঠাব। লিংকটি খোলার পরেই আপনার ইমেল বদলাবে।';
+
+  @override
   String get accountChangePassword => 'পাসওয়ার্ড বদলান';
 
   @override

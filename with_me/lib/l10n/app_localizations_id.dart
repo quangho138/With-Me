@@ -488,6 +488,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountChangeEmail => 'Ubah email';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Kami akan mengirim tautan lewat email untuk konfirmasi. Email kamu baru berubah setelah tautan itu dibuka.';
+
+  @override
   String get accountChangePassword => 'Ubah kata sandi';
 
   @override

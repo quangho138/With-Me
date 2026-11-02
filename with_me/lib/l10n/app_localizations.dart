@@ -971,6 +971,12 @@ abstract class AppLocalizations {
   /// **'Change email'**
   String get accountChangeEmail;
 
+  /// Change email window, above the fields: what happens after Save.
+  ///
+  /// In en, this message translates to:
+  /// **'We will email you a link to confirm. Your email changes only after you open it.'**
+  String get accountEmailChangeExplain;
+
   /// Profile button and window title to change the account password.
   ///
   /// In en, this message translates to:

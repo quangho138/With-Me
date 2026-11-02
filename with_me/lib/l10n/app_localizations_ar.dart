@@ -485,6 +485,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accountChangeEmail => 'تغيير البريد الإلكتروني';
 
   @override
+  String get accountEmailChangeExplain =>
+      'سنرسل إليك رابطًا عبر البريد الإلكتروني للتأكيد. لن يتغير بريدك إلا بعد فتحه.';
+
+  @override
   String get accountChangePassword => 'تغيير كلمة المرور';
 
   @override

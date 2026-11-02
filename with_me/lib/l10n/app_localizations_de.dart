@@ -494,6 +494,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get accountChangeEmail => 'E-Mail ändern';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Wir schicken dir einen Link per E-Mail zur Bestätigung. Deine E-Mail ändert sich erst, wenn du ihn öffnest.';
+
+  @override
   String get accountChangePassword => 'Passwort ändern';
 
   @override

@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "Pamoja nami tangu {date}",
   "accountNoAccountEmail": "Hakuna akaunti kwenye simu hii",
   "accountChangeEmail": "Badilisha barua pepe",
+  "accountEmailChangeExplain": "Tutakutumia kiungo kwa barua pepe ili kuthibitisha. Barua pepe yako itabadilika tu baada ya kukifungua.",
   "accountChangePassword": "Badilisha nenosiri",
   "accountNewEmail": "Barua pepe mpya",
   "accountCurrentPassword": "Nenosiri la sasa",

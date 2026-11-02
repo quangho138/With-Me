@@ -488,6 +488,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get accountChangeEmail => 'ईमेल बदला';
 
   @override
+  String get accountEmailChangeExplain =>
+      'खात्री करण्यासाठी आम्ही तुम्हाला ईमेलवर एक लिंक पाठवू. ती उघडल्यानंतरच तुमचा ईमेल बदलेल.';
+
+  @override
   String get accountChangePassword => 'पासवर्ड बदला';
 
   @override

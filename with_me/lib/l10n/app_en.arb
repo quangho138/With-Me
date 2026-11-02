@@ -690,6 +690,10 @@
   "@accountChangeEmail": {
     "description": "Profile button and window title to change the account email."
   },
+  "accountEmailChangeExplain": "We will email you a link to confirm. Your email changes only after you open it.",
+  "@accountEmailChangeExplain": {
+    "description": "Change email window, above the fields: what happens after Save."
+  },
   "accountChangePassword": "Change password",
   "@accountChangePassword": {
     "description": "Profile button and window title to change the account password."

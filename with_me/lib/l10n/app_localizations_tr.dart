@@ -484,6 +484,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get accountChangeEmail => 'E-postayı değiştir';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Onaylaman için e-postayla bir bağlantı göndereceğiz. E-postan ancak bağlantıyı açtıktan sonra değişir.';
+
+  @override
   String get accountChangePassword => 'Şifreyi değiştir';
 
   @override

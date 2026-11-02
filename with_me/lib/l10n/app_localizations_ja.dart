@@ -474,6 +474,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get accountChangeEmail => 'メールを変更';
 
   @override
+  String get accountEmailChangeExplain =>
+      '確認用のリンクをメールでお送りします。リンクを開くまでメールアドレスは変わりません。';
+
+  @override
   String get accountChangePassword => 'パスワードを変更';
 
   @override

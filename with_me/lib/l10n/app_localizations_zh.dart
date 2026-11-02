@@ -468,6 +468,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get accountChangeEmail => '更改邮箱';
 
   @override
+  String get accountEmailChangeExplain => '我们会通过邮件发送一个确认链接。打开链接后，你的邮箱才会更改。';
+
+  @override
   String get accountChangePassword => '更改密码';
 
   @override
@@ -2777,6 +2780,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountChangeEmail => '更改電子郵件';
+
+  @override
+  String get accountEmailChangeExplain => '我們會寄一個確認連結到你的信箱。打開連結後，你的電子郵件才會更改。';
 
   @override
   String get accountChangePassword => '更改密碼';

@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "معي منذ {date}",
   "accountNoAccountEmail": "لا يوجد حساب على هذا الهاتف",
   "accountChangeEmail": "تغيير البريد الإلكتروني",
+  "accountEmailChangeExplain": "سنرسل إليك رابطًا عبر البريد الإلكتروني للتأكيد. لن يتغير بريدك إلا بعد فتحه.",
   "accountChangePassword": "تغيير كلمة المرور",
   "accountNewEmail": "البريد الإلكتروني الجديد",
   "accountCurrentPassword": "كلمة المرور الحالية",

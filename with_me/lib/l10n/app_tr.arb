@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "{date} tarihinden beri benimle",
   "accountNoAccountEmail": "Bu telefonda hesap yok",
   "accountChangeEmail": "E-postayı değiştir",
+  "accountEmailChangeExplain": "Onaylaman için e-postayla bir bağlantı göndereceğiz. E-postan ancak bağlantıyı açtıktan sonra değişir.",
   "accountChangePassword": "Şifreyi değiştir",
   "accountNewEmail": "Yeni e-posta",
   "accountCurrentPassword": "Şu anki şifre",

@@ -487,6 +487,10 @@ class AppLocalizationsTe extends AppLocalizations {
   String get accountChangeEmail => 'ఈమెయిల్ మార్చండి';
 
   @override
+  String get accountEmailChangeExplain =>
+      'నిర్ధారించడానికి మేము మీకు ఈమెయిల్‌లో ఒక లింక్ పంపుతాము. దాన్ని తెరిచిన తర్వాతే మీ ఈమెయిల్ మారుతుంది.';
+
+  @override
   String get accountChangePassword => 'పాస్‌వర్డ్ మార్చండి';
 
   @override

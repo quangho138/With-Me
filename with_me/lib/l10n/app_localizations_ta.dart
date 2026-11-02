@@ -492,6 +492,10 @@ class AppLocalizationsTa extends AppLocalizations {
   String get accountChangeEmail => 'மின்னஞ்சலை மாற்று';
 
   @override
+  String get accountEmailChangeExplain =>
+      'உறுதிப்படுத்த உங்களுக்கு மின்னஞ்சலில் ஒரு இணைப்பை அனுப்புவோம். அதைத் திறந்த பிறகுதான் உங்கள் மின்னஞ்சல் மாறும்.';
+
+  @override
   String get accountChangePassword => 'கடவுச்சொல்லை மாற்று';
 
   @override

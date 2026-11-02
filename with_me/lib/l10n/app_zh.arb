@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "自 {date} 起陪伴着你",
   "accountNoAccountEmail": "这部手机上没有账户",
   "accountChangeEmail": "更改邮箱",
+  "accountEmailChangeExplain": "我们会通过邮件发送一个确认链接。打开链接后，你的邮箱才会更改。",
   "accountChangePassword": "更改密码",
   "accountNewEmail": "新邮箱",
   "accountCurrentPassword": "当前密码",

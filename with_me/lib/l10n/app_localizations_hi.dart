@@ -487,6 +487,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get accountChangeEmail => 'ईमेल बदलें';
 
   @override
+  String get accountEmailChangeExplain =>
+      'हम पुष्टि के लिए आपको ईमेल पर एक लिंक भेजेंगे। उसे खोलने के बाद ही आपका ईमेल बदलेगा।';
+
+  @override
   String get accountChangePassword => 'पासवर्ड बदलें';
 
   @override

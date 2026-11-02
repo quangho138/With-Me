@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "{date} سے میرے ساتھ",
   "accountNoAccountEmail": "اس فون پر کوئی اکاؤنٹ نہیں",
   "accountChangeEmail": "ای میل بدلیں",
+  "accountEmailChangeExplain": "ہم تصدیق کے لیے آپ کو ای میل پر ایک لنک بھیجیں گے۔ اسے کھولنے کے بعد ہی آپ کی ای میل بدلے گی۔",
   "accountChangePassword": "پاس ورڈ بدلیں",
   "accountNewEmail": "نئی ای میل",
   "accountCurrentPassword": "موجودہ پاس ورڈ",

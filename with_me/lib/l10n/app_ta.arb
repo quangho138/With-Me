@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "{date} முதல் என்னுடன்",
   "accountNoAccountEmail": "இந்த போனில் கணக்கு இல்லை",
   "accountChangeEmail": "மின்னஞ்சலை மாற்று",
+  "accountEmailChangeExplain": "உறுதிப்படுத்த உங்களுக்கு மின்னஞ்சலில் ஒரு இணைப்பை அனுப்புவோம். அதைத் திறந்த பிறகுதான் உங்கள் மின்னஞ்சல் மாறும்.",
   "accountChangePassword": "கடவுச்சொல்லை மாற்று",
   "accountNewEmail": "புதிய மின்னஞ்சல்",
   "accountCurrentPassword": "தற்போதைய கடவுச்சொல்",

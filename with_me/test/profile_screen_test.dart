@@ -181,6 +181,14 @@ void main() {
     await openProfile(tester);
     await tester.tap(find.text('Change email'));
     await settle(tester);
+    // Says what will happen before Save is pressed.
+    expect(
+      find.text(
+        'We will email you a link to confirm. Your email changes only '
+        'after you open it.',
+      ),
+      findsOneWidget,
+    );
 
     await tester.enterText(field(0), 'qa3@example.com');
     await tester.enterText(field(1), 'old-pass-1');

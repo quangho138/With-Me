@@ -490,6 +490,10 @@ class AppLocalizationsSw extends AppLocalizations {
   String get accountChangeEmail => 'Badilisha barua pepe';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Tutakutumia kiungo kwa barua pepe ili kuthibitisha. Barua pepe yako itabadilika tu baada ya kukifungua.';
+
+  @override
   String get accountChangePassword => 'Badilisha nenosiri';
 
   @override

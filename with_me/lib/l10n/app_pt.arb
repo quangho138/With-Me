@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "Comigo desde {date}",
   "accountNoAccountEmail": "Nenhuma conta neste telefone",
   "accountChangeEmail": "Alterar e-mail",
+  "accountEmailChangeExplain": "Vamos enviar um link por e-mail para confirmar. Seu e-mail só muda depois que você abrir o link.",
   "accountChangePassword": "Alterar senha",
   "accountNewEmail": "Novo e-mail",
   "accountCurrentPassword": "Senha atual",

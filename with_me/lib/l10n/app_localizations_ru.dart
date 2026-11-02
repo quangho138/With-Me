@@ -490,6 +490,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get accountChangeEmail => 'Изменить почту';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Мы отправим вам ссылку для подтверждения. Почта изменится только после того, как вы её откроете.';
+
+  @override
   String get accountChangePassword => 'Изменить пароль';
 
   @override

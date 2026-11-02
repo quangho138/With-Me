@@ -488,6 +488,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get accountChangeEmail => 'Đổi email';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Chúng tôi sẽ gửi email kèm liên kết để xác nhận. Email của bạn chỉ đổi sau khi bạn mở liên kết đó.';
+
+  @override
   String get accountChangePassword => 'Đổi mật khẩu';
 
   @override

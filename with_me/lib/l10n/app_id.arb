@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "Bersamaku sejak {date}",
   "accountNoAccountEmail": "Tidak ada akun di ponsel ini",
   "accountChangeEmail": "Ubah email",
+  "accountEmailChangeExplain": "Kami akan mengirim tautan lewat email untuk konfirmasi. Email kamu baru berubah setelah tautan itu dibuka.",
   "accountChangePassword": "Ubah kata sandi",
   "accountNewEmail": "Email baru",
   "accountCurrentPassword": "Kata sandi saat ini",

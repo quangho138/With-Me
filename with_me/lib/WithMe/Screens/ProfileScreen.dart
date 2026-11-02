@@ -158,6 +158,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (_) => _AccountDialog(
         title: l.accountChangeEmail,
+        note: l.accountEmailChangeExplain,
         fields: [
           _FieldSpec(
             l.accountNewEmail,
@@ -402,9 +403,13 @@ class _AccountDialog extends StatefulWidget {
     required this.title,
     required this.fields,
     required this.save,
+    this.note,
   });
 
   final String title;
+
+  /// A short line above the fields: what will happen after Save.
+  final String? note;
   final List<_FieldSpec> fields;
 
   /// Gets the fields' text in [fields] order.
@@ -466,6 +471,10 @@ class _AccountDialogState extends State<_AccountDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            if (widget.note != null) ...[
+              Text(widget.note!, style: kScenicBody),
+              const SizedBox(height: 12),
+            ],
             for (var i = 0; i < widget.fields.length; i++) ...[
               WithMeField(
                 key: ValueKey('profile-field-$i'),

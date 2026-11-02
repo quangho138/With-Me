@@ -139,6 +139,7 @@
   "accountWithMeSinceDate": "自 {date} 起陪伴著你",
   "accountNoAccountEmail": "這支手機上沒有帳戶",
   "accountChangeEmail": "更改電子郵件",
+  "accountEmailChangeExplain": "我們會寄一個確認連結到你的信箱。打開連結後，你的電子郵件才會更改。",
   "accountChangePassword": "更改密碼",
   "accountNewEmail": "新的電子郵件",
   "accountCurrentPassword": "目前的密碼",

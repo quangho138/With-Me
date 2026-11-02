@@ -492,6 +492,10 @@ class AppLocalizationsFil extends AppLocalizations {
   String get accountChangeEmail => 'Palitan ang email';
 
   @override
+  String get accountEmailChangeExplain =>
+      'Magpapadala kami ng link sa email para kumpirmahin. Mapapalitan lang ang email mo kapag nabuksan mo na ito.';
+
+  @override
   String get accountChangePassword => 'Palitan ang password';
 
   @override

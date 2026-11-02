@@ -490,6 +490,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get accountChangeEmail => 'ای میل بدلیں';
 
   @override
+  String get accountEmailChangeExplain =>
+      'ہم تصدیق کے لیے آپ کو ای میل پر ایک لنک بھیجیں گے۔ اسے کھولنے کے بعد ہی آپ کی ای میل بدلے گی۔';
+
+  @override
   String get accountChangePassword => 'پاس ورڈ بدلیں';
 
   @override
