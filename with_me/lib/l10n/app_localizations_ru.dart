@@ -35,9 +35,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsHaptics => 'Вибрация';
 
   @override
-  String get settingsVoiceInput => 'Голосовой ввод';
-
-  @override
   String get settingsReadAloud => 'Чтение вслух';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsTextSize => 'Размер текста';
 
   @override
-  String get settingsTheme => 'Тема';
+  String get settingsTextSizeSmall => 'Мелкий';
 
   @override
-  String get settingsThemeSunset => 'Закат';
+  String get settingsTextSizeDefault => 'Обычный';
+
+  @override
+  String get settingsTextSizeLarge => 'Крупный';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Очень крупный';
 
   @override
   String get settingsPrivacy => 'Конфиденциальность и данные';

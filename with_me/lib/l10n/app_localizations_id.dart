@@ -35,9 +35,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsHaptics => 'Getaran';
 
   @override
-  String get settingsVoiceInput => 'Input suara';
-
-  @override
   String get settingsReadAloud => 'Bacakan';
 
   @override
@@ -50,10 +47,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsTextSize => 'Ukuran teks';
 
   @override
-  String get settingsTheme => 'Tema';
+  String get settingsTextSizeSmall => 'Kecil';
 
   @override
-  String get settingsThemeSunset => 'Senja';
+  String get settingsTextSizeDefault => 'Normal';
+
+  @override
+  String get settingsTextSizeLarge => 'Besar';
+
+  @override
+  String get settingsTextSizeExtraLarge => 'Sangat besar';
 
   @override
   String get settingsPrivacy => 'Privasi & data';

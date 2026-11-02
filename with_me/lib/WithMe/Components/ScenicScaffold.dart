@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 
 import '../Mascot/RealMascot.dart';
 import '../Speech/NarrationMouth.dart';
+import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ScenicKit.dart';
 import '../../l10n/l10n.dart';
@@ -487,7 +488,7 @@ class ScenicFootnote extends StatelessWidget {
     return Semantics(
       button: true,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: withTap(onTap),
         behavior: HitTestBehavior.opaque,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
@@ -688,7 +689,7 @@ class ScenicRow extends StatelessWidget {
           : context.l10n.exerciseRowSemantics(label, trailing!),
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: onTap,
+        onTap: withTap(onTap),
         behavior: HitTestBehavior.opaque,
         child: _RowShell(
           child: Row(
@@ -758,7 +759,12 @@ class ScenicToggleRow extends StatelessWidget {
             ),
             Switch(
               value: value,
-              onChanged: onChanged,
+              onChanged: onChanged == null
+                  ? null
+                  : (v) {
+                      AppFeel.instance.tap();
+                      onChanged!(v);
+                    },
               activeThumbColor: Colors.white,
               activeTrackColor: ScenicColors.pillBottom,
               inactiveThumbColor: Colors.white,
