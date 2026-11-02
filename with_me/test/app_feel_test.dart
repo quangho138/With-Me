@@ -250,5 +250,55 @@ void main() {
       await settle(tester);
       expect(tester.takeException(), isNull);
     });
+
+    // Found in the PR #32 laptop check: at Extra large the small check-in
+    // tiles cut off the second line ("Domestic duties" showed "Domestic").
+    for (final size in TextSize.values) {
+      testWidgets('a two-line tile label fits its tile (${size.name})', (
+        tester,
+      ) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: buildWithMeTheme(),
+            home: MediaQuery(
+              data: MediaQueryData(textScaler: TextScaler.linear(size.factor)),
+              child: Center(
+                child: SizedBox(
+                  width: 110,
+                  child: ScenicChoiceTile(
+                    label: 'Domestic duties',
+                    color: Colors.teal,
+                    icon: Icons.home_rounded,
+                    selected: false,
+                    onTap: () {},
+                    height: 92,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+        await tester.pump();
+        expect(tester.takeException(), isNull);
+        // The label's two lines, at the size the tile picked, fit the box
+        // they are drawn in.
+        final text = find.descendant(
+          of: find.byType(ChunkyText),
+          matching: find.byType(Text),
+        );
+        final shown = tester.widget<Text>(text.last);
+        // A label that does not fit is drawn in a box shorter than it needs.
+        final room = tester.getSize(text.last);
+        final painter = TextPainter(
+          text: TextSpan(text: 'Domestic duties', style: shown.style),
+          textDirection: TextDirection.ltr,
+          textScaler: TextScaler.linear(size.factor),
+          maxLines: 2,
+        )..layout(maxWidth: room.width);
+        expect(painter.didExceedMaxLines, isFalse);
+        expect(painter.height, lessThanOrEqualTo(room.height + 0.5));
+        painter.dispose();
+      });
+    }
   });
 }

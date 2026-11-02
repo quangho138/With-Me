@@ -1410,6 +1410,32 @@ class ScenicChoiceTile extends StatelessWidget {
     return widest <= width ? fontSize : fontSize * width / widest;
   }
 
+  /// [_fitWords], or smaller again if the label's two lines would not fit
+  /// in [height]. Without this, a big text size (Settings, Extra large) cut
+  /// off the second line on the smaller tiles ("Domestic duties").
+  double _fit(BuildContext context, double width, double height) {
+    final size = _fitWords(context, width);
+    if (!width.isFinite || !height.isFinite || height <= 0) return size;
+    final painter = TextPainter(
+      text: TextSpan(
+        text: label,
+        style: TextStyle(
+          fontFamily: WithMeText.ui,
+          fontSize: size,
+          height: 1.15,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+      textScaler: MediaQuery.textScalerOf(context),
+      maxLines: 2,
+    )..layout(maxWidth: width);
+    final needed = painter.height;
+    painter.dispose();
+    // A little headroom for the outline stroke.
+    return needed <= height ? size : size * height / needed * 0.97;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScenicTile(
@@ -1434,7 +1460,7 @@ class ScenicChoiceTile extends StatelessWidget {
                 builder: (context, box) {
                   final style = TextStyle(
                     fontFamily: WithMeText.ui,
-                    fontSize: _fitWords(context, box.maxWidth),
+                    fontSize: _fit(context, box.maxWidth, box.maxHeight),
                     height: 1.15,
                     fontWeight: FontWeight.w700,
                     color: ScenicColors.ink,
