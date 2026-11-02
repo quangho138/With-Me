@@ -204,6 +204,39 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   @override
+  void dispose() {
+    _name.dispose();
+    _email.dispose();
+    _checkInTime.dispose();
+    super.dispose();
+  }
+
+  Future<void> _save() async {
+    var saved = true;
+    try {
+      await AppRepositories.users.saveDisplayName(_name.text.trim());
+    } catch (_) {
+      saved = false;
+    }
+    try {
+      await AppRepositories.reminders.setDailyTime(_checkInAt);
+    } catch (_) {
+      saved = false;
+    }
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          saved
+              ? context.l10n.accountSaved
+              : context.l10n.accountProfileSaveFailed,
+        ),
+      ),
+    );
+    if (saved) Navigator.of(context).pop();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l = context.l10n;
     return ScenicScaffold(
