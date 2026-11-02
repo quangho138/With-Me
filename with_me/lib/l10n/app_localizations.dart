@@ -959,6 +959,60 @@ abstract class AppLocalizations {
   /// **'With me since today'**
   String get accountWithMeSince;
 
+  /// Profile, under the name: the date of the first check-in, for example 3 October 2026.
+  ///
+  /// In en, this message translates to:
+  /// **'With me since {date}'**
+  String accountWithMeSinceDate(String date);
+
+  /// Profile email field when the app is used without an account.
+  ///
+  /// In en, this message translates to:
+  /// **'No account on this phone'**
+  String get accountNoAccountEmail;
+
+  /// Profile button and window title to change the account email.
+  ///
+  /// In en, this message translates to:
+  /// **'Change email'**
+  String get accountChangeEmail;
+
+  /// Change email window, above the fields: what happens after Save.
+  ///
+  /// In en, this message translates to:
+  /// **'We will email you a link to confirm. Your email changes only after you open it.'**
+  String get accountEmailChangeExplain;
+
+  /// Profile button and window title to change the account password.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get accountChangePassword;
+
+  /// Field label: the new email address.
+  ///
+  /// In en, this message translates to:
+  /// **'New email'**
+  String get accountNewEmail;
+
+  /// Field label: the password used now, asked before a change.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get accountCurrentPassword;
+
+  /// After asking to change the email: a confirmation link was emailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost done. Open the link we emailed you to confirm. Until then, your email stays the same.'**
+  String get accountEmailChangeSent;
+
+  /// Profile, under the email of an account made with Google.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in with Google. Change your email or password with Google.'**
+  String get accountGoogleManaged;
+
   /// Label of the field for the time of the daily check-in.
   ///
   /// In en, this message translates to:

@@ -477,6 +477,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accountWithMeSince => 'معي منذ اليوم';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'معي منذ $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'لا يوجد حساب على هذا الهاتف';
+
+  @override
+  String get accountChangeEmail => 'تغيير البريد الإلكتروني';
+
+  @override
+  String get accountEmailChangeExplain =>
+      'سنرسل إليك رابطًا عبر البريد الإلكتروني للتأكيد. لن يتغير بريدك إلا بعد فتحه.';
+
+  @override
+  String get accountChangePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get accountNewEmail => 'البريد الإلكتروني الجديد';
+
+  @override
+  String get accountCurrentPassword => 'كلمة المرور الحالية';
+
+  @override
+  String get accountEmailChangeSent =>
+      'اقتربنا. افتح الرابط الذي أرسلناه إلى بريدك للتأكيد. حتى ذلك الحين يبقى بريدك كما هو.';
+
+  @override
+  String get accountGoogleManaged =>
+      'تم تسجيل الدخول عبر Google. غيّر بريدك أو كلمة المرور من Google.';
+
+  @override
   String get accountCheckInTime => 'وقت تسجيل الحالة اليومي';
 
   @override

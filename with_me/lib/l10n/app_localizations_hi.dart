@@ -479,6 +479,38 @@ class AppLocalizationsHi extends AppLocalizations {
   String get accountWithMeSince => 'आज से मेरे साथ';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '$date से मेरे साथ';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'इस फ़ोन पर कोई खाता नहीं है';
+
+  @override
+  String get accountChangeEmail => 'ईमेल बदलें';
+
+  @override
+  String get accountEmailChangeExplain =>
+      'हम पुष्टि के लिए आपको ईमेल पर एक लिंक भेजेंगे। उसे खोलने के बाद ही आपका ईमेल बदलेगा।';
+
+  @override
+  String get accountChangePassword => 'पासवर्ड बदलें';
+
+  @override
+  String get accountNewEmail => 'नया ईमेल';
+
+  @override
+  String get accountCurrentPassword => 'मौजूदा पासवर्ड';
+
+  @override
+  String get accountEmailChangeSent =>
+      'लगभग हो गया। पुष्टि के लिए हमारे ईमेल में भेजा गया लिंक खोलें। तब तक आपका ईमेल वही रहेगा।';
+
+  @override
+  String get accountGoogleManaged =>
+      'Google से साइन इन किया है। अपना ईमेल या पासवर्ड Google में बदलें।';
+
+  @override
   String get accountCheckInTime => 'रोज़ के चेक-इन का समय';
 
   @override

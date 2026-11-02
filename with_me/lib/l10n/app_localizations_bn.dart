@@ -479,6 +479,38 @@ class AppLocalizationsBn extends AppLocalizations {
   String get accountWithMeSince => 'আজ থেকে আমার সাথে';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '$date থেকে আমার সাথে';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'এই ফোনে কোনো অ্যাকাউন্ট নেই';
+
+  @override
+  String get accountChangeEmail => 'ইমেল বদলান';
+
+  @override
+  String get accountEmailChangeExplain =>
+      'নিশ্চিত করতে আমরা আপনাকে ইমেলে একটি লিংক পাঠাব। লিংকটি খোলার পরেই আপনার ইমেল বদলাবে।';
+
+  @override
+  String get accountChangePassword => 'পাসওয়ার্ড বদলান';
+
+  @override
+  String get accountNewEmail => 'নতুন ইমেল';
+
+  @override
+  String get accountCurrentPassword => 'বর্তমান পাসওয়ার্ড';
+
+  @override
+  String get accountEmailChangeSent =>
+      'প্রায় হয়ে গেছে। নিশ্চিত করতে আমাদের পাঠানো ইমেলের লিংকটি খুলুন। ততক্ষণ আপনার ইমেল একই থাকবে।';
+
+  @override
+  String get accountGoogleManaged =>
+      'Google দিয়ে সাইন ইন করা। আপনার ইমেল বা পাসওয়ার্ড Google-এ বদলান।';
+
+  @override
   String get accountCheckInTime => 'রোজকার চেক-ইনের সময়';
 
   @override

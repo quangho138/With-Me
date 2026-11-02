@@ -98,9 +98,17 @@ abstract class OnlineAuth {
   /// [AccountException].
   Future<void> sendPasswordReset(String email);
 
-  /// Sets a new password for the logged-in account (after a reset link).
-  /// Throws [AccountException].
+  /// Sets a new password for the logged-in account (after a reset link,
+  /// or from Profile). Throws [AccountException].
   Future<void> setNewPassword(String password);
+
+  /// Whether the logged-in account can log in with a password. False for
+  /// an account made with Google: Google holds its email and password.
+  bool get hasPassword;
+
+  /// Asks to move the logged-in account to [email]. Nothing changes until
+  /// the link in the confirmation email is opened. Throws [AccountException].
+  Future<void> changeEmail(String email);
 }
 
 /// The real one, using Supabase. Supabase stores the login on the phone
@@ -243,6 +251,26 @@ class SupabaseOnlineAuth implements OnlineAuth {
   Future<void> setNewPassword(String password) async {
     try {
       await _auth.updateUser(UserAttributes(password: password));
+    } catch (e) {
+      throw AccountException(problemFor(e));
+    }
+  }
+
+  @override
+  bool get hasPassword {
+    final providers = _user?.appMetadata['providers'];
+    if (providers is List) return providers.contains('email');
+    return _user?.appMetadata['provider'] == 'email';
+  }
+
+  @override
+  Future<void> changeEmail(String email) async {
+    try {
+      await _auth.updateUser(
+        UserAttributes(email: email),
+        // The confirmation link opens the app (the deep link).
+        emailRedirectTo: SupabaseConfig.redirectUrl,
+      );
     } catch (e) {
       throw AccountException(problemFor(e));
     }

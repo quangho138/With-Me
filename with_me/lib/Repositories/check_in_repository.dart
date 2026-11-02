@@ -168,6 +168,19 @@ abstract class CheckInRepository {
   /// A checked-in day has a mood, a control level or a stressor saved
   /// (docs/GRADED_CORE.md, section 2.2). Used for "back after a gap".
   Future<DateTime?> lastCheckInBefore(DateTime day);
+
+  /// How many checked-in days there are in all, and the first one (null
+  /// when there are none). Same day rule as [lastCheckInBefore]. Used by
+  /// Profile ("With me since", the check-ins count).
+  Future<CheckInDays> checkInDays();
+}
+
+/// The answer of [CheckInRepository.checkInDays].
+class CheckInDays {
+  const CheckInDays({required this.count, this.first});
+
+  final int count;
+  final DateTime? first;
 }
 
 /// One check-in's strategy and action, and the day it was saved for.
@@ -409,6 +422,28 @@ class LocalCheckInRepository implements CheckInRepository {
     // A day key is 'YYYY-MM-DD'; read it as that calendar date.
     final parts = last.split('-').map(int.parse).toList();
     return DateTime(parts[0], parts[1], parts[2]);
+  }
+
+  @override
+  Future<CheckInDays> checkInDays() async {
+    final db = await _open();
+    // UNION (not UNION ALL) keeps each day once, even with a mood, a
+    // control level and a stressor all saved for it.
+    final rows = await db.rawQuery(
+      'SELECT COUNT(*) AS days, MIN(date) AS first FROM ('
+      'SELECT date FROM moods '
+      'UNION SELECT date FROM control_gauge '
+      'UNION SELECT date FROM stressors)',
+    );
+    final row = rows.isEmpty ? const <String, Object?>{} : rows.first;
+    final first = row['first'] as String?;
+    if (first == null) return const CheckInDays(count: 0);
+    // A day key is 'YYYY-MM-DD'; read it as that calendar date.
+    final parts = first.split('-').map(int.parse).toList();
+    return CheckInDays(
+      count: (row['days'] as int?) ?? 0,
+      first: DateTime(parts[0], parts[1], parts[2]),
+    );
   }
 
   /// All rows of a daily table from one day to another, both included.

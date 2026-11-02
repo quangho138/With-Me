@@ -482,6 +482,38 @@ class AppLocalizationsRu extends AppLocalizations {
   String get accountWithMeSince => 'Со мной с сегодняшнего дня';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return 'Со мной с $date';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'На этом телефоне нет аккаунта';
+
+  @override
+  String get accountChangeEmail => 'Изменить почту';
+
+  @override
+  String get accountEmailChangeExplain =>
+      'Мы отправим вам ссылку для подтверждения. Почта изменится только после того, как вы её откроете.';
+
+  @override
+  String get accountChangePassword => 'Изменить пароль';
+
+  @override
+  String get accountNewEmail => 'Новая почта';
+
+  @override
+  String get accountCurrentPassword => 'Текущий пароль';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Почти готово. Откройте ссылку из нашего письма, чтобы подтвердить. До тех пор почта остаётся прежней.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Вход через Google. Почту и пароль можно изменить в Google.';
+
+  @override
   String get accountCheckInTime => 'Время ежедневного чек-ина';
 
   @override

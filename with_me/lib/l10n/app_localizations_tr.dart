@@ -476,6 +476,38 @@ class AppLocalizationsTr extends AppLocalizations {
   String get accountWithMeSince => 'Bugünden beri benimle';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '$date tarihinden beri benimle';
+  }
+
+  @override
+  String get accountNoAccountEmail => 'Bu telefonda hesap yok';
+
+  @override
+  String get accountChangeEmail => 'E-postayı değiştir';
+
+  @override
+  String get accountEmailChangeExplain =>
+      'Onaylaman için e-postayla bir bağlantı göndereceğiz. E-postan ancak bağlantıyı açtıktan sonra değişir.';
+
+  @override
+  String get accountChangePassword => 'Şifreyi değiştir';
+
+  @override
+  String get accountNewEmail => 'Yeni e-posta';
+
+  @override
+  String get accountCurrentPassword => 'Şu anki şifre';
+
+  @override
+  String get accountEmailChangeSent =>
+      'Neredeyse bitti. Onaylamak için e-postayla gönderdiğimiz bağlantıyı aç. O zamana kadar e-postan aynı kalır.';
+
+  @override
+  String get accountGoogleManaged =>
+      'Google ile giriş yapıldı. E-postanı veya şifreni Google üzerinden değiştir.';
+
+  @override
   String get accountCheckInTime => 'Günlük durum kaydı saati';
 
   @override

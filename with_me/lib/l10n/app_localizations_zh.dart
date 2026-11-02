@@ -460,6 +460,35 @@ class AppLocalizationsZh extends AppLocalizations {
   String get accountWithMeSince => '从今天起与我同行';
 
   @override
+  String accountWithMeSinceDate(String date) {
+    return '自 $date 起陪伴着你';
+  }
+
+  @override
+  String get accountNoAccountEmail => '这部手机上没有账户';
+
+  @override
+  String get accountChangeEmail => '更改邮箱';
+
+  @override
+  String get accountEmailChangeExplain => '我们会通过邮件发送一个确认链接。打开链接后，你的邮箱才会更改。';
+
+  @override
+  String get accountChangePassword => '更改密码';
+
+  @override
+  String get accountNewEmail => '新邮箱';
+
+  @override
+  String get accountCurrentPassword => '当前密码';
+
+  @override
+  String get accountEmailChangeSent => '快好了。请打开我们发到邮箱的链接进行确认。在此之前，你的邮箱保持不变。';
+
+  @override
+  String get accountGoogleManaged => '已通过 Google 登录。请在 Google 中更改邮箱或密码。';
+
+  @override
   String get accountCheckInTime => '每日打卡时间';
 
   @override
@@ -2746,6 +2775,35 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountWithMeSince => '從今天起與我同行';
+
+  @override
+  String accountWithMeSinceDate(String date) {
+    return '自 $date 起陪伴著你';
+  }
+
+  @override
+  String get accountNoAccountEmail => '這支手機上沒有帳戶';
+
+  @override
+  String get accountChangeEmail => '更改電子郵件';
+
+  @override
+  String get accountEmailChangeExplain => '我們會寄一個確認連結到你的信箱。打開連結後，你的電子郵件才會更改。';
+
+  @override
+  String get accountChangePassword => '更改密碼';
+
+  @override
+  String get accountNewEmail => '新的電子郵件';
+
+  @override
+  String get accountCurrentPassword => '目前的密碼';
+
+  @override
+  String get accountEmailChangeSent => '快好了。請打開我們寄到信箱的連結來確認。在此之前，你的電子郵件維持不變。';
+
+  @override
+  String get accountGoogleManaged => '已透過 Google 登入。請在 Google 更改電子郵件或密碼。';
 
   @override
   String get accountCheckInTime => '每日打卡時間';
