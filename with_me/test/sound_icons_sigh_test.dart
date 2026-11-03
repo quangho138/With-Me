@@ -75,7 +75,7 @@ void main() {
     }
     final count = data.getUint32(at + 4, Endian.little) ~/ 2;
     final start = at + 8;
-    expect(count / rate, closeTo(14, 0.01));
+    expect(count / rate, closeTo(13, 0.01));
     double level(double from, double to) {
       var sum = 0.0;
       final a = (from * rate).round(), b = (to * rate).round();
@@ -90,15 +90,10 @@ void main() {
     // breath in it, not silence: within 40 dB of the loudest moment, so the
     // check holds whatever volume the track is mixed at.
     var loudest = 0.0;
-    for (var s = 0.0; s < 13.9; s += 0.1) {
+    for (var s = 0.0; s < 12.9; s += 0.1) {
       loudest = math.max(loudest, level(s, s + 0.1));
     }
-    for (final (from, to) in [
-      (0.3, 3.7),
-      (4.1, 4.9),
-      (5.1, 5.9),
-      (6.2, 13.4),
-    ]) {
+    for (final (from, to) in [(0.3, 3.7), (4.1, 4.9), (5.2, 12.4)]) {
       for (var s = from; s < to - 0.1; s += 0.1) {
         expect(
           level(s, s + 0.1),

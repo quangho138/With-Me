@@ -1,150 +1,351 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
-import '../Components/WithMeControls.dart';
+import '../Settings/CompanionPlus.dart';
+import '../Theme/WithMeTheme.dart';
 
-/// `image43.png` — Membership.
+/// `image43.png` — Membership, as With Me Plus: the badge and name, what
+/// Plus adds, and the yearly ($39.99) and monthly ($3.99) plans to pick
+/// from, grown to fill the screen.
 ///
-/// **UI only.** The mockup shows card, expiry and CVC fields for a $4.99/mo
-/// plan, but there is no payment integration in the project and nothing here
-/// collects or transmits card details — the fields are inert and "Start Plus"
-/// does not charge anything. Flagged in `docs/WITH_ME_SPEC_V1.md`.
-class MembershipScreen extends StatelessWidget {
-  const MembershipScreen({super.key});
+/// **No payments yet.** There is no payment integration in the project, so
+/// picking a plan charges nothing: "Start Plus" turns Companion Plus on for
+/// this device (see [CompanionPlus]). Flagged in `docs/WITH_ME_SPEC_V1.md`.
+class MembershipScreen extends StatefulWidget {
+  const MembershipScreen({super.key, this.usedUp});
 
   static const String route = '/membership';
 
+  /// The Plus exercise whose free uses have just run out, named at the top
+  /// of the page, or null when the page was opened on its own.
+  final String? usedUp;
+
+  @override
+  State<MembershipScreen> createState() => _MembershipScreenState();
+}
+
+class _MembershipScreenState extends State<MembershipScreen> {
+  /// The picked plan: yearly to start, as it costs less.
+  bool _yearly = true;
+
   @override
   Widget build(BuildContext context) {
+    return ValueListenableBuilder<bool>(
+      valueListenable: CompanionPlus.instance,
+      builder: (context, plus, _) => _build(context, plus),
+    );
+  }
+
+  Widget _build(BuildContext context, bool plus) {
     final l = context.l10n;
+    final usedUp = widget.usedUp;
     return ScenicScaffold(
-      title: l.accountMembershipTitle,
+      fillHeight: true,
       onBack: () => Navigator.of(context).pop(),
       softBackground: true,
       action: ScenicPill(
-        label: l.accountStartPlus,
+        label: plus ? l.accountPlusActive : l.accountStartPlus,
         height: 58,
-        onPressed: () => ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(l.accountPaymentsNotWired))),
+        // Already on: nothing to start.
+        onPressed: plus
+            ? null
+            : () async {
+                await CompanionPlus.instance.set(true);
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text(l.accountPlusStarted)));
+              },
       ),
-      footnote: ScenicFootnote(l.accountMembershipFootnote),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _Plan(
-            name: l.accountPlanFree,
-            blurb: l.accountPlanFreeBlurb,
-            tinted: true,
-          ),
-          const SizedBox(height: 12),
-          _Plan(name: l.accountPlanPlus, blurb: l.accountPlanPlusBlurb),
-          const SizedBox(height: 12),
-          const ScenicPanel(child: _CardFields()),
-        ],
-      ),
-    );
-  }
-}
-
-class _Plan extends StatelessWidget {
-  const _Plan({required this.name, required this.blurb, this.tinted = false});
-
-  final String name;
-  final String blurb;
-  final bool tinted;
-
-  @override
-  Widget build(BuildContext context) {
-    final body = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ScenicHeading(name, size: 19, textAlign: TextAlign.start),
-        const SizedBox(height: 6),
-        Text(blurb, style: kScenicBody.copyWith(height: 1.4)),
-      ],
-    );
-    if (!tinted) return ScenicPanel(child: body);
-    // The free plan - the one already in use - on the chosen-tile tint.
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        color: ScenicColors.tileSelected,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: ScenicColors.pillBottom, width: 2),
-      ),
-      child: body,
-    );
-  }
-}
-
-/// Deliberately display-only — see the class comment on [MembershipScreen].
-class _CardFields extends StatelessWidget {
-  const _CardFields();
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(l.accountCard, style: kScenicLabel),
-        const SizedBox(height: 6),
-        const _Inert(text: '•••• •••• •••• ••••'),
-        const SizedBox(height: 14),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(l.accountCardExpiry, style: kScenicLabel),
-                const SizedBox(height: 6),
-                SizedBox(
-                  width: 92,
-                  child: _Inert(text: l.accountCardExpiryHint),
+      // The card fills the screen: its type and spacing scale with the
+      // room, up on a tall phone and a little down on a short one, so it
+      // never needs a scroll.
+      child: ScenicFill(
+        content: (plus, usedUp),
+        shrink: true,
+        builder: (fill) {
+          final card = ScenicPanel(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+            child: fill
+                ? ScenicFitDown(
+                    child: Builder(builder: (context) => _card(context, l)),
+                  )
+                : _card(context, l),
+          );
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (usedUp != null && !plus) ...[
+                ScenicPanel(
+                  child: Text(
+                    l.membershipUsedUp(usedUp),
+                    textAlign: TextAlign.center,
+                    style: kScenicBody.copyWith(fontWeight: FontWeight.w700),
+                  ),
                 ),
+                const SizedBox(height: 10),
               ],
-            ),
-            const SizedBox(width: 14),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(l.accountCardCvc, style: kScenicLabel),
-                const SizedBox(height: 6),
-                const SizedBox(width: 68, child: _Inert(text: '•••')),
-              ],
-            ),
-          ],
+              if (fill) Expanded(child: card) else card,
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  /// The card's badge, name, perks, plans and small print, all grown by
+  /// [ScenicFill.growOf].
+  Widget _card(BuildContext context, AppLocalizations l) {
+    // A little under the full growth, so the card never quite runs over;
+    // on a short phone it shrinks a little instead of scrolling.
+    final grow = (ScenicFill.growOf(context) * .96).clamp(.8, 1.6).toDouble();
+    // The type grows only a little, so lines don't wrap any narrower; the
+    // spacing takes up the rest of the room.
+    final k = grow < 1 ? grow : math.min(grow, 1.18);
+    final gap = grow < 1 ? grow : 1 + (grow - 1) * 3;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Center(child: _Badge(k: k)),
+        SizedBox(height: 4 * gap),
+        Text(
+          l.membershipPlusName,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: WithMeText.script,
+            fontSize: 34 * k,
+            height: 1.2,
+            color: WithMeColors.teal,
+          ),
+        ),
+        Text(
+          l.membershipTagline,
+          textAlign: TextAlign.center,
+          style: kScenicBody.copyWith(fontSize: 13 * k),
+        ),
+        SizedBox(height: 12 * gap),
+        for (final perk in [
+          l.membershipPerkAreas,
+          l.membershipPerkGuided,
+          l.membershipPerkSos,
+        ])
+          _Perk(perk, k: k),
+        SizedBox(height: 12 * gap),
+        _PlanOption(
+          key: const ValueKey('plan-yearly'),
+          name: l.membershipYearly,
+          detail: l.membershipYearlyDetail,
+          price: l.membershipYearlyPrice,
+          badge: l.membershipSave,
+          picked: _yearly,
+          k: k,
+          onTap: () => setState(() => _yearly = true),
+        ),
+        SizedBox(height: 12 * gap),
+        _PlanOption(
+          key: const ValueKey('plan-monthly'),
+          name: l.membershipMonthly,
+          detail: l.membershipMonthlyDetail,
+          price: l.membershipMonthlyPrice,
+          picked: !_yearly,
+          k: k,
+          onTap: () => setState(() => _yearly = false),
+        ),
+        SizedBox(height: 10 * gap),
+        Text(
+          l.accountMembershipFootnote,
+          textAlign: TextAlign.center,
+          style: kScenicBody.copyWith(
+            fontSize: 12 * k,
+            color: ScenicColors.ink.withValues(alpha: .7),
+          ),
         ),
       ],
     );
   }
 }
 
-class _Inert extends StatelessWidget {
-  const _Inert({required this.text});
+/// The orange award badge at the top of the card.
+class _Badge extends StatelessWidget {
+  const _Badge({required this.k});
+
+  /// How much the card has grown.
+  final double k;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 40 * k,
+      height: 40 * k,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Color(0xFFFCE7C8),
+      ),
+      child: Icon(
+        Icons.workspace_premium_rounded,
+        color: const Color(0xFFF2A33A),
+        size: 26 * k,
+      ),
+    );
+  }
+}
+
+/// One thing Plus adds, with a teal tick.
+class _Perk extends StatelessWidget {
+  const _Perk(this.text, {required this.k});
 
   final String text;
 
+  /// How much the card has grown.
+  final double k;
+
   @override
-  Widget build(BuildContext context) => Container(
-    height: kSettingsRowHeight,
-    alignment: AlignmentDirectional.centerStart,
-    padding: const EdgeInsets.symmetric(horizontal: 16),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-      border: kScenicFieldRing,
-    ),
-    child: Text(
-      text,
-      style: kScenicBody.copyWith(
-        fontSize: 16,
-        color: ScenicColors.ink.withValues(alpha: 0.55),
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 3 * k),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            Icons.check_circle_rounded,
+            color: ScenicColors.pillBottom,
+            size: 20 * k,
+          ),
+          SizedBox(width: 10 * k),
+          Expanded(
+            child: Text(
+              text,
+              style: kScenicBody.copyWith(
+                fontSize: 14 * k,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
       ),
-    ),
-  );
+    );
+  }
+}
+
+/// A plan to pick: a radio dot, its name and detail, and its price, with an
+/// optional orange badge on the top edge.
+class _PlanOption extends StatelessWidget {
+  const _PlanOption({
+    super.key,
+    required this.name,
+    required this.detail,
+    required this.price,
+    required this.picked,
+    required this.onTap,
+    required this.k,
+    this.badge,
+  });
+
+  final String name, detail, price;
+  final String? badge;
+  final bool picked;
+  final VoidCallback onTap;
+
+  /// How much the card has grown.
+  final double k;
+
+  @override
+  Widget build(BuildContext context) {
+    final card = ScenicTile(
+      label: '$name, $price, $detail',
+      selected: picked,
+      color: picked ? ScenicColors.tileSelected : Colors.white,
+      radius: 14,
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(12 * k, 12 * k, 14 * k, 12 * k),
+        child: Row(
+          children: [
+            Icon(
+              picked
+                  ? Icons.radio_button_checked_rounded
+                  : Icons.radio_button_off_rounded,
+              color: picked
+                  ? ScenicColors.pillBottom
+                  : ScenicColors.ink.withValues(alpha: .5),
+              size: 22 * k,
+            ),
+            SizedBox(width: 10 * k),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // One line, shrinking a little on a narrow phone.
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      name,
+                      style: TextStyle(
+                        fontFamily: WithMeText.ui,
+                        fontSize: 16 * k,
+                        fontWeight: FontWeight.w700,
+                        color: ScenicColors.ink,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    detail,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: kScenicBody.copyWith(
+                      fontSize: 12 * k,
+                      color: ScenicColors.ink.withValues(alpha: .65),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              price,
+              style: TextStyle(
+                fontFamily: WithMeText.ui,
+                fontSize: 16 * k,
+                fontWeight: FontWeight.w700,
+                color: ScenicColors.ink,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (badge == null) return card;
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        card,
+        Positioned(
+          right: 10,
+          top: -9,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(
+              color: const Color(0xFFE5675A),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              badge!,
+              style: TextStyle(
+                fontFamily: WithMeText.ui,
+                fontSize: 11 * k,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }

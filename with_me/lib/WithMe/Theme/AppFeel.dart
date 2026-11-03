@@ -135,7 +135,8 @@ class AppFeel {
     if (softSounds.value && volume.value > 0) sounds.tap(volume.value);
   }
 
-  /// The soft chime when a check-in finishes, when soft sounds are on.
+  /// The soft chime when a check-in or a guided session finishes, when
+  /// soft sounds are on.
   void chime() {
     if (softSounds.value && volume.value > 0) sounds.chime(volume.value);
   }

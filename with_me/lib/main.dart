@@ -44,6 +44,8 @@ import 'WithMe/Screens/SoundscapeScreen.dart';
 import 'WithMe/Screens/StrategiesActionsScreen.dart';
 import 'WithMe/Screens/TriggersSignsScreen.dart';
 import 'WithMe/Screens/WelcomeScreen.dart';
+import 'WithMe/Settings/CompanionPlus.dart';
+import 'WithMe/Settings/FreeUses.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
 import 'WithMe/Theme/AppFeel.dart';
@@ -94,9 +96,23 @@ Future<void> main() async {
   // Whether the companion reads aloud. Read before the first screen so a
   // saved "off" holds from the start; until it is read, nothing is spoken.
   try {
-    await SpeechService.instance.load().timeout(const Duration(seconds: 3));
+    await Future.wait([
+      SpeechService.instance.load(),
+      SpeechService.findRecordings(),
+    ]).timeout(const Duration(seconds: 3));
   } catch (e) {
     debugPrint('Read aloud setting not loaded yet: $e');
+  }
+
+  // With Me Plus and the free tries, kept on this device. Until they are
+  // read (or if that fails), no Plus.
+  try {
+    await Future.wait([
+      CompanionPlus.instance.load(),
+      FreeUses.instance.load(),
+    ]).timeout(const Duration(seconds: 3));
+  } catch (e) {
+    debugPrint('Membership settings not loaded yet: $e');
   }
 
   // The language picked in Settings, read before the first screen so it

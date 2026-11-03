@@ -32,7 +32,8 @@ void main() {
     // Layered text: the wordmark is halo, outline and fill, and the V2 type
     // is drawn fill-over-outline for weight - so each label is several
     // Text widgets.
-    expect(find.text('With Me'), findsWidgets);
+    expect(find.textContaining('With Me'), findsWidgets);
+    expect(find.text('™'), findsWidgets, reason: 'the trademark sign');
     expect(find.text('Your Wellbeing Companion'), findsWidgets);
     expect(find.text('Here. With you.'), findsWidgets);
     expect(find.text('Sign Up'), findsWidgets);

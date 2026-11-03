@@ -352,6 +352,11 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String menuAboutScripts(String name) {
+    return 'The guided meditations are based on scripts by Prof. $name, used with permission.';
+  }
+
+  @override
   String get menuAboutTerms => 'Terms & Privacy Policy';
 
   @override
@@ -547,32 +552,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get accountMembershipFootnote =>
       'Cancel any time. Your logs stay yours either way.';
-
-  @override
-  String get accountPlanFree => 'Free forever';
-
-  @override
-  String get accountPlanFreeBlurb =>
-      'Check-ins, daily logs, breathing exercises and the calendar. No card needed.';
-
-  @override
-  String get accountPlanPlus => 'Companion Plus · \$4.99/mo';
-
-  @override
-  String get accountPlanPlusBlurb =>
-      'All soundscapes · guided meditations · full insight history · PDF summaries to share';
-
-  @override
-  String get accountCard => 'Card';
-
-  @override
-  String get accountCardExpiry => 'Expiry';
-
-  @override
-  String get accountCardExpiryHint => 'MM/YY';
-
-  @override
-  String get accountCardCvc => 'CVC';
 
   @override
   String get homeTitle => 'Home';
@@ -2110,9 +2089,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exerciseSighDeepInhale => 'Deep inhale';
 
   @override
-  String exerciseSighQuickInhale(int number) {
-    return 'Quick inhale · $number';
-  }
+  String get exerciseSighQuickInhale => 'Quick inhale';
 
   @override
   String get exerciseSighLongExhale => 'Long exhale';
@@ -2122,9 +2099,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exerciseSighCueFirstSip => 'Take a small extra sip of air';
-
-  @override
-  String get exerciseSighCueSecondSip => 'Take one more small sip of air';
 
   @override
   String get exerciseSighCueLongExhale => 'Let the breath out slowly';
@@ -2141,7 +2115,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exerciseSighIntro =>
-      'One deep inhale, two quick inhales, then a long exhale.';
+      'One deep inhale, one quick inhale, then a long exhale.';
 
   @override
   String get exerciseNumberOfCycles => 'Number of cycles';
@@ -2208,7 +2182,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exerciseFocusSubtitle => '4 · 4 · 4 breathing';
 
   @override
-  String get exerciseSighSubtitle => 'Deep inhale · two quick inhales · exhale';
+  String get exerciseSighSubtitle => 'Deep inhale · quick inhale · exhale';
 
   @override
   String get exerciseRestTitle => 'Rest your mind';
@@ -2424,4 +2398,4861 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountFailed => 'Couldn\'t delete your account.';
+
+  @override
+  String get accountPlusActive => 'You have Companion Plus';
+
+  @override
+  String get accountPlusStarted =>
+      'Companion Plus is on. No payment was taken.';
+
+  @override
+  String get exerciseMeditationTitle => 'Guided Meditation';
+
+  @override
+  String get exerciseMeditationSubtitle => '5 min · calm in the forest';
+
+  @override
+  String get exerciseMeditationLocked => 'Locked. Part of Companion Plus.';
+
+  @override
+  String get exerciseMeditationIntro =>
+      'Five quiet minutes in the forest. Follow the words, or close your eyes and listen.';
+
+  @override
+  String get exerciseMeditationStart => 'Start meditation';
+
+  @override
+  String get exerciseMeditationAgain => 'Meditate again';
+
+  @override
+  String exerciseMeditationStepOf(int step, int total) {
+    return 'Step $step of $total';
+  }
+
+  @override
+  String exerciseMeditationTimeLeft(String time) {
+    return '$time left';
+  }
+
+  @override
+  String get exerciseMeditationStep1Title => 'Settle in';
+
+  @override
+  String get exerciseMeditationStep1 =>
+      'Sit or lie down comfortably. Let your eyes close, or rest them on one spot.';
+
+  @override
+  String get exerciseMeditationStep2Title => 'Find your breath';
+
+  @override
+  String get exerciseMeditationStep2 =>
+      'Notice your breath coming in and going out. There is nothing to change.';
+
+  @override
+  String get exerciseMeditationStep3Title => 'Soften';
+
+  @override
+  String get exerciseMeditationStep3 =>
+      'Let your jaw, your shoulders and your hands soften, a little more with each breath out.';
+
+  @override
+  String get exerciseMeditationStep4Title => 'Listen';
+
+  @override
+  String get exerciseMeditationStep4 =>
+      'Listen to the forest around you. Let each sound come and go.';
+
+  @override
+  String get exerciseMeditationStep5Title => 'Come back';
+
+  @override
+  String get exerciseMeditationStep5 =>
+      'Take one deeper breath. Move your fingers, and open your eyes when you are ready.';
+
+  @override
+  String get exerciseMeditationDoneTitle => 'Well done';
+
+  @override
+  String get exerciseMeditationDone =>
+      'You gave yourself five calm minutes. Take this feeling with you.';
+
+  @override
+  String get exerciseFreeformTitle => 'Membership Meditation';
+
+  @override
+  String get exerciseFreeformSubtitle =>
+      'Guided sessions and meditations for home, work, school and social';
+
+  @override
+  String get meditateGuidedHeading => 'Guided sessions';
+
+  @override
+  String get exerciseBodyScanTitle => 'Body Scan';
+
+  @override
+  String get exerciseBodyScanSubtitle =>
+      'Notice and relax each part of your body';
+
+  @override
+  String get exerciseMuscleTitle => 'Muscle Relaxation';
+
+  @override
+  String get exerciseMuscleSubtitle =>
+      'Tense and release, from your hands to your feet';
+
+  @override
+  String exerciseUsesLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count uses left',
+      one: '1 use left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exerciseUsedUp => 'Free uses used. Go Plus to use it again.';
+
+  @override
+  String membershipUsedUp(String name) {
+    return 'You\'ve used your free session of $name. Go Plus to keep using it.';
+  }
+
+  @override
+  String get membershipPlusName => 'With Me Plus';
+
+  @override
+  String get membershipTagline =>
+      'Everything you need to manage stress & anxiety.';
+
+  @override
+  String get membershipPerkAreas =>
+      'Every version of Home, Work, School & Social';
+
+  @override
+  String get membershipPerkGuided =>
+      'Unlimited Guided Meditation, Body Scan & Muscle Relaxation';
+
+  @override
+  String get membershipPerkSos => 'Anxiety SOS whenever you need it';
+
+  @override
+  String get membershipYearly => 'Yearly';
+
+  @override
+  String get membershipYearlyPrice => '\$39.99/year';
+
+  @override
+  String get membershipYearlyDetail => '\$3.33/mo · billed yearly';
+
+  @override
+  String get membershipMonthly => 'Monthly';
+
+  @override
+  String get membershipMonthlyPrice => '\$3.99/month';
+
+  @override
+  String get membershipMonthlyDetail => 'Billed monthly';
+
+  @override
+  String get membershipSave => 'Save 16%';
+
+  @override
+  String get meditateTitle => 'Meditate';
+
+  @override
+  String get meditateSubtitle => 'Calm for wherever stress comes from';
+
+  @override
+  String get meditateGoPlus => 'Go Plus';
+
+  @override
+  String get meditateSosTitle => 'Anxiety SOS';
+
+  @override
+  String get meditateSosSubtitle => 'Feeling it right now? 1 min';
+
+  @override
+  String get meditateByArea => 'By stress area';
+
+  @override
+  String meditateSessions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sessions',
+      one: '1 session',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get meditateSuggested => 'From your check-in';
+
+  @override
+  String meditateMinutes(int count) {
+    return '$count min';
+  }
+
+  @override
+  String get meditateDeadlineTitle => 'Deadline Pressure';
+
+  @override
+  String get meditateHomeTitle => 'Calm at Home';
+
+  @override
+  String get meditateSchoolTitle => 'Study Overwhelm';
+
+  @override
+  String get meditateSocialTitle => 'Social Worries';
+
+  @override
+  String prepLength(int count) {
+    return 'About $count minutes';
+  }
+
+  @override
+  String get prepHeadphones => 'Use headphones for best results';
+
+  @override
+  String get prepOffline => 'Works offline. Nothing to download.';
+
+  @override
+  String get prepSafety =>
+      'Please don\'t listen while driving or doing anything that needs your full attention. You stay aware and in control the whole time, and you can open your eyes whenever you like.';
+
+  @override
+  String get prepCare =>
+      'This supports everyday stress and is not a substitute for professional care. If anxiety feels overwhelming or persistent, please reach out to a qualified professional.';
+
+  @override
+  String get prepVersions => 'Versions';
+
+  @override
+  String prepVersion(int number) {
+    return 'Version $number';
+  }
+
+  @override
+  String get prepVersionsNote =>
+      'Version 1 is free. The other versions are for members.';
+
+  @override
+  String prepVersionSoon(int number) {
+    return 'Version $number is coming soon.';
+  }
+
+  @override
+  String get prepCaptions => 'Show captions';
+
+  @override
+  String get prepBegin => 'Begin';
+
+  @override
+  String playerResumeFrom(String step) {
+    return 'Resume from $step';
+  }
+
+  @override
+  String get playerCaptionsOn => 'Captions on';
+
+  @override
+  String get playerCaptionsOff => 'Captions off';
+
+  @override
+  String get afterHowFeel => 'How do you feel now?';
+
+  @override
+  String get afterSaved => 'Saved to your Daily Log';
+
+  @override
+  String get afterAnchorTitle => 'Your anchor';
+
+  @override
+  String get afterAnchorText =>
+      'Thumb + finger, one breath, one thing at a time.';
+
+  @override
+  String get afterReminder => 'Set a reminder';
+
+  @override
+  String get stepArrive => 'Arrive';
+
+  @override
+  String get stepBreathe => 'Breathe';
+
+  @override
+  String get stepBodyScan => 'Body scan';
+
+  @override
+  String get stepReframe => 'Reframe';
+
+  @override
+  String get stepReturn => 'Return';
+
+  @override
+  String get stepSettle => 'Let it settle';
+
+  @override
+  String get stepHeadFace => 'Head and face';
+
+  @override
+  String get stepShouldersArms => 'Shoulders and arms';
+
+  @override
+  String get stepChestBelly => 'Chest and belly';
+
+  @override
+  String get stepBackLegs => 'Back and legs';
+
+  @override
+  String get stepWholeBody => 'Whole body';
+
+  @override
+  String get stepHandsArms => 'Hands and arms';
+
+  @override
+  String get stepShouldersFace => 'Shoulders and face';
+
+  @override
+  String get stepChestStomach => 'Chest and stomach';
+
+  @override
+  String get stepLegsFeet => 'Legs and feet';
+
+  @override
+  String get stepRest => 'Rest';
+
+  @override
+  String get scriptDeadline01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptDeadline02 =>
+      'For the next ten minutes, the deadline can wait outside the door. It will still be there when you come back, and you\'ll meet it with a clearer mind.';
+
+  @override
+  String get scriptDeadline03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptDeadline04 =>
+      'Now let your eyes find one small point in front of you… a spot on the wall, the edge of the desk… and simply rest your gaze there.';
+
+  @override
+  String get scriptDeadline05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptDeadline06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptDeadline07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptDeadline08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptDeadline09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptDeadline10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptDeadline11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptDeadline12 => 'Ten… letting go.';
+
+  @override
+  String get scriptDeadline13 => 'Nine… softer now.';
+
+  @override
+  String get scriptDeadline14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptDeadline15 => 'Seven…';
+
+  @override
+  String get scriptDeadline16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptDeadline17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptDeadline18 => 'Four…';
+
+  @override
+  String get scriptDeadline19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptDeadline20 => 'Two… almost there.';
+
+  @override
+  String get scriptDeadline21 => 'And one.';
+
+  @override
+  String get scriptDeadline22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptDeadline23 =>
+      'Pressure at work often hides in the same few places. Let\'s visit each one… and let it soften.';
+
+  @override
+  String get scriptDeadline24 =>
+      'Start with your forehead. The place that frowns at screens and emails. Imagine a warm hand resting there… smoothing it out…';
+
+  @override
+  String get scriptDeadline25 =>
+      'Now your jaw. Let your teeth part just a little. Let your tongue rest. So much of the day gets held in the jaw… and you can let it go now.';
+
+  @override
+  String get scriptDeadline26 =>
+      'Your neck and shoulders. Picture them as if they\'ve been lifted toward your ears all day… and now, with your next out-breath… they drop. Heavy. Warm.';
+
+  @override
+  String get scriptDeadline27 =>
+      'Down through your arms… your wrists, tired from typing… your hands. Let your fingers become loose and still.';
+
+  @override
+  String get scriptDeadline28 =>
+      'Now your chest and belly. Notice if there\'s a tightness there, a knot of urgency. You don\'t need to fight it.';
+
+  @override
+  String get scriptDeadline29 =>
+      'Just breathe into it… and on the out-breath, imagine it loosening… one thread at a time.';
+
+  @override
+  String get scriptDeadline30 =>
+      'Your lower back… your hips… your legs… all the way down to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptDeadline31 => 'Your whole body, calm and heavy and safe.';
+
+  @override
+  String get scriptDeadline32 =>
+      'Now imagine you\'re standing on a quiet beach, like the one in the app. Warm sand under your feet. The sea moving in… and out… in its own time.';
+
+  @override
+  String get scriptDeadline33 =>
+      'Notice the waves never rush. Each one arrives… does what it needs to do… and makes room for the next.';
+
+  @override
+  String get scriptDeadline34 =>
+      'Your work can be like that. One wave. One task. Then the next.';
+
+  @override
+  String get scriptDeadline35 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptDeadline36 => 'Your worth is not your workload.';
+
+  @override
+  String get scriptDeadline37 =>
+      'You have handled deadlines before, and you can handle this one.';
+
+  @override
+  String get scriptDeadline38 =>
+      'A calm mind works faster than a panicked one.';
+
+  @override
+  String get scriptDeadline39 => 'Doing one thing well is enough.';
+
+  @override
+  String get scriptDeadline40 =>
+      'Now, gently press the tip of your thumb against the tip of your index finger.';
+
+  @override
+  String get scriptDeadline41 =>
+      'Take one slow breath… and silently say to yourself: one thing at a time.';
+
+  @override
+  String get scriptDeadline42 =>
+      'Feel this calm gathering at your fingertips. From now on, whenever the pressure rises at work… in a meeting, before you hit send, when the clock feels loud…';
+
+  @override
+  String get scriptDeadline43 =>
+      'you can press thumb and finger together, take one breath, and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptDeadline44 => 'Release your fingers now.';
+
+  @override
+  String get scriptDeadline45 =>
+      'Before we come back, choose one small thing you\'ll do in the next hour. Just one. The first step, not the whole mountain.';
+
+  @override
+  String get scriptDeadline46 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptDeadline47 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptDeadline48 => 'One… noticing the chair beneath you.';
+
+  @override
+  String get scriptDeadline49 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptDeadline50 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptDeadline51 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptDeadline52 =>
+      'And five… eyes open when you\'re ready, calm, clear and ready.';
+
+  @override
+  String get scriptDeadline53 =>
+      'Well done. Remember: one thing at a time. I\'m here with you.';
+
+  @override
+  String get scriptSos01 =>
+      'I\'m here with you. You don\'t have to fix anything right now.';
+
+  @override
+  String get scriptSos02 =>
+      'Put one hand on your chest. Breathe in slowly for four… and out for six.';
+
+  @override
+  String get scriptSos03 =>
+      'Now notice your feet on the ground. Press them down gently. You are here, and you are safe.';
+
+  @override
+  String get scriptSos04 => 'One more slow breath. In… and out. Well done.';
+
+  @override
+  String get scriptHomeFull09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptHomeFull08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptHomeFull10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptHomeFull11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptHomeFull12 => 'Ten… letting go.';
+
+  @override
+  String get scriptHomeFull13 => 'Nine… softer now.';
+
+  @override
+  String get scriptHomeFull15 => 'Seven…';
+
+  @override
+  String get scriptHomeFull16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptHomeFull17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptHomeFull18 => 'Four…';
+
+  @override
+  String get scriptHomeFull19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptHomeFull20 => 'Two… almost there.';
+
+  @override
+  String get scriptHomeFull21 => 'And one.';
+
+  @override
+  String get scriptHomeFull22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptHomeFull29 =>
+      'Just breathe into it… and on the out-breath, imagine it loosening… one thread at a time.';
+
+  @override
+  String get scriptHomeFull31 => 'Your whole body, calm and heavy and safe.';
+
+  @override
+  String get scriptHomeFull35 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptHomeFull40 =>
+      'Now, gently press the tip of your thumb against the tip of your index finger.';
+
+  @override
+  String get scriptHomeFull43 =>
+      'you can press thumb and finger together, take one breath, and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptHomeFull44 => 'Release your fingers now.';
+
+  @override
+  String get scriptHomeFull46 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptHomeFull47 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptHomeFull49 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptHomeFull50 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptHomeFull01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptHomeFull02 =>
+      'For the next ten minutes, everything at home can wait. The chores, the messages, the people who need you. They\'ll still be there when you come back, and you\'ll meet them feeling softer.';
+
+  @override
+  String get scriptHomeFull03 =>
+      'Find a position where your body is supported. Sit back, or lie down. Let your hands rest wherever they want to rest.';
+
+  @override
+  String get scriptHomeFull04 =>
+      'Now let your eyes find one small point in front of you… a corner of the room, a soft patch of light… and simply rest your gaze there.';
+
+  @override
+  String get scriptHomeFull05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptHomeFull06 =>
+      'There\'s nothing you need to fix right now. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptHomeFull07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body it can rest.';
+
+  @override
+  String get scriptHomeFull14 =>
+      'Eight… the sounds of the house moving further away.';
+
+  @override
+  String get scriptHomeFull23 =>
+      'Stress at home often settles in the same few places. Let\'s visit each one… and let it soften.';
+
+  @override
+  String get scriptHomeFull24 =>
+      'Start with your forehead. The place that tightens when the house gets loud. Imagine a warm hand resting there… smoothing it out…';
+
+  @override
+  String get scriptHomeFull25 =>
+      'Now your jaw. Let your teeth part just a little. Let your tongue rest. So many words get held back at home… and you can let them go now.';
+
+  @override
+  String get scriptHomeFull26 =>
+      'Your neck and shoulders. Picture them carrying every task and every person who needed something from you… and now, with your next out-breath… they drop. Heavy. Warm.';
+
+  @override
+  String get scriptHomeFull27 =>
+      'Down through your arms… your hands that cooked, carried, tidied and held… Let your fingers become loose and still.';
+
+  @override
+  String get scriptHomeFull28 =>
+      'Now your chest and belly. Notice if there\'s a heaviness there, a knot of worry for the people you love. You don\'t need to fight it.';
+
+  @override
+  String get scriptHomeFull30 =>
+      'Your lower back… your hips… your legs… all the way down to your feet. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptHomeFull32 =>
+      'Now imagine you\'re sitting by a warm fire, like the one in the app. Its glow on your face. The quiet crackle of the wood.';
+
+  @override
+  String get scriptHomeFull33 =>
+      'Notice the fire never hurries. It burns slowly and steadily… warming the whole room without trying.';
+
+  @override
+  String get scriptHomeFull34 =>
+      'You can be like that at home. Steady. Warm. You don\'t have to do everything to be enough.';
+
+  @override
+  String get scriptHomeFull36 =>
+      'I can care for others and still care for myself.';
+
+  @override
+  String get scriptHomeFull37 => 'Rest is not something I have to earn.';
+
+  @override
+  String get scriptHomeFull38 => 'I don\'t have to fix everything today.';
+
+  @override
+  String get scriptHomeFull39 => 'Calm at home can start with me.';
+
+  @override
+  String get scriptHomeFull41 =>
+      'Take one slow breath… and silently say to yourself: I am at home in myself.';
+
+  @override
+  String get scriptHomeFull42 =>
+      'Feel this calm gathering at your fingertips. From now on, whenever home feels heavy… in a raised voice, a pile of chores, a long evening…';
+
+  @override
+  String get scriptHomeFull45 =>
+      'Before we come back, choose one small, kind thing you\'ll do for yourself today. Just one. A cup of tea, a few quiet minutes, an early night.';
+
+  @override
+  String get scriptHomeFull48 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptHomeFull51 => 'Four… energy flowing back, warm and steady.';
+
+  @override
+  String get scriptHomeFull52 =>
+      'And five… eyes open when you\'re ready, calm, rested and ready.';
+
+  @override
+  String get scriptHomeFull53 =>
+      'Well done. Remember: you are at home in yourself. I\'m here with you.';
+
+  @override
+  String get scriptSchoolFull09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptSchoolFull08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptSchoolFull10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptSchoolFull11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptSchoolFull12 => 'Ten… letting go.';
+
+  @override
+  String get scriptSchoolFull13 => 'Nine… softer now.';
+
+  @override
+  String get scriptSchoolFull15 => 'Seven…';
+
+  @override
+  String get scriptSchoolFull16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptSchoolFull17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptSchoolFull18 => 'Four…';
+
+  @override
+  String get scriptSchoolFull19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptSchoolFull20 => 'Two… almost there.';
+
+  @override
+  String get scriptSchoolFull21 => 'And one.';
+
+  @override
+  String get scriptSchoolFull22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptSchoolFull29 =>
+      'Just breathe into it… and on the out-breath, imagine it loosening… one thread at a time.';
+
+  @override
+  String get scriptSchoolFull31 => 'Your whole body, calm and heavy and safe.';
+
+  @override
+  String get scriptSchoolFull35 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptSchoolFull40 =>
+      'Now, gently press the tip of your thumb against the tip of your index finger.';
+
+  @override
+  String get scriptSchoolFull43 =>
+      'you can press thumb and finger together, take one breath, and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptSchoolFull44 => 'Release your fingers now.';
+
+  @override
+  String get scriptSchoolFull46 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptSchoolFull47 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptSchoolFull49 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptSchoolFull50 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptSchoolFull01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptSchoolFull02 =>
+      'For the next ten minutes, the studying can wait outside the door. The notes, the assignments, the exams. They\'ll still be there when you come back, and you\'ll meet them with a clearer mind.';
+
+  @override
+  String get scriptSchoolFull03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptSchoolFull04 =>
+      'Now let your eyes find one small point in front of you… a spot on the wall, the edge of your desk… and simply rest your gaze there.';
+
+  @override
+  String get scriptSchoolFull05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptSchoolFull06 =>
+      'There\'s nothing you need to get right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptSchoolFull07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptSchoolFull14 =>
+      'Eight… the pages and the pressure moving further away.';
+
+  @override
+  String get scriptSchoolFull23 =>
+      'Studying often leaves tension in the same few places. Let\'s visit each one… and let it soften.';
+
+  @override
+  String get scriptSchoolFull24 =>
+      'Start with your forehead. The place that frowns over notes and screens. Imagine a warm hand resting there… smoothing it out…';
+
+  @override
+  String get scriptSchoolFull25 =>
+      'Now your jaw. Let your teeth part just a little. Let your tongue rest. So much concentration gets held in the jaw… and you can let it go now.';
+
+  @override
+  String get scriptSchoolFull26 =>
+      'Your neck and shoulders. Picture them hunched over books and laptops for hours… and now, with your next out-breath… they drop. Heavy. Warm.';
+
+  @override
+  String get scriptSchoolFull27 =>
+      'Down through your arms… your wrists, tired from writing… your hands. Let your fingers become loose and still.';
+
+  @override
+  String get scriptSchoolFull28 =>
+      'Now your chest and belly. Notice if there\'s a tightness there, a knot of worry about grades or what comes next. You don\'t need to fight it.';
+
+  @override
+  String get scriptSchoolFull30 =>
+      'Your lower back… your hips… your legs… all the way down to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptSchoolFull32 =>
+      'Now imagine you\'re standing in a quiet, snowy field, like the one in the app. Cool, fresh air. Soft snow falling all around you.';
+
+  @override
+  String get scriptSchoolFull33 =>
+      'Notice each snowflake falls in its own time. It never rushes… it simply lands, and makes room for the next.';
+
+  @override
+  String get scriptSchoolFull34 =>
+      'Your studying can be like that. One page. One topic. Then the next.';
+
+  @override
+  String get scriptSchoolFull36 => 'I am more than my grades.';
+
+  @override
+  String get scriptSchoolFull37 =>
+      'I have learned hard things before, and I can learn this too.';
+
+  @override
+  String get scriptSchoolFull38 =>
+      'A rested mind remembers more than a panicked one.';
+
+  @override
+  String get scriptSchoolFull39 => 'Small steps, taken every day, add up.';
+
+  @override
+  String get scriptSchoolFull41 =>
+      'Take one slow breath… and silently say to yourself: one page at a time.';
+
+  @override
+  String get scriptSchoolFull42 =>
+      'Feel this calm gathering at your fingertips. From now on, whenever the pressure rises at school… before an exam, in a busy library, when the to-do list feels endless…';
+
+  @override
+  String get scriptSchoolFull45 =>
+      'Before we come back, choose one small thing you\'ll study next. Just one. The first page, not the whole book.';
+
+  @override
+  String get scriptSchoolFull48 => 'One… noticing the chair beneath you.';
+
+  @override
+  String get scriptSchoolFull51 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptSchoolFull52 =>
+      'And five… eyes open when you\'re ready, calm, clear and ready.';
+
+  @override
+  String get scriptSchoolFull53 =>
+      'Well done. Remember: one page at a time. I\'m here with you.';
+
+  @override
+  String get scriptSocialFull09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptSocialFull08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptSocialFull10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptSocialFull11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptSocialFull12 => 'Ten… letting go.';
+
+  @override
+  String get scriptSocialFull13 => 'Nine… softer now.';
+
+  @override
+  String get scriptSocialFull15 => 'Seven…';
+
+  @override
+  String get scriptSocialFull16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptSocialFull17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptSocialFull18 => 'Four…';
+
+  @override
+  String get scriptSocialFull19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptSocialFull20 => 'Two… almost there.';
+
+  @override
+  String get scriptSocialFull21 => 'And one.';
+
+  @override
+  String get scriptSocialFull22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptSocialFull29 =>
+      'Just breathe into it… and on the out-breath, imagine it loosening… one thread at a time.';
+
+  @override
+  String get scriptSocialFull31 => 'Your whole body, calm and heavy and safe.';
+
+  @override
+  String get scriptSocialFull35 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptSocialFull40 =>
+      'Now, gently press the tip of your thumb against the tip of your index finger.';
+
+  @override
+  String get scriptSocialFull43 =>
+      'you can press thumb and finger together, take one breath, and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptSocialFull44 => 'Release your fingers now.';
+
+  @override
+  String get scriptSocialFull46 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptSocialFull47 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptSocialFull49 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptSocialFull50 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptSocialFull01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptSocialFull02 =>
+      'For the next ten minutes, what other people think can wait outside the door. The conversations, the messages, the replaying of what was said. You\'ll come back to them feeling steadier.';
+
+  @override
+  String get scriptSocialFull03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptSocialFull04 =>
+      'Now let your eyes find one small point in front of you… a spot on the wall, a patch of light… and simply rest your gaze there.';
+
+  @override
+  String get scriptSocialFull05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptSocialFull06 =>
+      'There\'s nothing you need to say or do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptSocialFull07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptSocialFull14 =>
+      'Eight… other people\'s voices moving further away.';
+
+  @override
+  String get scriptSocialFull23 =>
+      'Social worry often hides in the same few places in the body. Let\'s visit each one… and let it soften.';
+
+  @override
+  String get scriptSocialFull24 =>
+      'Start with your forehead. The place that tightens when you wonder what someone thought. Imagine a warm hand resting there… smoothing it out…';
+
+  @override
+  String get scriptSocialFull25 =>
+      'Now your jaw. Let your teeth part just a little. Let your tongue rest. So many unsaid words get held in the jaw… and you can let them go now.';
+
+  @override
+  String get scriptSocialFull26 =>
+      'Your neck and shoulders. Picture them braced for a room full of people… and now, with your next out-breath… they drop. Heavy. Warm.';
+
+  @override
+  String get scriptSocialFull27 =>
+      'Down through your arms… your hands, perhaps restless, unsure where to rest… Let your fingers become loose and still.';
+
+  @override
+  String get scriptSocialFull28 =>
+      'Now your chest and belly. Notice if there\'s a flutter there, a nervous knot before seeing people. You don\'t need to fight it.';
+
+  @override
+  String get scriptSocialFull30 =>
+      'Your lower back… your hips… your legs… all the way down to your feet on the floor. Grounded. Supported. Nothing to prove right now.';
+
+  @override
+  String get scriptSocialFull32 =>
+      'Now imagine you\'re lying in a wide, open meadow, like the one in the app. Soft grass beneath you. A gentle breeze moving through.';
+
+  @override
+  String get scriptSocialFull33 =>
+      'Notice the grass bends with the wind… and never breaks. It doesn\'t hold on. It sways, and settles again.';
+
+  @override
+  String get scriptSocialFull34 =>
+      'You can be like that with people. Let the moment move through you… and come back to yourself.';
+
+  @override
+  String get scriptSocialFull36 => 'I am enough as I am.';
+
+  @override
+  String get scriptSocialFull37 =>
+      'Most people are thinking about themselves, not judging me.';
+
+  @override
+  String get scriptSocialFull38 => 'I am allowed to take up space.';
+
+  @override
+  String get scriptSocialFull39 => 'One kind conversation is enough.';
+
+  @override
+  String get scriptSocialFull41 =>
+      'Take one slow breath… and silently say to yourself: I belong here as I am.';
+
+  @override
+  String get scriptSocialFull42 =>
+      'Feel this calm gathering at your fingertips. From now on, whenever worry rises around people… before a party, in a group chat, as you walk into a room…';
+
+  @override
+  String get scriptSocialFull45 =>
+      'Before we come back, choose one small, friendly thing you\'ll do today. Just one. A smile, a message to a friend, a simple hello.';
+
+  @override
+  String get scriptSocialFull48 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptSocialFull51 =>
+      'Four… energy flowing back, calm and confident.';
+
+  @override
+  String get scriptSocialFull52 =>
+      'And five… eyes open when you\'re ready, calm, steady and ready.';
+
+  @override
+  String get scriptSocialFull53 =>
+      'Well done. Remember: you belong here as you are. I\'m here with you.';
+
+  @override
+  String get afterAnchorHome =>
+      'Thumb + finger, one breath, I am at home in myself.';
+
+  @override
+  String get afterAnchorSchool =>
+      'Thumb + finger, one breath, one page at a time.';
+
+  @override
+  String get afterAnchorSocial =>
+      'Thumb + finger, one breath, I belong here as I am.';
+
+  @override
+  String get meditateChildrenTitle => 'Patient Parent';
+
+  @override
+  String get afterAnchorChildren =>
+      'Three slow breaths · “Steady like the lighthouse.”';
+
+  @override
+  String get scriptChildren01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptChildren02 =>
+      'Caring for children is full of love… and full of noise, needs and no breaks. For these ten minutes, someone is looking after you.';
+
+  @override
+  String get scriptChildren03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptChildren04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptChildren05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptChildren06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptChildren07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptChildren08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptChildren09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptChildren10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptChildren11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptChildren12 => 'Ten… letting go.';
+
+  @override
+  String get scriptChildren13 => 'Nine… softer now.';
+
+  @override
+  String get scriptChildren14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptChildren15 => 'Seven…';
+
+  @override
+  String get scriptChildren16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptChildren17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptChildren18 => 'Four…';
+
+  @override
+  String get scriptChildren19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptChildren20 => 'Two… almost there.';
+
+  @override
+  String get scriptChildren21 => 'And one.';
+
+  @override
+  String get scriptChildren22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptChildren23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptChildren24 =>
+      'Start with your shoulders. They carry little ones, bags, worries. Let them drop now… heavy and warm.';
+
+  @override
+  String get scriptChildren25 =>
+      'Your jaw… let your teeth part. Your hands… open them, palms up, as if setting everything down. Nothing needs holding right now.';
+
+  @override
+  String get scriptChildren26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptChildren27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptChildren28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptChildren29 =>
+      'Imagine a lighthouse on a rocky point. All around it, the waves splash, play, crash and laugh.';
+
+  @override
+  String get scriptChildren30 =>
+      'The lighthouse doesn\'t chase the waves or shout at them. It simply stands, steady and warm, its light turning slowly. That steadiness is what keeps every boat safe.';
+
+  @override
+  String get scriptChildren31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptChildren32 =>
+      'You don\'t have to be a perfect parent to be a good one.';
+
+  @override
+  String get scriptChildren33 => 'Your calm teaches more than your words.';
+
+  @override
+  String get scriptChildren34 => 'It\'s okay to pause before you respond.';
+
+  @override
+  String get scriptChildren35 => 'Now, gently take three slow breaths.';
+
+  @override
+  String get scriptChildren36 =>
+      'Take one slow breath… and silently say to yourself: Steady like the lighthouse.';
+
+  @override
+  String get scriptChildren37 =>
+      'Feel this calm gathering here. From now on, when the noise rises, when tears start, or when you feel your patience slipping, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptChildren38 => 'Let it go now.';
+
+  @override
+  String get scriptChildren39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptChildren40 =>
+      'Before we come back… Choose one small moment today to simply be with your child, without rushing.';
+
+  @override
+  String get scriptChildren41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptChildren42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptChildren43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptChildren44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptChildren45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptChildren46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptChildren47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptChildren48 =>
+      'Well done. Remember: Steady like the lighthouse. I\'m here with you.';
+
+  @override
+  String get meditateFamilyTitle => 'Peace with Family';
+
+  @override
+  String get afterAnchorFamily => 'Palms together · “Kind, and clear.”';
+
+  @override
+  String get scriptFamily01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptFamily02 =>
+      'Family knows exactly where our buttons are. For these ten minutes, you can step back from old roles and simply be yourself.';
+
+  @override
+  String get scriptFamily03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptFamily04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptFamily05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptFamily06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptFamily07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptFamily08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptFamily09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptFamily10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptFamily11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptFamily12 => 'Ten… letting go.';
+
+  @override
+  String get scriptFamily13 => 'Nine… softer now.';
+
+  @override
+  String get scriptFamily14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptFamily15 => 'Seven…';
+
+  @override
+  String get scriptFamily16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptFamily17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptFamily18 => 'Four…';
+
+  @override
+  String get scriptFamily19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptFamily20 => 'Two… almost there.';
+
+  @override
+  String get scriptFamily21 => 'And one.';
+
+  @override
+  String get scriptFamily22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptFamily23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptFamily24 =>
+      'Bring your attention to your stomach. This is where family tension often lives… a knot, a flutter, a heaviness. Breathe into it softly.';
+
+  @override
+  String get scriptFamily25 =>
+      'Now your lower back. Imagine warmth spreading across it like sunlight on stone. Let it rest from the weight it\'s been holding.';
+
+  @override
+  String get scriptFamily26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptFamily27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptFamily28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptFamily29 =>
+      'Picture a beautiful garden with a low green hedge around it. The gate is open. People can visit, talk and laugh with you.';
+
+  @override
+  String get scriptFamily30 =>
+      'And the hedge is still there. Quiet. Protecting what grows inside. You decide when the gate opens… and when it closes.';
+
+  @override
+  String get scriptFamily31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptFamily32 =>
+      'You can love them and still set kind boundaries.';
+
+  @override
+  String get scriptFamily33 => 'Old patterns don\'t have to repeat today.';
+
+  @override
+  String get scriptFamily34 => 'Your peace matters too.';
+
+  @override
+  String get scriptFamily35 => 'Now, gently press your palms together.';
+
+  @override
+  String get scriptFamily36 =>
+      'Take one slow breath… and silently say to yourself: Kind, and clear.';
+
+  @override
+  String get scriptFamily37 =>
+      'Feel this calm gathering here. From now on, before a family call, a visit, or a conversation you\'ve been dreading, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptFamily38 => 'Let it go now.';
+
+  @override
+  String get scriptFamily39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptFamily40 =>
+      'Before we come back… Think of one boundary you\'d like to keep this week… and how you\'d say it kindly.';
+
+  @override
+  String get scriptFamily41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptFamily42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptFamily43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptFamily44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptFamily45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptFamily46 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptFamily47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptFamily48 =>
+      'Well done. Remember: Kind, and clear. I\'m here with you.';
+
+  @override
+  String get meditateChoresTitle => 'Mental Load Release';
+
+  @override
+  String get afterAnchorChores =>
+      'Roll your shoulders back · “One thing, then rest.”';
+
+  @override
+  String get scriptChores01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptChores02 =>
+      'You carry so much… the lists, the reminders, the things only you seem to notice. For these ten minutes, you can put it all down.';
+
+  @override
+  String get scriptChores03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptChores04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptChores05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptChores06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptChores07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptChores08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptChores09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptChores10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptChores11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptChores12 => 'Ten… letting go.';
+
+  @override
+  String get scriptChores13 => 'Nine… softer now.';
+
+  @override
+  String get scriptChores14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptChores15 => 'Seven…';
+
+  @override
+  String get scriptChores16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptChores17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptChores18 => 'Four…';
+
+  @override
+  String get scriptChores19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptChores20 => 'Two… almost there.';
+
+  @override
+  String get scriptChores21 => 'And one.';
+
+  @override
+  String get scriptChores22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptChores23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptChores24 =>
+      'Your shoulders and upper back. Imagine every task you\'re carrying as a weight resting there. Now, breath by breath, feel them become lighter.';
+
+  @override
+  String get scriptChores25 =>
+      'Let your arms rest. Your fingers uncurl. You are not holding a phone, a list, a cloth or a bag. Just air.';
+
+  @override
+  String get scriptChores26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptChores27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptChores28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptChores29 =>
+      'Imagine walking along warm sand, carrying heavy bags in both hands.';
+
+  @override
+  String get scriptChores30 =>
+      'One by one, you set them down. The laundry. The dishes. The appointments. The things you\'re trying to remember.';
+
+  @override
+  String get scriptChores31 =>
+      'With each bag you set down, your steps become lighter. The bags will wait. They always do. Right now… you just walk.';
+
+  @override
+  String get scriptChores32 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptChores33 =>
+      'The list can wait. You are allowed to rest first.';
+
+  @override
+  String get scriptChores34 => 'Asking for help is sharing, not failing.';
+
+  @override
+  String get scriptChores35 => 'Done is better than perfect.';
+
+  @override
+  String get scriptChores36 => 'Now, gently roll your shoulders slowly back.';
+
+  @override
+  String get scriptChores37 =>
+      'Take one slow breath… and silently say to yourself: One thing, then rest.';
+
+  @override
+  String get scriptChores38 =>
+      'Feel this calm gathering here. From now on, when the list feels endless, or you notice yourself rushing from task to task, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptChores39 => 'Let it go now.';
+
+  @override
+  String get scriptChores40 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptChores41 =>
+      'Before we come back… Choose one task you\'ll let go of, or ask for help with, today.';
+
+  @override
+  String get scriptChores42 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptChores43 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptChores44 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptChores45 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptChores46 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptChores47 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptChores48 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptChores49 =>
+      'Well done. Remember: One thing, then rest. I\'m here with you.';
+
+  @override
+  String get meditateMoneyTitle => 'Steady with Money';
+
+  @override
+  String get afterAnchorMoney =>
+      'Feet pressed into the floor · “Rooted and steady.”';
+
+  @override
+  String get scriptMoney01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptMoney02 =>
+      'Money worries can be loud, especially at night. For these ten minutes, the numbers can wait. You are safe right here.';
+
+  @override
+  String get scriptMoney03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptMoney04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptMoney05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptMoney06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptMoney07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptMoney08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptMoney09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptMoney10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptMoney11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptMoney12 => 'Ten… letting go.';
+
+  @override
+  String get scriptMoney13 => 'Nine… softer now.';
+
+  @override
+  String get scriptMoney14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptMoney15 => 'Seven…';
+
+  @override
+  String get scriptMoney16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptMoney17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptMoney18 => 'Four…';
+
+  @override
+  String get scriptMoney19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptMoney20 => 'Two… almost there.';
+
+  @override
+  String get scriptMoney21 => 'And one.';
+
+  @override
+  String get scriptMoney22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptMoney23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptMoney24 =>
+      'Bring your attention to your belly. Money stress often sits here, tight and anxious. Let it rise and fall with your breath. Soft. Slow.';
+
+  @override
+  String get scriptMoney25 =>
+      'Now your legs and feet. Feel how solid the floor is beneath you. It holds you completely. You don\'t have to hold yourself up.';
+
+  @override
+  String get scriptMoney26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptMoney27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptMoney28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptMoney29 =>
+      'Imagine you are a tree on a hill above the sea. The wind blows… sometimes strongly.';
+
+  @override
+  String get scriptMoney30 =>
+      'But beneath you, your roots reach deep into the earth, wider than your branches. Whatever the weather, you are held. You are rooted.';
+
+  @override
+  String get scriptMoney31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptMoney32 =>
+      'One clear step is worth more than a hundred worries.';
+
+  @override
+  String get scriptMoney33 => 'You can face this calmly, one number at a time.';
+
+  @override
+  String get scriptMoney34 => 'Your value is not your bank balance.';
+
+  @override
+  String get scriptMoney35 =>
+      'Now, gently press your feet firmly into the floor.';
+
+  @override
+  String get scriptMoney36 =>
+      'Take one slow breath… and silently say to yourself: Rooted and steady.';
+
+  @override
+  String get scriptMoney37 =>
+      'Feel this calm gathering here. From now on, when you open a bill, check your balance, or start to worry at night, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptMoney38 => 'Let it go now.';
+
+  @override
+  String get scriptMoney39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptMoney40 =>
+      'Before we come back… Think of one small, clear step you could take with money this week. Only one.';
+
+  @override
+  String get scriptMoney41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptMoney42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptMoney43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptMoney44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptMoney45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptMoney46 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptMoney47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptMoney48 =>
+      'Well done. Remember: Rooted and steady. I\'m here with you.';
+
+  @override
+  String get meditateHomeResetTitle => 'Home Reset';
+
+  @override
+  String get afterAnchorHomeReset =>
+      'One deep sigh · “I\'m at home in myself.”';
+
+  @override
+  String get scriptHomeReset01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptHomeReset02 =>
+      'Sometimes home doesn\'t feel like home… too loud, too busy, too much. For these ten minutes, let\'s make a calm space inside you.';
+
+  @override
+  String get scriptHomeReset03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptHomeReset04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptHomeReset05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptHomeReset06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptHomeReset07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptHomeReset08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptHomeReset09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptHomeReset10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptHomeReset11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptHomeReset12 => 'Ten… letting go.';
+
+  @override
+  String get scriptHomeReset13 => 'Nine… softer now.';
+
+  @override
+  String get scriptHomeReset14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptHomeReset15 => 'Seven…';
+
+  @override
+  String get scriptHomeReset16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptHomeReset17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptHomeReset18 => 'Four…';
+
+  @override
+  String get scriptHomeReset19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptHomeReset20 => 'Two… almost there.';
+
+  @override
+  String get scriptHomeReset21 => 'And one.';
+
+  @override
+  String get scriptHomeReset22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptHomeReset23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptHomeReset24 =>
+      'Imagine warm water pouring slowly over you, from the top of your head down to your feet. Wherever it flows, tension melts.';
+
+  @override
+  String get scriptHomeReset25 =>
+      'Notice any place that still feels tight. Breathe into it… and let it join the rest of your body in rest.';
+
+  @override
+  String get scriptHomeReset26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptHomeReset27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptHomeReset28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptHomeReset29 =>
+      'Imagine walking through your home and opening every window, one by one.';
+
+  @override
+  String get scriptHomeReset30 =>
+      'A fresh sea breeze moves through every room… clearing the air, carrying away the noise and the heaviness. Everything feels lighter. Cleaner. Calmer.';
+
+  @override
+  String get scriptHomeReset31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptHomeReset32 =>
+      'Home can hold a lot. Let it wait outside this moment.';
+
+  @override
+  String get scriptHomeReset33 =>
+      'You can create a calm corner, even in a busy home.';
+
+  @override
+  String get scriptHomeReset34 => 'Rest is allowed here.';
+
+  @override
+  String get scriptHomeReset35 => 'Now, gently let out one long, deep sigh.';
+
+  @override
+  String get scriptHomeReset36 =>
+      'Take one slow breath… and silently say to yourself: I\'m at home in myself.';
+
+  @override
+  String get scriptHomeReset37 =>
+      'Feel this calm gathering here. From now on, when the house feels chaotic, or you need a moment to yourself, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptHomeReset38 => 'Let it go now.';
+
+  @override
+  String get scriptHomeReset39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptHomeReset40 =>
+      'Before we come back… Choose one small corner at home you can make calm today.';
+
+  @override
+  String get scriptHomeReset41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptHomeReset42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptHomeReset43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptHomeReset44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptHomeReset45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptHomeReset46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptHomeReset47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptHomeReset48 =>
+      'Well done. Remember: I\'m at home in myself. I\'m here with you.';
+
+  @override
+  String get meditateManagerTitle => 'Confident with Your Manager';
+
+  @override
+  String get afterAnchorManager =>
+      'Sit tall, chin level · “Grounded and clear.”';
+
+  @override
+  String get scriptManager01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptManager02 =>
+      'Meetings with a manager can make us feel small, even when we\'re doing well. For these ten minutes, you can stand tall inside yourself again.';
+
+  @override
+  String get scriptManager03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptManager04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptManager05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptManager06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptManager07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptManager08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptManager09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptManager10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptManager11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptManager12 => 'Ten… letting go.';
+
+  @override
+  String get scriptManager13 => 'Nine… softer now.';
+
+  @override
+  String get scriptManager14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptManager15 => 'Seven…';
+
+  @override
+  String get scriptManager16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptManager17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptManager18 => 'Four…';
+
+  @override
+  String get scriptManager19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptManager20 => 'Two… almost there.';
+
+  @override
+  String get scriptManager21 => 'And one.';
+
+  @override
+  String get scriptManager22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptManager23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptManager24 =>
+      'Bring your attention to your throat. Let it open and soften… ready for a calm, clear voice.';
+
+  @override
+  String get scriptManager25 =>
+      'Now your spine. Feel it lengthen gently, from your lower back to the top of your neck. Upright, but relaxed.';
+
+  @override
+  String get scriptManager26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptManager27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptManager28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptManager29 =>
+      'Picture a tall tree on a windy cliff. Strong gusts come, and the tree bends, its leaves rustling.';
+
+  @override
+  String get scriptManager30 =>
+      'But it doesn\'t break. It bends… and it returns to standing. Every storm makes its roots a little stronger. That tree is you.';
+
+  @override
+  String get scriptManager31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptManager32 =>
+      'Feedback is information, not a judgement of you.';
+
+  @override
+  String get scriptManager33 => 'You can speak clearly and calmly.';
+
+  @override
+  String get scriptManager34 => 'You\'ve earned your place here.';
+
+  @override
+  String get scriptManager35 =>
+      'Now, gently sit tall and let your chin rest level.';
+
+  @override
+  String get scriptManager36 =>
+      'Take one slow breath… and silently say to yourself: Grounded and clear.';
+
+  @override
+  String get scriptManager37 =>
+      'Feel this calm gathering here. From now on, before a one-to-one, a review, or when you\'re asked a difficult question, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptManager38 => 'Let it go now.';
+
+  @override
+  String get scriptManager39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptManager40 =>
+      'Before we come back… Think of one thing you\'d like to say clearly at your next conversation with your manager.';
+
+  @override
+  String get scriptManager41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptManager42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptManager43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptManager44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptManager45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptManager46 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptManager47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptManager48 =>
+      'Well done. Remember: Grounded and clear. I\'m here with you.';
+
+  @override
+  String get meditateColleaguesTitle => 'Ease with Colleagues';
+
+  @override
+  String get afterAnchorColleagues => 'Slow breath out · “Let it flow past.”';
+
+  @override
+  String get scriptColleagues01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptColleagues02 =>
+      'We don\'t choose the people we work with. For these ten minutes, you don\'t have to manage anyone else\'s mood. Just your own breath.';
+
+  @override
+  String get scriptColleagues03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptColleagues04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptColleagues05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptColleagues06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptColleagues07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptColleagues08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptColleagues09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptColleagues10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptColleagues11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptColleagues12 => 'Ten… letting go.';
+
+  @override
+  String get scriptColleagues13 => 'Nine… softer now.';
+
+  @override
+  String get scriptColleagues14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptColleagues15 => 'Seven…';
+
+  @override
+  String get scriptColleagues16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptColleagues17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptColleagues18 => 'Four…';
+
+  @override
+  String get scriptColleagues19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptColleagues20 => 'Two… almost there.';
+
+  @override
+  String get scriptColleagues21 => 'And one.';
+
+  @override
+  String get scriptColleagues22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptColleagues23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptColleagues24 =>
+      'Bring your attention to your jaw. Tension with others often gets clenched here. Let it hang loose.';
+
+  @override
+  String get scriptColleagues25 =>
+      'Now your stomach. If there\'s a knot of frustration, breathe into it gently. Let it soften like warm wax.';
+
+  @override
+  String get scriptColleagues26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptColleagues27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptColleagues28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptColleagues29 =>
+      'Imagine a clear stream flowing down a hillside. In its path are stones… some small, some large.';
+
+  @override
+  String get scriptColleagues30 =>
+      'The water doesn\'t fight the stones. It flows around them, easily, and keeps moving. It stays clear. You can flow like that.';
+
+  @override
+  String get scriptColleagues31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptColleagues32 =>
+      'You can only control your part. That is enough.';
+
+  @override
+  String get scriptColleagues33 =>
+      'Other people\'s moods are not your responsibility.';
+
+  @override
+  String get scriptColleagues34 => 'You can be kind and keep your boundaries.';
+
+  @override
+  String get scriptColleagues35 =>
+      'Now, gently breathe out slowly through your mouth.';
+
+  @override
+  String get scriptColleagues36 =>
+      'Take one slow breath… and silently say to yourself: Let it flow past.';
+
+  @override
+  String get scriptColleagues37 =>
+      'Feel this calm gathering here. From now on, when a colleague\'s comment stings, or the office mood turns tense, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptColleagues38 => 'Let it go now.';
+
+  @override
+  String get scriptColleagues39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptColleagues40 =>
+      'Before we come back… Choose one interaction today you\'ll meet with calm instead of reaction.';
+
+  @override
+  String get scriptColleagues41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptColleagues42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptColleagues43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptColleagues44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptColleagues45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptColleagues46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptColleagues47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptColleagues48 =>
+      'Well done. Remember: Let it flow past. I\'m here with you.';
+
+  @override
+  String get meditateBurnoutTitle => 'Burnout Recovery';
+
+  @override
+  String get afterAnchorBurnout => 'Hand on belly · “Refill before I give.”';
+
+  @override
+  String get scriptBurnout01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptBurnout02 =>
+      'If you\'re running on empty, this is a place to refill. For these ten minutes, you don\'t need to give anything to anyone.';
+
+  @override
+  String get scriptBurnout03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptBurnout04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptBurnout05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptBurnout06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptBurnout07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptBurnout08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptBurnout09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptBurnout10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptBurnout11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptBurnout12 => 'Ten… letting go.';
+
+  @override
+  String get scriptBurnout13 => 'Nine… softer now.';
+
+  @override
+  String get scriptBurnout14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptBurnout15 => 'Seven…';
+
+  @override
+  String get scriptBurnout16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptBurnout17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptBurnout18 => 'Four…';
+
+  @override
+  String get scriptBurnout19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptBurnout20 => 'Two… almost there.';
+
+  @override
+  String get scriptBurnout21 => 'And one.';
+
+  @override
+  String get scriptBurnout22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptBurnout23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptBurnout24 =>
+      'Let your whole body become heavy. Your head heavy on your neck. Your arms heavy at your sides. Your legs heavy on the floor.';
+
+  @override
+  String get scriptBurnout25 =>
+      'Notice the tiredness without judging it. It\'s a signal, not a failure. Breathe into the tired places… and let them rest completely.';
+
+  @override
+  String get scriptBurnout26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptBurnout27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptBurnout28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptBurnout29 =>
+      'Imagine floating in warm, shallow water near the shore. The sea holds you up. You don\'t need to swim.';
+
+  @override
+  String get scriptBurnout30 =>
+      'Sunlight warms your skin, and with every breath you feel it pouring into you… slowly refilling you, like a battery charging, one percent at a time.';
+
+  @override
+  String get scriptBurnout31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptBurnout32 => 'Rest is not a reward. It is a requirement.';
+
+  @override
+  String get scriptBurnout33 => 'You are more than what you produce.';
+
+  @override
+  String get scriptBurnout34 => 'Small recovery counts.';
+
+  @override
+  String get scriptBurnout35 => 'Now, gently rest one hand on your belly.';
+
+  @override
+  String get scriptBurnout36 =>
+      'Take one slow breath… and silently say to yourself: Refill before I give.';
+
+  @override
+  String get scriptBurnout37 =>
+      'Feel this calm gathering here. From now on, when you feel drained, or before saying yes to one more thing, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptBurnout38 => 'Let it go now.';
+
+  @override
+  String get scriptBurnout39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptBurnout40 =>
+      'Before we come back… Choose one small way you\'ll rest or recharge today.';
+
+  @override
+  String get scriptBurnout41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptBurnout42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptBurnout43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptBurnout44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptBurnout45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptBurnout46 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptBurnout47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptBurnout48 =>
+      'Well done. Remember: Refill before I give. I\'m here with you.';
+
+  @override
+  String get meditateJobSecurityTitle => 'Steady Ground';
+
+  @override
+  String get afterAnchorJobSecurity => 'Press your feet down · “Solid ground.”';
+
+  @override
+  String get scriptJobSecurity01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptJobSecurity02 =>
+      'Uncertainty about work can shake the ground under our feet. For these ten minutes, let\'s find solid ground again.';
+
+  @override
+  String get scriptJobSecurity03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptJobSecurity04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptJobSecurity05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptJobSecurity06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptJobSecurity07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptJobSecurity08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptJobSecurity09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptJobSecurity10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptJobSecurity11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptJobSecurity12 => 'Ten… letting go.';
+
+  @override
+  String get scriptJobSecurity13 => 'Nine… softer now.';
+
+  @override
+  String get scriptJobSecurity14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptJobSecurity15 => 'Seven…';
+
+  @override
+  String get scriptJobSecurity16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptJobSecurity17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptJobSecurity18 => 'Four…';
+
+  @override
+  String get scriptJobSecurity19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptJobSecurity20 => 'Two… almost there.';
+
+  @override
+  String get scriptJobSecurity21 => 'And one.';
+
+  @override
+  String get scriptJobSecurity22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptJobSecurity23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptJobSecurity24 =>
+      'Bring your attention to your legs. Feel how strong they are… how they\'ve carried you through every challenge so far.';
+
+  @override
+  String get scriptJobSecurity25 =>
+      'Now your feet. Press them gently into the floor, and feel it press back. Solid. Steady. Here.';
+
+  @override
+  String get scriptJobSecurity26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptJobSecurity27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptJobSecurity28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptJobSecurity29 =>
+      'Picture yourself standing on a wide, solid rock by the sea. The tide comes in… the tide goes out.';
+
+  @override
+  String get scriptJobSecurity30 =>
+      'The water moves all around you, but the rock doesn\'t move. You can watch the changes without being swept away.';
+
+  @override
+  String get scriptJobSecurity31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptJobSecurity32 =>
+      'You have skills and options, even when things feel uncertain.';
+
+  @override
+  String get scriptJobSecurity33 => 'You\'ve adapted before. You can again.';
+
+  @override
+  String get scriptJobSecurity34 => 'Today, you only need to handle today.';
+
+  @override
+  String get scriptJobSecurity35 =>
+      'Now, gently press your feet down into the floor.';
+
+  @override
+  String get scriptJobSecurity36 =>
+      'Take one slow breath… and silently say to yourself: Solid ground.';
+
+  @override
+  String get scriptJobSecurity37 =>
+      'Feel this calm gathering here. From now on, when you hear worrying news, or your mind jumps to the worst case, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptJobSecurity38 => 'Let it go now.';
+
+  @override
+  String get scriptJobSecurity39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptJobSecurity40 =>
+      'Before we come back… Think of one skill or strength you have that stays with you, wherever you work.';
+
+  @override
+  String get scriptJobSecurity41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptJobSecurity42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptJobSecurity43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptJobSecurity44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptJobSecurity45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptJobSecurity46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptJobSecurity47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptJobSecurity48 =>
+      'Well done. Remember: Solid ground. I\'m here with you.';
+
+  @override
+  String get meditateWorkResetTitle => 'Work Reset';
+
+  @override
+  String get afterAnchorWorkReset =>
+      'Close the laptop, one breath · “Done for now.”';
+
+  @override
+  String get scriptWorkReset01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptWorkReset02 =>
+      'Some workdays are just hard. For these ten minutes, the day is over. You can put it down.';
+
+  @override
+  String get scriptWorkReset03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptWorkReset04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptWorkReset05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptWorkReset06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptWorkReset07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptWorkReset08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptWorkReset09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptWorkReset10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptWorkReset11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptWorkReset12 => 'Ten… letting go.';
+
+  @override
+  String get scriptWorkReset13 => 'Nine… softer now.';
+
+  @override
+  String get scriptWorkReset14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptWorkReset15 => 'Seven…';
+
+  @override
+  String get scriptWorkReset16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptWorkReset17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptWorkReset18 => 'Four…';
+
+  @override
+  String get scriptWorkReset19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptWorkReset20 => 'Two… almost there.';
+
+  @override
+  String get scriptWorkReset21 => 'And one.';
+
+  @override
+  String get scriptWorkReset22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptWorkReset23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptWorkReset24 =>
+      'Start with your eyes, tired from screens… then your neck and shoulders. Let each one relax as your attention passes over it.';
+
+  @override
+  String get scriptWorkReset25 =>
+      'Notice the posture you hold at your desk… and let your body unfold from it. Loose. Free.';
+
+  @override
+  String get scriptWorkReset26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptWorkReset27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptWorkReset28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptWorkReset29 =>
+      'Imagine closing the office door behind you and stepping straight onto an evening beach.';
+
+  @override
+  String get scriptWorkReset30 =>
+      'The sky is soft orange. The air is cool. With every step on the sand, the workday falls further behind you.';
+
+  @override
+  String get scriptWorkReset31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptWorkReset32 => 'One task at a time is enough.';
+
+  @override
+  String get scriptWorkReset33 => 'A hard day is not a hard life.';
+
+  @override
+  String get scriptWorkReset34 => 'You can leave work at work.';
+
+  @override
+  String get scriptWorkReset35 =>
+      'Now, gently close your laptop or phone and take one breath.';
+
+  @override
+  String get scriptWorkReset36 =>
+      'Take one slow breath… and silently say to yourself: Done for now.';
+
+  @override
+  String get scriptWorkReset37 =>
+      'Feel this calm gathering here. From now on, at the end of the workday, or when you need a reset between tasks, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptWorkReset38 => 'Let it go now.';
+
+  @override
+  String get scriptWorkReset39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptWorkReset40 =>
+      'Before we come back… Choose one thing you\'ll do tonight that has nothing to do with work.';
+
+  @override
+  String get scriptWorkReset41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptWorkReset42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptWorkReset43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptWorkReset44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptWorkReset45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptWorkReset46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptWorkReset47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptWorkReset48 =>
+      'Well done. Remember: Done for now. I\'m here with you.';
+
+  @override
+  String get meditateHomeworkTitle => 'Homework Focus';
+
+  @override
+  String get afterAnchorHomework => 'A five-minute timer · “Just begin.”';
+
+  @override
+  String get scriptHomework01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptHomework02 =>
+      'Sometimes the hardest part of homework is starting. For these ten minutes, you don\'t have to start anything. Just rest.';
+
+  @override
+  String get scriptHomework03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptHomework04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptHomework05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptHomework06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptHomework07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptHomework08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptHomework09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptHomework10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptHomework11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptHomework12 => 'Ten… letting go.';
+
+  @override
+  String get scriptHomework13 => 'Nine… softer now.';
+
+  @override
+  String get scriptHomework14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptHomework15 => 'Seven…';
+
+  @override
+  String get scriptHomework16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptHomework17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptHomework18 => 'Four…';
+
+  @override
+  String get scriptHomework19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptHomework20 => 'Two… almost there.';
+
+  @override
+  String get scriptHomework21 => 'And one.';
+
+  @override
+  String get scriptHomework22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptHomework23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptHomework24 =>
+      'Bring your attention to your eyes and forehead. Let them soften after hours of screens and pages.';
+
+  @override
+  String get scriptHomework25 =>
+      'Now your neck. Let your head feel heavy and supported, as if resting on a soft pillow.';
+
+  @override
+  String get scriptHomework26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptHomework27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptHomework28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptHomework29 =>
+      'Imagine a gentle sand dune with soft steps carved into it. You don\'t look at the top. You just take one step.';
+
+  @override
+  String get scriptHomework30 =>
+      'Then another. And before you know it, you\'ve climbed higher than you expected. Every step was small.';
+
+  @override
+  String get scriptHomework31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptHomework32 =>
+      'Start small. Five minutes is a real beginning.';
+
+  @override
+  String get scriptHomework33 => 'Focus grows once you begin.';
+
+  @override
+  String get scriptHomework34 => 'You don\'t have to finish it all now.';
+
+  @override
+  String get scriptHomework35 =>
+      'Now, gently imagine setting a five-minute timer.';
+
+  @override
+  String get scriptHomework36 =>
+      'Take one slow breath… and silently say to yourself: Just begin.';
+
+  @override
+  String get scriptHomework37 =>
+      'Feel this calm gathering here. From now on, when you\'re putting off work, or the pile feels too big, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptHomework38 => 'Let it go now.';
+
+  @override
+  String get scriptHomework39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptHomework40 =>
+      'Before we come back… Choose one task you\'ll work on for just five minutes after this.';
+
+  @override
+  String get scriptHomework41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptHomework42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptHomework43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptHomework44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptHomework45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptHomework46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptHomework47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptHomework48 =>
+      'Well done. Remember: Just begin. I\'m here with you.';
+
+  @override
+  String get meditateGradesTitle => 'Beyond the Grade';
+
+  @override
+  String get afterAnchorGrades => 'Hand on chest · “I am more than a score.”';
+
+  @override
+  String get scriptGrades01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptGrades02 =>
+      'Grades can feel like they decide everything. For these ten minutes, you are more than any number.';
+
+  @override
+  String get scriptGrades03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptGrades04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptGrades05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptGrades06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptGrades07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptGrades08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptGrades09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptGrades10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptGrades11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptGrades12 => 'Ten… letting go.';
+
+  @override
+  String get scriptGrades13 => 'Nine… softer now.';
+
+  @override
+  String get scriptGrades14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptGrades15 => 'Seven…';
+
+  @override
+  String get scriptGrades16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptGrades17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptGrades18 => 'Four…';
+
+  @override
+  String get scriptGrades19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptGrades20 => 'Two… almost there.';
+
+  @override
+  String get scriptGrades21 => 'And one.';
+
+  @override
+  String get scriptGrades22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptGrades23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptGrades24 =>
+      'Bring your attention to your chest. Pressure often sits here. Breathe into it gently… and let it widen.';
+
+  @override
+  String get scriptGrades25 =>
+      'Now your shoulders, carrying expectations from yourself and from others. Let them drop. You don\'t have to carry those right now.';
+
+  @override
+  String get scriptGrades26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptGrades27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptGrades28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptGrades29 =>
+      'Imagine a colorful kite flying high above the beach. The wind lifts it and dips it… but it keeps flying.';
+
+  @override
+  String get scriptGrades30 =>
+      'Its string is held gently in your hand. Not too tight. Just enough. You can hold your goals the same way.';
+
+  @override
+  String get scriptGrades31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptGrades32 =>
+      'A grade is information, not a verdict on who you are.';
+
+  @override
+  String get scriptGrades33 => 'Effort is growth, whatever the result.';
+
+  @override
+  String get scriptGrades34 => 'You are allowed to learn at your own pace.';
+
+  @override
+  String get scriptGrades35 => 'Now, gently place a hand on your chest.';
+
+  @override
+  String get scriptGrades36 =>
+      'Take one slow breath… and silently say to yourself: I am more than a score.';
+
+  @override
+  String get scriptGrades37 =>
+      'Feel this calm gathering here. From now on, when you get a result back, or start comparing yourself to others, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptGrades38 => 'Let it go now.';
+
+  @override
+  String get scriptGrades39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptGrades40 =>
+      'Before we come back… Think of one thing you learned this week, no matter the grade.';
+
+  @override
+  String get scriptGrades41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptGrades42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptGrades43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptGrades44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptGrades45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptGrades46 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptGrades47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptGrades48 =>
+      'Well done. Remember: I am more than a score. I\'m here with you.';
+
+  @override
+  String get meditateTeachersTitle => 'Speak Up Calmly';
+
+  @override
+  String get afterAnchorTeachers => 'Relax your tongue · “My voice matters.”';
+
+  @override
+  String get scriptTeachers01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptTeachers02 =>
+      'Raising your hand or speaking up can feel scary. For these ten minutes, let\'s give your voice a calm place to grow.';
+
+  @override
+  String get scriptTeachers03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptTeachers04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptTeachers05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptTeachers06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptTeachers07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptTeachers08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptTeachers09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptTeachers10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptTeachers11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptTeachers12 => 'Ten… letting go.';
+
+  @override
+  String get scriptTeachers13 => 'Nine… softer now.';
+
+  @override
+  String get scriptTeachers14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptTeachers15 => 'Seven…';
+
+  @override
+  String get scriptTeachers16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptTeachers17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptTeachers18 => 'Four…';
+
+  @override
+  String get scriptTeachers19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptTeachers20 => 'Two… almost there.';
+
+  @override
+  String get scriptTeachers21 => 'And one.';
+
+  @override
+  String get scriptTeachers22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptTeachers23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptTeachers24 =>
+      'Bring your attention to your throat. Let it relax and open. Swallow gently.';
+
+  @override
+  String get scriptTeachers25 =>
+      'Now your jaw and tongue. Let your tongue rest softly in your mouth. Let your jaw hang loose.';
+
+  @override
+  String get scriptTeachers26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptTeachers27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptTeachers28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptTeachers29 =>
+      'Imagine your voice as a calm wave rolling toward the shore.';
+
+  @override
+  String get scriptTeachers30 =>
+      'It doesn\'t need to be loud. It simply arrives, clear and steady, and reaches the sand. Everyone on the beach can hear it.';
+
+  @override
+  String get scriptTeachers31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptTeachers32 =>
+      'Your questions deserve space. Asking is a strength.';
+
+  @override
+  String get scriptTeachers33 =>
+      'You can speak calmly, even when you feel nervous.';
+
+  @override
+  String get scriptTeachers34 => 'Mistakes are how everyone learns.';
+
+  @override
+  String get scriptTeachers35 => 'Now, gently relax your tongue and swallow.';
+
+  @override
+  String get scriptTeachers36 =>
+      'Take one slow breath… and silently say to yourself: My voice matters.';
+
+  @override
+  String get scriptTeachers37 =>
+      'Feel this calm gathering here. From now on, before asking a question in class, or talking to a teacher, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptTeachers38 => 'Let it go now.';
+
+  @override
+  String get scriptTeachers39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptTeachers40 =>
+      'Before we come back… Choose one question you\'ll ask, or one thing you\'ll say, this week.';
+
+  @override
+  String get scriptTeachers41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptTeachers42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptTeachers43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptTeachers44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptTeachers45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptTeachers46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptTeachers47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptTeachers48 =>
+      'Well done. Remember: My voice matters. I\'m here with you.';
+
+  @override
+  String get meditateClassmatesTitle => 'Fitting In';
+
+  @override
+  String get afterAnchorClassmates => 'A soft smile · “I belong as I am.”';
+
+  @override
+  String get scriptClassmates01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptClassmates02 =>
+      'Wanting to belong is human. For these ten minutes, you belong right here, exactly as you are.';
+
+  @override
+  String get scriptClassmates03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptClassmates04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptClassmates05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptClassmates06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptClassmates07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptClassmates08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptClassmates09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptClassmates10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptClassmates11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptClassmates12 => 'Ten… letting go.';
+
+  @override
+  String get scriptClassmates13 => 'Nine… softer now.';
+
+  @override
+  String get scriptClassmates14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptClassmates15 => 'Seven…';
+
+  @override
+  String get scriptClassmates16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptClassmates17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptClassmates18 => 'Four…';
+
+  @override
+  String get scriptClassmates19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptClassmates20 => 'Two… almost there.';
+
+  @override
+  String get scriptClassmates21 => 'And one.';
+
+  @override
+  String get scriptClassmates22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptClassmates23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptClassmates24 =>
+      'Bring your attention to your stomach. Notice any worry about what others think. Breathe into it softly.';
+
+  @override
+  String get scriptClassmates25 =>
+      'Now your shoulders. Let them relax away from your ears, as if no one is watching.';
+
+  @override
+  String get scriptClassmates26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptClassmates27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptClassmates28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptClassmates29 =>
+      'Picture a flock of birds flying over the sea. Together… yet each one has its own shape, its own rhythm.';
+
+  @override
+  String get scriptClassmates30 =>
+      'No bird tries to be another. They fly together because each one is free.';
+
+  @override
+  String get scriptClassmates31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptClassmates32 =>
+      'You belong without having to become someone else.';
+
+  @override
+  String get scriptClassmates33 => 'The right people will like the real you.';
+
+  @override
+  String get scriptClassmates34 => 'You can say no and still be liked.';
+
+  @override
+  String get scriptClassmates35 =>
+      'Now, gently let a soft smile come to your face.';
+
+  @override
+  String get scriptClassmates36 =>
+      'Take one slow breath… and silently say to yourself: I belong as I am.';
+
+  @override
+  String get scriptClassmates37 =>
+      'Feel this calm gathering here. From now on, when you feel left out, or pressured to be someone you\'re not, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptClassmates38 => 'Let it go now.';
+
+  @override
+  String get scriptClassmates39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptClassmates40 =>
+      'Before we come back… Think of one person you feel comfortable around, and how you could spend time with them.';
+
+  @override
+  String get scriptClassmates41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptClassmates42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptClassmates43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptClassmates44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptClassmates45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptClassmates46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptClassmates47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptClassmates48 =>
+      'Well done. Remember: I belong as I am. I\'m here with you.';
+
+  @override
+  String get meditateSchoolResetTitle => 'School Reset';
+
+  @override
+  String get afterAnchorSchoolReset => 'Stretch your arms up · “Fresh page.”';
+
+  @override
+  String get scriptSchoolReset01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptSchoolReset02 =>
+      'School asks a lot of you. For these ten minutes, there\'s no homework, no tests, no timetable.';
+
+  @override
+  String get scriptSchoolReset03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptSchoolReset04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptSchoolReset05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptSchoolReset06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptSchoolReset07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptSchoolReset08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptSchoolReset09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptSchoolReset10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptSchoolReset11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptSchoolReset12 => 'Ten… letting go.';
+
+  @override
+  String get scriptSchoolReset13 => 'Nine… softer now.';
+
+  @override
+  String get scriptSchoolReset14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptSchoolReset15 => 'Seven…';
+
+  @override
+  String get scriptSchoolReset16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptSchoolReset17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptSchoolReset18 => 'Four…';
+
+  @override
+  String get scriptSchoolReset19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptSchoolReset20 => 'Two… almost there.';
+
+  @override
+  String get scriptSchoolReset21 => 'And one.';
+
+  @override
+  String get scriptSchoolReset22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptSchoolReset23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptSchoolReset24 =>
+      'Bring your attention to your back and shoulders, where your backpack sits every day. Let them stretch and soften.';
+
+  @override
+  String get scriptSchoolReset25 =>
+      'Let the rest of your body relax, from your head all the way down to your toes.';
+
+  @override
+  String get scriptSchoolReset26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptSchoolReset27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptSchoolReset28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptSchoolReset29 =>
+      'Imagine taking off a heavy backpack at the front door and leaving it there.';
+
+  @override
+  String get scriptSchoolReset30 =>
+      'Without it, you feel light. You walk out onto the sand… free to breathe, free to just be you.';
+
+  @override
+  String get scriptSchoolReset31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptSchoolReset32 =>
+      'You are learning, and learning takes time.';
+
+  @override
+  String get scriptSchoolReset33 => 'Rest is part of studying.';
+
+  @override
+  String get scriptSchoolReset34 => 'Tomorrow is a fresh page.';
+
+  @override
+  String get scriptSchoolReset35 => 'Now, gently stretch your arms up.';
+
+  @override
+  String get scriptSchoolReset36 =>
+      'Take one slow breath… and silently say to yourself: Fresh page.';
+
+  @override
+  String get scriptSchoolReset37 =>
+      'Feel this calm gathering here. From now on, after a long school day, or before you start studying, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptSchoolReset38 => 'Let it go now.';
+
+  @override
+  String get scriptSchoolReset39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptSchoolReset40 =>
+      'Before we come back… Choose one thing you\'ll do just for fun today.';
+
+  @override
+  String get scriptSchoolReset41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptSchoolReset42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptSchoolReset43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptSchoolReset44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptSchoolReset45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptSchoolReset46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptSchoolReset47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptSchoolReset48 =>
+      'Well done. Remember: Fresh page. I\'m here with you.';
+
+  @override
+  String get meditateConflictTitle => 'After a Conflict';
+
+  @override
+  String get afterAnchorConflict => 'Open your hands · “Let the storm pass.”';
+
+  @override
+  String get scriptConflict01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptConflict02 =>
+      'After an argument, the words can keep replaying. For these ten minutes, you don\'t have to replay anything.';
+
+  @override
+  String get scriptConflict03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptConflict04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptConflict05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptConflict06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptConflict07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptConflict08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptConflict09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptConflict10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptConflict11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptConflict12 => 'Ten… letting go.';
+
+  @override
+  String get scriptConflict13 => 'Nine… softer now.';
+
+  @override
+  String get scriptConflict14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptConflict15 => 'Seven…';
+
+  @override
+  String get scriptConflict16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptConflict17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptConflict18 => 'Four…';
+
+  @override
+  String get scriptConflict19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptConflict20 => 'Two… almost there.';
+
+  @override
+  String get scriptConflict21 => 'And one.';
+
+  @override
+  String get scriptConflict22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptConflict23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptConflict24 =>
+      'Bring your attention to your jaw and your fists. Let them unclench. Open your hands slowly.';
+
+  @override
+  String get scriptConflict25 =>
+      'Now your chest. If there\'s heat or hurt, breathe into it. Let each out-breath cool it, like a sea breeze.';
+
+  @override
+  String get scriptConflict26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptConflict27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptConflict28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptConflict29 =>
+      'Imagine a storm passing over the sea. Dark clouds, wind, rain.';
+
+  @override
+  String get scriptConflict30 =>
+      'And then, slowly, the clouds move on. The sky clears. The water grows still. The storm was real… and it passed.';
+
+  @override
+  String get scriptConflict31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptConflict32 => 'You can be hurt and still choose calm.';
+
+  @override
+  String get scriptConflict33 => 'You don\'t need to win to be at peace.';
+
+  @override
+  String get scriptConflict34 => 'Repair can wait until you\'re ready.';
+
+  @override
+  String get scriptConflict35 => 'Now, gently open your hands, palms up.';
+
+  @override
+  String get scriptConflict36 =>
+      'Take one slow breath… and silently say to yourself: Let the storm pass.';
+
+  @override
+  String get scriptConflict37 =>
+      'Feel this calm gathering here. From now on, when anger rises, or the argument starts replaying in your head, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptConflict38 => 'Let it go now.';
+
+  @override
+  String get scriptConflict39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptConflict40 =>
+      'Before we come back… Decide whether something needs repairing, and when you\'ll be ready. There\'s no rush.';
+
+  @override
+  String get scriptConflict41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptConflict42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptConflict43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptConflict44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptConflict45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptConflict46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptConflict47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptConflict48 =>
+      'Well done. Remember: Let the storm pass. I\'m here with you.';
+
+  @override
+  String get meditateEventsTitle => 'Before You Walk In';
+
+  @override
+  String get afterAnchorEvents => 'Thumb + finger · “I am enough as I am.”';
+
+  @override
+  String get scriptEvents01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptEvents02 =>
+      'Before an event, nerves can build. For these ten minutes, let\'s arrive in calm before you arrive anywhere else.';
+
+  @override
+  String get scriptEvents03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptEvents04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptEvents05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptEvents06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptEvents07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptEvents08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptEvents09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptEvents10 => 'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptEvents11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptEvents12 => 'Ten… letting go.';
+
+  @override
+  String get scriptEvents13 => 'Nine… softer now.';
+
+  @override
+  String get scriptEvents14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptEvents15 => 'Seven…';
+
+  @override
+  String get scriptEvents16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptEvents17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptEvents18 => 'Four…';
+
+  @override
+  String get scriptEvents19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptEvents20 => 'Two… almost there.';
+
+  @override
+  String get scriptEvents21 => 'And one.';
+
+  @override
+  String get scriptEvents22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptEvents23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptEvents24 =>
+      'Bring your attention to your stomach. Notice the nervous energy there. Breathe into it slowly.';
+
+  @override
+  String get scriptEvents25 =>
+      'Now your shoulders. Let them lower… and imagine you\'re already relaxed, already comfortable.';
+
+  @override
+  String get scriptEvents26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptEvents27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptEvents28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptEvents29 =>
+      'Picture yourself walking into a room filled with soft golden light.';
+
+  @override
+  String get scriptEvents30 =>
+      'People turn and smile. Someone waves. You feel welcome, at ease. You don\'t need to impress anyone. You\'re simply here.';
+
+  @override
+  String get scriptEvents31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptEvents32 =>
+      'You do not have to perform. Being yourself is enough.';
+
+  @override
+  String get scriptEvents33 =>
+      'Most people are thinking about themselves, not judging you.';
+
+  @override
+  String get scriptEvents34 => 'You can step outside for a breath anytime.';
+
+  @override
+  String get scriptEvents35 =>
+      'Now, gently press your thumb and index finger together.';
+
+  @override
+  String get scriptEvents36 =>
+      'Take one slow breath… and silently say to yourself: I am enough as I am.';
+
+  @override
+  String get scriptEvents37 =>
+      'Feel this calm gathering here. From now on, at the door of an event, or before meeting new people, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptEvents38 => 'Let it go now.';
+
+  @override
+  String get scriptEvents39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptEvents40 =>
+      'Before we come back… Choose one small, easy thing you\'ll do at your next event… like one hello.';
+
+  @override
+  String get scriptEvents41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptEvents42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptEvents43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptEvents44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptEvents45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptEvents46 => 'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptEvents47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptEvents48 =>
+      'Well done. Remember: I am enough as I am. I\'m here with you.';
+
+  @override
+  String get meditateLonelinessTitle => 'Never Truly Alone';
+
+  @override
+  String get afterAnchorLoneliness => 'Hug yourself · “I\'m with me.”';
+
+  @override
+  String get scriptLoneliness01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptLoneliness02 =>
+      'Loneliness can feel heavy and quiet. For these ten minutes, you\'re not alone. I\'m here with you.';
+
+  @override
+  String get scriptLoneliness03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptLoneliness04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptLoneliness05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptLoneliness06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptLoneliness07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptLoneliness08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptLoneliness09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptLoneliness10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptLoneliness11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptLoneliness12 => 'Ten… letting go.';
+
+  @override
+  String get scriptLoneliness13 => 'Nine… softer now.';
+
+  @override
+  String get scriptLoneliness14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptLoneliness15 => 'Seven…';
+
+  @override
+  String get scriptLoneliness16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptLoneliness17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptLoneliness18 => 'Four…';
+
+  @override
+  String get scriptLoneliness19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptLoneliness20 => 'Two… almost there.';
+
+  @override
+  String get scriptLoneliness21 => 'And one.';
+
+  @override
+  String get scriptLoneliness22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptLoneliness23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptLoneliness24 =>
+      'Bring your attention to your chest. Breathe into it gently, letting it feel full and warm.';
+
+  @override
+  String get scriptLoneliness25 =>
+      'Now your arms. Slowly wrap them around yourself in a soft hug. Feel the warmth of your own care.';
+
+  @override
+  String get scriptLoneliness26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptLoneliness27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptLoneliness28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptLoneliness29 =>
+      'Picture yourself sitting on the beach at sunset. The sky is painted gold and pink.';
+
+  @override
+  String get scriptLoneliness30 =>
+      'Next to you sits your companion, quiet and kind, watching the waves with you. No words are needed. You\'re together.';
+
+  @override
+  String get scriptLoneliness31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptLoneliness32 =>
+      'Feeling alone is a moment, not who you are.';
+
+  @override
+  String get scriptLoneliness33 => 'You are worthy of connection.';
+
+  @override
+  String get scriptLoneliness34 => 'Reaching out is brave.';
+
+  @override
+  String get scriptLoneliness35 => 'Now, gently give yourself a gentle hug.';
+
+  @override
+  String get scriptLoneliness36 =>
+      'Take one slow breath… and silently say to yourself: I\'m with me.';
+
+  @override
+  String get scriptLoneliness37 =>
+      'Feel this calm gathering here. From now on, on lonely evenings, or whenever you feel disconnected, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptLoneliness38 => 'Let it go now.';
+
+  @override
+  String get scriptLoneliness39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptLoneliness40 =>
+      'Before we come back… Think of one small way you could connect with someone this week.';
+
+  @override
+  String get scriptLoneliness41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptLoneliness42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptLoneliness43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptLoneliness44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptLoneliness45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptLoneliness46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptLoneliness47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptLoneliness48 =>
+      'Well done. Remember: I\'m with me. I\'m here with you.';
+
+  @override
+  String get meditateSocialMediaTitle => 'Scroll Less, Breathe More';
+
+  @override
+  String get afterAnchorSocialMedia =>
+      'Phone face down, one breath · “Back to now.”';
+
+  @override
+  String get scriptSocialMedia01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptSocialMedia02 =>
+      'Scrolling can leave us tired and comparing. For these ten minutes, the screen is off. Your life is right here.';
+
+  @override
+  String get scriptSocialMedia03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptSocialMedia04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptSocialMedia05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptSocialMedia06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptSocialMedia07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptSocialMedia08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptSocialMedia09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptSocialMedia10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptSocialMedia11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptSocialMedia12 => 'Ten… letting go.';
+
+  @override
+  String get scriptSocialMedia13 => 'Nine… softer now.';
+
+  @override
+  String get scriptSocialMedia14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptSocialMedia15 => 'Seven…';
+
+  @override
+  String get scriptSocialMedia16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptSocialMedia17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptSocialMedia18 => 'Four…';
+
+  @override
+  String get scriptSocialMedia19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptSocialMedia20 => 'Two… almost there.';
+
+  @override
+  String get scriptSocialMedia21 => 'And one.';
+
+  @override
+  String get scriptSocialMedia22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptSocialMedia23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptSocialMedia24 =>
+      'Bring your attention to your eyes. Let them rest behind closed lids. Feel them soften.';
+
+  @override
+  String get scriptSocialMedia25 =>
+      'Now your neck, bent so often toward a screen. And your thumbs, always swiping. Let them be still.';
+
+  @override
+  String get scriptSocialMedia26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptSocialMedia27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptSocialMedia28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptSocialMedia29 =>
+      'Imagine placing your phone face down on the sand.';
+
+  @override
+  String get scriptSocialMedia30 =>
+      'You look up at the real horizon… wide, blue, endless. The sound of the waves. The breeze. This moment can\'t be posted, and it\'s beautiful.';
+
+  @override
+  String get scriptSocialMedia31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptSocialMedia32 =>
+      'Their highlights are not your whole story.';
+
+  @override
+  String get scriptSocialMedia33 => 'Your life is happening here, offline.';
+
+  @override
+  String get scriptSocialMedia34 =>
+      'You can close the app and come back to yourself.';
+
+  @override
+  String get scriptSocialMedia35 =>
+      'Now, gently turn your phone face down and take one breath.';
+
+  @override
+  String get scriptSocialMedia36 =>
+      'Take one slow breath… and silently say to yourself: Back to now.';
+
+  @override
+  String get scriptSocialMedia37 =>
+      'Feel this calm gathering here. From now on, when you notice yourself scrolling without thinking, or feeling worse after, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptSocialMedia38 => 'Let it go now.';
+
+  @override
+  String get scriptSocialMedia39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptSocialMedia40 =>
+      'Before we come back… Choose one time today you\'ll put your phone away for thirty minutes.';
+
+  @override
+  String get scriptSocialMedia41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptSocialMedia42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptSocialMedia43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptSocialMedia44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptSocialMedia45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptSocialMedia46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptSocialMedia47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptSocialMedia48 =>
+      'Well done. Remember: Back to now. I\'m here with you.';
+
+  @override
+  String get meditateSocialResetTitle => 'Social Reset';
+
+  @override
+  String get afterAnchorSocialReset => 'One slow breath · “Recharged.”';
+
+  @override
+  String get scriptSocialReset01 => 'Hi. I\'m here with you.';
+
+  @override
+  String get scriptSocialReset02 =>
+      'People can drain our energy, even people we love. For these ten minutes, you can recharge.';
+
+  @override
+  String get scriptSocialReset03 =>
+      'Find a position where your body is supported. Feet flat on the floor. Hands resting wherever they want to rest.';
+
+  @override
+  String get scriptSocialReset04 =>
+      'Now let your eyes find one small point in front of you… and simply rest your gaze there.';
+
+  @override
+  String get scriptSocialReset05 =>
+      'Keep looking at it… and notice how your eyelids may start to feel a little heavier… a little slower to blink.';
+
+  @override
+  String get scriptSocialReset06 =>
+      'There\'s nothing you need to do right. Whenever they\'re ready… you can let your eyes close.';
+
+  @override
+  String get scriptSocialReset07 =>
+      'Let\'s slow the breath together. A longer out-breath tells your body you are safe.';
+
+  @override
+  String get scriptSocialReset08 =>
+      'Breathe in… two… three… four. And out… two… three… four… five… six.';
+
+  @override
+  String get scriptSocialReset09 =>
+      'Again. In… two… three… four. And slowly out… letting the shoulders fall… five… six.';
+
+  @override
+  String get scriptSocialReset10 =>
+      'Good. Let the breath find its own rhythm now.';
+
+  @override
+  String get scriptSocialReset11 =>
+      'In a moment I\'ll count down from ten to one. With each number, you can drift twice as deep into calm… and you don\'t have to try. Just listen.';
+
+  @override
+  String get scriptSocialReset12 => 'Ten… letting go.';
+
+  @override
+  String get scriptSocialReset13 => 'Nine… softer now.';
+
+  @override
+  String get scriptSocialReset14 =>
+      'Eight… the noise of the day moving further away.';
+
+  @override
+  String get scriptSocialReset15 => 'Seven…';
+
+  @override
+  String get scriptSocialReset16 => 'Six… deeper and calmer.';
+
+  @override
+  String get scriptSocialReset17 => 'Five… halfway down, and comfortable.';
+
+  @override
+  String get scriptSocialReset18 => 'Four…';
+
+  @override
+  String get scriptSocialReset19 => 'Three… every breath carrying you down.';
+
+  @override
+  String get scriptSocialReset20 => 'Two… almost there.';
+
+  @override
+  String get scriptSocialReset21 => 'And one.';
+
+  @override
+  String get scriptSocialReset22 => 'Resting here. Quiet. Safe.';
+
+  @override
+  String get scriptSocialReset23 =>
+      'Now let\'s move slowly through your body… and let the tension soften, wherever it\'s hiding.';
+
+  @override
+  String get scriptSocialReset24 =>
+      'Move your attention slowly from head to toe. Wherever you feel drained, breathe in fresh energy.';
+
+  @override
+  String get scriptSocialReset25 =>
+      'Let your whole body rest, heavy and comfortable.';
+
+  @override
+  String get scriptSocialReset26 =>
+      'Take a moment to search gently for anything still holding on… a tight brow, a clenched hand, a held breath. Wherever you find it, breathe in… and as you breathe out, let it melt away.';
+
+  @override
+  String get scriptSocialReset27 =>
+      'Down through your hips… your legs… all the way to your feet on the floor. Grounded. Supported. Nothing to hold up right now.';
+
+  @override
+  String get scriptSocialReset28 =>
+      'Your whole body… calm and heavy and safe. Enjoy this feeling for a few quiet breaths.';
+
+  @override
+  String get scriptSocialReset29 =>
+      'Imagine a quiet walk along the shore. Just you and the waves.';
+
+  @override
+  String get scriptSocialReset30 =>
+      'Each step recharges you. The sea asks nothing of you. You can just walk, breathe and be.';
+
+  @override
+  String get scriptSocialReset31 =>
+      'And as you rest here, let these words settle somewhere deep, where they can quietly work for you:';
+
+  @override
+  String get scriptSocialReset32 => 'You can take up space just as you are.';
+
+  @override
+  String get scriptSocialReset33 => 'Recharging alone is healthy.';
+
+  @override
+  String get scriptSocialReset34 => 'Your energy is worth protecting.';
+
+  @override
+  String get scriptSocialReset35 => 'Now, gently take one slow breath.';
+
+  @override
+  String get scriptSocialReset36 =>
+      'Take one slow breath… and silently say to yourself: Recharged.';
+
+  @override
+  String get scriptSocialReset37 =>
+      'Feel this calm gathering here. From now on, after social time, or when you feel drained by others, you can do this again… take one breath… and this same calm will return, a little stronger each time.';
+
+  @override
+  String get scriptSocialReset38 => 'Let it go now.';
+
+  @override
+  String get scriptSocialReset39 =>
+      'Rest here now… nothing to do, nowhere to be… just letting the calm settle in, deeper with every breath.';
+
+  @override
+  String get scriptSocialReset40 =>
+      'Before we come back… Choose one way you\'ll protect your energy this week.';
+
+  @override
+  String get scriptSocialReset41 => 'See yourself doing it calmly.';
+
+  @override
+  String get scriptSocialReset42 =>
+      'Now I\'ll count from one to five. With each number you\'ll feel more awake, more alert… bringing the calm back with you.';
+
+  @override
+  String get scriptSocialReset43 => 'One… noticing what\'s beneath you.';
+
+  @override
+  String get scriptSocialReset44 => 'Two… sounds of the room returning.';
+
+  @override
+  String get scriptSocialReset45 =>
+      'Three… a deeper breath, wiggling your fingers and toes.';
+
+  @override
+  String get scriptSocialReset46 =>
+      'Four… energy flowing back, clear and focused.';
+
+  @override
+  String get scriptSocialReset47 =>
+      'And five… eyes open when you\'re ready… calm, clear and ready.';
+
+  @override
+  String get scriptSocialReset48 =>
+      'Well done. Remember: Recharged. I\'m here with you.';
+
+  @override
+  String get scriptBodyScan01 =>
+      'Hi. I\'m here with you. Let\'s spend a few minutes noticing your body, one part at a time.';
+
+  @override
+  String get scriptBodyScan02 =>
+      'Sit or lie down somewhere comfortable. Let your eyes close, or rest your gaze on the floor.';
+
+  @override
+  String get scriptBodyScan03 =>
+      'Take a slow breath in… and a long breath out.';
+
+  @override
+  String get scriptBodyScan04 =>
+      'Bring your attention to the top of your head. Just notice what\'s there: warmth, tingling, or nothing at all.';
+
+  @override
+  String get scriptBodyScan05 =>
+      'Move down to your forehead and your eyes. If there\'s any tightness, let it soften as you breathe out.';
+
+  @override
+  String get scriptBodyScan06 =>
+      'Now your jaw. Let your teeth part a little and your tongue rest.';
+
+  @override
+  String get scriptBodyScan07 =>
+      'Notice your neck and shoulders. Let them grow heavy and drop away from your ears.';
+
+  @override
+  String get scriptBodyScan08 =>
+      'Feel your arms, your elbows, your wrists and your hands. Let your fingers rest, loose and still.';
+
+  @override
+  String get scriptBodyScan09 =>
+      'Bring your attention to your chest. Feel it rise and fall with each breath, without changing anything.';
+
+  @override
+  String get scriptBodyScan10 =>
+      'Notice your belly. If it feels tight, breathe into it gently, and let it soften.';
+
+  @override
+  String get scriptBodyScan11 =>
+      'Move to your lower back and your hips. Let them sink into whatever is holding you.';
+
+  @override
+  String get scriptBodyScan12 =>
+      'Feel your legs, your knees, and all the way down to your feet. Notice where they touch the floor.';
+
+  @override
+  String get scriptBodyScan13 =>
+      'Now feel your whole body at once, from head to toe, breathing calmly.';
+
+  @override
+  String get scriptBodyScan14 =>
+      'Whatever you noticed is okay. When you\'re ready, wiggle your fingers and toes, and open your eyes.';
+
+  @override
+  String get scriptMuscle01 =>
+      'Hi. I\'m here with you. We\'ll tense each group of muscles for a few seconds, then let it go. Never squeeze so hard that it hurts.';
+
+  @override
+  String get scriptMuscle02 =>
+      'Sit comfortably and take a slow breath in… and out.';
+
+  @override
+  String get scriptMuscle03 =>
+      'Make tight fists with both hands. Squeeze… and hold.';
+
+  @override
+  String get scriptMuscle04 =>
+      'And release. Let your hands fall open. Notice how different they feel.';
+
+  @override
+  String get scriptMuscle05 =>
+      'Now bend your arms and tighten the muscles in your upper arms. Hold.';
+
+  @override
+  String get scriptMuscle06 =>
+      'And let go. Let your arms rest, heavy and warm.';
+
+  @override
+  String get scriptMuscle07 =>
+      'Lift your shoulders up toward your ears. Hold them there.';
+
+  @override
+  String get scriptMuscle08 => 'And drop them. Feel the tension slide away.';
+
+  @override
+  String get scriptMuscle09 =>
+      'Scrunch up your face: squeeze your eyes shut and press your lips together. Hold.';
+
+  @override
+  String get scriptMuscle10 =>
+      'And release. Let your forehead, your eyes and your jaw go soft.';
+
+  @override
+  String get scriptMuscle11 =>
+      'Take a deep breath in and hold it, tightening your chest and your stomach.';
+
+  @override
+  String get scriptMuscle12 =>
+      'And breathe out slowly, letting everything loosen.';
+
+  @override
+  String get scriptMuscle13 =>
+      'Press your knees together and tighten your legs. Hold.';
+
+  @override
+  String get scriptMuscle14 => 'And relax. Let your legs grow heavy.';
+
+  @override
+  String get scriptMuscle15 => 'Curl your toes down and tense your feet. Hold.';
+
+  @override
+  String get scriptMuscle16 => 'And let go. Feel your feet relax completely.';
+
+  @override
+  String get scriptMuscle17 =>
+      'Now let your whole body rest. Notice how calm and heavy it feels.';
+
+  @override
+  String get scriptMuscle18 =>
+      'When you\'re ready, take a deeper breath, stretch a little, and open your eyes.';
 }

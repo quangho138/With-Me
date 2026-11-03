@@ -29,3 +29,10 @@ make birds  birds-mixkit-100416-1080.mp4  0 17.7 1280 720 26
 make fire   fire-mixkit-52289-1080.mp4    0 20  720 1280 26
 make forest forest-mixkit-520-1080.mp4    0 19  1280 720 28
 make rain   rain-mixkit-22728-1080.mp4    0 11  1280 720 26
+make creek     creek-mixkit-51594-1080.mp4     0 11   1280 720 26
+make lake      lake-mixkit-1704-1080.mp4       0 12   1280 720 26
+make clouds    clouds-mixkit-1646-1080.mp4     0 20   1280 720 26
+make river     river-mixkit-51447-1080.mp4     0 18.3 1280 720 26
+make fireplace fireplace-mixkit-1242-1080.mp4  0 9    1280 720 26
+make snow      snow-mixkit-3352-1080.mp4       0 10.3 720 1280 30
+make meadow    meadow-mixkit-4075-1080.mp4     0 12   1280 720 31

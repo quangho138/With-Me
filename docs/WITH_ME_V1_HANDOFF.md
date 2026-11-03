@@ -293,8 +293,8 @@ change its face nor move its limbs. At the product owner's request it now
 comes from `MascotPainter` - the same leaf crown, hibiscus, lei and belly
 swirl, drawn in code - so it can animate. It looks flatter than the 3D
 render in the mockups; that trade was chosen deliberately, and it is the same
-character on every screen, header badge included. `assets/mascot/*.png` and
-`tool/extract_mascot.py` are no longer used by the app.
+character on every screen, header badge included. `tool/extract_mascot.py` is no longer used by the app (the PNGs it
+made were removed on 2026-10-22).
 
 **There is no login form in the document.** `image1` has a "Log In" button;
 `image2` and `image3` are signup and password reset. `WithMeLoginScreen` is
