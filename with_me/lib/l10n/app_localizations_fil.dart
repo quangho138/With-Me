@@ -29,10 +29,13 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Mga sound effect';
+  String get settingsHaptics => 'Pag-vibrate';
 
   @override
-  String get settingsHaptics => 'Pag-vibrate';
+  String get settingsAppVolume => 'Volume ng app';
+
+  @override
+  String get settingsSoftSounds => 'Mahinang tunog';
 
   @override
   String get settingsReadAloud => 'Basahin nang malakas';

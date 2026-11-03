@@ -479,7 +479,7 @@ class NumberChoice extends StatelessWidget {
     label: '$i',
     excludeSemantics: true,
     child: GestureDetector(
-      onTap: withTap(() => onChanged(i)),
+      onTap: withAnswerTap(() => onChanged(i)),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: WithMeMotion.fast,
@@ -663,7 +663,7 @@ class _FaceChoice extends StatelessWidget {
       label: word,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: withTap(onTap),
+        onTap: withAnswerTap(onTap),
         behavior: HitTestBehavior.opaque,
         child: AnimatedContainer(
           duration: WithMeMotion.fast,
@@ -900,9 +900,13 @@ class ControlScale extends StatefulWidget {
 class _ControlScaleState extends State<ControlScale> {
   bool _focusShown = false;
 
+  /// A new answer: one soft tap (and the tap feel) each time the needle
+  /// moves to another number, by a tap, a drag or the arrows.
   void _set(int v) {
     final clamped = v.clamp(1, ControlScale.steps);
-    if (clamped != widget.value) widget.onChanged(clamped);
+    if (clamped == widget.value) return;
+    AppFeel.instance.answer();
+    widget.onChanged(clamped);
   }
 
   /// One wedge left or right. With nothing picked yet, moving right enters
@@ -925,7 +929,7 @@ class _ControlScaleState extends State<ControlScale> {
       final enabled =
           value == null || (by < 0 ? value > 1 : value < ControlScale.steps);
       return GestureDetector(
-        onTap: enabled ? withTap(() => _step(by)) : null,
+        onTap: enabled ? () => _step(by) : null,
         behavior: HitTestBehavior.opaque,
         child: SizedBox(
           width: 48,
@@ -1214,6 +1218,7 @@ class AreaTile extends StatelessWidget {
       label: label,
       selected: selected,
       onTap: onTap,
+      answer: true,
       height: 120,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -1248,7 +1253,12 @@ class ScenicTile extends StatefulWidget {
     required this.child,
     this.height,
     this.radius = 16,
+    this.answer = false,
   });
+
+  /// True for a check-in answer: it also plays the soft tap sound. Tiles
+  /// that open a screen (exercise chooser, dashboard) stay silent.
+  final bool answer;
 
   /// Announced to screen readers; the child is excluded from semantics.
   final String label;
@@ -1280,7 +1290,9 @@ class _ScenicTileState extends State<ScenicTile> {
       label: widget.label,
       excludeSemantics: true,
       child: GestureDetector(
-        onTap: withTap(widget.onTap),
+        onTap: widget.answer
+            ? withAnswerTap(widget.onTap)
+            : withTap(widget.onTap),
         onTapDown: (_) => _press(true),
         onTapUp: (_) => _press(false),
         onTapCancel: () => _press(false),
@@ -1410,12 +1422,39 @@ class ScenicChoiceTile extends StatelessWidget {
     return widest <= width ? fontSize : fontSize * width / widest;
   }
 
+  /// [_fitWords], or smaller again if the label's two lines would not fit
+  /// in [height]. Without this, a big text size (Settings, Extra large) cut
+  /// off the second line on the smaller tiles ("Domestic duties").
+  double _fit(BuildContext context, double width, double height) {
+    final size = _fitWords(context, width);
+    if (!width.isFinite || !height.isFinite || height <= 0) return size;
+    final painter = TextPainter(
+      text: TextSpan(
+        text: label,
+        style: TextStyle(
+          fontFamily: WithMeText.ui,
+          fontSize: size,
+          height: 1.15,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+      textScaler: MediaQuery.textScalerOf(context),
+      maxLines: 2,
+    )..layout(maxWidth: width);
+    final needed = painter.height;
+    painter.dispose();
+    // A little headroom for the outline stroke.
+    return needed <= height ? size : size * height / needed * 0.97;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ScenicTile(
       label: label,
       selected: selected,
       onTap: onTap,
+      answer: true,
       height: height,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
@@ -1434,7 +1473,7 @@ class ScenicChoiceTile extends StatelessWidget {
                 builder: (context, box) {
                   final style = TextStyle(
                     fontFamily: WithMeText.ui,
-                    fontSize: _fitWords(context, box.maxWidth),
+                    fontSize: _fit(context, box.maxWidth, box.maxHeight),
                     height: 1.15,
                     fontWeight: FontWeight.w700,
                     color: ScenicColors.ink,

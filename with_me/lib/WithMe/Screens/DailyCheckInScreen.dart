@@ -19,6 +19,7 @@ import '../Mascot/RealMascot.dart';
 import '../Speech/MouthTimelines.dart';
 import '../Speech/NarrationMouth.dart';
 import '../Speech/SpeechService.dart';
+import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
 import 'SettingsScreen.dart';
 import 'YourDayScreen.dart';
@@ -364,6 +365,8 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen>
     try {
       await AppRepositories.checkIns.save(entry);
       saved = true;
+      // A soft chime when soft sounds are on (Settings).
+      AppFeel.instance.chime();
       // Reminders (feature E): today's reminder is no longer needed, and a
       // low mood may bring the exercise nudge. A failure here is silent.
       if (calendarDaysBetween(entry.day, today) == 0) {

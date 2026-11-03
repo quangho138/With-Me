@@ -24,11 +24,13 @@ import 'WelcomeScreen.dart';
 
 /// `image41.png` — Settings.
 ///
-/// Toggle rows, then 55 pt rows, the last of them destructive.
+/// App volume, then toggle rows, then 55 pt rows, the last of them
+/// destructive.
 ///
-/// Haptics and Read aloud are saved on this device, like the language and
-/// the text size. Read aloud voice, under Read aloud, opens how the
-/// companion sounds. Theme and Voice input were removed (30 Oct, D4 and D5).
+/// App volume, Soft sounds, Haptics and Read aloud are saved on this device,
+/// like the language and the text size. Read aloud voice, under Read aloud,
+/// opens how the companion sounds. Theme, Voice input and Sound effects were
+/// removed (30 Oct, D4 and D5).
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -39,8 +41,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool _sound = true;
-
   /// Logged in to an account, so the sync line is shown. Guests never sync.
   bool _account = false;
 
@@ -297,11 +297,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 );
               },
             ),
-          ScenicToggleRow(
-            label: l.settingsSoundEffects,
-            icon: Icons.volume_up_rounded,
-            value: _sound,
-            onChanged: (v) => setState(() => _sound = v),
+          // App volume and Soft sounds replace Sound effects (30 Oct, D5).
+          ValueListenableBuilder<double>(
+            valueListenable: AppFeel.instance.volume,
+            builder: (context, volume, _) => ScenicSliderRow(
+              key: const ValueKey('app-volume'),
+              label: l.settingsAppVolume,
+              icon: Icons.volume_up_rounded,
+              value: volume,
+              // Heard at once on the next sound; saved when let go.
+              onChanged: (v) => AppFeel.instance.volume.value = v,
+              onChangeEnd: (v) => AppFeel.instance
+                  .setVolume(v)
+                  .then((_) {}, onError: (Object _) {}),
+            ),
+          ),
+          gap(),
+          ValueListenableBuilder<bool>(
+            valueListenable: AppFeel.instance.softSounds,
+            builder: (context, on, _) => ScenicToggleRow(
+              label: l.settingsSoftSounds,
+              icon: Icons.music_note_rounded,
+              iconColor: const Color(0xFFD2557F),
+              value: on,
+              onChanged: (v) => AppFeel.instance
+                  .setSoftSounds(v)
+                  .then((_) {}, onError: (Object _) {}),
+            ),
           ),
           gap(),
           ValueListenableBuilder<bool>(

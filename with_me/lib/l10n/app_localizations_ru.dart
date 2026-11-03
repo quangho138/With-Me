@@ -29,10 +29,13 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Звуковые эффекты';
+  String get settingsHaptics => 'Вибрация';
 
   @override
-  String get settingsHaptics => 'Вибрация';
+  String get settingsAppVolume => 'Громкость приложения';
+
+  @override
+  String get settingsSoftSounds => 'Мягкие звуки';
 
   @override
   String get settingsReadAloud => 'Чтение вслух';

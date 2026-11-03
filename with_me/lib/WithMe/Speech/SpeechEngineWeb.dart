@@ -1,5 +1,6 @@
 import 'dart:js_interop';
 
+import '../Theme/AppFeel.dart';
 import 'SpeechEngine.dart';
 
 SpeechEngine createPlatformSpeechEngine() => WebSpeechEngine();
@@ -29,6 +30,7 @@ extension type _Utterance._(JSObject _) implements JSObject {
   external set lang(String lang);
   external set rate(double rate);
   external set pitch(double pitch);
+  external set volume(double volume);
   external set onstart(JSFunction? f);
   external set onend(JSFunction? f);
   external set onerror(JSFunction? f);
@@ -107,7 +109,9 @@ class WebSpeechEngine implements SpeechEngine {
         ..voice = voice
         ..lang = voice.lang
         ..rate = style.speed
-        ..pitch = style.pitch;
+        ..pitch = style.pitch
+        // App volume (Settings); the browser's 1.0 is full.
+        ..volume = AppFeel.instance.loud(1);
       // Events from an utterance that was stopped or replaced are dropped.
       bool live() => identical(_current, utterance);
       utterance

@@ -29,10 +29,13 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => '音效';
+  String get settingsHaptics => '触感反馈';
 
   @override
-  String get settingsHaptics => '触感反馈';
+  String get settingsAppVolume => '应用音量';
+
+  @override
+  String get settingsSoftSounds => '轻柔音效';
 
   @override
   String get settingsReadAloud => '朗读';
@@ -2346,10 +2349,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get settingsSoundEffects => '音效';
+  String get settingsHaptics => '觸感反饋';
 
   @override
-  String get settingsHaptics => '觸感反饋';
+  String get settingsAppVolume => '應用程式音量';
+
+  @override
+  String get settingsSoftSounds => '輕柔音效';
 
   @override
   String get settingsReadAloud => '朗讀';

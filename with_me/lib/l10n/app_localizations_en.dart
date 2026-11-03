@@ -29,10 +29,13 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Sound effects';
+  String get settingsHaptics => 'Haptics';
 
   @override
-  String get settingsHaptics => 'Haptics';
+  String get settingsAppVolume => 'App volume';
+
+  @override
+  String get settingsSoftSounds => 'Soft sounds';
 
   @override
   String get settingsReadAloud => 'Read aloud';

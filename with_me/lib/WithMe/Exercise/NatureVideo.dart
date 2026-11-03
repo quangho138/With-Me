@@ -28,6 +28,10 @@ class _NatureVideoState extends State<NatureVideo> {
     if (widget.sound == 'None') return;
     final controller = VideoPlayerController.asset(
       'assets/video/${widget.sound.toLowerCase()}.mp4',
+      // The video is always silent, so it must not take audio focus: on
+      // Android that paused the nature sound when Motion was turned back on
+      // (found in the PR #32 laptop check).
+      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
     );
     try {
       await controller.initialize();

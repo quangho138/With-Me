@@ -29,10 +29,13 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Efek suara';
+  String get settingsHaptics => 'Getaran';
 
   @override
-  String get settingsHaptics => 'Getaran';
+  String get settingsAppVolume => 'Volume aplikasi';
+
+  @override
+  String get settingsSoftSounds => 'Suara lembut';
 
   @override
   String get settingsReadAloud => 'Bacakan';

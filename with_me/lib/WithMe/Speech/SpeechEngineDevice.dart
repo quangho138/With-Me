@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter_tts/flutter_tts.dart';
 
+import '../Theme/AppFeel.dart';
 import 'SpeechEngine.dart';
 
 SpeechEngine createPlatformSpeechEngine() => DeviceSpeechEngine();
@@ -99,7 +100,7 @@ class DeviceSpeechEngine implements SpeechEngine {
   List<SpeechVoice>? _voices;
   String _deviceLocale = 'en-US';
   String? _voiceInUse;
-  double? _rateInUse, _pitchInUse;
+  double? _rateInUse, _pitchInUse, _volumeInUse;
 
   @override
   Future<List<SpeechVoice>> voices({String? locale}) async {
@@ -131,6 +132,12 @@ class DeviceSpeechEngine implements SpeechEngine {
       await _tts.setPitch(style.pitch);
       _pitchInUse = style.pitch;
     }
+    // App volume (Settings); flutter_tts's 1.0 is full.
+    final volume = AppFeel.instance.loud(1);
+    if (volume != _volumeInUse) {
+      await _tts.setVolume(volume);
+      _volumeInUse = volume;
+    }
     return true;
   }
 
@@ -153,7 +160,7 @@ class DeviceSpeechEngine implements SpeechEngine {
       _ready = null;
       _voices = null;
       _voiceInUse = null;
-      _rateInUse = _pitchInUse = null;
+      _rateInUse = _pitchInUse = _volumeInUse = null;
       return false;
     }
   }

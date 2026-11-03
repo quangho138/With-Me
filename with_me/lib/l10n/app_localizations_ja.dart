@@ -29,10 +29,13 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => '効果音';
+  String get settingsHaptics => 'バイブレーション';
 
   @override
-  String get settingsHaptics => 'バイブレーション';
+  String get settingsAppVolume => 'アプリの音量';
+
+  @override
+  String get settingsSoftSounds => 'やさしい効果音';
 
   @override
   String get settingsReadAloud => '読み上げ';

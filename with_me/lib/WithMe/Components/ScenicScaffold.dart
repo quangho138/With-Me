@@ -778,6 +778,75 @@ class ScenicToggleRow extends StatelessWidget {
   }
 }
 
+/// A setting with a slider, on the same cream bubble as [ScenicRow]: the
+/// label on top, the slider under it (Settings, App volume).
+class ScenicSliderRow extends StatelessWidget {
+  const ScenicSliderRow({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.onChanged,
+    this.onChangeEnd,
+    this.icon,
+    this.iconColor = ScenicColors.pillBottom,
+  });
+
+  final String label;
+
+  /// 0 to 1.
+  final double value;
+  final ValueChanged<double> onChanged;
+
+  /// When the finger lets go: the time to save.
+  final ValueChanged<double>? onChangeEnd;
+  final IconData? icon;
+  final Color iconColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return MergeSemantics(
+      child: _RowShell(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                if (icon != null) ...[
+                  ScenicMarker(color: iconColor, icon: icon, size: 36),
+                  const SizedBox(width: 12),
+                ],
+                Expanded(
+                  child: Text(
+                    label,
+                    style: kScenicBody.copyWith(fontSize: 16.5),
+                  ),
+                ),
+                Text(
+                  '${(value * 100).round()}%',
+                  style: kScenicBody.copyWith(
+                    fontSize: 14,
+                    color: ScenicColors.ink.withValues(alpha: 0.7),
+                  ),
+                ),
+                const SizedBox(width: 4),
+              ],
+            ),
+            Slider(
+              value: value.clamp(0.0, 1.0).toDouble(),
+              divisions: 20,
+              onChanged: onChanged,
+              onChangeEnd: onChangeEnd,
+              activeColor: ScenicColors.pillBottom,
+              inactiveColor: ScenicColors.ring,
+              thumbColor: Colors.white,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _RowShell extends StatelessWidget {
   const _RowShell({required this.child});
 

@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 
+import '../Theme/AppFeel.dart';
 import 'SpeechEngine.dart';
 
 /// Plays a recorded line from the app's assets, such as the greeting the
@@ -42,6 +43,8 @@ class AudioClipPlayer implements ClipPlayer {
       final player = _player ??= _setUp();
       _current = callbacks;
       await player.setReleaseMode(ReleaseMode.stop);
+      // App volume (Settings) on top of the recording's own level.
+      await player.setVolume(AppFeel.instance.loud(1));
       await player.play(AssetSource(asset));
       return true;
     } catch (_) {

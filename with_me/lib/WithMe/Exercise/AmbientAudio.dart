@@ -1,5 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 
+import '../Theme/AppFeel.dart';
+
 /// Serializes native calls so loading cannot outlive pause or screen disposal.
 class AmbientAudio {
   AudioPlayer? _player;
@@ -26,7 +28,8 @@ class AmbientAudio {
         _loaded = sound;
       }
       if (_disposed || revision != _revision) return;
-      await player.setVolume(volume);
+      // The screen's own level, with App volume (Settings) on top.
+      await player.setVolume(AppFeel.instance.loud(volume));
       if (!_disposed && revision == _revision) await player.resume();
     });
     return _queue;

@@ -30,13 +30,17 @@
       }
     }
   },
-  "settingsSoundEffects": "Sound effects",
-  "@settingsSoundEffects": {
-    "description": "Settings toggle: turn the app's sound effects on or off."
-  },
   "settingsHaptics": "Haptics",
   "@settingsHaptics": {
     "description": "Settings toggle: vibration feedback on or off."
+  },
+  "settingsAppVolume": "App volume",
+  "@settingsAppVolume": {
+    "description": "Settings slider: how loud the app's own sounds are (voice, nature sounds). Not the phone volume."
+  },
+  "settingsSoftSounds": "Soft sounds",
+  "@settingsSoftSounds": {
+    "description": "Settings switch: gentle tap sounds and a soft chime when a check-in finishes."
   },
   "settingsReadAloud": "Read aloud",
   "@settingsReadAloud": {

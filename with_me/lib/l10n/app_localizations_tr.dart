@@ -29,10 +29,13 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => 'Ses efektleri';
+  String get settingsHaptics => 'Titreşim';
 
   @override
-  String get settingsHaptics => 'Titreşim';
+  String get settingsAppVolume => 'Uygulama ses düzeyi';
+
+  @override
+  String get settingsSoftSounds => 'Yumuşak sesler';
 
   @override
   String get settingsReadAloud => 'Sesli okuma';

@@ -29,10 +29,13 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get settingsSoundEffects => '효과음';
+  String get settingsHaptics => '진동';
 
   @override
-  String get settingsHaptics => '진동';
+  String get settingsAppVolume => '앱 음량';
+
+  @override
+  String get settingsSoftSounds => '부드러운 소리';
 
   @override
   String get settingsReadAloud => '읽어 주기';

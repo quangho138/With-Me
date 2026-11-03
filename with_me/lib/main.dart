@@ -47,6 +47,7 @@ import 'WithMe/Screens/WelcomeScreen.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
 import 'WithMe/Theme/AppFeel.dart';
+import 'WithMe/Theme/SoftSounds.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
 import 'l10n/app_localizations.dart';
 
@@ -114,6 +115,8 @@ Future<void> main() async {
   } catch (e) {
     debugPrint('Text size and haptics not loaded yet: $e');
   }
+  // The soft tap and chime (Settings, Soft sounds). Tests keep the silent one.
+  AppFeel.instance.sounds = PhoneSoftSounds();
 
   // The database is not wiped on launch — the logs have to survive a restart.
   if (DemoAccount.enabled) {
