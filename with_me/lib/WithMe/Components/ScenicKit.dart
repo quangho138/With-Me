@@ -900,9 +900,13 @@ class ControlScale extends StatefulWidget {
 class _ControlScaleState extends State<ControlScale> {
   bool _focusShown = false;
 
+  /// A new answer: one soft tap (and the tap feel) each time the needle
+  /// moves to another number, by a tap, a drag or the arrows.
   void _set(int v) {
     final clamped = v.clamp(1, ControlScale.steps);
-    if (clamped != widget.value) widget.onChanged(clamped);
+    if (clamped == widget.value) return;
+    AppFeel.instance.answer();
+    widget.onChanged(clamped);
   }
 
   /// One wedge left or right. With nothing picked yet, moving right enters
@@ -925,7 +929,7 @@ class _ControlScaleState extends State<ControlScale> {
       final enabled =
           value == null || (by < 0 ? value > 1 : value < ControlScale.steps);
       return GestureDetector(
-        onTap: enabled ? withAnswerTap(() => _step(by)) : null,
+        onTap: enabled ? () => _step(by) : null,
         behavior: HitTestBehavior.opaque,
         child: SizedBox(
           width: 48,

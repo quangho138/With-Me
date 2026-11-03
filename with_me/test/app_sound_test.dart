@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:with_me/WithMe/Components/ScenicKit.dart';
 import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
+import 'package:with_me/WithMe/Components/WithMeControls.dart';
 import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Screens/SettingsScreen.dart';
 import 'package:with_me/WithMe/Theme/AppFeel.dart';
@@ -229,6 +230,74 @@ void main() {
       expect(sounds.taps, isEmpty, reason: 'buttons stay silent');
       await tester.tap(find.byType(ScenicChoiceTile));
       expect(sounds.taps, hasLength(1));
+    });
+
+    testWidgets('the control gauge taps once per new number, not per move', (
+      tester,
+    ) async {
+      await install();
+      int? value;
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: buildWithMeTheme(),
+          home: Scaffold(
+            body: Center(
+              child: StatefulBuilder(
+                builder: (context, setState) => ControlScale(
+                  value: value,
+                  onChanged: (v) => setState(() => value = v),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      final gauge = find.byKey(const ValueKey('control-gauge'));
+      await tester.tapAt(tester.getCenter(gauge));
+      await tester.pump();
+      expect(value, isNotNull);
+      expect(sounds.taps, hasLength(1));
+      // The same number again: no new tap.
+      await tester.tapAt(tester.getCenter(gauge));
+      await tester.pump();
+      expect(sounds.taps, hasLength(1));
+    });
+
+    testWidgets('the intention dial taps when it reaches another level', (
+      tester,
+    ) async {
+      await install();
+      double? value;
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: buildWithMeTheme(),
+          home: Scaffold(
+            body: Center(
+              child: StatefulBuilder(
+                builder: (context, setState) => ReadinessGauge(
+                  value: value,
+                  onChanged: (v) => setState(() => value = v),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      final dial = find.byType(ReadinessGauge);
+      final box = tester.getRect(dial);
+      // First touch on the left side: an answer, one tap.
+      await tester.tapAt(Offset(box.left + 12, box.bottom - 12));
+      await tester.pump();
+      expect(value, isNotNull);
+      expect(sounds.taps, hasLength(1));
+      // Same spot again: same level, no new tap.
+      await tester.tapAt(Offset(box.left + 12, box.bottom - 12));
+      await tester.pump();
+      expect(sounds.taps, hasLength(1));
+      // The far right side: another level, one more tap.
+      await tester.tapAt(Offset(box.right - 12, box.bottom - 12));
+      await tester.pump();
+      expect(sounds.taps, hasLength(2));
     });
 
     testWidgets('finishing a check-in plays the chime once', (tester) async {

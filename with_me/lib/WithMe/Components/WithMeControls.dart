@@ -1073,8 +1073,17 @@ class _ReadinessGaugeState extends State<ReadinessGauge> {
       builder: (context, constraints) {
         final width = math.min(widget.size, constraints.maxWidth);
         final size = Size(width, ReadinessGauge.heightFor(width));
-        void track(Offset local) =>
-            widget.onChanged(ReadinessGauge.valueAt(local, size));
+        // One soft tap (and the tap feel) each time the needle reaches
+        // another level, not on every small move of a drag.
+        void track(Offset local) {
+          final next = ReadinessGauge.valueAt(local, size);
+          final before = widget.value;
+          if (before == null ||
+              ReadinessGauge.levelOf(next) != ReadinessGauge.levelOf(before)) {
+            AppFeel.instance.answer();
+          }
+          widget.onChanged(next);
+        }
 
         return Semantics(
           slider: true,
