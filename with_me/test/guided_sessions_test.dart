@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -240,6 +242,44 @@ void main() {
         }
       }
     });
+    test('the short sessions are in the app in the 12 recorded languages, '
+        'and Hindi uses the phone', () {
+      const recorded = [
+        ...['en', 'es', 'fr', 'pt', 'de', 'ar'],
+        ...['ru', 'ja', 'zh', 'ko', 'tr', 'sw'],
+      ];
+      final clips = [
+        for (final script in [
+          GuidedScripts.anxietySos,
+          GuidedScripts.bodyScan,
+          GuidedScripts.muscleRelaxation,
+        ])
+          for (
+            var n = 1;
+            n <= script.steps.expand((s) => s.beats.whereType<Say>()).length;
+            n++
+          )
+            script.clip(n),
+        for (final step in [1, 2, 3, 4, 5]) 'audio/meditation/step$step.mp3',
+        'audio/meditation/done.mp3',
+      ];
+      expect(clips, hasLength(42));
+      String file(String clip, String language) =>
+          'assets/${clip.replaceFirst('audio/', 'audio/voice/$language/')}';
+      for (final language in recorded) {
+        for (final clip in clips) {
+          expect(
+            File(file(clip, language)).existsSync(),
+            isTrue,
+            reason: '$language $clip',
+          );
+        }
+      }
+      for (final clip in clips) {
+        expect(File(file(clip, 'hi')).existsSync(), isFalse, reason: clip);
+      }
+    });
+
     test('a line whose recording is not in the app is read by the phone', () {
       // The session recordings are added later (download on demand); until
       // then, and for a language not recorded (Hindi's sessions), the

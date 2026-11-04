@@ -18,7 +18,7 @@ Status key: **Cleared** (licence allows our use, conditions met) ·
 |---|---|---|---|
 | Dart/Flutter packages | 122 from pub.dev, plus the Flutter SDK | All | None |
 | Fonts | Quicksand (4 weights), Yellowtail, Material Icons, Cupertino Icons | All | None |
-| Video and nature sounds | 5 Mixkit clips, 5 Mixkit sound effects | All, condition | Re-open the 10 Mixkit pages once (see 4.2) |
+| Video and nature sounds | 12 Mixkit clips, 5 Mixkit sound effects | All, condition | Re-open the 17 Mixkit pages once (see 4.2) |
 | Generated audio | Breath sound, voice lines in 13 languages | All | CapCut filter on the voice reference (see 4.3) |
 | Images | Mascot poses and beach scenes, app icons | All, condition | Unused `logo.png` and old mascot images removed (see 4.1) |
 | AI models and services | Chatterbox, Whisper, Claude, Codex image generation | All, condition | None (the fish.audio clips were removed, see 4.5) |
@@ -212,6 +212,13 @@ few of those are used only by the tests.
 | `assets/video/forest.mp4` | https://mixkit.co/free-stock-video/sunlight-through-tall-trees-in-a-forest-520/ | Mixkit Stock Video Free License | Cleared, condition |
 | `assets/video/rain.mp4` | https://mixkit.co/free-stock-video/raining-in-a-cloud-forest-full-of-tall-trees-22728/ | Mixkit Stock Video Free License | Cleared, condition |
 | `assets/video/fire.mp4` | https://mixkit.co/free-stock-video/vertical-video-of-blazing-flames-flow-upwards-in-slow-motion-52289/ | Mixkit Stock Video Free License | Cleared, condition |
+| `assets/video/creek.mp4` (Guided Meditation) | https://mixkit.co/free-stock-video/a-picturesque-small-creek-with-calm-waters-and-steam-illuminated-51594/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/lake.mp4` (Anxiety SOS) | https://mixkit.co/free-stock-video/night-sky-with-stars-at-a-calm-lake-time-lapse-1704/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/clouds.mp4` (Body Scan) | https://mixkit.co/free-stock-video/small-clouds-moving-in-the-sky-1646/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/river.mp4` (Muscle Relaxation) | https://mixkit.co/free-stock-video/river-passing-through-a-forest-full-of-trees-51447/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/fireplace.mp4` (Home sessions) | https://mixkit.co/free-stock-video/wood-burning-in-a-fireplace-1242/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/snow.mp4` (School sessions) | https://mixkit.co/free-stock-video/snow-falling-in-a-pine-forest-3352/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/meadow.mp4` (Social sessions) | https://mixkit.co/free-stock-video/countryside-meadow-4075/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
 | `assets/audio/waves.m4a` (sea waves ambience) | https://mixkit.co/free-sound-effects/download/1189/ | Mixkit Sound Effects Free License | Cleared, condition |
 | `assets/audio/birds.m4a` (windy humming forest with birds) | https://mixkit.co/free-sound-effects/download/1238/ | Mixkit Sound Effects Free License | Cleared, condition |
 | `assets/audio/forest.m4a` (quiet forest ambience) | https://mixkit.co/free-sound-effects/download/1220/ | Mixkit Sound Effects Free License | Cleared, condition |
@@ -232,7 +239,7 @@ How it was checked: each page was opened and its licence read on 2026-10-16
 not be reached from the checking machine. The licence terms were therefore
 re-confirmed only through search results quoting Mixkit's own pages,
 including https://mixkit.co/llm-info/. **Action**: one team member opens the
-ten links above and confirms each still shows the Free License.
+links above and confirms each still shows the Free License.
 
 An older list of Mixkit clips the app no longer uses (`tool/media-source/sources.json`) was removed on 2026-10-22.
 
