@@ -2665,7 +2665,13 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String prepLength(int count) {
-    return 'சுமார் $count நிமிடங்கள்';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'சுமார் $count நிமிடங்கள்',
+      one: 'சுமார் 1 நிமிடம்',
+    );
+    return '$_temp0';
   }
 
   @override

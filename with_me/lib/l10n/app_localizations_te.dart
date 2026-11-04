@@ -2637,7 +2637,13 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String prepLength(int count) {
-    return 'సుమారు $count నిమిషాలు';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'సుమారు $count నిమిషాలు',
+      one: 'సుమారు 1 నిమిషం',
+    );
+    return '$_temp0';
   }
 
   @override

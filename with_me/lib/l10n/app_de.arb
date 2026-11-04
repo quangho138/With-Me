@@ -719,7 +719,7 @@
   "meditateHomeTitle": "Ruhe zu Hause",
   "meditateSchoolTitle": "Überforderung beim Lernen",
   "meditateSocialTitle": "Sorgen mit anderen",
-  "prepLength": "Etwa {count} Minuten",
+  "prepLength": "{count, plural, =1{Etwa 1 Minute} other{Etwa {count} Minuten}}",
   "prepHeadphones": "Am besten mit Kopfhörern",
   "prepOffline": "Funktioniert offline. Nichts herunterzuladen.",
   "prepSafety": "Bitte hör nicht zu, während du fährst oder etwas tust, das deine volle Aufmerksamkeit braucht. Du bleibst die ganze Zeit wach und hast die Kontrolle, und du kannst die Augen jederzeit öffnen.",

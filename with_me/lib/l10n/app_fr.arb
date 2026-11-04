@@ -719,7 +719,7 @@
   "meditateHomeTitle": "Calme à la maison",
   "meditateSchoolTitle": "Débordé par les études",
   "meditateSocialTitle": "Soucis avec les autres",
-  "prepLength": "Environ {count} minutes",
+  "prepLength": "{count, plural, =1{Environ 1 minute} other{Environ {count} minutes}}",
   "prepHeadphones": "Utilise des écouteurs pour un meilleur résultat",
   "prepOffline": "Fonctionne hors ligne. Rien à télécharger.",
   "prepSafety": "Merci de ne pas écouter en conduisant ou en faisant quelque chose qui demande toute ton attention. Tu restes conscient et maître de toi tout le temps, et tu peux ouvrir les yeux quand tu veux.",

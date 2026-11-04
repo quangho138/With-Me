@@ -459,6 +459,13 @@ void main() {
   });
 
   group('prep screen', () {
+    testWidgets('a one-minute session says "About 1 minute"', (t) async {
+      await _open(t, GuidedPrepScreen(script: GuidedScripts.anxietySos));
+      expect(find.text('About 1 minute'), findsOneWidget);
+      expect(find.text('About 1 minutes'), findsNothing);
+      await t.pumpWidget(const SizedBox());
+    });
+
     testWidgets('shows the length, headphones, offline and the safety line, '
         'and an area\'s first session is free', (t) async {
       await _open(t, GuidedPrepScreen(script: GuidedScripts.deadlinePressure));

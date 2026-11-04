@@ -4460,7 +4460,7 @@ abstract class AppLocalizations {
   /// Prep screen: how long the session lasts.
   ///
   /// In en, this message translates to:
-  /// **'About {count} minutes'**
+  /// **'{count, plural, =1{About 1 minute} other{About {count} minutes}}'**
   String prepLength(int count);
 
   /// Prep screen tip.

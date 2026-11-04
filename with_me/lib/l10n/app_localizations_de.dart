@@ -2653,7 +2653,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String prepLength(int count) {
-    return 'Etwa $count Minuten';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Etwa $count Minuten',
+      one: 'Etwa 1 Minute',
+    );
+    return '$_temp0';
   }
 
   @override

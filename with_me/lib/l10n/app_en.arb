@@ -3454,7 +3454,7 @@
   "@meditateSocialTitle": {
     "description": "A social meditation."
   },
-  "prepLength": "About {count} minutes",
+  "prepLength": "{count, plural, =1{About 1 minute} other{About {count} minutes}}",
   "@prepLength": {
     "description": "Prep screen: how long the session lasts.",
     "placeholders": {

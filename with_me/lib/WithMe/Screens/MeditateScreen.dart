@@ -356,9 +356,11 @@ class _MeditateScreenState extends State<MeditateScreen> {
                             color: ScenicColors.ink,
                           ),
                         ),
+                        // Two lines, so "From your check-in" is not cut
+                        // short on a narrow card or with large text.
                         Text(
                           suggested ? l.meditateSuggested : length,
-                          maxLines: 1,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: kScenicBody.copyWith(
                             fontSize: 12,

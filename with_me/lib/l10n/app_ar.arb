@@ -719,7 +719,7 @@
   "meditateHomeTitle": "هدوء في البيت",
   "meditateSchoolTitle": "إرهاق الدراسة",
   "meditateSocialTitle": "قلق العلاقات",
-  "prepLength": "حوالي {count} دقائق",
+  "prepLength": "{count, plural, =1{حوالي دقيقة واحدة} other{حوالي {count} دقائق}}",
   "prepHeadphones": "يُفضَّل استخدام سماعات الرأس",
   "prepOffline": "يعمل دون إنترنت. لا شيء للتنزيل.",
   "prepSafety": "يُرجى عدم الاستماع أثناء القيادة أو أي عمل يحتاج إلى انتباه كامل. يبقى الوعي والتحكم معك طوال الوقت، ويمكن فتح العينين في أي لحظة.",
