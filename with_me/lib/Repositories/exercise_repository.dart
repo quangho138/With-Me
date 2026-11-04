@@ -15,7 +15,7 @@ class ExerciseSession {
 
   final DateTime completedAt;
 
-  /// Which exercise: 'breathing' or 'physiological_sigh'.
+  /// Which exercise: 'breathing', 'physiological_sigh' or 'meditation'.
   final String exercise;
 
   /// The breathing pattern, for example '4-7-8' or '4-4-4-4'.

@@ -292,7 +292,7 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
   }
 }
 
-/// "With Me" in the brush script, with the leaf sprout rising between the
+/// "With Me™" in the brush script, with the leaf sprout rising between the
 /// words and a hibiscus tucked after them.
 class _Wordmark extends StatelessWidget {
   const _Wordmark();
@@ -308,6 +308,43 @@ class _Wordmark extends StatelessWidget {
       color: p == null ? ScenicColors.ink : null,
     );
 
+    // "With Me" and the trademark sign, small, after it and below the
+    // hibiscus. Every layer leaves room for the sign so the layers line
+    // up; only the fill shows it.
+    Widget layer(Paint? p) => Text.rich(
+      TextSpan(
+        text: 'With Me',
+        children: [
+          WidgetSpan(
+            alignment: PlaceholderAlignment.top,
+            child: Opacity(
+              opacity: p == null ? 1 : 0,
+              child: Padding(
+                padding: const EdgeInsets.only(top: size * .5, left: 3),
+                child: Text(
+                  '™',
+                  style: TextStyle(
+                    fontFamily: WithMeText.ui,
+                    fontSize: 20,
+                    height: 1,
+                    fontWeight: FontWeight.w700,
+                    color: ScenicColors.ink,
+                    shadows: [
+                      Shadow(
+                        color: Colors.white.withValues(alpha: .9),
+                        blurRadius: 4,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      style: style(p),
+    );
+
     return SizedBox(
       height: size * 1.45,
       child: Stack(
@@ -316,27 +353,21 @@ class _Wordmark extends StatelessWidget {
         children: [
           // White halo, then a darker stroke to thicken the script, then the
           // fill - the reference's wordmark is heavier than the typeface.
-          Text(
-            'With Me',
-            style: style(
-              Paint()
-                ..style = PaintingStyle.stroke
-                ..strokeWidth = 9
-                ..color = Colors.white.withValues(alpha: 0.75)
-                ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
-            ),
+          layer(
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 9
+              ..color = Colors.white.withValues(alpha: 0.75)
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
           ),
-          Text(
-            'With Me',
-            style: style(
-              Paint()
-                ..style = PaintingStyle.stroke
-                ..strokeWidth = 3.2
-                ..strokeJoin = StrokeJoin.round
-                ..color = ScenicColors.ink,
-            ),
+          layer(
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 3.2
+              ..strokeJoin = StrokeJoin.round
+              ..color = ScenicColors.ink,
           ),
-          Text('With Me', style: style(null)),
+          layer(null),
           const Positioned(
             top: -6,
             child: SizedBox(

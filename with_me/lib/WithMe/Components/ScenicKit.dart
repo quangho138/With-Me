@@ -1254,6 +1254,8 @@ class ScenicTile extends StatefulWidget {
     this.height,
     this.radius = 16,
     this.answer = false,
+    this.color,
+    this.selectedColor,
   });
 
   /// True for a check-in answer: it also plays the soft tap sound. Tiles
@@ -1269,6 +1271,13 @@ class ScenicTile extends StatefulWidget {
   /// Fixed height, or null to size to [child].
   final double? height;
   final double radius;
+
+  /// The tile's colour when it is not picked, instead of the usual sage.
+  final Color? color;
+
+  /// The tile's colour when it is picked, instead of the usual pale teal,
+  /// for a tile that keeps its own colour and just gains the ring.
+  final Color? selectedColor;
 
   @override
   State<ScenicTile> createState() => _ScenicTileState();
@@ -1305,10 +1314,10 @@ class _ScenicTileState extends State<ScenicTile> {
             height: widget.height,
             decoration: BoxDecoration(
               color: selected
-                  ? ScenicColors.tileSelected
+                  ? widget.selectedColor ?? ScenicColors.tileSelected
                   : _pressed
                   ? ScenicColors.tilePressed
-                  : ScenicColors.tile,
+                  : widget.color ?? ScenicColors.tile,
               borderRadius: BorderRadius.circular(widget.radius),
               border: Border.all(
                 color: selected
@@ -1341,12 +1350,16 @@ class ScenicMarker extends StatelessWidget {
     this.icon,
     this.size = 44,
     this.checked = false,
+    this.glyph,
   });
 
   final Color color;
   final IconData? icon;
   final double size;
   final bool checked;
+
+  /// A drawn glyph in place of [icon], sized to `size * 0.56` like one.
+  final Widget? glyph;
 
   @override
   Widget build(BuildContext context) {
@@ -1360,7 +1373,9 @@ class ScenicMarker extends StatelessWidget {
         color: checked ? ScenicColors.pillBottom : color,
         border: Border.all(color: Colors.white, width: 2),
       ),
-      child: glyph == null
+      child: !checked && this.glyph != null
+          ? Center(child: this.glyph)
+          : glyph == null
           ? null
           : Icon(glyph, size: size * 0.56, color: Colors.white),
     );

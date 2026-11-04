@@ -172,7 +172,7 @@ If it's silent, check the media volume.
 
 The English lines are now in Adrian's own voice. He recorded a 9-second reference through free CapCut voice filters, and tool/make_voice_lines.py had Chatterbox Multilingual read all 17 lines in that voice, into with_me/assets/audio/voice/en/. Each clip was checked against its line with speech recognition; three were made again and four trimmed where the model added stray sounds after the last word. The mouth timelines were rebuilt from the new clips.
 
-The fish.audio recordings no longer ship with the app. They are kept, unchanged, in with_me/tool/media-source/fish-audio-original/, with a note on how to bring them back. The change is in adrian-voice.diff.
+The fish.audio recordings no longer ship with the app, and were removed from the repository on 2026-10-22.
 
 ### The other languages
 

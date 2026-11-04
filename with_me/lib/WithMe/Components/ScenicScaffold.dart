@@ -38,6 +38,7 @@ class ScenicScaffold extends StatelessWidget {
     this.mascotMouth,
     this.softBackground = false,
     this.wideAction = false,
+    this.fillHeight = false,
   });
 
   final String? title;
@@ -78,6 +79,15 @@ class ScenicScaffold extends StatelessWidget {
   /// Give the bottom [action] the content's width instead of the narrower
   /// pill width - for a bar of tabs that lines up with the cards above.
   final bool wideAction;
+
+  /// Tell [child] the height left between the header and the action (see
+  /// [roomOf]), so a list can size itself to fill the screen; it still
+  /// scrolls when it can't fit. Not with [mascot].
+  final bool fillHeight;
+
+  /// The height a [fillHeight] screen's child has to fill, or null.
+  static double? roomOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_Room>()?.height;
 
   /// The widest the content column grows, so a tablet or a landscape
   /// window keeps phone proportions rather than stretching the panels.
@@ -126,10 +136,23 @@ class ScenicScaffold extends StatelessWidget {
                     id: _Slot.content,
                     child: CustomScrollView(
                       slivers: [
-                        SliverPadding(
-                          padding: EdgeInsets.fromLTRB(side, 4, side, 12),
-                          sliver: SliverToBoxAdapter(child: child),
-                        ),
+                        if (fillHeight)
+                          SliverFillRemaining(
+                            child: LayoutBuilder(
+                              builder: (context, room) => SingleChildScrollView(
+                                padding: EdgeInsets.fromLTRB(side, 4, side, 12),
+                                child: _Room(
+                                  height: room.maxHeight - 16,
+                                  child: child,
+                                ),
+                              ),
+                            ),
+                          )
+                        else
+                          SliverPadding(
+                            padding: EdgeInsets.fromLTRB(side, 4, side, 12),
+                            sliver: SliverToBoxAdapter(child: child),
+                          ),
                         if (mascot != null)
                           SliverFillRemaining(
                             hasScrollBody: false,
@@ -176,6 +199,15 @@ class ScenicScaffold extends StatelessWidget {
   /// on it should be dark rather than white.
   static bool isSoft(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_SoftScene>()?.soft ?? false;
+}
+
+class _Room extends InheritedWidget {
+  const _Room({required this.height, required super.child});
+
+  final double height;
+
+  @override
+  bool updateShouldNotify(_Room old) => old.height != height;
 }
 
 class _SoftScene extends InheritedWidget {
@@ -333,7 +365,11 @@ class _Header extends StatelessWidget {
               ? const SizedBox.shrink()
               : Semantics(header: true, child: ScenicTitle(title!)),
         ),
-        SizedBox(width: 44, child: trailing),
+        // At least as wide as the back chevron, wider for a label.
+        ConstrainedBox(
+          constraints: const BoxConstraints(minWidth: 44),
+          child: trailing,
+        ),
         const SizedBox(width: 8),
       ],
     );
@@ -946,4 +982,115 @@ class ScenicGroupLabel extends StatelessWidget {
       ),
     ),
   );
+}
+
+/// Inside a [ScenicScaffold.fillHeight] screen: [builder]'s content at its
+/// own size first, then, once it is measured and found to fit, stretched to
+/// the whole room ([builder] given true, so it can share the height out
+/// with [Expanded]). Content that doesn't fit - a short phone, large text -
+/// stays at its own size and scrolls.
+class ScenicFill extends StatefulWidget {
+  const ScenicFill({
+    super.key,
+    required this.builder,
+    this.content,
+    this.shrink = false,
+  });
+
+  final Widget Function(bool fill) builder;
+
+  /// Whatever changes what the content holds (Plus, the free uses), so it
+  /// is measured again when that changes.
+  final Object? content;
+
+  /// Fill even when the content is taller than the room, for content that
+  /// shrinks to fit ([growOf] below 1) rather than scrolling.
+  final bool shrink;
+
+  /// Inside a filling [ScenicFill]: the room over the content's own
+  /// height (1 or more, or less with [shrink]), for content that grows its type and spacing to
+  /// match instead of sharing the height out. 1 elsewhere.
+  static double growOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_Grow>()?.grow ?? 1;
+
+  @override
+  State<ScenicFill> createState() => _ScenicFillState();
+}
+
+class _ScenicFillState extends State<ScenicFill> {
+  final GlobalKey _natural = GlobalKey();
+  bool _fill = false;
+
+  /// The content's own height, once measured.
+  double? _naturalHeight;
+
+  /// What the measurement was made for: the room, the width and the text
+  /// size. When any changes, the content is measured again.
+  Object? _measuredFor;
+
+  @override
+  Widget build(BuildContext context) {
+    final room = ScenicScaffold.roomOf(context);
+    final measuredFor = (
+      widget.content,
+      room,
+      MediaQuery.sizeOf(context).width,
+      MediaQuery.textScalerOf(context).scale(16),
+    );
+    if (measuredFor != _measuredFor) {
+      _measuredFor = measuredFor;
+      _fill = false;
+    }
+    if (_fill && room != null) {
+      final natural = _naturalHeight ?? room;
+      return _Grow(
+        grow: natural > 0 ? room / natural : 1,
+        child: SizedBox(height: room, child: widget.builder(true)),
+      );
+    }
+    if (room != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final box = _natural.currentContext?.findRenderObject() as RenderBox?;
+        if (!mounted || box == null || !box.hasSize) return;
+        if ((box.size.height <= room || widget.shrink) && !_fill) {
+          setState(() {
+            _naturalHeight = box.size.height;
+            _fill = true;
+          });
+        }
+      });
+    }
+    return KeyedSubtree(key: _natural, child: widget.builder(false));
+  }
+}
+
+class _Grow extends InheritedWidget {
+  const _Grow({required this.grow, required super.child});
+
+  final double grow;
+
+  @override
+  bool updateShouldNotify(_Grow old) => old.grow != grow;
+}
+
+/// [child] at the width it is given, scaled down to fit the height when it
+/// would otherwise run over - for a row inside a tile whose height is
+/// shared out by [ScenicFill].
+class ScenicFitDown extends StatelessWidget {
+  const ScenicFitDown({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, box) {
+        if (!box.hasBoundedHeight || !box.hasBoundedWidth) return child;
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: SizedBox(width: box.maxWidth, child: child),
+        );
+      },
+    );
+  }
 }

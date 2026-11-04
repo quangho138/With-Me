@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 import '../Theme/AppFeel.dart';
 
-/// One 14-second breath track, aligned to the exercise's elapsed clock.
+/// One 13-second breath track, aligned to the exercise's elapsed clock.
 class SighAudio {
   AudioPlayer? _player;
   Future<void> _queue = Future.value();
@@ -27,7 +27,7 @@ class SighAudio {
       await player.setVolume(AppFeel.instance.loud(.65));
       if (_disposed || revision != _revision) return;
       await player.seek(
-        Duration(microseconds: elapsed.inMicroseconds % 14000000),
+        Duration(microseconds: elapsed.inMicroseconds % 13000000),
       );
       if (!_disposed && revision == _revision) await player.resume();
     });

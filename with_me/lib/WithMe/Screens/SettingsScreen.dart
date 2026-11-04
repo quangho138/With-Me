@@ -15,6 +15,7 @@ import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Data/Today.dart';
 import '../Locale/AppLanguage.dart';
+import '../Settings/CompanionPlus.dart';
 import '../Speech/SpeechService.dart';
 import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
@@ -230,6 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       SpeechService.instance.forgetSetting();
       AppLanguage.instance.value = null;
       AppFeel.instance.forget();
+      CompanionPlus.instance.value = false;
     } on AccountException catch (e) {
       // Nothing was deleted (for example, no internet). Say why.
       if (!mounted) return;

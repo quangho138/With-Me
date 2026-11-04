@@ -13,6 +13,10 @@ class WithMeAboutScreen extends StatelessWidget {
 
   static const String route = '/about';
 
+  /// Who wrote the guided meditation scripts (see
+  /// docs/THIRD_PARTY_AND_REFERENCES.md).
+  static const String scriptsAuthor = 'Seyedmasoud Sadjadi';
+
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
@@ -31,7 +35,7 @@ class WithMeAboutScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'With Me',
+                  'With Me™',
                   textAlign: TextAlign.center,
                   style: WithMeText.wordmark.copyWith(
                     fontSize: 42,
@@ -63,6 +67,28 @@ class WithMeAboutScreen extends StatelessWidget {
                 Expanded(
                   child: Text(
                     l.menuAboutDisclaimer(l.appTitle),
+                    style: kScenicBody.copyWith(fontSize: 16, height: 1.45),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          // Credit for the guided meditation scripts (used with permission).
+          ScenicPanel(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(
+                  Icons.self_improvement_rounded,
+                  size: 22,
+                  color: ScenicColors.pillBottom,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    l.menuAboutScripts(scriptsAuthor),
+                    key: const ValueKey('about-scripts'),
                     style: kScenicBody.copyWith(fontSize: 16, height: 1.45),
                   ),
                 ),

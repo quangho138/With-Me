@@ -200,7 +200,7 @@ const List<(String, String, Color)> kExercises = [
   ('Strengthen Your Focus', '4 · 4 · 4 breathing', WithMeColors.pink),
   (
     'Physiological Sigh',
-    'Deep inhale · two quick inhales · exhale',
+    'Deep inhale · quick inhale · exhale',
     WithMeColors.slate,
   ),
 ];

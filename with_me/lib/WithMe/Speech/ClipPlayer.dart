@@ -16,6 +16,12 @@ abstract class ClipPlayer {
   /// Stops whatever is playing. Its callbacks are not called afterwards.
   Future<void> stop();
 
+  /// Holds the recording where it is; [resume] carries on from there.
+  Future<void> pause();
+
+  /// Carries on a recording held by [pause].
+  Future<void> resume();
+
   factory ClipPlayer.platform() => AudioClipPlayer();
 }
 
@@ -24,10 +30,23 @@ class AudioClipPlayer implements ClipPlayer {
   AudioPlayer? _player;
   SpeechCallbacks? _current;
 
+  /// Held by [pause], also if the recording had not started yet.
+  bool _held = false;
+
   AudioPlayer _setUp() {
     final player = AudioPlayer();
+    // App volume (Settings), also while a line is playing.
+    AppFeel.instance.volume.addListener(
+      () => player.setVolume(AppFeel.instance.loud(1)),
+    );
     player.onPlayerStateChanged.listen((state) {
-      if (state == PlayerState.playing) _current?.onStart();
+      if (state != PlayerState.playing) return;
+      // Paused before the recording had started: keep it held.
+      if (_held) {
+        player.pause();
+        return;
+      }
+      _current?.onStart();
     });
     player.onPlayerComplete.listen((_) {
       final done = _current;
@@ -42,6 +61,7 @@ class AudioClipPlayer implements ClipPlayer {
     try {
       final player = _player ??= _setUp();
       _current = callbacks;
+      _held = false;
       await player.setReleaseMode(ReleaseMode.stop);
       // App volume (Settings) on top of the recording's own level.
       await player.setVolume(AppFeel.instance.loud(1));
@@ -54,8 +74,30 @@ class AudioClipPlayer implements ClipPlayer {
   }
 
   @override
+  Future<void> pause() async {
+    _held = true;
+    try {
+      await _player?.pause();
+    } catch (_) {
+      // Nothing was playing.
+    }
+  }
+
+  @override
+  Future<void> resume() async {
+    if (!_held) return;
+    _held = false;
+    try {
+      await _player?.resume();
+    } catch (_) {
+      // Nothing was held.
+    }
+  }
+
+  @override
   Future<void> stop() async {
     _current = null;
+    _held = false;
     try {
       await _player?.stop();
     } catch (_) {

@@ -354,6 +354,11 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
+  String menuAboutScripts(String name) {
+    return 'గైడెడ్ ధ్యానాలు ప్రొఫెసర్ $name గారి స్క్రిప్ట్‌ల ఆధారంగా ఉన్నాయి, అనుమతితో ఉపయోగిస్తున్నాం.';
+  }
+
+  @override
   String get menuAboutTerms => 'నిబంధనలు & గోప్యతా విధానం';
 
   @override
@@ -549,32 +554,6 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get accountMembershipFootnote =>
       'ఎప్పుడైనా రద్దు చేయవచ్చు. ఏదేమైనా మీ లాగ్‌లు మీవే.';
-
-  @override
-  String get accountPlanFree => 'ఎప్పటికీ ఉచితం';
-
-  @override
-  String get accountPlanFreeBlurb =>
-      'చెక్-ఇన్‌లు, రోజువారీ లాగ్‌లు, శ్వాస వ్యాయామాలు, క్యాలెండర్. కార్డ్ అవసరం లేదు.';
-
-  @override
-  String get accountPlanPlus => 'Companion Plus · US\$4.99/నెల';
-
-  @override
-  String get accountPlanPlusBlurb =>
-      'అన్ని సౌండ్‌స్కేప్‌లు · గైడెడ్ ధ్యానాలు · పూర్తి అంతర్దృష్టి చరిత్ర · షేర్ చేయడానికి PDF సారాంశాలు';
-
-  @override
-  String get accountCard => 'కార్డ్';
-
-  @override
-  String get accountCardExpiry => 'గడువు తేదీ';
-
-  @override
-  String get accountCardExpiryHint => 'MM/YY';
-
-  @override
-  String get accountCardCvc => 'CVC';
 
   @override
   String get homeTitle => 'హోమ్';
@@ -2132,9 +2111,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get exerciseSighDeepInhale => 'లోతైన శ్వాస';
 
   @override
-  String exerciseSighQuickInhale(int number) {
-    return 'చిన్న శ్వాస · $number';
-  }
+  String get exerciseSighQuickInhale => 'చిన్న శ్వాస';
 
   @override
   String get exerciseSighLongExhale => 'దీర్ఘ నిశ్వాసం';
@@ -2144,9 +2121,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get exerciseSighCueFirstSip => 'కొంచెం అదనంగా గాలి పీల్చండి';
-
-  @override
-  String get exerciseSighCueSecondSip => 'ఇంకొక్కసారి కొంచెం గాలి పీల్చండి';
 
   @override
   String get exerciseSighCueLongExhale => 'శ్వాసను నెమ్మదిగా బయటకు వదలండి';
@@ -2163,7 +2137,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get exerciseSighIntro =>
-      'ఒక లోతైన శ్వాస, రెండు చిన్న శ్వాసలు, తర్వాత ఒక దీర్ఘ నిశ్వాసం.';
+      'ఒక లోతైన శ్వాస, ఒక చిన్న శ్వాస, తర్వాత ఒక దీర్ఘ నిశ్వాసం.';
 
   @override
   String get exerciseNumberOfCycles => 'చక్రాల సంఖ్య';
@@ -2230,8 +2204,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get exerciseFocusSubtitle => '4 · 4 · 4 శ్వాస';
 
   @override
-  String get exerciseSighSubtitle =>
-      'లోతైన శ్వాస · రెండు చిన్న శ్వాసలు · నిశ్వాసం';
+  String get exerciseSighSubtitle => 'లోతైన శ్వాస · చిన్న శ్వాస · నిశ్వాసం';
 
   @override
   String get exerciseRestTitle => 'మీ మనసుకు విశ్రాంతి ఇవ్వండి';
@@ -2452,4 +2425,4934 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get settingsDeleteAccountFailed => 'మీ ఖాతాను తొలగించలేకపోయాం.';
+
+  @override
+  String get accountPlusActive => 'మీకు Companion Plus ఉంది';
+
+  @override
+  String get accountPlusStarted =>
+      'Companion Plus ఆన్ అయింది. ఎలాంటి చెల్లింపు తీసుకోలేదు.';
+
+  @override
+  String get exerciseMeditationTitle => 'గైడెడ్ ధ్యానం';
+
+  @override
+  String get exerciseMeditationSubtitle => '5 నిమి · అడవిలో ప్రశాంతత';
+
+  @override
+  String get exerciseMeditationLocked => 'లాక్ అయింది. Companion Plus లో భాగం.';
+
+  @override
+  String get exerciseMeditationIntro =>
+      'అడవిలో ఐదు ప్రశాంత నిమిషాలు. మాటలను అనుసరించండి, లేదా కళ్లు మూసుకుని వినండి.';
+
+  @override
+  String get exerciseMeditationStart => 'ధ్యానం ప్రారంభించండి';
+
+  @override
+  String get exerciseMeditationAgain => 'మళ్లీ ధ్యానం చేయండి';
+
+  @override
+  String exerciseMeditationStepOf(int step, int total) {
+    return 'దశ $step / $total';
+  }
+
+  @override
+  String exerciseMeditationTimeLeft(String time) {
+    return '$time మిగిలింది';
+  }
+
+  @override
+  String get exerciseMeditationStep1Title => 'స్థిరపడండి';
+
+  @override
+  String get exerciseMeditationStep1 =>
+      'సౌకర్యంగా కూర్చోండి లేదా పడుకోండి. కళ్లు మూసుకోండి, లేదా చూపును ఒక చోట నిలపండి.';
+
+  @override
+  String get exerciseMeditationStep2Title => 'శ్వాసను గమనించండి';
+
+  @override
+  String get exerciseMeditationStep2 =>
+      'శ్వాస లోపలికి వచ్చి బయటకు వెళ్లడం గమనించండి. ఏదీ మార్చాల్సిన అవసరం లేదు.';
+
+  @override
+  String get exerciseMeditationStep3Title => 'సడలించండి';
+
+  @override
+  String get exerciseMeditationStep3 =>
+      'ప్రతి నిశ్వాసంతో దవడ, భుజాలు, చేతులు ఇంకొంచెం సడలనివ్వండి.';
+
+  @override
+  String get exerciseMeditationStep4Title => 'వినండి';
+
+  @override
+  String get exerciseMeditationStep4 =>
+      'మీ చుట్టూ ఉన్న అడవిని వినండి. ప్రతి శబ్దాన్ని వచ్చి వెళ్లనివ్వండి.';
+
+  @override
+  String get exerciseMeditationStep5Title => 'తిరిగి రండి';
+
+  @override
+  String get exerciseMeditationStep5 =>
+      'ఒకసారి లోతుగా శ్వాస తీసుకోండి. వేళ్లను కదిలించి, సిద్ధమైనప్పుడు కళ్లు తెరవండి.';
+
+  @override
+  String get exerciseMeditationDoneTitle => 'చాలా బాగుంది';
+
+  @override
+  String get exerciseMeditationDone =>
+      'మీకు మీరే ఐదు ప్రశాంత నిమిషాలు ఇచ్చుకున్నారు. ఈ అనుభూతిని మీతో తీసుకెళ్లండి.';
+
+  @override
+  String get exerciseFreeformTitle => 'సభ్యత్వ ధ్యానం';
+
+  @override
+  String get exerciseFreeformSubtitle =>
+      'మార్గదర్శక సెషన్లు, ఇల్లు, పని, చదువు, సామాజిక జీవితం కోసం ధ్యానాలు';
+
+  @override
+  String get meditateGuidedHeading => 'మార్గదర్శక సెషన్లు';
+
+  @override
+  String get exerciseBodyScanTitle => 'బాడీ స్కాన్';
+
+  @override
+  String get exerciseBodyScanSubtitle =>
+      'మీ శరీరంలోని ప్రతి భాగాన్ని గమనించి, సడలించండి';
+
+  @override
+  String get exerciseMuscleTitle => 'కండరాల సడలింపు';
+
+  @override
+  String get exerciseMuscleSubtitle => 'చేతుల నుండి పాదాల వరకు బిగించి, వదలండి';
+
+  @override
+  String exerciseUsesLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'ఇంకా $count సార్లు',
+      one: 'ఇంకా 1 సారి',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get exerciseUsedUp =>
+      'ఉచిత వినియోగాలు అయిపోయాయి. మళ్లీ వాడటానికి Plus తీసుకోండి.';
+
+  @override
+  String membershipUsedUp(String name) {
+    return 'మీరు $name ఉచిత సెషన్‌ను వాడేశారు. కొనసాగించడానికి Plus తీసుకోండి.';
+  }
+
+  @override
+  String get membershipPlusName => 'With Me Plus';
+
+  @override
+  String get membershipTagline =>
+      'ఒత్తిడి, ఆందోళనను ఎదుర్కోవడానికి కావలసినవన్నీ.';
+
+  @override
+  String get membershipPerkAreas =>
+      'ఇల్లు, పని, చదువు, సామాజిక జీవితం — అన్ని వెర్షన్లు';
+
+  @override
+  String get membershipPerkGuided =>
+      'అపరిమిత మార్గదర్శక ధ్యానం, బాడీ స్కాన్, కండరాల సడలింపు';
+
+  @override
+  String get membershipPerkSos => 'అవసరమైనప్పుడల్లా Anxiety SOS';
+
+  @override
+  String get membershipYearly => 'వార్షిక';
+
+  @override
+  String get membershipYearlyPrice => 'US\$39.99/సంవత్సరం';
+
+  @override
+  String get membershipYearlyDetail => 'US\$3.33/నెల · సంవత్సరానికి బిల్లు';
+
+  @override
+  String get membershipMonthly => 'నెలవారీ';
+
+  @override
+  String get membershipMonthlyPrice => 'US\$3.99/నెల';
+
+  @override
+  String get membershipMonthlyDetail => 'ప్రతి నెల బిల్లు';
+
+  @override
+  String get membershipSave => '16% ఆదా';
+
+  @override
+  String get meditateTitle => 'ధ్యానం';
+
+  @override
+  String get meditateSubtitle => 'ఒత్తిడి ఎక్కడి నుండి వచ్చినా ప్రశాంతత';
+
+  @override
+  String get meditateGoPlus => 'Plus తీసుకోండి';
+
+  @override
+  String get meditateSosTitle => 'ఆందోళన SOS';
+
+  @override
+  String get meditateSosSubtitle => 'ఇప్పుడే అనిపిస్తోందా? 1 నిమి';
+
+  @override
+  String get meditateByArea => 'ఒత్తిడి ప్రాంతం ప్రకారం';
+
+  @override
+  String meditateSessions(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count సెషన్‌లు',
+      one: '1 సెషన్',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get meditateSuggested => 'మీ చెక్-ఇన్ నుండి';
+
+  @override
+  String meditateMinutes(int count) {
+    return '$count నిమి';
+  }
+
+  @override
+  String get meditateDeadlineTitle => 'గడువు ఒత్తిడి';
+
+  @override
+  String get meditateHomeTitle => 'ఇంట్లో ప్రశాంతత';
+
+  @override
+  String get meditateSchoolTitle => 'చదువు భారం';
+
+  @override
+  String get meditateSocialTitle => 'సామాజిక ఆందోళనలు';
+
+  @override
+  String prepLength(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'సుమారు $count నిమిషాలు',
+      one: 'సుమారు 1 నిమిషం',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get prepHeadphones => 'మంచి అనుభవం కోసం హెడ్‌ఫోన్‌లు వాడండి';
+
+  @override
+  String get prepOffline =>
+      'ఇంటర్నెట్ లేకుండా పనిచేస్తుంది. డౌన్‌లోడ్ చేయాల్సిందేమీ లేదు.';
+
+  @override
+  String get prepSafety =>
+      'దయచేసి డ్రైవింగ్ చేస్తున్నప్పుడు లేదా పూర్తి శ్రద్ధ అవసరమైన పని చేస్తున్నప్పుడు వినకండి. మీరు ఎప్పుడూ అప్రమత్తంగా, నియంత్రణలో ఉంటారు, ఎప్పుడు కావాలంటే అప్పుడు కళ్లు తెరవవచ్చు.';
+
+  @override
+  String get prepCare =>
+      'ఇది రోజువారీ ఒత్తిడికి సహాయపడుతుంది, వృత్తిపరమైన చికిత్సకు ప్రత్యామ్నాయం కాదు. ఆందోళన ఎక్కువగా లేదా నిరంతరంగా అనిపిస్తే, దయచేసి అర్హత ఉన్న నిపుణుడిని సంప్రదించండి.';
+
+  @override
+  String get prepVersions => 'వెర్షన్లు';
+
+  @override
+  String prepVersion(int number) {
+    return 'వెర్షన్ $number';
+  }
+
+  @override
+  String get prepVersionsNote =>
+      'వెర్షన్ 1 ఉచితం. మిగతా వెర్షన్లు సభ్యుల కోసం.';
+
+  @override
+  String prepVersionSoon(int number) {
+    return 'వెర్షన్ $number త్వరలో వస్తోంది.';
+  }
+
+  @override
+  String get prepCaptions => 'ఉపశీర్షికలు చూపించు';
+
+  @override
+  String get prepBegin => 'మొదలుపెట్టండి';
+
+  @override
+  String playerResumeFrom(String step) {
+    return '\"$step\" నుండి కొనసాగించండి';
+  }
+
+  @override
+  String get playerCaptionsOn => 'ఉపశీర్షికలు ఆన్';
+
+  @override
+  String get playerCaptionsOff => 'ఉపశీర్షికలు ఆఫ్';
+
+  @override
+  String get afterHowFeel => 'ఇప్పుడు మీకు ఎలా అనిపిస్తోంది?';
+
+  @override
+  String get afterSaved => 'మీ రోజువారీ లాగ్‌లో సేవ్ అయింది';
+
+  @override
+  String get afterAnchorTitle => 'మీ లంగరు';
+
+  @override
+  String get afterAnchorText => 'బొటనవేలు + వేలు, ఒక శ్వాస, ఒకసారి ఒక పని.';
+
+  @override
+  String get afterReminder => 'రిమైండర్ పెట్టండి';
+
+  @override
+  String get stepArrive => 'చేరుకోవడం';
+
+  @override
+  String get stepBreathe => 'శ్వాస';
+
+  @override
+  String get stepBodyScan => 'బాడీ స్కాన్';
+
+  @override
+  String get stepReframe => 'కొత్త దృష్టి';
+
+  @override
+  String get stepReturn => 'తిరిగి రావడం';
+
+  @override
+  String get stepSettle => 'స్థిరపడనివ్వండి';
+
+  @override
+  String get stepHeadFace => 'తల మరియు ముఖం';
+
+  @override
+  String get stepShouldersArms => 'భుజాలు మరియు చేతులు';
+
+  @override
+  String get stepChestBelly => 'ఛాతీ మరియు పొట్ట';
+
+  @override
+  String get stepBackLegs => 'వీపు మరియు కాళ్లు';
+
+  @override
+  String get stepWholeBody => 'మొత్తం శరీరం';
+
+  @override
+  String get stepHandsArms => 'చేతులు మరియు ముంజేతులు';
+
+  @override
+  String get stepShouldersFace => 'భుజాలు మరియు ముఖం';
+
+  @override
+  String get stepChestStomach => 'ఛాతీ మరియు కడుపు';
+
+  @override
+  String get stepLegsFeet => 'కాళ్లు మరియు పాదాలు';
+
+  @override
+  String get stepRest => 'విశ్రాంతి';
+
+  @override
+  String get scriptDeadline01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptDeadline02 =>
+      'తర్వాతి పది నిమిషాలు, గడువు తలుపు బయట వేచి ఉండవచ్చు. మీరు తిరిగి వచ్చినప్పుడు అది అక్కడే ఉంటుంది, మీరు దాన్ని మరింత స్పష్టమైన మనసుతో ఎదుర్కొంటారు.';
+
+  @override
+  String get scriptDeadline03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptDeadline04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… గోడపై ఒక చోటు, బల్ల అంచు… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptDeadline05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptDeadline06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptDeadline07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptDeadline08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptDeadline09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptDeadline10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptDeadline11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptDeadline12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptDeadline13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptDeadline14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptDeadline15 => 'ఏడు…';
+
+  @override
+  String get scriptDeadline16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptDeadline17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptDeadline18 => 'నాలుగు…';
+
+  @override
+  String get scriptDeadline19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptDeadline20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptDeadline21 => 'ఒకటి.';
+
+  @override
+  String get scriptDeadline22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptDeadline23 =>
+      'పని ఒత్తిడి తరచుగా కొన్ని ప్రదేశాల్లోనే దాక్కుంటుంది. ఒక్కోదాన్ని చూద్దాం… అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptDeadline24 =>
+      'మీ నుదుటితో మొదలుపెట్టండి. స్క్రీన్‌లు, ఈమెయిల్‌లు చూసి ముడుచుకునే చోటు. అక్కడ ఒక వెచ్చని చేయి ఉన్నట్టు ఊహించండి… దాన్ని నునుపుగా చేస్తోంది…';
+
+  @override
+  String get scriptDeadline25 =>
+      'ఇప్పుడు మీ దవడ. పళ్లు కొంచెం విడిపోనివ్వండి. నాలుక విశ్రాంతి తీసుకోనివ్వండి. రోజులో చాలా భాగం దవడలో పట్టుకుని ఉంటాం… ఇప్పుడు దాన్ని వదిలేయవచ్చు.';
+
+  @override
+  String get scriptDeadline26 =>
+      'మీ మెడ, భుజాలు. రోజంతా అవి చెవుల వైపు పైకి లేచి ఉన్నట్టు ఊహించండి… ఇప్పుడు, తర్వాతి ఊపిరి వదలడంతో… అవి జారిపోతాయి. బరువుగా. వెచ్చగా.';
+
+  @override
+  String get scriptDeadline27 =>
+      'చేతుల గుండా కిందికి… టైప్ చేసి అలసిన మణికట్లు… మీ చేతులు. వేళ్లు వదులుగా, నిశ్చలంగా మారనివ్వండి.';
+
+  @override
+  String get scriptDeadline28 =>
+      'ఇప్పుడు మీ ఛాతీ, పొట్ట. అక్కడ ఏదైనా బిగుతు, తొందరపాటు ముడి ఉందేమో గమనించండి. దానితో పోరాడాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptDeadline29 =>
+      'దానిలోకి శ్వాస తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది వదులవుతున్నట్టు ఊహించండి… ఒకసారి ఒక దారం.';
+
+  @override
+  String get scriptDeadline30 =>
+      'మీ కింది వీపు… తుంటి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptDeadline31 =>
+      'మీ మొత్తం శరీరం, ప్రశాంతంగా, బరువుగా, సురక్షితంగా.';
+
+  @override
+  String get scriptDeadline32 =>
+      'ఇప్పుడు యాప్‌లో ఉన్నలాంటి ఒక నిశ్శబ్ద సముద్ర తీరంలో నిలబడి ఉన్నట్టు ఊహించండి. పాదాల కింద వెచ్చని ఇసుక. సముద్రం లోపలికి వస్తోంది… బయటికి వెళ్తోంది… తన సమయంలో.';
+
+  @override
+  String get scriptDeadline33 =>
+      'అలలు ఎప్పుడూ తొందరపడవని గమనించండి. ప్రతి అల వస్తుంది… తన పని చేస్తుంది… తర్వాతి దానికి చోటు ఇస్తుంది.';
+
+  @override
+  String get scriptDeadline34 =>
+      'మీ పని కూడా అలాగే ఉండవచ్చు. ఒక అల. ఒక పని. తర్వాత ఇంకోటి.';
+
+  @override
+  String get scriptDeadline35 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptDeadline36 => 'మీ విలువ మీ పని భారం కాదు.';
+
+  @override
+  String get scriptDeadline37 =>
+      'మీరు ఇంతకు ముందు గడువులను ఎదుర్కొన్నారు, దీన్ని కూడా ఎదుర్కోగలరు.';
+
+  @override
+  String get scriptDeadline38 =>
+      'కంగారు పడే మనసు కంటే ప్రశాంతమైన మనసు వేగంగా పనిచేస్తుంది.';
+
+  @override
+  String get scriptDeadline39 => 'ఒక పనిని బాగా చేయడమే చాలు.';
+
+  @override
+  String get scriptDeadline40 =>
+      'ఇప్పుడు, మెల్లగా మీ బొటనవేలి కొనను చూపుడు వేలి కొనకు ఆనించి నొక్కండి.';
+
+  @override
+  String get scriptDeadline41 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: ఒకసారి ఒక పని.';
+
+  @override
+  String get scriptDeadline42 =>
+      'ఈ ప్రశాంతత మీ వేళ్ల కొనల్లో చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, పనిలో ఒత్తిడి పెరిగినప్పుడల్లా… మీటింగ్‌లో, పంపే ముందు, గడియారం గట్టిగా వినిపించినప్పుడు…';
+
+  @override
+  String get scriptDeadline43 =>
+      'బొటనవేలిని, వేలిని కలిపి నొక్కి, ఒక శ్వాస తీసుకోవచ్చు, ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptDeadline44 => 'ఇప్పుడు వేళ్లను వదలండి.';
+
+  @override
+  String get scriptDeadline45 =>
+      'తిరిగి రావడానికి ముందు, తర్వాతి గంటలో మీరు చేసే ఒక చిన్న పనిని ఎంచుకోండి. ఒక్కటే. మొదటి అడుగు, మొత్తం కొండ కాదు.';
+
+  @override
+  String get scriptDeadline46 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptDeadline47 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptDeadline48 => 'ఒకటి… మీ కింద ఉన్న కుర్చీని గమనిస్తూ.';
+
+  @override
+  String get scriptDeadline49 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptDeadline50 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptDeadline51 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptDeadline52 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి, ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptDeadline53 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: ఒకసారి ఒక పని. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSos01 =>
+      'నేను మీతో ఉన్నాను. ఇప్పుడు ఏదీ సరిచేయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSos02 =>
+      'ఒక చేతిని ఛాతీపై పెట్టండి. నాలుగు వరకు నెమ్మదిగా శ్వాస తీసుకోండి… ఆరు వరకు వదలండి.';
+
+  @override
+  String get scriptSos03 =>
+      'ఇప్పుడు నేలపై మీ పాదాలను గమనించండి. మెల్లగా నొక్కండి. మీరు ఇక్కడ ఉన్నారు, సురక్షితంగా ఉన్నారు.';
+
+  @override
+  String get scriptSos04 =>
+      'ఇంకొక నెమ్మదైన శ్వాస. లోపలికి… బయటికి. బాగా చేశారు.';
+
+  @override
+  String get scriptHomeFull09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptHomeFull08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptHomeFull10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptHomeFull11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptHomeFull12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptHomeFull13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptHomeFull15 => 'ఏడు…';
+
+  @override
+  String get scriptHomeFull16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptHomeFull17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptHomeFull18 => 'నాలుగు…';
+
+  @override
+  String get scriptHomeFull19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptHomeFull20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptHomeFull21 => 'ఒకటి.';
+
+  @override
+  String get scriptHomeFull22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptHomeFull29 =>
+      'దానిలోకి శ్వాస తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది వదులవుతున్నట్టు ఊహించండి… ఒకసారి ఒక దారం.';
+
+  @override
+  String get scriptHomeFull31 =>
+      'మీ మొత్తం శరీరం, ప్రశాంతంగా, బరువుగా, సురక్షితంగా.';
+
+  @override
+  String get scriptHomeFull35 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptHomeFull40 =>
+      'ఇప్పుడు, మెల్లగా మీ బొటనవేలి కొనను చూపుడు వేలి కొనకు ఆనించి నొక్కండి.';
+
+  @override
+  String get scriptHomeFull43 =>
+      'బొటనవేలిని, వేలిని కలిపి నొక్కి, ఒక శ్వాస తీసుకోవచ్చు, ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptHomeFull44 => 'ఇప్పుడు వేళ్లను వదలండి.';
+
+  @override
+  String get scriptHomeFull46 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptHomeFull47 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptHomeFull49 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptHomeFull50 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptHomeFull01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptHomeFull02 =>
+      'తర్వాతి పది నిమిషాలు, ఇంట్లోని ప్రతిదీ వేచి ఉండవచ్చు. ఇంటి పనులు, మెసేజ్‌లు, మీ అవసరం ఉన్నవాళ్లు. మీరు తిరిగి వచ్చినప్పుడు వాళ్లు అక్కడే ఉంటారు, మీరు మరింత మృదువైన మనసుతో వాళ్లను కలుస్తారు.';
+
+  @override
+  String get scriptHomeFull03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. వెనక్కి ఆనుకుని కూర్చోండి, లేదా పడుకోండి. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ ఉండనివ్వండి.';
+
+  @override
+  String get scriptHomeFull04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… గదిలో ఒక మూల, మెత్తని వెలుతురు పడే ఒక చోటు… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptHomeFull05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptHomeFull06 =>
+      'ఇప్పుడు దేన్నీ సరిదిద్దాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptHomeFull07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీ శరీరానికి అది విశ్రాంతి తీసుకోవచ్చని చెబుతుంది.';
+
+  @override
+  String get scriptHomeFull14 => 'ఎనిమిది… ఇంటి శబ్దాలు ఇంకా దూరమవుతున్నాయి.';
+
+  @override
+  String get scriptHomeFull23 =>
+      'ఇంటి ఒత్తిడి తరచుగా కొన్ని ప్రదేశాల్లోనే పేరుకుపోతుంది. ఒక్కోదాన్ని చూద్దాం… అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptHomeFull24 =>
+      'మీ నుదుటితో మొదలుపెట్టండి. ఇంట్లో గోల పెరిగినప్పుడు బిగుసుకునే చోటు. అక్కడ ఒక వెచ్చని చేయి ఉన్నట్టు ఊహించండి… దాన్ని నునుపుగా చేస్తోంది…';
+
+  @override
+  String get scriptHomeFull25 =>
+      'ఇప్పుడు మీ దవడ. పళ్లు కొంచెం విడిపోనివ్వండి. నాలుక విశ్రాంతి తీసుకోనివ్వండి. ఇంట్లో ఎన్నో మాటలు చెప్పకుండానే మింగేస్తాం… ఇప్పుడు వాటిని వదిలేయవచ్చు.';
+
+  @override
+  String get scriptHomeFull26 =>
+      'మీ మెడ, భుజాలు. ప్రతి పనినీ, మీ నుంచి ఏదో కావాలనుకున్న ప్రతి వ్యక్తినీ అవి మోస్తున్నట్టు ఊహించండి… ఇప్పుడు, తర్వాతి ఊపిరి వదలడంతో… అవి జారిపోతాయి. బరువుగా. వెచ్చగా.';
+
+  @override
+  String get scriptHomeFull27 =>
+      'చేతుల గుండా కిందికి… వంట చేసిన, బరువులు మోసిన, సర్దిన, హత్తుకున్న మీ చేతులు… వేళ్లు వదులుగా, నిశ్చలంగా మారనివ్వండి.';
+
+  @override
+  String get scriptHomeFull28 =>
+      'ఇప్పుడు మీ ఛాతీ, పొట్ట. అక్కడ ఏదైనా బరువు, మీరు ప్రేమించేవాళ్ల గురించి ఆందోళన ముడి ఉందేమో గమనించండి. దానితో పోరాడాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomeFull30 =>
+      'మీ కింది వీపు… తుంటి… కాళ్లు… పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomeFull32 =>
+      'ఇప్పుడు యాప్‌లో ఉన్నలాంటి ఒక వెచ్చని మంట పక్కన కూర్చున్నట్టు ఊహించండి. మీ ముఖంపై దాని వెలుగు. కట్టెలు మెల్లగా చిటపటలాడే శబ్దం.';
+
+  @override
+  String get scriptHomeFull33 =>
+      'మంట ఎప్పుడూ తొందరపడదని గమనించండి. అది నెమ్మదిగా, స్థిరంగా మండుతుంది… ఏ ప్రయత్నం లేకుండానే గది మొత్తాన్ని వెచ్చగా చేస్తుంది.';
+
+  @override
+  String get scriptHomeFull34 =>
+      'ఇంట్లో మీరూ అలాగే ఉండవచ్చు. స్థిరంగా. ఆప్యాయంగా. సరిపోయేలా ఉండటానికి మీరు అన్నీ చేయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomeFull36 =>
+      'నేను ఇతరులను చూసుకుంటూనే నన్ను నేనూ చూసుకోగలను.';
+
+  @override
+  String get scriptHomeFull37 =>
+      'విశ్రాంతి నేను సంపాదించుకోవాల్సిన విషయం కాదు.';
+
+  @override
+  String get scriptHomeFull38 => 'నేను ఈరోజే అన్నీ సరిచేయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomeFull39 => 'ఇంట్లో ప్రశాంతత నాతోనే మొదలవ్వవచ్చు.';
+
+  @override
+  String get scriptHomeFull41 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నాలోనే నేను ఇంట్లో ఉన్నాను.';
+
+  @override
+  String get scriptHomeFull42 =>
+      'ఈ ప్రశాంతత మీ వేళ్ల కొనల్లో చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఇల్లు బరువుగా అనిపించినప్పుడల్లా… పెరిగిన గొంతులో, పేరుకుపోయిన పనుల్లో, ఒక సుదీర్ఘ సాయంత్రంలో…';
+
+  @override
+  String get scriptHomeFull45 =>
+      'తిరిగి రావడానికి ముందు, ఈరోజు మీ కోసం చేసే ఒక చిన్న, ప్రేమపూర్వకమైన పనిని ఎంచుకోండి. ఒక్కటే. ఒక కప్పు టీ, కొన్ని నిశ్శబ్ద నిమిషాలు, త్వరగా నిద్రపోవడం.';
+
+  @override
+  String get scriptHomeFull48 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptHomeFull51 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, వెచ్చగా, స్థిరంగా.';
+
+  @override
+  String get scriptHomeFull52 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి, ప్రశాంతంగా, విశ్రాంతిగా, సిద్ధంగా.';
+
+  @override
+  String get scriptHomeFull53 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: మీలోనే మీరు ఇంట్లో ఉన్నారు. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSchoolFull09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSchoolFull08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSchoolFull10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptSchoolFull11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptSchoolFull12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptSchoolFull13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptSchoolFull15 => 'ఏడు…';
+
+  @override
+  String get scriptSchoolFull16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptSchoolFull17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptSchoolFull18 => 'నాలుగు…';
+
+  @override
+  String get scriptSchoolFull19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptSchoolFull20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptSchoolFull21 => 'ఒకటి.';
+
+  @override
+  String get scriptSchoolFull22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptSchoolFull29 =>
+      'దానిలోకి శ్వాస తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది వదులవుతున్నట్టు ఊహించండి… ఒకసారి ఒక దారం.';
+
+  @override
+  String get scriptSchoolFull31 =>
+      'మీ మొత్తం శరీరం, ప్రశాంతంగా, బరువుగా, సురక్షితంగా.';
+
+  @override
+  String get scriptSchoolFull35 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptSchoolFull40 =>
+      'ఇప్పుడు, మెల్లగా మీ బొటనవేలి కొనను చూపుడు వేలి కొనకు ఆనించి నొక్కండి.';
+
+  @override
+  String get scriptSchoolFull43 =>
+      'బొటనవేలిని, వేలిని కలిపి నొక్కి, ఒక శ్వాస తీసుకోవచ్చు, ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptSchoolFull44 => 'ఇప్పుడు వేళ్లను వదలండి.';
+
+  @override
+  String get scriptSchoolFull46 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptSchoolFull47 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptSchoolFull49 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptSchoolFull50 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptSchoolFull01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSchoolFull02 =>
+      'తర్వాతి పది నిమిషాలు, చదువు తలుపు బయట వేచి ఉండవచ్చు. నోట్స్, అసైన్‌మెంట్‌లు, పరీక్షలు. మీరు తిరిగి వచ్చినప్పుడు అవి అక్కడే ఉంటాయి, మీరు వాటిని మరింత స్పష్టమైన మనసుతో ఎదుర్కొంటారు.';
+
+  @override
+  String get scriptSchoolFull03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptSchoolFull04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… గోడపై ఒక చోటు, మీ బల్ల అంచు… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptSchoolFull05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptSchoolFull06 =>
+      'ఏదీ పర్ఫెక్ట్‌గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptSchoolFull07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptSchoolFull14 =>
+      'ఎనిమిది… పేజీలు, ఒత్తిడి ఇంకా దూరమవుతున్నాయి.';
+
+  @override
+  String get scriptSchoolFull23 =>
+      'చదువు తరచుగా కొన్ని ప్రదేశాల్లోనే బిగుతును వదిలిపోతుంది. ఒక్కోదాన్ని చూద్దాం… అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptSchoolFull24 =>
+      'మీ నుదుటితో మొదలుపెట్టండి. నోట్స్, స్క్రీన్‌ల ముందు ముడుచుకునే చోటు. అక్కడ ఒక వెచ్చని చేయి ఉన్నట్టు ఊహించండి… దాన్ని నునుపుగా చేస్తోంది…';
+
+  @override
+  String get scriptSchoolFull25 =>
+      'ఇప్పుడు మీ దవడ. పళ్లు కొంచెం విడిపోనివ్వండి. నాలుక విశ్రాంతి తీసుకోనివ్వండి. ఏకాగ్రతలో చాలా బిగుతు దవడలోనే ఉంటుంది… ఇప్పుడు దాన్ని వదిలేయవచ్చు.';
+
+  @override
+  String get scriptSchoolFull26 =>
+      'మీ మెడ, భుజాలు. గంటల తరబడి పుస్తకాలు, ల్యాప్‌టాప్‌ల మీద అవి వంగి ఉన్నట్టు ఊహించండి… ఇప్పుడు, తర్వాతి ఊపిరి వదలడంతో… అవి జారిపోతాయి. బరువుగా. వెచ్చగా.';
+
+  @override
+  String get scriptSchoolFull27 =>
+      'చేతుల గుండా కిందికి… రాసి రాసి అలసిన మణికట్లు… మీ చేతులు. వేళ్లు వదులుగా, నిశ్చలంగా మారనివ్వండి.';
+
+  @override
+  String get scriptSchoolFull28 =>
+      'ఇప్పుడు మీ ఛాతీ, పొట్ట. అక్కడ ఏదైనా బిగుతు, మార్కులు లేదా ముందు రాబోయే దాని గురించి ఆందోళన ముడి ఉందేమో గమనించండి. దానితో పోరాడాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSchoolFull30 =>
+      'మీ కింది వీపు… తుంటి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSchoolFull32 =>
+      'ఇప్పుడు యాప్‌లో ఉన్నలాంటి ఒక నిశ్శబ్దమైన, మంచుతో కప్పిన పొలంలో నిలబడి ఉన్నట్టు ఊహించండి. చల్లని, తాజా గాలి. మీ చుట్టూ మెత్తగా కురుస్తున్న మంచు.';
+
+  @override
+  String get scriptSchoolFull33 =>
+      'ప్రతి మంచు రేణువు తన సమయంలో పడుతుందని గమనించండి. అది ఎప్పుడూ తొందరపడదు… కేవలం దిగుతుంది, తర్వాతి దానికి చోటు ఇస్తుంది.';
+
+  @override
+  String get scriptSchoolFull34 =>
+      'మీ చదువు కూడా అలాగే ఉండవచ్చు. ఒక పేజీ. ఒక అంశం. తర్వాత ఇంకోటి.';
+
+  @override
+  String get scriptSchoolFull36 => 'నేను నా మార్కుల కంటే ఎక్కువ.';
+
+  @override
+  String get scriptSchoolFull37 =>
+      'ఇంతకు ముందు కూడా నేను కష్టమైనవి నేర్చుకున్నాను, ఇదీ నేర్చుకోగలను.';
+
+  @override
+  String get scriptSchoolFull38 =>
+      'విశ్రాంతి తీసుకున్న మనసు కంగారుపడే మనసు కంటే ఎక్కువ గుర్తుంచుకుంటుంది.';
+
+  @override
+  String get scriptSchoolFull39 =>
+      'ప్రతిరోజూ వేసే చిన్న అడుగులు కలిసి పెద్దవవుతాయి.';
+
+  @override
+  String get scriptSchoolFull41 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: ఒకసారి ఒక పేజీ.';
+
+  @override
+  String get scriptSchoolFull42 =>
+      'ఈ ప్రశాంతత మీ వేళ్ల కొనల్లో చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, చదువులో ఒత్తిడి పెరిగినప్పుడల్లా… పరీక్షకు ముందు, రద్దీగా ఉన్న లైబ్రరీలో, చేయాల్సిన పనుల జాబితా అంతులేనిదిగా అనిపించినప్పుడు…';
+
+  @override
+  String get scriptSchoolFull45 =>
+      'తిరిగి రావడానికి ముందు, తర్వాత మీరు చదివే ఒక చిన్న విషయాన్ని ఎంచుకోండి. ఒక్కటే. మొదటి పేజీ, మొత్తం పుస్తకం కాదు.';
+
+  @override
+  String get scriptSchoolFull48 => 'ఒకటి… మీ కింద ఉన్న కుర్చీని గమనిస్తూ.';
+
+  @override
+  String get scriptSchoolFull51 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptSchoolFull52 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి, ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptSchoolFull53 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: ఒకసారి ఒక పేజీ. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSocialFull09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSocialFull08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSocialFull10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptSocialFull11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptSocialFull12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptSocialFull13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptSocialFull15 => 'ఏడు…';
+
+  @override
+  String get scriptSocialFull16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptSocialFull17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptSocialFull18 => 'నాలుగు…';
+
+  @override
+  String get scriptSocialFull19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptSocialFull20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptSocialFull21 => 'ఒకటి.';
+
+  @override
+  String get scriptSocialFull22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptSocialFull29 =>
+      'దానిలోకి శ్వాస తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది వదులవుతున్నట్టు ఊహించండి… ఒకసారి ఒక దారం.';
+
+  @override
+  String get scriptSocialFull31 =>
+      'మీ మొత్తం శరీరం, ప్రశాంతంగా, బరువుగా, సురక్షితంగా.';
+
+  @override
+  String get scriptSocialFull35 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptSocialFull40 =>
+      'ఇప్పుడు, మెల్లగా మీ బొటనవేలి కొనను చూపుడు వేలి కొనకు ఆనించి నొక్కండి.';
+
+  @override
+  String get scriptSocialFull43 =>
+      'బొటనవేలిని, వేలిని కలిపి నొక్కి, ఒక శ్వాస తీసుకోవచ్చు, ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptSocialFull44 => 'ఇప్పుడు వేళ్లను వదలండి.';
+
+  @override
+  String get scriptSocialFull46 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptSocialFull47 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptSocialFull49 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptSocialFull50 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptSocialFull01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSocialFull02 =>
+      'తర్వాతి పది నిమిషాలు, ఇతరులు ఏమనుకుంటారనేది తలుపు బయట వేచి ఉండవచ్చు. సంభాషణలు, మెసేజ్‌లు, అన్న మాటలను మళ్లీ మళ్లీ గుర్తుచేసుకోవడం. మీరు మరింత స్థిరంగా వాటి దగ్గరికి తిరిగి వస్తారు.';
+
+  @override
+  String get scriptSocialFull03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptSocialFull04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… గోడపై ఒక చోటు, వెలుతురు పడే ఒక చోటు… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptSocialFull05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptSocialFull06 =>
+      'ఏదీ సరిగ్గా చెప్పాల్సిన లేదా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptSocialFull07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptSocialFull14 =>
+      'ఎనిమిది… ఇతరుల గొంతులు ఇంకా దూరమవుతున్నాయి.';
+
+  @override
+  String get scriptSocialFull23 =>
+      'మనుషుల గురించిన ఆందోళన తరచుగా శరీరంలోని కొన్ని ప్రదేశాల్లోనే దాక్కుంటుంది. ఒక్కోదాన్ని చూద్దాం… అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptSocialFull24 =>
+      'మీ నుదుటితో మొదలుపెట్టండి. ఎవరో ఏమనుకున్నారో అని ఆలోచించినప్పుడు బిగుసుకునే చోటు. అక్కడ ఒక వెచ్చని చేయి ఉన్నట్టు ఊహించండి… దాన్ని నునుపుగా చేస్తోంది…';
+
+  @override
+  String get scriptSocialFull25 =>
+      'ఇప్పుడు మీ దవడ. పళ్లు కొంచెం విడిపోనివ్వండి. నాలుక విశ్రాంతి తీసుకోనివ్వండి. చెప్పని ఎన్నో మాటలు దవడలోనే ఉండిపోతాయి… ఇప్పుడు వాటిని వదిలేయవచ్చు.';
+
+  @override
+  String get scriptSocialFull26 =>
+      'మీ మెడ, భుజాలు. మనుషులతో నిండిన గది కోసం అవి బిగుసుకుని సిద్ధంగా ఉన్నట్టు ఊహించండి… ఇప్పుడు, తర్వాతి ఊపిరి వదలడంతో… అవి జారిపోతాయి. బరువుగా. వెచ్చగా.';
+
+  @override
+  String get scriptSocialFull27 =>
+      'చేతుల గుండా కిందికి… బహుశా అశాంతిగా, ఎక్కడ ఉంచాలో తెలియని మీ చేతులు… వేళ్లు వదులుగా, నిశ్చలంగా మారనివ్వండి.';
+
+  @override
+  String get scriptSocialFull28 =>
+      'ఇప్పుడు మీ ఛాతీ, పొట్ట. అక్కడ ఏదైనా దడ, మనుషులను కలవడానికి ముందు వచ్చే కంగారు ముడి ఉందేమో గమనించండి. దానితో పోరాడాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSocialFull30 =>
+      'మీ కింది వీపు… తుంటి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ నిరూపించాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSocialFull32 =>
+      'ఇప్పుడు యాప్‌లో ఉన్నలాంటి ఒక విశాలమైన, తెరిచి ఉన్న పచ్చిక మైదానంలో పడుకున్నట్టు ఊహించండి. మీ కింద మెత్తని గడ్డి. మెల్లగా వీస్తున్న పిల్లగాలి.';
+
+  @override
+  String get scriptSocialFull33 =>
+      'గడ్డి గాలికి వంగుతుంది… కానీ ఎప్పుడూ విరగదని గమనించండి. అది దేన్నీ పట్టుకోదు. ఊగుతుంది, మళ్లీ ప్రశాంతమవుతుంది.';
+
+  @override
+  String get scriptSocialFull34 =>
+      'ఇతరులతో ఉన్నప్పుడు మీరూ అలాగే ఉండవచ్చు. ఆ క్షణం మీ గుండా వెళ్లిపోనివ్వండి… తర్వాత మీ దగ్గరికే తిరిగి రండి.';
+
+  @override
+  String get scriptSocialFull36 => 'నేను ఉన్నట్టే సరిపోతాను.';
+
+  @override
+  String get scriptSocialFull37 =>
+      'చాలామంది తమ గురించే ఆలోచిస్తుంటారు, నన్ను అంచనా వేయరు.';
+
+  @override
+  String get scriptSocialFull38 => 'నా స్థానాన్ని తీసుకునే హక్కు నాకుంది.';
+
+  @override
+  String get scriptSocialFull39 => 'ఒక ఆప్యాయమైన సంభాషణ చాలు.';
+
+  @override
+  String get scriptSocialFull41 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నేను ఉన్నట్టే నాకు ఇక్కడ చోటుంది.';
+
+  @override
+  String get scriptSocialFull42 =>
+      'ఈ ప్రశాంతత మీ వేళ్ల కొనల్లో చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, మనుషుల మధ్య ఆందోళన పెరిగినప్పుడల్లా… ఒక పార్టీకి ముందు, ఒక గ్రూప్ చాట్‌లో, ఒక గదిలోకి అడుగుపెడుతున్నప్పుడు…';
+
+  @override
+  String get scriptSocialFull45 =>
+      'తిరిగి రావడానికి ముందు, ఈరోజు మీరు చేసే ఒక చిన్న, స్నేహపూర్వకమైన పనిని ఎంచుకోండి. ఒక్కటే. ఒక చిరునవ్వు, స్నేహితుడికి ఒక మెసేజ్, ఒక సాధారణ హలో.';
+
+  @override
+  String get scriptSocialFull48 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptSocialFull51 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, ప్రశాంతంగా, ఆత్మవిశ్వాసంతో.';
+
+  @override
+  String get scriptSocialFull52 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి, ప్రశాంతంగా, స్థిరంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptSocialFull53 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: మీరు ఉన్నట్టే మీకు ఇక్కడ చోటుంది. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get afterAnchorHome =>
+      'బొటనవేలు + వేలు, ఒక శ్వాస, నాలోనే నేను ఇంట్లో ఉన్నాను.';
+
+  @override
+  String get afterAnchorSchool => 'బొటనవేలు + వేలు, ఒక శ్వాస, ఒకసారి ఒక పేజీ.';
+
+  @override
+  String get afterAnchorSocial =>
+      'బొటనవేలు + వేలు, ఒక శ్వాస, నేను ఉన్నట్టే నాకు ఇక్కడ చోటుంది.';
+
+  @override
+  String get meditateChildrenTitle => 'ఓర్పుగల తల్లిదండ్రులు';
+
+  @override
+  String get afterAnchorChildren =>
+      'మూడు నెమ్మదైన శ్వాసలు · “లైట్‌హౌస్‌లా స్థిరంగా.”';
+
+  @override
+  String get scriptChildren01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptChildren02 =>
+      'పిల్లలను చూసుకోవడం ప్రేమతో నిండి ఉంటుంది… గోలతో, అవసరాలతో, విరామం లేకుండా కూడా. ఈ పది నిమిషాలు, మిమ్మల్ని ఎవరో చూసుకుంటున్నారు.';
+
+  @override
+  String get scriptChildren03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptChildren04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptChildren05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptChildren06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptChildren07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptChildren08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptChildren09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptChildren10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptChildren11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptChildren12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptChildren13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptChildren14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptChildren15 => 'ఏడు…';
+
+  @override
+  String get scriptChildren16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptChildren17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptChildren18 => 'నాలుగు…';
+
+  @override
+  String get scriptChildren19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptChildren20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptChildren21 => 'ఒకటి.';
+
+  @override
+  String get scriptChildren22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptChildren23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptChildren24 =>
+      'మీ భుజాలతో మొదలుపెట్టండి. అవి చిన్నారులను, సంచులను, ఆందోళనలను మోస్తాయి. ఇప్పుడు వాటిని జారనివ్వండి… బరువుగా, వెచ్చగా.';
+
+  @override
+  String get scriptChildren25 =>
+      'మీ దవడ… పళ్లు కొంచెం విడిపోనివ్వండి. మీ చేతులు… వాటిని తెరవండి, అరచేతులు పైకి, అన్నీ కింద పెట్టేస్తున్నట్టు. ఇప్పుడు దేన్నీ పట్టుకోవాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptChildren26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptChildren27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptChildren28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptChildren29 =>
+      'రాళ్ల అంచుపై ఉన్న ఒక లైట్‌హౌస్‌ను ఊహించండి. దాని చుట్టూ అలలు చిమ్ముతూ, ఆడుతూ, ఢీకొంటూ, నవ్వుతూ ఉన్నాయి.';
+
+  @override
+  String get scriptChildren30 =>
+      'లైట్‌హౌస్ అలల వెంట పడదు, వాటిపై అరవదు. అది కేవలం నిలబడి ఉంటుంది, స్థిరంగా, వెచ్చగా, దాని వెలుగు నెమ్మదిగా తిరుగుతూ. ఆ స్థిరత్వమే ప్రతి పడవనూ సురక్షితంగా ఉంచుతుంది.';
+
+  @override
+  String get scriptChildren31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptChildren32 =>
+      'మంచి తల్లిదండ్రులుగా ఉండటానికి మీరు పరిపూర్ణంగా ఉండాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptChildren33 =>
+      'మీ మాటల కంటే మీ ప్రశాంతతే ఎక్కువ నేర్పుతుంది.';
+
+  @override
+  String get scriptChildren34 => 'స్పందించే ముందు ఒక క్షణం ఆగడం ఫర్వాలేదు.';
+
+  @override
+  String get scriptChildren35 =>
+      'ఇప్పుడు, మెల్లగా మూడు నెమ్మదైన శ్వాసలు తీసుకోండి.';
+
+  @override
+  String get scriptChildren36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: లైట్‌హౌస్‌లా స్థిరంగా.';
+
+  @override
+  String get scriptChildren37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, గోల పెరిగినప్పుడు, కన్నీళ్లు మొదలైనప్పుడు, లేదా మీ ఓర్పు జారిపోతున్నట్టు అనిపించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptChildren38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptChildren39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptChildren40 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు తొందరపడకుండా మీ బిడ్డతో కేవలం కలిసి ఉండే ఒక చిన్న క్షణాన్ని ఎంచుకోండి.';
+
+  @override
+  String get scriptChildren41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptChildren42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptChildren43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptChildren44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptChildren45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptChildren46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptChildren47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptChildren48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: లైట్‌హౌస్‌లా స్థిరంగా. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateFamilyTitle => 'కుటుంబంతో శాంతి';
+
+  @override
+  String get afterAnchorFamily => 'అరచేతులు కలిపి · “దయగా, స్పష్టంగా.”';
+
+  @override
+  String get scriptFamily01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptFamily02 =>
+      'మనల్ని ఎక్కడ నొక్కితే ఉడికిపోతామో కుటుంబానికి బాగా తెలుసు. ఈ పది నిమిషాలు, పాత పాత్రల నుండి ఒక అడుగు వెనక్కి వేసి, మీరు మీలా ఉండవచ్చు.';
+
+  @override
+  String get scriptFamily03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptFamily04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptFamily05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptFamily06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptFamily07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptFamily08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptFamily09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptFamily10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptFamily11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptFamily12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptFamily13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptFamily14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptFamily15 => 'ఏడు…';
+
+  @override
+  String get scriptFamily16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptFamily17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptFamily18 => 'నాలుగు…';
+
+  @override
+  String get scriptFamily19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptFamily20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptFamily21 => 'ఒకటి.';
+
+  @override
+  String get scriptFamily22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptFamily23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptFamily24 =>
+      'మీ దృష్టిని పొట్టపైకి తీసుకురండి. కుటుంబ ఒత్తిడి తరచుగా ఇక్కడే ఉంటుంది… ఒక ముడి, ఒక గుబులు, ఒక బరువు. మెల్లగా దానిలోకి శ్వాస తీసుకోండి.';
+
+  @override
+  String get scriptFamily25 =>
+      'ఇప్పుడు మీ కింది వీపు. రాయిపై పడే ఎండలా వెచ్చదనం దానిపై వ్యాపిస్తున్నట్టు ఊహించండి. ఇంతకాలం మోస్తున్న బరువు నుండి దానికి విశ్రాంతి ఇవ్వండి.';
+
+  @override
+  String get scriptFamily26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptFamily27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptFamily28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptFamily29 =>
+      'చుట్టూ తక్కువ ఎత్తు పచ్చని కంచె ఉన్న ఒక అందమైన తోటను ఊహించండి. గేటు తెరిచి ఉంది. జనం వచ్చి, మీతో మాట్లాడి, నవ్వవచ్చు.';
+
+  @override
+  String get scriptFamily30 =>
+      'కంచె ఇంకా అక్కడే ఉంది. నిశ్శబ్దంగా. లోపల పెరిగేదాన్ని కాపాడుతూ. గేటు ఎప్పుడు తెరవాలో… ఎప్పుడు మూయాలో మీరే నిర్ణయిస్తారు.';
+
+  @override
+  String get scriptFamily31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptFamily32 =>
+      'మీరు వాళ్లను ప్రేమిస్తూనే దయగల హద్దులు పెట్టవచ్చు.';
+
+  @override
+  String get scriptFamily33 => 'పాత అలవాట్లు ఈరోజు మళ్లీ జరగాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptFamily34 => 'మీ శాంతి కూడా ముఖ్యమే.';
+
+  @override
+  String get scriptFamily35 => 'ఇప్పుడు, మెల్లగా మీ అరచేతులను కలిపి నొక్కండి.';
+
+  @override
+  String get scriptFamily36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: దయగా, స్పష్టంగా.';
+
+  @override
+  String get scriptFamily37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, కుటుంబ ఫోన్ కాల్‌కు ముందు, ఒక సందర్శనకు ముందు, లేదా మీరు భయపడుతున్న ఒక సంభాషణకు ముందు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptFamily38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptFamily39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptFamily40 =>
+      'తిరిగి రావడానికి ముందు… ఈ వారం మీరు పాటించాలనుకునే ఒక హద్దు గురించి ఆలోచించండి… దాన్ని దయగా ఎలా చెబుతారో కూడా.';
+
+  @override
+  String get scriptFamily41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptFamily42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptFamily43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptFamily44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptFamily45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptFamily46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptFamily47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptFamily48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: దయగా, స్పష్టంగా. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateChoresTitle => 'మానసిక భారం దించుకోవడం';
+
+  @override
+  String get afterAnchorChores =>
+      'భుజాలను వెనక్కి తిప్పండి · “ఒక పని, తర్వాత విశ్రాంతి.”';
+
+  @override
+  String get scriptChores01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptChores02 =>
+      'మీరు ఎంతో మోస్తున్నారు… జాబితాలు, గుర్తుచేసుకోవాల్సినవి, మీకు మాత్రమే కనిపించేట్టు అనిపించే విషయాలు. ఈ పది నిమిషాలు, అన్నింటినీ కింద పెట్టేయవచ్చు.';
+
+  @override
+  String get scriptChores03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptChores04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptChores05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptChores06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptChores07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptChores08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptChores09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptChores10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptChores11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptChores12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptChores13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptChores14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptChores15 => 'ఏడు…';
+
+  @override
+  String get scriptChores16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptChores17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptChores18 => 'నాలుగు…';
+
+  @override
+  String get scriptChores19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptChores20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptChores21 => 'ఒకటి.';
+
+  @override
+  String get scriptChores22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptChores23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptChores24 =>
+      'మీ భుజాలు, పై వీపు. మీరు మోస్తున్న ప్రతి పనీ అక్కడ ఉన్న బరువుగా ఊహించండి. ఇప్పుడు, శ్వాస శ్వాసకూ, అవి తేలికవుతున్నట్టు అనుభూతి చెందండి.';
+
+  @override
+  String get scriptChores25 =>
+      'చేతులు విశ్రాంతి తీసుకోనివ్వండి. వేళ్లు విచ్చుకోనివ్వండి. మీరు ఫోన్, జాబితా, బట్ట, సంచి ఏదీ పట్టుకోలేదు. గాలి మాత్రమే.';
+
+  @override
+  String get scriptChores26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptChores27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptChores28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptChores29 =>
+      'రెండు చేతుల్లో బరువైన సంచులు మోస్తూ వెచ్చని ఇసుకపై నడుస్తున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptChores30 =>
+      'ఒక్కొక్కటిగా, వాటిని కింద పెడతారు. ఉతకాల్సిన బట్టలు. కడగాల్సిన గిన్నెలు. అపాయింట్‌మెంట్లు. గుర్తుంచుకోవడానికి ప్రయత్నిస్తున్న విషయాలు.';
+
+  @override
+  String get scriptChores31 =>
+      'కింద పెట్టే ప్రతి సంచితో, మీ అడుగులు తేలికవుతాయి. సంచులు వేచి ఉంటాయి. అవి ఎప్పుడూ వేచి ఉంటాయి. ఇప్పుడు… మీరు కేవలం నడవండి.';
+
+  @override
+  String get scriptChores32 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptChores33 =>
+      'జాబితా వేచి ఉండగలదు. ముందు విశ్రాంతి తీసుకోవడానికి మీకు అనుమతి ఉంది.';
+
+  @override
+  String get scriptChores34 => 'సహాయం అడగడం పంచుకోవడమే, ఓడిపోవడం కాదు.';
+
+  @override
+  String get scriptChores35 => 'పరిపూర్ణంగా కంటే పూర్తి చేయడమే మేలు.';
+
+  @override
+  String get scriptChores36 =>
+      'ఇప్పుడు, మెల్లగా మీ భుజాలను నెమ్మదిగా వెనక్కి తిప్పండి.';
+
+  @override
+  String get scriptChores37 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: ఒక పని, తర్వాత విశ్రాంతి.';
+
+  @override
+  String get scriptChores38 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, జాబితా అంతులేనిదిగా అనిపించినప్పుడు, లేదా ఒక పని నుండి మరో పనికి పరుగెడుతున్నట్టు గమనించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptChores39 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptChores40 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptChores41 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు మీరు వదిలేసే, లేదా సహాయం అడిగే ఒక పనిని ఎంచుకోండి.';
+
+  @override
+  String get scriptChores42 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptChores43 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptChores44 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptChores45 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptChores46 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptChores47 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptChores48 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptChores49 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: ఒక పని, తర్వాత విశ్రాంతి. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateMoneyTitle => 'డబ్బు విషయంలో స్థిరంగా';
+
+  @override
+  String get afterAnchorMoney =>
+      'పాదాలు నేలకు నొక్కి · “వేళ్లూనుకుని, స్థిరంగా.”';
+
+  @override
+  String get scriptMoney01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptMoney02 =>
+      'డబ్బు ఆందోళనలు గట్టిగా వినిపిస్తాయి, ముఖ్యంగా రాత్రి వేళ. ఈ పది నిమిషాలు, అంకెలు వేచి ఉండవచ్చు. మీరు ఇక్కడ సురక్షితంగా ఉన్నారు.';
+
+  @override
+  String get scriptMoney03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptMoney04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptMoney05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptMoney06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptMoney07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptMoney08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptMoney09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptMoney10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptMoney11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptMoney12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptMoney13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptMoney14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptMoney15 => 'ఏడు…';
+
+  @override
+  String get scriptMoney16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptMoney17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptMoney18 => 'నాలుగు…';
+
+  @override
+  String get scriptMoney19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptMoney20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptMoney21 => 'ఒకటి.';
+
+  @override
+  String get scriptMoney22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptMoney23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptMoney24 =>
+      'మీ దృష్టిని పొట్టపైకి తీసుకురండి. డబ్బు ఒత్తిడి తరచుగా ఇక్కడే కూర్చుంటుంది, బిగుతుగా, ఆందోళనగా. అది మీ శ్వాసతో పైకి లేచి కిందికి దిగనివ్వండి. మృదువుగా. నెమ్మదిగా.';
+
+  @override
+  String get scriptMoney25 =>
+      'ఇప్పుడు మీ కాళ్లు, పాదాలు. మీ కింద నేల ఎంత దృఢంగా ఉందో అనుభూతి చెందండి. అది మిమ్మల్ని పూర్తిగా మోస్తోంది. మిమ్మల్ని మీరు నిలబెట్టుకోవాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptMoney26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptMoney27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptMoney28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptMoney29 =>
+      'సముద్రం పైన కొండపై ఉన్న ఒక చెట్టు మీరేనని ఊహించండి. గాలి వీస్తోంది… కొన్నిసార్లు బలంగా.';
+
+  @override
+  String get scriptMoney30 =>
+      'కానీ మీ కింద, మీ వేళ్లు భూమిలోకి లోతుగా వెళ్తాయి, మీ కొమ్మల కంటే విశాలంగా. వాతావరణం ఎలా ఉన్నా, మీకు ఆధారం ఉంది. మీరు వేళ్లూనుకుని ఉన్నారు.';
+
+  @override
+  String get scriptMoney31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptMoney32 => 'వంద ఆందోళనల కంటే ఒక స్పష్టమైన అడుగు విలువైనది.';
+
+  @override
+  String get scriptMoney33 =>
+      'మీరు దీన్ని ప్రశాంతంగా ఎదుర్కోగలరు, ఒకసారి ఒక అంకె.';
+
+  @override
+  String get scriptMoney34 => 'మీ విలువ మీ బ్యాంక్ బ్యాలెన్స్ కాదు.';
+
+  @override
+  String get scriptMoney35 =>
+      'ఇప్పుడు, మెల్లగా మీ పాదాలను నేలకు గట్టిగా నొక్కండి.';
+
+  @override
+  String get scriptMoney36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: వేళ్లూనుకుని, స్థిరంగా.';
+
+  @override
+  String get scriptMoney37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఒక బిల్లు తెరిచినప్పుడు, బ్యాలెన్స్ చూసినప్పుడు, లేదా రాత్రి ఆందోళన మొదలైనప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptMoney38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptMoney39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptMoney40 =>
+      'తిరిగి రావడానికి ముందు… ఈ వారం డబ్బు విషయంలో మీరు వేయగల ఒక చిన్న, స్పష్టమైన అడుగు గురించి ఆలోచించండి. ఒక్కటే.';
+
+  @override
+  String get scriptMoney41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptMoney42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptMoney43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptMoney44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptMoney45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptMoney46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptMoney47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptMoney48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: వేళ్లూనుకుని, స్థిరంగా. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateHomeResetTitle => 'ఇంటి రీసెట్';
+
+  @override
+  String get afterAnchorHomeReset =>
+      'ఒక లోతైన నిట్టూర్పు · “నాలోనే నేను ఇంట్లో ఉన్నాను.”';
+
+  @override
+  String get scriptHomeReset01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptHomeReset02 =>
+      'కొన్నిసార్లు ఇల్లు ఇల్లులా అనిపించదు… మరీ గోల, మరీ హడావుడి, మరీ ఎక్కువ. ఈ పది నిమిషాలు, మీలో ఒక ప్రశాంతమైన చోటును ఏర్పరుద్దాం.';
+
+  @override
+  String get scriptHomeReset03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptHomeReset04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptHomeReset05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptHomeReset06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptHomeReset07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptHomeReset08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptHomeReset09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptHomeReset10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptHomeReset11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptHomeReset12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptHomeReset13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptHomeReset14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptHomeReset15 => 'ఏడు…';
+
+  @override
+  String get scriptHomeReset16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptHomeReset17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptHomeReset18 => 'నాలుగు…';
+
+  @override
+  String get scriptHomeReset19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptHomeReset20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptHomeReset21 => 'ఒకటి.';
+
+  @override
+  String get scriptHomeReset22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptHomeReset23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptHomeReset24 =>
+      'వెచ్చని నీరు మీపై నెమ్మదిగా కురుస్తున్నట్టు ఊహించండి, తల పై నుండి పాదాల వరకు. అది ఎక్కడ ప్రవహిస్తే అక్కడ ఒత్తిడి కరిగిపోతుంది.';
+
+  @override
+  String get scriptHomeReset25 =>
+      'ఇంకా బిగుతుగా అనిపించే ఏ చోటునైనా గమనించండి. దానిలోకి శ్వాస తీసుకోండి… మిగతా శరీరంతో పాటు అదీ విశ్రాంతిలో చేరనివ్వండి.';
+
+  @override
+  String get scriptHomeReset26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptHomeReset27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomeReset28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptHomeReset29 =>
+      'మీ ఇంట్లో నడుస్తూ, ఒక్కొక్క కిటికీనీ తెరుస్తున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptHomeReset30 =>
+      'తాజా సముద్రపు గాలి ప్రతి గదిలోంచి వీస్తోంది… గాలిని శుభ్రం చేస్తూ, గోలనూ బరువునూ తీసుకెళ్లిపోతూ. అంతా తేలికగా అనిపిస్తోంది. శుభ్రంగా. ప్రశాంతంగా.';
+
+  @override
+  String get scriptHomeReset31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptHomeReset32 =>
+      'ఇల్లు ఎంతో మోయగలదు. ఈ క్షణం బయట అది వేచి ఉండనివ్వండి.';
+
+  @override
+  String get scriptHomeReset33 =>
+      'హడావుడిగా ఉండే ఇంట్లో కూడా మీరు ఒక ప్రశాంతమైన మూలను ఏర్పరచుకోవచ్చు.';
+
+  @override
+  String get scriptHomeReset34 => 'ఇక్కడ విశ్రాంతికి అనుమతి ఉంది.';
+
+  @override
+  String get scriptHomeReset35 =>
+      'ఇప్పుడు, మెల్లగా ఒక పొడవైన, లోతైన నిట్టూర్పు విడవండి.';
+
+  @override
+  String get scriptHomeReset36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నాలోనే నేను ఇంట్లో ఉన్నాను.';
+
+  @override
+  String get scriptHomeReset37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఇల్లు గందరగోళంగా అనిపించినప్పుడు, లేదా మీకోసం ఒక క్షణం కావాలనిపించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptHomeReset38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptHomeReset39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptHomeReset40 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు ఇంట్లో మీరు ప్రశాంతంగా మార్చగల ఒక చిన్న మూలను ఎంచుకోండి.';
+
+  @override
+  String get scriptHomeReset41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptHomeReset42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptHomeReset43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptHomeReset44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptHomeReset45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptHomeReset46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptHomeReset47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptHomeReset48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నాలోనే నేను ఇంట్లో ఉన్నాను. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateManagerTitle => 'మేనేజర్ ముందు ఆత్మవిశ్వాసం';
+
+  @override
+  String get afterAnchorManager =>
+      'నిటారుగా కూర్చోండి, గడ్డం సమంగా · “నేలపై నిలిచి, స్పష్టంగా.”';
+
+  @override
+  String get scriptManager01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptManager02 =>
+      'మేనేజర్‌తో మీటింగ్‌లు మనం బాగా పనిచేస్తున్నా కూడా మనల్ని చిన్నగా అనిపించేలా చేస్తాయి. ఈ పది నిమిషాలు, మీలో మీరు మళ్లీ నిటారుగా నిలబడవచ్చు.';
+
+  @override
+  String get scriptManager03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptManager04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptManager05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptManager06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptManager07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptManager08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptManager09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptManager10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptManager11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptManager12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptManager13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptManager14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptManager15 => 'ఏడు…';
+
+  @override
+  String get scriptManager16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptManager17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptManager18 => 'నాలుగు…';
+
+  @override
+  String get scriptManager19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptManager20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptManager21 => 'ఒకటి.';
+
+  @override
+  String get scriptManager22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptManager23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptManager24 =>
+      'మీ దృష్టిని గొంతుపైకి తీసుకురండి. అది తెరుచుకుని మృదువుగా మారనివ్వండి… ప్రశాంతమైన, స్పష్టమైన స్వరం కోసం సిద్ధంగా.';
+
+  @override
+  String get scriptManager25 =>
+      'ఇప్పుడు మీ వెన్నెముక. కింది వీపు నుండి మెడ పైభాగం వరకు అది మెల్లగా పొడవవుతున్నట్టు అనుభూతి చెందండి. నిటారుగా, కానీ రిలాక్స్‌గా.';
+
+  @override
+  String get scriptManager26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptManager27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptManager28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptManager29 =>
+      'గాలి వీచే కొండ అంచుపై ఒక పొడవైన చెట్టును ఊహించండి. బలమైన గాలి తాకిడులు వస్తాయి, చెట్టు వంగుతుంది, ఆకులు గలగలలాడతాయి.';
+
+  @override
+  String get scriptManager30 =>
+      'కానీ అది విరగదు. వంగుతుంది… మళ్లీ నిటారుగా నిలుస్తుంది. ప్రతి తుఫాను దాని వేళ్లను కొంచెం బలంగా చేస్తుంది. ఆ చెట్టు మీరే.';
+
+  @override
+  String get scriptManager31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptManager32 =>
+      'ఫీడ్‌బ్యాక్ సమాచారం మాత్రమే, మీపై తీర్పు కాదు.';
+
+  @override
+  String get scriptManager33 => 'మీరు స్పష్టంగా, ప్రశాంతంగా మాట్లాడగలరు.';
+
+  @override
+  String get scriptManager34 => 'ఇక్కడ మీ స్థానాన్ని మీరు సంపాదించుకున్నారు.';
+
+  @override
+  String get scriptManager35 =>
+      'ఇప్పుడు, మెల్లగా నిటారుగా కూర్చుని, గడ్డాన్ని సమంగా ఉంచండి.';
+
+  @override
+  String get scriptManager36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నేలపై నిలిచి, స్పష్టంగా.';
+
+  @override
+  String get scriptManager37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, వన్-టు-వన్ మీటింగ్‌కు ముందు, ఒక రివ్యూకు ముందు, లేదా ఎవరైనా కష్టమైన ప్రశ్న అడిగినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptManager38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptManager39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptManager40 =>
+      'తిరిగి రావడానికి ముందు… మీ మేనేజర్‌తో తదుపరి సంభాషణలో స్పష్టంగా చెప్పాలనుకునే ఒక విషయం గురించి ఆలోచించండి.';
+
+  @override
+  String get scriptManager41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptManager42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptManager43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptManager44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptManager45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptManager46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptManager47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptManager48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నేలపై నిలిచి, స్పష్టంగా. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateColleaguesTitle => 'సహోద్యోగులతో హాయిగా';
+
+  @override
+  String get afterAnchorColleagues =>
+      'నెమ్మదిగా ఊపిరి వదలండి · “అది ప్రవహించి సాగిపోనీ.”';
+
+  @override
+  String get scriptColleagues01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptColleagues02 =>
+      'మనతో పనిచేసేవాళ్లను మనం ఎంచుకోము. ఈ పది నిమిషాలు, మీరు ఇంకెవరి మూడ్‌నూ చూసుకోవాల్సిన అవసరం లేదు. మీ సొంత శ్వాసను మాత్రమే.';
+
+  @override
+  String get scriptColleagues03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptColleagues04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptColleagues05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptColleagues06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptColleagues07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptColleagues08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptColleagues09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptColleagues10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptColleagues11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptColleagues12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptColleagues13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptColleagues14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptColleagues15 => 'ఏడు…';
+
+  @override
+  String get scriptColleagues16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptColleagues17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptColleagues18 => 'నాలుగు…';
+
+  @override
+  String get scriptColleagues19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptColleagues20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptColleagues21 => 'ఒకటి.';
+
+  @override
+  String get scriptColleagues22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptColleagues23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptColleagues24 =>
+      'మీ దృష్టిని దవడపైకి తీసుకురండి. ఇతరులతో ఉండే ఒత్తిడి తరచుగా ఇక్కడ బిగుసుకుంటుంది. దాన్ని వదులుగా వేలాడనివ్వండి.';
+
+  @override
+  String get scriptColleagues25 =>
+      'ఇప్పుడు మీ పొట్ట. అక్కడ చిరాకు ముడి ఏదైనా ఉంటే, మెల్లగా దానిలోకి శ్వాస తీసుకోండి. వెచ్చని మైనంలా అది మెత్తబడనివ్వండి.';
+
+  @override
+  String get scriptColleagues26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptColleagues27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptColleagues28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptColleagues29 =>
+      'కొండవాలుపై నుండి ప్రవహించే ఒక స్వచ్ఛమైన వాగును ఊహించండి. దాని దారిలో రాళ్లు ఉన్నాయి… కొన్ని చిన్నవి, కొన్ని పెద్దవి.';
+
+  @override
+  String get scriptColleagues30 =>
+      'నీరు రాళ్లతో పోరాడదు. వాటి చుట్టూ సులువుగా ప్రవహిస్తూ, ముందుకు సాగుతుంది. అది స్వచ్ఛంగానే ఉంటుంది. మీరూ అలా ప్రవహించవచ్చు.';
+
+  @override
+  String get scriptColleagues31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptColleagues32 =>
+      'మీ వంతును మాత్రమే మీరు నియంత్రించగలరు. అది చాలు.';
+
+  @override
+  String get scriptColleagues33 => 'ఇతరుల మూడ్ మీ బాధ్యత కాదు.';
+
+  @override
+  String get scriptColleagues34 =>
+      'మీరు దయగా ఉంటూనే మీ హద్దులను కాపాడుకోవచ్చు.';
+
+  @override
+  String get scriptColleagues35 =>
+      'ఇప్పుడు, మెల్లగా నోటి ద్వారా నెమ్మదిగా ఊపిరి వదలండి.';
+
+  @override
+  String get scriptColleagues36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: అది ప్రవహించి సాగిపోనీ.';
+
+  @override
+  String get scriptColleagues37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఒక సహోద్యోగి మాట గుచ్చుకున్నప్పుడు, లేదా ఆఫీసు వాతావరణం ఉద్రిక్తంగా మారినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptColleagues38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptColleagues39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptColleagues40 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు ప్రతిస్పందనకు బదులు ప్రశాంతతతో ఎదుర్కొనే ఒక సంభాషణను ఎంచుకోండి.';
+
+  @override
+  String get scriptColleagues41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptColleagues42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptColleagues43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptColleagues44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptColleagues45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptColleagues46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptColleagues47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptColleagues48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: అది ప్రవహించి సాగిపోనీ. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateBurnoutTitle => 'బర్న్‌అవుట్ నుండి కోలుకోవడం';
+
+  @override
+  String get afterAnchorBurnout =>
+      'పొట్టపై చేయి · “ఇచ్చే ముందు నన్ను నేను నింపుకుంటాను.”';
+
+  @override
+  String get scriptBurnout01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptBurnout02 =>
+      'మీలో శక్తి అడుగంటిపోయి ఉంటే, ఇది మళ్లీ నింపుకునే చోటు. ఈ పది నిమిషాలు, మీరు ఎవరికీ ఏమీ ఇవ్వాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptBurnout03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptBurnout04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptBurnout05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptBurnout06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptBurnout07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptBurnout08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptBurnout09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptBurnout10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptBurnout11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptBurnout12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptBurnout13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptBurnout14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptBurnout15 => 'ఏడు…';
+
+  @override
+  String get scriptBurnout16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptBurnout17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptBurnout18 => 'నాలుగు…';
+
+  @override
+  String get scriptBurnout19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptBurnout20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptBurnout21 => 'ఒకటి.';
+
+  @override
+  String get scriptBurnout22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptBurnout23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptBurnout24 =>
+      'మీ మొత్తం శరీరం బరువెక్కనివ్వండి. మెడపై తల బరువుగా. పక్కల చేతులు బరువుగా. నేలపై కాళ్లు బరువుగా.';
+
+  @override
+  String get scriptBurnout25 =>
+      'అలసటను తీర్పు చెప్పకుండా గమనించండి. అది ఒక సంకేతం, వైఫల్యం కాదు. అలసిన చోట్లలోకి శ్వాస తీసుకోండి… వాటికి పూర్తిగా విశ్రాంతి ఇవ్వండి.';
+
+  @override
+  String get scriptBurnout26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptBurnout27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptBurnout28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptBurnout29 =>
+      'తీరానికి దగ్గరగా వెచ్చని, లోతులేని నీటిలో తేలుతున్నట్టు ఊహించండి. సముద్రం మిమ్మల్ని పైకి మోస్తోంది. మీరు ఈదాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptBurnout30 =>
+      'ఎండ మీ చర్మాన్ని వెచ్చగా చేస్తోంది, ప్రతి శ్వాసతో అది మీలోకి ప్రవహిస్తున్నట్టు అనిపిస్తుంది… నెమ్మదిగా మిమ్మల్ని మళ్లీ నింపుతూ, చార్జ్ అవుతున్న బ్యాటరీలా, ఒకసారి ఒక శాతం.';
+
+  @override
+  String get scriptBurnout31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptBurnout32 => 'విశ్రాంతి బహుమతి కాదు. అది అవసరం.';
+
+  @override
+  String get scriptBurnout33 => 'మీరు ఉత్పత్తి చేసేదానికంటే మీరు ఎక్కువ.';
+
+  @override
+  String get scriptBurnout34 => 'చిన్నగా కోలుకోవడం కూడా లెక్కలోకి వస్తుంది.';
+
+  @override
+  String get scriptBurnout35 => 'ఇప్పుడు, మెల్లగా ఒక చేతిని మీ పొట్టపై ఉంచండి.';
+
+  @override
+  String get scriptBurnout36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: ఇచ్చే ముందు నన్ను నేను నింపుకుంటాను.';
+
+  @override
+  String get scriptBurnout37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, మీరు అలసిపోయినట్టు అనిపించినప్పుడు, లేదా ఇంకో పనికి సరే అనే ముందు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptBurnout38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptBurnout39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptBurnout40 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు మీరు విశ్రాంతి తీసుకునే లేదా శక్తి నింపుకునే ఒక చిన్న మార్గాన్ని ఎంచుకోండి.';
+
+  @override
+  String get scriptBurnout41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptBurnout42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptBurnout43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptBurnout44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptBurnout45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptBurnout46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptBurnout47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptBurnout48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: ఇచ్చే ముందు నన్ను నేను నింపుకుంటాను. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateJobSecurityTitle => 'స్థిరమైన నేల';
+
+  @override
+  String get afterAnchorJobSecurity =>
+      'పాదాలను కిందికి నొక్కండి · “దృఢమైన నేల.”';
+
+  @override
+  String get scriptJobSecurity01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptJobSecurity02 =>
+      'ఉద్యోగం గురించిన అనిశ్చితి మన కాళ్ల కింద నేలను కదిలించగలదు. ఈ పది నిమిషాలు, మళ్లీ దృఢమైన నేలను కనుగొందాం.';
+
+  @override
+  String get scriptJobSecurity03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptJobSecurity04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptJobSecurity05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptJobSecurity06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptJobSecurity07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptJobSecurity08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptJobSecurity09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptJobSecurity10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptJobSecurity11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptJobSecurity12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptJobSecurity13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptJobSecurity14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptJobSecurity15 => 'ఏడు…';
+
+  @override
+  String get scriptJobSecurity16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptJobSecurity17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptJobSecurity18 => 'నాలుగు…';
+
+  @override
+  String get scriptJobSecurity19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptJobSecurity20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptJobSecurity21 => 'ఒకటి.';
+
+  @override
+  String get scriptJobSecurity22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptJobSecurity23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptJobSecurity24 =>
+      'మీ దృష్టిని కాళ్లపైకి తీసుకురండి. అవి ఎంత బలంగా ఉన్నాయో అనుభూతి చెందండి… ఇప్పటివరకు ప్రతి సవాలులోనూ అవి మిమ్మల్ని ఎలా మోశాయో.';
+
+  @override
+  String get scriptJobSecurity25 =>
+      'ఇప్పుడు మీ పాదాలు. వాటిని మెల్లగా నేలకు నొక్కండి, నేల తిరిగి నొక్కుతున్నట్టు అనుభూతి చెందండి. దృఢంగా. స్థిరంగా. ఇక్కడే.';
+
+  @override
+  String get scriptJobSecurity26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptJobSecurity27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptJobSecurity28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptJobSecurity29 =>
+      'సముద్రం పక్కన ఒక విశాలమైన, దృఢమైన రాయిపై నిలబడి ఉన్నట్టు ఊహించండి. పోటు ముందుకు వస్తుంది… ఆటు వెనక్కి వెళ్తుంది.';
+
+  @override
+  String get scriptJobSecurity30 =>
+      'నీరు మీ చుట్టూ కదులుతుంది, కానీ రాయి కదలదు. కొట్టుకుపోకుండానే మీరు మార్పులను చూడవచ్చు.';
+
+  @override
+  String get scriptJobSecurity31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptJobSecurity32 =>
+      'పరిస్థితులు అనిశ్చితంగా అనిపించినా, మీకు నైపుణ్యాలు, అవకాశాలు ఉన్నాయి.';
+
+  @override
+  String get scriptJobSecurity33 =>
+      'మీరు ఇంతకు ముందు సర్దుకుపోయారు. మళ్లీ చేయగలరు.';
+
+  @override
+  String get scriptJobSecurity34 =>
+      'ఈరోజు, మీరు ఈరోజును మాత్రమే చూసుకుంటే చాలు.';
+
+  @override
+  String get scriptJobSecurity35 =>
+      'ఇప్పుడు, మెల్లగా మీ పాదాలను నేలకు కిందికి నొక్కండి.';
+
+  @override
+  String get scriptJobSecurity36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: దృఢమైన నేల.';
+
+  @override
+  String get scriptJobSecurity37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఆందోళన కలిగించే వార్త విన్నప్పుడు, లేదా మనసు అత్యంత చెడు పరిస్థితికి దూకినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptJobSecurity38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptJobSecurity39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptJobSecurity40 =>
+      'తిరిగి రావడానికి ముందు… మీరు ఎక్కడ పనిచేసినా మీతోనే ఉండే మీ ఒక నైపుణ్యం లేదా బలం గురించి ఆలోచించండి.';
+
+  @override
+  String get scriptJobSecurity41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptJobSecurity42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptJobSecurity43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptJobSecurity44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptJobSecurity45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptJobSecurity46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptJobSecurity47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptJobSecurity48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: దృఢమైన నేల. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateWorkResetTitle => 'పని రీసెట్';
+
+  @override
+  String get afterAnchorWorkReset =>
+      'ల్యాప్‌టాప్ మూసేయండి, ఒక శ్వాస · “ఇప్పటికి ఇంతే.”';
+
+  @override
+  String get scriptWorkReset01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptWorkReset02 =>
+      'కొన్ని పని దినాలు కష్టంగానే ఉంటాయి. ఈ పది నిమిషాలు, రోజు ముగిసింది. దాన్ని కింద పెట్టేయవచ్చు.';
+
+  @override
+  String get scriptWorkReset03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptWorkReset04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptWorkReset05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptWorkReset06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptWorkReset07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptWorkReset08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptWorkReset09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptWorkReset10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptWorkReset11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptWorkReset12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptWorkReset13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptWorkReset14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptWorkReset15 => 'ఏడు…';
+
+  @override
+  String get scriptWorkReset16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptWorkReset17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptWorkReset18 => 'నాలుగు…';
+
+  @override
+  String get scriptWorkReset19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptWorkReset20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptWorkReset21 => 'ఒకటి.';
+
+  @override
+  String get scriptWorkReset22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptWorkReset23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptWorkReset24 =>
+      'స్క్రీన్‌లతో అలసిన మీ కళ్లతో మొదలుపెట్టండి… తర్వాత మెడ, భుజాలు. మీ దృష్టి దాటుతున్న కొద్దీ ఒక్కొక్కటీ రిలాక్స్ అవనివ్వండి.';
+
+  @override
+  String get scriptWorkReset25 =>
+      'డెస్క్ దగ్గర మీరు పట్టుకుని ఉండే భంగిమను గమనించండి… మీ శరీరం దాని నుండి విచ్చుకోనివ్వండి. వదులుగా. స్వేచ్ఛగా.';
+
+  @override
+  String get scriptWorkReset26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptWorkReset27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptWorkReset28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptWorkReset29 =>
+      'ఆఫీసు తలుపు వెనక మూసి, నేరుగా సాయంత్రపు సముద్ర తీరంలోకి అడుగుపెడుతున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptWorkReset30 =>
+      'ఆకాశం మెత్తని నారింజ రంగులో ఉంది. గాలి చల్లగా ఉంది. ఇసుకపై వేసే ప్రతి అడుగుతో, పని దినం మీ వెనక ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptWorkReset31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptWorkReset32 => 'ఒకసారి ఒక పని చాలు.';
+
+  @override
+  String get scriptWorkReset33 => 'ఒక కష్టమైన రోజు అంటే కష్టమైన జీవితం కాదు.';
+
+  @override
+  String get scriptWorkReset34 => 'పనిని పని దగ్గరే వదిలేయవచ్చు.';
+
+  @override
+  String get scriptWorkReset35 =>
+      'ఇప్పుడు, మెల్లగా మీ ల్యాప్‌టాప్ లేదా ఫోన్‌ను మూసి, ఒక శ్వాస తీసుకోండి.';
+
+  @override
+  String get scriptWorkReset36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: ఇప్పటికి ఇంతే.';
+
+  @override
+  String get scriptWorkReset37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, పని దినం ముగిసినప్పుడు, లేదా పనుల మధ్య రీసెట్ కావాలనిపించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptWorkReset38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptWorkReset39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptWorkReset40 =>
+      'తిరిగి రావడానికి ముందు… ఈ రాత్రి పనితో ఏ సంబంధం లేని ఒక పనిని ఎంచుకోండి.';
+
+  @override
+  String get scriptWorkReset41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptWorkReset42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptWorkReset43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptWorkReset44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptWorkReset45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptWorkReset46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptWorkReset47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptWorkReset48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: ఇప్పటికి ఇంతే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateHomeworkTitle => 'హోంవర్క్‌పై ఏకాగ్రత';
+
+  @override
+  String get afterAnchorHomework => 'ఐదు నిమిషాల టైమర్ · “మొదలుపెడితే చాలు.”';
+
+  @override
+  String get scriptHomework01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptHomework02 =>
+      'కొన్నిసార్లు హోంవర్క్‌లో అత్యంత కష్టమైన భాగం మొదలుపెట్టడమే. ఈ పది నిమిషాలు, మీరు ఏదీ మొదలుపెట్టాల్సిన అవసరం లేదు. విశ్రాంతి తీసుకోండి చాలు.';
+
+  @override
+  String get scriptHomework03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptHomework04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptHomework05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptHomework06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptHomework07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptHomework08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptHomework09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptHomework10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptHomework11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptHomework12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptHomework13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptHomework14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptHomework15 => 'ఏడు…';
+
+  @override
+  String get scriptHomework16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptHomework17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptHomework18 => 'నాలుగు…';
+
+  @override
+  String get scriptHomework19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptHomework20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptHomework21 => 'ఒకటి.';
+
+  @override
+  String get scriptHomework22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptHomework23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptHomework24 =>
+      'మీ దృష్టిని కళ్లు, నుదురుపైకి తీసుకురండి. గంటల తరబడి స్క్రీన్‌లు, పేజీలు చూసిన తర్వాత అవి మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptHomework25 =>
+      'ఇప్పుడు మీ మెడ. మెత్తని దిండుపై ఆనుకున్నట్టు, మీ తల బరువుగా, ఆధారంతో అనిపించనివ్వండి.';
+
+  @override
+  String get scriptHomework26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptHomework27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomework28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptHomework29 =>
+      'మెత్తని మెట్లు చెక్కిన ఒక సున్నితమైన ఇసుక దిబ్బను ఊహించండి. మీరు శిఖరం వైపు చూడరు. కేవలం ఒక అడుగు వేస్తారు.';
+
+  @override
+  String get scriptHomework30 =>
+      'తర్వాత ఇంకొకటి. మీకు తెలియకుండానే, మీరు అనుకున్నదానికంటే ఎత్తుకు ఎక్కేశారు. ప్రతి అడుగూ చిన్నదే.';
+
+  @override
+  String get scriptHomework31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptHomework32 =>
+      'చిన్నగా మొదలుపెట్టండి. ఐదు నిమిషాలు నిజమైన ఆరంభమే.';
+
+  @override
+  String get scriptHomework33 => 'మొదలుపెట్టాక ఏకాగ్రత పెరుగుతుంది.';
+
+  @override
+  String get scriptHomework34 => 'ఇప్పుడే అంతా పూర్తి చేయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptHomework35 =>
+      'ఇప్పుడు, మెల్లగా ఐదు నిమిషాల టైమర్ పెడుతున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptHomework36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: మొదలుపెడితే చాలు.';
+
+  @override
+  String get scriptHomework37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, మీరు పనిని వాయిదా వేస్తున్నప్పుడు, లేదా పని కుప్ప మరీ పెద్దగా అనిపించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptHomework38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptHomework39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptHomework40 =>
+      'తిరిగి రావడానికి ముందు… దీని తర్వాత కేవలం ఐదు నిమిషాలు చేసే ఒక పనిని ఎంచుకోండి.';
+
+  @override
+  String get scriptHomework41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptHomework42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptHomework43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptHomework44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptHomework45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptHomework46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptHomework47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptHomework48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: మొదలుపెడితే చాలు. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateGradesTitle => 'మార్కులకు మించి';
+
+  @override
+  String get afterAnchorGrades => 'ఛాతీపై చేయి · “నేను ఒక మార్కు కంటే ఎక్కువ.”';
+
+  @override
+  String get scriptGrades01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptGrades02 =>
+      'మార్కులే అన్నీ నిర్ణయిస్తాయని అనిపించవచ్చు. ఈ పది నిమిషాలు, మీరు ఏ అంకె కంటే అయినా ఎక్కువ.';
+
+  @override
+  String get scriptGrades03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptGrades04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptGrades05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptGrades06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptGrades07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptGrades08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptGrades09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptGrades10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptGrades11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptGrades12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptGrades13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptGrades14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptGrades15 => 'ఏడు…';
+
+  @override
+  String get scriptGrades16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptGrades17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptGrades18 => 'నాలుగు…';
+
+  @override
+  String get scriptGrades19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptGrades20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptGrades21 => 'ఒకటి.';
+
+  @override
+  String get scriptGrades22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptGrades23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptGrades24 =>
+      'మీ దృష్టిని ఛాతీపైకి తీసుకురండి. ఒత్తిడి తరచుగా ఇక్కడే కూర్చుంటుంది. మెల్లగా దానిలోకి శ్వాస తీసుకోండి… అది విశాలమవనివ్వండి.';
+
+  @override
+  String get scriptGrades25 =>
+      'ఇప్పుడు మీ భుజాలు, మీ నుండి, ఇతరుల నుండి వచ్చిన అంచనాలను మోస్తూ. వాటిని జారనివ్వండి. ఇప్పుడు అవేవీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptGrades26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptGrades27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptGrades28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptGrades29 =>
+      'సముద్ర తీరంపై ఎత్తుగా ఎగురుతున్న ఒక రంగురంగుల గాలిపటాన్ని ఊహించండి. గాలి దాన్ని పైకి లేపుతుంది, కిందికి దించుతుంది… కానీ అది ఎగురుతూనే ఉంటుంది.';
+
+  @override
+  String get scriptGrades30 =>
+      'దాని దారం మీ చేతిలో మెల్లగా ఉంది. మరీ గట్టిగా కాదు. సరిపడినంత. మీ లక్ష్యాలను కూడా మీరు అలాగే పట్టుకోవచ్చు.';
+
+  @override
+  String get scriptGrades31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptGrades32 =>
+      'మార్కు ఒక సమాచారం, మీరు ఎవరన్నదానిపై తీర్పు కాదు.';
+
+  @override
+  String get scriptGrades33 => 'ఫలితం ఏదైనా, ప్రయత్నమే ఎదుగుదల.';
+
+  @override
+  String get scriptGrades34 =>
+      'మీ సొంత వేగంతో నేర్చుకోవడానికి మీకు అనుమతి ఉంది.';
+
+  @override
+  String get scriptGrades35 => 'ఇప్పుడు, మెల్లగా ఒక చేతిని ఛాతీపై ఉంచండి.';
+
+  @override
+  String get scriptGrades36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నేను ఒక మార్కు కంటే ఎక్కువ.';
+
+  @override
+  String get scriptGrades37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఫలితం వచ్చినప్పుడు, లేదా మిమ్మల్ని ఇతరులతో పోల్చుకోవడం మొదలుపెట్టినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptGrades38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptGrades39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptGrades40 =>
+      'తిరిగి రావడానికి ముందు… మార్కు ఏదైనా, ఈ వారం మీరు నేర్చుకున్న ఒక విషయం గురించి ఆలోచించండి.';
+
+  @override
+  String get scriptGrades41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptGrades42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptGrades43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptGrades44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptGrades45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptGrades46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptGrades47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptGrades48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నేను ఒక మార్కు కంటే ఎక్కువ. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateTeachersTitle => 'ప్రశాంతంగా మాట్లాడండి';
+
+  @override
+  String get afterAnchorTeachers =>
+      'నాలుకను వదులు చేయండి · “నా గొంతుకు విలువ ఉంది.”';
+
+  @override
+  String get scriptTeachers01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptTeachers02 =>
+      'చేయి ఎత్తడం లేదా గొంతు విప్పడం భయంగా అనిపించవచ్చు. ఈ పది నిమిషాలు, మీ గొంతు ఎదగడానికి ఒక ప్రశాంతమైన చోటు ఇద్దాం.';
+
+  @override
+  String get scriptTeachers03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptTeachers04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptTeachers05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptTeachers06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptTeachers07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptTeachers08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptTeachers09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptTeachers10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptTeachers11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptTeachers12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptTeachers13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptTeachers14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptTeachers15 => 'ఏడు…';
+
+  @override
+  String get scriptTeachers16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptTeachers17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptTeachers18 => 'నాలుగు…';
+
+  @override
+  String get scriptTeachers19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptTeachers20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptTeachers21 => 'ఒకటి.';
+
+  @override
+  String get scriptTeachers22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptTeachers23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptTeachers24 =>
+      'మీ దృష్టిని గొంతుపైకి తీసుకురండి. అది రిలాక్స్ అయి తెరుచుకోనివ్వండి. మెల్లగా మింగండి.';
+
+  @override
+  String get scriptTeachers25 =>
+      'ఇప్పుడు మీ దవడ, నాలుక. నాలుక నోటిలో మెత్తగా విశ్రాంతి తీసుకోనివ్వండి. దవడను వదులుగా వేలాడనివ్వండి.';
+
+  @override
+  String get scriptTeachers26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptTeachers27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptTeachers28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptTeachers29 =>
+      'మీ గొంతును తీరం వైపు దొర్లుతూ వచ్చే ఒక ప్రశాంతమైన అలగా ఊహించండి.';
+
+  @override
+  String get scriptTeachers30 =>
+      'అది గట్టిగా ఉండాల్సిన అవసరం లేదు. స్పష్టంగా, స్థిరంగా వచ్చి ఇసుకను చేరుతుంది. తీరంలో ఉన్న అందరికీ అది వినిపిస్తుంది.';
+
+  @override
+  String get scriptTeachers31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptTeachers32 => 'మీ ప్రశ్నలకు చోటు దక్కాలి. అడగడం ఒక బలం.';
+
+  @override
+  String get scriptTeachers33 =>
+      'కంగారుగా అనిపించినా, మీరు ప్రశాంతంగా మాట్లాడగలరు.';
+
+  @override
+  String get scriptTeachers34 => 'తప్పుల ద్వారానే అందరూ నేర్చుకుంటారు.';
+
+  @override
+  String get scriptTeachers35 =>
+      'ఇప్పుడు, మెల్లగా నాలుకను వదులు చేసి, మెల్లగా మింగండి.';
+
+  @override
+  String get scriptTeachers36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నా గొంతుకు విలువ ఉంది.';
+
+  @override
+  String get scriptTeachers37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, క్లాసులో ప్రశ్న అడిగే ముందు, లేదా టీచర్‌తో మాట్లాడే ముందు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptTeachers38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptTeachers39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptTeachers40 =>
+      'తిరిగి రావడానికి ముందు… ఈ వారం మీరు అడిగే ఒక ప్రశ్నను, లేదా చెప్పే ఒక విషయాన్ని ఎంచుకోండి.';
+
+  @override
+  String get scriptTeachers41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptTeachers42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptTeachers43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptTeachers44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptTeachers45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptTeachers46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptTeachers47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptTeachers48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నా గొంతుకు విలువ ఉంది. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateClassmatesTitle => 'కలిసిపోవడం';
+
+  @override
+  String get afterAnchorClassmates =>
+      'ఒక మెత్తని చిరునవ్వు · “నేను ఉన్నట్టే నాకు చోటుంది.”';
+
+  @override
+  String get scriptClassmates01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptClassmates02 =>
+      'ఎక్కడో ఒకచోట చెందాలనుకోవడం మనిషి సహజం. ఈ పది నిమిషాలు, మీరు ఉన్నట్టే మీకు ఇక్కడ చోటుంది.';
+
+  @override
+  String get scriptClassmates03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptClassmates04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptClassmates05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptClassmates06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptClassmates07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptClassmates08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptClassmates09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptClassmates10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptClassmates11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptClassmates12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptClassmates13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptClassmates14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptClassmates15 => 'ఏడు…';
+
+  @override
+  String get scriptClassmates16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptClassmates17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptClassmates18 => 'నాలుగు…';
+
+  @override
+  String get scriptClassmates19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptClassmates20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptClassmates21 => 'ఒకటి.';
+
+  @override
+  String get scriptClassmates22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptClassmates23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptClassmates24 =>
+      'మీ దృష్టిని పొట్టపైకి తీసుకురండి. ఇతరులు ఏమనుకుంటారో అనే ఏ ఆందోళననైనా గమనించండి. మెల్లగా దానిలోకి శ్వాస తీసుకోండి.';
+
+  @override
+  String get scriptClassmates25 =>
+      'ఇప్పుడు మీ భుజాలు. ఎవరూ చూడట్లేదన్నట్టు, అవి చెవుల నుండి దూరంగా రిలాక్స్ అవనివ్వండి.';
+
+  @override
+  String get scriptClassmates26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptClassmates27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptClassmates28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptClassmates29 =>
+      'సముద్రంపై ఎగురుతున్న ఒక పక్షుల గుంపును ఊహించండి. కలిసి… అయినా ఒక్కొక్కదానికీ దాని సొంత ఆకారం, సొంత లయ.';
+
+  @override
+  String get scriptClassmates30 =>
+      'ఏ పక్షీ మరో పక్షిలా ఉండటానికి ప్రయత్నించదు. ప్రతిదీ స్వేచ్ఛగా ఉండటం వల్లే అవి కలిసి ఎగురుతాయి.';
+
+  @override
+  String get scriptClassmates31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptClassmates32 => 'వేరొకరిలా మారకుండానే మీకు చోటుంది.';
+
+  @override
+  String get scriptClassmates33 =>
+      'సరైన వ్యక్తులు నిజమైన మిమ్మల్ని ఇష్టపడతారు.';
+
+  @override
+  String get scriptClassmates34 => 'మీరు కాదని చెప్పినా ఇష్టపడబడతారు.';
+
+  @override
+  String get scriptClassmates35 =>
+      'ఇప్పుడు, మెల్లగా మీ ముఖంపై ఒక మెత్తని చిరునవ్వు రానివ్వండి.';
+
+  @override
+  String get scriptClassmates36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నేను ఉన్నట్టే నాకు చోటుంది.';
+
+  @override
+  String get scriptClassmates37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, మిమ్మల్ని పక్కన పెట్టినట్టు అనిపించినప్పుడు, లేదా మీరు కాని వ్యక్తిలా ఉండమని ఒత్తిడి వచ్చినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptClassmates38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptClassmates39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptClassmates40 =>
+      'తిరిగి రావడానికి ముందు… మీకు సౌకర్యంగా అనిపించే ఒక వ్యక్తి గురించి, వాళ్లతో ఎలా సమయం గడపవచ్చో ఆలోచించండి.';
+
+  @override
+  String get scriptClassmates41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptClassmates42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptClassmates43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptClassmates44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptClassmates45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptClassmates46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptClassmates47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptClassmates48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నేను ఉన్నట్టే నాకు చోటుంది. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateSchoolResetTitle => 'స్కూల్ రీసెట్';
+
+  @override
+  String get afterAnchorSchoolReset => 'చేతులు పైకి చాచండి · “కొత్త పేజీ.”';
+
+  @override
+  String get scriptSchoolReset01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSchoolReset02 =>
+      'స్కూల్ మీ నుండి చాలా ఆశిస్తుంది. ఈ పది నిమిషాలు, హోంవర్క్ లేదు, పరీక్షలు లేవు, టైమ్‌టేబుల్ లేదు.';
+
+  @override
+  String get scriptSchoolReset03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptSchoolReset04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptSchoolReset05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptSchoolReset06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptSchoolReset07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptSchoolReset08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSchoolReset09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSchoolReset10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptSchoolReset11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptSchoolReset12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptSchoolReset13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptSchoolReset14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptSchoolReset15 => 'ఏడు…';
+
+  @override
+  String get scriptSchoolReset16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptSchoolReset17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptSchoolReset18 => 'నాలుగు…';
+
+  @override
+  String get scriptSchoolReset19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptSchoolReset20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptSchoolReset21 => 'ఒకటి.';
+
+  @override
+  String get scriptSchoolReset22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptSchoolReset23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptSchoolReset24 =>
+      'రోజూ మీ బ్యాక్‌ప్యాక్ కూర్చునే మీ వీపు, భుజాలపైకి దృష్టిని తీసుకురండి. అవి సాగి, మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptSchoolReset25 =>
+      'తల నుండి కాలి వేళ్ల వరకు, మిగతా శరీరం రిలాక్స్ అవనివ్వండి.';
+
+  @override
+  String get scriptSchoolReset26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptSchoolReset27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSchoolReset28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptSchoolReset29 =>
+      'ముందు తలుపు దగ్గర బరువైన బ్యాక్‌ప్యాక్‌ను తీసి అక్కడే వదిలేస్తున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptSchoolReset30 =>
+      'అది లేకుండా, మీరు తేలికగా అనిపిస్తారు. ఇసుకపైకి నడుస్తారు… శ్వాస తీసుకునే స్వేచ్ఛతో, మీలా ఉండే స్వేచ్ఛతో.';
+
+  @override
+  String get scriptSchoolReset31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptSchoolReset32 =>
+      'మీరు నేర్చుకుంటున్నారు, నేర్చుకోవడానికి సమయం పడుతుంది.';
+
+  @override
+  String get scriptSchoolReset33 => 'విశ్రాంతి కూడా చదువులో భాగమే.';
+
+  @override
+  String get scriptSchoolReset34 => 'రేపు ఒక కొత్త పేజీ.';
+
+  @override
+  String get scriptSchoolReset35 => 'ఇప్పుడు, మెల్లగా మీ చేతులను పైకి చాచండి.';
+
+  @override
+  String get scriptSchoolReset36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: కొత్త పేజీ.';
+
+  @override
+  String get scriptSchoolReset37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, సుదీర్ఘమైన స్కూల్ రోజు తర్వాత, లేదా చదవడం మొదలుపెట్టే ముందు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptSchoolReset38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptSchoolReset39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptSchoolReset40 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు కేవలం సరదా కోసం చేసే ఒక పనిని ఎంచుకోండి.';
+
+  @override
+  String get scriptSchoolReset41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptSchoolReset42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptSchoolReset43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptSchoolReset44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptSchoolReset45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptSchoolReset46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptSchoolReset47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptSchoolReset48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: కొత్త పేజీ. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateConflictTitle => 'గొడవ తర్వాత';
+
+  @override
+  String get afterAnchorConflict => 'చేతులు తెరవండి · “తుఫాను దాటిపోనీ.”';
+
+  @override
+  String get scriptConflict01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptConflict02 =>
+      'ఒక వాదన తర్వాత, ఆ మాటలు మళ్లీ మళ్లీ మెదులుతూ ఉండవచ్చు. ఈ పది నిమిషాలు, మీరు దేన్నీ మళ్లీ గుర్తుచేసుకోవాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptConflict03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptConflict04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptConflict05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptConflict06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptConflict07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptConflict08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptConflict09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptConflict10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptConflict11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptConflict12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptConflict13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptConflict14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptConflict15 => 'ఏడు…';
+
+  @override
+  String get scriptConflict16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptConflict17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptConflict18 => 'నాలుగు…';
+
+  @override
+  String get scriptConflict19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptConflict20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptConflict21 => 'ఒకటి.';
+
+  @override
+  String get scriptConflict22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptConflict23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptConflict24 =>
+      'మీ దృష్టిని దవడ, పిడికిళ్లపైకి తీసుకురండి. వాటిని వదులు చేయనివ్వండి. నెమ్మదిగా చేతులు తెరవండి.';
+
+  @override
+  String get scriptConflict25 =>
+      'ఇప్పుడు మీ ఛాతీ. అక్కడ వేడి గానీ బాధ గానీ ఉంటే, దానిలోకి శ్వాస తీసుకోండి. సముద్రపు గాలిలా, ప్రతి ఊపిరి వదలడం దాన్ని చల్లబరచనివ్వండి.';
+
+  @override
+  String get scriptConflict26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptConflict27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptConflict28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptConflict29 =>
+      'సముద్రంపై దాటిపోతున్న ఒక తుఫానును ఊహించండి. నల్లని మేఘాలు, గాలి, వాన.';
+
+  @override
+  String get scriptConflict30 =>
+      'ఆ తర్వాత, నెమ్మదిగా, మేఘాలు కదిలిపోతాయి. ఆకాశం తేటపడుతుంది. నీరు నిశ్చలమవుతుంది. తుఫాను నిజమే… అది దాటిపోయింది.';
+
+  @override
+  String get scriptConflict31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptConflict32 => 'మీరు బాధపడుతున్నా ప్రశాంతతను ఎంచుకోవచ్చు.';
+
+  @override
+  String get scriptConflict33 =>
+      'శాంతిగా ఉండటానికి మీరు గెలవాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptConflict34 =>
+      'మీరు సిద్ధమయ్యే వరకు సర్దుబాటు వేచి ఉండవచ్చు.';
+
+  @override
+  String get scriptConflict35 =>
+      'ఇప్పుడు, మెల్లగా మీ చేతులు తెరవండి, అరచేతులు పైకి.';
+
+  @override
+  String get scriptConflict36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: తుఫాను దాటిపోనీ.';
+
+  @override
+  String get scriptConflict37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, కోపం పెరిగినప్పుడు, లేదా ఆ వాదన మీ తలలో మళ్లీ మొదలైనప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptConflict38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptConflict39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptConflict40 =>
+      'తిరిగి రావడానికి ముందు… ఏదైనా సరిదిద్దాల్సిన అవసరం ఉందా, మీరు ఎప్పుడు సిద్ధంగా ఉంటారు అని నిర్ణయించుకోండి. తొందర ఏమీ లేదు.';
+
+  @override
+  String get scriptConflict41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptConflict42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptConflict43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptConflict44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptConflict45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptConflict46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptConflict47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptConflict48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: తుఫాను దాటిపోనీ. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateEventsTitle => 'లోపలికి వెళ్లే ముందు';
+
+  @override
+  String get afterAnchorEvents =>
+      'బొటనవేలు + వేలు · “నేను ఉన్నట్టే సరిపోతాను.”';
+
+  @override
+  String get scriptEvents01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptEvents02 =>
+      'ఒక కార్యక్రమానికి ముందు, కంగారు పెరగవచ్చు. ఈ పది నిమిషాలు, మీరు ఇంకెక్కడికైనా చేరుకునే ముందు, ప్రశాంతతలోకి చేరుకుందాం.';
+
+  @override
+  String get scriptEvents03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptEvents04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptEvents05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptEvents06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptEvents07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptEvents08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptEvents09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptEvents10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptEvents11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptEvents12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptEvents13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptEvents14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptEvents15 => 'ఏడు…';
+
+  @override
+  String get scriptEvents16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptEvents17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptEvents18 => 'నాలుగు…';
+
+  @override
+  String get scriptEvents19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptEvents20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptEvents21 => 'ఒకటి.';
+
+  @override
+  String get scriptEvents22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptEvents23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptEvents24 =>
+      'మీ దృష్టిని పొట్టపైకి తీసుకురండి. అక్కడి కంగారు శక్తిని గమనించండి. నెమ్మదిగా దానిలోకి శ్వాస తీసుకోండి.';
+
+  @override
+  String get scriptEvents25 =>
+      'ఇప్పుడు మీ భుజాలు. వాటిని దిగనివ్వండి… మీరు ఇప్పటికే రిలాక్స్‌గా, ఇప్పటికే సౌకర్యంగా ఉన్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptEvents26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptEvents27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptEvents28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptEvents29 =>
+      'మెత్తని బంగారు వెలుగుతో నిండిన ఒక గదిలోకి మీరు నడుస్తున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptEvents30 =>
+      'జనం తిరిగి చూసి నవ్వుతారు. ఎవరో చేయి ఊపుతారు. మీకు స్వాగతం దొరికినట్టు, హాయిగా అనిపిస్తుంది. మీరు ఎవరినీ ఆకట్టుకోవాల్సిన అవసరం లేదు. మీరు కేవలం ఇక్కడ ఉన్నారు.';
+
+  @override
+  String get scriptEvents31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptEvents32 =>
+      'మీరు ప్రదర్శన చేయాల్సిన అవసరం లేదు. మీరు మీలా ఉండటమే చాలు.';
+
+  @override
+  String get scriptEvents33 =>
+      'చాలామంది తమ గురించే ఆలోచిస్తుంటారు, మిమ్మల్ని అంచనా వేయట్లేదు.';
+
+  @override
+  String get scriptEvents34 => 'ఎప్పుడైనా ఒక శ్వాస కోసం బయటికి వెళ్లవచ్చు.';
+
+  @override
+  String get scriptEvents35 =>
+      'ఇప్పుడు, మెల్లగా మీ బొటనవేలిని, చూపుడు వేలిని కలిపి నొక్కండి.';
+
+  @override
+  String get scriptEvents36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నేను ఉన్నట్టే సరిపోతాను.';
+
+  @override
+  String get scriptEvents37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఒక కార్యక్రమం గుమ్మం దగ్గర, లేదా కొత్తవాళ్లను కలిసే ముందు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptEvents38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptEvents39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptEvents40 =>
+      'తిరిగి రావడానికి ముందు… తదుపరి కార్యక్రమంలో మీరు చేసే ఒక చిన్న, సులువైన పనిని ఎంచుకోండి… ఒక్క హలో లాంటిది.';
+
+  @override
+  String get scriptEvents41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptEvents42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptEvents43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptEvents44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptEvents45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptEvents46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptEvents47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptEvents48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నేను ఉన్నట్టే సరిపోతాను. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateLonelinessTitle => 'ఎప్పుడూ నిజంగా ఒంటరి కాదు';
+
+  @override
+  String get afterAnchorLoneliness =>
+      'మిమ్మల్ని మీరు హత్తుకోండి · “నాతో నేను ఉన్నాను.”';
+
+  @override
+  String get scriptLoneliness01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptLoneliness02 =>
+      'ఒంటరితనం బరువుగా, నిశ్శబ్దంగా అనిపించవచ్చు. ఈ పది నిమిషాలు, మీరు ఒంటరిగా లేరు. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptLoneliness03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptLoneliness04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptLoneliness05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptLoneliness06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptLoneliness07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptLoneliness08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptLoneliness09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptLoneliness10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptLoneliness11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptLoneliness12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptLoneliness13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptLoneliness14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptLoneliness15 => 'ఏడు…';
+
+  @override
+  String get scriptLoneliness16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptLoneliness17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptLoneliness18 => 'నాలుగు…';
+
+  @override
+  String get scriptLoneliness19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptLoneliness20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptLoneliness21 => 'ఒకటి.';
+
+  @override
+  String get scriptLoneliness22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptLoneliness23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptLoneliness24 =>
+      'మీ దృష్టిని ఛాతీపైకి తీసుకురండి. మెల్లగా దానిలోకి శ్వాస తీసుకోండి, అది నిండుగా, వెచ్చగా అనిపించనివ్వండి.';
+
+  @override
+  String get scriptLoneliness25 =>
+      'ఇప్పుడు మీ చేతులు. నెమ్మదిగా వాటిని మీ చుట్టూ చుట్టి మెత్తగా హత్తుకోండి. మీ సొంత ప్రేమలోని వెచ్చదనాన్ని అనుభూతి చెందండి.';
+
+  @override
+  String get scriptLoneliness26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptLoneliness27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptLoneliness28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptLoneliness29 =>
+      'సూర్యాస్తమయ వేళ సముద్ర తీరంలో కూర్చున్నట్టు ఊహించండి. ఆకాశం బంగారు, గులాబీ రంగుల్లో వేసిన చిత్రంలా ఉంది.';
+
+  @override
+  String get scriptLoneliness30 =>
+      'మీ పక్కన మీ తోడు కూర్చుని ఉంది, నిశ్శబ్దంగా, దయగా, మీతో కలిసి అలలను చూస్తూ. మాటలు అవసరం లేదు. మీరు కలిసి ఉన్నారు.';
+
+  @override
+  String get scriptLoneliness31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptLoneliness32 =>
+      'ఒంటరిగా అనిపించడం ఒక క్షణం మాత్రమే, మీరు ఎవరన్నది కాదు.';
+
+  @override
+  String get scriptLoneliness33 => 'అనుబంధానికి మీరు అర్హులు.';
+
+  @override
+  String get scriptLoneliness34 => 'ఎవరినైనా పలకరించడం ధైర్యమే.';
+
+  @override
+  String get scriptLoneliness35 =>
+      'ఇప్పుడు, మెల్లగా మిమ్మల్ని మీరు మృదువుగా హత్తుకోండి.';
+
+  @override
+  String get scriptLoneliness36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: నాతో నేను ఉన్నాను.';
+
+  @override
+  String get scriptLoneliness37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఒంటరి సాయంత్రాల్లో, లేదా ఎవరితోనూ సంబంధం లేనట్టు అనిపించినప్పుడల్లా, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptLoneliness38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptLoneliness39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptLoneliness40 =>
+      'తిరిగి రావడానికి ముందు… ఈ వారం ఎవరితోనైనా అనుబంధం పెంచుకునే ఒక చిన్న మార్గం గురించి ఆలోచించండి.';
+
+  @override
+  String get scriptLoneliness41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptLoneliness42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptLoneliness43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptLoneliness44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptLoneliness45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptLoneliness46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptLoneliness47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptLoneliness48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: నాతో నేను ఉన్నాను. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateSocialMediaTitle => 'తక్కువ స్క్రోల్, ఎక్కువ శ్వాస';
+
+  @override
+  String get afterAnchorSocialMedia =>
+      'ఫోన్ బోర్లా, ఒక శ్వాస · “మళ్లీ ఈ క్షణానికి.”';
+
+  @override
+  String get scriptSocialMedia01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSocialMedia02 =>
+      'స్క్రోలింగ్ మనల్ని అలసిపోయేలా, పోల్చుకునేలా చేస్తుంది. ఈ పది నిమిషాలు, స్క్రీన్ ఆఫ్‌లో ఉంది. మీ జీవితం ఇక్కడే ఉంది.';
+
+  @override
+  String get scriptSocialMedia03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptSocialMedia04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptSocialMedia05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptSocialMedia06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptSocialMedia07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptSocialMedia08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSocialMedia09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSocialMedia10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptSocialMedia11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptSocialMedia12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptSocialMedia13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptSocialMedia14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptSocialMedia15 => 'ఏడు…';
+
+  @override
+  String get scriptSocialMedia16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptSocialMedia17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptSocialMedia18 => 'నాలుగు…';
+
+  @override
+  String get scriptSocialMedia19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptSocialMedia20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptSocialMedia21 => 'ఒకటి.';
+
+  @override
+  String get scriptSocialMedia22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptSocialMedia23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptSocialMedia24 =>
+      'మీ దృష్టిని కళ్లపైకి తీసుకురండి. మూసిన రెప్పల వెనక అవి విశ్రాంతి తీసుకోనివ్వండి. అవి మృదువుగా మారుతున్నట్టు అనుభూతి చెందండి.';
+
+  @override
+  String get scriptSocialMedia25 =>
+      'ఇప్పుడు మీ మెడ, ఎంతో తరచుగా స్క్రీన్ వైపు వంగేది. మీ బొటనవేళ్లు, ఎప్పుడూ స్వైప్ చేసేవి. వాటిని నిశ్చలంగా ఉండనివ్వండి.';
+
+  @override
+  String get scriptSocialMedia26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptSocialMedia27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSocialMedia28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptSocialMedia29 =>
+      'మీ ఫోన్‌ను ఇసుకపై బోర్లా పెడుతున్నట్టు ఊహించండి.';
+
+  @override
+  String get scriptSocialMedia30 =>
+      'మీరు నిజమైన దిగంతం వైపు చూస్తారు… విశాలంగా, నీలంగా, అంతులేకుండా. అలల శబ్దం. పిల్లగాలి. ఈ క్షణాన్ని పోస్ట్ చేయలేరు, అదే దీని అందం.';
+
+  @override
+  String get scriptSocialMedia31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptSocialMedia32 => 'వాళ్ల హైలైట్స్ మీ పూర్తి కథ కాదు.';
+
+  @override
+  String get scriptSocialMedia33 => 'మీ జీవితం ఇక్కడ, ఆఫ్‌లైన్‌లో జరుగుతోంది.';
+
+  @override
+  String get scriptSocialMedia34 => 'మీరు యాప్‌ను మూసి మీలోకి తిరిగి రావచ్చు.';
+
+  @override
+  String get scriptSocialMedia35 =>
+      'ఇప్పుడు, మెల్లగా మీ ఫోన్‌ను బోర్లా తిప్పి, ఒక శ్వాస తీసుకోండి.';
+
+  @override
+  String get scriptSocialMedia36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: మళ్లీ ఈ క్షణానికి.';
+
+  @override
+  String get scriptSocialMedia37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఆలోచించకుండా స్క్రోల్ చేస్తున్నట్టు గమనించినప్పుడు, లేదా తర్వాత ఇంకా అధ్వాన్నంగా అనిపించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptSocialMedia38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptSocialMedia39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptSocialMedia40 =>
+      'తిరిగి రావడానికి ముందు… ఈరోజు ముప్పై నిమిషాల పాటు ఫోన్‌ను పక్కన పెట్టే ఒక సమయాన్ని ఎంచుకోండి.';
+
+  @override
+  String get scriptSocialMedia41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptSocialMedia42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptSocialMedia43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptSocialMedia44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptSocialMedia45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptSocialMedia46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptSocialMedia47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptSocialMedia48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: మళ్లీ ఈ క్షణానికి. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get meditateSocialResetTitle => 'సామాజిక రీసెట్';
+
+  @override
+  String get afterAnchorSocialReset =>
+      'ఒక నెమ్మదైన శ్వాస · “మళ్లీ శక్తి నిండింది.”';
+
+  @override
+  String get scriptSocialReset01 => 'నమస్తే. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptSocialReset02 =>
+      'మనుషులు మన శక్తిని హరించగలరు, మనం ప్రేమించేవాళ్లు కూడా. ఈ పది నిమిషాలు, మీరు మళ్లీ శక్తి నింపుకోవచ్చు.';
+
+  @override
+  String get scriptSocialReset03 =>
+      'మీ శరీరానికి ఆధారం దొరికే ఒక భంగిమను ఎంచుకోండి. పాదాలు నేలపై చదునుగా. చేతులు ఎక్కడ విశ్రాంతి తీసుకోవాలనుకుంటే అక్కడ.';
+
+  @override
+  String get scriptSocialReset04 =>
+      'ఇప్పుడు మీ కళ్లు ముందున్న ఒక చిన్న బిందువును కనుగొననివ్వండి… అక్కడే మీ చూపును విశ్రమించనివ్వండి.';
+
+  @override
+  String get scriptSocialReset05 =>
+      'దాన్నే చూస్తూ ఉండండి… మీ కనురెప్పలు కొంచెం బరువెక్కుతున్నాయేమో గమనించండి… రెప్ప వేయడం కొంచెం నెమ్మదిస్తోంది.';
+
+  @override
+  String get scriptSocialReset06 =>
+      'ఏదీ సరిగ్గా చేయాల్సిన అవసరం లేదు. అవి సిద్ధమైనప్పుడు… మీ కళ్లు మూసుకోనివ్వవచ్చు.';
+
+  @override
+  String get scriptSocialReset07 =>
+      'కలిసి శ్వాసను నెమ్మది చేద్దాం. పొడవైన ఊపిరి వదలడం మీరు సురక్షితంగా ఉన్నారని మీ శరీరానికి చెబుతుంది.';
+
+  @override
+  String get scriptSocialReset08 =>
+      'శ్వాస లోపలికి… రెండు… మూడు… నాలుగు. బయటికి… రెండు… మూడు… నాలుగు… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSocialReset09 =>
+      'మళ్లీ. లోపలికి… రెండు… మూడు… నాలుగు. నెమ్మదిగా బయటికి… భుజాలు జారనివ్వండి… ఐదు… ఆరు.';
+
+  @override
+  String get scriptSocialReset10 =>
+      'బాగుంది. ఇప్పుడు శ్వాస తన సొంత లయను కనుగొననివ్వండి.';
+
+  @override
+  String get scriptSocialReset11 =>
+      'కాసేపట్లో నేను పది నుండి ఒకటి వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో, మీరు రెండింతలు లోతుగా ప్రశాంతతలోకి వెళ్లవచ్చు… ప్రయత్నించాల్సిన అవసరం లేదు. వింటే చాలు.';
+
+  @override
+  String get scriptSocialReset12 => 'పది… వదిలేయండి.';
+
+  @override
+  String get scriptSocialReset13 => 'తొమ్మిది… ఇంకా మృదువుగా.';
+
+  @override
+  String get scriptSocialReset14 => 'ఎనిమిది… రోజు శబ్దం ఇంకా దూరమవుతోంది.';
+
+  @override
+  String get scriptSocialReset15 => 'ఏడు…';
+
+  @override
+  String get scriptSocialReset16 => 'ఆరు… లోతుగా, ప్రశాంతంగా.';
+
+  @override
+  String get scriptSocialReset17 => 'ఐదు… సగం దూరం, హాయిగా.';
+
+  @override
+  String get scriptSocialReset18 => 'నాలుగు…';
+
+  @override
+  String get scriptSocialReset19 =>
+      'మూడు… ప్రతి శ్వాస మిమ్మల్ని కిందికి తీసుకెళ్తోంది.';
+
+  @override
+  String get scriptSocialReset20 => 'రెండు… దాదాపు చేరుకున్నారు.';
+
+  @override
+  String get scriptSocialReset21 => 'ఒకటి.';
+
+  @override
+  String get scriptSocialReset22 => 'ఇక్కడే విశ్రాంతి. నిశ్శబ్దం. సురక్షితం.';
+
+  @override
+  String get scriptSocialReset23 =>
+      'ఇప్పుడు నెమ్మదిగా మీ శరీరం గుండా సాగుదాం… ఒత్తిడి ఎక్కడ దాక్కున్నా, అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptSocialReset24 =>
+      'మీ దృష్టిని నెమ్మదిగా తల నుండి కాలి వరకు కదిలించండి. ఎక్కడ అలసటగా అనిపిస్తే, అక్కడికి తాజా శక్తిని శ్వాసగా తీసుకోండి.';
+
+  @override
+  String get scriptSocialReset25 =>
+      'మీ మొత్తం శరీరం విశ్రాంతి తీసుకోనివ్వండి, బరువుగా, సౌకర్యంగా.';
+
+  @override
+  String get scriptSocialReset26 =>
+      'ఇంకా ఏదైనా బిగుసుకుని ఉందేమో మెల్లగా వెతకడానికి ఒక క్షణం తీసుకోండి… ముడుచుకున్న కనుబొమలు, బిగించిన పిడికిలి, ఆపుకున్న శ్వాస. అది ఎక్కడ కనిపించినా, శ్వాస లోపలికి తీసుకోండి… ఊపిరి వదిలేటప్పుడు, అది కరిగిపోనివ్వండి.';
+
+  @override
+  String get scriptSocialReset27 =>
+      'తుంటి గుండా కిందికి… కాళ్లు… నేలపై ఉన్న పాదాల వరకు. స్థిరంగా. ఆధారంతో. ఇప్పుడు దేన్నీ మోయాల్సిన అవసరం లేదు.';
+
+  @override
+  String get scriptSocialReset28 =>
+      'మీ మొత్తం శరీరం… ప్రశాంతంగా, బరువుగా, సురక్షితంగా. కొన్ని నిశ్శబ్ద శ్వాసల పాటు ఈ అనుభూతిని ఆస్వాదించండి.';
+
+  @override
+  String get scriptSocialReset29 =>
+      'తీరం వెంట ఒక నిశ్శబ్ద నడకను ఊహించండి. మీరు, అలలు మాత్రమే.';
+
+  @override
+  String get scriptSocialReset30 =>
+      'ప్రతి అడుగూ మీలో శక్తి నింపుతుంది. సముద్రం మిమ్మల్ని ఏమీ అడగదు. మీరు కేవలం నడవచ్చు, శ్వాసించవచ్చు, ఉండవచ్చు.';
+
+  @override
+  String get scriptSocialReset31 =>
+      'మీరు ఇక్కడ విశ్రాంతి తీసుకుంటుండగా, ఈ మాటలు లోతుగా ఎక్కడో స్థిరపడనివ్వండి, అక్కడ అవి నిశ్శబ్దంగా మీ కోసం పనిచేస్తాయి:';
+
+  @override
+  String get scriptSocialReset32 => 'మీరు ఉన్నట్టే మీకు చోటు తీసుకోవచ్చు.';
+
+  @override
+  String get scriptSocialReset33 => 'ఒంటరిగా శక్తి నింపుకోవడం ఆరోగ్యకరం.';
+
+  @override
+  String get scriptSocialReset34 => 'మీ శక్తి కాపాడుకోదగినది.';
+
+  @override
+  String get scriptSocialReset35 =>
+      'ఇప్పుడు, మెల్లగా ఒక నెమ్మదైన శ్వాస తీసుకోండి.';
+
+  @override
+  String get scriptSocialReset36 =>
+      'ఒక నెమ్మదైన శ్వాస తీసుకోండి… మనసులో మీకు మీరే చెప్పుకోండి: మళ్లీ శక్తి నిండింది.';
+
+  @override
+  String get scriptSocialReset37 =>
+      'ఈ ప్రశాంతత ఇక్కడ చేరుతున్నట్టు అనుభూతి చెందండి. ఇకపై, ఇతరులతో గడిపిన తర్వాత, లేదా ఇతరుల వల్ల అలసిపోయినట్టు అనిపించినప్పుడు, మీరు దీన్ని మళ్లీ చేయవచ్చు… ఒక శ్వాస తీసుకోండి… ఇదే ప్రశాంతత తిరిగి వస్తుంది, ప్రతిసారీ కొంచెం బలంగా.';
+
+  @override
+  String get scriptSocialReset38 => 'ఇప్పుడు వదిలేయండి.';
+
+  @override
+  String get scriptSocialReset39 =>
+      'ఇప్పుడు ఇక్కడే విశ్రాంతి తీసుకోండి… చేయాల్సింది ఏమీ లేదు, వెళ్లాల్సిన చోటు లేదు… ప్రశాంతతను స్థిరపడనివ్వండి, ప్రతి శ్వాసతో ఇంకా లోతుగా.';
+
+  @override
+  String get scriptSocialReset40 =>
+      'తిరిగి రావడానికి ముందు… ఈ వారం మీ శక్తిని కాపాడుకునే ఒక మార్గాన్ని ఎంచుకోండి.';
+
+  @override
+  String get scriptSocialReset41 =>
+      'దాన్ని ప్రశాంతంగా చేస్తున్నట్టు మిమ్మల్ని మీరు చూడండి.';
+
+  @override
+  String get scriptSocialReset42 =>
+      'ఇప్పుడు ఒకటి నుండి ఐదు వరకు లెక్కిస్తాను. ప్రతి సంఖ్యతో మీరు మరింత మేల్కొని, అప్రమత్తంగా అనిపిస్తారు… ప్రశాంతతను మీతో తీసుకొస్తారు.';
+
+  @override
+  String get scriptSocialReset43 => 'ఒకటి… మీ కింద ఉన్నదాన్ని గమనిస్తూ.';
+
+  @override
+  String get scriptSocialReset44 => 'రెండు… గది శబ్దాలు తిరిగి వస్తున్నాయి.';
+
+  @override
+  String get scriptSocialReset45 =>
+      'మూడు… లోతైన శ్వాస, వేళ్లను, కాలి వేళ్లను కదిలించండి.';
+
+  @override
+  String get scriptSocialReset46 =>
+      'నాలుగు… శక్తి తిరిగి ప్రవహిస్తోంది, స్పష్టంగా, ఏకాగ్రతతో.';
+
+  @override
+  String get scriptSocialReset47 =>
+      'ఐదు… సిద్ధమైనప్పుడు కళ్లు తెరవండి… ప్రశాంతంగా, స్పష్టంగా, సిద్ధంగా.';
+
+  @override
+  String get scriptSocialReset48 =>
+      'బాగా చేశారు. గుర్తుంచుకోండి: మళ్లీ శక్తి నిండింది. నేను మీతో ఉన్నాను.';
+
+  @override
+  String get scriptBodyScan01 =>
+      'నమస్తే. నేను మీతో ఉన్నాను. కొన్ని నిమిషాలు మీ శరీరాన్ని, ఒకసారి ఒక భాగాన్ని గమనిద్దాం.';
+
+  @override
+  String get scriptBodyScan02 =>
+      'హాయిగా ఉండే చోట కూర్చోండి లేదా పడుకోండి. కళ్లు మూసుకోండి, లేదా చూపును నేలపై ఉంచండి.';
+
+  @override
+  String get scriptBodyScan03 =>
+      'నెమ్మదిగా శ్వాస లోపలికి తీసుకోండి… పొడవుగా బయటికి వదలండి.';
+
+  @override
+  String get scriptBodyScan04 =>
+      'మీ దృష్టిని తల పైభాగానికి తీసుకురండి. అక్కడ ఏముందో గమనించండి: వెచ్చదనం, జలదరింపు, లేదా ఏమీ లేకపోవడం.';
+
+  @override
+  String get scriptBodyScan05 =>
+      'నుదురు, కళ్లకు దిగండి. ఏదైనా బిగుతు ఉంటే, ఊపిరి వదిలేటప్పుడు అది మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptBodyScan06 =>
+      'ఇప్పుడు మీ దవడ. పళ్లు కొంచెం విడిపోనివ్వండి, నాలుక విశ్రాంతి తీసుకోనివ్వండి.';
+
+  @override
+  String get scriptBodyScan07 =>
+      'మీ మెడ, భుజాలను గమనించండి. అవి బరువెక్కి, చెవుల నుండి కిందికి జారనివ్వండి.';
+
+  @override
+  String get scriptBodyScan08 =>
+      'మీ చేతులు, మోచేతులు, మణికట్లు, అరచేతులను అనుభూతి చెందండి. వేళ్లు వదులుగా, నిశ్చలంగా విశ్రాంతి తీసుకోనివ్వండి.';
+
+  @override
+  String get scriptBodyScan09 =>
+      'మీ దృష్టిని ఛాతీకి తీసుకురండి. ఏదీ మార్చకుండా, ప్రతి శ్వాసతో అది పైకి కిందికి కదలడాన్ని అనుభూతి చెందండి.';
+
+  @override
+  String get scriptBodyScan10 =>
+      'మీ పొట్టను గమనించండి. బిగుతుగా అనిపిస్తే, మెల్లగా దానిలోకి శ్వాస తీసుకుని, మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptBodyScan11 =>
+      'కింది వీపు, తుంటికి వెళ్లండి. మిమ్మల్ని ఆనుకుని ఉన్న దానిలోకి అవి కుంగనివ్వండి.';
+
+  @override
+  String get scriptBodyScan12 =>
+      'మీ కాళ్లు, మోకాళ్లు, పాదాల వరకు అనుభూతి చెందండి. అవి నేలను తాకే చోటును గమనించండి.';
+
+  @override
+  String get scriptBodyScan13 =>
+      'ఇప్పుడు తల నుండి కాలి వరకు, ప్రశాంతంగా శ్వాసిస్తున్న మీ మొత్తం శరీరాన్ని ఒకేసారి అనుభూతి చెందండి.';
+
+  @override
+  String get scriptBodyScan14 =>
+      'మీరు ఏది గమనించినా పర్వాలేదు. సిద్ధమైనప్పుడు, వేళ్లను, కాలి వేళ్లను కదిలించి, కళ్లు తెరవండి.';
+
+  @override
+  String get scriptMuscle01 =>
+      'నమస్తే. నేను మీతో ఉన్నాను. ప్రతి కండరాల సమూహాన్ని కొన్ని క్షణాలు బిగించి, తర్వాత వదిలేద్దాం. నొప్పి కలిగేంత గట్టిగా ఎప్పుడూ నొక్కకండి.';
+
+  @override
+  String get scriptMuscle02 =>
+      'హాయిగా కూర్చుని, నెమ్మదిగా శ్వాస తీసుకోండి… వదలండి.';
+
+  @override
+  String get scriptMuscle03 =>
+      'రెండు చేతులతో గట్టిగా పిడికిలి బిగించండి. నొక్కండి… అలాగే పట్టుకోండి.';
+
+  @override
+  String get scriptMuscle04 =>
+      'ఇప్పుడు వదలండి. చేతులు తెరుచుకోనివ్వండి. అవి ఎంత భిన్నంగా అనిపిస్తున్నాయో గమనించండి.';
+
+  @override
+  String get scriptMuscle05 =>
+      'ఇప్పుడు చేతులు మడిచి, పై చేతుల కండరాలను బిగించండి. పట్టుకోండి.';
+
+  @override
+  String get scriptMuscle06 =>
+      'వదలండి. చేతులు బరువుగా, వెచ్చగా విశ్రాంతి తీసుకోనివ్వండి.';
+
+  @override
+  String get scriptMuscle07 =>
+      'భుజాలను చెవుల వైపు పైకి ఎత్తండి. అక్కడే పట్టుకోండి.';
+
+  @override
+  String get scriptMuscle08 =>
+      'జారవిడవండి. బిగుతు జారిపోతున్నట్టు అనుభూతి చెందండి.';
+
+  @override
+  String get scriptMuscle09 =>
+      'ముఖాన్ని ముడుచుకోండి: కళ్లు గట్టిగా మూసి, పెదవులను నొక్కండి. పట్టుకోండి.';
+
+  @override
+  String get scriptMuscle10 =>
+      'వదలండి. నుదురు, కళ్లు, దవడ మృదువుగా మారనివ్వండి.';
+
+  @override
+  String get scriptMuscle11 =>
+      'లోతుగా శ్వాస తీసుకుని పట్టి ఉంచండి, ఛాతీని, కడుపును బిగించండి.';
+
+  @override
+  String get scriptMuscle12 => 'నెమ్మదిగా శ్వాస వదలండి, అన్నీ వదులవనివ్వండి.';
+
+  @override
+  String get scriptMuscle13 =>
+      'మోకాళ్లను ఒకదానికొకటి నొక్కి, కాళ్లను బిగించండి. పట్టుకోండి.';
+
+  @override
+  String get scriptMuscle14 => 'సడలించండి. కాళ్లు బరువెక్కనివ్వండి.';
+
+  @override
+  String get scriptMuscle15 =>
+      'కాలి వేళ్లను కిందికి ముడిచి, పాదాలను బిగించండి. పట్టుకోండి.';
+
+  @override
+  String get scriptMuscle16 =>
+      'వదలండి. పాదాలు పూర్తిగా సడలుతున్నట్టు అనుభూతి చెందండి.';
+
+  @override
+  String get scriptMuscle17 =>
+      'ఇప్పుడు మొత్తం శరీరం విశ్రాంతి తీసుకోనివ్వండి. అది ఎంత ప్రశాంతంగా, బరువుగా ఉందో గమనించండి.';
+
+  @override
+  String get scriptMuscle18 =>
+      'సిద్ధమైనప్పుడు, ఒక లోతైన శ్వాస తీసుకుని, కొంచెం సాగదీసి, కళ్లు తెరవండి.';
 }

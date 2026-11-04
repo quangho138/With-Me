@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/SoundChoice.dart';
 import '../Components/SoundIcons.dart';
 import '../Theme/WithMeTheme.dart';
 import '../../l10n/l10n.dart';
@@ -30,7 +31,7 @@ class BeforeWeStartScreen extends StatefulWidget {
 
 class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   /// Sound keys: English, saved with the session and naming the audio
-  /// and video files. Shown through [_soundName].
+  /// and video files. Shown through [soundName].
   static const List<String> _sounds = [
     'Waves',
     'Birds',
@@ -111,17 +112,6 @@ class _BeforeWeStartScreenState extends State<BeforeWeStartScreen> {
   }
 }
 
-/// A sound key of the picker in the reader's language.
-String _soundName(AppLocalizations l, String sound) => switch (sound) {
-  'Waves' => l.exerciseSoundWaves,
-  'Birds' => l.exerciseSoundBirds,
-  'Fire' => l.exerciseSoundFire,
-  'Forest' => l.exerciseSoundForest,
-  'Rain' => l.exerciseSoundRain,
-  'None' => l.exerciseSoundNone,
-  _ => sound,
-};
-
 /// One sound: a sage tile with the sound's glyph over its name.
 class _SoundTile extends StatelessWidget {
   const _SoundTile({
@@ -137,7 +127,7 @@ class _SoundTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = _soundName(context.l10n, sound);
+    final label = soundName(context.l10n, sound);
     return ScenicTile(
       label: label,
       selected: selected,
