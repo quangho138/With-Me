@@ -399,7 +399,7 @@ class _VoiceWait extends StatefulWidget {
   const _VoiceWait({required this.download, required this.done});
 
   final Future<bool> download;
-  final ValueListenable<double> done;
+  final ValueNotifier<double> done;
 
   @override
   State<_VoiceWait> createState() => _VoiceWaitState();
