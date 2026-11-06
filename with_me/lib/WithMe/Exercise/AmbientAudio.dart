@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 
 import '../Theme/AppFeel.dart';
+import 'MixedAudio.dart';
 
 /// Serializes native calls so loading cannot outlive pause or screen disposal.
 class AmbientAudio {
@@ -21,7 +22,7 @@ class AmbientAudio {
         await _player?.pause();
         return;
       }
-      final player = _player ??= AudioPlayer();
+      final player = _player ??= await _newPlayer();
       if (_loaded != sound) {
         await player.setReleaseMode(ReleaseMode.loop);
         await player.setSource(AssetSource('audio/${sound.toLowerCase()}.m4a'));
@@ -33,6 +34,13 @@ class AmbientAudio {
       if (!_disposed && revision == _revision) await player.resume();
     });
     return _queue;
+  }
+
+  /// A player that mixes with the voice instead of stopping it.
+  static Future<AudioPlayer> _newPlayer() async {
+    final player = AudioPlayer();
+    await player.setAudioContext(kMixedAudio);
+    return player;
   }
 
   void dispose() {

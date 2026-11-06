@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 
 import '../Theme/AppFeel.dart';
+import 'MixedAudio.dart';
 
 /// One 13-second breath track, aligned to the exercise's elapsed clock.
 class SighAudio {
@@ -17,7 +18,7 @@ class SighAudio {
         await _player?.pause();
         return;
       }
-      final player = _player ??= AudioPlayer();
+      final player = _player ??= await _newPlayer();
       if (!_loaded) {
         await player.setReleaseMode(ReleaseMode.loop);
         await player.setSource(AssetSource('audio/sigh-breath.wav'));
@@ -31,6 +32,13 @@ class SighAudio {
       );
       if (!_disposed && revision == _revision) await player.resume();
     });
+  }
+
+  /// A player that mixes with the voice instead of stopping it.
+  static Future<AudioPlayer> _newPlayer() async {
+    final player = AudioPlayer();
+    await player.setAudioContext(kMixedAudio);
+    return player;
   }
 
   void dispose() {
