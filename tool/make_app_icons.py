@@ -106,6 +106,11 @@ def main() -> None:
     for density, size in ANDROID.items():
         save(icon, size, os.path.join(res, f'mipmap-{density}',
                                       'ic_launcher.png'))
+        # The opening screen on Android 11 and older
+        # (drawable/launch_background.xml), which cannot use a mipmap.
+        os.makedirs(os.path.join(res, f'drawable-{density}'), exist_ok=True)
+        save(icon, size, os.path.join(res, f'drawable-{density}',
+                                      'splash_icon.png'))
         for name, layer in layers.items():
             save(layer, round(108 * SCALE[density]),
                  os.path.join(res, f'mipmap-{density}',

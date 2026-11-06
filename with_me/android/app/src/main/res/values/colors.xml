@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The app's cream (WithMeTheme cream), behind the icon while the app opens. -->
+    <color name="splash_background">#FCFAF4</color>
+</resources>
