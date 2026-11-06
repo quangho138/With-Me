@@ -529,6 +529,13 @@ void main() {
       setUp(() => VoiceDownloads.instance = voice = _SlowVoice());
       tearDown(() => VoiceDownloads.instance = original);
 
+      // The popup's closing and the player's opening, a frame each.
+      Future<void> frames(WidgetTester t) async {
+        for (var i = 0; i < 4; i++) {
+          await t.pump(const Duration(milliseconds: 250));
+        }
+      }
+
       Future<void> openPage(WidgetTester t) async {
         await _open(t, GuidedPrepScreen(script: GuidedScripts.calmAtHome));
         await t.pump();
@@ -570,8 +577,7 @@ void main() {
         await t.pump();
         expect(find.text('Getting the voice, 80%'), findsWidgets);
         voice.gate.complete(true);
-        await t.pump();
-        await t.pump(const Duration(milliseconds: 400));
+        await frames(t);
         expect(find.byKey(const ValueKey('voice-wait')), findsNothing);
         expect(find.byType(GuidedPlayerScreen), findsOneWidget);
         // The recorded voice came: no note about the phone's voice.
@@ -584,8 +590,7 @@ void main() {
         await t.tap(find.text('Begin'));
         await t.pump();
         await t.tap(find.text('Cancel'));
-        await t.pump();
-        await t.pump(const Duration(milliseconds: 400));
+        await frames(t);
         expect(find.byKey(const ValueKey('voice-wait')), findsNothing);
         expect(find.byType(GuidedPrepScreen), findsOneWidget);
         expect(find.byType(GuidedPlayerScreen), findsNothing);
@@ -599,8 +604,7 @@ void main() {
         await t.tap(find.text('Begin'));
         await t.pump();
         voice.gate.complete(false);
-        await t.pump();
-        await t.pump(const Duration(milliseconds: 400));
+        await frames(t);
         expect(find.byType(GuidedPlayerScreen), findsOneWidget);
         expect(
           find.text(
