@@ -550,8 +550,9 @@ void main() {
         expect(l.right, lessThan(r.left));
         expect(l.left, first.left);
       }
+      // Eight: four full rows, no odd one left over.
       final last = at('pie-action-${labels.last}');
-      expect(last.left, first.left);
+      expect(last.top, at('pie-action-${labels[labels.length - 2]}').top);
       expect(last.width, first.width);
       expect(tester.takeException(), isNull);
     });
