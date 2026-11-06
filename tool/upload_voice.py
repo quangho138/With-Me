@@ -21,9 +21,10 @@ never printed or saved, and must never go in the repo, a doc or a chat.
 
 It needs ffmpeg: on the PATH, or `pip install imageio-ffmpeg`.
 
-Usage, from the repo folder:
-    python tool/upload_voice.py "<Alex's ...\\with_me\\assets\\audio\\voice>"
-    python tool/upload_voice.py "<voice folder>" --languages en,es
+Usage, from the repo folder (Alex's unpacked zip in Downloads is the
+default folder; another can be given first):
+    python tool/upload_voice.py --languages en
+    python tool/upload_voice.py
 """
 import argparse
 import concurrent.futures
@@ -39,6 +40,11 @@ import urllib.request
 
 URL = 'https://mgahvsbczqcihatdrbyj.supabase.co'
 BUCKET = 'voice'
+# Where Alex's zip of 2 Nov 2026 was unpacked on Quang's laptop.
+ALEX_VOICE = os.path.join(
+    os.path.expanduser('~'), 'Downloads', 'Team update',
+    'With-Me-code-update all record plus icons 11-2', 'With-Me-develop',
+    'with_me', 'assets', 'audio', 'voice')
 LANGUAGES = ['en', 'es', 'fr', 'pt', 'de', 'ar',
              'ru', 'ja', 'zh', 'ko', 'tr', 'sw']
 
@@ -94,7 +100,9 @@ def already_there(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    parser.add_argument('voice', help="Alex's voice folder (has en, es, ...)")
+    parser.add_argument(
+        'voice', nargs='?', default=ALEX_VOICE,
+        help="Alex's voice folder (has en, es, ...); his zip's by default")
     parser.add_argument('--languages', default=','.join(LANGUAGES))
     parser.add_argument('--workers', type=int, default=8)
     args = parser.parse_args()
