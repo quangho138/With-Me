@@ -93,7 +93,10 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
         if (mounted && identical(_script, script)) _voiceDone.value = done;
       },
     );
-    setState(() => _voice = download);
+    // A block: an arrow would hand setState the Future and it refuses.
+    setState(() {
+      _voice = download;
+    });
     unawaited(
       download.then((_) {
         // The line changes to "Works offline" (or back to "downloads
