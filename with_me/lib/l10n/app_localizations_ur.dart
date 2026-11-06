@@ -1105,6 +1105,135 @@ class AppLocalizationsUr extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'اپنے احساسات بتانا';
 
   @override
+  String get checkinOptSpiritual => 'روحانی';
+
+  @override
+  String get checkinOptIntellectual => 'ذہنی';
+
+  @override
+  String get checkinOptOccupational => 'پیشہ ورانہ';
+
+  @override
+  String get checkinOptEnvironmental => 'ماحولیاتی';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing => 'فزیولوجیکل آہ / سانس';
+
+  @override
+  String get checkinOptJournalingFeelings => 'احساسات لکھنا';
+
+  @override
+  String get checkinOptGratitudeExercise => 'شکرگزاری کی مشق';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'کسی بھروسے مند سے بات کریں';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'خود پر مہربانی کی مشق';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10 منٹ کی سیر';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'نیند کا معمول بہتر بنائیں';
+
+  @override
+  String get checkinOptHydration => 'پانی پینا';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'صحت مند کھانے کی منصوبہ بندی';
+
+  @override
+  String get checkinOptCallAFriend => 'کسی دوست کو فون کریں';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'گھر والوں کے ساتھ وقت گزاریں';
+
+  @override
+  String get checkinOptJoinAGroup => 'کسی گروپ میں شامل ہوں';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'صحت مند حدود مقرر کریں';
+
+  @override
+  String get checkinOptMeditation => 'مراقبہ';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'دعا یا غور و فکر';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'فطرت میں وقت گزاریں';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'اپنی قدریں پہچانیں';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'ذہن سازی کی مشق';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'کچھ نیا سیکھیں';
+
+  @override
+  String get checkinOptReadABook => 'کتاب پڑھیں';
+
+  @override
+  String get checkinOptCreativeActivities => 'تخلیقی سرگرمیاں';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'پہیلی حل کریں';
+
+  @override
+  String get checkinOptExploreANewSkill => 'کوئی نئی مہارت آزمائیں';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'کاموں کو ترجیح دیں';
+
+  @override
+  String get checkinOptTakeBreaks => 'وقفہ لیں';
+
+  @override
+  String get checkinOptDelegate => 'کام سونپیں';
+
+  @override
+  String get checkinOptClarifyExpectations => 'توقعات واضح کریں';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'کام اور زندگی میں حد رکھیں';
+
+  @override
+  String get checkinOptReviewYourBudget => 'اپنا بجٹ دیکھیں';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'بچت کا ہدف بنائیں';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'اخراجات ترتیب دیں';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'عملی منصوبہ بنائیں';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'مالی مشورہ لیں';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'اپنی جگہ صاف ستھری کریں';
+
+  @override
+  String get checkinOptReduceNoise => 'شور کم کریں';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'باہر وقت گزاریں';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'آرام کا ایک کونا بنائیں';
+
+  @override
+  String get checkinOptReduceScreenTime => 'اسکرین ٹائم کم کریں';
+
+  @override
+  String get checkinAddOwnAction => 'اپنا قدم شامل کریں';
+
+  @override
   String get checkinOptWho => 'کون؟';
 
   @override

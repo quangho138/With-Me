@@ -37,6 +37,12 @@ class RecordingCheckIns extends LocalCheckInRepository {
 
   @override
   Future<DateTime?> lastCheckInBefore(DateTime day) async => lastDay;
+
+  /// Actions "saved on earlier check-ins", per strategy.
+  Map<String, List<String>> ownActions = {};
+
+  @override
+  Future<Map<String, List<String>>> savedActions() async => ownActions;
 }
 
 /// sqflite and path_provider have no implementation in a widget test; the
@@ -217,7 +223,7 @@ Future<void> walkCheckIn(
   await settle(tester);
   await tester.tap(find.text('Select one...').first, warnIfMissed: false);
   await settle(tester);
-  await tester.tap(find.text('Deep breathing').last, warnIfMissed: false);
+  await tester.tap(find.text('10-minute walk').last, warnIfMissed: false);
   await settle(tester);
   final stars = find.byIcon(Icons.star_rounded);
   await tester.ensureVisible(stars.at(3));

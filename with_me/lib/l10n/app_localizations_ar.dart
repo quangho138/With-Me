@@ -1100,6 +1100,136 @@ class AppLocalizationsAr extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'مشاركة ما أشعر به';
 
   @override
+  String get checkinOptSpiritual => 'روحي';
+
+  @override
+  String get checkinOptIntellectual => 'فكري';
+
+  @override
+  String get checkinOptOccupational => 'مهني';
+
+  @override
+  String get checkinOptEnvironmental => 'بيئي';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'التنهيدة الفسيولوجية / التنفس';
+
+  @override
+  String get checkinOptJournalingFeelings => 'كتابة المشاعر';
+
+  @override
+  String get checkinOptGratitudeExercise => 'تمرين الامتنان';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'تحدّث مع شخص تثق به';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'ممارسة التعاطف مع الذات';
+
+  @override
+  String get checkinOptTenMinuteWalk => 'مشي 10 دقائق';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'تحسين روتين النوم';
+
+  @override
+  String get checkinOptHydration => 'شرب الماء';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'تخطيط وجبات صحية';
+
+  @override
+  String get checkinOptCallAFriend => 'اتصل بصديق';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'قضاء وقت مع العائلة';
+
+  @override
+  String get checkinOptJoinAGroup => 'الانضمام إلى مجموعة';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'وضع حدود صحية';
+
+  @override
+  String get checkinOptMeditation => 'التأمل';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'الصلاة أو التأمل الذاتي';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'قضاء وقت في الطبيعة';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'تحديد القيم الشخصية';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'ممارسة اليقظة الذهنية';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'تعلّم شيئًا جديدًا';
+
+  @override
+  String get checkinOptReadABook => 'قراءة كتاب';
+
+  @override
+  String get checkinOptCreativeActivities => 'أنشطة إبداعية';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'حلّ لغز';
+
+  @override
+  String get checkinOptExploreANewSkill => 'اكتشاف مهارة جديدة';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'ترتيب المهام حسب الأولوية';
+
+  @override
+  String get checkinOptTakeBreaks => 'أخذ استراحات';
+
+  @override
+  String get checkinOptDelegate => 'تفويض المهام';
+
+  @override
+  String get checkinOptClarifyExpectations => 'توضيح التوقعات';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'الفصل بين العمل والحياة';
+
+  @override
+  String get checkinOptReviewYourBudget => 'مراجعة الميزانية';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'وضع هدف للادخار';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'تنظيم المصروفات';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'وضع خطة عمل';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'طلب نصيحة مالية';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'ترتيب المكان والتخلص من الفوضى';
+
+  @override
+  String get checkinOptReduceNoise => 'تقليل الضوضاء';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'قضاء وقت في الهواء الطلق';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'تجهيز ركن للاسترخاء';
+
+  @override
+  String get checkinOptReduceScreenTime => 'تقليل وقت الشاشة';
+
+  @override
+  String get checkinAddOwnAction => 'أضف إجراءً خاصًا بك';
+
+  @override
   String get checkinOptWho => 'من؟';
 
   @override

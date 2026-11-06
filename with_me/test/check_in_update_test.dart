@@ -472,6 +472,95 @@ void main() {
       expect(find.text('Overthinking'), findsOneWidget);
     });
 
+    testWidgets('strategies: the eight wellness areas; an action of your own '
+        'is added from the list, kept, and offered again', (tester) async {
+      setPhone(tester);
+      final checkIns = recordCheckIns()
+        ..ownActions = {
+          'Emotional': ['Meditate'],
+        };
+      await open(tester, step: DailyCheckInScreen.strategyPage);
+      // No more "add a custom strategy".
+      expect(find.textContaining('custom strategy'), findsNothing);
+      await tester.tap(find.text('Select one...').first, warnIfMissed: false);
+      await settle(tester);
+      for (final s in kStrategies) {
+        expect(find.text(s), findsWidgets, reason: s);
+      }
+      await tester.tap(find.text('Emotional').last, warnIfMissed: false);
+      await settle(tester);
+      await tester.tap(find.text('Select one...').first, warnIfMissed: false);
+      await settle(tester);
+      // The five offered, the one saved before, and the add item.
+      for (final a in kActionsByStrategy['Emotional']!) {
+        expect(find.text(a), findsWidgets, reason: a);
+      }
+      expect(find.text('Meditate'), findsWidgets);
+      await tester.tap(find.text('+ Add your own action').last);
+      await settle(tester);
+      expect(find.text('Add your own action'), findsOneWidget);
+      // At most 100 characters.
+      await tester.enterText(
+        find.byKey(const ValueKey('own-action')),
+        'x' * 150,
+      );
+      await tester.pump();
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const ValueKey('own-action')))
+            .controller!
+            .text
+            .length,
+        kOwnActionMaxLength,
+      );
+      await tester.enterText(
+        find.byKey(const ValueKey('own-action')),
+        '  Walk the dog ',
+      );
+      await tester.tap(find.byKey(const ValueKey('own-action-add')));
+      await settle(tester);
+      // The popup is gone with no error (the red screen of 6 Nov), and the
+      // new action is picked.
+      expect(tester.takeException(), isNull);
+      expect(find.byKey(const ValueKey('own-action')), findsNothing);
+      expect(find.text('Walk the dog'), findsWidgets);
+
+      // Next and back: the answer and its list are kept (no crash).
+      final stars = find.byIcon(Icons.star_rounded);
+      await tester.ensureVisible(stars.at(2));
+      await tester.tap(stars.at(2));
+      await settle(tester);
+      await tapContinue(tester);
+      await back(tester);
+      expect(tester.takeException(), isNull);
+      expect(find.text('Walk the dog'), findsWidgets);
+      expect(checkIns.saved, isEmpty, reason: 'saved only at Finish');
+    });
+
+    testWidgets('an own action that matches one there (any capitals) picks '
+        'that one', (tester) async {
+      setPhone(tester);
+      recordCheckIns();
+      await open(tester, step: DailyCheckInScreen.strategyPage);
+      await tester.tap(find.text('Select one...').first, warnIfMissed: false);
+      await settle(tester);
+      await tester.tap(find.text('Emotional').last, warnIfMissed: false);
+      await settle(tester);
+      await tester.tap(find.text('Select one...').first, warnIfMissed: false);
+      await settle(tester);
+      await tester.tap(find.text('+ Add your own action').last);
+      await settle(tester);
+      await tester.enterText(
+        find.byKey(const ValueKey('own-action')),
+        'journaling FEELINGS',
+      );
+      await tester.tap(find.byKey(const ValueKey('own-action-add')));
+      await settle(tester);
+      expect(tester.takeException(), isNull);
+      expect(find.text('Journaling feelings'), findsWidgets);
+      expect(find.text('journaling FEELINGS'), findsNothing);
+    });
+
     testWidgets('an old-scale feeling is not shown as one of the five', (
       tester,
     ) async {
@@ -501,7 +590,7 @@ Future<void> finishFromIntention(WidgetTester tester) async {
   await settle(tester);
   await tester.tap(find.text('Select one...').first, warnIfMissed: false);
   await settle(tester);
-  await tester.tap(find.text('Walking').last, warnIfMissed: false);
+  await tester.tap(find.text('Stretching').last, warnIfMissed: false);
   await settle(tester);
   final stars = find.byIcon(Icons.star_rounded);
   await tester.ensureVisible(stars.at(2));

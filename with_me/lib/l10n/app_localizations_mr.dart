@@ -1103,6 +1103,135 @@ class AppLocalizationsMr extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'माझ्या भावना सांगणे';
 
   @override
+  String get checkinOptSpiritual => 'आध्यात्मिक';
+
+  @override
+  String get checkinOptIntellectual => 'बौद्धिक';
+
+  @override
+  String get checkinOptOccupational => 'व्यावसायिक';
+
+  @override
+  String get checkinOptEnvironmental => 'पर्यावरणीय';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing => 'शारीरिक उसासा / श्वास';
+
+  @override
+  String get checkinOptJournalingFeelings => 'भावना लिहिणे';
+
+  @override
+  String get checkinOptGratitudeExercise => 'कृतज्ञता सराव';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'विश्वासू व्यक्तीशी बोला';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'स्वतःबद्दल करुणा';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10 मिनिटे चालणे';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'झोपेची सवय सुधारा';
+
+  @override
+  String get checkinOptHydration => 'पुरेसे पाणी प्या';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'आरोग्यदायी जेवणाचे नियोजन';
+
+  @override
+  String get checkinOptCallAFriend => 'मित्राला फोन करा';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'कुटुंबासोबत वेळ घालवा';
+
+  @override
+  String get checkinOptJoinAGroup => 'एखाद्या गटात सामील व्हा';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'निरोगी मर्यादा ठरवा';
+
+  @override
+  String get checkinOptMeditation => 'ध्यान';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'प्रार्थना किंवा चिंतन';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'निसर्गात वेळ घालवा';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'स्वतःची मूल्ये ओळखा';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'सजगतेचा सराव';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'काहीतरी नवीन शिका';
+
+  @override
+  String get checkinOptReadABook => 'पुस्तक वाचा';
+
+  @override
+  String get checkinOptCreativeActivities => 'सर्जनशील उपक्रम';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'कोडे सोडवा';
+
+  @override
+  String get checkinOptExploreANewSkill => 'नवे कौशल्य शिका';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'कामांना प्राधान्य द्या';
+
+  @override
+  String get checkinOptTakeBreaks => 'विश्रांती घ्या';
+
+  @override
+  String get checkinOptDelegate => 'काम सोपवा';
+
+  @override
+  String get checkinOptClarifyExpectations => 'अपेक्षा स्पष्ट करा';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'काम आणि आयुष्याची मर्यादा';
+
+  @override
+  String get checkinOptReviewYourBudget => 'बजेट तपासा';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'बचतीचे ध्येय ठरवा';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'खर्च व्यवस्थित करा';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'कृती आराखडा तयार करा';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'आर्थिक सल्ला घ्या';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'तुमची जागा आवरा';
+
+  @override
+  String get checkinOptReduceNoise => 'आवाज कमी करा';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'बाहेर वेळ घालवा';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'आरामाचा कोपरा तयार करा';
+
+  @override
+  String get checkinOptReduceScreenTime => 'स्क्रीन टाइम कमी करा';
+
+  @override
+  String get checkinAddOwnAction => 'स्वतःची कृती जोडा';
+
+  @override
   String get checkinOptWho => 'कोण?';
 
   @override

@@ -1109,6 +1109,138 @@ class AppLocalizationsEs extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Contar cómo me siento';
 
   @override
+  String get checkinOptSpiritual => 'Espiritual';
+
+  @override
+  String get checkinOptIntellectual => 'Intelectual';
+
+  @override
+  String get checkinOptOccupational => 'Laboral';
+
+  @override
+  String get checkinOptEnvironmental => 'Ambiental';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Suspiro fisiológico / respiración';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Escribir lo que sientes';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Ejercicio de gratitud';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust =>
+      'Hablar con alguien de confianza';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Practicar la autocompasión';
+
+  @override
+  String get checkinOptTenMinuteWalk => 'Caminar 10 minutos';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Mejorar la rutina de sueño';
+
+  @override
+  String get checkinOptHydration => 'Hidratarse';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Planear comidas sanas';
+
+  @override
+  String get checkinOptCallAFriend => 'Llamar a un amigo';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Pasar tiempo en familia';
+
+  @override
+  String get checkinOptJoinAGroup => 'Unirse a un grupo';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Poner límites sanos';
+
+  @override
+  String get checkinOptMeditation => 'Meditación';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Oración o reflexión';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Pasar tiempo en la naturaleza';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'Identificar tus valores';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Practicar mindfulness';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Aprender algo nuevo';
+
+  @override
+  String get checkinOptReadABook => 'Leer un libro';
+
+  @override
+  String get checkinOptCreativeActivities => 'Actividades creativas';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Resolver un acertijo';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Explorar una nueva habilidad';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Priorizar tareas';
+
+  @override
+  String get checkinOptTakeBreaks => 'Tomar descansos';
+
+  @override
+  String get checkinOptDelegate => 'Delegar';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Aclarar expectativas';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries =>
+      'Separar trabajo y vida personal';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Revisar tu presupuesto';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Crear una meta de ahorro';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Organizar gastos';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Hacer un plan de acción';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Buscar orientación financiera';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Ordenar tu espacio';
+
+  @override
+  String get checkinOptReduceNoise => 'Reducir el ruido';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Pasar tiempo al aire libre';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Crear un rincón relajante';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Reducir el tiempo de pantalla';
+
+  @override
+  String get checkinAddOwnAction => 'Añadir tu propia acción';
+
+  @override
   String get checkinOptWho => '¿Quién?';
 
   @override

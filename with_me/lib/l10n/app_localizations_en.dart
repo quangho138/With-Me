@@ -1098,6 +1098,136 @@ class AppLocalizationsEn extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Share how I feel';
 
   @override
+  String get checkinOptSpiritual => 'Spiritual';
+
+  @override
+  String get checkinOptIntellectual => 'Intellectual';
+
+  @override
+  String get checkinOptOccupational => 'Occupational';
+
+  @override
+  String get checkinOptEnvironmental => 'Environmental';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Physiological sigh / breathing';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Journaling feelings';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Gratitude exercise';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'Talk to someone you trust';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Practice self-compassion';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10-minute walk';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Improve sleep routine';
+
+  @override
+  String get checkinOptHydration => 'Hydration';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Healthy meal planning';
+
+  @override
+  String get checkinOptCallAFriend => 'Call a friend';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Spend time with family';
+
+  @override
+  String get checkinOptJoinAGroup => 'Join a group';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Set healthy boundaries';
+
+  @override
+  String get checkinOptMeditation => 'Meditation';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Prayer or reflection';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Spend time in nature';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'Identify personal values';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Practice mindfulness';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Learn something new';
+
+  @override
+  String get checkinOptReadABook => 'Read a book';
+
+  @override
+  String get checkinOptCreativeActivities => 'Creative activities';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Solve a puzzle';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Explore a new skill';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Prioritize tasks';
+
+  @override
+  String get checkinOptTakeBreaks => 'Take breaks';
+
+  @override
+  String get checkinOptDelegate => 'Delegate';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Clarify expectations';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'Set work-life boundaries';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Review your budget';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Create a savings goal';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Organize expenses';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Make an action plan';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Seek financial guidance';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Declutter your space';
+
+  @override
+  String get checkinOptReduceNoise => 'Reduce noise';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Spend time outdoors';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Create a relaxing corner';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Reduce screen time';
+
+  @override
+  String get checkinAddOwnAction => 'Add your own action';
+
+  @override
   String get checkinOptWho => 'Who?';
 
   @override

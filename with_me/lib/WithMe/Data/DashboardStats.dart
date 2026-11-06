@@ -440,28 +440,62 @@ const List<Color> kCustomActionColors = [
   Color(0xFF7F7F3F),
 ];
 
-/// A colour of its own for each of the 15 offered actions. Each strategy's
-/// three actions are shades of one hue.
+/// A colour of its own for each of the 40 offered actions. Each strategy's
+/// five actions are shades of one hue (6 Nov 2026: the eight wellness
+/// strategies).
 const Map<String, Color> kActionColors = {
-  'Thought challenging': Color(0xFF4E79A7),
-  'Reframing': Color(0xFF9CC3E6),
-  'Problem solving': Color(0xFF1F3F66),
-  'Deep breathing': Color(0xFFF28E2B),
-  'Walking': Color(0xFFFFC48A),
-  'Stretching': Color(0xFFA9560C),
-  'Journaling': Color(0xFFE15759),
-  'Self-compassion': Color(0xFFFFA8A6),
-  'Naming the feeling': Color(0xFF8E2430),
-  'Creative writing': Color(0xFFB07AA1),
-  'Drawing': Color(0xFFE2BBD9),
-  'Music': Color(0xFF5E3A7E),
-  'Ask for help': Color(0xFF59A14F),
-  'Reach out': Color(0xFFA5DB96),
-  'Share how I feel': Color(0xFF2B5E2B),
+  'Physiological sigh / breathing': Color(0xFFE15759),
+  'Journaling feelings': Color(0xFF92393A),
+  'Gratitude exercise': Color(0xFFEEA3A4),
+  'Talk to someone you trust': Color(0xFF5A2324),
+  'Practice self-compassion': Color(0xFFF6CDCD),
+  '10-minute walk': Color(0xFFF28E2B),
+  'Stretching': Color(0xFF9D5C1C),
+  'Improve sleep routine': Color(0xFFF8C18A),
+  'Hydration': Color(0xFF613911),
+  'Healthy meal planning': Color(0xFFFBDDBF),
+  'Call a friend': Color(0xFF59A14F),
+  'Ask for help': Color(0xFF3A6933),
+  'Spend time with family': Color(0xFFA4CB9E),
+  'Join a group': Color(0xFF244020),
+  'Set healthy boundaries': Color(0xFFCDE3CA),
+  'Meditation': Color(0xFFB07AA1),
+  'Prayer or reflection': Color(0xFF724F69),
+  'Spend time in nature': Color(0xFFD4B6CB),
+  'Identify personal values': Color(0xFF463140),
+  'Practice mindfulness': Color(0xFFE7D7E3),
+  'Learn something new': Color(0xFF4E79A7),
+  'Read a book': Color(0xFF334F6D),
+  'Creative activities': Color(0xFF9EB5CF),
+  'Solve a puzzle': Color(0xFF1F3043),
+  'Explore a new skill': Color(0xFFCAD7E5),
+  'Prioritize tasks': Color(0xFF2F8F8A),
+  'Take breaks': Color(0xFF1F5D5A),
+  'Delegate': Color(0xFF8DC1BF),
+  'Clarify expectations': Color(0xFF133937),
+  'Set work-life boundaries': Color(0xFFC1DDDC),
+  'Review your budget': Color(0xFFB8860B),
+  'Create a savings goal': Color(0xFF785707),
+  'Organize expenses': Color(0xFFD8BC79),
+  'Make an action plan': Color(0xFF4A3604),
+  'Seek financial guidance': Color(0xFFEADBB6),
+  'Declutter your space': Color(0xFF6E5A3C),
+  'Reduce noise': Color(0xFF483A27),
+  'Spend time outdoors': Color(0xFFAFA494),
+  'Create a relaxing corner': Color(0xFF2C2418),
+  'Reduce screen time': Color(0xFFD4CEC4),
 };
 
-/// Colours for custom strategies, in the order they first appear: none
-/// close to the five offered strategies' colours.
+/// A colour for each of the eight offered strategies, in [kStrategies]
+/// order: the app's six chart colours and two more.
+const List<Color> kStrategyColors = [
+  ...WithMeColors.series,
+  Color(0xFFB9A7E0),
+  Color(0xFFE8D49A),
+];
+
+/// Colours for strategies of older check-ins that are not among the eight,
+/// in the order they first appear.
 const List<Color> kCustomStrategyColors = [
   Color(0xFF7B5EA7),
   Color(0xFF4E79A7),
@@ -471,8 +505,8 @@ const List<Color> kCustomStrategyColors = [
   Color(0xFF17BECF),
 ];
 
-/// The strategy chosen on each check-in: the five offered, zeros included,
-/// then each custom strategy.
+/// The strategy chosen on each check-in: the eight offered, zeros
+/// included, then any older one.
 List<Slice> strategySlices(List<DashboardDay> days) {
   final tally = _Tally(kStrategies);
   for (final d in days) {
@@ -480,7 +514,7 @@ List<Slice> strategySlices(List<DashboardDay> days) {
   }
   return tally.slices(
     (i, _) => i < kStrategies.length
-        ? WithMeColors.series[i]
+        ? kStrategyColors[i]
         : kCustomStrategyColors[(i - kStrategies.length) %
               kCustomStrategyColors.length],
     withZeros: true,

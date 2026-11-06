@@ -1112,6 +1112,140 @@ class AppLocalizationsFil extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Ibahagi ang nararamdaman ko';
 
   @override
+  String get checkinOptSpiritual => 'Espirituwal';
+
+  @override
+  String get checkinOptIntellectual => 'Intelektwal';
+
+  @override
+  String get checkinOptOccupational => 'Pang-trabaho';
+
+  @override
+  String get checkinOptEnvironmental => 'Pangkapaligiran';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Physiological sigh / paghinga';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Isulat ang nararamdaman';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Ehersisyo ng pasasalamat';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust =>
+      'Kausapin ang taong pinagkakatiwalaan';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Maging mabait sa sarili';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10 minutong lakad';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Ayusin ang oras ng tulog';
+
+  @override
+  String get checkinOptHydration => 'Uminom ng tubig';
+
+  @override
+  String get checkinOptHealthyMealPlanning =>
+      'Magplano ng masustansiyang pagkain';
+
+  @override
+  String get checkinOptCallAFriend => 'Tawagan ang kaibigan';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Makasama ang pamilya';
+
+  @override
+  String get checkinOptJoinAGroup => 'Sumali sa isang grupo';
+
+  @override
+  String get checkinOptSetHealthyBoundaries =>
+      'Magtakda ng malusog na hangganan';
+
+  @override
+  String get checkinOptMeditation => 'Meditasyon';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Panalangin o pagninilay';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Mamalagi sa kalikasan';
+
+  @override
+  String get checkinOptIdentifyPersonalValues =>
+      'Tukuyin ang sariling pinahahalagahan';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Magsanay ng mindfulness';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Matuto ng bago';
+
+  @override
+  String get checkinOptReadABook => 'Magbasa ng libro';
+
+  @override
+  String get checkinOptCreativeActivities => 'Malikhaing gawain';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Lumutas ng puzzle';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Sumubok ng bagong kasanayan';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Unahin ang mahahalagang gawain';
+
+  @override
+  String get checkinOptTakeBreaks => 'Magpahinga sandali';
+
+  @override
+  String get checkinOptDelegate => 'Ipasa ang ilang gawain';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Linawin ang inaasahan';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'Hatiin ang trabaho at buhay';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Suriin ang badyet';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Gumawa ng layunin sa pag-iipon';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Ayusin ang mga gastos';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Gumawa ng plano';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Humingi ng payo sa pananalapi';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Ayusin ang paligid mo';
+
+  @override
+  String get checkinOptReduceNoise => 'Bawasan ang ingay';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Lumabas sandali';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Gumawa ng relaxing na sulok';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Bawasan ang screen time';
+
+  @override
+  String get checkinAddOwnAction => 'Magdagdag ng sariling gawain';
+
+  @override
   String get checkinOptWho => 'Sino?';
 
   @override

@@ -1095,6 +1095,137 @@ class AppLocalizationsTr extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Nasıl hissettiğimi paylaşma';
 
   @override
+  String get checkinOptSpiritual => 'Ruhsal';
+
+  @override
+  String get checkinOptIntellectual => 'Zihinsel';
+
+  @override
+  String get checkinOptOccupational => 'Mesleki';
+
+  @override
+  String get checkinOptEnvironmental => 'Çevresel';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Fizyolojik iç çekme / nefes';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Duyguları yazmak';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Şükran egzersizi';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'Güvendiğin biriyle konuşmak';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Öz şefkat pratiği';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10 dakikalık yürüyüş';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Uyku düzenini iyileştirmek';
+
+  @override
+  String get checkinOptHydration => 'Su içmek';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Sağlıklı öğün planı';
+
+  @override
+  String get checkinOptCallAFriend => 'Bir arkadaşı aramak';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Aileyle vakit geçirmek';
+
+  @override
+  String get checkinOptJoinAGroup => 'Bir gruba katılmak';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Sağlıklı sınırlar koymak';
+
+  @override
+  String get checkinOptMeditation => 'Meditasyon';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Dua ya da düşünme';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Doğada vakit geçirmek';
+
+  @override
+  String get checkinOptIdentifyPersonalValues =>
+      'Kişisel değerlerini belirlemek';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Farkındalık pratiği';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Yeni bir şey öğrenmek';
+
+  @override
+  String get checkinOptReadABook => 'Kitap okumak';
+
+  @override
+  String get checkinOptCreativeActivities => 'Yaratıcı etkinlikler';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Bulmaca çözmek';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Yeni bir beceri denemek';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Görevleri önceliklendirmek';
+
+  @override
+  String get checkinOptTakeBreaks => 'Mola vermek';
+
+  @override
+  String get checkinOptDelegate => 'Görev devretmek';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Beklentileri netleştirmek';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'İş ve özel hayat sınırı';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Bütçeni gözden geçirmek';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Birikim hedefi koymak';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Harcamaları düzenlemek';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Eylem planı yapmak';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Finansal destek almak';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Ortamı sadeleştirmek';
+
+  @override
+  String get checkinOptReduceNoise => 'Gürültüyü azaltmak';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Dışarıda vakit geçirmek';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Rahatlatıcı bir köşe yapmak';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Ekran süresini azaltmak';
+
+  @override
+  String get checkinAddOwnAction => 'Kendi eylemini ekle';
+
+  @override
   String get checkinOptWho => 'Kim?';
 
   @override

@@ -560,11 +560,14 @@ void main() {
         'the key, zeros included', (tester) async {
       await openDashboard(tester);
       await openPage(tester, 3);
-      await openWeek(tester, 'pie-action-Mental');
-      expect(find.text('The actions you chose with Mental.'), findsOneWidget);
+      await openWeek(tester, 'pie-action-Emotional');
+      expect(
+        find.text('The actions you chose with Emotional.'),
+        findsOneWidget,
+      );
       final pie = tester.widget<ChoicePie>(find.byType(ChoicePie).first).size;
       expect(pie, lessThanOrEqualTo(210));
-      for (final a in kActionsByStrategy['Mental']!) {
+      for (final a in kActionsByStrategy['Emotional']!) {
         expect(find.text(a), findsOneWidget);
       }
       expect(find.textContaining('0 check-ins · 0%'), findsWidgets);
@@ -1061,16 +1064,16 @@ void main() {
         day(1, strategy: 'Nature', action: 'Park walk'),
         day(2, strategy: 'nature', action: 'Walking'),
         day(3, strategy: '  Nature ', action: 'park walk'),
-        day(4, strategy: 'mental', action: 'Reframing'),
+        day(4, strategy: 'spiritual', action: 'Meditation'),
         day(5, strategy: 'Physical', action: 'Walking'),
       ]);
       final byLabel = {for (final s in slices) s.label: s.value};
       expect(byLabel['Nature'], 3);
-      expect(byLabel['Mental'], 1);
-      expect(byLabel.containsKey('mental'), isFalse);
+      expect(byLabel['Spiritual'], 1);
+      expect(byLabel.containsKey('spiritual'), isFalse);
       expect(byLabel.containsKey('nature'), isFalse);
-      // The five offered strategies always come first, in order.
-      expect(slices.take(5).map((s) => s.label), kStrategies);
+      // The eight offered strategies always come first, in order.
+      expect(slices.take(8).map((s) => s.label), kStrategies);
     });
 
     test('an action stays with its strategy; the same action under two '

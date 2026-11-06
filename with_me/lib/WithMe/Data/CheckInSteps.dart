@@ -168,23 +168,82 @@ final List<StepOption> kIntentions = _list([
 
 // --- image21 ----------------------------------------------------------------
 
+/// The eight areas of wellness the product owner chose (6 Nov 2026), each
+/// with five actions. Saved in English and shown in the reader's language;
+/// people can add their own actions to any of them (not strategies).
 const List<String> kStrategies = [
-  'Mental',
-  'Physical',
   'Emotional',
-  'Creative',
+  'Physical',
   'Social',
+  'Spiritual',
+  'Intellectual',
+  'Occupational',
+  'Financial',
+  'Environmental',
 ];
 
-/// Actions offered per strategy. "Thought challenging" under Mental is the
-/// one the mockup shows selected.
+/// Actions offered per strategy, in the product owner's order.
 const Map<String, List<String>> kActionsByStrategy = {
-  'Mental': ['Thought challenging', 'Reframing', 'Problem solving'],
-  'Physical': ['Deep breathing', 'Walking', 'Stretching'],
-  'Emotional': ['Journaling', 'Self-compassion', 'Naming the feeling'],
-  'Creative': ['Creative writing', 'Drawing', 'Music'],
-  'Social': ['Ask for help', 'Reach out', 'Share how I feel'],
+  'Emotional': [
+    'Physiological sigh / breathing',
+    'Journaling feelings',
+    'Gratitude exercise',
+    'Talk to someone you trust',
+    'Practice self-compassion',
+  ],
+  'Physical': [
+    '10-minute walk',
+    'Stretching',
+    'Improve sleep routine',
+    'Hydration',
+    'Healthy meal planning',
+  ],
+  'Social': [
+    'Call a friend',
+    'Ask for help',
+    'Spend time with family',
+    'Join a group',
+    'Set healthy boundaries',
+  ],
+  'Spiritual': [
+    'Meditation',
+    'Prayer or reflection',
+    'Spend time in nature',
+    'Identify personal values',
+    'Practice mindfulness',
+  ],
+  'Intellectual': [
+    'Learn something new',
+    'Read a book',
+    'Creative activities',
+    'Solve a puzzle',
+    'Explore a new skill',
+  ],
+  'Occupational': [
+    'Prioritize tasks',
+    'Take breaks',
+    'Delegate',
+    'Clarify expectations',
+    'Set work-life boundaries',
+  ],
+  'Financial': [
+    'Review your budget',
+    'Create a savings goal',
+    'Organize expenses',
+    'Make an action plan',
+    'Seek financial guidance',
+  ],
+  'Environmental': [
+    'Declutter your space',
+    'Reduce noise',
+    'Spend time outdoors',
+    'Create a relaxing corner',
+    'Reduce screen time',
+  ],
 };
+
+/// The longest action a person can add (the online table allows 200).
+const int kOwnActionMaxLength = 100;
 
 // --- image24 ----------------------------------------------------------------
 
