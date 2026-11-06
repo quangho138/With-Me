@@ -121,15 +121,7 @@ class VoiceDownloads {
     Future<void> worker() async {
       while (queue.isNotEmpty) {
         final recording = queue.removeLast();
-        final got =
-            has(recording) ||
-            await _running.putIfAbsent(
-              recording,
-              () => _one(
-                root,
-                recording,
-              ).whenComplete(() => _running.remove(recording)),
-            );
+        final got = has(recording) || await _shared(root, recording);
         if (!got) failed++;
         done++;
         onProgress?.call(done / recordings.length);
@@ -139,6 +131,16 @@ class VoiceDownloads {
     await Future.wait([for (var i = 0; i < 8; i++) worker()]);
     return failed == 0;
   }
+
+  /// [_one], or the same download if it is already running.
+  Future<bool> _shared(String root, String recording) =>
+      _running.putIfAbsent(recording, () async {
+        try {
+          return await _one(root, recording);
+        } finally {
+          _running.remove(recording);
+        }
+      });
 
   /// Gets one recording; true when it is on the phone.
   Future<bool> _one(String root, String recording) async {
