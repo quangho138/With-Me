@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../Repositories/app_repositories.dart';
 import '../Repositories/check_in_repository.dart';
 import '../Repositories/reflection_repository.dart';
+import '../Repositories/user_repository.dart' show kDemoExamplesKey;
 import '../WithMe/Components/WithMeControls.dart' show ReadinessGauge;
 import '../WithMe/Data/CheckInSteps.dart';
 
@@ -101,7 +102,7 @@ class DemoAccount {
 
   // v4 dropped the made-up custom strategies (Nature, Rest), so a browser
   // that already has the v3 days writes them again.
-  static const String _examplesKey = 'demo_examples_v4';
+  static const String _examplesKey = kDemoExamplesKey;
 
   /// The example check-ins, newest first. Made up to show every dashboard
   /// chart with something in it; listed for the team in

@@ -197,6 +197,78 @@ void main() {
     },
   );
 
+  group('the browser demo ("Maya") never goes into a real account', () {
+    Future<void> demoGuest() async {
+      expect(await users.startAsGuest(), isTrue);
+      await users.saveDisplayName('Maya');
+      await LocalCheckInRepository(
+        open: () async => db,
+      ).save(CheckInEntry(day: DateTime(2026, 9, 27), mood: 'Happy'));
+      await db.insert('app_settings', {
+        'key': kDemoExamplesKey,
+        'value': 'true',
+      });
+    }
+
+    test('sign up with email: the account starts empty, with its own '
+        'name', () async {
+      await demoGuest();
+      await users.signUp(
+        email: 'alex@example.com',
+        password: 'synthetic',
+        name: 'Alex',
+      );
+      online.confirm('alex@example.com');
+      await users.signIn('alex@example.com', 'synthetic');
+
+      expect(await users.session(), SessionKind.account);
+      expect(await db.query('moods'), isEmpty, reason: 'demo days dropped');
+      expect(await users.displayName(), 'Alex');
+    });
+
+    test('without email confirmation too', () async {
+      users = AppUserRepository(
+        auth: FakeOnlineAuth(confirmEmail: false),
+        open: () async => db,
+      );
+      await demoGuest();
+      expect(
+        await users.signUp(
+          email: 'alex@example.com',
+          password: 'synthetic',
+          name: 'Alex',
+        ),
+        SignUpResult.signedIn,
+      );
+      expect(await db.query('moods'), isEmpty);
+      expect(await users.displayName(), 'Alex');
+    });
+
+    test('Google: the demo name is not kept', () async {
+      await demoGuest();
+      await users.startGoogleSignIn();
+      online.finishGoogle('alex@gmail.test');
+      await Future<void>.delayed(Duration.zero);
+      expect(await users.completeOutsideLogin(), isTrue);
+      expect(await db.query('moods'), isEmpty);
+      expect(await users.displayName(), isNull);
+    });
+
+    test('device settings stay', () async {
+      await demoGuest();
+      await db.insert('app_settings', {'key': 'text_size', 'value': 'large'});
+      await users.signUp(
+        email: 'alex@example.com',
+        password: 'synthetic',
+        name: 'Alex',
+      );
+      online.confirm('alex@example.com');
+      await users.signIn('alex@example.com', 'synthetic');
+      final kept = await db.query('app_settings', where: "key = 'text_size'");
+      expect(kept.single['value'], 'large');
+    });
+  });
+
   test('"start without an account" only on a phone with no account', () async {
     await users.signUp(
       email: 'a@example.com',

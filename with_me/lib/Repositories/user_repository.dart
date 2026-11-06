@@ -8,6 +8,11 @@ import 'online_auth.dart';
 export 'online_auth.dart'
     show AccountProblem, AccountException, SignUpResult, OnlineAuthEvent;
 
+/// Set (to "true") in app_settings once the browser demo's example days
+/// and its name "Maya" were written ([DemoAccount]). Those belong to no one,
+/// so they are never carried into a real account.
+const String kDemoExamplesKey = 'demo_examples_v4';
+
 /// Who is using the app right now.
 enum SessionKind {
   /// Nobody: the app opens on the welcome screen.
@@ -30,6 +35,8 @@ enum SessionKind {
 /// - "Start without an account" only works on a phone with no account.
 /// - A guest who signs up and logs in keeps everything saved as a guest
 ///   (or chooses to discard it, if the account already has check-ins).
+///   Not the browser demo's example days ([kDemoExamplesKey]): those are
+///   cleared first, so the account starts empty with its own name.
 /// - Logging out clears the phone: check-ins and the journal are kept in
 ///   the account and come back on the next login (anything not uploaded yet
 ///   is lost, and the app warns first).
@@ -193,12 +200,13 @@ class AppUserRepository implements UserRepository {
       password: password,
       name: name,
     );
-    // Keep the name on the phone now, so a guest sees it straight away.
-    await saveDisplayName(name);
     if (result == SignUpResult.signedIn) {
       final id = _auth.currentUserId;
       if (id != null) await _linkPhone(id, _clean(email));
     }
+    // Keep the name on the phone now, so a guest sees it straight away
+    // (after the link, which may clear the demo's name).
+    await saveDisplayName(name);
     return result;
   }
 
@@ -309,6 +317,15 @@ class AppUserRepository implements UserRepository {
   /// in. A guest's saved data simply stays and becomes the account's.
   Future<void> _linkPhone(String id, String email) async {
     final db = await _open();
+    // The browser demo's example days and its name "Maya" belong to no
+    // one: never carry them into a real account (Alex, 5 Nov 2026). Any
+    // name saved at sign-up comes back from the account's profile.
+    if (await _phoneAccountId(db) == null && await _hasDemoDays(db)) {
+      final name = await displayName();
+      await DatabaseHelper.wipeAllTables(db, keepDeviceSettings: true);
+      _names.userNameNotifier.value = null;
+      if (name != null && name != _demoName) await saveDisplayName(name);
+    }
     final now = DateTime.now().toIso8601String();
     await db.transaction((txn) async {
       if (await _phoneAccountId(txn) == null) {
@@ -339,6 +356,18 @@ class AppUserRepository implements UserRepository {
     await DatabaseHelper.wipeAllTables(db, keepDeviceSettings: true);
     _names.userNameNotifier.value = null;
     await _auth.signOut();
+  }
+
+  static const String _demoName = 'Maya';
+
+  static Future<bool> _hasDemoDays(DatabaseExecutor db) async {
+    final rows = await db.query(
+      'app_settings',
+      where: 'key = ? AND value = ?',
+      whereArgs: [kDemoExamplesKey, 'true'],
+      limit: 1,
+    );
+    return rows.isNotEmpty;
   }
 
   /// Replaces the one session row. [email] null means guest.
