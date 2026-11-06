@@ -246,9 +246,9 @@ class SpeechService {
         ? play(
             recording,
             owner: owner,
-            // If it cannot play (a browser offline), the device's voice
-            // reads the line instead of leaving it silent.
-            instead: text,
+            // A line played from the internet (a browser) may not come;
+            // then the device's voice reads it instead of leaving it silent.
+            instead: VoiceDownloads.instance.streams(recording) ? text : null,
             locale: locale.toLanguageTag(),
           )
         : speak(text, owner: owner, locale: locale.toLanguageTag());
