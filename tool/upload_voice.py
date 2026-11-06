@@ -106,7 +106,7 @@ def main():
     parser.add_argument('--languages', default=','.join(LANGUAGES))
     parser.add_argument('--workers', type=int, default=8)
     parser.add_argument(
-        '--max-mb', type=float, default=700,
+        '--max-mb', type=float, default=950,
         help='stop once this much has been uploaded in this run (the free '
              'plan has 1 GB of Storage in all)')
     args = parser.parse_args()
