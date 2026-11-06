@@ -37,7 +37,7 @@ as published, without training.
 |---|---|---|---|
 | Flutter SDK 3.47.7 (`flutter`, `flutter_localizations`, `flutter_test`, `flutter_web_plugins`, `sky_engine`) | BSD-3-Clause | https://github.com/flutter/flutter | Read `LICENSE` at https://raw.githubusercontent.com/flutter/flutter/master/LICENSE ("Copyright 2014 The Flutter Authors… Redistribution and use in source and binary forms…") |
 | Flutter engine third-party code (Skia, ICU, HarfBuzz and others) | Their own licences, all listed by Flutter | Generated `NOTICES` file in every build | `flutter build web` wrote `build/web/assets/NOTICES` (31,260 lines). The app shows it through Flutter's licence page. |
-| Default app icons (`web/icons/`, `web/favicon.png`, Android `ic_launcher.png`) | BSD-3-Clause (part of Flutter's app template) | Flutter `packages/flutter_tools/templates/app/` | MD5 of our files equals the template files byte for byte. **Replace before release**: these are the stock Flutter logo, not With Me branding. |
+| Default app icons (`web/icons/`, `web/favicon.png`, Android `ic_launcher.png`) | BSD-3-Clause (part of Flutter's app template) | Flutter `packages/flutter_tools/templates/app/` | **Replaced** on 2026-11-04 by the With Me icons (see 4.1). |
 
 ### 2.2 Packages from pub.dev
 
@@ -201,6 +201,8 @@ few of those are used only by the tests.
 | Item | Origin | Licence / rights | Status |
 |---|---|---|---|
 | Mascot poses, mouth and blink frames, beach backgrounds (`with_me/assets/v2/`, app copies in `assets/v2/app/`) | Generated with OpenAI Codex's image generator from the product owner's reference board (`docs/design_v2/reference.webp`, supplied by HR Vision Consulting), then cut into frames by `tool/prepare_mascot_v2.py`. Recorded in `docs/WITH_ME_V1_HANDOFF.md`, section "V2: the realistic screens". | OpenAI's Terms of Use say the user owns the output and OpenAI assigns its rights in output, if any, to the user. The character design itself belongs to the product owner. | Cleared, condition: the product owner confirms in writing that the team may use the character. AI-generated images may not be protected by copyright, so the design can't be stopped from being copied. |
+| App icons for every platform, Android's adaptive layers and the Play Store picture (made by `tool/make_app_icons.py` from `tool/app_icon*.png`) | Made by Alex (team member) from the mascot, the With Me wordmark and the app's colours, sent 2 Nov 2026 | Same as the mascot above. | Cleared, condition: as the mascot. **Open**: Alex to say how the pictures were made (by hand or with which tool) for this table. |
+| Status-bar icon (`android/app/src/main/res/drawable/ic_stat_withme.xml`) | Vector drawing of the companion's silhouette, written by the team with Claude | Team's own | Cleared |
 | `logo.png` and two old mascot PNGs (`assets/mascot/`) | Origin not recorded; bundled but unused | **Removed** on 2026-10-22 from the app and the repository. |
 
 ### 4.2 Video and nature sounds
@@ -384,7 +386,7 @@ What we worked inside, and what the app does with data:
 
 1. Open the ten Mixkit links in 4.2 and confirm each still shows the Free License.
 2. (Done 2026-10-22: the unused `logo.png` and old mascot images were removed.)
-3. Replace the stock Flutter app icons.
+3. (Done 2026-11-04: the stock Flutter app icons were replaced.)
 4. Get written confirmation from the product owner that the mascot design may be used.
 5. Check CapCut's terms for its voice effects, or re-record the reference without CapCut.
 6. (Done 2026-10-22: the fish.audio clips and Adrian's voice reference were removed from the repository. If the repository was already pushed, they must also be removed from its history.)
