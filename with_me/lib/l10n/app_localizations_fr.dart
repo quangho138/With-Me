@@ -2709,6 +2709,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'La voix se télécharge une fois au début (environ 2 Mo), puis tout fonctionne hors ligne.';
 
   @override
+  String get prepVoiceWaitTitle => 'Préparation de la voix';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'La voix enregistrée de cette séance se télécharge pour la première fois. Cela n\'arrive qu\'une fois : ensuite, la séance démarre tout de suite et fonctionne hors ligne.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Reprendre à « $step »';
   }

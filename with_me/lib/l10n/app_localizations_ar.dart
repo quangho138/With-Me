@@ -2726,6 +2726,13 @@ class AppLocalizationsAr extends AppLocalizations {
       'يُنزَّل الصوت مرة واحدة عند البدء (نحو 2 ميغابايت)، ثم يعمل دون إنترنت.';
 
   @override
+  String get prepVoiceWaitTitle => 'تجهيز الصوت';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'يُنزَّل الصوت المسجّل لهذه الجلسة لأول مرة. يحدث هذا مرة واحدة فقط: بعدها تبدأ الجلسة فورًا وتعمل دون إنترنت.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'المتابعة من «$step»';
   }

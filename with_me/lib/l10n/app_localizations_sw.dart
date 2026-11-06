@@ -2690,6 +2690,13 @@ class AppLocalizationsSw extends AppLocalizations {
       'Sauti inapakuliwa mara moja unapoanza (takriban MB 2), kisha inafanya kazi bila intaneti.';
 
   @override
+  String get prepVoiceWaitTitle => 'Inaandaa sauti';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Sauti iliyorekodiwa ya kipindi hiki inapakuliwa kwa mara ya kwanza. Hii hutokea mara moja tu: baada ya hapo, kipindi kitaanza mara moja na kufanya kazi bila intaneti.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Endelea kutoka \"$step\"';
   }

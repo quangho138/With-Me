@@ -2727,6 +2727,13 @@ class AppLocalizationsTa extends AppLocalizations {
       'தொடங்கும்போது குரல் ஒருமுறை பதிவிறக்கப்படும் (சுமார் 2 MB), பிறகு இணையம் இல்லாமலும் செயல்படும்.';
 
   @override
+  String get prepVoiceWaitTitle => 'குரல் தயாராகிறது';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'இந்த அமர்வின் பதிவுசெய்த குரல் முதல் முறையாகப் பதிவிறக்கப்படுகிறது. இது ஒருமுறை மட்டுமே: அதன்பிறகு அமர்வு உடனே தொடங்கும், இணையம் இல்லாமலும் செயல்படும்.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\"-இலிருந்து தொடருங்கள்';
   }

@@ -2543,6 +2543,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get prepVoiceOnce => '开始时会下载一次语音（约 2 MB），之后可离线使用。';
 
   @override
+  String get prepVoiceWaitTitle => '正在准备语音';
+
+  @override
+  String get prepVoiceWaitBody => '正在首次下载本次练习的录音语音。只需下载一次：之后练习会立即开始，并可离线使用。';
+
+  @override
   String playerResumeFrom(String step) {
     return '从“$step”继续';
   }
@@ -9034,6 +9040,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get prepVoiceOnce => '開始時會下載一次語音（約 2 MB），之後可離線使用。';
+
+  @override
+  String get prepVoiceWaitTitle => '正在準備語音';
+
+  @override
+  String get prepVoiceWaitBody => '正在首次下載本次練習的錄音語音。只需下載一次：之後練習會立即開始，並可離線使用。';
 
   @override
   String playerResumeFrom(String step) {

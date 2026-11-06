@@ -733,6 +733,8 @@
   "prepVoiceDownloading": "正在获取语音，{percent}%",
   "prepVoiceFailed": "无法获取录制的语音，将由手机的语音朗读本次练习。",
   "prepVoiceOnce": "开始时会下载一次语音（约 2 MB），之后可离线使用。",
+  "prepVoiceWaitTitle": "正在准备语音",
+  "prepVoiceWaitBody": "正在首次下载本次练习的录音语音。只需下载一次：之后练习会立即开始，并可离线使用。",
   "playerResumeFrom": "从“{step}”继续",
   "playerCaptionsOn": "字幕已开启",
   "playerCaptionsOff": "字幕已关闭",

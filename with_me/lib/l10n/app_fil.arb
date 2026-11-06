@@ -733,6 +733,8 @@
   "prepVoiceDownloading": "Kinukuha ang boses, {percent}%",
   "prepVoiceFailed": "Hindi makuha ang naka-record na boses, kaya ang boses ng telepono ang magbabasa ng session na ito.",
   "prepVoiceOnce": "Isang beses mada-download ang boses pagsimula mo (mga 2 MB), saka ito gagana kahit offline.",
+  "prepVoiceWaitTitle": "Inihahanda ang boses",
+  "prepVoiceWaitBody": "Unang beses na dina-download ang naka-record na boses ng session na ito. Minsan lang ito: pagkatapos, agad nang magsisimula ang session at gagana kahit offline.",
   "playerResumeFrom": "Ituloy mula sa \"{step}\"",
   "playerCaptionsOn": "Naka-on ang caption",
   "playerCaptionsOff": "Naka-off ang caption",

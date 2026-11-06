@@ -2725,6 +2725,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Голос загружается один раз при запуске (около 2 МБ), потом всё работает без интернета.';
 
   @override
+  String get prepVoiceWaitTitle => 'Готовим голос';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Записанный голос этой сессии загружается в первый раз. Это нужно только один раз: потом сессия начнётся сразу и будет работать без интернета.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Продолжить с шага «$step»';
   }

@@ -2666,6 +2666,13 @@ class AppLocalizationsTr extends AppLocalizations {
       'Başladığınızda ses bir kez indirilir (yaklaşık 2 MB), sonra çevrimdışı çalışır.';
 
   @override
+  String get prepVoiceWaitTitle => 'Ses hazırlanıyor';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Bu oturumun kayıtlı sesi ilk kez indiriliyor. Bu yalnızca bir kez olur: bundan sonra oturum hemen başlar ve çevrimdışı çalışır.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" adımından devam et';
   }

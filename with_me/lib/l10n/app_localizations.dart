@@ -4541,6 +4541,18 @@ abstract class AppLocalizations {
   /// **'The voice downloads once when you begin (about 2 MB), then it works offline.'**
   String get prepVoiceOnce;
 
+  /// Title of the popup when Begin is pressed before a session's recorded voice has finished downloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting the voice ready'**
+  String get prepVoiceWaitTitle;
+
+  /// Text of that popup, above the progress bar: why there is a wait.
+  ///
+  /// In en, this message translates to:
+  /// **'This session\'s recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.'**
+  String get prepVoiceWaitBody;
+
   /// After an interruption: start again at the beginning of the step.
   ///
   /// In en, this message translates to:

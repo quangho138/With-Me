@@ -52,31 +52,55 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
   late bool _captions = widget.script.look == GuidedLook.companion;
   late String _sound = widget.script.sound;
 
-  /// How far the recordings' download is (0 to 1), or null when Begin is
-  /// not waiting for one.
-  double? _download;
+  /// The picked session's voice download while it runs, or null.
+  Future<bool>? _voice;
+
+  /// How far [_voice] is (0 to 1), shown on the page and in the popup.
+  final ValueNotifier<double> _voiceDone = ValueNotifier(0);
 
   @override
   void initState() {
     super.initState();
     // Start getting the voice as soon as the page opens, so it is usually
-    // there by the time Begin is pressed (Quang, 6 Nov).
+    // there by the time Begin is pressed, and show it happening (Quang,
+    // 6 Nov).
     WidgetsBinding.instance.addPostFrameCallback((_) => _getVoice());
   }
 
-  /// Downloads the picked session's recordings in the background, if it
-  /// still needs any. Begin waits only for what is left.
+  @override
+  void dispose() {
+    _voiceDone.dispose();
+    super.dispose();
+  }
+
+  /// Starts downloading the picked session's recordings, if it still needs
+  /// any. It carries on if the page is left, and keeps what it got.
   void _getVoice() {
     if (!mounted) return;
+    final script = _script;
     final missing = VoiceDownloads.instance.missing(
-      _script,
+      script,
       Localizations.localeOf(context),
     );
-    if (missing.isEmpty) return;
+    if (missing.isEmpty) {
+      setState(() => _voice = null);
+      return;
+    }
+    _voiceDone.value = 0;
+    final download = VoiceDownloads.instance.download(
+      missing,
+      onProgress: (done) {
+        if (mounted && identical(_script, script)) _voiceDone.value = done;
+      },
+    );
+    setState(() => _voice = download);
     unawaited(
-      VoiceDownloads.instance.download(missing).then((_) {
-        // The start page's line changes to "Works offline".
-        if (mounted) setState(() {});
+      download.then((_) {
+        // The line changes to "Works offline" (or back to "downloads
+        // once" if it failed; Begin then tries again).
+        if (mounted && identical(_voice, download)) {
+          setState(() => _voice = null);
+        }
       }),
     );
   }
@@ -108,7 +132,6 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
   }
 
   Future<void> _begin() async {
-    if (_download != null) return;
     final script = _script;
     final plus = script.plus;
     final navigator = Navigator.of(context);
@@ -135,15 +158,18 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
       Localizations.localeOf(context),
     );
     if (missing.isNotEmpty) {
-      setState(() => _download = 0);
-      final got = await VoiceDownloads.instance.download(
-        missing,
-        onProgress: (done) {
-          if (mounted) setState(() => _download = done);
-        },
+      // Not there yet: say why there is a wait, and show how far it is.
+      if (_voice == null) _getVoice();
+      final download = _voice;
+      if (download == null) return;
+      final got = await showDialog<bool>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => _VoiceWait(download: download, done: _voiceDone),
       );
-      if (!mounted) return;
-      setState(() => _download = null);
+      // Cancel: stay on this page; the download carries on.
+      if (!mounted || got == null) return;
+      // Only when it failed (no internet) does the phone's voice read it.
       if (!got) {
         messenger
           ..removeCurrentSnackBar()
@@ -158,6 +184,38 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
           captions: _captions,
           sound: _sound,
         ),
+      ),
+    );
+  }
+
+  /// The voice line: "Works offline" when the voice is on the phone, the
+  /// download with a bar while it runs, else "downloads once".
+  Widget _voiceFact(AppLocalizations l, GuidedScript script) {
+    final needed = VoiceDownloads.instance
+        .missing(script, Localizations.localeOf(context))
+        .isNotEmpty;
+    if (!needed) return _Fact(Icons.offline_pin_rounded, l.prepOffline);
+    if (_voice == null) return _Fact(Icons.download_rounded, l.prepVoiceOnce);
+    return ValueListenableBuilder<double>(
+      valueListenable: _voiceDone,
+      builder: (context, done, _) => Column(
+        key: const ValueKey('voice-progress'),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _Fact(
+            Icons.downloading_rounded,
+            l.prepVoiceDownloading('${(done * 100).round()}'),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 36, bottom: 4),
+            child: LinearProgressIndicator(
+              value: done,
+              minHeight: 6,
+              borderRadius: BorderRadius.circular(3),
+              color: WithMeColors.teal,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -210,11 +268,8 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
       title: script.title(l),
       action: WithMeButton(
         key: const ValueKey('prep-begin'),
-        label: switch (_download) {
-          final done? => l.prepVoiceDownloading('${(done * 100).round()}'),
-          null => l.prepBegin,
-        },
-        onPressed: _download == null ? _begin : null,
+        label: l.prepBegin,
+        onPressed: _begin,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -235,12 +290,7 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
               children: [
                 _Fact(Icons.schedule_rounded, l.prepLength(script.minutes)),
                 _Fact(Icons.headphones_rounded, l.prepHeadphones),
-                if (VoiceDownloads.instance
-                    .missing(script, Localizations.localeOf(context))
-                    .isEmpty)
-                  _Fact(Icons.offline_pin_rounded, l.prepOffline)
-                else
-                  _Fact(Icons.download_rounded, l.prepVoiceOnce),
+                _voiceFact(l, script),
                 const SizedBox(height: 8),
                 Text(
                   l.prepSafety,
@@ -342,6 +392,66 @@ class _VersionButton extends StatelessWidget {
 }
 
 /// One line of the prep card: an icon and a short fact.
+/// The popup when Begin is pressed before the voice is on the phone: why
+/// there is a wait, and how far the download is. It closes by itself when
+/// the download ends (true when all of it came).
+class _VoiceWait extends StatefulWidget {
+  const _VoiceWait({required this.download, required this.done});
+
+  final Future<bool> download;
+  final ValueListenable<double> done;
+
+  @override
+  State<_VoiceWait> createState() => _VoiceWaitState();
+}
+
+class _VoiceWaitState extends State<_VoiceWait> {
+  @override
+  void initState() {
+    super.initState();
+    widget.download.then((got) {
+      if (mounted) Navigator.of(context).pop(got);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return AlertDialog(
+      key: const ValueKey('voice-wait'),
+      title: Text(l.prepVoiceWaitTitle),
+      content: ValueListenableBuilder<double>(
+        valueListenable: widget.done,
+        builder: (context, done, _) => Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(l.prepVoiceWaitBody, style: WithMeText.option),
+            const SizedBox(height: 16),
+            LinearProgressIndicator(
+              value: done,
+              minHeight: 8,
+              borderRadius: BorderRadius.circular(4),
+              color: WithMeColors.teal,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              l.prepVoiceDownloading('${(done * 100).round()}'),
+              style: WithMeText.option,
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(l.commonCancel),
+        ),
+      ],
+    );
+  }
+}
+
 class _Fact extends StatelessWidget {
   const _Fact(this.icon, this.text);
 

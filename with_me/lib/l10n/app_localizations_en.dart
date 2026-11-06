@@ -2670,6 +2670,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'The voice downloads once when you begin (about 2 MB), then it works offline.';
 
   @override
+  String get prepVoiceWaitTitle => 'Getting the voice ready';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'This session\'s recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Resume from $step';
   }

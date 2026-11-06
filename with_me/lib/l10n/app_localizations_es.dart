@@ -2694,6 +2694,13 @@ class AppLocalizationsEs extends AppLocalizations {
       'La voz se descarga una vez al empezar (unos 2 MB) y después funciona sin conexión.';
 
   @override
+  String get prepVoiceWaitTitle => 'Preparando la voz';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'La voz grabada de esta sesión se está descargando por primera vez. Solo pasa una vez: después, la sesión empieza enseguida y funciona sin conexión.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Reanudar desde $step';
   }

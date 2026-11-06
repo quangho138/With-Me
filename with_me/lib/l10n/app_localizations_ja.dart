@@ -2563,6 +2563,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get prepVoiceOnce => '始めるときに音声を一度だけダウンロードします（約2 MB）。その後はオフラインで使えます。';
 
   @override
+  String get prepVoiceWaitTitle => '音声を準備しています';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'このセッションの録音音声を初めてダウンロードしています。これは一度だけです。次回からはすぐに始まり、オフラインでも使えます。';
+
+  @override
   String playerResumeFrom(String step) {
     return '「$step」から再開';
   }

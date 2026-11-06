@@ -2564,6 +2564,13 @@ class AppLocalizationsKo extends AppLocalizations {
       '시작할 때 음성을 한 번만 내려받아요(약 2MB). 그다음부터는 오프라인으로 쓸 수 있어요.';
 
   @override
+  String get prepVoiceWaitTitle => '음성을 준비하고 있어요';
+
+  @override
+  String get prepVoiceWaitBody =>
+      '이 세션의 녹음된 음성을 처음으로 내려받고 있어요. 한 번만 하면 돼요. 다음부터는 바로 시작되고 오프라인에서도 쓸 수 있어요.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\'$step\'부터 다시 시작';
   }

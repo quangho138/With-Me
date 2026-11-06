@@ -2704,6 +2704,13 @@ class AppLocalizationsFil extends AppLocalizations {
       'Isang beses mada-download ang boses pagsimula mo (mga 2 MB), saka ito gagana kahit offline.';
 
   @override
+  String get prepVoiceWaitTitle => 'Inihahanda ang boses';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Unang beses na dina-download ang naka-record na boses ng session na ito. Minsan lang ito: pagkatapos, agad nang magsisimula ang session at gagana kahit offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Ituloy mula sa \"$step\"';
   }

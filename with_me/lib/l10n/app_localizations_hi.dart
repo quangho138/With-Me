@@ -2673,6 +2673,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'शुरू करने पर आवाज़ एक बार डाउनलोड होती है (लगभग 2 MB), फिर यह ऑफ़लाइन चलता है।';
 
   @override
+  String get prepVoiceWaitTitle => 'आवाज़ तैयार हो रही है';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'इस सत्र की रिकॉर्ड की गई आवाज़ पहली बार डाउनलोड हो रही है। यह सिर्फ़ एक बार होता है: इसके बाद सत्र तुरंत शुरू होगा और ऑफ़लाइन चलेगा।';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" से फिर शुरू करें';
   }

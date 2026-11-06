@@ -2698,6 +2698,13 @@ class AppLocalizationsTe extends AppLocalizations {
       'మొదలుపెట్టినప్పుడు వాయిస్ ఒక్కసారి డౌన్‌లోడ్ అవుతుంది (సుమారు 2 MB), ఆ తర్వాత ఆఫ్‌లైన్‌లో పనిచేస్తుంది.';
 
   @override
+  String get prepVoiceWaitTitle => 'వాయిస్ సిద్ధమవుతోంది';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'ఈ సెషన్ రికార్డ్ చేసిన వాయిస్ మొదటిసారి డౌన్‌లోడ్ అవుతోంది. ఇది ఒక్కసారే: ఆ తర్వాత సెషన్ వెంటనే మొదలవుతుంది, ఆఫ్‌లైన్‌లోనూ పనిచేస్తుంది.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" నుండి కొనసాగించండి';
   }

@@ -733,6 +733,8 @@
   "prepVoiceDownloading": "Ses indiriliyor, %{percent}",
   "prepVoiceFailed": "Kayıtlı ses indirilemedi, bu yüzden bu oturumu telefonun sesi okuyacak.",
   "prepVoiceOnce": "Başladığınızda ses bir kez indirilir (yaklaşık 2 MB), sonra çevrimdışı çalışır.",
+  "prepVoiceWaitTitle": "Ses hazırlanıyor",
+  "prepVoiceWaitBody": "Bu oturumun kayıtlı sesi ilk kez indiriliyor. Bu yalnızca bir kez olur: bundan sonra oturum hemen başlar ve çevrimdışı çalışır.",
   "playerResumeFrom": "\"{step}\" adımından devam et",
   "playerCaptionsOn": "Altyazılar açık",
   "playerCaptionsOff": "Altyazılar kapalı",

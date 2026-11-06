@@ -733,6 +733,8 @@
   "prepVoiceDownloading": "Téléchargement de la voix, {percent} %",
   "prepVoiceFailed": "Impossible de télécharger la voix enregistrée : la voix du téléphone lira cette séance.",
   "prepVoiceOnce": "La voix se télécharge une fois au début (environ 2 Mo), puis tout fonctionne hors ligne.",
+  "prepVoiceWaitTitle": "Préparation de la voix",
+  "prepVoiceWaitBody": "La voix enregistrée de cette séance se télécharge pour la première fois. Cela n'arrive qu'une fois : ensuite, la séance démarre tout de suite et fonctionne hors ligne.",
   "playerResumeFrom": "Reprendre à « {step} »",
   "playerCaptionsOn": "Sous-titres activés",
   "playerCaptionsOff": "Sous-titres désactivés",

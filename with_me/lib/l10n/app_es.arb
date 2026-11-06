@@ -733,6 +733,8 @@
   "prepVoiceDownloading": "Descargando la voz, {percent} %",
   "prepVoiceFailed": "No se pudo descargar la voz grabada, así que la voz del teléfono leerá esta sesión.",
   "prepVoiceOnce": "La voz se descarga una vez al empezar (unos 2 MB) y después funciona sin conexión.",
+  "prepVoiceWaitTitle": "Preparando la voz",
+  "prepVoiceWaitBody": "La voz grabada de esta sesión se está descargando por primera vez. Solo pasa una vez: después, la sesión empieza enseguida y funciona sin conexión.",
   "playerResumeFrom": "Reanudar desde {step}",
   "playerCaptionsOn": "Subtítulos activados",
   "playerCaptionsOff": "Subtítulos desactivados",

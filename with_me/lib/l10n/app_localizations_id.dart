@@ -2677,6 +2677,13 @@ class AppLocalizationsId extends AppLocalizations {
       'Suara diunduh sekali saat Anda mulai (sekitar 2 MB), lalu bisa dipakai offline.';
 
   @override
+  String get prepVoiceWaitTitle => 'Menyiapkan suara';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Suara rekaman sesi ini sedang diunduh untuk pertama kalinya. Ini hanya sekali: setelah ini, sesi langsung dimulai dan bisa dipakai offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Lanjutkan dari \"$step\"';
   }

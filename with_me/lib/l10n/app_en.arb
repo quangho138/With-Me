@@ -3530,6 +3530,14 @@
   "@prepVoiceOnce": {
     "description": "On a long session's start page until its recorded voice is on the phone (instead of 'Works offline')."
   },
+  "prepVoiceWaitTitle": "Getting the voice ready",
+  "@prepVoiceWaitTitle": {
+    "description": "Title of the popup when Begin is pressed before a session's recorded voice has finished downloading."
+  },
+  "prepVoiceWaitBody": "This session's recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.",
+  "@prepVoiceWaitBody": {
+    "description": "Text of that popup, above the progress bar: why there is a wait."
+  },
   "playerResumeFrom": "Resume from {step}",
   "@playerResumeFrom": {
     "description": "After an interruption: start again at the beginning of the step.",

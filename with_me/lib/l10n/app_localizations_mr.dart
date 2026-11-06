@@ -2687,6 +2687,13 @@ class AppLocalizationsMr extends AppLocalizations {
       'सुरू करताना आवाज एकदाच डाउनलोड होतो (सुमारे 2 MB), नंतर तो ऑफलाइन चालतो.';
 
   @override
+  String get prepVoiceWaitTitle => 'आवाज तयार होत आहे';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'या सत्राचा रेकॉर्ड केलेला आवाज पहिल्यांदाच डाउनलोड होत आहे. हे फक्त एकदाच होते: त्यानंतर सत्र लगेच सुरू होईल आणि ऑफलाइन चालेल.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" पासून पुन्हा सुरू करा';
   }

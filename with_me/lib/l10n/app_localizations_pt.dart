@@ -2698,6 +2698,13 @@ class AppLocalizationsPt extends AppLocalizations {
       'A voz é baixada uma vez quando você começa (cerca de 2 MB) e depois funciona offline.';
 
   @override
+  String get prepVoiceWaitTitle => 'Preparando a voz';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'A voz gravada desta sessão está sendo baixada pela primeira vez. Isso só acontece uma vez: depois, a sessão começa na hora e funciona offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Retomar de $step';
   }

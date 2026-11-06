@@ -2713,6 +2713,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die Stimme wird beim Start einmal geladen (etwa 2 MB), danach geht es auch offline.';
 
   @override
+  String get prepVoiceWaitTitle => 'Die Stimme wird vorbereitet';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Die aufgenommene Stimme dieser Sitzung wird zum ersten Mal geladen. Das passiert nur einmal: Danach startet die Sitzung sofort und geht auch offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Weiter ab „$step“';
   }
