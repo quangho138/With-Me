@@ -105,6 +105,10 @@ def main():
         help="Alex's voice folder (has en, es, ...); his zip's by default")
     parser.add_argument('--languages', default=','.join(LANGUAGES))
     parser.add_argument('--workers', type=int, default=8)
+    parser.add_argument(
+        '--max-mb', type=float, default=700,
+        help='stop once this much has been uploaded in this run (the free '
+             'plan has 1 GB of Storage in all)')
     args = parser.parse_args()
 
     languages = [x.strip() for x in args.languages.split(',') if x.strip()]
@@ -136,9 +140,13 @@ def main():
 
     temp = tempfile.mkdtemp(prefix='withme_voice_')
     counts = {'uploaded': 0, 'skipped': 0, 'failed': 0}
+    sent = [0]  # bytes uploaded in this run
+    limit = args.max_mb * 1e6
 
     def one(item):
         source, path = item
+        if sent[0] >= limit:
+            return 'stopped', path
         if already_there(path):
             return 'skipped', path
         out = os.path.join(temp, path.replace('/', '_'))
@@ -151,6 +159,7 @@ def main():
                 data = f.read()
             request('POST', f'/storage/v1/object/{BUCKET}/{path}', key,
                     data, 'audio/mpeg', upsert=True)
+            sent[0] += len(data)
             return 'uploaded', path
         except Exception as e:  # keep going; a rerun tries it again
             # Only the type of error: never anything that could hold the key.
@@ -162,15 +171,21 @@ def main():
     try:
         with concurrent.futures.ThreadPoolExecutor(args.workers) as pool:
             for i, (status, what) in enumerate(pool.map(one, files), 1):
-                counts[status] += 1
+                counts[status] = counts.get(status, 0) + 1
                 if status == 'failed':
                     print('  failed:', what)
                 if i % 100 == 0 or i == len(files):
-                    print(f'{i}/{len(files)}  {counts}')
+                    print(f'{i}/{len(files)}  {counts}  '
+                          f'{sent[0] / 1e6:.0f} MB uploaded')
     finally:
         shutil.rmtree(temp, ignore_errors=True)
-    print('Done.' if counts['failed'] == 0 else
-          'Some failed: run the same command again to retry them.')
+    if counts.get('stopped'):
+        print(f'Stopped at {args.max_mb:.0f} MB to stay inside the free '
+              'plan. Nothing else was uploaded.')
+    elif counts['failed']:
+        print('Some failed: run the same command again to retry them.')
+    else:
+        print('Done.')
 
 
 if __name__ == '__main__':
