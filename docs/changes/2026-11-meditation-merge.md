@@ -56,3 +56,13 @@ in, so his two notes (2026-10-meditate-bodyscan-muscle.md and
 - Some text still says "Companion Plus" next to "With Me Plus".
 - Anxiety SOS with only one free try is to be confirmed with the product
   owner.
+
+## Added on 4 Nov (media PR)
+
+- The seven new videos (creek, lake, clouds, river, fireplace, snow,
+  meadow), from Alex's update, unchanged.
+- The short session recordings in 12 languages (Guided Meditation, Anxiety
+  SOS, Body Scan, Muscle Relaxation), shrunk for speech with
+  `tool/compress_media.sh voice`: 504 files, about 20 MB in all. Hindi still
+  uses the phone's voice. The ten-minute sessions come later, downloaded on
+  demand.
