@@ -83,7 +83,9 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
       Localizations.localeOf(context),
     );
     if (missing.isEmpty) {
-      setState(() => _voice = null);
+      setState(() {
+        _voice = null;
+      });
       return;
     }
     _voiceDone.value = 0;
@@ -102,7 +104,9 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
         // The line changes to "Works offline" (or back to "downloads
         // once" if it failed; Begin then tries again).
         if (mounted && identical(_voice, download)) {
-          setState(() => _voice = null);
+          setState(() {
+            _voice = null;
+          });
         }
       }),
     );
