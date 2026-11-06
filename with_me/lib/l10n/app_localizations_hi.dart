@@ -2660,6 +2660,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get prepBegin => 'शुरू करें';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'आवाज़ लाई जा रही है, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'रिकॉर्ड की गई आवाज़ नहीं मिल पाई, इसलिए फ़ोन की आवाज़ यह सत्र पढ़ेगी।';
+
+  @override
+  String get prepVoiceOnce =>
+      'शुरू करने पर आवाज़ एक बार डाउनलोड होती है (लगभग 2 MB), फिर यह ऑफ़लाइन चलता है।';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" से फिर शुरू करें';
   }

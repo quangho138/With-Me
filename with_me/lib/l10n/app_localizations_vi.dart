@@ -2658,6 +2658,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get prepBegin => 'Bắt đầu';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Đang tải giọng nói, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Không tải được giọng đã ghi âm, nên giọng của điện thoại sẽ đọc buổi này.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Giọng nói được tải một lần khi bạn bắt đầu (khoảng 2 MB), sau đó dùng được khi không có mạng.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Tiếp tục từ \"$step\"';
   }

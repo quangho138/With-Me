@@ -2552,6 +2552,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get prepBegin => '시작하기';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return '음성을 받는 중, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed => '녹음된 음성을 받지 못해 휴대폰 음성이 이 세션을 읽어 드려요.';
+
+  @override
+  String get prepVoiceOnce =>
+      '시작할 때 음성을 한 번만 내려받아요(약 2MB). 그다음부터는 오프라인으로 쓸 수 있어요.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\'$step\'부터 다시 시작';
   }

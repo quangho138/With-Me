@@ -48,6 +48,7 @@ import 'WithMe/Settings/CompanionPlus.dart';
 import 'WithMe/Settings/FreeUses.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
+import 'WithMe/Speech/VoiceDownloads.dart';
 import 'WithMe/Theme/AppFeel.dart';
 import 'WithMe/Theme/SoftSounds.dart';
 import 'WithMe/Theme/WithMeTheme.dart';
@@ -99,6 +100,7 @@ Future<void> main() async {
     await Future.wait([
       SpeechService.instance.load(),
       SpeechService.findRecordings(),
+      VoiceDownloads.instance.load(),
     ]).timeout(const Duration(seconds: 3));
   } catch (e) {
     debugPrint('Read aloud setting not loaded yet: $e');

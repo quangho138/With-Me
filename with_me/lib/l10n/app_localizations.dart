@@ -4523,6 +4523,24 @@ abstract class AppLocalizations {
   /// **'Begin'**
   String get prepBegin;
 
+  /// On the Begin button while a long session's recordings download the first time. {percent} is a number from 0 to 100.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting the voice, {percent}%'**
+  String prepVoiceDownloading(String percent);
+
+  /// Note when a session's recordings could not be downloaded (no internet); the phone's voice reads it instead.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t get the recorded voice, so the phone\'s voice will read this session.'**
+  String get prepVoiceFailed;
+
+  /// On a long session's start page until its recorded voice is on the phone (instead of 'Works offline').
+  ///
+  /// In en, this message translates to:
+  /// **'The voice downloads once when you begin (about 2 MB), then it works offline.'**
+  String get prepVoiceOnce;
+
   /// After an interruption: start again at the beginning of the step.
   ///
   /// In en, this message translates to:

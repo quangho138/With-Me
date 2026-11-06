@@ -66,3 +66,14 @@ in, so his two notes (2026-10-meditate-bodyscan-muscle.md and
   `tool/compress_media.sh voice`: 504 files, about 20 MB in all. Hindi still
   uses the phone's voice. The ten-minute sessions come later, downloaded on
   demand.
+
+## Download on demand (5 Nov)
+
+- The ten-minute sessions' recordings (12 languages, about 550 MB after
+  shrinking) are in Supabase Storage, public bucket `voice`, at the same
+  path as in the app. `tool/upload_voice.py` shrinks and uploads them; it
+  is run once on a team laptop with the secret key, typed in when asked.
+- The app downloads a session's recordings the first time Begin is
+  pressed (about 2 MB, with the percent on the button) and keeps them on
+  the phone (`lib/WithMe/Speech/VoiceDownloads.dart`). Offline, on the web
+  or in Hindi, the phone's voice reads the session.

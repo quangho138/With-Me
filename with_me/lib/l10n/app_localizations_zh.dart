@@ -2532,6 +2532,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get prepBegin => '开始';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return '正在获取语音，$percent%';
+  }
+
+  @override
+  String get prepVoiceFailed => '无法获取录制的语音，将由手机的语音朗读本次练习。';
+
+  @override
+  String get prepVoiceOnce => '开始时会下载一次语音（约 2 MB），之后可离线使用。';
+
+  @override
   String playerResumeFrom(String step) {
     return '从“$step”继续';
   }
@@ -9012,6 +9023,17 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get prepBegin => '開始';
+
+  @override
+  String prepVoiceDownloading(String percent) {
+    return '正在取得語音，$percent%';
+  }
+
+  @override
+  String get prepVoiceFailed => '無法取得錄製的語音，將由手機的語音朗讀本次練習。';
+
+  @override
+  String get prepVoiceOnce => '開始時會下載一次語音（約 2 MB），之後可離線使用。';
 
   @override
   String playerResumeFrom(String step) {

@@ -2713,6 +2713,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get prepBegin => 'البدء';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'جارٍ تنزيل الصوت، $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'تعذّر تنزيل الصوت المسجّل، لذلك سيقرأ صوت الهاتف هذه الجلسة.';
+
+  @override
+  String get prepVoiceOnce =>
+      'يُنزَّل الصوت مرة واحدة عند البدء (نحو 2 ميغابايت)، ثم يعمل دون إنترنت.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'المتابعة من «$step»';
   }

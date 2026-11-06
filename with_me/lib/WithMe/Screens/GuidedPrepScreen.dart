@@ -12,6 +12,7 @@ import '../Exercise/GuidedScripts.dart';
 import '../Exercise/NatureVideo.dart';
 import '../Settings/CompanionPlus.dart';
 import '../Settings/FreeUses.dart';
+import '../Speech/VoiceDownloads.dart';
 import '../Theme/WithMeTheme.dart';
 import 'GuidedPlayerScreen.dart';
 import 'MembershipScreen.dart';
@@ -22,7 +23,10 @@ import 'MembershipScreen.dart';
 /// the sound to play under the voice.
 ///
 /// Begin counts one free use of a Plus session (see [FreeUses]); with none
-/// left it opens the membership page instead.
+/// left it opens the membership page instead. The first time a long
+/// session is begun, Begin first downloads its recordings (see
+/// [VoiceDownloads]), showing how far along; if that fails, the phone's
+/// voice reads it.
 ///
 /// A stress area's session also has a row of [GuidedScripts.versionCount]
 /// version buttons at the top, from its [versions]. The first is free;
@@ -47,6 +51,10 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
   late GuidedScript _script = widget.script;
   late bool _captions = widget.script.look == GuidedLook.companion;
   late String _sound = widget.script.sound;
+
+  /// How far the recordings' download is (0 to 1), or null when none is
+  /// running.
+  double? _download;
 
   /// Version button [i] (from 0) tapped.
   void _pickVersion(int i) {
@@ -73,12 +81,15 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
     });
   }
 
-  void _begin() {
+  Future<void> _begin() async {
+    if (_download != null) return;
     final script = _script;
     final plus = script.plus;
     final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final l = context.l10n;
     // Read now: the builder runs once this screen is gone.
-    final title = script.title(context.l10n);
+    final title = script.title(l);
     if (script.membersOnly && !CompanionPlus.instance.value) {
       navigator.pushReplacement(
         MaterialPageRoute(builder: (_) => MembershipScreen(usedUp: title)),
@@ -92,8 +103,28 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
         );
         return;
       }
-      unawaited(FreeUses.instance.use(plus));
     }
+    final missing = VoiceDownloads.instance.missing(
+      script,
+      Localizations.localeOf(context),
+    );
+    if (missing.isNotEmpty) {
+      setState(() => _download = 0);
+      final got = await VoiceDownloads.instance.download(
+        missing,
+        onProgress: (done) {
+          if (mounted) setState(() => _download = done);
+        },
+      );
+      if (!mounted) return;
+      setState(() => _download = null);
+      if (!got) {
+        messenger
+          ..removeCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(l.prepVoiceFailed)));
+      }
+    }
+    if (plus != null) unawaited(FreeUses.instance.use(plus));
     navigator.pushReplacement(
       MaterialPageRoute(
         builder: (_) => GuidedPlayerScreen(
@@ -151,7 +182,14 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
         still: MediaQuery.disableAnimationsOf(context),
       ),
       title: script.title(l),
-      action: WithMeButton(label: l.prepBegin, onPressed: _begin),
+      action: WithMeButton(
+        key: const ValueKey('prep-begin'),
+        label: switch (_download) {
+          final done? => l.prepVoiceDownloading('${(done * 100).round()}'),
+          null => l.prepBegin,
+        },
+        onPressed: _download == null ? _begin : null,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -171,7 +209,12 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
               children: [
                 _Fact(Icons.schedule_rounded, l.prepLength(script.minutes)),
                 _Fact(Icons.headphones_rounded, l.prepHeadphones),
-                _Fact(Icons.offline_pin_rounded, l.prepOffline),
+                if (VoiceDownloads.instance
+                    .missing(script, Localizations.localeOf(context))
+                    .isEmpty)
+                  _Fact(Icons.offline_pin_rounded, l.prepOffline)
+                else
+                  _Fact(Icons.download_rounded, l.prepVoiceOnce),
                 const SizedBox(height: 8),
                 Text(
                   l.prepSafety,

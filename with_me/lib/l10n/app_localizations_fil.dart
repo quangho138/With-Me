@@ -2691,6 +2691,19 @@ class AppLocalizationsFil extends AppLocalizations {
   String get prepBegin => 'Simulan';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Kinukuha ang boses, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Hindi makuha ang naka-record na boses, kaya ang boses ng telepono ang magbabasa ng session na ito.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Isang beses mada-download ang boses pagsimula mo (mga 2 MB), saka ito gagana kahit offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Ituloy mula sa \"$step\"';
   }

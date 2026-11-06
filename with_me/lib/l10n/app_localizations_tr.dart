@@ -2653,6 +2653,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get prepBegin => 'Başla';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Ses indiriliyor, %$percent';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Kayıtlı ses indirilemedi, bu yüzden bu oturumu telefonun sesi okuyacak.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Başladığınızda ses bir kez indirilir (yaklaşık 2 MB), sonra çevrimdışı çalışır.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" adımından devam et';
   }

@@ -2677,6 +2677,19 @@ class AppLocalizationsSw extends AppLocalizations {
   String get prepBegin => 'Anza';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Inapakua sauti, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Imeshindikana kupakua sauti iliyorekodiwa, kwa hiyo sauti ya simu itasoma kipindi hiki.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Sauti inapakuliwa mara moja unapoanza (takriban MB 2), kisha inafanya kazi bila intaneti.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Endelea kutoka \"$step\"';
   }

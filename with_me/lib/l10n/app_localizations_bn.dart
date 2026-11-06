@@ -2654,6 +2654,19 @@ class AppLocalizationsBn extends AppLocalizations {
   String get prepBegin => 'শুরু করুন';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'কণ্ঠ আনা হচ্ছে, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'রেকর্ড করা কণ্ঠ আনা যায়নি, তাই ফোনের কণ্ঠ এই সেশনটি পড়বে।';
+
+  @override
+  String get prepVoiceOnce =>
+      'শুরু করলে কণ্ঠ একবার ডাউনলোড হয় (প্রায় 2 MB), তারপর ইন্টারনেট ছাড়াই চলে।';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" থেকে আবার শুরু';
   }

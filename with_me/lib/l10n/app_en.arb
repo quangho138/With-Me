@@ -3513,6 +3513,23 @@
   "@prepBegin": {
     "description": "Prep screen button that starts the session."
   },
+  "prepVoiceDownloading": "Getting the voice, {percent}%",
+  "@prepVoiceDownloading": {
+    "description": "On the Begin button while a long session's recordings download the first time. {percent} is a number from 0 to 100.",
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "prepVoiceFailed": "Couldn't get the recorded voice, so the phone's voice will read this session.",
+  "@prepVoiceFailed": {
+    "description": "Note when a session's recordings could not be downloaded (no internet); the phone's voice reads it instead."
+  },
+  "prepVoiceOnce": "The voice downloads once when you begin (about 2 MB), then it works offline.",
+  "@prepVoiceOnce": {
+    "description": "On a long session's start page until its recorded voice is on the phone (instead of 'Works offline')."
+  },
   "playerResumeFrom": "Resume from {step}",
   "@playerResumeFrom": {
     "description": "After an interruption: start again at the beginning of the step.",

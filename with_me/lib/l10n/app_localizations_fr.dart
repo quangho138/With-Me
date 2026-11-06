@@ -2696,6 +2696,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get prepBegin => 'Commencer';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Téléchargement de la voix, $percent %';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Impossible de télécharger la voix enregistrée : la voix du téléphone lira cette séance.';
+
+  @override
+  String get prepVoiceOnce =>
+      'La voix se télécharge une fois au début (environ 2 Mo), puis tout fonctionne hors ligne.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Reprendre à « $step »';
   }

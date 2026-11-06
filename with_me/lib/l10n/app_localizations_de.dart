@@ -2700,6 +2700,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get prepBegin => 'Beginnen';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Stimme wird geladen, $percent %';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Die aufgenommene Stimme konnte nicht geladen werden, daher liest die Stimme des Telefons diese Sitzung.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Die Stimme wird beim Start einmal geladen (etwa 2 MB), danach geht es auch offline.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Weiter ab „$step“';
   }

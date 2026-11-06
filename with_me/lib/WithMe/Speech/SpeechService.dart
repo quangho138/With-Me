@@ -10,6 +10,7 @@ import '../../Repositories/settings_repository.dart';
 import 'ClipPlayer.dart';
 import 'MouthTimelines.dart';
 import 'SpeechEngine.dart';
+import 'VoiceDownloads.dart';
 
 /// Where the companion's speech is in its life.
 enum SpeechStatus {
@@ -264,14 +265,19 @@ class SpeechService {
       'audio/voice/${locale.languageCode}/',
     );
     if (!kMouthTimelines.containsKey(generated)) return null;
-    final inApp = _inApp;
-    return inApp == null || inApp.contains(generated) ? generated : null;
+    return isInApp(generated) || VoiceDownloads.instance.has(generated)
+        ? generated
+        : null;
   }
 
+  /// Whether [recording] comes with the app (true until [findRecordings]
+  /// has read the app's files, and in tests).
+  static bool isInApp(String recording) => _inApp?.contains(recording) ?? true;
+
   /// The recordings this copy of the app really carries, read once at
-  /// start by [findRecordings]. A line with a timeline but no file (the
-  /// guided sessions until their recordings are added, or a language not
-  /// recorded yet, such as Hindi's sessions) is then read by the phone's
+  /// start by [findRecordings]. A line with a timeline but no file (a
+  /// long session not downloaded yet, see [VoiceDownloads], or a language
+  /// not recorded, such as Hindi's sessions) is then read by the phone's
   /// voice instead of failing. Null until read: every timeline counts.
   static Set<String>? _inApp;
 

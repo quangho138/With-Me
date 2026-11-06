@@ -2712,6 +2712,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get prepBegin => 'Начать';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Загружаем голос, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Не удалось загрузить записанный голос, поэтому эту сессию прочитает голос телефона.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Голос загружается один раз при запуске (около 2 МБ), потом всё работает без интернета.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Продолжить с шага «$step»';
   }
