@@ -93,6 +93,25 @@ void main() {
     expect(again.missing(GuidedScripts.calmAtHome, en), isEmpty);
   });
 
+  test('the start page and Begin share one download: each file is fetched '
+      'once, and Begin counts what is already there', () async {
+    final voice = VoiceDownloads.instance = make();
+    final missing = voice.missing(GuidedScripts.calmAtHome, en);
+    // The start page begins in the background...
+    final background = voice.download(missing);
+    // ...and Begin is pressed while it runs.
+    final progress = <double>[];
+    expect(await voice.download(missing, onProgress: progress.add), isTrue);
+    expect(await background, isTrue);
+    expect(asked, hasLength(missing.length), reason: 'no file twice');
+    expect(progress.last, 1);
+
+    // Pressed again later: nothing left to fetch.
+    asked.clear();
+    expect(await voice.download(missing), isTrue);
+    expect(asked, isEmpty);
+  });
+
   test('offline: nothing is kept, and the phone reads the lines', () async {
     final voice = VoiceDownloads.instance = make(fail: true);
     final missing = voice.missing(GuidedScripts.calmAtHome, en);

@@ -96,43 +96,65 @@ class VoiceDownloads {
     return kMouthTimelines.containsKey(recording) ? recording : null;
   }
 
-  /// Downloads [recordings], a few at a time, telling [onProgress] how far
-  /// along (0 to 1). Returns true when all of them are on the phone.
+  /// Recordings being downloaded now, so a second call (Begin pressed
+  /// while the start page is already getting them) waits for the same
+  /// download instead of starting another.
+  final Map<String, Future<bool>> _running = {};
+
+  /// Downloads [recordings], several at a time, telling [onProgress] how
+  /// far along (0 to 1; ones already on the phone count as done). Returns
+  /// true when all of them are on the phone.
   Future<bool> download(
     List<String> recordings, {
     void Function(double done)? onProgress,
   }) async {
     if (recordings.isEmpty) return true;
+    final String root;
     try {
-      final root = _root ??= (await _folder()).path;
-      var done = 0, failed = 0;
-      final queue = [...recordings];
-      Future<void> worker() async {
-        while (queue.isNotEmpty) {
-          final recording = queue.removeLast();
-          try {
-            final path = recording.substring('audio/'.length);
-            final bytes = await _fetch(_url(path));
-            final file = File(p.join(root, path));
-            await file.parent.create(recursive: true);
-            // Written beside it first, so a cut-off download is never kept.
-            final part = File('${file.path}.part');
-            await part.writeAsBytes(bytes, flush: true);
-            await part.rename(file.path);
-            _kept.add(recording);
-          } catch (e) {
-            failed++;
-            debugPrint('A recording did not download: $e');
-          }
-          done++;
-          onProgress?.call(done / recordings.length);
-        }
-      }
-
-      await Future.wait([for (var i = 0; i < 4; i++) worker()]);
-      return failed == 0;
+      root = _root ??= (await _folder()).path;
     } catch (e) {
       debugPrint('The recordings could not be downloaded: $e');
+      return false;
+    }
+    var done = 0, failed = 0;
+    final queue = [...recordings.reversed];
+    Future<void> worker() async {
+      while (queue.isNotEmpty) {
+        final recording = queue.removeLast();
+        final got =
+            has(recording) ||
+            await _running.putIfAbsent(
+              recording,
+              () => _one(
+                root,
+                recording,
+              ).whenComplete(() => _running.remove(recording)),
+            );
+        if (!got) failed++;
+        done++;
+        onProgress?.call(done / recordings.length);
+      }
+    }
+
+    await Future.wait([for (var i = 0; i < 8; i++) worker()]);
+    return failed == 0;
+  }
+
+  /// Gets one recording; true when it is on the phone.
+  Future<bool> _one(String root, String recording) async {
+    try {
+      final path = recording.substring('audio/'.length);
+      final bytes = await _fetch(_url(path));
+      final file = File(p.join(root, path));
+      await file.parent.create(recursive: true);
+      // Written beside it first, so a cut-off download is never kept.
+      final part = File('${file.path}.part');
+      await part.writeAsBytes(bytes, flush: true);
+      await part.rename(file.path);
+      _kept.add(recording);
+      return true;
+    } catch (e) {
+      debugPrint('A recording did not download: $e');
       return false;
     }
   }
@@ -140,25 +162,25 @@ class VoiceDownloads {
   static Uri _url(String path) =>
       Uri.parse('${SupabaseConfig.url}/storage/v1/object/public/$bucket/$path');
 
+  /// One client for every file, so the connection to Storage is opened
+  /// once and kept (a new one per file made each download slow).
+  static final HttpClient _client = HttpClient()
+    ..connectionTimeout = const Duration(seconds: 10)
+    ..maxConnectionsPerHost = 8;
+
   static Future<Uint8List> _httpGet(Uri uri) async {
-    final client = HttpClient()
-      ..connectionTimeout = const Duration(seconds: 10);
-    try {
-      final request = await client.getUrl(uri);
-      final response = await request.close().timeout(
-        const Duration(seconds: 30),
-      );
-      if (response.statusCode != HttpStatus.ok) {
-        throw HttpException('HTTP ${response.statusCode}', uri: uri);
-      }
-      final bytes = BytesBuilder(copy: false);
-      await for (final chunk in response.timeout(const Duration(seconds: 30))) {
-        bytes.add(chunk);
-      }
-      return bytes.takeBytes();
-    } finally {
-      client.close(force: true);
+    final request = await _client.getUrl(uri);
+    final response = await request.close().timeout(const Duration(seconds: 30));
+    if (response.statusCode != HttpStatus.ok) {
+      // Read to the end so the connection can be used again.
+      await response.drain<void>();
+      throw HttpException('HTTP ${response.statusCode}', uri: uri);
     }
+    final bytes = BytesBuilder(copy: false);
+    await for (final chunk in response.timeout(const Duration(seconds: 30))) {
+      bytes.add(chunk);
+    }
+    return bytes.takeBytes();
   }
 }
 

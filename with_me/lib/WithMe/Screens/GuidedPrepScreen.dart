@@ -23,10 +23,10 @@ import 'MembershipScreen.dart';
 /// the sound to play under the voice.
 ///
 /// Begin counts one free use of a Plus session (see [FreeUses]); with none
-/// left it opens the membership page instead. The first time a long
-/// session is begun, Begin first downloads its recordings (see
-/// [VoiceDownloads]), showing how far along; if that fails, the phone's
-/// voice reads it.
+/// left it opens the membership page instead. A long session's
+/// recordings start downloading as soon as the page opens (see
+/// [VoiceDownloads]); Begin waits only for what is left, showing how far
+/// along. If that fails, the phone's voice reads it.
 ///
 /// A stress area's session also has a row of [GuidedScripts.versionCount]
 /// version buttons at the top, from its [versions]. The first is free;
@@ -52,9 +52,34 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
   late bool _captions = widget.script.look == GuidedLook.companion;
   late String _sound = widget.script.sound;
 
-  /// How far the recordings' download is (0 to 1), or null when none is
-  /// running.
+  /// How far the recordings' download is (0 to 1), or null when Begin is
+  /// not waiting for one.
   double? _download;
+
+  @override
+  void initState() {
+    super.initState();
+    // Start getting the voice as soon as the page opens, so it is usually
+    // there by the time Begin is pressed (Quang, 6 Nov).
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getVoice());
+  }
+
+  /// Downloads the picked session's recordings in the background, if it
+  /// still needs any. Begin waits only for what is left.
+  void _getVoice() {
+    if (!mounted) return;
+    final missing = VoiceDownloads.instance.missing(
+      _script,
+      Localizations.localeOf(context),
+    );
+    if (missing.isEmpty) return;
+    unawaited(
+      VoiceDownloads.instance.download(missing).then((_) {
+        // The start page's line changes to "Works offline".
+        if (mounted) setState(() {});
+      }),
+    );
+  }
 
   /// Version button [i] (from 0) tapped.
   void _pickVersion(int i) {
@@ -79,6 +104,7 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
       _script = version;
       _sound = version.sound;
     });
+    _getVoice();
   }
 
   Future<void> _begin() async {
