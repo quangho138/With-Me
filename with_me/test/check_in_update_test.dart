@@ -498,7 +498,8 @@ void main() {
       expect(find.text('Meditate'), findsWidgets);
       await tester.tap(find.text('+ Add your own action').last);
       await settle(tester);
-      expect(find.text('Add your own action'), findsOneWidget);
+      // The popup's title (outlined text draws it twice).
+      expect(find.text('Add your own action'), findsWidgets);
       // At most 100 characters.
       await tester.enterText(
         find.byKey(const ValueKey('own-action')),

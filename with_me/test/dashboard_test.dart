@@ -521,7 +521,7 @@ void main() {
     });
 
     testWidgets('Actions and Strategies: the large strategy card, then '
-        'the actions two to a row, an odd one on the left', (tester) async {
+        'the eight actions cards two to a row', (tester) async {
       await openDashboard(tester);
       await openPage(tester, 3);
       Rect at(String k) => tester.getRect(find.byKey(ValueKey(k)));
@@ -536,7 +536,7 @@ void main() {
           (t.key! as ValueKey<String>).value.substring('pie-action-'.length),
       ];
       expect(labels, kStrategies, reason: 'no made-up strategies');
-      expect(labels.length.isOdd, isTrue);
+      expect(labels.length, 8);
       final top = at('pie-strategies');
       final first = at('pie-action-${labels[0]}');
       expect(top.bottom, lessThan(first.top));
@@ -1102,30 +1102,33 @@ void main() {
       );
     });
 
-    test('repeated Spiritual entries make one strategy with its actions '
-        'counted', () {
-      final days = [
-        day(1, strategy: 'Spiritual', action: 'Prayer'),
-        day(2, strategy: 'spiritual ', action: 'prayer'),
-        day(3, strategy: 'Spiritual', action: 'Meditation'),
-        day(4, strategy: 'SPIRITUAL', action: 'Prayer '),
-        day(5, strategy: 'Social', action: 'Prayer'),
-      ];
-      final strategies = [
-        for (final s in strategySlices(days))
-          if (s.value > 0) (s.label, s.value),
-      ];
-      expect(strategies, [('Social', 1.0), ('Spiritual', 4.0)]);
-      final spiritual = [
-        for (final s in actionSlices(days, 'Spiritual')) (s.label, s.value),
-      ];
-      expect(spiritual, [('Prayer', 3.0), ('Meditation', 1.0)]);
-      // Prayer under Social stays with Social.
-      expect(
-        [for (final s in actionSlices(days, 'Social')) (s.label, s.value)],
-        [('Prayer', 1.0)],
-      );
-    });
+    test(
+      'repeated entries of an older strategy (Faith) make one strategy with its actions '
+      'counted',
+      () {
+        final days = [
+          day(1, strategy: 'Faith', action: 'Prayer'),
+          day(2, strategy: 'faith ', action: 'prayer'),
+          day(3, strategy: 'Faith', action: 'Meditation'),
+          day(4, strategy: 'FAITH', action: 'Prayer '),
+          day(5, strategy: 'Social', action: 'Prayer'),
+        ];
+        final strategies = [
+          for (final s in strategySlices(days))
+            if (s.value > 0) (s.label, s.value),
+        ];
+        expect(strategies, [('Social', 1.0), ('Faith', 4.0)]);
+        final faith = [
+          for (final s in actionSlices(days, 'Faith')) (s.label, s.value),
+        ];
+        expect(faith, [('Prayer', 3.0), ('Meditation', 1.0)]);
+        // Prayer under Social stays with Social.
+        expect(
+          [for (final s in actionSlices(days, 'Social')) (s.label, s.value)],
+          [('Prayer', 1.0)],
+        );
+      },
+    );
 
     test(
       'stressors: picks plus written answers, merged, once per check-in',
