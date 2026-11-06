@@ -81,7 +81,9 @@ class _Exercises implements ExerciseRepository {
 
 /// A voice download the test finishes by hand ([gate]), with no files.
 class _SlowVoice extends VoiceDownloads {
-  final gate = Completer<bool>();
+  // Made on first use, inside the test's fake time. One made in setUp
+  // lives in real time, and finishing it never reaches the widgets.
+  late final gate = Completer<bool>();
   bool got = false;
   int started = 0;
   void Function(double done)? progress;
