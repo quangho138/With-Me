@@ -66,10 +66,16 @@ class AudioClipPlayer implements ClipPlayer {
       await player.setReleaseMode(ReleaseMode.stop);
       // App volume (Settings) on top of the recording's own level.
       await player.setVolume(AppFeel.instance.loud(1));
-      // A long session's line downloaded to the phone, or one in the app.
-      final downloaded = VoiceDownloads.instance.fileFor(asset);
+      // A long session's line: from the internet in a browser, or
+      // downloaded to the phone; otherwise one in the app.
+      final voice = VoiceDownloads.instance;
+      final downloaded = voice.fileFor(asset);
       await player.play(
-        downloaded != null ? DeviceFileSource(downloaded) : AssetSource(asset),
+        voice.streams(asset)
+            ? UrlSource(VoiceDownloads.urlFor(asset))
+            : downloaded != null
+            ? DeviceFileSource(downloaded)
+            : AssetSource(asset),
       );
       return true;
     } catch (_) {

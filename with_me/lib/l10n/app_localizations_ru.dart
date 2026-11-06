@@ -2732,6 +2732,10 @@ class AppLocalizationsRu extends AppLocalizations {
       'Записанный голос этой сессии загружается в первый раз. Это нужно только один раз: потом сессия начнётся сразу и будет работать без интернета.';
 
   @override
+  String get prepVoiceOnline =>
+      'В браузере голос воспроизводится из интернета.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Продолжить с шага «$step»';
   }

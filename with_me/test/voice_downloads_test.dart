@@ -112,6 +112,33 @@ void main() {
     expect(asked, isEmpty);
   });
 
+  test('in a browser: nothing is downloaded; long sessions play straight '
+      'from Storage, the rest from the app', () {
+    final web = VoiceDownloads.instance = VoiceDownloads(
+      browser: true,
+      fetch: (uri) async => throw StateError('no download in a browser'),
+    );
+    expect(web.missing(GuidedScripts.calmAtHome, en), isEmpty);
+    expect(web.streamsSession(GuidedScripts.calmAtHome, en), isTrue);
+    expect(web.streamsSession(GuidedScripts.anxietySos, en), isFalse);
+    expect(
+      web.streamsSession(GuidedScripts.calmAtHome, const Locale('hi')),
+      isFalse,
+      reason: 'Hindi is not recorded',
+    );
+    final line = GuidedScripts.calmAtHome.clip(1);
+    final recording = SpeechService.recordingFor(line, en);
+    expect(recording, startsWith('audio/voice/en/meditate/'));
+    expect(web.streams(recording!), isTrue);
+    expect(
+      VoiceDownloads.urlFor(recording),
+      'https://mgahvsbczqcihatdrbyj.supabase.co/storage/v1/object/public/'
+      'voice/${recording.substring('audio/'.length)}',
+    );
+    // On a phone the same line is not played from the internet.
+    expect(make().streams(recording), isFalse);
+  });
+
   test('offline: nothing is kept, and the phone reads the lines', () async {
     final voice = VoiceDownloads.instance = make(fail: true);
     final missing = voice.missing(GuidedScripts.calmAtHome, en);

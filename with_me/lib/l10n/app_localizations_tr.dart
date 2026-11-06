@@ -2673,6 +2673,9 @@ class AppLocalizationsTr extends AppLocalizations {
       'Bu oturumun kayıtlı sesi ilk kez indiriliyor. Bu yalnızca bir kez olur: bundan sonra oturum hemen başlar ve çevrimdışı çalışır.';
 
   @override
+  String get prepVoiceOnline => 'Tarayıcıda ses internetten çalınır.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" adımından devam et';
   }

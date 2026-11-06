@@ -2549,6 +2549,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get prepVoiceWaitBody => '正在首次下载本次练习的录音语音。只需下载一次：之后练习会立即开始，并可离线使用。';
 
   @override
+  String get prepVoiceOnline => '在浏览器中，语音从网络播放。';
+
+  @override
   String playerResumeFrom(String step) {
     return '从“$step”继续';
   }
@@ -9046,6 +9049,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get prepVoiceWaitBody => '正在首次下載本次練習的錄音語音。只需下載一次：之後練習會立即開始，並可離線使用。';
+
+  @override
+  String get prepVoiceOnline => '在瀏覽器中，語音從網路播放。';
 
   @override
   String playerResumeFrom(String step) {

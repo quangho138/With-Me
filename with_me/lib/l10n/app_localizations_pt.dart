@@ -2705,6 +2705,9 @@ class AppLocalizationsPt extends AppLocalizations {
       'A voz gravada desta sessão está sendo baixada pela primeira vez. Isso só acontece uma vez: depois, a sessão começa na hora e funciona offline.';
 
   @override
+  String get prepVoiceOnline => 'No navegador, a voz toca pela internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Retomar de $step';
   }

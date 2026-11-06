@@ -735,6 +735,7 @@
   "prepVoiceOnce": "Suara diunduh sekali saat Anda mulai (sekitar 2 MB), lalu bisa dipakai offline.",
   "prepVoiceWaitTitle": "Menyiapkan suara",
   "prepVoiceWaitBody": "Suara rekaman sesi ini sedang diunduh untuk pertama kalinya. Ini hanya sekali: setelah ini, sesi langsung dimulai dan bisa dipakai offline.",
+  "prepVoiceOnline": "Di browser, suara diputar dari internet.",
   "playerResumeFrom": "Lanjutkan dari \"{step}\"",
   "playerCaptionsOn": "Teks aktif",
   "playerCaptionsOff": "Teks nonaktif",

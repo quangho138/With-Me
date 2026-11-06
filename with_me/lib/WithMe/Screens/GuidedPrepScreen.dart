@@ -195,9 +195,14 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
     );
   }
 
-  /// The voice line: "Works offline" when the voice is on the phone, the
-  /// download with a bar while it runs, else "downloads once".
+  /// The voice line: in a browser, that it plays from the internet;
+  /// "Works offline" when the voice is on the phone, the download with a
+  /// bar while it runs, else "downloads once".
   Widget _voiceFact(AppLocalizations l, GuidedScript script) {
+    final locale = Localizations.localeOf(context);
+    if (VoiceDownloads.instance.streamsSession(script, locale)) {
+      return _Fact(Icons.wifi_rounded, l.prepVoiceOnline);
+    }
     final needed = VoiceDownloads.instance
         .missing(script, Localizations.localeOf(context))
         .isNotEmpty;

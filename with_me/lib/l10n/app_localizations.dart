@@ -4553,6 +4553,12 @@ abstract class AppLocalizations {
   /// **'This session\'s recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.'**
   String get prepVoiceWaitBody;
 
+  /// On a long session's start page in the web version: the recorded voice is played from the internet, not downloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'In the browser, the voice plays from the internet.'**
+  String get prepVoiceOnline;
+
   /// After an interruption: start again at the beginning of the step.
   ///
   /// In en, this message translates to:

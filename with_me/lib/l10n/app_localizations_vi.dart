@@ -2678,6 +2678,10 @@ class AppLocalizationsVi extends AppLocalizations {
       'Giọng đã ghi âm của buổi này đang được tải lần đầu. Việc này chỉ diễn ra một lần: sau đó buổi tập sẽ bắt đầu ngay và dùng được khi không có mạng.';
 
   @override
+  String get prepVoiceOnline =>
+      'Trên trình duyệt, giọng nói được phát từ internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Tiếp tục từ \"$step\"';
   }

@@ -243,7 +243,14 @@ class SpeechService {
   }) {
     final recording = recordingFor(clip, locale);
     return recording != null
-        ? play(recording, owner: owner)
+        ? play(
+            recording,
+            owner: owner,
+            // If it cannot play (a browser offline), the device's voice
+            // reads the line instead of leaving it silent.
+            instead: text,
+            locale: locale.toLanguageTag(),
+          )
         : speak(text, owner: owner, locale: locale.toLanguageTag());
   }
 
@@ -265,7 +272,9 @@ class SpeechService {
       'audio/voice/${locale.languageCode}/',
     );
     if (!kMouthTimelines.containsKey(generated)) return null;
-    return isInApp(generated) || VoiceDownloads.instance.has(generated)
+    return isInApp(generated) ||
+            VoiceDownloads.instance.has(generated) ||
+            VoiceDownloads.instance.streams(generated)
         ? generated
         : null;
   }
@@ -316,6 +325,12 @@ class SpeechService {
     final id = ++_count;
     _current = id;
     _owner = owner;
+    _speakAs(id, spoken, locale);
+    return id;
+  }
+
+  /// The device's voice reads [spoken] as utterance [id].
+  void _speakAs(int id, String spoken, [String? locale]) {
     _playingClip = false;
     playback.value = SpeechPlayback(SpeechStatus.starting, id);
 
@@ -324,7 +339,6 @@ class SpeechService {
     final current = style.value;
     final parts = current.pause > 0 ? sentences(spoken) : [spoken];
     _part(id, parts, 0, current, locale);
-    return id;
   }
 
   /// Speaks [parts] from [index] on, as utterance [id]. Stops quietly once
@@ -376,7 +390,14 @@ class SpeechService {
   /// for [owner], exactly like [speak]: only with Read aloud on, stopping
   /// anything already playing, reported through [playback], and stopped by
   /// [stop]. Returns the utterance's id, or null when nothing will play.
-  int? play(String asset, {required Object owner}) {
+  /// If the recording cannot play and [instead] is given, the device's
+  /// voice reads [instead] as the same utterance.
+  int? play(
+    String asset, {
+    required Object owner,
+    String? instead,
+    String? locale,
+  }) {
     if (!_loaded || !enabled.value) return null;
     if (_current != null) _halt();
 
@@ -385,6 +406,14 @@ class SpeechService {
     _owner = owner;
     _playingClip = true;
     playback.value = SpeechPlayback(SpeechStatus.starting, id);
+
+    void failed() {
+      if (_current != id) return;
+      final text = instead?.replaceAll(RegExp(r'\s+'), ' ').trim() ?? '';
+      if (text.isEmpty) return _end(id);
+      _speakAs(id, text, locale);
+    }
+
     _player
         .play(
           asset,
@@ -395,15 +424,15 @@ class SpeechService {
               }
             },
             onDone: () => _end(id),
-            onError: (_) => _end(id),
+            onError: (_) => failed(),
           ),
         )
         .then((started) {
           if (!started) {
             debugPrint('The recording did not play.');
-            _end(id);
+            failed();
           }
-        }, onError: (Object _) => _end(id));
+        }, onError: (Object _) => failed());
     return id;
   }
 

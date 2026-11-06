@@ -2711,6 +2711,9 @@ class AppLocalizationsFil extends AppLocalizations {
       'Unang beses na dina-download ang naka-record na boses ng session na ito. Minsan lang ito: pagkatapos, agad nang magsisimula ang session at gagana kahit offline.';
 
   @override
+  String get prepVoiceOnline => 'Sa browser, galing sa internet ang boses.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Ituloy mula sa \"$step\"';
   }

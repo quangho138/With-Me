@@ -2680,6 +2680,9 @@ class AppLocalizationsHi extends AppLocalizations {
       'इस सत्र की रिकॉर्ड की गई आवाज़ पहली बार डाउनलोड हो रही है। यह सिर्फ़ एक बार होता है: इसके बाद सत्र तुरंत शुरू होगा और ऑफ़लाइन चलेगा।';
 
   @override
+  String get prepVoiceOnline => 'ब्राउज़र में आवाज़ इंटरनेट से चलती है।';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" से फिर शुरू करें';
   }

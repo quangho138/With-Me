@@ -2733,6 +2733,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يُنزَّل الصوت المسجّل لهذه الجلسة لأول مرة. يحدث هذا مرة واحدة فقط: بعدها تبدأ الجلسة فورًا وتعمل دون إنترنت.';
 
   @override
+  String get prepVoiceOnline => 'في المتصفح، يُشغَّل الصوت من الإنترنت.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'المتابعة من «$step»';
   }

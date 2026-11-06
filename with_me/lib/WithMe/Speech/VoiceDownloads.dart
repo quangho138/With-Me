@@ -19,13 +19,20 @@ import 'SpeechService.dart';
 /// were put there by tool/upload_voice.py. Each session is downloaded once
 /// (about 2 MB) and kept on the phone, so it then plays offline.
 ///
+/// In the browser nothing can be saved, so each line plays straight from
+/// Storage instead ([streams]); that needs internet every time.
+///
 /// Nothing personal is sent or kept: the files are the same for everyone.
-/// Without internet, on the web, or in a language with no recordings
-/// (Hindi), the phone's voice reads the session instead.
+/// Without internet, or in a language with no recordings (Hindi), the
+/// phone's voice reads the session instead.
 class VoiceDownloads {
-  VoiceDownloads({Fetch? fetch, Future<Directory> Function()? folder})
-    : _fetch = fetch ?? _httpGet,
-      _folder = folder ?? getApplicationSupportDirectory;
+  VoiceDownloads({
+    Fetch? fetch,
+    Future<Directory> Function()? folder,
+    bool? browser,
+  }) : _fetch = fetch ?? _httpGet,
+       _folder = folder ?? getApplicationSupportDirectory,
+       _browser = browser ?? kIsWeb;
 
   static VoiceDownloads instance = VoiceDownloads();
 
@@ -40,12 +47,15 @@ class VoiceDownloads {
 
   final Fetch _fetch;
   final Future<Directory> Function() _folder;
+
+  /// Running in a browser (a test can say so).
+  final bool _browser;
   String? _root;
   final Set<String> _kept = {};
 
   /// Reads which recordings are already on the phone. Call once at start.
   Future<void> load() async {
-    if (kIsWeb) return;
+    if (_browser) return;
     try {
       final root = _root = (await _folder()).path;
       final voice = Directory(p.join(root, 'voice'));
@@ -76,7 +86,7 @@ class VoiceDownloads {
   /// The recordings [script] still needs in [locale]: lines that were
   /// recorded but are neither in the app nor downloaded yet.
   List<String> missing(GuidedScript script, Locale locale) {
-    if (kIsWeb || !languages.contains(locale.languageCode)) return const [];
+    if (_browser || !languages.contains(locale.languageCode)) return const [];
     final lines = script.steps
         .expand((step) => step.beats)
         .whereType<Say>()
@@ -87,6 +97,28 @@ class VoiceDownloads {
           if (!SpeechService.isInApp(recording) && !has(recording)) recording,
     ];
   }
+
+  /// Whether [recording] plays straight from Storage: in the browser, a
+  /// long session's line in an uploaded language that is not in the app.
+  bool streams(String recording) {
+    if (!_browser || SpeechService.isInApp(recording)) return false;
+    final parts = recording.split('/');
+    return parts.length > 5 &&
+        parts[1] == 'voice' &&
+        languages.contains(parts[2]) &&
+        parts[3] == 'meditate' &&
+        parts[4] != 'sos';
+  }
+
+  /// Whether [script] plays its voice straight from Storage in [locale].
+  bool streamsSession(GuidedScript script, Locale locale) {
+    final first = _recording(script.clip(1), locale);
+    return first != null && streams(first);
+  }
+
+  /// Where [recording] is online.
+  static String urlFor(String recording) =>
+      _url(recording.substring('audio/'.length)).toString();
 
   static String? _recording(String clip, Locale locale) {
     final recording = clip.replaceFirst(

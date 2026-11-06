@@ -3538,6 +3538,10 @@
   "@prepVoiceWaitBody": {
     "description": "Text of that popup, above the progress bar: why there is a wait."
   },
+  "prepVoiceOnline": "In the browser, the voice plays from the internet.",
+  "@prepVoiceOnline": {
+    "description": "On a long session's start page in the web version: the recorded voice is played from the internet, not downloaded."
+  },
   "playerResumeFrom": "Resume from {step}",
   "@playerResumeFrom": {
     "description": "After an interruption: start again at the beginning of the step.",

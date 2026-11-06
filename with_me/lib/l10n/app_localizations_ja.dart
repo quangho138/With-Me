@@ -2570,6 +2570,9 @@ class AppLocalizationsJa extends AppLocalizations {
       'このセッションの録音音声を初めてダウンロードしています。これは一度だけです。次回からはすぐに始まり、オフラインでも使えます。';
 
   @override
+  String get prepVoiceOnline => 'ブラウザでは、音声はインターネットから再生されます。';
+
+  @override
   String playerResumeFrom(String step) {
     return '「$step」から再開';
   }

@@ -2571,6 +2571,9 @@ class AppLocalizationsKo extends AppLocalizations {
       '이 세션의 녹음된 음성을 처음으로 내려받고 있어요. 한 번만 하면 돼요. 다음부터는 바로 시작되고 오프라인에서도 쓸 수 있어요.';
 
   @override
+  String get prepVoiceOnline => '브라우저에서는 음성이 인터넷으로 재생돼요.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\'$step\'부터 다시 시작';
   }

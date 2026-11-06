@@ -2697,6 +2697,10 @@ class AppLocalizationsSw extends AppLocalizations {
       'Sauti iliyorekodiwa ya kipindi hiki inapakuliwa kwa mara ya kwanza. Hii hutokea mara moja tu: baada ya hapo, kipindi kitaanza mara moja na kufanya kazi bila intaneti.';
 
   @override
+  String get prepVoiceOnline =>
+      'Kwenye kivinjari, sauti inachezwa kutoka intaneti.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Endelea kutoka \"$step\"';
   }

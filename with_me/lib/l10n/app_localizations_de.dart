@@ -2720,6 +2720,9 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die aufgenommene Stimme dieser Sitzung wird zum ersten Mal geladen. Das passiert nur einmal: Danach startet die Sitzung sofort und geht auch offline.';
 
   @override
+  String get prepVoiceOnline => 'Im Browser kommt die Stimme aus dem Internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Weiter ab „$step“';
   }

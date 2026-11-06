@@ -735,6 +735,7 @@
   "prepVoiceOnce": "La voz se descarga una vez al empezar (unos 2 MB) y después funciona sin conexión.",
   "prepVoiceWaitTitle": "Preparando la voz",
   "prepVoiceWaitBody": "La voz grabada de esta sesión se está descargando por primera vez. Solo pasa una vez: después, la sesión empieza enseguida y funciona sin conexión.",
+  "prepVoiceOnline": "En el navegador, la voz se reproduce desde internet.",
   "playerResumeFrom": "Reanudar desde {step}",
   "playerCaptionsOn": "Subtítulos activados",
   "playerCaptionsOff": "Subtítulos desactivados",

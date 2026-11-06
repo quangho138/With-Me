@@ -735,6 +735,7 @@
   "prepVoiceOnce": "開始時會下載一次語音（約 2 MB），之後可離線使用。",
   "prepVoiceWaitTitle": "正在準備語音",
   "prepVoiceWaitBody": "正在首次下載本次練習的錄音語音。只需下載一次：之後練習會立即開始，並可離線使用。",
+  "prepVoiceOnline": "在瀏覽器中，語音從網路播放。",
   "playerResumeFrom": "從“{step}”繼續",
   "playerCaptionsOn": "字幕已開啟",
   "playerCaptionsOff": "字幕已關閉",

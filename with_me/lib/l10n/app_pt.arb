@@ -735,6 +735,7 @@
   "prepVoiceOnce": "A voz é baixada uma vez quando você começa (cerca de 2 MB) e depois funciona offline.",
   "prepVoiceWaitTitle": "Preparando a voz",
   "prepVoiceWaitBody": "A voz gravada desta sessão está sendo baixada pela primeira vez. Isso só acontece uma vez: depois, a sessão começa na hora e funciona offline.",
+  "prepVoiceOnline": "No navegador, a voz toca pela internet.",
   "playerResumeFrom": "Retomar de {step}",
   "playerCaptionsOn": "Legendas ativadas",
   "playerCaptionsOff": "Legendas desativadas",

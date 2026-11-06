@@ -2705,6 +2705,10 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఈ సెషన్ రికార్డ్ చేసిన వాయిస్ మొదటిసారి డౌన్‌లోడ్ అవుతోంది. ఇది ఒక్కసారే: ఆ తర్వాత సెషన్ వెంటనే మొదలవుతుంది, ఆఫ్‌లైన్‌లోనూ పనిచేస్తుంది.';
 
   @override
+  String get prepVoiceOnline =>
+      'బ్రౌజర్‌లో వాయిస్ ఇంటర్నెట్ నుంచి ప్లే అవుతుంది.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" నుండి కొనసాగించండి';
   }

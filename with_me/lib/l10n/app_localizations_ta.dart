@@ -2734,6 +2734,9 @@ class AppLocalizationsTa extends AppLocalizations {
       'இந்த அமர்வின் பதிவுசெய்த குரல் முதல் முறையாகப் பதிவிறக்கப்படுகிறது. இது ஒருமுறை மட்டுமே: அதன்பிறகு அமர்வு உடனே தொடங்கும், இணையம் இல்லாமலும் செயல்படும்.';
 
   @override
+  String get prepVoiceOnline => 'உலாவியில், குரல் இணையத்திலிருந்து ஒலிக்கும்.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\"-இலிருந்து தொடருங்கள்';
   }

@@ -2677,6 +2677,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'This session\'s recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.';
 
   @override
+  String get prepVoiceOnline =>
+      'In the browser, the voice plays from the internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Resume from $step';
   }

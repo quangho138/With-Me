@@ -735,6 +735,7 @@
   "prepVoiceOnce": "Sauti inapakuliwa mara moja unapoanza (takriban MB 2), kisha inafanya kazi bila intaneti.",
   "prepVoiceWaitTitle": "Inaandaa sauti",
   "prepVoiceWaitBody": "Sauti iliyorekodiwa ya kipindi hiki inapakuliwa kwa mara ya kwanza. Hii hutokea mara moja tu: baada ya hapo, kipindi kitaanza mara moja na kufanya kazi bila intaneti.",
+  "prepVoiceOnline": "Kwenye kivinjari, sauti inachezwa kutoka intaneti.",
   "playerResumeFrom": "Endelea kutoka \"{step}\"",
   "playerCaptionsOn": "Manukuu yamewashwa",
   "playerCaptionsOff": "Manukuu yamezimwa",

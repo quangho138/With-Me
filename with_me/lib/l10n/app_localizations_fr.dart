@@ -2716,6 +2716,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'La voix enregistrée de cette séance se télécharge pour la première fois. Cela n\'arrive qu\'une fois : ensuite, la séance démarre tout de suite et fonctionne hors ligne.';
 
   @override
+  String get prepVoiceOnline =>
+      'Dans le navigateur, la voix est lue depuis Internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Reprendre à « $step »';
   }

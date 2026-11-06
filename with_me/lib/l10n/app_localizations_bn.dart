@@ -2674,6 +2674,9 @@ class AppLocalizationsBn extends AppLocalizations {
       'এই সেশনের রেকর্ড করা কণ্ঠ প্রথমবার ডাউনলোড হচ্ছে। এটি শুধু একবারই হয়: এরপর সেশন সঙ্গে সঙ্গে শুরু হবে এবং ইন্টারনেট ছাড়াই চলবে।';
 
   @override
+  String get prepVoiceOnline => 'ব্রাউজারে কণ্ঠটি ইন্টারনেট থেকে চলে।';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" থেকে আবার শুরু';
   }
