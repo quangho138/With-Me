@@ -333,6 +333,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get menuLogOut => 'Выйти';
 
   @override
+  String get menuKeepData => 'Сохранить данные в аккаунте';
+
+  @override
+  String get keepDataBody =>
+      'Ваши отметки, дневник и бесплатные попытки останутся с вами. Выберите, как войти.';
+
+  @override
+  String get keepDataUseEmail => 'Зарегистрироваться по почте';
+
+  @override
+  String get keepDataLogIn => 'У меня уже есть аккаунт';
+
+  @override
   String get menuLogOutFailed => 'Не удалось выйти. Попробуй ещё раз.';
 
   @override

@@ -320,6 +320,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get menuLogOut => '退出登录';
 
   @override
+  String get menuKeepData => '把数据保存到账户';
+
+  @override
+  String get keepDataBody => '你的打卡记录、日记和免费试用都会保留。请选择登录方式。';
+
+  @override
+  String get keepDataUseEmail => '用邮箱注册';
+
+  @override
+  String get keepDataLogIn => '我已有账户';
+
+  @override
   String get menuLogOutFailed => '无法退出登录。请再试一次。';
 
   @override
@@ -6949,6 +6961,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get menuLogOut => '登出';
+
+  @override
+  String get menuKeepData => '把資料保存到帳戶';
+
+  @override
+  String get keepDataBody => '你的打卡紀錄、日記和免費試用都會保留。請選擇登入方式。';
+
+  @override
+  String get keepDataUseEmail => '用電子郵件註冊';
+
+  @override
+  String get keepDataLogIn => '我已有帳戶';
 
   @override
   String get menuLogOutFailed => '無法登出。請再試一次。';

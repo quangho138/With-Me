@@ -333,6 +333,19 @@ class AppLocalizationsTa extends AppLocalizations {
   String get menuLogOut => 'வெளியேறு';
 
   @override
+  String get menuKeepData => 'உங்கள் தரவை ஒரு கணக்கில் வைத்திருங்கள்';
+
+  @override
+  String get keepDataBody =>
+      'உங்கள் செக்-இன்கள், நாட்குறிப்பு மற்றும் இலவச முயற்சிகள் உங்களுடனே இருக்கும். எப்படி உள்நுழைவது என்பதைத் தேர்ந்தெடுக்கவும்.';
+
+  @override
+  String get keepDataUseEmail => 'மின்னஞ்சல் மூலம் பதிவு செய்க';
+
+  @override
+  String get keepDataLogIn => 'எனக்கு ஏற்கனவே கணக்கு உள்ளது';
+
+  @override
   String get menuLogOutFailed => 'வெளியேற முடியவில்லை. மீண்டும் முயலவும்.';
 
   @override

@@ -8,8 +8,8 @@ import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Theme/WithMeTheme.dart';
 import 'AboutScreen.dart';
-import 'CreateAccountScreen.dart';
 import 'HelpScreen.dart';
+import 'KeepDataScreen.dart';
 import 'MembershipScreen.dart';
 import 'NotificationsScreen.dart';
 import 'ProfileScreen.dart';
@@ -205,12 +205,14 @@ class _AccountRowState extends State<_AccountRow> {
   @override
   Widget build(BuildContext context) {
     if (_guest) {
+      // A guest already has data here: link it to a way to sign in
+      // rather than "create" something new (Quang, 7 Nov 2026).
       return ScenicRow(
-        label: context.l10n.accountCreateAnAccount,
+        label: context.l10n.menuKeepData,
         icon: Icons.person_add_rounded,
         onTap: () => Navigator.of(
           context,
-        ).push(MaterialPageRoute(builder: (_) => const CreateAccountScreen())),
+        ).push(MaterialPageRoute(builder: (_) => const KeepDataScreen())),
       );
     }
     return ScenicRow(

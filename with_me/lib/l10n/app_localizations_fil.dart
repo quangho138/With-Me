@@ -333,6 +333,19 @@ class AppLocalizationsFil extends AppLocalizations {
   String get menuLogOut => 'Mag-log out';
 
   @override
+  String get menuKeepData => 'Itabi ang iyong data sa isang account';
+
+  @override
+  String get keepDataBody =>
+      'Mananatili sa iyo ang iyong mga check-in, journal at libreng subok. Piliin kung paano ka magsa-sign in.';
+
+  @override
+  String get keepDataUseEmail => 'Mag-sign up gamit ang email';
+
+  @override
+  String get keepDataLogIn => 'May account na ako';
+
+  @override
   String get menuLogOutFailed => 'Hindi ka na-log out. Subukan ulit.';
 
   @override

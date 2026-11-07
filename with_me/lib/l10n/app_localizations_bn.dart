@@ -332,6 +332,19 @@ class AppLocalizationsBn extends AppLocalizations {
   String get menuLogOut => 'লগ আউট';
 
   @override
+  String get menuKeepData => 'আপনার তথ্য একটি অ্যাকাউন্টে রাখুন';
+
+  @override
+  String get keepDataBody =>
+      'আপনার চেক-ইন, জার্নাল আর ফ্রি ট্রাই আপনার সাথেই থাকবে। কীভাবে সাইন ইন করবেন তা বেছে নিন।';
+
+  @override
+  String get keepDataUseEmail => 'ইমেল দিয়ে সাইন আপ করুন';
+
+  @override
+  String get keepDataLogIn => 'আমার আগে থেকেই অ্যাকাউন্ট আছে';
+
+  @override
   String get menuLogOutFailed => 'লগ আউট করা যায়নি। আবার চেষ্টা করুন।';
 
   @override

@@ -332,6 +332,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get menuLogOut => 'लॉग आउट';
 
   @override
+  String get menuKeepData => 'अपना डेटा एक खाते में रखें';
+
+  @override
+  String get keepDataBody =>
+      'आपकी चेक-इन, जर्नल और मुफ़्त ट्राई आपके साथ रहेंगे। चुनें कि आप कैसे साइन इन करना चाहते हैं।';
+
+  @override
+  String get keepDataUseEmail => 'ईमेल से साइन अप करें';
+
+  @override
+  String get keepDataLogIn => 'मेरा खाता पहले से है';
+
+  @override
   String get menuLogOutFailed => 'लॉग आउट नहीं हो सका। फिर से कोशिश करें।';
 
   @override

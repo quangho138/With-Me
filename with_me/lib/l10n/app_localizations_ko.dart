@@ -324,6 +324,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get menuLogOut => '로그아웃';
 
   @override
+  String get menuKeepData => '데이터를 계정에 보관하기';
+
+  @override
+  String get keepDataBody => '체크인, 일기, 무료 체험 기록이 그대로 남아요. 로그인 방법을 골라 주세요.';
+
+  @override
+  String get keepDataUseEmail => '이메일로 가입하기';
+
+  @override
+  String get keepDataLogIn => '이미 계정이 있어요';
+
+  @override
   String get menuLogOutFailed => '로그아웃하지 못했어요. 다시 시도해 주세요.';
 
   @override

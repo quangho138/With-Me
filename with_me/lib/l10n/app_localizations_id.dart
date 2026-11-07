@@ -332,6 +332,19 @@ class AppLocalizationsId extends AppLocalizations {
   String get menuLogOut => 'Keluar';
 
   @override
+  String get menuKeepData => 'Simpan datamu di akun';
+
+  @override
+  String get keepDataBody =>
+      'Check-in, jurnal, dan percobaan gratismu tetap tersimpan. Pilih cara masuk.';
+
+  @override
+  String get keepDataUseEmail => 'Daftar dengan email';
+
+  @override
+  String get keepDataLogIn => 'Saya sudah punya akun';
+
+  @override
   String get menuLogOutFailed => 'Tidak bisa keluar. Coba lagi.';
 
   @override

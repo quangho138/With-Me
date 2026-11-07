@@ -334,6 +334,19 @@ class AppLocalizationsSw extends AppLocalizations {
   String get menuLogOut => 'Toka';
 
   @override
+  String get menuKeepData => 'Hifadhi data yako kwenye akaunti';
+
+  @override
+  String get keepDataBody =>
+      'Rekodi zako, shajara na majaribio ya bure yatabaki nawe. Chagua jinsi ya kuingia.';
+
+  @override
+  String get keepDataUseEmail => 'Jisajili kwa barua pepe';
+
+  @override
+  String get keepDataLogIn => 'Tayari nina akaunti';
+
+  @override
   String get menuLogOutFailed => 'Imeshindikana kutoka. Jaribu tena.';
 
   @override

@@ -331,6 +331,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get menuLogOut => 'Log out';
 
   @override
+  String get menuKeepData => 'Keep your data in an account';
+
+  @override
+  String get keepDataBody =>
+      'Your check-ins, journal and free tries stay with you. Choose how you want to sign in.';
+
+  @override
+  String get keepDataUseEmail => 'Sign up with email';
+
+  @override
+  String get keepDataLogIn => 'I already have an account';
+
+  @override
   String get menuLogOutFailed => 'Couldn\'t log out. Try again.';
 
   @override
