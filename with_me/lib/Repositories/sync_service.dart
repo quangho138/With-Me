@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../Database/LocalDatabase.dart';
 import 'check_in_repository.dart';
+import 'free_tries.dart';
 import 'journal_prompts.dart';
 import 'online_auth.dart';
 import 'reflection_repository.dart';
@@ -55,6 +56,13 @@ abstract class OnlineStore {
 
   /// True when the account has any journal entry online.
   Future<bool> hasJournal();
+
+  /// Saves used free tries (exercise, used_at); a try already online is
+  /// kept as it is.
+  Future<void> uploadFreeTries(List<Map<String, Object?>> tries);
+
+  /// The exercises whose free try the account has used.
+  Future<List<String>> freeTries();
 }
 
 /// The real one: the Supabase tables and functions in supabase/migrations.
@@ -117,6 +125,16 @@ class SupabaseOnlineStore implements OnlineStore {
   @override
   Future<bool> hasJournal() async =>
       (await _db.from('journal_entries').select('day').limit(1)).isNotEmpty;
+
+  @override
+  Future<void> uploadFreeTries(List<Map<String, Object?>> tries) =>
+      _db.rpc<void>('upload_free_tries', params: {'tries': tries});
+
+  @override
+  Future<List<String>> freeTries() async => [
+    for (final row in await _db.from('free_tries').select('exercise'))
+      row['exercise'] as String,
+  ];
 }
 
 /// What recent syncs did, for the line in Settings: when the phone last
@@ -259,10 +277,12 @@ class SyncService {
       await _uploadJournal();
       await _uploadExercises();
       await _uploadName();
+      await _uploadFreeTries();
       final daysChanged = await _downloadDays();
       final journalChanged = await _downloadJournal();
       final exercisesChanged = await _downloadExercises();
       await _downloadName();
+      await _downloadFreeTries();
       // Let open screens (the dashboard) reload what arrived.
       if (daysChanged || journalChanged || exercisesChanged) {
         CheckInRepository.saves.value++;
@@ -293,6 +313,7 @@ class SyncService {
     return days.isNotEmpty ||
         journal.isNotEmpty ||
         exercises.isNotEmpty ||
+        (await _pendingFreeTries(db)).isNotEmpty ||
         await _state(db, 'name_pending') == '1';
   }
 
@@ -331,6 +352,68 @@ class SyncService {
       }
     });
     CheckInRepository.saves.value++;
+  }
+
+  // --- Free tries ------------------------------------------------------
+
+  /// The marks of used tries still to upload, as app_settings rows.
+  static Future<List<Map<String, Object?>>> _pendingFreeTries(
+    DatabaseExecutor db,
+  ) => db.query(
+    'app_settings',
+    where:
+        'key IN (${List.filled(FreeTries.exercises.length, '?').join(', ')})',
+    whereArgs: [for (final e in FreeTries.exercises) FreeTries.pendingKey(e)],
+  );
+
+  /// Uploads the tries used on this phone (as a guest too: they move into
+  /// the account), then removes their marks.
+  Future<void> _uploadFreeTries() async {
+    final db = await _open();
+    final marks = await _pendingFreeTries(db);
+    if (marks.isEmpty) return;
+    final tries = [
+      for (final exercise in FreeTries.exercises)
+        for (final mark in marks)
+          if (mark['key'] == FreeTries.pendingKey(exercise))
+            {'exercise': exercise, 'used_at': mark['value']},
+    ];
+    await _online.uploadFreeTries(tries);
+    for (final mark in marks) {
+      await db.delete(
+        'app_settings',
+        where: 'key = ? AND value = ?',
+        whereArgs: [mark['key'], mark['value']],
+      );
+    }
+  }
+
+  /// Marks every try the account has used as used on this phone too, for
+  /// example after a reinstall or on a second phone.
+  Future<void> _downloadFreeTries() async {
+    final used = await _online.freeTries();
+    final db = await _open();
+    var changed = false;
+    for (final exercise in used) {
+      if (!FreeTries.exercises.contains(exercise)) continue;
+      final key = FreeTries.usedKey(exercise);
+      final rows = await db.query(
+        'app_settings',
+        where: 'key = ?',
+        whereArgs: [key],
+        limit: 1,
+      );
+      final here = rows.isEmpty
+          ? 0
+          : int.tryParse(rows.first['value'] as String? ?? '') ?? 0;
+      if (here >= 1) continue;
+      await db.insert('app_settings', {
+        'key': key,
+        'value': '1',
+      }, conflictAlgorithm: ConflictAlgorithm.replace);
+      changed = true;
+    }
+    if (changed) FreeTries.changes.value++;
   }
 
   // --- Upload ---------------------------------------------------------
