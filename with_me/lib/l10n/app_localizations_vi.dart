@@ -332,6 +332,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get menuLogOut => 'Đăng xuất';
 
   @override
+  String get menuKeepData => 'Lưu dữ liệu vào tài khoản';
+
+  @override
+  String get keepDataBody =>
+      'Các lần ghi nhận, nhật ký và lượt dùng thử miễn phí vẫn được giữ lại. Hãy chọn cách bạn muốn đăng nhập.';
+
+  @override
+  String get keepDataUseEmail => 'Đăng ký bằng email';
+
+  @override
+  String get keepDataLogIn => 'Tôi đã có tài khoản';
+
+  @override
   String get menuLogOutFailed => 'Không thể đăng xuất. Hãy thử lại.';
 
   @override

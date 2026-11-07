@@ -333,6 +333,19 @@ class AppLocalizationsUr extends AppLocalizations {
   String get menuLogOut => 'لاگ آؤٹ';
 
   @override
+  String get menuKeepData => 'اپنا ڈیٹا ایک اکاؤنٹ میں رکھیں';
+
+  @override
+  String get keepDataBody =>
+      'آپ کی چیک اِن، جرنل اور مفت آزمائشیں آپ کے ساتھ رہیں گی۔ منتخب کریں کہ آپ کیسے سائن اِن کرنا چاہتے ہیں۔';
+
+  @override
+  String get keepDataUseEmail => 'ای میل سے سائن اپ کریں';
+
+  @override
+  String get keepDataLogIn => 'میرا اکاؤنٹ پہلے سے ہے';
+
+  @override
   String get menuLogOutFailed => 'لاگ آؤٹ نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 
   @override

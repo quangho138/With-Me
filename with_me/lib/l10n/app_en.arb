@@ -477,6 +477,22 @@
   "@menuLogOut": {
     "description": "Menu row that signs the person out. Their data stays on the phone."
   },
+  "menuKeepData": "Keep your data in an account",
+  "@menuKeepData": {
+    "description": "Menu row for a guest, and the title of the page it opens: link the data already on this phone to a way to sign in."
+  },
+  "keepDataBody": "Your check-ins, journal and free tries stay with you. Choose how you want to sign in.",
+  "@keepDataBody": {
+    "description": "Line on the Keep your data page: the guest's data comes along whichever way they sign in."
+  },
+  "keepDataUseEmail": "Sign up with email",
+  "@keepDataUseEmail": {
+    "description": "Button on the Keep your data page: make a new account with an email and password."
+  },
+  "keepDataLogIn": "I already have an account",
+  "@keepDataLogIn": {
+    "description": "Button on the Keep your data page: log in to an account the person already has."
+  },
   "menuLogOutFailed": "Couldn't log out. Try again.",
   "@menuLogOutFailed": {
     "description": "Error when signing out failed."

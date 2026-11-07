@@ -333,6 +333,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get menuLogOut => 'Se déconnecter';
 
   @override
+  String get menuKeepData => 'Garder tes données dans un compte';
+
+  @override
+  String get keepDataBody =>
+      'Tes bilans, ton journal et tes essais gratuits restent avec toi. Choisis comment te connecter.';
+
+  @override
+  String get keepDataUseEmail => 'M\'inscrire avec un e-mail';
+
+  @override
+  String get keepDataLogIn => 'J\'ai déjà un compte';
+
+  @override
   String get menuLogOutFailed => 'Impossible de se déconnecter. Réessaie.';
 
   @override

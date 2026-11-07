@@ -695,6 +695,30 @@ abstract class AppLocalizations {
   /// **'Log out'**
   String get menuLogOut;
 
+  /// Menu row for a guest, and the title of the page it opens: link the data already on this phone to a way to sign in.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your data in an account'**
+  String get menuKeepData;
+
+  /// Line on the Keep your data page: the guest's data comes along whichever way they sign in.
+  ///
+  /// In en, this message translates to:
+  /// **'Your check-ins, journal and free tries stay with you. Choose how you want to sign in.'**
+  String get keepDataBody;
+
+  /// Button on the Keep your data page: make a new account with an email and password.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up with email'**
+  String get keepDataUseEmail;
+
+  /// Button on the Keep your data page: log in to an account the person already has.
+  ///
+  /// In en, this message translates to:
+  /// **'I already have an account'**
+  String get keepDataLogIn;
+
   /// Error when signing out failed.
   ///
   /// In en, this message translates to:

@@ -3,9 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../Repositories/app_repositories.dart';
-import '../../Repositories/user_repository.dart';
-import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
+import '../Components/GoogleButton.dart';
 import '../Components/ScenicKit.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
@@ -153,40 +152,7 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      ScenicPill(
-                        label: l.accountContinueWithGoogle,
-                        light: true,
-                        height: 50,
-                        leading: const SizedBox(
-                          width: 22,
-                          height: 22,
-                          child: CustomPaint(painter: _GoogleG()),
-                        ),
-                        // Backend (stage 3): opens Google's page; the app
-                        // comes back through the deep link and finishes the
-                        // login (main.dart, OutsideLoginListener).
-                        onPressed: () async {
-                          try {
-                            await AppRepositories.users.startGoogleSignIn();
-                          } on AccountException catch (e) {
-                            if (!context.mounted) return;
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(e.problem.text(context.l10n)),
-                              ),
-                            );
-                          } catch (_) {
-                            if (!context.mounted) return;
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  AccountProblem.unknown.text(context.l10n),
-                                ),
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                      const ContinueWithGoogleButton(),
                       // Backend (stage 3): shown only on a phone with no
                       // account. Bhavesh: restyle freely, keep the rule.
                       const _StartWithoutAccount(),
@@ -469,36 +435,4 @@ class _Hibiscus extends CustomPainter {
 
   @override
   bool shouldRepaint(_Hibiscus old) => false;
-}
-
-/// The four-colour Google "G".
-class _GoogleG extends CustomPainter {
-  const _GoogleG();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final s = size.width;
-    final rect = Rect.fromLTWH(s * 0.1, s * 0.1, s * 0.8, s * 0.8);
-    final stroke = s * 0.19;
-    Paint p(Color c) => Paint()
-      ..color = c
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = stroke;
-    // Arcs clockwise from the right: blue, green, yellow, red.
-    canvas.drawArc(rect, -0.25, 0.95, false, p(const Color(0xFF4285F4)));
-    canvas.drawArc(rect, 0.7, 1.35, false, p(const Color(0xFF34A853)));
-    canvas.drawArc(rect, 2.05, 1.0, false, p(const Color(0xFFFBBC05)));
-    canvas.drawArc(rect, 3.05, 1.9, false, p(const Color(0xFFEA4335)));
-    // The crossbar.
-    canvas.drawLine(
-      Offset(s * 0.52, s * 0.5),
-      Offset(s * 0.9, s * 0.5),
-      Paint()
-        ..color = const Color(0xFF4285F4)
-        ..strokeWidth = stroke,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_GoogleG old) => false;
 }

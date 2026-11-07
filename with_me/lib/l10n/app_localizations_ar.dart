@@ -330,6 +330,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get menuLogOut => 'تسجيل الخروج';
 
   @override
+  String get menuKeepData => 'احفظ بياناتك في حساب';
+
+  @override
+  String get keepDataBody =>
+      'تبقى تسجيلاتك ومذكراتك وتجاربك المجانية معك. اختر طريقة تسجيل الدخول.';
+
+  @override
+  String get keepDataUseEmail => 'التسجيل بالبريد الإلكتروني';
+
+  @override
+  String get keepDataLogIn => 'لدي حساب بالفعل';
+
+  @override
   String get menuLogOutFailed => 'تعذّر تسجيل الخروج. يُرجى المحاولة مرة أخرى.';
 
   @override

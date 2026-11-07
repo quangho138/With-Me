@@ -325,6 +325,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get menuLogOut => 'ログアウト';
 
   @override
+  String get menuKeepData => 'データをアカウントに保存';
+
+  @override
+  String get keepDataBody => 'チェックイン、日記、無料お試しはそのまま残ります。ログイン方法を選んでください。';
+
+  @override
+  String get keepDataUseEmail => 'メールで登録';
+
+  @override
+  String get keepDataLogIn => 'すでにアカウントがあります';
+
+  @override
   String get menuLogOutFailed => 'ログアウトできませんでした。もう一度お試しください。';
 
   @override

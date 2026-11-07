@@ -333,6 +333,19 @@ class AppLocalizationsTe extends AppLocalizations {
   String get menuLogOut => 'లాగ్ అవుట్';
 
   @override
+  String get menuKeepData => 'మీ డేటాను ఖాతాలో ఉంచుకోండి';
+
+  @override
+  String get keepDataBody =>
+      'మీ చెక్-ఇన్‌లు, జర్నల్ మరియు ఉచిత ప్రయత్నాలు మీతోనే ఉంటాయి. ఎలా సైన్ ఇన్ చేయాలో ఎంచుకోండి.';
+
+  @override
+  String get keepDataUseEmail => 'ఇమెయిల్‌తో సైన్ అప్ చేయండి';
+
+  @override
+  String get keepDataLogIn => 'నాకు ఇప్పటికే ఖాతా ఉంది';
+
+  @override
   String get menuLogOutFailed => 'లాగ్ అవుట్ కాలేదు. మళ్లీ ప్రయత్నించండి.';
 
   @override

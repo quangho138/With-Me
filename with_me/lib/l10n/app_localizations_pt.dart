@@ -333,6 +333,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get menuLogOut => 'Sair';
 
   @override
+  String get menuKeepData => 'Guarde seus dados em uma conta';
+
+  @override
+  String get keepDataBody =>
+      'Seus check-ins, seu diário e seus testes grátis continuam com você. Escolha como quer entrar.';
+
+  @override
+  String get keepDataUseEmail => 'Cadastrar com e-mail';
+
+  @override
+  String get keepDataLogIn => 'Já tenho uma conta';
+
+  @override
   String get menuLogOutFailed => 'Não foi possível sair. Tente de novo.';
 
   @override

@@ -333,6 +333,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get menuLogOut => 'Cerrar sesión';
 
   @override
+  String get menuKeepData => 'Guarda tus datos en una cuenta';
+
+  @override
+  String get keepDataBody =>
+      'Tus registros, tu diario y tus pruebas gratis se quedan contigo. Elige cómo quieres iniciar sesión.';
+
+  @override
+  String get keepDataUseEmail => 'Registrarme con correo';
+
+  @override
+  String get keepDataLogIn => 'Ya tengo una cuenta';
+
+  @override
   String get menuLogOutFailed =>
       'No se pudo cerrar la sesión. Inténtalo de nuevo.';
 

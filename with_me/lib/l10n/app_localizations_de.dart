@@ -333,6 +333,19 @@ class AppLocalizationsDe extends AppLocalizations {
   String get menuLogOut => 'Abmelden';
 
   @override
+  String get menuKeepData => 'Daten in einem Konto behalten';
+
+  @override
+  String get keepDataBody =>
+      'Deine Check-ins, dein Tagebuch und deine Gratisversuche bleiben erhalten. Wähle, wie du dich anmelden möchtest.';
+
+  @override
+  String get keepDataUseEmail => 'Mit E-Mail registrieren';
+
+  @override
+  String get keepDataLogIn => 'Ich habe schon ein Konto';
+
+  @override
   String get menuLogOutFailed =>
       'Abmelden hat nicht geklappt. Versuch es noch einmal.';
 

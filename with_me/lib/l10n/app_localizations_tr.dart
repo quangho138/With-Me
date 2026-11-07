@@ -331,6 +331,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get menuLogOut => 'Çıkış yap';
 
   @override
+  String get menuKeepData => 'Verilerini bir hesapta sakla';
+
+  @override
+  String get keepDataBody =>
+      'Kayıtların, günlüğün ve ücretsiz denemelerin seninle kalır. Nasıl giriş yapacağını seç.';
+
+  @override
+  String get keepDataUseEmail => 'E-postayla kaydol';
+
+  @override
+  String get keepDataLogIn => 'Zaten bir hesabım var';
+
+  @override
   String get menuLogOutFailed => 'Çıkış yapılamadı. Tekrar dene.';
 
   @override
