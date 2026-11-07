@@ -277,16 +277,17 @@ class SyncService {
       await _uploadJournal();
       await _uploadExercises();
       await _uploadName();
-      await _uploadFreeTries();
       final daysChanged = await _downloadDays();
       final journalChanged = await _downloadJournal();
       final exercisesChanged = await _downloadExercises();
       await _downloadName();
-      await _downloadFreeTries();
       // Let open screens (the dashboard) reload what arrived.
       if (daysChanged || journalChanged || exercisesChanged) {
         CheckInRepository.saves.value++;
       }
+      // Last, so a problem here never holds back check-ins or the journal.
+      await _uploadFreeTries();
+      await _downloadFreeTries();
       return SyncOutcome.done;
     } catch (e) {
       debugPrint('Sync stopped: $e');
