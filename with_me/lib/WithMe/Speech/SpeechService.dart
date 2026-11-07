@@ -10,6 +10,7 @@ import '../../Repositories/settings_repository.dart';
 import 'ClipPlayer.dart';
 import 'MouthTimelines.dart';
 import 'SpeechEngine.dart';
+import 'VoiceDownloads.dart';
 
 /// Where the companion's speech is in its life.
 enum SpeechStatus {
@@ -242,7 +243,14 @@ class SpeechService {
   }) {
     final recording = recordingFor(clip, locale);
     return recording != null
-        ? play(recording, owner: owner)
+        ? play(
+            recording,
+            owner: owner,
+            // A line played from the internet (a browser) may not come;
+            // then the device's voice reads it instead of leaving it silent.
+            instead: VoiceDownloads.instance.streams(recording) ? text : null,
+            locale: locale.toLanguageTag(),
+          )
         : speak(text, owner: owner, locale: locale.toLanguageTag());
   }
 
@@ -264,14 +272,21 @@ class SpeechService {
       'audio/voice/${locale.languageCode}/',
     );
     if (!kMouthTimelines.containsKey(generated)) return null;
-    final inApp = _inApp;
-    return inApp == null || inApp.contains(generated) ? generated : null;
+    return isInApp(generated) ||
+            VoiceDownloads.instance.has(generated) ||
+            VoiceDownloads.instance.streams(generated)
+        ? generated
+        : null;
   }
 
+  /// Whether [recording] comes with the app (true until [findRecordings]
+  /// has read the app's files, and in tests).
+  static bool isInApp(String recording) => _inApp?.contains(recording) ?? true;
+
   /// The recordings this copy of the app really carries, read once at
-  /// start by [findRecordings]. A line with a timeline but no file (the
-  /// guided sessions until their recordings are added, or a language not
-  /// recorded yet, such as Hindi's sessions) is then read by the phone's
+  /// start by [findRecordings]. A line with a timeline but no file (a
+  /// long session not downloaded yet, see [VoiceDownloads], or a language
+  /// not recorded, such as Hindi's sessions) is then read by the phone's
   /// voice instead of failing. Null until read: every timeline counts.
   static Set<String>? _inApp;
 
@@ -310,6 +325,12 @@ class SpeechService {
     final id = ++_count;
     _current = id;
     _owner = owner;
+    _speakAs(id, spoken, locale);
+    return id;
+  }
+
+  /// The device's voice reads [spoken] as utterance [id].
+  void _speakAs(int id, String spoken, [String? locale]) {
     _playingClip = false;
     playback.value = SpeechPlayback(SpeechStatus.starting, id);
 
@@ -318,7 +339,6 @@ class SpeechService {
     final current = style.value;
     final parts = current.pause > 0 ? sentences(spoken) : [spoken];
     _part(id, parts, 0, current, locale);
-    return id;
   }
 
   /// Speaks [parts] from [index] on, as utterance [id]. Stops quietly once
@@ -370,7 +390,14 @@ class SpeechService {
   /// for [owner], exactly like [speak]: only with Read aloud on, stopping
   /// anything already playing, reported through [playback], and stopped by
   /// [stop]. Returns the utterance's id, or null when nothing will play.
-  int? play(String asset, {required Object owner}) {
+  /// If the recording cannot play and [instead] is given, the device's
+  /// voice reads [instead] as the same utterance.
+  int? play(
+    String asset, {
+    required Object owner,
+    String? instead,
+    String? locale,
+  }) {
     if (!_loaded || !enabled.value) return null;
     if (_current != null) _halt();
 
@@ -379,6 +406,14 @@ class SpeechService {
     _owner = owner;
     _playingClip = true;
     playback.value = SpeechPlayback(SpeechStatus.starting, id);
+
+    void failed() {
+      if (_current != id) return;
+      final text = instead?.replaceAll(RegExp(r'\s+'), ' ').trim() ?? '';
+      if (text.isEmpty) return _end(id);
+      _speakAs(id, text, locale);
+    }
+
     _player
         .play(
           asset,
@@ -389,15 +424,15 @@ class SpeechService {
               }
             },
             onDone: () => _end(id),
-            onError: (_) => _end(id),
+            onError: (_) => failed(),
           ),
         )
         .then((started) {
           if (!started) {
             debugPrint('The recording did not play.');
-            _end(id);
+            failed();
           }
-        }, onError: (Object _) => _end(id));
+        }, onError: (Object _) => failed());
     return id;
   }
 

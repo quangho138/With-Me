@@ -2815,6 +2815,30 @@ class AppLocalizationsTe extends AppLocalizations {
   String get prepBegin => 'మొదలుపెట్టండి';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'వాయిస్ తెస్తోంది, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'రికార్డ్ చేసిన వాయిస్ అందలేదు, కాబట్టి ఫోన్ వాయిస్ ఈ సెషన్‌ను చదువుతుంది.';
+
+  @override
+  String get prepVoiceOnce =>
+      'మొదలుపెట్టినప్పుడు వాయిస్ ఒక్కసారి డౌన్‌లోడ్ అవుతుంది (సుమారు 2 MB), ఆ తర్వాత ఆఫ్‌లైన్‌లో పనిచేస్తుంది.';
+
+  @override
+  String get prepVoiceWaitTitle => 'వాయిస్ సిద్ధమవుతోంది';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'ఈ సెషన్ రికార్డ్ చేసిన వాయిస్ మొదటిసారి డౌన్‌లోడ్ అవుతోంది. ఇది ఒక్కసారే: ఆ తర్వాత సెషన్ వెంటనే మొదలవుతుంది, ఆఫ్‌లైన్‌లోనూ పనిచేస్తుంది.';
+
+  @override
+  String get prepVoiceOnline =>
+      'బ్రౌజర్‌లో వాయిస్ ఇంటర్నెట్ నుంచి ప్లే అవుతుంది.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" నుండి కొనసాగించండి';
   }

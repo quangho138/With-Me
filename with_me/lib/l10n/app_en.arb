@@ -3685,6 +3685,35 @@
   "@prepBegin": {
     "description": "Prep screen button that starts the session."
   },
+  "prepVoiceDownloading": "Getting the voice, {percent}%",
+  "@prepVoiceDownloading": {
+    "description": "On the Begin button while a long session's recordings download the first time. {percent} is a number from 0 to 100.",
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "prepVoiceFailed": "Couldn't get the recorded voice, so the phone's voice will read this session.",
+  "@prepVoiceFailed": {
+    "description": "Note when a session's recordings could not be downloaded (no internet); the phone's voice reads it instead."
+  },
+  "prepVoiceOnce": "The voice downloads once when you begin (about 2 MB), then it works offline.",
+  "@prepVoiceOnce": {
+    "description": "On a long session's start page until its recorded voice is on the phone (instead of 'Works offline')."
+  },
+  "prepVoiceWaitTitle": "Getting the voice ready",
+  "@prepVoiceWaitTitle": {
+    "description": "Title of the popup when Begin is pressed before a session's recorded voice has finished downloading."
+  },
+  "prepVoiceWaitBody": "This session's recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.",
+  "@prepVoiceWaitBody": {
+    "description": "Text of that popup, above the progress bar: why there is a wait."
+  },
+  "prepVoiceOnline": "In the browser, the voice plays from the internet.",
+  "@prepVoiceOnline": {
+    "description": "On a long session's start page in the web version: the recorded voice is played from the internet, not downloaded."
+  },
   "playerResumeFrom": "Resume from {step}",
   "@playerResumeFrom": {
     "description": "After an interruption: start again at the beginning of the step.",

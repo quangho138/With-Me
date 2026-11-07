@@ -2803,6 +2803,29 @@ class AppLocalizationsMr extends AppLocalizations {
   String get prepBegin => 'सुरू करा';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'आवाज आणत आहे, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'रेकॉर्ड केलेला आवाज मिळाला नाही, म्हणून फोनचा आवाज हे सत्र वाचेल.';
+
+  @override
+  String get prepVoiceOnce =>
+      'सुरू करताना आवाज एकदाच डाउनलोड होतो (सुमारे 2 MB), नंतर तो ऑफलाइन चालतो.';
+
+  @override
+  String get prepVoiceWaitTitle => 'आवाज तयार होत आहे';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'या सत्राचा रेकॉर्ड केलेला आवाज पहिल्यांदाच डाउनलोड होत आहे. हे फक्त एकदाच होते: त्यानंतर सत्र लगेच सुरू होईल आणि ऑफलाइन चालेल.';
+
+  @override
+  String get prepVoiceOnline => 'ब्राउझरमध्ये आवाज इंटरनेटवरून वाजतो.';
+
+  @override
   String playerResumeFrom(String step) {
     return '\"$step\" पासून पुन्हा सुरू करा';
   }

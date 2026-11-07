@@ -2825,6 +2825,29 @@ class AppLocalizationsFil extends AppLocalizations {
   String get prepBegin => 'Simulan';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Kinukuha ang boses, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Hindi makuha ang naka-record na boses, kaya ang boses ng telepono ang magbabasa ng session na ito.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Isang beses mada-download ang boses pagsimula mo (mga 2 MB), saka ito gagana kahit offline.';
+
+  @override
+  String get prepVoiceWaitTitle => 'Inihahanda ang boses';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Unang beses na dina-download ang naka-record na boses ng session na ito. Minsan lang ito: pagkatapos, agad nang magsisimula ang session at gagana kahit offline.';
+
+  @override
+  String get prepVoiceOnline => 'Sa browser, galing sa internet ang boses.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Ituloy mula sa \"$step\"';
   }

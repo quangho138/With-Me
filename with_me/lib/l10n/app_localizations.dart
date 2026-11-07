@@ -4781,6 +4781,42 @@ abstract class AppLocalizations {
   /// **'Begin'**
   String get prepBegin;
 
+  /// On the Begin button while a long session's recordings download the first time. {percent} is a number from 0 to 100.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting the voice, {percent}%'**
+  String prepVoiceDownloading(String percent);
+
+  /// Note when a session's recordings could not be downloaded (no internet); the phone's voice reads it instead.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t get the recorded voice, so the phone\'s voice will read this session.'**
+  String get prepVoiceFailed;
+
+  /// On a long session's start page until its recorded voice is on the phone (instead of 'Works offline').
+  ///
+  /// In en, this message translates to:
+  /// **'The voice downloads once when you begin (about 2 MB), then it works offline.'**
+  String get prepVoiceOnce;
+
+  /// Title of the popup when Begin is pressed before a session's recorded voice has finished downloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting the voice ready'**
+  String get prepVoiceWaitTitle;
+
+  /// Text of that popup, above the progress bar: why there is a wait.
+  ///
+  /// In en, this message translates to:
+  /// **'This session\'s recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.'**
+  String get prepVoiceWaitBody;
+
+  /// On a long session's start page in the web version: the recorded voice is played from the internet, not downloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'In the browser, the voice plays from the internet.'**
+  String get prepVoiceOnline;
+
   /// After an interruption: start again at the beginning of the step.
   ///
   /// In en, this message translates to:

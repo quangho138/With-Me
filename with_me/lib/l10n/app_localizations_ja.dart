@@ -2681,6 +2681,27 @@ class AppLocalizationsJa extends AppLocalizations {
   String get prepBegin => 'はじめる';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return '音声を取得中、$percent%';
+  }
+
+  @override
+  String get prepVoiceFailed => '録音された音声を取得できなかったため、スマートフォンの音声でこのセッションを読み上げます。';
+
+  @override
+  String get prepVoiceOnce => '始めるときに音声を一度だけダウンロードします（約2 MB）。その後はオフラインで使えます。';
+
+  @override
+  String get prepVoiceWaitTitle => '音声を準備しています';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'このセッションの録音音声を初めてダウンロードしています。これは一度だけです。次回からはすぐに始まり、オフラインでも使えます。';
+
+  @override
+  String get prepVoiceOnline => 'ブラウザでは、音声はインターネットから再生されます。';
+
+  @override
   String playerResumeFrom(String step) {
     return '「$step」から再開';
   }

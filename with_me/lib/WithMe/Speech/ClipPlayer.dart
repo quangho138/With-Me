@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 
 import '../Theme/AppFeel.dart';
 import 'SpeechEngine.dart';
+import 'VoiceDownloads.dart';
 
 /// Plays a recorded line from the app's assets, such as the greeting the
 /// companion says when today's check-in starts.
@@ -65,7 +66,17 @@ class AudioClipPlayer implements ClipPlayer {
       await player.setReleaseMode(ReleaseMode.stop);
       // App volume (Settings) on top of the recording's own level.
       await player.setVolume(AppFeel.instance.loud(1));
-      await player.play(AssetSource(asset));
+      // A long session's line: from the internet in a browser, or
+      // downloaded to the phone; otherwise one in the app.
+      final voice = VoiceDownloads.instance;
+      final downloaded = voice.fileFor(asset);
+      await player.play(
+        voice.streams(asset)
+            ? UrlSource(VoiceDownloads.urlFor(asset))
+            : downloaded != null
+            ? DeviceFileSource(downloaded)
+            : AssetSource(asset),
+      );
       return true;
     } catch (_) {
       if (identical(_current, callbacks)) _current = null;

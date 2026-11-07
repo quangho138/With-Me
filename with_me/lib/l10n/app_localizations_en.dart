@@ -2787,6 +2787,30 @@ class AppLocalizationsEn extends AppLocalizations {
   String get prepBegin => 'Begin';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Getting the voice, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Couldn\'t get the recorded voice, so the phone\'s voice will read this session.';
+
+  @override
+  String get prepVoiceOnce =>
+      'The voice downloads once when you begin (about 2 MB), then it works offline.';
+
+  @override
+  String get prepVoiceWaitTitle => 'Getting the voice ready';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'This session\'s recorded voice is downloading for the first time. It only happens once: after this, the session starts right away and works offline.';
+
+  @override
+  String get prepVoiceOnline =>
+      'In the browser, the voice plays from the internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Resume from $step';
   }

@@ -2807,6 +2807,30 @@ class AppLocalizationsSw extends AppLocalizations {
   String get prepBegin => 'Anza';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Inapakua sauti, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Imeshindikana kupakua sauti iliyorekodiwa, kwa hiyo sauti ya simu itasoma kipindi hiki.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Sauti inapakuliwa mara moja unapoanza (takriban MB 2), kisha inafanya kazi bila intaneti.';
+
+  @override
+  String get prepVoiceWaitTitle => 'Inaandaa sauti';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Sauti iliyorekodiwa ya kipindi hiki inapakuliwa kwa mara ya kwanza. Hii hutokea mara moja tu: baada ya hapo, kipindi kitaanza mara moja na kufanya kazi bila intaneti.';
+
+  @override
+  String get prepVoiceOnline =>
+      'Kwenye kivinjari, sauti inachezwa kutoka intaneti.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Endelea kutoka \"$step\"';
   }

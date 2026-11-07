@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ import 'package:with_me/WithMe/Screens/MembershipScreen.dart';
 import 'package:with_me/WithMe/Settings/CompanionPlus.dart';
 import 'package:with_me/WithMe/Settings/FreeUses.dart';
 import 'package:with_me/WithMe/Speech/SpeechService.dart';
+import 'package:with_me/WithMe/Speech/VoiceDownloads.dart';
 import 'package:with_me/WithMe/Theme/AppFeel.dart';
 import 'package:with_me/WithMe/Theme/SoftSounds.dart';
 import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
@@ -78,6 +80,30 @@ class _Exercises implements ExerciseRepository {
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+/// A voice download the test finishes by hand ([gate]), with no files.
+class _SlowVoice extends VoiceDownloads {
+  // Made on first use, inside the test's fake time. One made in setUp
+  // lives in real time, and finishing it never reaches the widgets.
+  late final gate = Completer<bool>();
+  bool got = false;
+  int started = 0;
+  void Function(double done)? progress;
+
+  @override
+  List<String> missing(GuidedScript script, Locale locale) =>
+      got ? const [] : const ['audio/voice/en/meditate/home_full/01.mp3'];
+
+  @override
+  Future<bool> download(
+    List<String> recordings, {
+    void Function(double done)? onProgress,
+  }) {
+    started++;
+    progress = onProgress;
+    return gate.future.then((ok) => got = ok);
+  }
 }
 
 /// Counts the app's soft sounds instead of playing them.
@@ -502,6 +528,100 @@ void main() {
   });
 
   group('prep screen', () {
+    group('the recorded voice, before its first play', () {
+      final original = VoiceDownloads.instance;
+      late _SlowVoice voice;
+      setUp(() => VoiceDownloads.instance = voice = _SlowVoice());
+      tearDown(() => VoiceDownloads.instance = original);
+
+      // The popup's closing and the player's opening, a frame each.
+      Future<void> frames(WidgetTester t) async {
+        for (var i = 0; i < 4; i++) {
+          await t.pump(const Duration(milliseconds: 250));
+        }
+      }
+
+      Future<void> openPage(WidgetTester t) async {
+        await _open(t, GuidedPrepScreen(script: GuidedScripts.calmAtHome));
+        await t.pump();
+      }
+
+      testWidgets('starts when the page opens and shows how far', (t) async {
+        await openPage(t);
+        expect(voice.started, 1);
+        expect(find.byKey(const ValueKey('voice-progress')), findsOneWidget);
+        voice.progress!(0.45);
+        await t.pump();
+        expect(find.text('Getting the voice, 45%'), findsOneWidget);
+        voice.gate.complete(true);
+        await t.pump();
+        await t.pump();
+        expect(
+          find.text('Works offline. Nothing to download.'),
+          findsOneWidget,
+        );
+        // Begin starts at once: no popup.
+        await t.tap(find.text('Begin'));
+        await t.pump();
+        await t.pump(const Duration(milliseconds: 400));
+        expect(find.byKey(const ValueKey('voice-wait')), findsNothing);
+        expect(find.byType(GuidedPlayerScreen), findsOneWidget);
+        await t.pumpWidget(const SizedBox());
+      });
+
+      testWidgets('Begin before it is done: a popup says why, shows how far, '
+          'and starts the session when it is done', (t) async {
+        await openPage(t);
+        await t.tap(find.text('Begin'));
+        await t.pump();
+        expect(find.text('Getting the voice ready'), findsOneWidget);
+        expect(find.byType(LinearProgressIndicator), findsWidgets);
+        expect(find.byType(GuidedPlayerScreen), findsNothing);
+        expect(voice.started, 1, reason: 'the same download, not a second');
+        voice.progress!(0.8);
+        await t.pump();
+        expect(find.text('Getting the voice, 80%'), findsWidgets);
+        voice.gate.complete(true);
+        await frames(t);
+        expect(find.byKey(const ValueKey('voice-wait')), findsNothing);
+        expect(find.byType(GuidedPlayerScreen), findsOneWidget);
+        // The recorded voice came: no note about the phone's voice.
+        expect(find.byType(SnackBar), findsNothing);
+        await t.pumpWidget(const SizedBox());
+      });
+
+      testWidgets('Cancel closes the popup and stays on the page', (t) async {
+        await openPage(t);
+        await t.tap(find.text('Begin'));
+        await t.pump();
+        await t.tap(find.text('Cancel'));
+        await frames(t);
+        expect(find.byKey(const ValueKey('voice-wait')), findsNothing);
+        expect(find.byType(GuidedPrepScreen), findsOneWidget);
+        expect(find.byType(GuidedPlayerScreen), findsNothing);
+        await t.pumpWidget(const SizedBox());
+      });
+
+      testWidgets('no internet: only then the phone reads it, with a note', (
+        t,
+      ) async {
+        await openPage(t);
+        await t.tap(find.text('Begin'));
+        await t.pump();
+        voice.gate.complete(false);
+        await frames(t);
+        expect(find.byType(GuidedPlayerScreen), findsOneWidget);
+        expect(
+          find.text(
+            "Couldn't get the recorded voice, so the phone's voice will read "
+            'this session.',
+          ),
+          findsOneWidget,
+        );
+        await t.pumpWidget(const SizedBox());
+      });
+    });
+
     testWidgets('a one-minute session says "About 1 minute"', (t) async {
       await _open(t, GuidedPrepScreen(script: GuidedScripts.anxietySos));
       expect(find.text('About 1 minute'), findsOneWidget);

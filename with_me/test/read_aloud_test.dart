@@ -410,6 +410,31 @@ void main() {
       expect(speech.playback.value, SpeechPlayback.idle);
     });
 
+    test('a recording that cannot play is read by the device voice '
+        'instead, as the same line', () async {
+      await install();
+      clips.accept = false;
+      final id = speech.play(
+        recording,
+        owner: 1,
+        instead: '  I am here   with you ',
+        locale: 'en',
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(engine.spoken, ['I am here with you']);
+      expect(engine.locales.single, 'en');
+      expect(speech.playback.value.utterance, id, reason: 'the same line');
+      engine.callbacks.single.onDone();
+      expect(speech.playback.value, SpeechPlayback.idle);
+
+      // One that fails while playing (the internet drops) too.
+      clips.accept = true;
+      speech.play(recording, owner: 1, instead: 'Again');
+      clips.callbacks.last.onError('network');
+      await Future<void>.delayed(Duration.zero);
+      expect(engine.spoken.last, 'Again');
+    });
+
     test('every page line maps to a bundled file', () {
       final answers = CheckInAnswers();
       String? clip(int i) => DailyCheckInScreen.recordingFor(i, answers);

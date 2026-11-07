@@ -12,6 +12,7 @@ import '../Exercise/GuidedScripts.dart';
 import '../Exercise/NatureVideo.dart';
 import '../Settings/CompanionPlus.dart';
 import '../Settings/FreeUses.dart';
+import '../Speech/VoiceDownloads.dart';
 import '../Theme/WithMeTheme.dart';
 import 'GuidedPlayerScreen.dart';
 import 'MembershipScreen.dart';
@@ -22,7 +23,10 @@ import 'MembershipScreen.dart';
 /// the sound to play under the voice.
 ///
 /// Begin counts one free use of a Plus session (see [FreeUses]); with none
-/// left it opens the membership page instead.
+/// left it opens the membership page instead. A long session's
+/// recordings start downloading as soon as the page opens (see
+/// [VoiceDownloads]); Begin waits only for what is left, showing how far
+/// along. If that fails, the phone's voice reads it.
 ///
 /// A stress area's session also has a row of [GuidedScripts.versionCount]
 /// version buttons at the top, from its [versions]. The first is free;
@@ -48,6 +52,66 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
   late bool _captions = widget.script.look == GuidedLook.companion;
   late String _sound = widget.script.sound;
 
+  /// The picked session's voice download while it runs, or null.
+  Future<bool>? _voice;
+
+  /// How far [_voice] is (0 to 1), shown on the page and in the popup.
+  final ValueNotifier<double> _voiceDone = ValueNotifier(0);
+
+  @override
+  void initState() {
+    super.initState();
+    // Start getting the voice as soon as the page opens, so it is usually
+    // there by the time Begin is pressed, and show it happening (Quang,
+    // 6 Nov).
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getVoice());
+  }
+
+  @override
+  void dispose() {
+    _voiceDone.dispose();
+    super.dispose();
+  }
+
+  /// Starts downloading the picked session's recordings, if it still needs
+  /// any. It carries on if the page is left, and keeps what it got.
+  void _getVoice() {
+    if (!mounted) return;
+    final script = _script;
+    final missing = VoiceDownloads.instance.missing(
+      script,
+      Localizations.localeOf(context),
+    );
+    if (missing.isEmpty) {
+      setState(() {
+        _voice = null;
+      });
+      return;
+    }
+    _voiceDone.value = 0;
+    final download = VoiceDownloads.instance.download(
+      missing,
+      onProgress: (done) {
+        if (mounted && identical(_script, script)) _voiceDone.value = done;
+      },
+    );
+    // A block: an arrow would hand setState the Future and it refuses.
+    setState(() {
+      _voice = download;
+    });
+    unawaited(
+      download.then((_) {
+        // The line changes to "Works offline" (or back to "downloads
+        // once" if it failed; Begin then tries again).
+        if (mounted && identical(_voice, download)) {
+          setState(() {
+            _voice = null;
+          });
+        }
+      }),
+    );
+  }
+
   /// Version button [i] (from 0) tapped.
   void _pickVersion(int i) {
     final l = context.l10n;
@@ -71,14 +135,17 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
       _script = version;
       _sound = version.sound;
     });
+    _getVoice();
   }
 
-  void _begin() {
+  Future<void> _begin() async {
     final script = _script;
     final plus = script.plus;
     final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final l = context.l10n;
     // Read now: the builder runs once this screen is gone.
-    final title = script.title(context.l10n);
+    final title = script.title(l);
     if (script.membersOnly && !CompanionPlus.instance.value) {
       navigator.pushReplacement(
         MaterialPageRoute(builder: (_) => MembershipScreen(usedUp: title)),
@@ -92,8 +159,31 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
         );
         return;
       }
-      unawaited(FreeUses.instance.use(plus));
     }
+    final missing = VoiceDownloads.instance.missing(
+      script,
+      Localizations.localeOf(context),
+    );
+    if (missing.isNotEmpty) {
+      // Not there yet: say why there is a wait, and show how far it is.
+      if (_voice == null) _getVoice();
+      final download = _voice;
+      if (download == null) return;
+      final got = await showDialog<bool>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => _VoiceWait(download: download, done: _voiceDone),
+      );
+      // Cancel: stay on this page; the download carries on.
+      if (!mounted || got == null) return;
+      // Only when it failed (no internet) does the phone's voice read it.
+      if (!got) {
+        messenger
+          ..removeCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(l.prepVoiceFailed)));
+      }
+    }
+    if (plus != null) unawaited(FreeUses.instance.use(plus));
     navigator.pushReplacement(
       MaterialPageRoute(
         builder: (_) => GuidedPlayerScreen(
@@ -101,6 +191,43 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
           captions: _captions,
           sound: _sound,
         ),
+      ),
+    );
+  }
+
+  /// The voice line: in a browser, that it plays from the internet;
+  /// "Works offline" when the voice is on the phone, the download with a
+  /// bar while it runs, else "downloads once".
+  Widget _voiceFact(AppLocalizations l, GuidedScript script) {
+    final locale = Localizations.localeOf(context);
+    if (VoiceDownloads.instance.streamsSession(script, locale)) {
+      return _Fact(Icons.wifi_rounded, l.prepVoiceOnline);
+    }
+    final needed = VoiceDownloads.instance
+        .missing(script, Localizations.localeOf(context))
+        .isNotEmpty;
+    if (!needed) return _Fact(Icons.offline_pin_rounded, l.prepOffline);
+    if (_voice == null) return _Fact(Icons.download_rounded, l.prepVoiceOnce);
+    return ValueListenableBuilder<double>(
+      valueListenable: _voiceDone,
+      builder: (context, done, _) => Column(
+        key: const ValueKey('voice-progress'),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _Fact(
+            Icons.downloading_rounded,
+            l.prepVoiceDownloading('${(done * 100).round()}'),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 36, bottom: 4),
+            child: LinearProgressIndicator(
+              value: done,
+              minHeight: 6,
+              borderRadius: BorderRadius.circular(3),
+              color: WithMeColors.teal,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -151,7 +278,11 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
         still: MediaQuery.disableAnimationsOf(context),
       ),
       title: script.title(l),
-      action: WithMeButton(label: l.prepBegin, onPressed: _begin),
+      action: WithMeButton(
+        key: const ValueKey('prep-begin'),
+        label: l.prepBegin,
+        onPressed: _begin,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -171,7 +302,7 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
               children: [
                 _Fact(Icons.schedule_rounded, l.prepLength(script.minutes)),
                 _Fact(Icons.headphones_rounded, l.prepHeadphones),
-                _Fact(Icons.offline_pin_rounded, l.prepOffline),
+                _voiceFact(l, script),
                 const SizedBox(height: 8),
                 Text(
                   l.prepSafety,
@@ -273,6 +404,66 @@ class _VersionButton extends StatelessWidget {
 }
 
 /// One line of the prep card: an icon and a short fact.
+/// The popup when Begin is pressed before the voice is on the phone: why
+/// there is a wait, and how far the download is. It closes by itself when
+/// the download ends (true when all of it came).
+class _VoiceWait extends StatefulWidget {
+  const _VoiceWait({required this.download, required this.done});
+
+  final Future<bool> download;
+  final ValueNotifier<double> done;
+
+  @override
+  State<_VoiceWait> createState() => _VoiceWaitState();
+}
+
+class _VoiceWaitState extends State<_VoiceWait> {
+  @override
+  void initState() {
+    super.initState();
+    widget.download.then((got) {
+      if (mounted) Navigator.of(context).pop(got);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return AlertDialog(
+      key: const ValueKey('voice-wait'),
+      title: Text(l.prepVoiceWaitTitle),
+      content: ValueListenableBuilder<double>(
+        valueListenable: widget.done,
+        builder: (context, done, _) => Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(l.prepVoiceWaitBody, style: WithMeText.option),
+            const SizedBox(height: 16),
+            LinearProgressIndicator(
+              value: done,
+              minHeight: 8,
+              borderRadius: BorderRadius.circular(4),
+              color: WithMeColors.teal,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              l.prepVoiceDownloading('${(done * 100).round()}'),
+              style: WithMeText.option,
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(l.commonCancel),
+        ),
+      ],
+    );
+  }
+}
+
 class _Fact extends StatelessWidget {
   const _Fact(this.icon, this.text);
 

@@ -2796,6 +2796,29 @@ class AppLocalizationsId extends AppLocalizations {
   String get prepBegin => 'Mulai';
 
   @override
+  String prepVoiceDownloading(String percent) {
+    return 'Mengunduh suara, $percent%';
+  }
+
+  @override
+  String get prepVoiceFailed =>
+      'Suara rekaman tidak bisa diunduh, jadi suara ponsel akan membacakan sesi ini.';
+
+  @override
+  String get prepVoiceOnce =>
+      'Suara diunduh sekali saat Anda mulai (sekitar 2 MB), lalu bisa dipakai offline.';
+
+  @override
+  String get prepVoiceWaitTitle => 'Menyiapkan suara';
+
+  @override
+  String get prepVoiceWaitBody =>
+      'Suara rekaman sesi ini sedang diunduh untuk pertama kalinya. Ini hanya sekali: setelah ini, sesi langsung dimulai dan bisa dipakai offline.';
+
+  @override
+  String get prepVoiceOnline => 'Di browser, suara diputar dari internet.';
+
+  @override
   String playerResumeFrom(String step) {
     return 'Lanjutkan dari \"$step\"';
   }
