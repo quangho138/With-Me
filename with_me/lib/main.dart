@@ -8,6 +8,7 @@ import 'Config/supabase_config.dart';
 
 import 'Database/DemoAccount.dart';
 import 'Repositories/app_repositories.dart';
+import 'Repositories/free_tries.dart';
 import 'Repositories/sync_service.dart';
 import 'Repositories/user_repository.dart';
 
@@ -106,8 +107,10 @@ Future<void> main() async {
     debugPrint('Read aloud setting not loaded yet: $e');
   }
 
-  // With Me Plus and the free tries, kept on this device. Until they are
-  // read (or if that fails), no Plus.
+  // With Me Plus and the free tries. Until they are read (or if that
+  // fails), no Plus. Free tries are read again when a sync brings the
+  // account's or a log out removes them.
+  FreeTries.changes.addListener(() => unawaited(FreeUses.instance.load()));
   try {
     await Future.wait([
       CompanionPlus.instance.load(),

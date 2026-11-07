@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../Database/LocalDatabase.dart';
+import 'free_tries.dart';
 import 'ids.dart';
 import 'online_auth.dart';
 
@@ -337,6 +338,14 @@ class AppUserRepository implements UserRepository {
     final db = await _open();
     // Device settings (Read aloud, voice) stay with the phone.
     await DatabaseHelper.wipeAllTables(db, keepDeviceSettings: true);
+    // Free tries belong to the account, which keeps them online: the next
+    // person on this phone starts from their own (FreeTries).
+    await db.delete(
+      'app_settings',
+      where: 'key GLOB ?',
+      whereArgs: ['${FreeTries.prefix}*'],
+    );
+    FreeTries.changes.value++;
     _names.userNameNotifier.value = null;
     await _auth.signOut();
   }
@@ -388,6 +397,7 @@ class AppUserRepository implements UserRepository {
     }
     final db = await _open();
     await DatabaseHelper.wipeAllTables(db); // includes users and session
+    FreeTries.changes.value++; // app_settings went too
     _names.userNameNotifier.value = null;
     await _auth.signOut();
   }
