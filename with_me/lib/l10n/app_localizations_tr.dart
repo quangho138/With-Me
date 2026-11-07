@@ -888,7 +888,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get checkinOptInLaws => 'Eşin ailesi';
 
   @override
-  String get checkinOptFinancial => 'Para';
+  String get checkinOptFinancial => 'Finans';
 
   @override
   String get checkinOptDomesticDuties => 'Ev işleri';

@@ -898,7 +898,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get checkinOptInLaws => 'سسرال';
 
   @override
-  String get checkinOptFinancial => 'پیسہ';
+  String get checkinOptFinancial => 'مالیات';
 
   @override
   String get checkinOptDomesticDuties => 'گھر کے کام';

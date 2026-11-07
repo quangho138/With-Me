@@ -902,7 +902,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get checkinOptInLaws => 'Belle-famille';
 
   @override
-  String get checkinOptFinancial => 'Argent';
+  String get checkinOptFinancial => 'Finances';
 
   @override
   String get checkinOptDomesticDuties => 'Tâches ménagères';

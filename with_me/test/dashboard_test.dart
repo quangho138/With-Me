@@ -1096,11 +1096,38 @@ void main() {
       expect(physical, {'Walking': 2});
       expect(withoutAction(days, 'Nature'), 1);
       expect(withoutAction(days, 'Physical'), 0);
-      // The same action keeps its colour wherever it appears.
+      // A person's own action takes a shade of its strategy's hue; under
+      // an older strategy (Nature) it takes a custom colour.
       expect(
-        actionSlices(days, 'Nature').first.color,
         actionSlices(days, 'Physical').first.color,
+        ownActionColour('Physical', 0),
       );
+      expect(actionSlices(days, 'Nature').first.color, kCustomActionColors[0]);
+    });
+
+    test('own actions get shades of their strategy, none the same as the '
+        'offered five', () {
+      final days = [
+        day(1, strategy: 'Emotional', action: 'Walk the dog'),
+        day(2, strategy: 'Emotional', action: 'Bake bread'),
+        day(3, strategy: 'Emotional', action: 'Journaling feelings'),
+      ];
+      final colours = {
+        for (final s in actionSlices(days, 'Emotional')) s.label: s.color,
+      };
+      expect(
+        colours['Journaling feelings'],
+        kActionColors['Journaling feelings'],
+      );
+      expect(colours['Walk the dog'], ownActionColour('Emotional', 0));
+      expect(colours['Bake bread'], ownActionColour('Emotional', 1));
+      final offered = {
+        for (final a in kActionsByStrategy['Emotional']!) kActionColors[a],
+      };
+      for (var n = 0; n < 5; n++) {
+        expect(offered, isNot(contains(ownActionColour('Emotional', n))));
+      }
+      expect(ownActionColour('Nature', 0), isNull);
     });
 
     test(

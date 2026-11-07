@@ -896,7 +896,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get checkinOptInLaws => 'అత్తమామలు';
 
   @override
-  String get checkinOptFinancial => 'డబ్బు';
+  String get checkinOptFinancial => 'ఆర్థికం';
 
   @override
   String get checkinOptDomesticDuties => 'ఇంటి పనులు';

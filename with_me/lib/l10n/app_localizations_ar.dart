@@ -893,7 +893,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get checkinOptInLaws => 'الأصهار';
 
   @override
-  String get checkinOptFinancial => 'المال';
+  String get checkinOptFinancial => 'الشؤون المالية';
 
   @override
   String get checkinOptDomesticDuties => 'الأعمال المنزلية';

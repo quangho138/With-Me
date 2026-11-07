@@ -889,7 +889,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get checkinOptInLaws => 'শ্বশুরবাড়ি';
 
   @override
-  String get checkinOptFinancial => 'টাকাপয়সা';
+  String get checkinOptFinancial => 'আর্থিক বিষয়';
 
   @override
   String get checkinOptDomesticDuties => 'ঘরের কাজ';

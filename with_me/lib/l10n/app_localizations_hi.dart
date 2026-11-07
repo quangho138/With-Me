@@ -892,7 +892,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get checkinOptInLaws => 'ससुराल';
 
   @override
-  String get checkinOptFinancial => 'पैसा';
+  String get checkinOptFinancial => 'वित्त';
 
   @override
   String get checkinOptDomesticDuties => 'घर के काम';

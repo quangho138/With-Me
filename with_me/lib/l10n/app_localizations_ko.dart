@@ -852,7 +852,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get checkinOptInLaws => '시댁·처가';
 
   @override
-  String get checkinOptFinancial => '돈 문제';
+  String get checkinOptFinancial => '재정';
 
   @override
   String get checkinOptDomesticDuties => '집안일';

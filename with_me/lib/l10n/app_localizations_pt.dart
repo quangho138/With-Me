@@ -901,7 +901,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get checkinOptInLaws => 'Sogros';
 
   @override
-  String get checkinOptFinancial => 'Dinheiro';
+  String get checkinOptFinancial => 'Finanças';
 
   @override
   String get checkinOptDomesticDuties => 'Tarefas de casa';

@@ -896,7 +896,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get checkinOptInLaws => 'सासर';
 
   @override
-  String get checkinOptFinancial => 'पैसा';
+  String get checkinOptFinancial => 'आर्थिक';
 
   @override
   String get checkinOptDomesticDuties => 'घरकाम';

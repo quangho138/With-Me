@@ -902,7 +902,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get checkinOptInLaws => 'Familia política';
 
   @override
-  String get checkinOptFinancial => 'Dinero';
+  String get checkinOptFinancial => 'Finanzas';
 
   @override
   String get checkinOptDomesticDuties => 'Tareas del hogar';

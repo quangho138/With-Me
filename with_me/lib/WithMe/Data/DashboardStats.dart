@@ -440,6 +440,32 @@ const List<Color> kCustomActionColors = [
   Color(0xFF7F7F3F),
 ];
 
+/// The hue of each strategy's actions: its five are shades of it, and so
+/// are the actions a person adds to it ([ownActionColour]).
+const Map<String, Color> kStrategyHues = {
+  'Emotional': Color(0xFFE15759),
+  'Physical': Color(0xFFF28E2B),
+  'Social': Color(0xFF59A14F),
+  'Spiritual': Color(0xFFB07AA1),
+  'Intellectual': Color(0xFF4E79A7),
+  'Occupational': Color(0xFF2F8F8A),
+  'Financial': Color(0xFFB8860B),
+  'Environmental': Color(0xFF6E5A3C),
+};
+
+/// The [n]th (from 0) action a person added to [strategy]: another shade of
+/// the strategy's hue, none the same as its five offered actions'. Null for
+/// a strategy that is not one of the eight.
+Color? ownActionColour(String strategy, int n) {
+  final hue = kStrategyHues[strategy];
+  if (hue == null) return null;
+  // Toward white (+) or black (-), between the offered five's steps.
+  const steps = [0.22, -0.18, 0.6, -0.48, -0.78];
+  final f = steps[n % steps.length];
+  final toward = f > 0 ? Colors.white : Colors.black;
+  return Color.lerp(hue, toward, f.abs())!;
+}
+
 /// A colour of its own for each of the 40 offered actions. Each strategy's
 /// five actions are shades of one hue (6 Nov 2026: the eight wellness
 /// strategies).
@@ -543,12 +569,15 @@ List<Slice> actionSlices(
     for (final e in kActionColors.entries) matchKey(e.key): e.value,
   };
   var written = 0;
-  return tally.slices(
-    (i, label) =>
-        colours[matchKey(label)] ??
-        kCustomActionColors[written++ % kCustomActionColors.length],
-    withZeros: withZeros,
-  );
+  // A person's own action is a shade of its strategy's hue (Quang, 7 Nov),
+  // or, under an older strategy, one of the custom colours.
+  return tally.slices((i, label) {
+    final offeredColour = colours[matchKey(label)];
+    if (offeredColour != null) return offeredColour;
+    final n = written++;
+    return ownActionColour(strategy, n) ??
+        kCustomActionColors[n % kCustomActionColors.length];
+  }, withZeros: withZeros);
 }
 
 /// Check-ins that chose [strategy] but saved no action with it.

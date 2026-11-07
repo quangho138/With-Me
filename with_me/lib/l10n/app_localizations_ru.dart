@@ -900,7 +900,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get checkinOptInLaws => 'Родня партнёра';
 
   @override
-  String get checkinOptFinancial => 'Деньги';
+  String get checkinOptFinancial => 'Финансы';
 
   @override
   String get checkinOptDomesticDuties => 'Домашние дела';

@@ -905,7 +905,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get checkinOptInLaws => 'Mga biyenan';
 
   @override
-  String get checkinOptFinancial => 'Pera';
+  String get checkinOptFinancial => 'Pananalapi';
 
   @override
   String get checkinOptDomesticDuties => 'Gawaing bahay';

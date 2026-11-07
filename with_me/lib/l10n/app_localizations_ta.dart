@@ -908,7 +908,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get checkinOptInLaws => 'மாமனார் வீட்டார்';
 
   @override
-  String get checkinOptFinancial => 'பணம்';
+  String get checkinOptFinancial => 'நிதி';
 
   @override
   String get checkinOptDomesticDuties => 'வீட்டு வேலைகள்';

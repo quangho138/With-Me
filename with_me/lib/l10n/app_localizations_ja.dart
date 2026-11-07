@@ -854,7 +854,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get checkinOptInLaws => '義理の家族';
 
   @override
-  String get checkinOptFinancial => 'お金';
+  String get checkinOptFinancial => '家計';
 
   @override
   String get checkinOptDomesticDuties => '家事';
