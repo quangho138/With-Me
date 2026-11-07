@@ -54,7 +54,7 @@ void main() {
       expect(e.signOther, 'Jaw clenching');
       expect(e.intention, 'Somewhat ready');
       expect(e.strategy, 'Physical');
-      expect(e.action, 'Deep breathing');
+      expect(e.action, '10-minute walk');
       expect(e.rating, 4);
       expect(tester.takeException(), isNull);
     });

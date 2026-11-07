@@ -521,7 +521,7 @@ void main() {
     });
 
     testWidgets('Actions and Strategies: the large strategy card, then '
-        'the actions two to a row, an odd one on the left', (tester) async {
+        'the eight actions cards two to a row', (tester) async {
       await openDashboard(tester);
       await openPage(tester, 3);
       Rect at(String k) => tester.getRect(find.byKey(ValueKey(k)));
@@ -536,7 +536,7 @@ void main() {
           (t.key! as ValueKey<String>).value.substring('pie-action-'.length),
       ];
       expect(labels, kStrategies, reason: 'no made-up strategies');
-      expect(labels.length.isOdd, isTrue);
+      expect(labels.length, 8);
       final top = at('pie-strategies');
       final first = at('pie-action-${labels[0]}');
       expect(top.bottom, lessThan(first.top));
@@ -550,8 +550,9 @@ void main() {
         expect(l.right, lessThan(r.left));
         expect(l.left, first.left);
       }
+      // Eight: four full rows, no odd one left over.
       final last = at('pie-action-${labels.last}');
-      expect(last.left, first.left);
+      expect(last.top, at('pie-action-${labels[labels.length - 2]}').top);
       expect(last.width, first.width);
       expect(tester.takeException(), isNull);
     });
@@ -560,11 +561,14 @@ void main() {
         'the key, zeros included', (tester) async {
       await openDashboard(tester);
       await openPage(tester, 3);
-      await openWeek(tester, 'pie-action-Mental');
-      expect(find.text('The actions you chose with Mental.'), findsOneWidget);
+      await openWeek(tester, 'pie-action-Emotional');
+      expect(
+        find.text('The actions you chose with Emotional.'),
+        findsOneWidget,
+      );
       final pie = tester.widget<ChoicePie>(find.byType(ChoicePie).first).size;
       expect(pie, lessThanOrEqualTo(210));
-      for (final a in kActionsByStrategy['Mental']!) {
+      for (final a in kActionsByStrategy['Emotional']!) {
         expect(find.text(a), findsOneWidget);
       }
       expect(find.textContaining('0 check-ins · 0%'), findsWidgets);
@@ -1061,16 +1065,16 @@ void main() {
         day(1, strategy: 'Nature', action: 'Park walk'),
         day(2, strategy: 'nature', action: 'Walking'),
         day(3, strategy: '  Nature ', action: 'park walk'),
-        day(4, strategy: 'mental', action: 'Reframing'),
+        day(4, strategy: 'spiritual', action: 'Meditation'),
         day(5, strategy: 'Physical', action: 'Walking'),
       ]);
       final byLabel = {for (final s in slices) s.label: s.value};
       expect(byLabel['Nature'], 3);
-      expect(byLabel['Mental'], 1);
-      expect(byLabel.containsKey('mental'), isFalse);
+      expect(byLabel['Spiritual'], 1);
+      expect(byLabel.containsKey('spiritual'), isFalse);
       expect(byLabel.containsKey('nature'), isFalse);
-      // The five offered strategies always come first, in order.
-      expect(slices.take(5).map((s) => s.label), kStrategies);
+      // The eight offered strategies always come first, in order.
+      expect(slices.take(8).map((s) => s.label), kStrategies);
     });
 
     test('an action stays with its strategy; the same action under two '
@@ -1092,37 +1096,67 @@ void main() {
       expect(physical, {'Walking': 2});
       expect(withoutAction(days, 'Nature'), 1);
       expect(withoutAction(days, 'Physical'), 0);
-      // The same action keeps its colour wherever it appears.
+      // A person's own action takes a shade of its strategy's hue; under
+      // an older strategy (Nature) it takes a custom colour.
       expect(
-        actionSlices(days, 'Nature').first.color,
         actionSlices(days, 'Physical').first.color,
+        ownActionColour('Physical', 0),
       );
+      expect(actionSlices(days, 'Nature').first.color, kCustomActionColors[0]);
     });
 
-    test('repeated Spiritual entries make one strategy with its actions '
-        'counted', () {
+    test('own actions get shades of their strategy, none the same as the '
+        'offered five', () {
       final days = [
-        day(1, strategy: 'Spiritual', action: 'Prayer'),
-        day(2, strategy: 'spiritual ', action: 'prayer'),
-        day(3, strategy: 'Spiritual', action: 'Meditation'),
-        day(4, strategy: 'SPIRITUAL', action: 'Prayer '),
-        day(5, strategy: 'Social', action: 'Prayer'),
+        day(1, strategy: 'Emotional', action: 'Walk the dog'),
+        day(2, strategy: 'Emotional', action: 'Bake bread'),
+        day(3, strategy: 'Emotional', action: 'Journaling feelings'),
       ];
-      final strategies = [
-        for (final s in strategySlices(days))
-          if (s.value > 0) (s.label, s.value),
-      ];
-      expect(strategies, [('Social', 1.0), ('Spiritual', 4.0)]);
-      final spiritual = [
-        for (final s in actionSlices(days, 'Spiritual')) (s.label, s.value),
-      ];
-      expect(spiritual, [('Prayer', 3.0), ('Meditation', 1.0)]);
-      // Prayer under Social stays with Social.
+      final colours = {
+        for (final s in actionSlices(days, 'Emotional')) s.label: s.color,
+      };
       expect(
-        [for (final s in actionSlices(days, 'Social')) (s.label, s.value)],
-        [('Prayer', 1.0)],
+        colours['Journaling feelings'],
+        kActionColors['Journaling feelings'],
       );
+      expect(colours['Walk the dog'], ownActionColour('Emotional', 0));
+      expect(colours['Bake bread'], ownActionColour('Emotional', 1));
+      final offered = {
+        for (final a in kActionsByStrategy['Emotional']!) kActionColors[a],
+      };
+      for (var n = 0; n < 5; n++) {
+        expect(offered, isNot(contains(ownActionColour('Emotional', n))));
+      }
+      expect(ownActionColour('Nature', 0), isNull);
     });
+
+    test(
+      'repeated entries of an older strategy (Faith) make one strategy with its actions '
+      'counted',
+      () {
+        final days = [
+          day(1, strategy: 'Faith', action: 'Prayer'),
+          day(2, strategy: 'faith ', action: 'prayer'),
+          day(3, strategy: 'Faith', action: 'Meditation'),
+          day(4, strategy: 'FAITH', action: 'Prayer '),
+          day(5, strategy: 'Social', action: 'Prayer'),
+        ];
+        final strategies = [
+          for (final s in strategySlices(days))
+            if (s.value > 0) (s.label, s.value),
+        ];
+        expect(strategies, [('Social', 1.0), ('Faith', 4.0)]);
+        final faith = [
+          for (final s in actionSlices(days, 'Faith')) (s.label, s.value),
+        ];
+        expect(faith, [('Prayer', 3.0), ('Meditation', 1.0)]);
+        // Prayer under Social stays with Social.
+        expect(
+          [for (final s in actionSlices(days, 'Social')) (s.label, s.value)],
+          [('Prayer', 1.0)],
+        );
+      },
+    );
 
     test(
       'stressors: picks plus written answers, merged, once per check-in',

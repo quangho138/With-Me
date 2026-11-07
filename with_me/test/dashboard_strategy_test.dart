@@ -44,13 +44,13 @@ void main() {
       AppRepositories.checkIns = LocalCheckInRepository(open: () async => db);
       addTearDown(() => AppRepositories.checkIns = previous);
 
-      // The walk picks Physical, then Deep breathing, then finishes.
+      // The walk picks Physical, then 10-minute walk, then finishes.
       await walkCheckIn(tester);
 
       final rows = (await tester.runAsync(() => db.query('check_in_details')))!;
       expect(rows.length, 1);
       expect(rows.single['strategy'], 'Physical');
-      expect(rows.single['action'], 'Deep breathing');
+      expect(rows.single['action'], '10-minute walk');
 
       // A fresh app, so the walk's last page isn't kept on the stack.
       await tester.pumpWidget(const SizedBox());
@@ -79,7 +79,7 @@ void main() {
       }
       await settle(tester);
 
-      // One check-in: Physical on the strategy pie, Deep breathing on
+      // One check-in: Physical on the strategy pie, 10-minute walk on
       // Physical's actions pie. Each card opens its own page, which reads the
       // database too.
       Future<void> open(String key) async {
@@ -105,7 +105,7 @@ void main() {
       await settle(tester);
       await settle(tester);
       await open('pie-action-Physical');
-      expect(find.text('Deep breathing'), findsOneWidget);
+      expect(find.text('10-minute walk'), findsOneWidget);
       expect(find.text('1 check-in · 100%'), findsOneWidget);
 
       // The same check-in's motivation and intention to change show as one

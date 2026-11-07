@@ -1104,6 +1104,136 @@ class AppLocalizationsSw extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Kueleza ninavyojisikia';
 
   @override
+  String get checkinOptSpiritual => 'Kiroho';
+
+  @override
+  String get checkinOptIntellectual => 'Kiakili';
+
+  @override
+  String get checkinOptOccupational => 'Kikazi';
+
+  @override
+  String get checkinOptEnvironmental => 'Kimazingira';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Pumzi ya kifiziolojia / kupumua';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Kuandika hisia';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Zoezi la shukrani';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'Ongea na mtu unayemwamini';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Jionee huruma';
+
+  @override
+  String get checkinOptTenMinuteWalk => 'Tembea dakika 10';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Boresha ratiba ya usingizi';
+
+  @override
+  String get checkinOptHydration => 'Kunywa maji';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Panga milo yenye afya';
+
+  @override
+  String get checkinOptCallAFriend => 'Mpigie rafiki simu';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Kaa na familia';
+
+  @override
+  String get checkinOptJoinAGroup => 'Jiunge na kikundi';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Weka mipaka yenye afya';
+
+  @override
+  String get checkinOptMeditation => 'Tafakari';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Sala au tafakuri';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Kaa katika mazingira asilia';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'Tambua maadili yako';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Fanya mazoezi ya umakini';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Jifunze kitu kipya';
+
+  @override
+  String get checkinOptReadABook => 'Soma kitabu';
+
+  @override
+  String get checkinOptCreativeActivities => 'Shughuli za ubunifu';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Tatua fumbo';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Jaribu ujuzi mpya';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Panga kazi kwa kipaumbele';
+
+  @override
+  String get checkinOptTakeBreaks => 'Pumzika kidogo';
+
+  @override
+  String get checkinOptDelegate => 'Kabidhi kazi';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Fafanua matarajio';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'Tenganisha kazi na maisha';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Kagua bajeti yako';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Weka lengo la kuweka akiba';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Panga matumizi';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Tengeneza mpango wa hatua';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Tafuta ushauri wa kifedha';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Panga mahali pako';
+
+  @override
+  String get checkinOptReduceNoise => 'Punguza kelele';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Kaa nje';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Tengeneza kona ya kupumzika';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Punguza muda wa skrini';
+
+  @override
+  String get checkinAddOwnAction => 'Ongeza hatua yako';
+
+  @override
   String get checkinOptWho => 'Nani?';
 
   @override

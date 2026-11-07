@@ -896,7 +896,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get checkinOptInLaws => 'అత్తమామలు';
 
   @override
-  String get checkinOptFinancial => 'డబ్బు';
+  String get checkinOptFinancial => 'ఆర్థికం';
 
   @override
   String get checkinOptDomesticDuties => 'ఇంటి పనులు';
@@ -1101,6 +1101,136 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get checkinOptShareHowIFeel => 'నా భావాలను పంచుకోవడం';
+
+  @override
+  String get checkinOptSpiritual => 'ఆధ్యాత్మిక';
+
+  @override
+  String get checkinOptIntellectual => 'మేధో';
+
+  @override
+  String get checkinOptOccupational => 'వృత్తిపర';
+
+  @override
+  String get checkinOptEnvironmental => 'పర్యావరణ';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'ఫిజియోలాజికల్ నిట్టూర్పు / శ్వాస';
+
+  @override
+  String get checkinOptJournalingFeelings => 'భావాలు రాయడం';
+
+  @override
+  String get checkinOptGratitudeExercise => 'కృతజ్ఞతా అభ్యాసం';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'నమ్మకమైన వారితో మాట్లాడండి';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'స్వీయ కరుణ అభ్యాసం';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10 నిమిషాల నడక';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'నిద్ర అలవాటు మెరుగుపరచడం';
+
+  @override
+  String get checkinOptHydration => 'నీళ్లు తాగడం';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'ఆరోగ్యకరమైన భోజన ప్రణాళిక';
+
+  @override
+  String get checkinOptCallAFriend => 'స్నేహితుడికి ఫోన్ చేయండి';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'కుటుంబంతో గడపడం';
+
+  @override
+  String get checkinOptJoinAGroup => 'ఒక గ్రూప్‌లో చేరడం';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'ఆరోగ్యకరమైన హద్దులు పెట్టడం';
+
+  @override
+  String get checkinOptMeditation => 'ధ్యానం';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'ప్రార్థన లేదా ఆలోచన';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'ప్రకృతిలో గడపడం';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'వ్యక్తిగత విలువలు గుర్తించడం';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'మైండ్‌ఫుల్‌నెస్ అభ్యాసం';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'కొత్తది నేర్చుకోవడం';
+
+  @override
+  String get checkinOptReadABook => 'పుస్తకం చదవడం';
+
+  @override
+  String get checkinOptCreativeActivities => 'సృజనాత్మక పనులు';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'పజిల్ పరిష్కరించడం';
+
+  @override
+  String get checkinOptExploreANewSkill => 'కొత్త నైపుణ్యం ప్రయత్నించడం';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'పనులకు ప్రాధాన్యత';
+
+  @override
+  String get checkinOptTakeBreaks => 'విరామం తీసుకోవడం';
+
+  @override
+  String get checkinOptDelegate => 'పని అప్పగించడం';
+
+  @override
+  String get checkinOptClarifyExpectations => 'అంచనాలు స్పష్టం చేయడం';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'పని–జీవితం హద్దులు';
+
+  @override
+  String get checkinOptReviewYourBudget => 'బడ్జెట్ సమీక్షించడం';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'పొదుపు లక్ష్యం పెట్టడం';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'ఖర్చులు క్రమబద్ధీకరించడం';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'కార్యాచరణ ప్రణాళిక వేయడం';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'ఆర్థిక సలహా తీసుకోవడం';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'మీ చోటు సర్దుకోవడం';
+
+  @override
+  String get checkinOptReduceNoise => 'శబ్దం తగ్గించడం';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'బయట గడపడం';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'విశ్రాంతి మూల ఏర్పాటు చేయడం';
+
+  @override
+  String get checkinOptReduceScreenTime => 'స్క్రీన్ సమయం తగ్గించడం';
+
+  @override
+  String get checkinAddOwnAction => 'మీ సొంత చర్య జోడించండి';
 
   @override
   String get checkinOptWho => 'ఎవరు?';

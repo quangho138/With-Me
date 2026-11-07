@@ -854,7 +854,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get checkinOptInLaws => '義理の家族';
 
   @override
-  String get checkinOptFinancial => 'お金';
+  String get checkinOptFinancial => '家計';
 
   @override
   String get checkinOptDomesticDuties => '家事';
@@ -1059,6 +1059,135 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get checkinOptShareHowIFeel => '気持ちを話す';
+
+  @override
+  String get checkinOptSpiritual => 'スピリチュアル';
+
+  @override
+  String get checkinOptIntellectual => '知的';
+
+  @override
+  String get checkinOptOccupational => '仕事';
+
+  @override
+  String get checkinOptEnvironmental => '環境';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing => '生理的ため息 / 呼吸';
+
+  @override
+  String get checkinOptJournalingFeelings => '気持ちを書き出す';
+
+  @override
+  String get checkinOptGratitudeExercise => '感謝のワーク';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => '信頼できる人と話す';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'セルフ・コンパッション';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10分間の散歩';
+
+  @override
+  String get checkinOptImproveSleepRoutine => '睡眠リズムを整える';
+
+  @override
+  String get checkinOptHydration => '水分補給';
+
+  @override
+  String get checkinOptHealthyMealPlanning => '健康的な食事の計画';
+
+  @override
+  String get checkinOptCallAFriend => '友達に電話する';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => '家族と過ごす';
+
+  @override
+  String get checkinOptJoinAGroup => 'グループに参加する';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => '健全な境界線を引く';
+
+  @override
+  String get checkinOptMeditation => '瞑想';
+
+  @override
+  String get checkinOptPrayerOrReflection => '祈りや内省';
+
+  @override
+  String get checkinOptSpendTimeInNature => '自然の中で過ごす';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => '大切にしたい価値観を知る';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'マインドフルネス';
+
+  @override
+  String get checkinOptLearnSomethingNew => '新しいことを学ぶ';
+
+  @override
+  String get checkinOptReadABook => '本を読む';
+
+  @override
+  String get checkinOptCreativeActivities => '創作活動';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'パズルを解く';
+
+  @override
+  String get checkinOptExploreANewSkill => '新しいスキルに挑戦';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'やることに優先順位をつける';
+
+  @override
+  String get checkinOptTakeBreaks => '休憩をとる';
+
+  @override
+  String get checkinOptDelegate => '人に任せる';
+
+  @override
+  String get checkinOptClarifyExpectations => '期待されていることを確認する';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => '仕事と生活の境界線を引く';
+
+  @override
+  String get checkinOptReviewYourBudget => '予算を見直す';
+
+  @override
+  String get checkinOptCreateASavingsGoal => '貯金の目標を立てる';
+
+  @override
+  String get checkinOptOrganizeExpenses => '支出を整理する';
+
+  @override
+  String get checkinOptMakeAnActionPlan => '行動計画を立てる';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'お金の相談をする';
+
+  @override
+  String get checkinOptDeclutterYourSpace => '身の回りを片づける';
+
+  @override
+  String get checkinOptReduceNoise => '騒音を減らす';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => '外で過ごす';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'くつろげる場所をつくる';
+
+  @override
+  String get checkinOptReduceScreenTime => '画面を見る時間を減らす';
+
+  @override
+  String get checkinAddOwnAction => '自分のアクションを追加';
 
   @override
   String get checkinOptWho => 'だれ？';

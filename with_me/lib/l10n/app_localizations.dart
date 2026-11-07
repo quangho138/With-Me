@@ -2075,6 +2075,264 @@ abstract class AppLocalizations {
   /// **'Share how I feel'**
   String get checkinOptShareHowIFeel;
 
+  /// A strategy or action in the check-in (saved in English as "Spiritual").
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual'**
+  String get checkinOptSpiritual;
+
+  /// A strategy or action in the check-in (saved in English as "Intellectual").
+  ///
+  /// In en, this message translates to:
+  /// **'Intellectual'**
+  String get checkinOptIntellectual;
+
+  /// A strategy or action in the check-in (saved in English as "Occupational").
+  ///
+  /// In en, this message translates to:
+  /// **'Occupational'**
+  String get checkinOptOccupational;
+
+  /// A strategy or action in the check-in (saved in English as "Environmental").
+  ///
+  /// In en, this message translates to:
+  /// **'Environmental'**
+  String get checkinOptEnvironmental;
+
+  /// A strategy or action in the check-in (saved in English as "Physiological sigh / breathing").
+  ///
+  /// In en, this message translates to:
+  /// **'Physiological sigh / breathing'**
+  String get checkinOptPhysiologicalSighBreathing;
+
+  /// A strategy or action in the check-in (saved in English as "Journaling feelings").
+  ///
+  /// In en, this message translates to:
+  /// **'Journaling feelings'**
+  String get checkinOptJournalingFeelings;
+
+  /// A strategy or action in the check-in (saved in English as "Gratitude exercise").
+  ///
+  /// In en, this message translates to:
+  /// **'Gratitude exercise'**
+  String get checkinOptGratitudeExercise;
+
+  /// A strategy or action in the check-in (saved in English as "Talk to someone you trust").
+  ///
+  /// In en, this message translates to:
+  /// **'Talk to someone you trust'**
+  String get checkinOptTalkToSomeoneYouTrust;
+
+  /// A strategy or action in the check-in (saved in English as "Practice self-compassion").
+  ///
+  /// In en, this message translates to:
+  /// **'Practice self-compassion'**
+  String get checkinOptPracticeSelfCompassion;
+
+  /// A strategy or action in the check-in (saved in English as "10-minute walk").
+  ///
+  /// In en, this message translates to:
+  /// **'10-minute walk'**
+  String get checkinOptTenMinuteWalk;
+
+  /// A strategy or action in the check-in (saved in English as "Improve sleep routine").
+  ///
+  /// In en, this message translates to:
+  /// **'Improve sleep routine'**
+  String get checkinOptImproveSleepRoutine;
+
+  /// A strategy or action in the check-in (saved in English as "Hydration").
+  ///
+  /// In en, this message translates to:
+  /// **'Hydration'**
+  String get checkinOptHydration;
+
+  /// A strategy or action in the check-in (saved in English as "Healthy meal planning").
+  ///
+  /// In en, this message translates to:
+  /// **'Healthy meal planning'**
+  String get checkinOptHealthyMealPlanning;
+
+  /// A strategy or action in the check-in (saved in English as "Call a friend").
+  ///
+  /// In en, this message translates to:
+  /// **'Call a friend'**
+  String get checkinOptCallAFriend;
+
+  /// A strategy or action in the check-in (saved in English as "Spend time with family").
+  ///
+  /// In en, this message translates to:
+  /// **'Spend time with family'**
+  String get checkinOptSpendTimeWithFamily;
+
+  /// A strategy or action in the check-in (saved in English as "Join a group").
+  ///
+  /// In en, this message translates to:
+  /// **'Join a group'**
+  String get checkinOptJoinAGroup;
+
+  /// A strategy or action in the check-in (saved in English as "Set healthy boundaries").
+  ///
+  /// In en, this message translates to:
+  /// **'Set healthy boundaries'**
+  String get checkinOptSetHealthyBoundaries;
+
+  /// A strategy or action in the check-in (saved in English as "Meditation").
+  ///
+  /// In en, this message translates to:
+  /// **'Meditation'**
+  String get checkinOptMeditation;
+
+  /// A strategy or action in the check-in (saved in English as "Prayer or reflection").
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer or reflection'**
+  String get checkinOptPrayerOrReflection;
+
+  /// A strategy or action in the check-in (saved in English as "Spend time in nature").
+  ///
+  /// In en, this message translates to:
+  /// **'Spend time in nature'**
+  String get checkinOptSpendTimeInNature;
+
+  /// A strategy or action in the check-in (saved in English as "Identify personal values").
+  ///
+  /// In en, this message translates to:
+  /// **'Identify personal values'**
+  String get checkinOptIdentifyPersonalValues;
+
+  /// A strategy or action in the check-in (saved in English as "Practice mindfulness").
+  ///
+  /// In en, this message translates to:
+  /// **'Practice mindfulness'**
+  String get checkinOptPracticeMindfulness;
+
+  /// A strategy or action in the check-in (saved in English as "Learn something new").
+  ///
+  /// In en, this message translates to:
+  /// **'Learn something new'**
+  String get checkinOptLearnSomethingNew;
+
+  /// A strategy or action in the check-in (saved in English as "Read a book").
+  ///
+  /// In en, this message translates to:
+  /// **'Read a book'**
+  String get checkinOptReadABook;
+
+  /// A strategy or action in the check-in (saved in English as "Creative activities").
+  ///
+  /// In en, this message translates to:
+  /// **'Creative activities'**
+  String get checkinOptCreativeActivities;
+
+  /// A strategy or action in the check-in (saved in English as "Solve a puzzle").
+  ///
+  /// In en, this message translates to:
+  /// **'Solve a puzzle'**
+  String get checkinOptSolveAPuzzle;
+
+  /// A strategy or action in the check-in (saved in English as "Explore a new skill").
+  ///
+  /// In en, this message translates to:
+  /// **'Explore a new skill'**
+  String get checkinOptExploreANewSkill;
+
+  /// A strategy or action in the check-in (saved in English as "Prioritize tasks").
+  ///
+  /// In en, this message translates to:
+  /// **'Prioritize tasks'**
+  String get checkinOptPrioritizeTasks;
+
+  /// A strategy or action in the check-in (saved in English as "Take breaks").
+  ///
+  /// In en, this message translates to:
+  /// **'Take breaks'**
+  String get checkinOptTakeBreaks;
+
+  /// A strategy or action in the check-in (saved in English as "Delegate").
+  ///
+  /// In en, this message translates to:
+  /// **'Delegate'**
+  String get checkinOptDelegate;
+
+  /// A strategy or action in the check-in (saved in English as "Clarify expectations").
+  ///
+  /// In en, this message translates to:
+  /// **'Clarify expectations'**
+  String get checkinOptClarifyExpectations;
+
+  /// A strategy or action in the check-in (saved in English as "Set work-life boundaries").
+  ///
+  /// In en, this message translates to:
+  /// **'Set work-life boundaries'**
+  String get checkinOptSetWorkLifeBoundaries;
+
+  /// A strategy or action in the check-in (saved in English as "Review your budget").
+  ///
+  /// In en, this message translates to:
+  /// **'Review your budget'**
+  String get checkinOptReviewYourBudget;
+
+  /// A strategy or action in the check-in (saved in English as "Create a savings goal").
+  ///
+  /// In en, this message translates to:
+  /// **'Create a savings goal'**
+  String get checkinOptCreateASavingsGoal;
+
+  /// A strategy or action in the check-in (saved in English as "Organize expenses").
+  ///
+  /// In en, this message translates to:
+  /// **'Organize expenses'**
+  String get checkinOptOrganizeExpenses;
+
+  /// A strategy or action in the check-in (saved in English as "Make an action plan").
+  ///
+  /// In en, this message translates to:
+  /// **'Make an action plan'**
+  String get checkinOptMakeAnActionPlan;
+
+  /// A strategy or action in the check-in (saved in English as "Seek financial guidance").
+  ///
+  /// In en, this message translates to:
+  /// **'Seek financial guidance'**
+  String get checkinOptSeekFinancialGuidance;
+
+  /// A strategy or action in the check-in (saved in English as "Declutter your space").
+  ///
+  /// In en, this message translates to:
+  /// **'Declutter your space'**
+  String get checkinOptDeclutterYourSpace;
+
+  /// A strategy or action in the check-in (saved in English as "Reduce noise").
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce noise'**
+  String get checkinOptReduceNoise;
+
+  /// A strategy or action in the check-in (saved in English as "Spend time outdoors").
+  ///
+  /// In en, this message translates to:
+  /// **'Spend time outdoors'**
+  String get checkinOptSpendTimeOutdoors;
+
+  /// A strategy or action in the check-in (saved in English as "Create a relaxing corner").
+  ///
+  /// In en, this message translates to:
+  /// **'Create a relaxing corner'**
+  String get checkinOptCreateARelaxingCorner;
+
+  /// A strategy or action in the check-in (saved in English as "Reduce screen time").
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce screen time'**
+  String get checkinOptReduceScreenTime;
+
+  /// Last item of the action dropdown, and the title of its popup: type an action of your own for the chosen strategy.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your own action'**
+  String get checkinAddOwnAction;
+
   /// A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why).
   ///
   /// In en, this message translates to:

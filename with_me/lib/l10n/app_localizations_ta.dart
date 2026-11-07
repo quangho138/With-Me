@@ -908,7 +908,7 @@ class AppLocalizationsTa extends AppLocalizations {
   String get checkinOptInLaws => 'மாமனார் வீட்டார்';
 
   @override
-  String get checkinOptFinancial => 'பணம்';
+  String get checkinOptFinancial => 'நிதி';
 
   @override
   String get checkinOptDomesticDuties => 'வீட்டு வேலைகள்';
@@ -1113,6 +1113,137 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get checkinOptShareHowIFeel => 'என் உணர்வுகளைப் பகிர்தல்';
+
+  @override
+  String get checkinOptSpiritual => 'ஆன்மீகம்';
+
+  @override
+  String get checkinOptIntellectual => 'அறிவுசார்';
+
+  @override
+  String get checkinOptOccupational => 'தொழில்';
+
+  @override
+  String get checkinOptEnvironmental => 'சுற்றுச்சூழல்';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'உடலியல் பெருமூச்சு / சுவாசம்';
+
+  @override
+  String get checkinOptJournalingFeelings => 'உணர்வுகளை எழுதுதல்';
+
+  @override
+  String get checkinOptGratitudeExercise => 'நன்றியுணர்வுப் பயிற்சி';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => 'நம்பிக்கையானவரிடம் பேசுங்கள்';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'சுய இரக்கப் பயிற்சி';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10 நிமிட நடை';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'தூக்க வழக்கத்தை மேம்படுத்துதல்';
+
+  @override
+  String get checkinOptHydration => 'நீர் அருந்துதல்';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'ஆரோக்கிய உணவுத் திட்டம்';
+
+  @override
+  String get checkinOptCallAFriend => 'நண்பரை அழைக்கவும்';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'குடும்பத்துடன் நேரம் செலவிடுதல்';
+
+  @override
+  String get checkinOptJoinAGroup => 'ஒரு குழுவில் சேருதல்';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'ஆரோக்கியமான எல்லைகள் அமைத்தல்';
+
+  @override
+  String get checkinOptMeditation => 'தியானம்';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'பிரார்த்தனை அல்லது சிந்தனை';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'இயற்கையில் நேரம் செலவிடுதல்';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'தனிப்பட்ட மதிப்புகளை அறிதல்';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'நினைவாற்றல் பயிற்சி';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'புதிதாக ஒன்றைக் கற்றல்';
+
+  @override
+  String get checkinOptReadABook => 'புத்தகம் படித்தல்';
+
+  @override
+  String get checkinOptCreativeActivities => 'படைப்புச் செயல்கள்';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'புதிர் தீர்த்தல்';
+
+  @override
+  String get checkinOptExploreANewSkill => 'புதிய திறனை முயற்சித்தல்';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'பணிகளுக்கு முன்னுரிமை';
+
+  @override
+  String get checkinOptTakeBreaks => 'இடைவேளை எடுத்தல்';
+
+  @override
+  String get checkinOptDelegate => 'பணியைப் பகிர்தல்';
+
+  @override
+  String get checkinOptClarifyExpectations =>
+      'எதிர்பார்ப்புகளைத் தெளிவுபடுத்துதல்';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'வேலை–வாழ்க்கை எல்லைகள்';
+
+  @override
+  String get checkinOptReviewYourBudget => 'வரவுசெலவைப் பார்த்தல்';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'சேமிப்பு இலக்கு அமைத்தல்';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'செலவுகளை ஒழுங்குபடுத்துதல்';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'செயல் திட்டம் வகுத்தல்';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'நிதி ஆலோசனை பெறுதல்';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'இடத்தை ஒழுங்குபடுத்துதல்';
+
+  @override
+  String get checkinOptReduceNoise => 'சத்தத்தைக் குறைத்தல்';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'வெளியில் நேரம் செலவிடுதல்';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'ஓய்வு மூலையை அமைத்தல்';
+
+  @override
+  String get checkinOptReduceScreenTime => 'திரை நேரத்தைக் குறைத்தல்';
+
+  @override
+  String get checkinAddOwnAction => 'உங்கள் செயலைச் சேர்க்கவும்';
 
   @override
   String get checkinOptWho => 'யார்?';

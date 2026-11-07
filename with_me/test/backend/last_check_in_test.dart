@@ -23,6 +23,34 @@ void main() {
 
   final today = DateTime(2026, 10, 30);
 
+  test("savedActions: each strategy's actions from past check-ins, once "
+      'each, in the order first saved', () async {
+    final db = await freshDb();
+    final repo = LocalCheckInRepository(open: () async => db);
+    expect(await repo.savedActions(), isEmpty);
+    for (final (day, strategy, action) in [
+      (1, 'Emotional', 'Meditate'),
+      (2, 'Emotional', 'Journaling feelings'),
+      (3, 'Emotional', 'Meditate'),
+      (4, 'Physical', 'Walk the dog'),
+      (5, 'Social', null),
+    ]) {
+      await repo.save(
+        CheckInEntry(
+          day: DateTime(2026, 10, day),
+          mood: 'Happy',
+          strategy: strategy,
+          action: action,
+        ),
+      );
+    }
+    expect(await repo.savedActions(), {
+      'Emotional': ['Meditate', 'Journaling feelings'],
+      'Physical': ['Walk the dog'],
+    });
+    await db.close();
+  });
+
   test('no days at all: null', () async {
     final db = await freshDb();
     final repo = LocalCheckInRepository(open: () async => db);

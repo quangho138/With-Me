@@ -5,6 +5,7 @@ import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeCharts.dart';
 import '../Data/CheckInSteps.dart';
+import '../Data/DashboardStats.dart' show kStrategyColors;
 import '../Theme/WithMeTheme.dart';
 import 'DayDetailScreen.dart';
 import 'TriggersSignsScreen.dart';
@@ -29,20 +30,12 @@ class StrategiesActionsScreen extends StatelessWidget {
     final l = context.l10n;
     final strategies = <Slice>[
       for (var i = 0; i < kStrategies.length; i++)
-        Slice(
-          kStrategies[i],
-          1,
-          WithMeColors.series[i % WithMeColors.series.length],
-        ),
+        Slice(kStrategies[i], 1, kStrategyColors[i]),
     ];
 
     final actions = <Slice>[
       for (var i = 0; i < kStrategies.length; i++)
-        Slice(
-          kActionsByStrategy[kStrategies[i]]!.first,
-          1,
-          WithMeColors.series[i % WithMeColors.series.length],
-        ),
+        Slice(kActionsByStrategy[kStrategies[i]]!.first, 1, kStrategyColors[i]),
     ];
 
     return ScenicScaffold(

@@ -1485,6 +1485,178 @@
   "@checkinOptShareHowIFeel": {
     "description": "A stress management action the person can pick under a strategy (dropdown item and dashboard label)."
   },
+  "checkinOptSpiritual": "Spiritual",
+  "@checkinOptSpiritual": {
+    "description": "A strategy or action in the check-in (saved in English as \"Spiritual\")."
+  },
+  "checkinOptIntellectual": "Intellectual",
+  "@checkinOptIntellectual": {
+    "description": "A strategy or action in the check-in (saved in English as \"Intellectual\")."
+  },
+  "checkinOptOccupational": "Occupational",
+  "@checkinOptOccupational": {
+    "description": "A strategy or action in the check-in (saved in English as \"Occupational\")."
+  },
+  "checkinOptEnvironmental": "Environmental",
+  "@checkinOptEnvironmental": {
+    "description": "A strategy or action in the check-in (saved in English as \"Environmental\")."
+  },
+  "checkinOptPhysiologicalSighBreathing": "Physiological sigh / breathing",
+  "@checkinOptPhysiologicalSighBreathing": {
+    "description": "A strategy or action in the check-in (saved in English as \"Physiological sigh / breathing\")."
+  },
+  "checkinOptJournalingFeelings": "Journaling feelings",
+  "@checkinOptJournalingFeelings": {
+    "description": "A strategy or action in the check-in (saved in English as \"Journaling feelings\")."
+  },
+  "checkinOptGratitudeExercise": "Gratitude exercise",
+  "@checkinOptGratitudeExercise": {
+    "description": "A strategy or action in the check-in (saved in English as \"Gratitude exercise\")."
+  },
+  "checkinOptTalkToSomeoneYouTrust": "Talk to someone you trust",
+  "@checkinOptTalkToSomeoneYouTrust": {
+    "description": "A strategy or action in the check-in (saved in English as \"Talk to someone you trust\")."
+  },
+  "checkinOptPracticeSelfCompassion": "Practice self-compassion",
+  "@checkinOptPracticeSelfCompassion": {
+    "description": "A strategy or action in the check-in (saved in English as \"Practice self-compassion\")."
+  },
+  "checkinOptTenMinuteWalk": "10-minute walk",
+  "@checkinOptTenMinuteWalk": {
+    "description": "A strategy or action in the check-in (saved in English as \"10-minute walk\")."
+  },
+  "checkinOptImproveSleepRoutine": "Improve sleep routine",
+  "@checkinOptImproveSleepRoutine": {
+    "description": "A strategy or action in the check-in (saved in English as \"Improve sleep routine\")."
+  },
+  "checkinOptHydration": "Hydration",
+  "@checkinOptHydration": {
+    "description": "A strategy or action in the check-in (saved in English as \"Hydration\")."
+  },
+  "checkinOptHealthyMealPlanning": "Healthy meal planning",
+  "@checkinOptHealthyMealPlanning": {
+    "description": "A strategy or action in the check-in (saved in English as \"Healthy meal planning\")."
+  },
+  "checkinOptCallAFriend": "Call a friend",
+  "@checkinOptCallAFriend": {
+    "description": "A strategy or action in the check-in (saved in English as \"Call a friend\")."
+  },
+  "checkinOptSpendTimeWithFamily": "Spend time with family",
+  "@checkinOptSpendTimeWithFamily": {
+    "description": "A strategy or action in the check-in (saved in English as \"Spend time with family\")."
+  },
+  "checkinOptJoinAGroup": "Join a group",
+  "@checkinOptJoinAGroup": {
+    "description": "A strategy or action in the check-in (saved in English as \"Join a group\")."
+  },
+  "checkinOptSetHealthyBoundaries": "Set healthy boundaries",
+  "@checkinOptSetHealthyBoundaries": {
+    "description": "A strategy or action in the check-in (saved in English as \"Set healthy boundaries\")."
+  },
+  "checkinOptMeditation": "Meditation",
+  "@checkinOptMeditation": {
+    "description": "A strategy or action in the check-in (saved in English as \"Meditation\")."
+  },
+  "checkinOptPrayerOrReflection": "Prayer or reflection",
+  "@checkinOptPrayerOrReflection": {
+    "description": "A strategy or action in the check-in (saved in English as \"Prayer or reflection\")."
+  },
+  "checkinOptSpendTimeInNature": "Spend time in nature",
+  "@checkinOptSpendTimeInNature": {
+    "description": "A strategy or action in the check-in (saved in English as \"Spend time in nature\")."
+  },
+  "checkinOptIdentifyPersonalValues": "Identify personal values",
+  "@checkinOptIdentifyPersonalValues": {
+    "description": "A strategy or action in the check-in (saved in English as \"Identify personal values\")."
+  },
+  "checkinOptPracticeMindfulness": "Practice mindfulness",
+  "@checkinOptPracticeMindfulness": {
+    "description": "A strategy or action in the check-in (saved in English as \"Practice mindfulness\")."
+  },
+  "checkinOptLearnSomethingNew": "Learn something new",
+  "@checkinOptLearnSomethingNew": {
+    "description": "A strategy or action in the check-in (saved in English as \"Learn something new\")."
+  },
+  "checkinOptReadABook": "Read a book",
+  "@checkinOptReadABook": {
+    "description": "A strategy or action in the check-in (saved in English as \"Read a book\")."
+  },
+  "checkinOptCreativeActivities": "Creative activities",
+  "@checkinOptCreativeActivities": {
+    "description": "A strategy or action in the check-in (saved in English as \"Creative activities\")."
+  },
+  "checkinOptSolveAPuzzle": "Solve a puzzle",
+  "@checkinOptSolveAPuzzle": {
+    "description": "A strategy or action in the check-in (saved in English as \"Solve a puzzle\")."
+  },
+  "checkinOptExploreANewSkill": "Explore a new skill",
+  "@checkinOptExploreANewSkill": {
+    "description": "A strategy or action in the check-in (saved in English as \"Explore a new skill\")."
+  },
+  "checkinOptPrioritizeTasks": "Prioritize tasks",
+  "@checkinOptPrioritizeTasks": {
+    "description": "A strategy or action in the check-in (saved in English as \"Prioritize tasks\")."
+  },
+  "checkinOptTakeBreaks": "Take breaks",
+  "@checkinOptTakeBreaks": {
+    "description": "A strategy or action in the check-in (saved in English as \"Take breaks\")."
+  },
+  "checkinOptDelegate": "Delegate",
+  "@checkinOptDelegate": {
+    "description": "A strategy or action in the check-in (saved in English as \"Delegate\")."
+  },
+  "checkinOptClarifyExpectations": "Clarify expectations",
+  "@checkinOptClarifyExpectations": {
+    "description": "A strategy or action in the check-in (saved in English as \"Clarify expectations\")."
+  },
+  "checkinOptSetWorkLifeBoundaries": "Set work-life boundaries",
+  "@checkinOptSetWorkLifeBoundaries": {
+    "description": "A strategy or action in the check-in (saved in English as \"Set work-life boundaries\")."
+  },
+  "checkinOptReviewYourBudget": "Review your budget",
+  "@checkinOptReviewYourBudget": {
+    "description": "A strategy or action in the check-in (saved in English as \"Review your budget\")."
+  },
+  "checkinOptCreateASavingsGoal": "Create a savings goal",
+  "@checkinOptCreateASavingsGoal": {
+    "description": "A strategy or action in the check-in (saved in English as \"Create a savings goal\")."
+  },
+  "checkinOptOrganizeExpenses": "Organize expenses",
+  "@checkinOptOrganizeExpenses": {
+    "description": "A strategy or action in the check-in (saved in English as \"Organize expenses\")."
+  },
+  "checkinOptMakeAnActionPlan": "Make an action plan",
+  "@checkinOptMakeAnActionPlan": {
+    "description": "A strategy or action in the check-in (saved in English as \"Make an action plan\")."
+  },
+  "checkinOptSeekFinancialGuidance": "Seek financial guidance",
+  "@checkinOptSeekFinancialGuidance": {
+    "description": "A strategy or action in the check-in (saved in English as \"Seek financial guidance\")."
+  },
+  "checkinOptDeclutterYourSpace": "Declutter your space",
+  "@checkinOptDeclutterYourSpace": {
+    "description": "A strategy or action in the check-in (saved in English as \"Declutter your space\")."
+  },
+  "checkinOptReduceNoise": "Reduce noise",
+  "@checkinOptReduceNoise": {
+    "description": "A strategy or action in the check-in (saved in English as \"Reduce noise\")."
+  },
+  "checkinOptSpendTimeOutdoors": "Spend time outdoors",
+  "@checkinOptSpendTimeOutdoors": {
+    "description": "A strategy or action in the check-in (saved in English as \"Spend time outdoors\")."
+  },
+  "checkinOptCreateARelaxingCorner": "Create a relaxing corner",
+  "@checkinOptCreateARelaxingCorner": {
+    "description": "A strategy or action in the check-in (saved in English as \"Create a relaxing corner\")."
+  },
+  "checkinOptReduceScreenTime": "Reduce screen time",
+  "@checkinOptReduceScreenTime": {
+    "description": "A strategy or action in the check-in (saved in English as \"Reduce screen time\")."
+  },
+  "checkinAddOwnAction": "Add your own action",
+  "@checkinAddOwnAction": {
+    "description": "Last item of the action dropdown, and the title of its popup: type an action of your own for the chosen strategy."
+  },
   "checkinOptWho": "Who?",
   "@checkinOptWho": {
     "description": "A self-reflection category label above a dropdown of questions (Who / What / Where / When / Why)."

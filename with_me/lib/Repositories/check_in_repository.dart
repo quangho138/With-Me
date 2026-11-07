@@ -159,6 +159,12 @@ abstract class CheckInRepository {
   /// is saved once, when the check-in is finished.
   Future<StrategyChoice?> latestStrategy();
 
+  /// Every action saved with each strategy on any check-in, as typed, so
+  /// the check-in can offer a person's own actions again (6 Nov 2026).
+  /// They come from the check-ins themselves, so they sync, export and
+  /// delete with them, and are never seen by anyone else.
+  Future<Map<String, List<String>>> savedActions();
+
   /// One day's mood, control level and stressor row (each may be null).
   Future<String?> moodOn(DateTime day);
   Future<int?> controlLevelOn(DateTime day);
@@ -392,6 +398,26 @@ class LocalCheckInRepository implements CheckInRepository {
       strategy: r['strategy'] as String,
       action: (action?.isEmpty ?? true) ? null : action,
     );
+  }
+
+  @override
+  Future<Map<String, List<String>>> savedActions() async {
+    final db = await _open();
+    final rows = await db.query(
+      'check_in_details',
+      columns: ['strategy', 'action'],
+      where:
+          "strategy IS NOT NULL AND strategy != '' "
+          "AND action IS NOT NULL AND action != ''",
+      orderBy: 'date',
+    );
+    final byStrategy = <String, List<String>>{};
+    for (final r in rows) {
+      final list = byStrategy.putIfAbsent(r['strategy'] as String, () => []);
+      final action = r['action'] as String;
+      if (!list.contains(action)) list.add(action);
+    }
+    return byStrategy;
   }
 
   @override

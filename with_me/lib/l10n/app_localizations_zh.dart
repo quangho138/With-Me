@@ -1048,6 +1048,135 @@ class AppLocalizationsZh extends AppLocalizations {
   String get checkinOptShareHowIFeel => '分享我的感受';
 
   @override
+  String get checkinOptSpiritual => '精神';
+
+  @override
+  String get checkinOptIntellectual => '智力';
+
+  @override
+  String get checkinOptOccupational => '职业';
+
+  @override
+  String get checkinOptEnvironmental => '环境';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing => '生理性叹息 / 呼吸';
+
+  @override
+  String get checkinOptJournalingFeelings => '写下感受';
+
+  @override
+  String get checkinOptGratitudeExercise => '感恩练习';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => '和信任的人聊聊';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => '练习自我关怀';
+
+  @override
+  String get checkinOptTenMinuteWalk => '散步 10 分钟';
+
+  @override
+  String get checkinOptImproveSleepRoutine => '改善作息';
+
+  @override
+  String get checkinOptHydration => '补充水分';
+
+  @override
+  String get checkinOptHealthyMealPlanning => '规划健康饮食';
+
+  @override
+  String get checkinOptCallAFriend => '给朋友打电话';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => '陪伴家人';
+
+  @override
+  String get checkinOptJoinAGroup => '加入一个团体';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => '设定健康的界限';
+
+  @override
+  String get checkinOptMeditation => '冥想';
+
+  @override
+  String get checkinOptPrayerOrReflection => '祈祷或反思';
+
+  @override
+  String get checkinOptSpendTimeInNature => '亲近大自然';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => '明确个人价值观';
+
+  @override
+  String get checkinOptPracticeMindfulness => '练习正念';
+
+  @override
+  String get checkinOptLearnSomethingNew => '学点新东西';
+
+  @override
+  String get checkinOptReadABook => '读一本书';
+
+  @override
+  String get checkinOptCreativeActivities => '创意活动';
+
+  @override
+  String get checkinOptSolveAPuzzle => '解个谜题';
+
+  @override
+  String get checkinOptExploreANewSkill => '尝试新技能';
+
+  @override
+  String get checkinOptPrioritizeTasks => '安排任务优先级';
+
+  @override
+  String get checkinOptTakeBreaks => '适时休息';
+
+  @override
+  String get checkinOptDelegate => '分派任务';
+
+  @override
+  String get checkinOptClarifyExpectations => '明确期望';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => '划清工作与生活的界限';
+
+  @override
+  String get checkinOptReviewYourBudget => '检查预算';
+
+  @override
+  String get checkinOptCreateASavingsGoal => '设定储蓄目标';
+
+  @override
+  String get checkinOptOrganizeExpenses => '整理开支';
+
+  @override
+  String get checkinOptMakeAnActionPlan => '制定行动计划';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => '寻求理财建议';
+
+  @override
+  String get checkinOptDeclutterYourSpace => '整理你的空间';
+
+  @override
+  String get checkinOptReduceNoise => '减少噪音';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => '到户外走走';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => '布置一个放松角落';
+
+  @override
+  String get checkinOptReduceScreenTime => '减少屏幕时间';
+
+  @override
+  String get checkinAddOwnAction => '添加自己的行动';
+
+  @override
   String get checkinOptWho => '谁？';
 
   @override
@@ -7548,6 +7677,135 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get checkinOptShareHowIFeel => '分享我的感受';
+
+  @override
+  String get checkinOptSpiritual => '精神';
+
+  @override
+  String get checkinOptIntellectual => '智力';
+
+  @override
+  String get checkinOptOccupational => '職業';
+
+  @override
+  String get checkinOptEnvironmental => '環境';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing => '生理性嘆息 / 呼吸';
+
+  @override
+  String get checkinOptJournalingFeelings => '寫下感受';
+
+  @override
+  String get checkinOptGratitudeExercise => '感恩練習';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => '和信任的人聊聊';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => '練習自我關懷';
+
+  @override
+  String get checkinOptTenMinuteWalk => '散步 10 分鐘';
+
+  @override
+  String get checkinOptImproveSleepRoutine => '改善作息';
+
+  @override
+  String get checkinOptHydration => '補充水分';
+
+  @override
+  String get checkinOptHealthyMealPlanning => '規劃健康飲食';
+
+  @override
+  String get checkinOptCallAFriend => '打電話給朋友';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => '陪伴家人';
+
+  @override
+  String get checkinOptJoinAGroup => '加入一個團體';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => '設定健康的界線';
+
+  @override
+  String get checkinOptMeditation => '冥想';
+
+  @override
+  String get checkinOptPrayerOrReflection => '祈禱或反思';
+
+  @override
+  String get checkinOptSpendTimeInNature => '親近大自然';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => '釐清個人價值觀';
+
+  @override
+  String get checkinOptPracticeMindfulness => '練習正念';
+
+  @override
+  String get checkinOptLearnSomethingNew => '學點新東西';
+
+  @override
+  String get checkinOptReadABook => '讀一本書';
+
+  @override
+  String get checkinOptCreativeActivities => '創意活動';
+
+  @override
+  String get checkinOptSolveAPuzzle => '解個謎題';
+
+  @override
+  String get checkinOptExploreANewSkill => '嘗試新技能';
+
+  @override
+  String get checkinOptPrioritizeTasks => '安排任務優先順序';
+
+  @override
+  String get checkinOptTakeBreaks => '適時休息';
+
+  @override
+  String get checkinOptDelegate => '分派任務';
+
+  @override
+  String get checkinOptClarifyExpectations => '釐清期望';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => '劃清工作與生活的界線';
+
+  @override
+  String get checkinOptReviewYourBudget => '檢查預算';
+
+  @override
+  String get checkinOptCreateASavingsGoal => '設定儲蓄目標';
+
+  @override
+  String get checkinOptOrganizeExpenses => '整理開支';
+
+  @override
+  String get checkinOptMakeAnActionPlan => '制定行動計畫';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => '尋求理財建議';
+
+  @override
+  String get checkinOptDeclutterYourSpace => '整理你的空間';
+
+  @override
+  String get checkinOptReduceNoise => '減少噪音';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => '到戶外走走';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => '布置一個放鬆角落';
+
+  @override
+  String get checkinOptReduceScreenTime => '減少螢幕時間';
+
+  @override
+  String get checkinAddOwnAction => '新增自己的行動';
 
   @override
   String get checkinOptWho => '誰？';

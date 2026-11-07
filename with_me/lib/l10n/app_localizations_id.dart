@@ -1103,6 +1103,138 @@ class AppLocalizationsId extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Berbagi perasaanku';
 
   @override
+  String get checkinOptSpiritual => 'Spiritual';
+
+  @override
+  String get checkinOptIntellectual => 'Intelektual';
+
+  @override
+  String get checkinOptOccupational => 'Pekerjaan';
+
+  @override
+  String get checkinOptEnvironmental => 'Lingkungan';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Desahan fisiologis / pernapasan';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Menulis perasaan';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Latihan bersyukur';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust =>
+      'Bicara dengan orang yang dipercaya';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Berlatih welas asih diri';
+
+  @override
+  String get checkinOptTenMinuteWalk => 'Jalan kaki 10 menit';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Perbaiki rutinitas tidur';
+
+  @override
+  String get checkinOptHydration => 'Cukup minum';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Rencanakan makanan sehat';
+
+  @override
+  String get checkinOptCallAFriend => 'Telepon teman';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Waktu bersama keluarga';
+
+  @override
+  String get checkinOptJoinAGroup => 'Bergabung dengan kelompok';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Tetapkan batasan sehat';
+
+  @override
+  String get checkinOptMeditation => 'Meditasi';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Doa atau refleksi';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Waktu di alam';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'Kenali nilai pribadi';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Berlatih mindfulness';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Pelajari hal baru';
+
+  @override
+  String get checkinOptReadABook => 'Membaca buku';
+
+  @override
+  String get checkinOptCreativeActivities => 'Kegiatan kreatif';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Memecahkan teka-teki';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Coba keterampilan baru';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Prioritaskan tugas';
+
+  @override
+  String get checkinOptTakeBreaks => 'Ambil jeda';
+
+  @override
+  String get checkinOptDelegate => 'Delegasikan';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Perjelas harapan';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries =>
+      'Batasi kerja dan hidup pribadi';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Tinjau anggaran';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Buat target tabungan';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Atur pengeluaran';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Buat rencana aksi';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Cari saran keuangan';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Rapikan ruanganmu';
+
+  @override
+  String get checkinOptReduceNoise => 'Kurangi kebisingan';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Waktu di luar ruangan';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Buat sudut santai';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Kurangi waktu layar';
+
+  @override
+  String get checkinAddOwnAction => 'Tambah aksi sendiri';
+
+  @override
   String get checkinOptWho => 'Siapa?';
 
   @override
