@@ -62,6 +62,8 @@ void main() {
   test('a try reaches the account and a second phone', () async {
     final a = await phone();
     await signUp(a);
+    await a.sync.syncNow(); // the new name goes up first
+    expect(await a.sync.hasPendingChanges(), isFalse);
     await a.uses.use(PlusExercise.bodyScan);
     expect(await a.sync.hasPendingChanges(), isTrue);
 
@@ -199,6 +201,7 @@ void main() {
   test('with Plus, nothing is counted or uploaded', () async {
     final a = await phone();
     await signUp(a);
+    await a.sync.syncNow(); // the new name goes up first
     await a.plus.set(true);
     await a.uses.use(PlusExercise.bodyScan);
     expect(await a.sync.hasPendingChanges(), isFalse);
