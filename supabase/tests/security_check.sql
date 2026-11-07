@@ -50,6 +50,7 @@ insert into public.exercise_sessions (id, completed_at, exercise)
   values ('00000000-0000-4000-b000-000000000001', now(), 'breathing');
 insert into public.journal_entries (day, who, what)
   values ('2026-10-01', 'Who did I lean on today?', 'What went better than expected?');
+insert into public.free_tries (exercise) values ('body_scan');
 reset role;
 
 -- Now act as user A.
@@ -200,6 +201,40 @@ do $$ begin
   exception when check_violation then null;
   end;
 end $$;
+
+-- 7b. Free tries: A uses their own, once, and can never give one back.
+insert into public.free_tries (exercise) values ('anxiety_sos');
+-- Uploading the same try again (as the app does) changes nothing.
+select public.upload_free_tries(
+  '[{"exercise": "anxiety_sos", "used_at": "2026-10-01T10:00:00Z"}]');
+do $$
+declare touched int;
+begin
+  if (select count(*) from public.free_tries) <> 1 then
+    raise exception 'FAILED: A should see exactly their own one free try';
+  end if;
+  begin
+    insert into public.free_tries (user_id, exercise)
+      values ('00000000-0000-4000-a000-00000000000b', 'muscle_relaxation');
+    raise exception 'FAILED: A used a free try as B';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    insert into public.free_tries (exercise) values ('something_else');
+    raise exception 'FAILED: an unknown exercise was accepted as a free try';
+  exception when check_violation then null;
+  end;
+  begin
+    delete from public.free_tries;
+    raise exception 'FAILED: A gave back a free try';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    update public.free_tries set used_at = now();
+    raise exception 'FAILED: A changed a free try';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
 reset role;
 
 -- 8. Someone signed out gets nothing at all.
@@ -225,6 +260,16 @@ do $$ begin
     raise exception 'FAILED: a signed-out visitor can upload a journal';
   exception when insufficient_privilege then null;
   end;
+  begin
+    perform 1 from public.free_tries;
+    raise exception 'FAILED: a signed-out visitor can read free tries';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.upload_free_tries('[]');
+    raise exception 'FAILED: a signed-out visitor can upload free tries';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 reset role;
 
@@ -239,6 +284,8 @@ do $$ begin
      or exists (select 1 from public.check_ins
                 where user_id = '00000000-0000-4000-a000-00000000000a')
      or exists (select 1 from public.journal_entries
+                where user_id = '00000000-0000-4000-a000-00000000000a')
+     or exists (select 1 from public.free_tries
                 where user_id = '00000000-0000-4000-a000-00000000000a')
   then raise exception 'FAILED: delete my account left A behind'; end if;
   if not exists (select 1 from auth.users
@@ -267,6 +314,8 @@ do $$ begin
      or exists (select 1 from public.journal_entries
                 where user_id = '00000000-0000-4000-a000-00000000000b')
      or exists (select 1 from public.profiles
+                where user_id = '00000000-0000-4000-a000-00000000000b')
+     or exists (select 1 from public.free_tries
                 where user_id = '00000000-0000-4000-a000-00000000000b')
   then raise exception 'FAILED: deleting B left rows behind'; end if;
 end $$;

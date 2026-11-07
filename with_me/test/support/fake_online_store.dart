@@ -11,6 +11,9 @@ class FakeServer {
   final Map<String, Map<String, Map<String, dynamic>>> exercises = {};
   final Map<String, Map<String, Map<String, dynamic>>> journal = {};
   final Map<String, Map<String, dynamic>> profiles = {};
+
+  /// Each user's used free tries: exercise to used_at (free_tries).
+  final Map<String, Map<String, String>> freeTries = {};
   var _clock = 0;
 
   /// The server's clock: always moves forward.
@@ -132,4 +135,28 @@ class FakeOnlineStore implements OnlineStore {
 
   @override
   Future<bool> hasJournal() async => (server.journal[_me] ?? {}).isNotEmpty;
+
+  /// The first use counts; uploading it again changes nothing
+  /// (upload_free_tries). Unknown exercises are refused, as the server's
+  /// check does.
+  @override
+  Future<void> uploadFreeTries(List<Map<String, Object?>> tries) async {
+    const known = {
+      'guided_meditation',
+      'body_scan',
+      'muscle_relaxation',
+      'anxiety_sos',
+    };
+    if (tries.any((t) => !known.contains(t['exercise']))) {
+      throw StateError('free_tries_exercise_check');
+    }
+    final mine = server.freeTries.putIfAbsent(_me, () => {});
+    for (final t in tries) {
+      mine.putIfAbsent(t['exercise'] as String, () => t['used_at'] as String);
+    }
+  }
+
+  @override
+  Future<List<String>> freeTries() async =>
+      (server.freeTries[_me] ?? {}).keys.toList();
 }
