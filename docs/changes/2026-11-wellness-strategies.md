@@ -34,3 +34,8 @@ each, and asked that people can add their own action to any of them.
 
 - Check-ins already saved by test accounts keep their old names; the
   dashboard shows those as older strategies after the eight.
+
+## Follow-up after the laptop check (7 Nov)
+- "Financial" now reads well as a wellness strategy too (for example Spanish "Finanzas" instead of "Dinero"). The same word is used for the money stressor, so that wording changes as well. 15 languages changed; de, id, sw, vi, zh and zh_Hant already fit.
+- A person's own action is now a shade of its strategy's colour (ownActionColour), so it no longer stands out in yellow. Actions under an older strategy keep the custom colours.
+- An unfinished check-in is counted on the dashboard. That is fine: it can still be changed.
