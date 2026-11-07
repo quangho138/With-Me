@@ -1104,6 +1104,138 @@ class AppLocalizationsVi extends AppLocalizations {
   String get checkinOptShareHowIFeel => 'Chia sẻ cảm xúc của mình';
 
   @override
+  String get checkinOptSpiritual => 'Tinh thần';
+
+  @override
+  String get checkinOptIntellectual => 'Trí tuệ';
+
+  @override
+  String get checkinOptOccupational => 'Nghề nghiệp';
+
+  @override
+  String get checkinOptEnvironmental => 'Môi trường';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Thở dài sinh lý / hít thở';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Viết ra cảm xúc';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Bài tập biết ơn';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust =>
+      'Nói chuyện với người bạn tin tưởng';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => 'Thực hành tự trắc ẩn';
+
+  @override
+  String get checkinOptTenMinuteWalk => 'Đi bộ 10 phút';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Cải thiện giấc ngủ';
+
+  @override
+  String get checkinOptHydration => 'Uống đủ nước';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Lên kế hoạch ăn uống lành mạnh';
+
+  @override
+  String get checkinOptCallAFriend => 'Gọi cho một người bạn';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Dành thời gian cho gia đình';
+
+  @override
+  String get checkinOptJoinAGroup => 'Tham gia một nhóm';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Đặt ranh giới lành mạnh';
+
+  @override
+  String get checkinOptMeditation => 'Thiền';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Cầu nguyện hoặc suy ngẫm';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Dành thời gian với thiên nhiên';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'Xác định giá trị bản thân';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Thực hành chánh niệm';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Học điều mới';
+
+  @override
+  String get checkinOptReadABook => 'Đọc sách';
+
+  @override
+  String get checkinOptCreativeActivities => 'Hoạt động sáng tạo';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Giải câu đố';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Khám phá kỹ năng mới';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Ưu tiên công việc';
+
+  @override
+  String get checkinOptTakeBreaks => 'Nghỉ giải lao';
+
+  @override
+  String get checkinOptDelegate => 'Giao việc cho người khác';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Làm rõ kỳ vọng';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries =>
+      'Cân bằng công việc và cuộc sống';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Xem lại ngân sách';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Đặt mục tiêu tiết kiệm';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Sắp xếp chi tiêu';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Lập kế hoạch hành động';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => 'Tìm tư vấn tài chính';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Dọn dẹp không gian';
+
+  @override
+  String get checkinOptReduceNoise => 'Giảm tiếng ồn';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Dành thời gian ngoài trời';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Tạo góc thư giãn';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Giảm thời gian dùng màn hình';
+
+  @override
+  String get checkinAddOwnAction => 'Thêm hành động của bạn';
+
+  @override
   String get checkinOptWho => 'Ai?';
 
   @override

@@ -52,6 +52,9 @@ class _MemorySettings implements SettingsRepository {
 class _CheckIns implements CheckInRepository {
   _CheckIns([this.area]);
 
+  @override
+  Future<Map<String, List<String>>> savedActions() async => const {};
+
   final String? area;
   final List<CheckInEntry> saved = [];
 

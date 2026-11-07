@@ -852,7 +852,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get checkinOptInLaws => '시댁·처가';
 
   @override
-  String get checkinOptFinancial => '돈 문제';
+  String get checkinOptFinancial => '재정';
 
   @override
   String get checkinOptDomesticDuties => '집안일';
@@ -1057,6 +1057,135 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get checkinOptShareHowIFeel => '내 마음 이야기하기';
+
+  @override
+  String get checkinOptSpiritual => '영적';
+
+  @override
+  String get checkinOptIntellectual => '지적';
+
+  @override
+  String get checkinOptOccupational => '직업';
+
+  @override
+  String get checkinOptEnvironmental => '환경';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing => '생리적 한숨 / 호흡';
+
+  @override
+  String get checkinOptJournalingFeelings => '감정 일기 쓰기';
+
+  @override
+  String get checkinOptGratitudeExercise => '감사 연습';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust => '믿을 수 있는 사람과 이야기하기';
+
+  @override
+  String get checkinOptPracticeSelfCompassion => '자기 연민 연습';
+
+  @override
+  String get checkinOptTenMinuteWalk => '10분 걷기';
+
+  @override
+  String get checkinOptImproveSleepRoutine => '수면 습관 개선';
+
+  @override
+  String get checkinOptHydration => '수분 섭취';
+
+  @override
+  String get checkinOptHealthyMealPlanning => '건강한 식단 계획';
+
+  @override
+  String get checkinOptCallAFriend => '친구에게 전화하기';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => '가족과 시간 보내기';
+
+  @override
+  String get checkinOptJoinAGroup => '모임에 참여하기';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => '건강한 경계 세우기';
+
+  @override
+  String get checkinOptMeditation => '명상';
+
+  @override
+  String get checkinOptPrayerOrReflection => '기도나 성찰';
+
+  @override
+  String get checkinOptSpendTimeInNature => '자연 속에서 시간 보내기';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => '나의 가치 찾기';
+
+  @override
+  String get checkinOptPracticeMindfulness => '마음챙김 연습';
+
+  @override
+  String get checkinOptLearnSomethingNew => '새로운 것 배우기';
+
+  @override
+  String get checkinOptReadABook => '책 읽기';
+
+  @override
+  String get checkinOptCreativeActivities => '창작 활동';
+
+  @override
+  String get checkinOptSolveAPuzzle => '퍼즐 풀기';
+
+  @override
+  String get checkinOptExploreANewSkill => '새로운 기술 익히기';
+
+  @override
+  String get checkinOptPrioritizeTasks => '할 일 우선순위 정하기';
+
+  @override
+  String get checkinOptTakeBreaks => '휴식 취하기';
+
+  @override
+  String get checkinOptDelegate => '업무 나누기';
+
+  @override
+  String get checkinOptClarifyExpectations => '기대치 명확히 하기';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => '일과 삶의 경계 정하기';
+
+  @override
+  String get checkinOptReviewYourBudget => '예산 점검하기';
+
+  @override
+  String get checkinOptCreateASavingsGoal => '저축 목표 세우기';
+
+  @override
+  String get checkinOptOrganizeExpenses => '지출 정리하기';
+
+  @override
+  String get checkinOptMakeAnActionPlan => '실행 계획 세우기';
+
+  @override
+  String get checkinOptSeekFinancialGuidance => '재정 상담 받기';
+
+  @override
+  String get checkinOptDeclutterYourSpace => '공간 정리하기';
+
+  @override
+  String get checkinOptReduceNoise => '소음 줄이기';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => '야외에서 시간 보내기';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => '편안한 공간 만들기';
+
+  @override
+  String get checkinOptReduceScreenTime => '화면 사용 시간 줄이기';
+
+  @override
+  String get checkinAddOwnAction => '나만의 행동 추가';
 
   @override
   String get checkinOptWho => '누구?';

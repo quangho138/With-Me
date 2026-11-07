@@ -900,7 +900,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get checkinOptInLaws => 'Родня партнёра';
 
   @override
-  String get checkinOptFinancial => 'Деньги';
+  String get checkinOptFinancial => 'Финансы';
 
   @override
   String get checkinOptDomesticDuties => 'Домашние дела';
@@ -1105,6 +1105,139 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get checkinOptShareHowIFeel => 'Рассказать о своих чувствах';
+
+  @override
+  String get checkinOptSpiritual => 'Духовное';
+
+  @override
+  String get checkinOptIntellectual => 'Интеллектуальное';
+
+  @override
+  String get checkinOptOccupational => 'Профессиональное';
+
+  @override
+  String get checkinOptEnvironmental => 'Окружение';
+
+  @override
+  String get checkinOptPhysiologicalSighBreathing =>
+      'Физиологический вздох / дыхание';
+
+  @override
+  String get checkinOptJournalingFeelings => 'Записывать чувства';
+
+  @override
+  String get checkinOptGratitudeExercise => 'Упражнение благодарности';
+
+  @override
+  String get checkinOptTalkToSomeoneYouTrust =>
+      'Поговорить с тем, кому доверяешь';
+
+  @override
+  String get checkinOptPracticeSelfCompassion =>
+      'Практиковать сочувствие к себе';
+
+  @override
+  String get checkinOptTenMinuteWalk => 'Прогулка 10 минут';
+
+  @override
+  String get checkinOptImproveSleepRoutine => 'Наладить режим сна';
+
+  @override
+  String get checkinOptHydration => 'Пить воду';
+
+  @override
+  String get checkinOptHealthyMealPlanning => 'Планировать здоровое питание';
+
+  @override
+  String get checkinOptCallAFriend => 'Позвонить другу';
+
+  @override
+  String get checkinOptSpendTimeWithFamily => 'Провести время с семьёй';
+
+  @override
+  String get checkinOptJoinAGroup => 'Присоединиться к группе';
+
+  @override
+  String get checkinOptSetHealthyBoundaries => 'Обозначить здоровые границы';
+
+  @override
+  String get checkinOptMeditation => 'Медитация';
+
+  @override
+  String get checkinOptPrayerOrReflection => 'Молитва или размышление';
+
+  @override
+  String get checkinOptSpendTimeInNature => 'Побыть на природе';
+
+  @override
+  String get checkinOptIdentifyPersonalValues => 'Определить свои ценности';
+
+  @override
+  String get checkinOptPracticeMindfulness => 'Практиковать осознанность';
+
+  @override
+  String get checkinOptLearnSomethingNew => 'Узнать что-то новое';
+
+  @override
+  String get checkinOptReadABook => 'Почитать книгу';
+
+  @override
+  String get checkinOptCreativeActivities => 'Творчество';
+
+  @override
+  String get checkinOptSolveAPuzzle => 'Решить головоломку';
+
+  @override
+  String get checkinOptExploreANewSkill => 'Освоить новый навык';
+
+  @override
+  String get checkinOptPrioritizeTasks => 'Расставить приоритеты';
+
+  @override
+  String get checkinOptTakeBreaks => 'Делать перерывы';
+
+  @override
+  String get checkinOptDelegate => 'Делегировать';
+
+  @override
+  String get checkinOptClarifyExpectations => 'Прояснить ожидания';
+
+  @override
+  String get checkinOptSetWorkLifeBoundaries => 'Разделять работу и личное';
+
+  @override
+  String get checkinOptReviewYourBudget => 'Пересмотреть бюджет';
+
+  @override
+  String get checkinOptCreateASavingsGoal => 'Поставить цель накоплений';
+
+  @override
+  String get checkinOptOrganizeExpenses => 'Упорядочить расходы';
+
+  @override
+  String get checkinOptMakeAnActionPlan => 'Составить план действий';
+
+  @override
+  String get checkinOptSeekFinancialGuidance =>
+      'Обратиться за финансовым советом';
+
+  @override
+  String get checkinOptDeclutterYourSpace => 'Навести порядок вокруг';
+
+  @override
+  String get checkinOptReduceNoise => 'Уменьшить шум';
+
+  @override
+  String get checkinOptSpendTimeOutdoors => 'Побыть на улице';
+
+  @override
+  String get checkinOptCreateARelaxingCorner => 'Создать уголок для отдыха';
+
+  @override
+  String get checkinOptReduceScreenTime => 'Меньше времени у экрана';
+
+  @override
+  String get checkinAddOwnAction => 'Добавить своё действие';
 
   @override
   String get checkinOptWho => 'Кто?';

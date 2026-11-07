@@ -158,6 +158,9 @@ class DailyCheckInScreen extends StatefulWidget {
   /// The page that depends on the body / feelings / mind / behaviour choice.
   static const int signsPage = 7;
 
+  /// "Select strategies and actions".
+  static const int strategyPage = 9;
+
   /// Each page's heading, in order - what the calendar lists for today.
   /// Keep it in step with `_step`. In [l]'s language, English without it.
   static List<String> pageTitles(String? name, [AppLocalizations? l]) {
@@ -820,13 +823,10 @@ extension on CheckInAnswers {
 
     readiness = e.readiness;
     intention = e.intention;
-    // The dropdowns list only the built-in strategies and actions; a custom
-    // one cannot be shown, so it is left as saved rather than restored.
-    final actions = kActionsByStrategy[e.strategy];
-    if (actions != null) {
-      strategy = e.strategy;
-      action = actions.contains(e.action) ? e.action : null;
-    }
+    // The dropdowns always hold the saved answer, own actions and older
+    // strategies included, so both are restored as saved.
+    strategy = e.strategy;
+    action = e.strategy == null ? null : e.action;
     rating = e.rating ?? 0;
   }
 }
@@ -1495,63 +1495,119 @@ class _StrategyStep extends StatefulWidget {
 }
 
 class _StrategyStepState extends State<_StrategyStep> {
-  final List<String> _customStrategies = [];
-  final Map<String, List<String>> _customActions = {};
+  /// Actions this person saved before, per strategy, from their own
+  /// check-ins (CheckInRepository.savedActions), plus any added here.
+  final Map<String, List<String>> _own = {};
 
-  List<String> get _strategies => [...kStrategies, ..._customStrategies];
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_loadOwn());
+  }
 
+  Future<void> _loadOwn() async {
+    try {
+      final saved = await AppRepositories.checkIns.savedActions();
+      if (!mounted) return;
+      setState(() {
+        for (final e in saved.entries) {
+          for (final action in e.value) {
+            _keep(e.key, action);
+          }
+        }
+      });
+    } catch (e) {
+      // Without them, the offered actions are still there.
+      debugPrint('Own actions not loaded: $e');
+    }
+  }
+
+  static bool _same(String a, String b) =>
+      a.trim().toLowerCase() == b.trim().toLowerCase();
+
+  /// The offered strategy [strategy] stands for (whatever its capitals),
+  /// or null when it is none of them (an older check-in's).
+  static String? _offered(String? strategy) {
+    if (strategy == null) return null;
+    for (final s in kStrategies) {
+      if (_same(s, strategy)) return s;
+    }
+    return null;
+  }
+
+  /// Remembers [action] under [strategy], unless it is one already there.
+  void _keep(String strategy, String action) {
+    final key = _offered(strategy) ?? strategy;
+    final offered = kActionsByStrategy[key] ?? const <String>[];
+    if (offered.any((a) => _same(a, action))) return;
+    final list = _own.putIfAbsent(key, () => []);
+    if (!list.any((a) => _same(a, action))) list.add(action);
+  }
+
+  /// The strategies: the eight offered, and the saved answer if it is an
+  /// older one, so a dropdown always holds the answer it shows.
+  List<String> get _strategies {
+    final picked = widget.answers.strategy;
+    return [
+      ...kStrategies,
+      if (picked != null && _offered(picked) == null) picked,
+    ];
+  }
+
+  /// The chosen strategy's actions: the five offered, then this person's
+  /// own, then the saved answer if it is neither.
   List<String> get _actions {
     final strategy = widget.answers.strategy;
     if (strategy == null) return const [];
-    return [...?kActionsByStrategy[strategy], ...?_customActions[strategy]];
+    final key = _offered(strategy) ?? strategy;
+    final list = [...?kActionsByStrategy[key], ...?_own[key]];
+    final picked = widget.answers.action;
+    if (picked != null && !list.any((a) => _same(a, picked))) list.add(picked);
+    return list;
   }
 
-  Future<void> _addCustom() async {
-    final strategy = TextEditingController();
-    final action = TextEditingController();
-
-    final saved = await showDialog<bool>(
+  /// "+ Add your own action": types one for the chosen strategy and picks
+  /// it. One that matches an action already there (whatever its capitals)
+  /// picks that one instead.
+  Future<void> _addAction() async {
+    final strategy = widget.answers.strategy;
+    if (strategy == null) return;
+    final typed = await showDialog<String>(
       context: context,
       barrierColor: const Color(0x73143A38),
-      builder: (context) =>
-          _CustomStrategyDialog(strategy: strategy, action: action),
+      builder: (_) => const _OwnActionDialog(),
     );
-
-    if (saved == true) {
-      final s = strategy.text.trim();
-      final a = action.text.trim();
-      if (s.isNotEmpty) {
-        setState(() {
-          _customStrategies.add(s);
-          if (a.isNotEmpty) _customActions.putIfAbsent(s, () => []).add(a);
-        });
-        widget.onChanged(() {
-          widget.answers.strategy = s;
-          widget.answers.action = a.isEmpty ? null : a;
-        });
-      }
-    }
-    strategy.dispose();
-    action.dispose();
+    final text = typed?.trim() ?? '';
+    if (!mounted || text.isEmpty) return;
+    final existing = _actions.where((a) => _same(a, text));
+    final action = existing.isEmpty ? text : existing.first;
+    setState(() => _keep(strategy, action));
+    widget.onChanged(() => widget.answers.action = action);
   }
 
   /// A dropdown of saved English [values], each shown in the reader's
-  /// language; a pick is handed back as the English it stands for. Custom
-  /// entries have no translation and show as typed.
+  /// language; a pick is handed back as the English it stands for. Own
+  /// actions have no translation and show as typed. With [add], a last
+  /// item that runs it instead of being picked.
   Widget _dropdown({
     required String label,
     required String? value,
     required List<String> values,
     required ValueChanged<String?> onChanged,
+    (String, VoidCallback)? add,
   }) {
     final shown = {for (final v in values) context.label(v): v};
+    final addLabel = add == null ? null : '+ ${add.$1}';
     return WithMeDropdown(
       label: label,
       value: value == null ? null : context.label(value),
-      items: shown.keys.toList(),
+      items: [...shown.keys, if (addLabel != null) addLabel],
       fill: Colors.white,
       border: _fieldRing,
-      onChanged: (v) => onChanged(shown[v]),
+      onChanged: (v) {
+        if (v != null && v == addLabel) return add!.$2();
+        onChanged(shown[v]);
+      },
     );
   }
 
@@ -1582,6 +1638,9 @@ class _StrategyStepState extends State<_StrategyStep> {
             value: answers.action,
             values: _actions,
             onChanged: (v) => widget.onChanged(() => answers.action = v),
+            add: answers.strategy == null
+                ? null
+                : (l.checkinAddOwnAction, _addAction),
           ),
           const SizedBox(height: 16),
           Text(
@@ -1595,37 +1654,31 @@ class _StrategyStepState extends State<_StrategyStep> {
             size: 32,
             onChanged: (v) => widget.onChanged(() => answers.rating = v),
           ),
-          const SizedBox(height: 12),
-          Semantics(
-            button: true,
-            child: GestureDetector(
-              onTap: _addCustom,
-              behavior: HitTestBehavior.opaque,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                child: Text(
-                  l.checkinAddCustom,
-                  textAlign: TextAlign.center,
-                  style: _bubbleBody.copyWith(
-                    fontWeight: FontWeight.w700,
-                    color: ScenicColors.pillBottom,
-                  ),
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
   }
 }
 
-/// `image22.png` — the custom strategy dialog.
-class _CustomStrategyDialog extends StatelessWidget {
-  const _CustomStrategyDialog({required this.strategy, required this.action});
+/// `image22.png`, now for one action: "Add your own action". It owns its
+/// text box, so the box lives until the popup has fully closed (deleting
+/// it as soon as Add was pressed, while the popup was still fading out,
+/// was the red screen of 6 Nov). Add hands back the text.
+class _OwnActionDialog extends StatefulWidget {
+  const _OwnActionDialog();
 
-  final TextEditingController strategy;
-  final TextEditingController action;
+  @override
+  State<_OwnActionDialog> createState() => _OwnActionDialogState();
+}
+
+class _OwnActionDialogState extends State<_OwnActionDialog> {
+  final _action = TextEditingController();
+
+  @override
+  void dispose() {
+    _action.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1640,15 +1693,48 @@ class _CustomStrategyDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            BubbleText(l.checkinCustomDialogTitle, size: 21),
+            BubbleText(l.checkinAddOwnAction, size: 21),
             const SizedBox(height: WithMeSpace.lg),
-            _DialogField(
-              controller: strategy,
-              hint: l.checkinCustomStrategyHint,
+            TextField(
+              key: const ValueKey('own-action'),
+              controller: _action,
+              autofocus: true,
+              // The online table takes up to 200; a longer one would stop
+              // the check-in from syncing.
+              maxLength: kOwnActionMaxLength,
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              textInputAction: TextInputAction.done,
+              onSubmitted: (text) => Navigator.of(context).pop(text),
+              style: WithMeText.option,
+              cursorColor: ScenicColors.pillBottom,
+              decoration: InputDecoration(
+                hintText: l.checkinCustomActionHint,
+                filled: true,
+                fillColor: Colors.white,
+                hintStyle: WithMeText.option.copyWith(
+                  color: WithMeColors.inkFaint,
+                ),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: WithMeSpace.lg,
+                  vertical: WithMeSpace.md,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+                  borderSide: const BorderSide(
+                    color: ScenicColors.ring,
+                    width: 1.4,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
+                  borderSide: const BorderSide(
+                    color: ScenicColors.pillBottom,
+                    width: 1.8,
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: WithMeSpace.md),
-            _DialogField(controller: action, hint: l.checkinCustomActionHint),
-            const SizedBox(height: WithMeSpace.lg),
             Row(
               children: [
                 Expanded(
@@ -1656,57 +1742,21 @@ class _CustomStrategyDialog extends StatelessWidget {
                     label: l.commonCancel,
                     light: true,
                     height: 46,
-                    onPressed: () => Navigator.of(context).pop(false),
+                    onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
                 const SizedBox(width: WithMeSpace.md),
                 Expanded(
                   child: ScenicPill(
+                    key: const ValueKey('own-action-add'),
                     label: l.commonAdd,
                     height: 46,
-                    onPressed: () => Navigator.of(context).pop(true),
+                    onPressed: () => Navigator.of(context).pop(_action.text),
                   ),
                 ),
               ],
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DialogField extends StatelessWidget {
-  const _DialogField({required this.controller, required this.hint});
-
-  final TextEditingController controller;
-  final String hint;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      style: WithMeText.option,
-      cursorColor: ScenicColors.pillBottom,
-      decoration: InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.white,
-        hintStyle: WithMeText.option.copyWith(color: WithMeColors.inkFaint),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: WithMeSpace.lg,
-          vertical: WithMeSpace.md,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
-          borderSide: const BorderSide(color: ScenicColors.ring, width: 1.4),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(WithMeSpace.radiusMd),
-          borderSide: const BorderSide(
-            color: ScenicColors.pillBottom,
-            width: 1.8,
-          ),
         ),
       ),
     );
