@@ -6,11 +6,13 @@ With Me is a friendly companion app for a short daily wellbeing check-in. An ani
 
 It is built for HR Vision Consulting as the Florida International University Computer Science capstone (CIS 4951, Fall 2026).
 
+Website for people using the app (Privacy Policy, Terms of Use, Delete your account): https://quangho138.github.io/With-Me/ (built from `docs/` on `develop` by GitHub Pages).
+
 ## What With Me is, and is not
 
 - It is a **coach and friend**: a calm daily routine that helps people notice how they feel and take one small helpful step.
 - It is **not a therapist** and **not a chatbot**. It gives no medical advice and does not diagnose anything.
-- The Help screen tells anyone in crisis to contact local emergency services or a crisis line. In the US, that is 911, or call or text 988.
+- The Help screen tells anyone in crisis what to do, by the phone's country: in the US, call or text 988, or call 911; everywhere else, the local emergency number and findahelpline.com.
 
 ## What you can do
 
@@ -19,7 +21,7 @@ It is built for HR Vision Consulting as the Florida International University Com
 - **Calendar and day detail**: every checked-in day is marked, and tapping a day shows what you answered.
 - **Progress and dashboard**: stress and mood trends over 7, 30 and 365 days, and where stress comes from.
 - **Immediate exercises**: 4-7-8 breathing, 4-4-4 focus breathing, 4-4-4-4 box breathing, and the physiological sigh (one deep inhale, one quick inhale, a long exhale), with optional nature video and sound.
-- **Meditation and With Me Plus** ($3.99 a month or $39.99 a year): ten-minute sessions by stress area (Home, Work, School, Social), each with six versions, plus Anxiety SOS, Guided Meditation, Body Scan and Muscle Relaxation. Without Plus: version 1 of each area, and one free try of the other four. The scripts are by Prof. Seyedmasoud Sadjadi, used with permission. There is no billing yet: "Start Plus" just turns it on for this device. Until the session recordings are added, the phone's voice reads the sessions.
+- **Meditation and With Me Plus** ($3.99 a month or $39.99 a year): ten-minute sessions by stress area (Home, Work, School, Social), each with six versions, plus Anxiety SOS, Guided Meditation, Body Scan and Muscle Relaxation. Without Plus: version 1 of each area, and one free try of each of the other four, kept per account. The scripts are by Prof. Seyedmasoud Sadjadi, used with permission. Plus is kept by the server and only the server gives it. Until Google Play payments are connected, test builds offer a test checkout ("Test version, no charge"); other builds say buying is not available yet. The ten-minute sessions download their recorded voice the first time; the phone's voice is the backup.
 - **Accounts**: sign up (with email confirmation), log in with email or Google and stay logged in, reset a forgotten password, or start without an account. One account per phone. Passwords are checked online and never stored on the phone.
 - **Languages**: 22 languages under Menu, Settings, Language, or the phone's own language when the app has it (English otherwise). The companion speaks in Adrian's recorded voice in 13 of them and uses the phone's voice in the rest. Answers are always saved in English, so sync, export and the dashboard work the same in every language. Details: `with_me/lib/l10n/README.md`. To add a language or its voice: `docs/ADDING_A_LANGUAGE.md`.
 - **Profile and settings**: your name, your check-in and exercise counts, App volume, Soft sounds, Haptics, Text size, Read aloud and its voice, "Export my data" (one JSON file, ready to import elsewhere), and "Delete my account", which deletes the account online and everything on the phone.
@@ -40,7 +42,7 @@ Database       stores it (SQLite)     lib/Database/
 
 - **Screens** never touch the database. They ask `AppRepositories` for what they need. A test checks this rule.
 - **Repositories** are the only code that knows how data is stored. This is what will let login and syncing move to a server later without changing any screen.
-- **Database**: SQLite on the device (in the browser, SQLite in IndexedDB). Everything stays on the device for now.
+- **Database**: SQLite on the device (in the browser, SQLite in IndexedDB). With an account, the data also syncs to Supabase (see Data and privacy).
 
 ## Folder map
 
@@ -82,9 +84,13 @@ Useful targets:
 - `flutter run -d web-server --web-port=8080`, then open localhost:8080 in Chrome: browser data survives restarts.
 - `flutter run -d emulator-5554` (or your device id): Android.
 
-In the browser, a sample week of made-up check-ins is added automatically. Tap "Start without an account" on the welcome screen to see it.
+Build switches (add to `flutter run` or `flutter build`; store builds use none of them):
 
-Developer build: add `--dart-define=WITHME_DEV=true` to `flutter run` or `flutter build`. A small "Plus on / Plus off" switch then appears at the top right of "Choose an exercise", to try the meditation with and without Companion Plus. Builds without the flag (every store build) leave the switch out of the app entirely.
+| Switch | What it does |
+|---|---|
+| `--dart-define=WITHME_DEV=true` | A small "Plus on / Plus off" switch at the top right of "Choose an exercise", to try the meditation with and without With Me Plus on this phone only. |
+| `--dart-define=WITHME_PAYMENTS=test` | The membership page offers the test checkout ("Test version, no charge"). For test builds until Google Play payments are connected; removed before the public release. |
+| `--dart-define=WITHME_DEMO=true` | Adds a sample week of made-up check-ins for a demo. Never sign up in a demo build: the sample days would go into the account. |
 
 ## Test it
 
@@ -113,6 +119,7 @@ flutter test
 - With an account, check-ins, the journal, finished exercises and the name sync to the account, so they follow you to another phone. The newest edit of a day wins. The journal holds no written text, only the question picked for each of the five W's.
 - Logging out clears the phone. Check-ins and the journal come back on the next login. If something has not reached the account yet (offline), the app warns first.
 - During the course, only made-up test data is used, never real personal data.
+- The Privacy Policy and Terms of Use are in the app (Settings, Privacy & data; About) and on the website.
 - Details in `docs/BACKEND.md` and `supabase/`.
 - Every third-party package, font, clip, model and online service, with its licence, plus the data boundary and ethics notes: `docs/THIRD_PARTY_AND_REFERENCES.md`.
 
@@ -125,11 +132,11 @@ flutter test
 
 ## Team
 
-- **Quang**: backend (data layer, saving, accounts and sync)
+- **Quang**: the whole backend (data layer, accounts, sync, reminders, With Me Plus) and the graded core features
 - **Bhavesh**: UI lead (screens and the V2 design)
-- **Alex**: UI (scenic V2 screens, exercises)
-- **Gabriel**: rewards and streaks
+- **Alex**: front end (check-in, dashboard, read aloud, talking companion, meditation screens, app icons), and Adrian's voice
 - **Miguel**: exercises
+- **Gabriel**: team member (rewards and streaks were dropped on 19 Oct)
 
 Product owner: HR Vision Consulting.
 

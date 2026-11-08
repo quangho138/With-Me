@@ -1,0 +1,19 @@
+# The public website for With Me (GitHub Pages, folder /docs on develop).
+# Only the pages people need are published: the start page, Privacy,
+# Terms and Delete your account. The developer notes in this folder stay
+# on GitHub but are left out of the site; add any new note to this list.
+title: With Me
+description: Here. With you.
+lang: en
+exclude:
+  - ADDING_A_LANGUAGE.md
+  - BACKEND.md
+  - EXERCISES.md
+  - GRADED_CORE.md
+  - REVIEW.md
+  - THIRD_PARTY_AND_REFERENCES.md
+  - WITH_ME_SPEC_V1.md
+  - WITH_ME_UI.md
+  - WITH_ME_V1_HANDOFF.md
+  - changes
+  - design_v2
