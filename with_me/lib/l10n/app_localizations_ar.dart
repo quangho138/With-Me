@@ -2161,6 +2161,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'بدء تسجيل حالة اليوم';
 
   @override
+  String get dashChangeTodaysCheckIn => 'تغيير تسجيل حالة اليوم';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'تسجيل يوم أمس: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'تسجيل حالة اليوم';
 
   @override
@@ -2762,10 +2770,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'تعذّر حذف حسابك.';
 
   @override
-  String get accountPlusActive => 'لديك Companion Plus';
+  String get accountPlusActive => 'لديك With Me Plus';
 
   @override
-  String get accountPlusStarted => 'تم تفعيل Companion Plus. لم يُدفع أي مبلغ.';
+  String get accountPlusStarted => 'تم تفعيل With Me Plus. لم يُدفع أي مبلغ.';
 
   @override
   String get exerciseMeditationTitle => 'تأمّل موجَّه';
@@ -2774,7 +2782,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 دقائق · هدوء في الغابة';
 
   @override
-  String get exerciseMeditationLocked => 'مقفل. جزء من Companion Plus.';
+  String get exerciseMeditationLocked => 'مقفل. جزء من With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

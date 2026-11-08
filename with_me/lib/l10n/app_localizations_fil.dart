@@ -2137,6 +2137,14 @@ class AppLocalizationsFil extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Simulan ang check-in ngayong araw';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Baguhin ang check-in ngayong araw';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Pinupunan ang kahapon: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Check-in ngayong araw';
 
   @override
@@ -2749,11 +2757,11 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Hindi mabura ang iyong account.';
 
   @override
-  String get accountPlusActive => 'May Companion Plus ka';
+  String get accountPlusActive => 'May With Me Plus ka';
 
   @override
   String get accountPlusStarted =>
-      'Naka-on na ang Companion Plus. Walang kinuhang bayad.';
+      'Naka-on na ang With Me Plus. Walang kinuhang bayad.';
 
   @override
   String get exerciseMeditationTitle => 'Ginagabayang Meditasyon';
@@ -2762,7 +2770,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · katahimikan sa gubat';
 
   @override
-  String get exerciseMeditationLocked => 'Naka-lock. Bahagi ng Companion Plus.';
+  String get exerciseMeditationLocked => 'Naka-lock. Bahagi ng With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

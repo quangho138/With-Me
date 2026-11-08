@@ -2041,6 +2041,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dashStartTodaysCheckIn => '今日のチェックインを始める';
 
   @override
+  String get dashChangeTodaysCheckIn => '今日のチェックインを変更';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '昨日の分を記入中：$date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '今日のチェックイン';
 
   @override
@@ -2621,10 +2629,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'アカウントを削除できませんでした。';
 
   @override
-  String get accountPlusActive => 'Companion Plus をご利用中です';
+  String get accountPlusActive => 'With Me Plus をご利用中です';
 
   @override
-  String get accountPlusStarted => 'Companion Plus がオンになりました。お支払いは発生していません。';
+  String get accountPlusStarted => 'With Me Plus がオンになりました。お支払いは発生していません。';
 
   @override
   String get exerciseMeditationTitle => 'ガイド付き瞑想';
@@ -2633,7 +2641,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5分 · 森で心を落ち着ける';
 
   @override
-  String get exerciseMeditationLocked => 'ロック中。Companion Plus に含まれます。';
+  String get exerciseMeditationLocked => 'ロック中。With Me Plus に含まれます。';
 
   @override
   String get exerciseMeditationIntro => '森の中の静かな5分間。言葉をたどるか、目を閉じて耳を傾けましょう。';

@@ -1343,7 +1343,7 @@ abstract class AppLocalizations {
   /// **'Membership'**
   String get accountMembershipTitle;
 
-  /// Button to start the paid 'Companion Plus' plan.
+  /// Button to start the paid 'With Me Plus' plan.
   ///
   /// In en, this message translates to:
   /// **'Start Plus'**
@@ -3599,6 +3599,18 @@ abstract class AppLocalizations {
   /// **'Start today\'s check-in'**
   String get dashStartTodaysCheckIn;
 
+  /// Daily Log button once today's check-in has answers: opens them to change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change today\'s check-in'**
+  String get dashChangeTodaysCheckIn;
+
+  /// Note above the check-in questions when filling in yesterday. {date} is a weekday and date, for example Saturday 7 November.
+  ///
+  /// In en, this message translates to:
+  /// **'Filling in yesterday: {date}'**
+  String checkinForEarlierDay(String date);
+
   /// Heading over the list of today's check-in pages.
   ///
   /// In en, this message translates to:
@@ -4667,16 +4679,16 @@ abstract class AppLocalizations {
   /// **'Couldn\'t delete your account.'**
   String get settingsDeleteAccountFailed;
 
-  /// Membership button once Companion Plus is on.
+  /// Membership button once With Me Plus is on.
   ///
   /// In en, this message translates to:
-  /// **'You have Companion Plus'**
+  /// **'You have With Me Plus'**
   String get accountPlusActive;
 
   /// Shown after 'Start Plus'. There is no billing yet, so nothing was charged.
   ///
   /// In en, this message translates to:
-  /// **'Companion Plus is on. No payment was taken.'**
+  /// **'With Me Plus is on. No payment was taken.'**
   String get accountPlusStarted;
 
   /// Name of the guided meditation on 'Choose an exercise' and title of its screen.
@@ -4694,7 +4706,7 @@ abstract class AppLocalizations {
   /// Read by screen readers after the meditation's tile when it is locked.
   ///
   /// In en, this message translates to:
-  /// **'Locked. Part of Companion Plus.'**
+  /// **'Locked. Part of With Me Plus.'**
   String get exerciseMeditationLocked;
 
   /// Shown on the meditation screen before it starts.
@@ -4841,7 +4853,7 @@ abstract class AppLocalizations {
   /// **'Tense and release, from your hands to your feet'**
   String get exerciseMuscleSubtitle;
 
-  /// Badge on a Plus exercise: free uses left before Companion Plus is needed.
+  /// Badge on a Plus exercise: free uses left before With Me Plus is needed.
   ///
   /// In en, this message translates to:
   /// **'{count, plural, =1{1 use left} other{{count} uses left}}'**

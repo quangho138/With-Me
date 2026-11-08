@@ -2152,6 +2152,14 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'இன்றைய செக்-இன்னைத் தொடங்கு';
 
   @override
+  String get dashChangeTodaysCheckIn => 'இன்றைய செக்-இன்னை மாற்றவும்';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'நேற்றைக்கானதை நிரப்புகிறீர்கள்: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'இன்றைய செக்-இன்';
 
   @override
@@ -2760,11 +2768,11 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'உங்கள் கணக்கை நீக்க முடியவில்லை.';
 
   @override
-  String get accountPlusActive => 'உங்களிடம் Companion Plus உள்ளது';
+  String get accountPlusActive => 'உங்களிடம் With Me Plus உள்ளது';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus இயக்கப்பட்டது. எந்தக் கட்டணமும் எடுக்கப்படவில்லை.';
+      'With Me Plus இயக்கப்பட்டது. எந்தக் கட்டணமும் எடுக்கப்படவில்லை.';
 
   @override
   String get exerciseMeditationTitle => 'வழிகாட்டப்பட்ட தியானம்';
@@ -2774,7 +2782,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get exerciseMeditationLocked =>
-      'பூட்டப்பட்டுள்ளது. Companion Plus-இன் பகுதி.';
+      'பூட்டப்பட்டுள்ளது. With Me Plus-இன் பகுதி.';
 
   @override
   String get exerciseMeditationIntro =>

@@ -2107,6 +2107,14 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'আজকের চেক-ইন শুরু করুন';
 
   @override
+  String get dashChangeTodaysCheckIn => 'আজকের চেক-ইন বদলান';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'গতকালের জন্য পূরণ করছেন: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'আজকের চেক-ইন';
 
   @override
@@ -2708,11 +2716,11 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'আপনার অ্যাকাউন্ট মোছা যায়নি।';
 
   @override
-  String get accountPlusActive => 'আপনার Companion Plus আছে';
+  String get accountPlusActive => 'আপনার With Me Plus আছে';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus চালু হয়েছে। কোনো টাকা নেওয়া হয়নি।';
+      'With Me Plus চালু হয়েছে। কোনো টাকা নেওয়া হয়নি।';
 
   @override
   String get exerciseMeditationTitle => 'নির্দেশিত মেডিটেশন';
@@ -2721,7 +2729,7 @@ class AppLocalizationsBn extends AppLocalizations {
   String get exerciseMeditationSubtitle => '৫ মিনিট · বনের মাঝে শান্তি';
 
   @override
-  String get exerciseMeditationLocked => 'লক করা। Companion Plus-এর অংশ।';
+  String get exerciseMeditationLocked => 'লক করা। With Me Plus-এর অংশ।';
 
   @override
   String get exerciseMeditationIntro =>
