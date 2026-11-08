@@ -320,7 +320,170 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Hãy liên hệ dịch vụ cấp cứu tại nơi bạn ở hoặc một đường dây hỗ trợ khủng hoảng.';
+      'Nếu bạn đang gặp nguy hiểm hoặc có ý nghĩ làm hại bản thân, hãy gọi số khẩn cấp tại nơi bạn ở. Bạn có thể tìm đường dây hỗ trợ khủng hoảng miễn phí ở quốc gia của mình tại findahelpline.com.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Cập nhật lần cuối: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'Trang này được dịch để bạn tiện đọc. Nếu bản dịch có điểm khác, bản tiếng Anh sẽ được áp dụng.';
+
+  @override
+  String legalContact(String email) {
+    return 'Câu hỏi hoặc yêu cầu xóa dữ liệu: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Đọc Chính sách quyền riêng tư';
+
+  @override
+  String get legalReadTerms => 'Đọc Điều khoản sử dụng';
+
+  @override
+  String get privacyTitle => 'Chính sách quyền riêng tư';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName là ứng dụng đồng hành chăm sóc tinh thần do HR Vision Consulting vận hành. Trang này giải thích bằng lời đơn giản ứng dụng lưu những gì, lưu ở đâu và ai có thể xem.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'Ứng dụng lưu những gì';
+
+  @override
+  String get privacyKeepsBody =>
+      'Các lần ghi nhận hằng ngày (tâm trạng, mức căng thẳng và các câu trả lời bạn chọn hoặc viết), các câu hỏi nhật ký bạn chọn, các bài tập bạn hoàn thành, các lượt dùng thử miễn phí bạn đã dùng và cài đặt của bạn, như ngôn ngữ và cỡ chữ. Nếu có tài khoản, còn có tên và địa chỉ email của bạn.';
+
+  @override
+  String get privacyWhereHeading => 'Lưu ở đâu';
+
+  @override
+  String get privacyWhereBody =>
+      'Không có tài khoản, mọi thứ chỉ nằm trên điện thoại này. Có tài khoản, dữ liệu còn được lưu trong tài khoản trực tuyến để đi theo bạn sang điện thoại mới. Tài khoản trực tuyến được lưu trữ bởi Supabase, một dịch vụ cơ sở dữ liệu, trên máy chủ ở Hoa Kỳ. Nếu bạn đăng nhập bằng Google, Google chia sẻ tên và email của bạn với chúng tôi. Chúng tôi không bao giờ thấy mật khẩu của bạn.';
+
+  @override
+  String get privacyWhoHeading => 'Ai có thể xem';
+
+  @override
+  String get privacyWhoBody =>
+      'Chỉ bạn. Người dùng khác không bao giờ xem được dữ liệu của bạn, và nơi bạn làm việc không bao giờ xem được dữ liệu cá nhân của bạn, kể cả khi họ giới thiệu ứng dụng cho bạn. Những người vận hành ứng dụng có thể truy cập cơ sở dữ liệu để giữ ứng dụng hoạt động, nhưng họ không xem dữ liệu của ai trừ khi bạn nhờ hỗ trợ một vấn đề hoặc pháp luật yêu cầu.';
+
+  @override
+  String get privacyNeverHeading => 'Những điều chúng tôi không bao giờ làm';
+
+  @override
+  String get privacyNeverBody =>
+      'Không quảng cáo. Chúng tôi không bán dữ liệu của bạn và không chia sẻ với bên quảng cáo. Ứng dụng không có công cụ theo dõi hay phân tích.';
+
+  @override
+  String get privacyDownloadsHeading => 'Giọng nói và tải xuống';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Một số bản ghi thiền có hướng dẫn được tải từ kho lưu trữ của chúng tôi khi bạn mở lần đầu; việc này không gửi đi dữ liệu cá nhân nào. Tính năng đọc to dùng giọng đọc có sẵn của điện thoại.';
+
+  @override
+  String get privacyPaymentsHeading => 'Thanh toán';
+
+  @override
+  String get privacyPaymentsBody =>
+      'Nếu bạn mua With Me Plus, Google Play xử lý thanh toán và chúng tôi không bao giờ thấy thông tin thẻ của bạn. Chúng tôi chỉ lưu tài khoản của bạn có With Me Plus hay không và đến khi nào.';
+
+  @override
+  String get privacyChoicesHeading => 'Lựa chọn của bạn';
+
+  @override
+  String get privacyChoicesBody =>
+      'Trong Cài đặt có "Xuất dữ liệu của tôi" để lấy một bản sao mọi thứ, và "Xóa tài khoản của tôi" để xóa tài khoản trực tuyến cùng mọi thứ trên điện thoại này. Khi đăng xuất, dữ liệu được gỡ khỏi điện thoại này; nó vẫn nằm trong tài khoản của bạn cho đến khi bạn xóa. Bạn cũng có thể gửi email nhờ chúng tôi xóa dữ liệu.';
+
+  @override
+  String get privacySafeHeading => 'Giữ an toàn';
+
+  @override
+  String get privacySafeBody =>
+      'Dữ liệu được truyền qua kết nối mã hóa, và mỗi người chỉ truy cập được dữ liệu của chính mình. Không hệ thống nào an toàn tuyệt đối, nên chúng tôi chỉ lưu những gì ứng dụng cần.';
+
+  @override
+  String get privacyAgeHeading => 'Độ tuổi';
+
+  @override
+  String get privacyAgeBody =>
+      'Ứng dụng dành cho người lớn từ 18 tuổi trở lên.';
+
+  @override
+  String get privacyChangesHeading => 'Thay đổi';
+
+  @override
+  String get privacyChangesBody =>
+      'Nếu chính sách này thay đổi, chúng tôi cập nhật trang này và ngày ở trên cùng.';
+
+  @override
+  String get termsTitle => 'Điều khoản sử dụng';
+
+  @override
+  String termsIntro(String appName) {
+    return 'Khi dùng $appName, bạn đồng ý với các điều khoản này. Chúng ngắn gọn và viết bằng lời đơn giản.';
+  }
+
+  @override
+  String get termsWhatHeading => 'Ứng dụng là gì';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName giúp bạn ghi nhận cảm xúc mỗi ngày, suy ngẫm và làm các bài tập thư giãn. Đây không phải dịch vụ y tế, trị liệu hay hỗ trợ khủng hoảng, và không chẩn đoán hay điều trị bất cứ điều gì. Nếu bạn đang gặp nguy hiểm, hãy dùng phần trợ giúp khủng hoảng trong trang Trợ giúp hoặc gọi số khẩn cấp tại nơi bạn ở.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Ai có thể dùng';
+
+  @override
+  String get termsWhoBody =>
+      'Bạn phải từ 18 tuổi trở lên. Hãy giữ kín mật khẩu; bạn chịu trách nhiệm về những gì xảy ra trong tài khoản của mình.';
+
+  @override
+  String get termsContentHeading => 'Nội dung của bạn';
+
+  @override
+  String get termsContentBody =>
+      'Những gì bạn nhập vẫn là của bạn. Bạn cho phép chúng tôi lưu trữ chỉ để ứng dụng hoạt động cho bạn, như Chính sách quyền riêng tư giải thích.';
+
+  @override
+  String get termsFairHeading => 'Sử dụng đúng mực';
+
+  @override
+  String get termsFairBody =>
+      'Không lạm dụng ứng dụng, không tìm cách truy cập dữ liệu của người khác hay làm gián đoạn hoạt động của ứng dụng. Chúng tôi có thể đóng tài khoản vi phạm.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus là gói đăng ký không bắt buộc, mua qua Google Play. Giá được hiển thị trước khi bạn mua. Gói tự gia hạn mỗi tháng hoặc mỗi năm cho đến khi bạn hủy trong Google Play, và bạn có thể hủy bất cứ lúc nào. Việc hoàn tiền theo quy định của Google Play. Lượt dùng thử miễn phí không cần đăng ký.';
+
+  @override
+  String get termsNoPromiseHeading => 'Không cam kết tuyệt đối';
+
+  @override
+  String get termsNoPromiseBody =>
+      'Chúng tôi cố gắng giữ ứng dụng chạy tốt và chính xác, nhưng ứng dụng được cung cấp nguyên trạng, và chúng tôi không thể hứa ứng dụng luôn sẵn sàng hay không có lỗi. Trong phạm vi pháp luật cho phép, chúng tôi không chịu trách nhiệm về thiệt hại phát sinh từ việc dùng ứng dụng.';
+
+  @override
+  String get termsChangesHeading => 'Thay đổi và ngừng sử dụng';
+
+  @override
+  String get termsChangesBody =>
+      'Chúng tôi có thể cập nhật ứng dụng và các điều khoản này; ngày ở trên cùng cho biết phiên bản mới nhất. Bạn có thể ngừng dùng ứng dụng và xóa tài khoản bất cứ lúc nào.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'Nếu bạn đang gặp nguy hiểm hoặc có ý nghĩ làm hại bản thân, hãy gọi hoặc nhắn tin đến 988 (Suicide & Crisis Lifeline), hoặc gọi 911.';
+
+  @override
+  String get accountReadLegal => 'Đọc Điều khoản và Chính sách quyền riêng tư';
 
   @override
   String get menuTitle => 'Trình đơn';

@@ -320,7 +320,170 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'অনুগ্রহ করে আপনার স্থানীয় জরুরি পরিষেবা বা কোনো সংকট হেল্পলাইনের সঙ্গে যোগাযোগ করুন।';
+      'আপনি বিপদে থাকলে বা নিজের ক্ষতি করার কথা ভাবলে আপনার স্থানীয় জরুরি নম্বরে ফোন করুন। আপনার দেশের বিনামূল্যের সংকট হেল্পলাইন findahelpline.com-এ খুঁজে পেতে পারেন।';
+
+  @override
+  String legalUpdated(String date) {
+    return 'সর্বশেষ আপডেট: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'এই পাতাটি আপনার সুবিধার জন্য অনুবাদ করা হয়েছে। অনুবাদে পার্থক্য থাকলে ইংরেজি সংস্করণই প্রযোজ্য।';
+
+  @override
+  String legalContact(String email) {
+    return 'প্রশ্ন বা আপনার ডেটা মুছে ফেলার অনুরোধ: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'গোপনীয়তা নীতি পড়ুন';
+
+  @override
+  String get legalReadTerms => 'ব্যবহারের শর্তাবলি পড়ুন';
+
+  @override
+  String get privacyTitle => 'গোপনীয়তা নীতি';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName হলো HR Vision Consulting পরিচালিত একটি ওয়েলবিইং সঙ্গী অ্যাপ। অ্যাপটি কী রাখে, কোথায় রাখে এবং কে তা দেখতে পারে, এই পাতা সহজ ভাষায় তা ব্যাখ্যা করে।';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'অ্যাপ কী রাখে';
+
+  @override
+  String get privacyKeepsBody =>
+      'আপনার দৈনিক চেক-ইন (মেজাজ, স্ট্রেস এবং আপনার বেছে নেওয়া বা লেখা উত্তর), আপনার বেছে নেওয়া জার্নাল প্রশ্ন, শেষ করা ব্যায়াম, ব্যবহার করা ফ্রি ট্রাই এবং ভাষা ও লেখার আকারের মতো সেটিংস। অ্যাকাউন্ট থাকলে আপনার নাম ও ইমেল ঠিকানাও।';
+
+  @override
+  String get privacyWhereHeading => 'কোথায় রাখা হয়';
+
+  @override
+  String get privacyWhereBody =>
+      'অ্যাকাউন্ট ছাড়া সবকিছু শুধু এই ফোনেই থাকে। অ্যাকাউন্ট থাকলে এটি আপনার অনলাইন অ্যাকাউন্টেও রাখা হয়, যাতে নতুন ফোনেও আপনার সঙ্গে থাকে। অনলাইন অ্যাকাউন্টটি Supabase নামের একটি ডেটাবেস সেবা যুক্তরাষ্ট্রের সার্ভারে রাখে। আপনি Google দিয়ে সাইন ইন করলে Google আপনার নাম ও ইমেল ঠিকানা আমাদের সঙ্গে শেয়ার করে। আমরা কখনো আপনার পাসওয়ার্ড দেখি না।';
+
+  @override
+  String get privacyWhoHeading => 'কে দেখতে পারে';
+
+  @override
+  String get privacyWhoBody =>
+      'শুধু আপনি। অ্যাপের অন্য ব্যবহারকারীরা কখনো আপনার ডেটা দেখতে পারেন না, এবং আপনার কর্মস্থল অ্যাপটি সুপারিশ করলেও আপনার নিয়োগকর্তা কখনো আপনার ব্যক্তিগত ডেটা দেখেন না। যাঁরা অ্যাপটি চালান তাঁরা এটি সচল রাখতে ডেটাবেসে প্রবেশ করতে পারেন, কিন্তু আপনি কোনো সমস্যায় সাহায্য না চাইলে বা আইন না চাইলে তাঁরা কারও ডেটা দেখেন না।';
+
+  @override
+  String get privacyNeverHeading => 'আমরা যা কখনো করি না';
+
+  @override
+  String get privacyNeverBody =>
+      'কোনো বিজ্ঞাপন নেই। আমরা আপনার ডেটা বিক্রি করি না বা বিজ্ঞাপনদাতাদের সঙ্গে শেয়ার করি না। অ্যাপে কোনো ট্র্যাকিং বা অ্যানালিটিক্স টুল নেই।';
+
+  @override
+  String get privacyDownloadsHeading => 'কণ্ঠ ও ডাউনলোড';
+
+  @override
+  String get privacyDownloadsBody =>
+      'কিছু গাইডেড মেডিটেশনের রেকর্ডিং প্রথমবার খোলার সময় আমাদের স্টোরেজ থেকে ডাউনলোড হয়; এতে কোনো ব্যক্তিগত ডেটা পাঠানো হয় না। জোরে পড়া আপনার ফোনের নিজস্ব কণ্ঠ ব্যবহার করে।';
+
+  @override
+  String get privacyPaymentsHeading => 'পেমেন্ট';
+
+  @override
+  String get privacyPaymentsBody =>
+      'আপনি With Me Plus কিনলে পেমেন্ট Google Play সামলায় এবং আমরা কখনো আপনার কার্ডের তথ্য দেখি না। আপনার অ্যাকাউন্টে With Me Plus আছে কি না এবং কতদিন পর্যন্ত, আমরা শুধু এটুকুই রাখি।';
+
+  @override
+  String get privacyChoicesHeading => 'আপনার পছন্দ';
+
+  @override
+  String get privacyChoicesBody =>
+      'সেটিংসে আছে "আমার ডেটা এক্সপোর্ট করুন", যা আপনাকে সবকিছুর একটি কপি দেয়, এবং "আমার অ্যাকাউন্ট মুছুন", যা আপনার অনলাইন অ্যাকাউন্ট ও এই ফোনের সবকিছু মুছে দেয়। লগ আউট করলে আপনার ডেটা এই ফোন থেকে সরে যায়; অ্যাকাউন্ট না মোছা পর্যন্ত তা অ্যাকাউন্টে থাকে। আপনি ইমেলেও আমাদের ডেটা মুছতে বলতে পারেন।';
+
+  @override
+  String get privacySafeHeading => 'নিরাপত্তা';
+
+  @override
+  String get privacySafeBody =>
+      'ডেটা এনক্রিপ্ট করা সংযোগে যায়, এবং প্রত্যেকে শুধু নিজের ডেটাতেই প্রবেশ করতে পারেন। কোনো ব্যবস্থাই পুরোপুরি নিরাপদ নয়, তাই অ্যাপের যা দরকার আমরা শুধু সেটুকুই রাখি।';
+
+  @override
+  String get privacyAgeHeading => 'বয়স';
+
+  @override
+  String get privacyAgeBody =>
+      'অ্যাপটি ১৮ বছর বা তার বেশি বয়সী প্রাপ্তবয়স্কদের জন্য।';
+
+  @override
+  String get privacyChangesHeading => 'পরিবর্তন';
+
+  @override
+  String get privacyChangesBody =>
+      'এই নীতি বদলালে আমরা এই পাতা এবং ওপরের তারিখ আপডেট করি।';
+
+  @override
+  String get termsTitle => 'ব্যবহারের শর্তাবলি';
+
+  @override
+  String termsIntro(String appName) {
+    return '$appName ব্যবহার করে আপনি এই শর্তাবলিতে সম্মত হচ্ছেন। এগুলো সংক্ষিপ্ত এবং সহজ ভাষায় লেখা।';
+  }
+
+  @override
+  String get termsWhatHeading => 'অ্যাপটি কী';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName আপনাকে প্রতিদিন নিজের খোঁজ নিতে, ভাবতে এবং শান্ত করার ব্যায়াম করতে সাহায্য করে। এটি চিকিৎসা সেবা, থেরাপি বা সংকট সেবা নয়, এবং কোনো কিছুর রোগনির্ণয় বা চিকিৎসা করে না। আপনি বিপদে থাকলে সাহায্য পাতার সংকট সহায়তা ব্যবহার করুন বা আপনার স্থানীয় জরুরি নম্বরে ফোন করুন।';
+  }
+
+  @override
+  String get termsWhoHeading => 'কে ব্যবহার করতে পারেন';
+
+  @override
+  String get termsWhoBody =>
+      'আপনার বয়স ১৮ বছর বা তার বেশি হতে হবে। আপনার পাসওয়ার্ড গোপন রাখুন; আপনার অ্যাকাউন্টে যা ঘটে তার দায় আপনার।';
+
+  @override
+  String get termsContentHeading => 'আপনার কনটেন্ট';
+
+  @override
+  String get termsContentBody =>
+      'আপনি যা লেখেন তা আপনারই থাকে। গোপনীয়তা নীতিতে যেমন বলা আছে, শুধু আপনার জন্য অ্যাপ চালাতে তা রাখার অনুমতি আপনি আমাদের দেন।';
+
+  @override
+  String get termsFairHeading => 'ন্যায্য ব্যবহার';
+
+  @override
+  String get termsFairBody =>
+      'অ্যাপের অপব্যবহার করবেন না, অন্যের ডেটায় প্রবেশ বা এর কাজে বাধা দেওয়ার চেষ্টা করবেন না। এমন অ্যাকাউন্ট আমরা বন্ধ করে দিতে পারি।';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus হলো Google Play থেকে কেনা একটি ঐচ্ছিক সাবস্ক্রিপশন। কেনার আগে দাম দেখানো হয়। আপনি Google Play-তে বাতিল না করা পর্যন্ত এটি প্রতি মাসে বা প্রতি বছর নবায়ন হয়, এবং আপনি যেকোনো সময় বাতিল করতে পারেন। রিফান্ড Google Play-এর নিয়ম মেনে হয়। ফ্রি ট্রাইয়ের জন্য সাবস্ক্রিপশন লাগে না।';
+
+  @override
+  String get termsNoPromiseHeading => 'কোনো নিশ্চয়তা নেই';
+
+  @override
+  String get termsNoPromiseBody =>
+      'আমরা অ্যাপটি ঠিকভাবে চালু রাখতে চেষ্টা করি, কিন্তু এটি যেমন আছে তেমনভাবেই দেওয়া হয়, এবং এটি সবসময় পাওয়া যাবে বা ত্রুটিমুক্ত থাকবে এমন প্রতিশ্রুতি আমরা দিতে পারি না। আইন যতটা অনুমতি দেয়, অ্যাপ ব্যবহারের ফলে হওয়া ক্ষতির দায় আমাদের নয়।';
+
+  @override
+  String get termsChangesHeading => 'পরিবর্তন ও ব্যবহার বন্ধ';
+
+  @override
+  String get termsChangesBody =>
+      'আমরা অ্যাপ এবং এই শর্তাবলি আপডেট করতে পারি; ওপরের তারিখ সর্বশেষ সংস্করণ দেখায়। আপনি যেকোনো সময় অ্যাপ ব্যবহার বন্ধ করে অ্যাকাউন্ট মুছে ফেলতে পারেন।';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'আপনি বিপদে থাকলে বা নিজের ক্ষতি করার কথা ভাবলে 988 (Suicide & Crisis Lifeline)-এ ফোন বা মেসেজ করুন, অথবা 911-এ ফোন করুন।';
+
+  @override
+  String get accountReadLegal => 'শর্তাবলি ও গোপনীয়তা নীতি পড়ুন';
 
   @override
   String get menuTitle => 'মেনু';

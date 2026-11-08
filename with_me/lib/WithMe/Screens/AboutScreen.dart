@@ -5,6 +5,7 @@ import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
+import 'LegalScreen.dart';
 
 /// `image44.png` — About. The information first; the companion, small, as
 /// a finishing touch at the bottom.
@@ -99,9 +100,11 @@ class WithMeAboutScreen extends StatelessWidget {
           ScenicRow(
             label: l.menuAboutTerms,
             icon: Icons.description_rounded,
-            onTap: () => ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(l.menuAboutTermsNotWired))),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const LegalScreen(page: LegalPage.terms),
+              ),
+            ),
           ),
         ],
       ),

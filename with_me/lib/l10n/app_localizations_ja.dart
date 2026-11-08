@@ -313,7 +313,169 @@ class AppLocalizationsJa extends AppLocalizations {
   String get helpCrisisQuestion => '危機的な状況にあるときは？';
 
   @override
-  String get helpCrisisAnswer => 'お住まいの地域の緊急サービス、または相談窓口に連絡してください。';
+  String get helpCrisisAnswer =>
+      '危険な状態にある、または自分を傷つけたいと考えているときは、地域の緊急番号に電話してください。お住まいの国の無料の相談窓口は findahelpline.com で探せます。';
+
+  @override
+  String legalUpdated(String date) {
+    return '最終更新日：$date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'このページは読みやすさのために翻訳されています。翻訳に違いがある場合は、英語版が優先されます。';
+
+  @override
+  String legalContact(String email) {
+    return 'ご質問やデータ削除のご依頼：$email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'プライバシーポリシーを読む';
+
+  @override
+  String get legalReadTerms => '利用規約を読む';
+
+  @override
+  String get privacyTitle => 'プライバシーポリシー';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName は HR Vision Consulting が運営するウェルビーイングのためのアプリです。このページでは、アプリが何を、どこに保存し、誰が見られるのかをわかりやすく説明します。';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'アプリが保存するもの';
+
+  @override
+  String get privacyKeepsBody =>
+      '毎日のチェックイン（気分、ストレス、選んだ答えや書いた答え）、選んだ日記の質問、終えたエクササイズ、使った無料お試し、言語や文字サイズなどの設定。アカウントがある場合は、名前とメールアドレスも保存します。';
+
+  @override
+  String get privacyWhereHeading => '保存場所';
+
+  @override
+  String get privacyWhereBody =>
+      'アカウントがない場合、すべてこのスマートフォンだけに保存されます。アカウントがある場合は、新しいスマートフォンでも使えるようにオンラインのアカウントにも保存されます。オンラインのアカウントはデータベースサービスの Supabase により、米国のサーバーで管理されています。Google でログインすると、Google から名前とメールアドレスが共有されます。パスワードを私たちが見ることはありません。';
+
+  @override
+  String get privacyWhoHeading => '誰が見られるか';
+
+  @override
+  String get privacyWhoBody =>
+      'あなただけです。アプリの他の利用者があなたのデータを見ることはできず、職場がアプリを勧めた場合でも、雇用主があなたの個人データを見ることはありません。アプリを運営する人はシステムを動かすためにデータベースにアクセスできますが、あなたが問題の解決を依頼した場合や法律で求められた場合を除き、誰のデータも見ません。';
+
+  @override
+  String get privacyNeverHeading => '私たちが決してしないこと';
+
+  @override
+  String get privacyNeverBody =>
+      '広告はありません。データを販売したり、広告主と共有したりしません。アプリには追跡や分析のツールはありません。';
+
+  @override
+  String get privacyDownloadsHeading => '音声とダウンロード';
+
+  @override
+  String get privacyDownloadsBody =>
+      '一部のガイド付き瞑想の音声は、初めて開いたときに私たちのストレージからダウンロードされます。このとき個人データは送信されません。読み上げはスマートフォンの音声機能を使います。';
+
+  @override
+  String get privacyPaymentsHeading => '支払い';
+
+  @override
+  String get privacyPaymentsBody =>
+      'With Me Plus を購入する場合、支払いは Google Play が処理し、私たちがカード情報を見ることはありません。保存するのは、アカウントに With Me Plus があるかどうかと、その期限だけです。';
+
+  @override
+  String get privacyChoicesHeading => 'あなたにできること';
+
+  @override
+  String get privacyChoicesBody =>
+      '設定の「データをエクスポート」ですべてのコピーを受け取れます。「アカウントを削除」でオンラインのアカウントとこのスマートフォン上のすべてが削除されます。ログアウトするとこのスマートフォンからデータが消えますが、アカウントを削除するまではアカウントに残ります。メールでデータの削除を依頼することもできます。';
+
+  @override
+  String get privacySafeHeading => '安全のために';
+
+  @override
+  String get privacySafeBody =>
+      'データは暗号化された接続で送られ、各自は自分のデータにしかアクセスできません。完全に安全なシステムはないため、アプリに必要なものだけを保存します。';
+
+  @override
+  String get privacyAgeHeading => '年齢';
+
+  @override
+  String get privacyAgeBody => 'このアプリは 18 歳以上の大人を対象としています。';
+
+  @override
+  String get privacyChangesHeading => '変更';
+
+  @override
+  String get privacyChangesBody => 'このポリシーが変わった場合は、このページと上部の日付を更新します。';
+
+  @override
+  String get termsTitle => '利用規約';
+
+  @override
+  String termsIntro(String appName) {
+    return '$appName を利用すると、この規約に同意したことになります。短く、わかりやすい言葉で書いています。';
+  }
+
+  @override
+  String get termsWhatHeading => 'このアプリについて';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName は、毎日自分の状態を振り返り、考え、心を落ち着けるエクササイズをするためのアプリです。医療、セラピー、危機対応のサービスではなく、診断や治療は行いません。危険な状態にあるときは、ヘルプページの危機サポートを使うか、地域の緊急番号に電話してください。';
+  }
+
+  @override
+  String get termsWhoHeading => '利用できる人';
+
+  @override
+  String get termsWhoBody =>
+      '18 歳以上である必要があります。パスワードは他人に教えないでください。アカウントで起きたことには、あなたが責任を持ちます。';
+
+  @override
+  String get termsContentHeading => 'あなたのコンテンツ';
+
+  @override
+  String get termsContentBody =>
+      '入力した内容はあなたのものです。プライバシーポリシーのとおり、アプリを動かすためだけに保存することを私たちに許可していただきます。';
+
+  @override
+  String get termsFairHeading => '正しい利用';
+
+  @override
+  String get termsFairBody =>
+      'アプリを悪用したり、他人のデータにアクセスしようとしたり、動作を妨げたりしないでください。そのようなアカウントは停止することがあります。';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus は Google Play で購入する任意のサブスクリプションです。価格は購入前に表示されます。Google Play で解約するまで毎月または毎年自動で更新され、いつでも解約できます。返金は Google Play のルールに従います。無料お試しにはサブスクリプションは不要です。';
+
+  @override
+  String get termsNoPromiseHeading => '保証について';
+
+  @override
+  String get termsNoPromiseBody =>
+      'アプリが正しく動くよう努めていますが、現状のまま提供しており、常に利用できることや不具合がないことは約束できません。法律で認められる範囲で、アプリの利用によって生じた損失について責任を負いません。';
+
+  @override
+  String get termsChangesHeading => '変更と利用の終了';
+
+  @override
+  String get termsChangesBody =>
+      'アプリとこの規約は更新することがあります。上部の日付が最新版を示します。いつでもアプリの利用をやめ、アカウントを削除できます。';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      '危険な状態にある、または自分を傷つけたいと考えているときは、988（Suicide & Crisis Lifeline）に電話かテキストをするか、911 に電話してください。';
+
+  @override
+  String get accountReadLegal => '利用規約とプライバシーポリシーを読む';
 
   @override
   String get menuTitle => 'メニュー';

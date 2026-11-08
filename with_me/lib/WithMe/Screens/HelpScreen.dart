@@ -15,8 +15,23 @@ class HelpScreen extends StatefulWidget {
 
   static const String route = '/help';
 
-  /// Each question and its answer, in [l].
-  static List<(String, String)> questions(AppLocalizations l) {
+  /// The phone's country (its region setting, for example US), or null.
+  static String? phoneCountry() =>
+      WidgetsBinding.instance.platformDispatcher.locale.countryCode;
+
+  /// The crisis answer for [country]: in the US, 988 and 911; everywhere
+  /// else, the local emergency number and findahelpline.com, a free list of
+  /// crisis lines by country (decision D11, 30 Oct 2026). Plain text only.
+  static String crisisAnswer(AppLocalizations l, String? country) =>
+      country?.toUpperCase() == 'US'
+      ? l.helpCrisisAnswerUs
+      : l.helpCrisisAnswer;
+
+  /// Each question and its answer, in [l], for a phone in [country].
+  static List<(String, String)> questions(
+    AppLocalizations l, {
+    String? country,
+  }) {
     final app = l.appTitle;
     return [
       (l.helpWhatIsQuestion(app), l.helpWhatIsAnswer(app)),
@@ -26,7 +41,7 @@ class HelpScreen extends StatefulWidget {
       (l.helpWhoQuestion(app), l.helpWhoAnswer),
       (l.helpDeleteQuestion, l.helpDeleteAnswer),
       (l.helpShareQuestion(app), l.helpShareAnswer),
-      (l.helpCrisisQuestion, l.helpCrisisAnswer),
+      (l.helpCrisisQuestion, crisisAnswer(l, country)),
     ];
   }
 
@@ -39,7 +54,10 @@ class _HelpScreenState extends State<HelpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final questions = HelpScreen.questions(context.l10n);
+    final questions = HelpScreen.questions(
+      context.l10n,
+      country: HelpScreen.phoneCountry(),
+    );
     return ScenicScaffold(
       title: context.l10n.helpTitle,
       onBack: () => Navigator.of(context).pop(),
