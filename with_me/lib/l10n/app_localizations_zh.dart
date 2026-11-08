@@ -1866,6 +1866,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashStartTodaysCheckIn => '开始今天的打卡';
 
   @override
+  String get dashChangeTodaysCheckIn => '修改今天的打卡';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '正在补填昨天：$date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '今天的打卡';
 
   @override
@@ -2441,10 +2449,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsDeleteAccountFailed => '无法删除你的账户。';
 
   @override
-  String get accountPlusActive => '你已开通 Companion Plus';
+  String get accountPlusActive => '你已开通 With Me Plus';
 
   @override
-  String get accountPlusStarted => 'Companion Plus 已开通，未收取任何费用。';
+  String get accountPlusStarted => 'With Me Plus 已开通，未收取任何费用。';
 
   @override
   String get exerciseMeditationTitle => '引导冥想';
@@ -2453,7 +2461,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 分钟 · 林间宁静';
 
   @override
-  String get exerciseMeditationLocked => '已锁定。属于 Companion Plus。';
+  String get exerciseMeditationLocked => '已锁定。属于 With Me Plus。';
 
   @override
   String get exerciseMeditationIntro => '在森林里安静五分钟。跟着文字走，或闭上眼睛聆听。';
@@ -8509,6 +8517,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashStartTodaysCheckIn => '開始今天的打卡';
 
   @override
+  String get dashChangeTodaysCheckIn => '修改今天的打卡';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '正在補填昨天：$date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '今天的打卡';
 
   @override
@@ -9084,10 +9100,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsDeleteAccountFailed => '無法刪除你的帳戶。';
 
   @override
-  String get accountPlusActive => '你已開通 Companion Plus';
+  String get accountPlusActive => '你已開通 With Me Plus';
 
   @override
-  String get accountPlusStarted => 'Companion Plus 已開通，未收取任何費用。';
+  String get accountPlusStarted => 'With Me Plus 已開通，未收取任何費用。';
 
   @override
   String get exerciseMeditationTitle => '引導冥想';
@@ -9096,7 +9112,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get exerciseMeditationSubtitle => '5 分鐘 · 林間寧靜';
 
   @override
-  String get exerciseMeditationLocked => '已鎖定。屬於 Companion Plus。';
+  String get exerciseMeditationLocked => '已鎖定。屬於 With Me Plus。';
 
   @override
   String get exerciseMeditationIntro => '在森林裡安靜五分鐘。跟著文字走，或閉上眼睛聆聽。';

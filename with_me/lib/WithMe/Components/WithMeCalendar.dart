@@ -81,10 +81,16 @@ class MonthCalendar extends StatelessWidget {
                   DateTime(month.year, month.month - 1, 1),
                 ),
               ),
+              // One line in every language and text size: a long month
+              // name ("noviembre de 2026" at Extra large) shrinks a little
+              // instead of wrapping and pushing the calendar down.
               Expanded(
-                child: ScenicHeading(
-                  DateFormat.yMMMM(locale).format(month),
-                  size: 21,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: ScenicHeading(
+                    DateFormat.yMMMM(locale).format(month),
+                    size: 21,
+                  ),
                 ),
               ),
               _Chevron(

@@ -165,6 +165,27 @@ void main() {
   });
 
   group("yesterday's check-in", () {
+    testWidgets('says which day the answers are for (TO FIX 2)', (
+      tester,
+    ) async {
+      usePhone(tester, const Size(390, 844));
+      addTearDown(tester.view.reset);
+      recordCheckIns();
+      await openFromHome(tester, DailyCheckInScreen(day: yesterday));
+      expect(
+        find.text('Filling in yesterday: Friday 30 October'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('today has no such note', (tester) async {
+      usePhone(tester, const Size(390, 844));
+      addTearDown(tester.view.reset);
+      recordCheckIns();
+      await openFromHome(tester, const DailyCheckInScreen());
+      expect(find.byKey(const ValueKey('checkin-earlier-day')), findsNothing);
+    });
+
     testWidgets('is saved for yesterday, and Your day names the day', (
       tester,
     ) async {

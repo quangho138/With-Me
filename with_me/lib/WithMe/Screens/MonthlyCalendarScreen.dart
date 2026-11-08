@@ -147,7 +147,11 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
       title: l.dashDailyLogTitle,
       action: _todaySelected
           ? ScenicPill(
-              label: l.dashStartTodaysCheckIn,
+              // Once today has answers, the button opens them to change
+              // (TO FIX 1).
+              label: _checkedInToday
+                  ? l.dashChangeTodaysCheckIn
+                  : l.dashStartTodaysCheckIn,
               height: 58,
               onPressed: () => _openCheckIn(0),
             )

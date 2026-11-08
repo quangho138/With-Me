@@ -74,6 +74,17 @@ void main() {
     }
   }
 
+  /// Lets the database answer until [found] shows, up to about 4 seconds.
+  /// A fixed short wait was too short on a slow CI machine once (105d1c2).
+  Future<void> idleUntil(WidgetTester tester, Finder found) async {
+    for (var i = 0; i < 100 && found.evaluate().isEmpty; i++) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 40)),
+      );
+      await tester.pump();
+    }
+  }
+
   Future<void> openProfile(WidgetTester tester) async {
     usePhone(tester, const Size(390, 844));
     addTearDown(tester.view.reset);
@@ -106,6 +117,8 @@ void main() {
       await repo.save(CheckInEntry(day: DateTime(2026, 10, 30), stress: 3));
     });
     await openProfile(tester);
+    await idleUntil(tester, find.text('With me since 31 December 2025'));
+    await idleUntil(tester, find.text('qa1@example.com'));
 
     expect(find.text('qa1@example.com'), findsOneWidget);
     expect(find.text('With me since 31 December 2025'), findsOneWidget);

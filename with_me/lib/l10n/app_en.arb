@@ -775,7 +775,7 @@
   },
   "accountStartPlus": "Start Plus",
   "@accountStartPlus": {
-    "description": "Button to start the paid 'Companion Plus' plan."
+    "description": "Button to start the paid 'With Me Plus' plan."
   },
   "accountPaymentsNotWired": "Payments are not connected in this UI pass.",
   "@accountPaymentsNotWired": {
@@ -2662,6 +2662,19 @@
   "@dashStartTodaysCheckIn": {
     "description": "Button that starts today's check-in from the first page."
   },
+  "dashChangeTodaysCheckIn": "Change today's check-in",
+  "@dashChangeTodaysCheckIn": {
+    "description": "Daily Log button once today's check-in has answers: opens them to change."
+  },
+  "checkinForEarlierDay": "Filling in yesterday: {date}",
+  "@checkinForEarlierDay": {
+    "description": "Note above the check-in questions when filling in yesterday. {date} is a weekday and date, for example Saturday 7 November.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "dashTodaysCheckIn": "Today's check-in",
   "@dashTodaysCheckIn": {
     "description": "Heading over the list of today's check-in pages."
@@ -3381,11 +3394,11 @@
     }
   },
   "settingsDeleteAccountFailed": "Couldn't delete your account.",
-  "accountPlusActive": "You have Companion Plus",
+  "accountPlusActive": "You have With Me Plus",
   "@accountPlusActive": {
-    "description": "Membership button once Companion Plus is on."
+    "description": "Membership button once With Me Plus is on."
   },
-  "accountPlusStarted": "Companion Plus is on. No payment was taken.",
+  "accountPlusStarted": "With Me Plus is on. No payment was taken.",
   "@accountPlusStarted": {
     "description": "Shown after 'Start Plus'. There is no billing yet, so nothing was charged."
   },
@@ -3397,7 +3410,7 @@
   "@exerciseMeditationSubtitle": {
     "description": "Description under 'Guided Meditation' on 'Choose an exercise'."
   },
-  "exerciseMeditationLocked": "Locked. Part of Companion Plus.",
+  "exerciseMeditationLocked": "Locked. Part of With Me Plus.",
   "@exerciseMeditationLocked": {
     "description": "Read by screen readers after the meditation's tile when it is locked."
   },
@@ -3512,7 +3525,7 @@
   },
   "exerciseUsesLeft": "{count, plural, =1{1 use left} other{{count} uses left}}",
   "@exerciseUsesLeft": {
-    "description": "Badge on a Plus exercise: free uses left before Companion Plus is needed.",
+    "description": "Badge on a Plus exercise: free uses left before With Me Plus is needed.",
     "placeholders": {
       "count": {
         "type": "int"

@@ -585,7 +585,7 @@ void main() {
       for (var i = 0; i < 5; i++) {
         await settle(tester);
       }
-      tester.state(find.byType(DailyCheckInScreen)).setState(() {});
+      tester.element(find.byType(DailyCheckInScreen)).markNeedsBuild();
       await settle(tester);
       expect(clips.played, hasLength(1));
     });

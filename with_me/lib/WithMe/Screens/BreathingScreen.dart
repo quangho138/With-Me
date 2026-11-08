@@ -210,23 +210,6 @@ class _BreathingScreenState extends State<BreathingScreen>
     super.dispose();
   }
 
-  String _sceneName(AppLocalizations l) => switch (widget.sound) {
-    'Waves' => l.exerciseSceneWaves,
-    'Birds' => l.exerciseSceneBirds,
-    'Forest' => l.exerciseSceneForest,
-    'Rain' => l.exerciseSceneRain,
-    'Fire' => l.exerciseSceneFire,
-    _ => l.exerciseSceneNone,
-  };
-  String _sceneDetail(AppLocalizations l) => switch (widget.sound) {
-    'Waves' => l.exerciseSceneDetailWaves,
-    'Birds' => l.exerciseSceneDetailBirds,
-    'Forest' => l.exerciseSceneDetailForest,
-    'Rain' => l.exerciseSceneDetailRain,
-    'Fire' => l.exerciseSceneDetailFire,
-    _ => l.exerciseSceneDetailNone,
-  };
-
   @override
   Widget build(BuildContext context) {
     final reduce = _reducedMotion || MediaQuery.disableAnimationsOf(context);
@@ -237,7 +220,6 @@ class _BreathingScreenState extends State<BreathingScreen>
         final phase = _pattern.phases[_session.phaseIndex];
         final complete = _session.complete;
         final started = _session.started;
-        final label = complete ? l.exerciseComplete : phaseName(l, phase.$1);
         final instruction = complete
             ? ''
             : phaseInstruction(l, phase.$1, phase.$2);

@@ -1961,6 +1961,14 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Anza tathmini ya leo';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Badilisha tathmini ya leo';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Unajaza ya jana: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Tathmini ya leo';
 
   @override
@@ -2568,11 +2576,11 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Imeshindwa kufuta akaunti yako.';
 
   @override
-  String get accountPlusActive => 'Una Companion Plus';
+  String get accountPlusActive => 'Una With Me Plus';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus imewashwa. Hakuna malipo yaliyochukuliwa.';
+      'With Me Plus imewashwa. Hakuna malipo yaliyochukuliwa.';
 
   @override
   String get exerciseMeditationTitle => 'Tahajudi ya Kuongozwa';
@@ -2581,7 +2589,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get exerciseMeditationSubtitle => 'Dak 5 · utulivu msituni';
 
   @override
-  String get exerciseMeditationLocked => 'Imefungwa. Sehemu ya Companion Plus.';
+  String get exerciseMeditationLocked => 'Imefungwa. Sehemu ya With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

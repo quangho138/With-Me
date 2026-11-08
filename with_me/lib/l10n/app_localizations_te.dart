@@ -1961,6 +1961,14 @@ class AppLocalizationsTe extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'ఈ రోజు చెక్-ఇన్ ప్రారంభించండి';
 
   @override
+  String get dashChangeTodaysCheckIn => 'ఈ రోజు చెక్-ఇన్ మార్చండి';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'నిన్నటిది నింపుతున్నారు: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'ఈ రోజు చెక్-ఇన్';
 
   @override
@@ -2570,11 +2578,11 @@ class AppLocalizationsTe extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'మీ ఖాతాను తొలగించలేకపోయాం.';
 
   @override
-  String get accountPlusActive => 'మీకు Companion Plus ఉంది';
+  String get accountPlusActive => 'మీకు With Me Plus ఉంది';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus ఆన్ అయింది. ఎలాంటి చెల్లింపు తీసుకోలేదు.';
+      'With Me Plus ఆన్ అయింది. ఎలాంటి చెల్లింపు తీసుకోలేదు.';
 
   @override
   String get exerciseMeditationTitle => 'గైడెడ్ ధ్యానం';
@@ -2583,7 +2591,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 నిమి · అడవిలో ప్రశాంతత';
 
   @override
-  String get exerciseMeditationLocked => 'లాక్ అయింది. Companion Plus లో భాగం.';
+  String get exerciseMeditationLocked => 'లాక్ అయింది. With Me Plus లో భాగం.';
 
   @override
   String get exerciseMeditationIntro =>

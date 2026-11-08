@@ -1953,6 +1953,14 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Mulai check-in hari ini';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Ubah check-in hari ini';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Mengisi untuk kemarin: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Check-in hari ini';
 
   @override
@@ -2558,11 +2566,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Tidak bisa menghapus akunmu.';
 
   @override
-  String get accountPlusActive => 'Kamu punya Companion Plus';
+  String get accountPlusActive => 'Kamu punya With Me Plus';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus aktif. Tidak ada pembayaran yang diambil.';
+      'With Me Plus aktif. Tidak ada pembayaran yang diambil.';
 
   @override
   String get exerciseMeditationTitle => 'Meditasi Terpandu';
@@ -2571,8 +2579,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 mnt · tenang di hutan';
 
   @override
-  String get exerciseMeditationLocked =>
-      'Terkunci. Bagian dari Companion Plus.';
+  String get exerciseMeditationLocked => 'Terkunci. Bagian dari With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

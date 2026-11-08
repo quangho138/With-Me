@@ -126,7 +126,7 @@ void main() {
         await t.tap(find.text('Start Plus').first, warnIfMissed: false);
         await t.pump();
         expect(CompanionPlus.instance.value, isTrue);
-        expect(find.text('You have Companion Plus'), findsWidgets);
+        expect(find.text('You have With Me Plus'), findsWidgets);
         await t.pumpWidget(const SizedBox());
       },
     );

@@ -1946,6 +1946,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Start today\'s check-in';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Change today\'s check-in';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Filling in yesterday: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Today\'s check-in';
 
   @override
@@ -2543,11 +2551,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Couldn\'t delete your account.';
 
   @override
-  String get accountPlusActive => 'You have Companion Plus';
+  String get accountPlusActive => 'You have With Me Plus';
 
   @override
-  String get accountPlusStarted =>
-      'Companion Plus is on. No payment was taken.';
+  String get accountPlusStarted => 'With Me Plus is on. No payment was taken.';
 
   @override
   String get exerciseMeditationTitle => 'Guided Meditation';
@@ -2556,7 +2563,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · calm in the forest';
 
   @override
-  String get exerciseMeditationLocked => 'Locked. Part of Companion Plus.';
+  String get exerciseMeditationLocked => 'Locked. Part of With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

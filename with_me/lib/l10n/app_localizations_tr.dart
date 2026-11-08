@@ -1946,6 +1946,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Bugünkü durum kaydını başlat';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Bugünkü durum kaydını değiştir';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Dün için dolduruyorsun: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Bugünkü durum kaydı';
 
   @override
@@ -2548,10 +2556,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Hesabın silinemedi.';
 
   @override
-  String get accountPlusActive => 'Companion Plus’ın var';
+  String get accountPlusActive => 'With Me Plus’ın var';
 
   @override
-  String get accountPlusStarted => 'Companion Plus açık. Hiç ödeme alınmadı.';
+  String get accountPlusStarted => 'With Me Plus açık. Hiç ödeme alınmadı.';
 
   @override
   String get exerciseMeditationTitle => 'Rehberli Meditasyon';
@@ -2560,7 +2568,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 dk · ormanda huzur';
 
   @override
-  String get exerciseMeditationLocked => 'Kilitli. Companion Plus’a dahil.';
+  String get exerciseMeditationLocked => 'Kilitli. With Me Plus’a dahil.';
 
   @override
   String get exerciseMeditationIntro =>

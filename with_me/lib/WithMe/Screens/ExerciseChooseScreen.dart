@@ -224,7 +224,7 @@ class _DevPlusSwitch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       button: true,
-      label: 'Developer: Companion Plus ${plus ? 'on' : 'off'}',
+      label: 'Developer: With Me Plus ${plus ? 'on' : 'off'}',
       excludeSemantics: true,
       child: GestureDetector(
         key: const ValueKey('dev-plus-switch'),

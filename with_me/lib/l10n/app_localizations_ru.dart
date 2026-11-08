@@ -2000,6 +2000,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Начать сегодняшний чек-ин';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Изменить сегодняшний чек-ин';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Заполняете за вчера: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Сегодняшний чек-ин';
 
   @override
@@ -2603,10 +2611,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Не удалось удалить аккаунт.';
 
   @override
-  String get accountPlusActive => 'У тебя Companion Plus';
+  String get accountPlusActive => 'У тебя With Me Plus';
 
   @override
-  String get accountPlusStarted => 'Companion Plus включён. Оплата не списана.';
+  String get accountPlusStarted => 'With Me Plus включён. Оплата не списана.';
 
   @override
   String get exerciseMeditationTitle => 'Медитация с сопровождением';
@@ -2615,7 +2623,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 мин · покой в лесу';
 
   @override
-  String get exerciseMeditationLocked => 'Закрыто. Входит в Companion Plus.';
+  String get exerciseMeditationLocked => 'Закрыто. Входит в With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

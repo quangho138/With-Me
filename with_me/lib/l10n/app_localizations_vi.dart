@@ -1955,6 +1955,14 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Bắt đầu ghi nhận hôm nay';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Sửa lần ghi nhận hôm nay';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Đang ghi cho hôm qua: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Ghi nhận hôm nay';
 
   @override
@@ -2554,11 +2562,11 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Không xóa được tài khoản của bạn.';
 
   @override
-  String get accountPlusActive => 'Bạn đang có Companion Plus';
+  String get accountPlusActive => 'Bạn đang có With Me Plus';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus đã bật. Không có khoản thanh toán nào.';
+      'With Me Plus đã bật. Không có khoản thanh toán nào.';
 
   @override
   String get exerciseMeditationTitle => 'Thiền có hướng dẫn';
@@ -2567,7 +2575,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 phút · bình yên trong rừng';
 
   @override
-  String get exerciseMeditationLocked => 'Đã khóa. Thuộc Companion Plus.';
+  String get exerciseMeditationLocked => 'Đã khóa. Thuộc With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

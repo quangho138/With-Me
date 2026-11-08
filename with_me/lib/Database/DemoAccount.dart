@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import '../Repositories/app_repositories.dart';
 import '../Repositories/check_in_repository.dart';
 import '../Repositories/reflection_repository.dart';
@@ -14,17 +12,18 @@ import '../WithMe/Data/CheckInSteps.dart';
 /// "Start without an account" on the welcome screen. (Merged with Quang's
 /// stage 3; Alex's version signed up a local demo account.)
 ///
-/// On by default in the browser build, which is only ever a demo - there is
-/// no device and no way to have used the app beforehand. Off on phones unless
-/// built with `--dart-define=WITHME_DEMO=true`, so a real install never picks
-/// up invented rows.
+/// Off unless the build asks for it with `--dart-define=WITHME_DEMO=true`,
+/// in the browser and on phones alike, so a real install never picks up
+/// invented rows. (Until 8 Nov 2026 every browser build had it on, and a
+/// browser sign-up carried Maya's days into a real account: TO FIX 11.
+/// Quang: nobody should run or sign up in the browser build, so the switch
+/// is enough for now.)
 class DemoAccount {
   DemoAccount._();
 
   static const String name = 'Maya';
 
-  static bool get enabled =>
-      kIsWeb || const bool.fromEnvironment('WITHME_DEMO');
+  static bool get enabled => const bool.fromEnvironment('WITHME_DEMO');
 
   /// Fill the [examples] days, counted
   /// back from today, that have no check-in.

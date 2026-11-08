@@ -1877,6 +1877,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashStartTodaysCheckIn => '오늘의 체크인 시작하기';
 
   @override
+  String get dashChangeTodaysCheckIn => '오늘의 체크인 수정하기';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '어제 기록을 채우는 중: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '오늘의 체크인';
 
   @override
@@ -2457,10 +2465,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsDeleteAccountFailed => '계정을 삭제하지 못했어요.';
 
   @override
-  String get accountPlusActive => 'Companion Plus를 이용 중이에요';
+  String get accountPlusActive => 'With Me Plus를 이용 중이에요';
 
   @override
-  String get accountPlusStarted => 'Companion Plus가 켜졌어요. 결제된 금액은 없어요.';
+  String get accountPlusStarted => 'With Me Plus가 켜졌어요. 결제된 금액은 없어요.';
 
   @override
   String get exerciseMeditationTitle => '가이드 명상';
@@ -2469,7 +2477,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5분 · 숲속의 고요';
 
   @override
-  String get exerciseMeditationLocked => '잠김. Companion Plus에 포함돼요.';
+  String get exerciseMeditationLocked => '잠김. With Me Plus에 포함돼요.';
 
   @override
   String get exerciseMeditationIntro =>

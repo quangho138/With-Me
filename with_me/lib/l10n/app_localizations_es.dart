@@ -1964,6 +1964,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Empezar el registro de hoy';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Cambiar el registro de hoy';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Completando el día de ayer: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Registro de hoy';
 
   @override
@@ -2568,11 +2576,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'No se pudo eliminar tu cuenta.';
 
   @override
-  String get accountPlusActive => 'Tienes Companion Plus';
+  String get accountPlusActive => 'Tienes With Me Plus';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus está activado. No se cobró nada.';
+      'With Me Plus está activado. No se cobró nada.';
 
   @override
   String get exerciseMeditationTitle => 'Meditación guiada';
@@ -2581,7 +2589,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · calma en el bosque';
 
   @override
-  String get exerciseMeditationLocked => 'Bloqueado. Parte de Companion Plus.';
+  String get exerciseMeditationLocked => 'Bloqueado. Parte de With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>
