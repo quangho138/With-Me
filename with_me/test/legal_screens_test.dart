@@ -91,25 +91,27 @@ void main() {
     );
   });
 
-  testWidgets('Help shows 988 on a US phone and findahelpline elsewhere', (
+  Future<String> crisis(WidgetTester tester, Locale phone) async {
+    tester.platformDispatcher.localeTestValue = phone;
+    addTearDown(tester.platformDispatcher.clearLocaleTestValue);
+    await show(tester, const HelpScreen());
+    await tester.ensureVisible(find.text("What if I'm in crisis?"));
+    await tester.tap(find.text("What if I'm in crisis?"));
+    await settle(tester);
+    final text = find.textContaining('If you are in danger');
+    expect(text, findsOneWidget);
+    return tester.widget<Text>(text).data!;
+  }
+
+  testWidgets('Help shows 988 on a US phone', (tester) async {
+    expect(await crisis(tester, const Locale('en', 'US')), contains('988'));
+  });
+
+  testWidgets('Help shows findahelpline on a phone in another country', (
     tester,
   ) async {
-    Future<String> crisis() async {
-      await show(tester, const HelpScreen());
-      await tester.ensureVisible(find.text("What if I'm in crisis?"));
-      await tester.tap(find.text("What if I'm in crisis?"));
-      await settle(tester);
-      final text = find.textContaining('If you are in danger');
-      expect(text, findsOneWidget);
-      return tester.widget<Text>(text).data!;
-    }
-
-    tester.platformDispatcher.localeTestValue = const Locale('en', 'US');
-    addTearDown(tester.platformDispatcher.clearLocaleTestValue);
-    expect(await crisis(), contains('988'));
-
-    tester.platformDispatcher.localeTestValue = const Locale('en', 'GB');
-    await tester.pumpWidget(const SizedBox());
-    expect(await crisis(), contains('findahelpline.com'));
+    final answer = await crisis(tester, const Locale('en', 'GB'));
+    expect(answer, contains('findahelpline.com'));
+    expect(answer, isNot(contains('988')));
   });
 }
