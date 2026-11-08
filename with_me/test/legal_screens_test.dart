@@ -95,8 +95,10 @@ void main() {
     tester.platformDispatcher.localeTestValue = phone;
     addTearDown(tester.platformDispatcher.clearLocaleTestValue);
     await show(tester, const HelpScreen());
-    await tester.ensureVisible(find.text("What if I'm in crisis?"));
-    await tester.tap(find.text("What if I'm in crisis?"));
+    // Headings draw their text twice (outline and fill).
+    final question = find.text("What if I'm in crisis?").first;
+    await tester.ensureVisible(question);
+    await tester.tap(question);
     await settle(tester);
     final text = find.textContaining('If you are in danger');
     expect(text, findsOneWidget);
