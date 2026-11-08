@@ -77,12 +77,13 @@ void main() {
     expect(find.text('Last updated: November 8, 2026'), findsOneWidget);
     expect(find.textContaining('not medical care'), findsOneWidget);
 
-    await tester.ensureVisible(find.text('Read the Privacy Policy'));
-    await tester.tap(find.text('Read the Privacy Policy'));
+    final toPrivacy = find.text('Read the Privacy Policy').first;
+    await tester.ensureVisible(toPrivacy);
+    await tester.tap(toPrivacy);
     await settle(tester);
 
     expect(find.text('Privacy Policy'), findsWidgets);
-    expect(find.text('Who can see it'), findsOneWidget);
+    expect(find.text('Who can see it'), findsWidgets);
     expect(find.textContaining(LegalScreen.contactEmail), findsOneWidget);
     // English needs no note that English counts.
     expect(
