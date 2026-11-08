@@ -674,8 +674,278 @@ abstract class AppLocalizations {
   /// Help answer for someone in crisis: get urgent help. Serious, caring and direct.
   ///
   /// In en, this message translates to:
-  /// **'Please contact your local emergency services or a crisis hotline.'**
+  /// **'If you are in danger or thinking about hurting yourself, call your local emergency number. You can find a free crisis line in your country at findahelpline.com.'**
   String get helpCrisisAnswer;
+
+  /// Privacy Policy and Terms of Use: when they last changed. {date} is a date in the reader's language.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated: {date}'**
+  String legalUpdated(String date);
+
+  /// Privacy Policy and Terms of Use: the English text is the one that applies.
+  ///
+  /// In en, this message translates to:
+  /// **'This page is translated for your convenience. If a translation differs, the English version applies.'**
+  String get legalEnglishCounts;
+
+  /// Privacy Policy and Terms of Use: the contact address. {email} is an email address.
+  ///
+  /// In en, this message translates to:
+  /// **'Questions, or a request to delete your data: {email}'**
+  String legalContact(String email);
+
+  /// Button at the end of the Terms of Use: opens the Privacy Policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the Privacy Policy'**
+  String get legalReadPrivacy;
+
+  /// Button at the end of the Privacy Policy: opens the Terms of Use.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the Terms of Use'**
+  String get legalReadTerms;
+
+  /// Title of the Privacy Policy page.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyTitle;
+
+  /// Privacy Policy, first paragraph. HR Vision Consulting is a company name; do not translate it.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} is a wellbeing companion app run by HR Vision Consulting. This page explains in plain words what the app keeps, where it is kept and who can see it.'**
+  String privacyIntro(String appName);
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'What the app keeps'**
+  String get privacyKeepsHeading;
+
+  /// Privacy Policy: what the app stores.
+  ///
+  /// In en, this message translates to:
+  /// **'Your daily check-ins (mood, stress and the answers you pick or write), the journal questions you choose, the exercises you finish, the free tries you use and your settings, such as language and text size. With an account, also your name and email address.'**
+  String get privacyKeepsBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Where it is kept'**
+  String get privacyWhereHeading;
+
+  /// Privacy Policy: where data is stored. Supabase and Google are names; do not translate them.
+  ///
+  /// In en, this message translates to:
+  /// **'Without an account, everything stays only on this phone. With an account, it is also kept in your online account so it can follow you to a new phone. The online account is hosted by Supabase, a database service, on servers in the United States. If you sign in with Google, Google shares your name and email address with us. We never see your password.'**
+  String get privacyWhereBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can see it'**
+  String get privacyWhoHeading;
+
+  /// Privacy Policy: who can see the data.
+  ///
+  /// In en, this message translates to:
+  /// **'Only you. Other people using the app can never see your data, and your employer never sees your personal data, even if your workplace suggested the app. The people who run the app can reach the database to keep it working, but they do not look at anyone\'s data unless you ask for help with a problem or the law requires it.'**
+  String get privacyWhoBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'What we never do'**
+  String get privacyNeverHeading;
+
+  /// Privacy Policy: what is never done with the data.
+  ///
+  /// In en, this message translates to:
+  /// **'No ads. We do not sell your data or share it with advertisers. The app has no tracking or analytics tools.'**
+  String get privacyNeverBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice and downloads'**
+  String get privacyDownloadsHeading;
+
+  /// Privacy Policy: voice recordings and read aloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Some guided meditation recordings are downloaded from our storage the first time you open them; this sends no personal data. Read aloud uses your phone\'s own speech voice.'**
+  String get privacyDownloadsBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments'**
+  String get privacyPaymentsHeading;
+
+  /// Privacy Policy: payments. With Me Plus and Google Play are names.
+  ///
+  /// In en, this message translates to:
+  /// **'If you buy With Me Plus, Google Play handles the payment and we never see your card details. We keep only whether your account has With Me Plus and until when.'**
+  String get privacyPaymentsBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Your choices'**
+  String get privacyChoicesHeading;
+
+  /// Privacy Policy: export and delete. Use the same wording as the Settings rows "Export my data" and "Delete my account".
+  ///
+  /// In en, this message translates to:
+  /// **'Settings has "Export my data", which gives you a copy of everything, and "Delete my account", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.'**
+  String get privacyChoicesBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Keeping it safe'**
+  String get privacySafeHeading;
+
+  /// Privacy Policy: security.
+  ///
+  /// In en, this message translates to:
+  /// **'Data travels over an encrypted connection, and each person can only reach their own data. No system is perfectly safe, so we keep only what the app needs.'**
+  String get privacySafeBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get privacyAgeHeading;
+
+  /// Privacy Policy: minimum age.
+  ///
+  /// In en, this message translates to:
+  /// **'The app is meant for adults 18 and over.'**
+  String get privacyAgeBody;
+
+  /// Privacy Policy section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes'**
+  String get privacyChangesHeading;
+
+  /// Privacy Policy: how changes are announced.
+  ///
+  /// In en, this message translates to:
+  /// **'If this policy changes, we update this page and the date at the top.'**
+  String get privacyChangesBody;
+
+  /// Title of the Terms of Use page.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get termsTitle;
+
+  /// Terms of Use, first paragraph.
+  ///
+  /// In en, this message translates to:
+  /// **'By using {appName} you agree to these terms. They are short and in plain words.'**
+  String termsIntro(String appName);
+
+  /// Terms of Use section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'What the app is'**
+  String get termsWhatHeading;
+
+  /// Terms of Use: what the app is and is not.
+  ///
+  /// In en, this message translates to:
+  /// **'{appName} helps you check in with yourself each day, reflect and do calming exercises. It is not medical care, therapy or a crisis service, and it does not diagnose or treat anything. If you are in danger, use the crisis help on the Help page or call your local emergency number.'**
+  String termsWhatBody(String appName);
+
+  /// Terms of Use section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Who can use it'**
+  String get termsWhoHeading;
+
+  /// Terms of Use: age and account.
+  ///
+  /// In en, this message translates to:
+  /// **'You must be 18 or older. Keep your password private; you are responsible for what happens in your account.'**
+  String get termsWhoBody;
+
+  /// Terms of Use section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Your content'**
+  String get termsContentHeading;
+
+  /// Terms of Use: the person's own content.
+  ///
+  /// In en, this message translates to:
+  /// **'What you enter stays yours. You let us store it only to run the app for you, as the Privacy Policy explains.'**
+  String get termsContentBody;
+
+  /// Terms of Use section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Fair use'**
+  String get termsFairHeading;
+
+  /// Terms of Use: misuse.
+  ///
+  /// In en, this message translates to:
+  /// **'Do not misuse the app, try to reach other people\'s data or disturb how it works. We may close an account that does.'**
+  String get termsFairBody;
+
+  /// Terms of Use section heading. With Me Plus is a name.
+  ///
+  /// In en, this message translates to:
+  /// **'With Me Plus'**
+  String get termsPlusHeading;
+
+  /// Terms of Use: the subscription. With Me Plus and Google Play are names.
+  ///
+  /// In en, this message translates to:
+  /// **'With Me Plus is an optional subscription bought through Google Play. The price is shown before you buy. It renews each month or year until you cancel it in Google Play, and you can cancel at any time. Refunds follow Google Play\'s rules. Free tries do not need a subscription.'**
+  String get termsPlusBody;
+
+  /// Terms of Use section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'No guarantees'**
+  String get termsNoPromiseHeading;
+
+  /// Terms of Use: no guarantee.
+  ///
+  /// In en, this message translates to:
+  /// **'We work to keep the app running and correct, but it is provided as it is, and we cannot promise it will always be available or free of errors. As far as the law allows, we are not responsible for losses that come from using the app.'**
+  String get termsNoPromiseBody;
+
+  /// Terms of Use section heading.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes and ending'**
+  String get termsChangesHeading;
+
+  /// Terms of Use: changes and ending.
+  ///
+  /// In en, this message translates to:
+  /// **'We may update the app and these terms; the date at the top shows the latest version. You can stop using the app and delete your account at any time.'**
+  String get termsChangesBody;
+
+  /// Help answer to "What if I'm in crisis?" for phones set to the United States. 988 and 911 are US phone numbers.
+  ///
+  /// In en, this message translates to:
+  /// **'If you are in danger or thinking about hurting yourself, call or text 988 (Suicide & Crisis Lifeline), or call 911.'**
+  String get helpCrisisAnswerUs;
+
+  /// Link under the agreement on the sign-up page: opens the Terms of Use and Privacy Policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the Terms and Privacy Policy'**
+  String get accountReadLegal;
 
   /// Title of the menu screen, and what a screen reader says for the menu button on Home.
   ///
