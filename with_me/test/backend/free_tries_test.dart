@@ -215,7 +215,7 @@ class _Phone {
     : users = AppUserRepository(auth: auth, open: () async => db),
       settings = LocalSettingsRepository(open: () async => db) {
     sync = SyncService(users: users, online: online, open: () async => db);
-    plus = CompanionPlus(settings: settings);
+    plus = CompanionPlus(settings: settings, devTools: true);
     uses = FreeUses(settings: settings, plus: plus);
   }
 

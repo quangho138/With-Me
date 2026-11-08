@@ -558,6 +558,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get accountStartPlus => 'Plus’ı başlat';
 
   @override
+  String get plusTestSheetTitle => 'Test satın alma';
+
+  @override
+  String get plusTestNoCharge =>
+      'Test sürümü, ücretsiz. Hiçbir ödeme yapılmaz ve kart gerekmez.';
+
+  @override
+  String get plusTestConfirm => 'Test satın almayı onayla';
+
+  @override
+  String get plusTestCancel => 'Test planını iptal et';
+
+  @override
+  String get plusTestCancelled =>
+      'Test planı iptal edildi. Ücretsiz sürüme döndün.';
+
+  @override
+  String get plusNeedsAccount =>
+      'With Me Plus için bir hesap gerekir; böylece yeni telefonda da seninle kalır.';
+
+  @override
+  String get plusNotAvailable => 'With Me Plus henüz satın alınamıyor.';
+
+  @override
+  String plusActiveUntil(String date) {
+    return '$date tarihine kadar etkin';
+  }
+
+  @override
+  String get plusCouldNotReach =>
+      'Hesabına ulaşılamadı. Bağlantını kontrol edip tekrar dene.';
+
+  @override
   String get accountPaymentsNotWired =>
       'Ödemeler bu sürümde henüz bağlı değil.';
 

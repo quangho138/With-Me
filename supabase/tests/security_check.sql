@@ -235,6 +235,65 @@ begin
   exception when insufficient_privilege then null;
   end;
 end $$;
+
+-- 7c. With Me Plus: only the server writes it; the test checkout gives the
+-- real plan length and cancels only a test plan.
+do $$
+declare s jsonb;
+begin
+  if (public.plus_status() ->> 'active')::boolean then
+    raise exception 'FAILED: A has Plus before buying';
+  end if;
+  begin
+    insert into public.plus_access (user_id, plan, source, active_until)
+      values (auth.uid(), 'yearly', 'google_play', now() + interval '1 year');
+    raise exception 'FAILED: A gave themselves Plus';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.test_buy_plus('forever');
+    raise exception 'FAILED: an unknown plan was accepted';
+  exception when check_violation then null;
+  end;
+  perform public.test_buy_plus('monthly');
+  s := public.plus_status();
+  if not (s ->> 'active')::boolean or s ->> 'plan' <> 'monthly'
+     or s ->> 'source' <> 'test'
+     or (s ->> 'active_until')::timestamptz < now() + interval '27 days'
+     or (s ->> 'active_until')::timestamptz > now() + interval '32 days'
+  then raise exception 'FAILED: a monthly test plan was not about a month: %', s;
+  end if;
+  begin
+    update public.plus_access set active_until = now() + interval '9 years';
+    raise exception 'FAILED: A stretched their own Plus';
+  exception when insufficient_privilege then null;
+  end;
+  if (select count(*) from public.plus_access) <> 1 then
+    raise exception 'FAILED: A should see only their own Plus row';
+  end if;
+  perform public.cancel_test_plus();
+  if (public.plus_status() ->> 'active')::boolean then
+    raise exception 'FAILED: cancelling the test plan left Plus on';
+  end if;
+end $$;
+reset role;
+
+-- 7d. A test purchase never replaces a real one that is still running.
+insert into public.plus_access (user_id, plan, source, active_until)
+  values ('00000000-0000-4000-a000-00000000000b', 'yearly', 'google_play',
+          now() + interval '200 days');
+do $$ begin perform pg_temp.act_as('00000000-0000-4000-a000-00000000000b'); end $$;
+set local role authenticated;
+do $$ begin
+  perform public.test_buy_plus('monthly');
+  perform public.cancel_test_plus();
+  if (public.plus_status() ->> 'source') <> 'google_play'
+     or not (public.plus_status() ->> 'active')::boolean
+  then raise exception 'FAILED: the test checkout touched a real purchase'; end if;
+  if exists (select 1 from public.plus_access
+             where user_id = '00000000-0000-4000-a000-00000000000a')
+  then raise exception 'FAILED: B can see A''s Plus'; end if;
+end $$;
 reset role;
 
 -- 8. Someone signed out gets nothing at all.
@@ -270,6 +329,21 @@ do $$ begin
     raise exception 'FAILED: a signed-out visitor can upload free tries';
   exception when insufficient_privilege then null;
   end;
+  begin
+    perform 1 from public.plus_access;
+    raise exception 'FAILED: a signed-out visitor can read Plus';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.plus_status();
+    raise exception 'FAILED: a signed-out visitor can ask for Plus';
+  exception when insufficient_privilege then null;
+  end;
+  begin
+    perform public.test_buy_plus('monthly');
+    raise exception 'FAILED: a signed-out visitor can buy a test plan';
+  exception when insufficient_privilege then null;
+  end;
 end $$;
 reset role;
 
@@ -286,6 +360,8 @@ do $$ begin
      or exists (select 1 from public.journal_entries
                 where user_id = '00000000-0000-4000-a000-00000000000a')
      or exists (select 1 from public.free_tries
+                where user_id = '00000000-0000-4000-a000-00000000000a')
+     or exists (select 1 from public.plus_access
                 where user_id = '00000000-0000-4000-a000-00000000000a')
   then raise exception 'FAILED: delete my account left A behind'; end if;
   if not exists (select 1 from auth.users
@@ -316,6 +392,8 @@ do $$ begin
      or exists (select 1 from public.profiles
                 where user_id = '00000000-0000-4000-a000-00000000000b')
      or exists (select 1 from public.free_tries
+                where user_id = '00000000-0000-4000-a000-00000000000b')
+     or exists (select 1 from public.plus_access
                 where user_id = '00000000-0000-4000-a000-00000000000b')
   then raise exception 'FAILED: deleting B left rows behind'; end if;
 end $$;

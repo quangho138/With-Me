@@ -559,6 +559,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountStartPlus => 'Start Plus';
 
   @override
+  String get plusTestSheetTitle => 'Test purchase';
+
+  @override
+  String get plusTestNoCharge =>
+      'Test version, no charge. Nothing is paid and no card is needed.';
+
+  @override
+  String get plusTestConfirm => 'Confirm test purchase';
+
+  @override
+  String get plusTestCancel => 'Cancel test plan';
+
+  @override
+  String get plusTestCancelled =>
+      'Test plan cancelled. You are back on the free version.';
+
+  @override
+  String get plusNeedsAccount =>
+      'With Me Plus needs an account, so it stays with you on a new phone.';
+
+  @override
+  String get plusNotAvailable => 'Buying With Me Plus is not available yet.';
+
+  @override
+  String plusActiveUntil(String date) {
+    return 'Active until $date';
+  }
+
+  @override
+  String get plusCouldNotReach =>
+      'Could not reach your account. Check your connection and try again.';
+
+  @override
   String get accountPaymentsNotWired =>
       'Payments are not connected in this UI pass.';
 

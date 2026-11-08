@@ -1079,6 +1079,60 @@ abstract class AppLocalizations {
   /// **'Start Plus'**
   String get accountStartPlus;
 
+  /// Title of the test checkout sheet (test builds only).
+  ///
+  /// In en, this message translates to:
+  /// **'Test purchase'**
+  String get plusTestSheetTitle;
+
+  /// Test checkout: makes clear nothing is paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Test version, no charge. Nothing is paid and no card is needed.'**
+  String get plusTestNoCharge;
+
+  /// Test checkout button that confirms the test purchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm test purchase'**
+  String get plusTestConfirm;
+
+  /// Membership page, test builds: ends the test plan.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel test plan'**
+  String get plusTestCancel;
+
+  /// Message after the test plan is cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Test plan cancelled. You are back on the free version.'**
+  String get plusTestCancelled;
+
+  /// Message when a guest taps Start Plus. With Me Plus is a name.
+  ///
+  /// In en, this message translates to:
+  /// **'With Me Plus needs an account, so it stays with you on a new phone.'**
+  String get plusNeedsAccount;
+
+  /// Message when Start Plus is tapped in a build without payments yet.
+  ///
+  /// In en, this message translates to:
+  /// **'Buying With Me Plus is not available yet.'**
+  String get plusNotAvailable;
+
+  /// Membership page: when the With Me Plus plan ends. {date} is a date.
+  ///
+  /// In en, this message translates to:
+  /// **'Active until {date}'**
+  String plusActiveUntil(String date);
+
+  /// Message when the account could not be reached.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not reach your account. Check your connection and try again.'**
+  String get plusCouldNotReach;
+
   /// Notice that payments are not built yet.
   ///
   /// In en, this message translates to:

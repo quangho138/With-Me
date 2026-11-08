@@ -569,6 +569,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accountStartPlus => 'بدء Plus';
 
   @override
+  String get plusTestSheetTitle => 'شراء تجريبي';
+
+  @override
+  String get plusTestNoCharge =>
+      'نسخة تجريبية، بدون رسوم. لا يُدفع شيء ولا حاجة إلى بطاقة.';
+
+  @override
+  String get plusTestConfirm => 'تأكيد الشراء التجريبي';
+
+  @override
+  String get plusTestCancel => 'إلغاء الخطة التجريبية';
+
+  @override
+  String get plusTestCancelled =>
+      'تم إلغاء الخطة التجريبية. عدت إلى النسخة المجانية.';
+
+  @override
+  String get plusNeedsAccount =>
+      'يحتاج With Me Plus إلى حساب، ليبقى معك على هاتف جديد.';
+
+  @override
+  String get plusNotAvailable => 'شراء With Me Plus غير متاح بعد.';
+
+  @override
+  String plusActiveUntil(String date) {
+    return 'مفعّل حتى $date';
+  }
+
+  @override
+  String get plusCouldNotReach =>
+      'تعذّر الوصول إلى حسابك. تحقق من الاتصال وحاول مرة أخرى.';
+
+  @override
   String get accountPaymentsNotWired =>
       'المدفوعات غير متصلة بعد في هذه النسخة من الواجهة.';
 

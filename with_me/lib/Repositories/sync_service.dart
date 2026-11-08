@@ -192,6 +192,10 @@ class SyncService {
        _now = now ?? DateTime.now,
        _open = open ?? (() => DatabaseHelper().database);
 
+  /// Goes up after every finished sync, so things kept by the server (With
+  /// Me Plus) are asked about again at the same moments.
+  static final ValueNotifier<int> synced = ValueNotifier(0);
+
   final UserRepository _users;
   final OnlineStore _online;
   final Future<Database> Function() _open;
@@ -288,6 +292,7 @@ class SyncService {
       // Last, so a problem here never holds back check-ins or the journal.
       await _uploadFreeTries();
       await _downloadFreeTries();
+      synced.value++;
       return SyncOutcome.done;
     } catch (e) {
       debugPrint('Sync stopped: $e');
