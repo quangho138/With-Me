@@ -69,17 +69,14 @@ void main() {
     tester,
   ) async {
     await show(tester, const WithMeAboutScreen());
-    await tester.ensureVisible(find.text('Terms & Privacy Policy'));
-    await tester.tap(find.text('Terms & Privacy Policy'));
+    await tapLabel(tester, 'Terms & Privacy Policy');
     await settle(tester);
 
     expect(find.text('Terms of Use'), findsWidgets);
     expect(find.text('Last updated: November 8, 2026'), findsOneWidget);
     expect(find.textContaining('not medical care'), findsOneWidget);
 
-    final toPrivacy = find.text('Read the Privacy Policy').first;
-    await tester.ensureVisible(toPrivacy);
-    await tester.tap(toPrivacy);
+    await tapLabel(tester, 'Read the Privacy Policy');
     await settle(tester);
 
     expect(find.text('Privacy Policy'), findsWidgets);
@@ -96,10 +93,7 @@ void main() {
     tester.platformDispatcher.localeTestValue = phone;
     addTearDown(tester.platformDispatcher.clearLocaleTestValue);
     await show(tester, const HelpScreen());
-    // Headings draw their text twice (outline and fill).
-    final question = find.text("What if I'm in crisis?").first;
-    await tester.ensureVisible(question);
-    await tester.tap(question);
+    await tapLabel(tester, "What if I'm in crisis?");
     await settle(tester);
     final text = find.textContaining('If you are in danger');
     expect(text, findsOneWidget);
