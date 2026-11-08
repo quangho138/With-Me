@@ -461,9 +461,214 @@
   "@helpCrisisQuestion": {
     "description": "Help question from someone who may be in crisis. Serious, caring tone."
   },
-  "helpCrisisAnswer": "Please contact your local emergency services or a crisis hotline.",
+  "helpCrisisAnswer": "If you are in danger or thinking about hurting yourself, call your local emergency number. You can find a free crisis line in your country at findahelpline.com.",
   "@helpCrisisAnswer": {
     "description": "Help answer for someone in crisis: get urgent help. Serious, caring and direct."
+  },
+  "legalUpdated": "Last updated: {date}",
+  "@legalUpdated": {
+    "description": "Privacy Policy and Terms of Use: when they last changed. {date} is a date in the reader's language.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "legalEnglishCounts": "This page is translated for your convenience. If a translation differs, the English version applies.",
+  "@legalEnglishCounts": {
+    "description": "Privacy Policy and Terms of Use: the English text is the one that applies."
+  },
+  "legalContact": "Questions, or a request to delete your data: {email}",
+  "@legalContact": {
+    "description": "Privacy Policy and Terms of Use: the contact address. {email} is an email address.",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "legalReadPrivacy": "Read the Privacy Policy",
+  "@legalReadPrivacy": {
+    "description": "Button at the end of the Terms of Use: opens the Privacy Policy."
+  },
+  "legalReadTerms": "Read the Terms of Use",
+  "@legalReadTerms": {
+    "description": "Button at the end of the Privacy Policy: opens the Terms of Use."
+  },
+  "privacyTitle": "Privacy Policy",
+  "@privacyTitle": {
+    "description": "Title of the Privacy Policy page."
+  },
+  "privacyIntro": "{appName} is a wellbeing companion app run by HR Vision Consulting. This page explains in plain words what the app keeps, where it is kept and who can see it.",
+  "@privacyIntro": {
+    "description": "Privacy Policy, first paragraph. HR Vision Consulting is a company name; do not translate it.",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "privacyKeepsHeading": "What the app keeps",
+  "@privacyKeepsHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyKeepsBody": "Your daily check-ins (mood, stress and the answers you pick or write), the journal questions you choose, the exercises you finish, the free tries you use and your settings, such as language and text size. With an account, also your name and email address.",
+  "@privacyKeepsBody": {
+    "description": "Privacy Policy: what the app stores."
+  },
+  "privacyWhereHeading": "Where it is kept",
+  "@privacyWhereHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyWhereBody": "Without an account, everything stays only on this phone. With an account, it is also kept in your online account so it can follow you to a new phone. The online account is hosted by Supabase, a database service, on servers in the United States. If you sign in with Google, Google shares your name and email address with us. We never see your password.",
+  "@privacyWhereBody": {
+    "description": "Privacy Policy: where data is stored. Supabase and Google are names; do not translate them."
+  },
+  "privacyWhoHeading": "Who can see it",
+  "@privacyWhoHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyWhoBody": "Only you. Other people using the app can never see your data, and your employer never sees your personal data, even if your workplace suggested the app. The people who run the app can reach the database to keep it working, but they do not look at anyone's data unless you ask for help with a problem or the law requires it.",
+  "@privacyWhoBody": {
+    "description": "Privacy Policy: who can see the data."
+  },
+  "privacyNeverHeading": "What we never do",
+  "@privacyNeverHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyNeverBody": "No ads. We do not sell your data or share it with advertisers. The app has no tracking or analytics tools.",
+  "@privacyNeverBody": {
+    "description": "Privacy Policy: what is never done with the data."
+  },
+  "privacyDownloadsHeading": "Voice and downloads",
+  "@privacyDownloadsHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyDownloadsBody": "Some guided meditation recordings are downloaded from our storage the first time you open them; this sends no personal data. Read aloud uses your phone's own speech voice.",
+  "@privacyDownloadsBody": {
+    "description": "Privacy Policy: voice recordings and read aloud."
+  },
+  "privacyPaymentsHeading": "Payments",
+  "@privacyPaymentsHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyPaymentsBody": "If you buy With Me Plus, Google Play handles the payment and we never see your card details. We keep only whether your account has With Me Plus and until when.",
+  "@privacyPaymentsBody": {
+    "description": "Privacy Policy: payments. With Me Plus and Google Play are names."
+  },
+  "privacyChoicesHeading": "Your choices",
+  "@privacyChoicesHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyChoicesBody": "Settings has \"Export my data\", which gives you a copy of everything, and \"Delete my account\", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.",
+  "@privacyChoicesBody": {
+    "description": "Privacy Policy: export and delete. Use the same wording as the Settings rows \"Export my data\" and \"Delete my account\"."
+  },
+  "privacySafeHeading": "Keeping it safe",
+  "@privacySafeHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacySafeBody": "Data travels over an encrypted connection, and each person can only reach their own data. No system is perfectly safe, so we keep only what the app needs.",
+  "@privacySafeBody": {
+    "description": "Privacy Policy: security."
+  },
+  "privacyAgeHeading": "Age",
+  "@privacyAgeHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyAgeBody": "The app is meant for adults 18 and over.",
+  "@privacyAgeBody": {
+    "description": "Privacy Policy: minimum age."
+  },
+  "privacyChangesHeading": "Changes",
+  "@privacyChangesHeading": {
+    "description": "Privacy Policy section heading."
+  },
+  "privacyChangesBody": "If this policy changes, we update this page and the date at the top.",
+  "@privacyChangesBody": {
+    "description": "Privacy Policy: how changes are announced."
+  },
+  "termsTitle": "Terms of Use",
+  "@termsTitle": {
+    "description": "Title of the Terms of Use page."
+  },
+  "termsIntro": "By using {appName} you agree to these terms. They are short and in plain words.",
+  "@termsIntro": {
+    "description": "Terms of Use, first paragraph.",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "termsWhatHeading": "What the app is",
+  "@termsWhatHeading": {
+    "description": "Terms of Use section heading."
+  },
+  "termsWhatBody": "{appName} helps you check in with yourself each day, reflect and do calming exercises. It is not medical care, therapy or a crisis service, and it does not diagnose or treat anything. If you are in danger, use the crisis help on the Help page or call your local emergency number.",
+  "@termsWhatBody": {
+    "description": "Terms of Use: what the app is and is not.",
+    "placeholders": {
+      "appName": {
+        "type": "String"
+      }
+    }
+  },
+  "termsWhoHeading": "Who can use it",
+  "@termsWhoHeading": {
+    "description": "Terms of Use section heading."
+  },
+  "termsWhoBody": "You must be 18 or older. Keep your password private; you are responsible for what happens in your account.",
+  "@termsWhoBody": {
+    "description": "Terms of Use: age and account."
+  },
+  "termsContentHeading": "Your content",
+  "@termsContentHeading": {
+    "description": "Terms of Use section heading."
+  },
+  "termsContentBody": "What you enter stays yours. You let us store it only to run the app for you, as the Privacy Policy explains.",
+  "@termsContentBody": {
+    "description": "Terms of Use: the person's own content."
+  },
+  "termsFairHeading": "Fair use",
+  "@termsFairHeading": {
+    "description": "Terms of Use section heading."
+  },
+  "termsFairBody": "Do not misuse the app, try to reach other people's data or disturb how it works. We may close an account that does.",
+  "@termsFairBody": {
+    "description": "Terms of Use: misuse."
+  },
+  "termsPlusHeading": "With Me Plus",
+  "@termsPlusHeading": {
+    "description": "Terms of Use section heading. With Me Plus is a name."
+  },
+  "termsPlusBody": "With Me Plus is an optional subscription bought through Google Play. The price is shown before you buy. It renews each month or year until you cancel it in Google Play, and you can cancel at any time. Refunds follow Google Play's rules. Free tries do not need a subscription.",
+  "@termsPlusBody": {
+    "description": "Terms of Use: the subscription. With Me Plus and Google Play are names."
+  },
+  "termsNoPromiseHeading": "No guarantees",
+  "@termsNoPromiseHeading": {
+    "description": "Terms of Use section heading."
+  },
+  "termsNoPromiseBody": "We work to keep the app running and correct, but it is provided as it is, and we cannot promise it will always be available or free of errors. As far as the law allows, we are not responsible for losses that come from using the app.",
+  "@termsNoPromiseBody": {
+    "description": "Terms of Use: no guarantee."
+  },
+  "termsChangesHeading": "Changes and ending",
+  "@termsChangesHeading": {
+    "description": "Terms of Use section heading."
+  },
+  "termsChangesBody": "We may update the app and these terms; the date at the top shows the latest version. You can stop using the app and delete your account at any time.",
+  "@termsChangesBody": {
+    "description": "Terms of Use: changes and ending."
+  },
+  "helpCrisisAnswerUs": "If you are in danger or thinking about hurting yourself, call or text 988 (Suicide & Crisis Lifeline), or call 911.",
+  "@helpCrisisAnswerUs": {
+    "description": "Help answer to \"What if I'm in crisis?\" for phones set to the United States. 988 and 911 are US phone numbers."
+  },
+  "accountReadLegal": "Read the Terms and Privacy Policy",
+  "@accountReadLegal": {
+    "description": "Link under the agreement on the sign-up page: opens the Terms of Use and Privacy Policy."
   },
   "menuTitle": "Menu",
   "@menuTitle": {

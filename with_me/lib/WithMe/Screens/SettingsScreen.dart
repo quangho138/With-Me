@@ -20,6 +20,7 @@ import '../Speech/SpeechService.dart';
 import '../Theme/AppFeel.dart';
 import '../Theme/WithMeTheme.dart';
 import 'LanguageScreen.dart';
+import 'LegalScreen.dart';
 import 'VoiceSettingsScreen.dart';
 import 'WelcomeScreen.dart';
 
@@ -159,10 +160,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
       // Shown now, just not kept for next time (no database).
     }
   }
-
-  void _notWired(String what) => ScaffoldMessenger.of(
-    context,
-  ).showSnackBar(SnackBar(content: Text(context.l10n.settingsNotWired(what))));
 
   /// Backend (stage 3, 2d): "Export my data" as one JSON file, handed to
   /// the phone's share menu (in the browser it downloads).
@@ -396,7 +393,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             label: l.settingsPrivacy,
             icon: Icons.lock_rounded,
             iconColor: const Color(0xFF1C7C84),
-            onTap: () => _notWired(l.settingsPrivacy),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => const LegalScreen(page: LegalPage.privacy),
+              ),
+            ),
           ),
           gap(),
           ScenicRow(

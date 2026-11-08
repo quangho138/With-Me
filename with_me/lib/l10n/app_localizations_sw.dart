@@ -322,7 +322,170 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Tafadhali wasiliana na huduma za dharura za eneo lako au simu ya msaada wa dharura.';
+      'Ikiwa uko hatarini au unafikiria kujiumiza, piga nambari ya dharura ya eneo lako. Unaweza kupata nambari ya bure ya msaada wa dharura katika nchi yako kwenye findahelpline.com.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Ilisasishwa mwisho: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'Ukurasa huu umetafsiriwa kwa urahisi wako. Ikiwa tafsiri inatofautiana, toleo la Kiingereza ndilo linalotumika.';
+
+  @override
+  String legalContact(String email) {
+    return 'Maswali au ombi la kufuta data yako: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Soma Sera ya Faragha';
+
+  @override
+  String get legalReadTerms => 'Soma Masharti ya Matumizi';
+
+  @override
+  String get privacyTitle => 'Sera ya Faragha';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName ni programu ya ustawi inayoendeshwa na HR Vision Consulting. Ukurasa huu unaeleza kwa maneno rahisi programu inahifadhi nini, wapi na nani anaweza kuiona.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'Programu inahifadhi nini';
+
+  @override
+  String get privacyKeepsBody =>
+      'Rekodi zako za kila siku (hisia, msongo na majibu unayochagua au kuandika), maswali ya shajara unayochagua, mazoezi unayomaliza, majaribio ya bure unayotumia na mipangilio yako, kama lugha na ukubwa wa maandishi. Ukiwa na akaunti, pia jina lako na anwani yako ya barua pepe.';
+
+  @override
+  String get privacyWhereHeading => 'Inahifadhiwa wapi';
+
+  @override
+  String get privacyWhereBody =>
+      'Bila akaunti, kila kitu kinabaki kwenye simu hii tu. Ukiwa na akaunti, pia kinahifadhiwa kwenye akaunti yako ya mtandaoni ili kikufuate kwenye simu mpya. Akaunti ya mtandaoni inahifadhiwa na Supabase, huduma ya hifadhidata, kwenye seva nchini Marekani. Ukiingia kwa Google, Google hutushirikisha jina lako na barua pepe yako. Hatuoni nenosiri lako kamwe.';
+
+  @override
+  String get privacyWhoHeading => 'Nani anaweza kuiona';
+
+  @override
+  String get privacyWhoBody =>
+      'Wewe tu. Watumiaji wengine wa programu hawawezi kamwe kuona data yako, na mwajiri wako haoni kamwe data yako binafsi, hata kama mahali pako pa kazi palipendekeza programu hii. Watu wanaoendesha programu wanaweza kufikia hifadhidata ili iendelee kufanya kazi, lakini hawaangalii data ya mtu yeyote isipokuwa uombe msaada kwa tatizo au sheria iitake.';
+
+  @override
+  String get privacyNeverHeading => 'Tusichofanya kamwe';
+
+  @override
+  String get privacyNeverBody =>
+      'Hakuna matangazo. Hatuuzi data yako wala kuishiriki na watangazaji. Programu haina zana za kufuatilia au uchanganuzi.';
+
+  @override
+  String get privacyDownloadsHeading => 'Sauti na upakuaji';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Baadhi ya rekodi za tafakari zinazoongozwa hupakuliwa kutoka hifadhi yetu mara ya kwanza unapozifungua; hii haitumi data binafsi. Kusoma kwa sauti kunatumia sauti ya simu yako mwenyewe.';
+
+  @override
+  String get privacyPaymentsHeading => 'Malipo';
+
+  @override
+  String get privacyPaymentsBody =>
+      'Ukinunua With Me Plus, Google Play hushughulikia malipo na hatuoni kamwe maelezo ya kadi yako. Tunahifadhi tu kama akaunti yako ina With Me Plus na hadi lini.';
+
+  @override
+  String get privacyChoicesHeading => 'Chaguo zako';
+
+  @override
+  String get privacyChoicesBody =>
+      'Kwenye Mipangilio kuna "Hamisha data yangu", inayokupa nakala ya kila kitu, na "Futa akaunti yangu", inayofuta akaunti yako ya mtandaoni na kila kitu kwenye simu hii. Kutoka kwenye akaunti kunaondoa data yako kwenye simu hii; inabaki kwenye akaunti yako hadi uifute. Unaweza pia kutuomba kwa barua pepe tufute data yako.';
+
+  @override
+  String get privacySafeHeading => 'Kuilinda';
+
+  @override
+  String get privacySafeBody =>
+      'Data husafiri kupitia muunganisho uliosimbwa, na kila mtu anaweza kufikia data yake tu. Hakuna mfumo ulio salama kabisa, kwa hivyo tunahifadhi tu kile programu inachohitaji.';
+
+  @override
+  String get privacyAgeHeading => 'Umri';
+
+  @override
+  String get privacyAgeBody =>
+      'Programu hii ni kwa watu wazima wenye umri wa miaka 18 na zaidi.';
+
+  @override
+  String get privacyChangesHeading => 'Mabadiliko';
+
+  @override
+  String get privacyChangesBody =>
+      'Sera hii ikibadilika, tunasasisha ukurasa huu na tarehe iliyo juu.';
+
+  @override
+  String get termsTitle => 'Masharti ya Matumizi';
+
+  @override
+  String termsIntro(String appName) {
+    return 'Kwa kutumia $appName unakubali masharti haya. Ni mafupi na kwa maneno rahisi.';
+  }
+
+  @override
+  String get termsWhatHeading => 'Programu ni nini';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName inakusaidia kujichunguza kila siku, kutafakari na kufanya mazoezi ya kutuliza. Si huduma ya matibabu, tiba wala huduma ya dharura ya kihisia, na haitambui wala kutibu chochote. Ukiwa hatarini, tumia msaada wa dharura kwenye ukurasa wa Msaada au piga nambari ya dharura ya eneo lako.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Nani anaweza kuitumia';
+
+  @override
+  String get termsWhoBody =>
+      'Lazima uwe na umri wa miaka 18 au zaidi. Weka nenosiri lako siri; unawajibika kwa kinachotokea kwenye akaunti yako.';
+
+  @override
+  String get termsContentHeading => 'Maudhui yako';
+
+  @override
+  String get termsContentBody =>
+      'Unachoingiza kinabaki kuwa chako. Unaturuhusu kukihifadhi tu ili kuendesha programu kwa ajili yako, kama Sera ya Faragha inavyoeleza.';
+
+  @override
+  String get termsFairHeading => 'Matumizi ya haki';
+
+  @override
+  String get termsFairBody =>
+      'Usitumie programu vibaya, usijaribu kufikia data ya wengine wala kuvuruga inavyofanya kazi. Tunaweza kufunga akaunti inayofanya hivyo.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus ni usajili wa hiari unaonunuliwa kupitia Google Play. Bei huonyeshwa kabla ya kununua. Husasishwa kila mwezi au mwaka hadi uughairi kwenye Google Play, na unaweza kughairi wakati wowote. Kurejeshewa pesa hufuata kanuni za Google Play. Majaribio ya bure hayahitaji usajili.';
+
+  @override
+  String get termsNoPromiseHeading => 'Hakuna dhamana';
+
+  @override
+  String get termsNoPromiseBody =>
+      'Tunajitahidi programu ifanye kazi vizuri, lakini inatolewa jinsi ilivyo, na hatuwezi kuahidi itapatikana kila wakati au bila hitilafu. Kwa kadiri sheria inavyoruhusu, hatuwajibiki kwa hasara zitokanazo na kutumia programu.';
+
+  @override
+  String get termsChangesHeading => 'Mabadiliko na kuacha';
+
+  @override
+  String get termsChangesBody =>
+      'Tunaweza kusasisha programu na masharti haya; tarehe iliyo juu inaonyesha toleo la karibuni. Unaweza kuacha kutumia programu na kufuta akaunti yako wakati wowote.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'Ikiwa uko hatarini au unafikiria kujiumiza, piga simu au tuma ujumbe kwa 988 (Suicide & Crisis Lifeline), au piga 911.';
+
+  @override
+  String get accountReadLegal => 'Soma Masharti na Sera ya Faragha';
 
   @override
   String get menuTitle => 'Menyu';

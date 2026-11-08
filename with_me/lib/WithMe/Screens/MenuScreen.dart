@@ -10,6 +10,7 @@ import '../Theme/WithMeTheme.dart';
 import 'AboutScreen.dart';
 import 'HelpScreen.dart';
 import 'KeepDataScreen.dart';
+import 'LegalScreen.dart';
 import 'MembershipScreen.dart';
 import 'NotificationsScreen.dart';
 import 'ProfileScreen.dart';
@@ -30,10 +31,6 @@ class MenuScreen extends StatelessWidget {
     final l = context.l10n;
     void go(Widget screen) =>
         Navigator.of(context).push(MaterialPageRoute(builder: (_) => screen));
-
-    void notWired(String what) => ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(l.settingsNotWired(what))));
 
     Widget gap() => const SizedBox(height: 10);
 
@@ -96,7 +93,7 @@ class MenuScreen extends StatelessWidget {
             label: l.settingsPrivacy,
             icon: Icons.lock_rounded,
             iconColor: const Color(0xFF1C7C84),
-            onTap: () => notWired(l.settingsPrivacy),
+            onTap: () => go(const LegalScreen(page: LegalPage.privacy)),
           ),
           gap(),
           ScenicRow(
