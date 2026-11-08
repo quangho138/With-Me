@@ -29,6 +29,13 @@ class LegalScreen extends StatelessWidget {
   /// confirmed by Quang on 8 Nov 2026).
   static const String contactEmail = 'hrrhvisionconsulting@gmail.com';
 
+  /// [contactEmail] with invisible break points after "@" and before each
+  /// ".", so at large text sizes the line wraps there instead of in the
+  /// middle of a word (PR #41 laptop check).
+  static final String contactEmailWrapping = contactEmail
+      .replaceAll('@', '@\u200B')
+      .replaceAll('.', '\u200B.');
+
   /// [updated] written for [locale] (as from dateLocale), or in English if
   /// there are no date names for that language.
   static String updatedText(String locale) {
@@ -120,7 +127,11 @@ class LegalScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(l.legalContact(contactEmail), style: body),
+                Text(
+                  l.legalContact(contactEmailWrapping),
+                  key: const ValueKey('legal-contact'),
+                  style: body,
+                ),
                 if (l.localeName != 'en') ...[
                   const SizedBox(height: 8),
                   Text(l.legalEnglishCounts, style: small),

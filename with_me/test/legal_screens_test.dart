@@ -81,7 +81,13 @@ void main() {
 
     expect(find.text('Privacy Policy'), findsWidgets);
     expect(find.text('Who can see it'), findsWidgets);
-    expect(find.textContaining(LegalScreen.contactEmail), findsOneWidget);
+    final contact = tester.widget<Text>(
+      find.byKey(const ValueKey('legal-contact')),
+    );
+    expect(
+      contact.data!.replaceAll('\u200B', ''),
+      contains(LegalScreen.contactEmail),
+    );
     // English needs no note that English counts.
     expect(
       find.textContaining('translated for your convenience'),
