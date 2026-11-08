@@ -1914,7 +1914,7 @@ class _EarlierDayNote extends StatelessWidget {
     child: Text(
       text,
       textAlign: TextAlign.center,
-      style: kScenicBody.copyWith(fontSize: 15, fontWeight: FontWeight.w700),
+      style: _bubbleBody.copyWith(fontSize: 15, fontWeight: FontWeight.w700),
     ),
   );
 }
