@@ -196,10 +196,11 @@ void main() {
         findsOneWidget,
       );
 
-      await t.tap(find.text('Start Plus').first, warnIfMissed: false);
+      // Buying is tested in plus_checkout_test.dart; here the developer
+      // switch stands in for a bought plan.
+      await CompanionPlus.instance.set(true);
       await t.pump();
       final page = t.element(find.byType(MembershipScreen));
-      ScaffoldMessenger.of(page).removeCurrentSnackBar();
       Navigator.of(page).pop();
       await t.pumpAndSettle();
       expect(
