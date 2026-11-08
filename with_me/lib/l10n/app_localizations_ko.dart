@@ -312,7 +312,169 @@ class AppLocalizationsKo extends AppLocalizations {
   String get helpCrisisQuestion => '위기 상황이라면 어떻게 해야 하나요?';
 
   @override
-  String get helpCrisisAnswer => '가까운 응급 서비스나 위기 상담 전화에 연락해 주세요.';
+  String get helpCrisisAnswer =>
+      '위험한 상황이거나 스스로를 해치고 싶은 생각이 든다면, 지역 응급 번호로 전화하세요. findahelpline.com에서 내 나라의 무료 위기 상담 전화를 찾을 수 있어요.';
+
+  @override
+  String legalUpdated(String date) {
+    return '마지막 업데이트: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      '이 페이지는 편의를 위해 번역되었습니다. 번역이 다를 경우 영어 버전이 적용됩니다.';
+
+  @override
+  String legalContact(String email) {
+    return '문의 또는 데이터 삭제 요청: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => '개인정보 처리방침 읽기';
+
+  @override
+  String get legalReadTerms => '이용약관 읽기';
+
+  @override
+  String get privacyTitle => '개인정보 처리방침';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName은 HR Vision Consulting이 운영하는 웰빙 동반자 앱이에요. 이 페이지는 앱이 무엇을, 어디에 보관하고, 누가 볼 수 있는지 쉬운 말로 설명해요.';
+  }
+
+  @override
+  String get privacyKeepsHeading => '앱이 보관하는 것';
+
+  @override
+  String get privacyKeepsBody =>
+      '매일의 체크인(기분, 스트레스, 고르거나 직접 쓴 답), 고른 일기 질문, 마친 운동, 사용한 무료 체험, 그리고 언어와 글자 크기 같은 설정이에요. 계정이 있으면 이름과 이메일 주소도 보관해요.';
+
+  @override
+  String get privacyWhereHeading => '보관 위치';
+
+  @override
+  String get privacyWhereBody =>
+      '계정이 없으면 모든 것이 이 휴대폰에만 남아요. 계정이 있으면 새 휴대폰에서도 쓸 수 있도록 온라인 계정에도 보관돼요. 온라인 계정은 데이터베이스 서비스인 Supabase가 미국에 있는 서버에서 관리해요. Google로 로그인하면 Google이 이름과 이메일 주소를 저희에게 공유해요. 저희는 비밀번호를 절대 볼 수 없어요.';
+
+  @override
+  String get privacyWhoHeading => '누가 볼 수 있나요';
+
+  @override
+  String get privacyWhoBody =>
+      '오직 본인만요. 앱의 다른 사용자는 내 데이터를 절대 볼 수 없고, 직장에서 앱을 추천했더라도 고용주는 내 개인 데이터를 절대 볼 수 없어요. 앱을 운영하는 사람은 앱이 작동하도록 데이터베이스에 접근할 수 있지만, 문제 해결을 요청하거나 법이 요구하는 경우가 아니면 누구의 데이터도 보지 않아요.';
+
+  @override
+  String get privacyNeverHeading => '저희가 절대 하지 않는 것';
+
+  @override
+  String get privacyNeverBody =>
+      '광고가 없어요. 데이터를 팔거나 광고주와 공유하지 않아요. 앱에는 추적이나 분석 도구가 없어요.';
+
+  @override
+  String get privacyDownloadsHeading => '음성과 다운로드';
+
+  @override
+  String get privacyDownloadsBody =>
+      '일부 가이드 명상 녹음은 처음 열 때 저희 저장소에서 내려받아요. 이때 개인 데이터는 보내지 않아요. 소리 내어 읽기는 휴대폰 자체 음성을 사용해요.';
+
+  @override
+  String get privacyPaymentsHeading => '결제';
+
+  @override
+  String get privacyPaymentsBody =>
+      'With Me Plus를 구매하면 결제는 Google Play가 처리하고, 저희는 카드 정보를 절대 볼 수 없어요. 저희는 계정에 With Me Plus가 있는지와 언제까지인지만 보관해요.';
+
+  @override
+  String get privacyChoicesHeading => '내가 할 수 있는 것';
+
+  @override
+  String get privacyChoicesBody =>
+      '설정의 "내 데이터 내보내기"로 모든 것의 사본을 받을 수 있고, "내 계정 삭제"로 온라인 계정과 이 휴대폰의 모든 것을 삭제할 수 있어요. 로그아웃하면 이 휴대폰에서 데이터가 지워지지만, 계정을 삭제하기 전까지는 계정에 남아 있어요. 이메일로 데이터 삭제를 요청할 수도 있어요.';
+
+  @override
+  String get privacySafeHeading => '안전하게 지키기';
+
+  @override
+  String get privacySafeBody =>
+      '데이터는 암호화된 연결로 전송되고, 각자는 자기 데이터에만 접근할 수 있어요. 완벽하게 안전한 시스템은 없기 때문에 앱에 필요한 것만 보관해요.';
+
+  @override
+  String get privacyAgeHeading => '나이';
+
+  @override
+  String get privacyAgeBody => '이 앱은 18세 이상의 성인을 위한 앱이에요.';
+
+  @override
+  String get privacyChangesHeading => '변경';
+
+  @override
+  String get privacyChangesBody => '이 방침이 바뀌면 이 페이지와 맨 위의 날짜를 업데이트해요.';
+
+  @override
+  String get termsTitle => '이용약관';
+
+  @override
+  String termsIntro(String appName) {
+    return '$appName을 사용하면 이 약관에 동의하는 것이에요. 짧고 쉬운 말로 썼어요.';
+  }
+
+  @override
+  String get termsWhatHeading => '앱 소개';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName은 매일 나 자신을 돌아보고, 생각을 정리하고, 마음을 진정시키는 운동을 하도록 도와요. 의료 서비스, 치료, 위기 지원 서비스가 아니며 어떤 것도 진단하거나 치료하지 않아요. 위험한 상황이라면 도움말 페이지의 위기 지원을 이용하거나 지역 응급 번호로 전화하세요.';
+  }
+
+  @override
+  String get termsWhoHeading => '누가 사용할 수 있나요';
+
+  @override
+  String get termsWhoBody =>
+      '18세 이상이어야 해요. 비밀번호는 다른 사람에게 알리지 마세요. 내 계정에서 일어나는 일은 본인이 책임져요.';
+
+  @override
+  String get termsContentHeading => '내 콘텐츠';
+
+  @override
+  String get termsContentBody =>
+      '입력한 내용은 계속 내 것이에요. 개인정보 처리방침에 설명된 대로, 앱을 운영하기 위해서만 저장하도록 허락하는 것이에요.';
+
+  @override
+  String get termsFairHeading => '올바른 사용';
+
+  @override
+  String get termsFairBody =>
+      '앱을 악용하거나, 다른 사람의 데이터에 접근하려 하거나, 작동을 방해하지 마세요. 그런 계정은 닫을 수 있어요.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus는 Google Play에서 구매하는 선택형 구독이에요. 가격은 구매 전에 표시돼요. Google Play에서 취소할 때까지 매달 또는 매년 자동으로 갱신되며, 언제든지 취소할 수 있어요. 환불은 Google Play 규정을 따라요. 무료 체험에는 구독이 필요 없어요.';
+
+  @override
+  String get termsNoPromiseHeading => '보증하지 않는 것';
+
+  @override
+  String get termsNoPromiseBody =>
+      '앱이 잘 작동하도록 노력하지만, 앱은 있는 그대로 제공되며 항상 이용 가능하거나 오류가 없다고 약속할 수 없어요. 법이 허용하는 범위에서, 앱 사용으로 생긴 손실에 대해 책임지지 않아요.';
+
+  @override
+  String get termsChangesHeading => '변경과 이용 종료';
+
+  @override
+  String get termsChangesBody =>
+      '앱과 이 약관은 업데이트될 수 있으며, 맨 위의 날짜가 최신 버전을 보여줘요. 언제든지 앱 사용을 멈추고 계정을 삭제할 수 있어요.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      '위험한 상황이거나 스스로를 해치고 싶은 생각이 든다면, 988(Suicide & Crisis Lifeline)에 전화하거나 문자를 보내거나, 911에 전화하세요.';
+
+  @override
+  String get accountReadLegal => '이용약관과 개인정보 처리방침 읽기';
 
   @override
   String get menuTitle => '메뉴';
@@ -1906,6 +2068,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashStartTodaysCheckIn => '오늘의 체크인 시작하기';
 
   @override
+  String get dashChangeTodaysCheckIn => '오늘의 체크인 수정하기';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '어제 기록을 채우는 중: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '오늘의 체크인';
 
   @override
@@ -2486,10 +2656,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsDeleteAccountFailed => '계정을 삭제하지 못했어요.';
 
   @override
-  String get accountPlusActive => 'Companion Plus를 이용 중이에요';
+  String get accountPlusActive => 'With Me Plus를 이용 중이에요';
 
   @override
-  String get accountPlusStarted => 'Companion Plus가 켜졌어요. 결제된 금액은 없어요.';
+  String get accountPlusStarted => 'With Me Plus가 켜졌어요. 결제된 금액은 없어요.';
 
   @override
   String get exerciseMeditationTitle => '가이드 명상';
@@ -2498,7 +2668,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5분 · 숲속의 고요';
 
   @override
-  String get exerciseMeditationLocked => '잠김. Companion Plus에 포함돼요.';
+  String get exerciseMeditationLocked => '잠김. With Me Plus에 포함돼요.';
 
   @override
   String get exerciseMeditationIntro =>

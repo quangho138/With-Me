@@ -319,7 +319,169 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Please contact your local emergency services or a crisis hotline.';
+      'If you are in danger or thinking about hurting yourself, call your local emergency number. You can find a free crisis line in your country at findahelpline.com.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Last updated: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'This page is translated for your convenience. If a translation differs, the English version applies.';
+
+  @override
+  String legalContact(String email) {
+    return 'Questions, or a request to delete your data: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Read the Privacy Policy';
+
+  @override
+  String get legalReadTerms => 'Read the Terms of Use';
+
+  @override
+  String get privacyTitle => 'Privacy Policy';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName is a wellbeing companion app run by HR Vision Consulting. This page explains in plain words what the app keeps, where it is kept and who can see it.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'What the app keeps';
+
+  @override
+  String get privacyKeepsBody =>
+      'Your daily check-ins (mood, stress and the answers you pick or write), the journal questions you choose, the exercises you finish, the free tries you use and your settings, such as language and text size. With an account, also your name and email address.';
+
+  @override
+  String get privacyWhereHeading => 'Where it is kept';
+
+  @override
+  String get privacyWhereBody =>
+      'Without an account, everything stays only on this phone. With an account, it is also kept in your online account so it can follow you to a new phone. The online account is hosted by Supabase, a database service, on servers in the United States. If you sign in with Google, Google shares your name and email address with us. We never see your password.';
+
+  @override
+  String get privacyWhoHeading => 'Who can see it';
+
+  @override
+  String get privacyWhoBody =>
+      'Only you. Other people using the app can never see your data, and your employer never sees your personal data, even if your workplace suggested the app. The people who run the app can reach the database to keep it working, but they do not look at anyone\'s data unless you ask for help with a problem or the law requires it.';
+
+  @override
+  String get privacyNeverHeading => 'What we never do';
+
+  @override
+  String get privacyNeverBody =>
+      'No ads. We do not sell your data or share it with advertisers. The app has no tracking or analytics tools.';
+
+  @override
+  String get privacyDownloadsHeading => 'Voice and downloads';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Some guided meditation recordings are downloaded from our storage the first time you open them; this sends no personal data. Read aloud uses your phone\'s own speech voice.';
+
+  @override
+  String get privacyPaymentsHeading => 'Payments';
+
+  @override
+  String get privacyPaymentsBody =>
+      'If you buy With Me Plus, Google Play handles the payment and we never see your card details. We keep only whether your account has With Me Plus and until when.';
+
+  @override
+  String get privacyChoicesHeading => 'Your choices';
+
+  @override
+  String get privacyChoicesBody =>
+      'Settings has "Export my data", which gives you a copy of everything, and "Delete my account", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.';
+
+  @override
+  String get privacySafeHeading => 'Keeping it safe';
+
+  @override
+  String get privacySafeBody =>
+      'Data travels over an encrypted connection, and each person can only reach their own data. No system is perfectly safe, so we keep only what the app needs.';
+
+  @override
+  String get privacyAgeHeading => 'Age';
+
+  @override
+  String get privacyAgeBody => 'The app is meant for adults 18 and over.';
+
+  @override
+  String get privacyChangesHeading => 'Changes';
+
+  @override
+  String get privacyChangesBody =>
+      'If this policy changes, we update this page and the date at the top.';
+
+  @override
+  String get termsTitle => 'Terms of Use';
+
+  @override
+  String termsIntro(String appName) {
+    return 'By using $appName you agree to these terms. They are short and in plain words.';
+  }
+
+  @override
+  String get termsWhatHeading => 'What the app is';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName helps you check in with yourself each day, reflect and do calming exercises. It is not medical care, therapy or a crisis service, and it does not diagnose or treat anything. If you are in danger, use the crisis help on the Help page or call your local emergency number.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Who can use it';
+
+  @override
+  String get termsWhoBody =>
+      'You must be 18 or older. Keep your password private; you are responsible for what happens in your account.';
+
+  @override
+  String get termsContentHeading => 'Your content';
+
+  @override
+  String get termsContentBody =>
+      'What you enter stays yours. You let us store it only to run the app for you, as the Privacy Policy explains.';
+
+  @override
+  String get termsFairHeading => 'Fair use';
+
+  @override
+  String get termsFairBody =>
+      'Do not misuse the app, try to reach other people\'s data or disturb how it works. We may close an account that does.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus is an optional subscription bought through Google Play. The price is shown before you buy. It renews each month or year until you cancel it in Google Play, and you can cancel at any time. Refunds follow Google Play\'s rules. Free tries do not need a subscription.';
+
+  @override
+  String get termsNoPromiseHeading => 'No guarantees';
+
+  @override
+  String get termsNoPromiseBody =>
+      'We work to keep the app running and correct, but it is provided as it is, and we cannot promise it will always be available or free of errors. As far as the law allows, we are not responsible for losses that come from using the app.';
+
+  @override
+  String get termsChangesHeading => 'Changes and ending';
+
+  @override
+  String get termsChangesBody =>
+      'We may update the app and these terms; the date at the top shows the latest version. You can stop using the app and delete your account at any time.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'If you are in danger or thinking about hurting yourself, call or text 988 (Suicide & Crisis Lifeline), or call 911.';
+
+  @override
+  String get accountReadLegal => 'Read the Terms and Privacy Policy';
 
   @override
   String get menuTitle => 'Menu';
@@ -1979,6 +2141,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Start today\'s check-in';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Change today\'s check-in';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Filling in yesterday: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Today\'s check-in';
 
   @override
@@ -2576,11 +2746,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Couldn\'t delete your account.';
 
   @override
-  String get accountPlusActive => 'You have Companion Plus';
+  String get accountPlusActive => 'You have With Me Plus';
 
   @override
-  String get accountPlusStarted =>
-      'Companion Plus is on. No payment was taken.';
+  String get accountPlusStarted => 'With Me Plus is on. No payment was taken.';
 
   @override
   String get exerciseMeditationTitle => 'Guided Meditation';
@@ -2589,7 +2758,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · calm in the forest';
 
   @override
-  String get exerciseMeditationLocked => 'Locked. Part of Companion Plus.';
+  String get exerciseMeditationLocked => 'Locked. Part of With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

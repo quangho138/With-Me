@@ -321,7 +321,171 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Bitte wende dich an den örtlichen Notdienst oder an eine Krisenhotline.';
+      'Wenn du in Gefahr bist oder daran denkst, dir etwas anzutun, ruf deine örtliche Notrufnummer an. Eine kostenlose Krisenhotline in deinem Land findest du auf findahelpline.com.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Zuletzt aktualisiert: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'Diese Seite ist zu deiner Bequemlichkeit übersetzt. Weicht eine Übersetzung ab, gilt die englische Fassung.';
+
+  @override
+  String legalContact(String email) {
+    return 'Fragen oder Bitte um Löschung deiner Daten: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Datenschutzerklärung lesen';
+
+  @override
+  String get legalReadTerms => 'Nutzungsbedingungen lesen';
+
+  @override
+  String get privacyTitle => 'Datenschutzerklärung';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName ist eine Wohlfühl-App, betrieben von HR Vision Consulting. Diese Seite erklärt in einfachen Worten, was die App speichert, wo und wer es sehen kann.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'Was die App speichert';
+
+  @override
+  String get privacyKeepsBody =>
+      'Deine täglichen Check-ins (Stimmung, Stress und die Antworten, die du wählst oder schreibst), die Tagebuchfragen, die du auswählst, die Übungen, die du abschließt, die Gratisversuche, die du nutzt, und deine Einstellungen wie Sprache und Textgröße. Mit einem Konto auch deinen Namen und deine E-Mail-Adresse.';
+
+  @override
+  String get privacyWhereHeading => 'Wo es gespeichert wird';
+
+  @override
+  String get privacyWhereBody =>
+      'Ohne Konto bleibt alles nur auf diesem Handy. Mit Konto wird es auch in deinem Online-Konto gespeichert, damit es dich auf ein neues Handy begleiten kann. Das Online-Konto liegt bei Supabase, einem Datenbankdienst, auf Servern in den USA. Wenn du dich mit Google anmeldest, teilt Google uns deinen Namen und deine E-Mail-Adresse mit. Dein Passwort sehen wir nie.';
+
+  @override
+  String get privacyWhoHeading => 'Wer es sehen kann';
+
+  @override
+  String get privacyWhoBody =>
+      'Nur du. Andere Nutzer der App können deine Daten nie sehen, und dein Arbeitgeber sieht deine persönlichen Daten nie, auch wenn dein Arbeitsplatz dir die App empfohlen hat. Die Menschen, die die App betreiben, können auf die Datenbank zugreifen, um sie am Laufen zu halten, schauen sich aber keine Daten an, außer du bittest um Hilfe bei einem Problem oder das Gesetz verlangt es.';
+
+  @override
+  String get privacyNeverHeading => 'Was wir nie tun';
+
+  @override
+  String get privacyNeverBody =>
+      'Keine Werbung. Wir verkaufen deine Daten nicht und geben sie nicht an Werbetreibende weiter. Die App hat keine Tracking- oder Analysewerkzeuge.';
+
+  @override
+  String get privacyDownloadsHeading => 'Stimme und Downloads';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Einige geführte Meditationsaufnahmen werden beim ersten Öffnen aus unserem Speicher geladen; dabei werden keine persönlichen Daten gesendet. Vorlesen nutzt die eigene Sprachausgabe deines Handys.';
+
+  @override
+  String get privacyPaymentsHeading => 'Zahlungen';
+
+  @override
+  String get privacyPaymentsBody =>
+      'Wenn du With Me Plus kaufst, übernimmt Google Play die Zahlung, und wir sehen deine Kartendaten nie. Wir speichern nur, ob dein Konto With Me Plus hat und bis wann.';
+
+  @override
+  String get privacyChoicesHeading => 'Deine Möglichkeiten';
+
+  @override
+  String get privacyChoicesBody =>
+      'In den Einstellungen gibt es "Meine Daten exportieren", das dir eine Kopie von allem gibt, und "Mein Konto löschen", das dein Online-Konto und alles auf diesem Handy löscht. Beim Abmelden werden deine Daten von diesem Handy entfernt; sie bleiben in deinem Konto, bis du es löschst. Du kannst uns auch per E-Mail bitten, deine Daten zu löschen.';
+
+  @override
+  String get privacySafeHeading => 'Sicherheit';
+
+  @override
+  String get privacySafeBody =>
+      'Daten werden über eine verschlüsselte Verbindung übertragen, und jede Person kann nur ihre eigenen Daten erreichen. Kein System ist vollkommen sicher, deshalb speichern wir nur, was die App braucht.';
+
+  @override
+  String get privacyAgeHeading => 'Alter';
+
+  @override
+  String get privacyAgeBody =>
+      'Die App ist für Erwachsene ab 18 Jahren gedacht.';
+
+  @override
+  String get privacyChangesHeading => 'Änderungen';
+
+  @override
+  String get privacyChangesBody =>
+      'Wenn sich diese Erklärung ändert, aktualisieren wir diese Seite und das Datum oben.';
+
+  @override
+  String get termsTitle => 'Nutzungsbedingungen';
+
+  @override
+  String termsIntro(String appName) {
+    return 'Mit der Nutzung von $appName stimmst du diesen Bedingungen zu. Sie sind kurz und in einfachen Worten.';
+  }
+
+  @override
+  String get termsWhatHeading => 'Was die App ist';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName hilft dir, jeden Tag bei dir selbst nachzuspüren, nachzudenken und beruhigende Übungen zu machen. Sie ist keine medizinische Versorgung, keine Therapie und kein Krisendienst und stellt keine Diagnosen oder Behandlungen. Wenn du in Gefahr bist, nutze die Krisenhilfe auf der Seite Hilfe oder ruf deine örtliche Notrufnummer an.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Wer sie nutzen kann';
+
+  @override
+  String get termsWhoBody =>
+      'Du musst mindestens 18 Jahre alt sein. Halte dein Passwort geheim; du bist verantwortlich für das, was in deinem Konto passiert.';
+
+  @override
+  String get termsContentHeading => 'Deine Inhalte';
+
+  @override
+  String get termsContentBody =>
+      'Was du eingibst, bleibt deins. Du erlaubst uns, es nur zu speichern, um die App für dich zu betreiben, wie die Datenschutzerklärung erklärt.';
+
+  @override
+  String get termsFairHeading => 'Faire Nutzung';
+
+  @override
+  String get termsFairBody =>
+      'Missbrauche die App nicht, versuche nicht, an Daten anderer zu kommen, und störe ihren Betrieb nicht. Wir können ein Konto schließen, das dies tut.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus ist ein freiwilliges Abo, das über Google Play gekauft wird. Der Preis wird vor dem Kauf angezeigt. Es verlängert sich jeden Monat oder jedes Jahr, bis du es in Google Play kündigst, und du kannst jederzeit kündigen. Erstattungen folgen den Regeln von Google Play. Gratisversuche brauchen kein Abo.';
+
+  @override
+  String get termsNoPromiseHeading => 'Keine Garantie';
+
+  @override
+  String get termsNoPromiseBody =>
+      'Wir arbeiten daran, dass die App läuft und stimmt, aber sie wird so bereitgestellt, wie sie ist, und wir können nicht versprechen, dass sie immer verfügbar oder fehlerfrei ist. Soweit gesetzlich erlaubt, haften wir nicht für Schäden aus der Nutzung der App.';
+
+  @override
+  String get termsChangesHeading => 'Änderungen und Ende';
+
+  @override
+  String get termsChangesBody =>
+      'Wir können die App und diese Bedingungen aktualisieren; das Datum oben zeigt die neueste Fassung. Du kannst die App jederzeit nicht mehr nutzen und dein Konto löschen.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'Wenn du in Gefahr bist oder daran denkst, dir etwas anzutun, ruf 988 an oder schreib eine SMS an 988 (Suicide & Crisis Lifeline), oder ruf 911 an.';
+
+  @override
+  String get accountReadLegal =>
+      'Nutzungsbedingungen und Datenschutzerklärung lesen';
 
   @override
   String get menuTitle => 'Menü';
@@ -2010,6 +2174,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Heutigen Check-in starten';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Heutigen Check-in ändern';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Für gestern ausfüllen: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Heutiger Check-in';
 
   @override
@@ -2620,11 +2792,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Dein Konto konnte nicht gelöscht werden.';
 
   @override
-  String get accountPlusActive => 'Du hast Companion Plus';
+  String get accountPlusActive => 'Du hast With Me Plus';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus ist an. Es wurde nichts bezahlt.';
+      'With Me Plus ist an. Es wurde nichts bezahlt.';
 
   @override
   String get exerciseMeditationTitle => 'Geführte Meditation';
@@ -2633,7 +2805,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 Min · Ruhe im Wald';
 
   @override
-  String get exerciseMeditationLocked => 'Gesperrt. Teil von Companion Plus.';
+  String get exerciseMeditationLocked => 'Gesperrt. Teil von With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

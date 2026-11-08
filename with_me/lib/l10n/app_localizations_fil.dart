@@ -321,7 +321,171 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Mangyaring makipag-ugnayan sa lokal na serbisyong pang-emergency o sa isang crisis hotline.';
+      'Kung nasa panganib ka o iniisip mong saktan ang sarili, tumawag sa lokal na emergency number. Makakahanap ka ng libreng crisis line sa iyong bansa sa findahelpline.com.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Huling na-update: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'Isinalin ang pahinang ito para sa iyong kaginhawahan. Kung may pagkakaiba ang salin, ang bersyong Ingles ang masusunod.';
+
+  @override
+  String legalContact(String email) {
+    return 'Mga tanong o hiling na burahin ang iyong data: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Basahin ang Patakaran sa Privacy';
+
+  @override
+  String get legalReadTerms => 'Basahin ang Mga Tuntunin ng Paggamit';
+
+  @override
+  String get privacyTitle => 'Patakaran sa Privacy';
+
+  @override
+  String privacyIntro(String appName) {
+    return 'Ang $appName ay isang wellbeing companion app na pinapatakbo ng HR Vision Consulting. Ipinapaliwanag ng pahinang ito sa simpleng salita kung ano ang itinatago ng app, saan ito itinatago at sino ang makakakita nito.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'Ano ang itinatago ng app';
+
+  @override
+  String get privacyKeepsBody =>
+      'Ang iyong araw-araw na check-in (mood, stress at mga sagot na pinipili o isinusulat mo), ang mga tanong sa journal na pinipili mo, ang mga ehersisyong natatapos mo, ang mga libreng subok na nagamit mo at ang iyong mga setting, gaya ng wika at laki ng teksto. Kung may account, pati ang iyong pangalan at email address.';
+
+  @override
+  String get privacyWhereHeading => 'Saan ito itinatago';
+
+  @override
+  String get privacyWhereBody =>
+      'Kung walang account, lahat ay nananatili lang sa teleponong ito. Kung may account, itinatago rin ito sa iyong online account para masundan ka nito sa bagong telepono. Ang online account ay naka-host sa Supabase, isang database service, sa mga server sa Estados Unidos. Kung mag-sign in ka gamit ang Google, ibinabahagi sa amin ng Google ang iyong pangalan at email address. Hindi namin kailanman nakikita ang iyong password.';
+
+  @override
+  String get privacyWhoHeading => 'Sino ang makakakita';
+
+  @override
+  String get privacyWhoBody =>
+      'Ikaw lang. Hindi kailanman makikita ng ibang gumagamit ng app ang iyong data, at hindi kailanman makikita ng iyong employer ang iyong personal na data, kahit ang iyong trabaho ang nagmungkahi ng app. Ang mga nagpapatakbo ng app ay maaaring pumasok sa database para mapanatili itong gumagana, pero hindi nila tinitingnan ang data ng sinuman maliban kung humingi ka ng tulong sa isang problema o hinihingi ito ng batas.';
+
+  @override
+  String get privacyNeverHeading => 'Ang hindi namin kailanman ginagawa';
+
+  @override
+  String get privacyNeverBody =>
+      'Walang ads. Hindi namin ibinebenta ang iyong data o ibinabahagi sa mga advertiser. Walang tracking o analytics tools ang app.';
+
+  @override
+  String get privacyDownloadsHeading => 'Boses at mga download';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Ang ilang recording ng guided meditation ay dina-download mula sa aming storage sa unang beses na buksan mo ang mga ito; walang personal na data na ipinapadala rito. Ang read aloud ay gumagamit ng sariling boses ng iyong telepono.';
+
+  @override
+  String get privacyPaymentsHeading => 'Mga bayad';
+
+  @override
+  String get privacyPaymentsBody =>
+      'Kung bibili ka ng With Me Plus, ang Google Play ang humahawak sa bayad at hindi namin kailanman nakikita ang detalye ng iyong card. Itinatago lang namin kung may With Me Plus ang iyong account at hanggang kailan.';
+
+  @override
+  String get privacyChoicesHeading => 'Ang iyong mga pagpipilian';
+
+  @override
+  String get privacyChoicesBody =>
+      'Sa Mga Setting ay may "I-export ang aking data", na nagbibigay sa iyo ng kopya ng lahat, at "Burahin ang aking account", na nagbubura ng iyong online account at lahat ng nasa teleponong ito. Ang pag-log out ay nag-aalis ng iyong data sa teleponong ito; nananatili ito sa iyong account hanggang burahin mo ito. Maaari mo rin kaming hilingin sa email na burahin ang iyong data.';
+
+  @override
+  String get privacySafeHeading => 'Pagpapanatiling ligtas';
+
+  @override
+  String get privacySafeBody =>
+      'Dumadaan ang data sa naka-encrypt na koneksyon, at ang bawat tao ay makakapasok lang sa sarili niyang data. Walang sistemang ganap na ligtas, kaya ang kailangan lang ng app ang itinatago namin.';
+
+  @override
+  String get privacyAgeHeading => 'Edad';
+
+  @override
+  String get privacyAgeBody =>
+      'Ang app ay para sa mga adult na 18 taong gulang pataas.';
+
+  @override
+  String get privacyChangesHeading => 'Mga pagbabago';
+
+  @override
+  String get privacyChangesBody =>
+      'Kung magbago ang patakarang ito, ina-update namin ang pahinang ito at ang petsa sa itaas.';
+
+  @override
+  String get termsTitle => 'Mga Tuntunin ng Paggamit';
+
+  @override
+  String termsIntro(String appName) {
+    return 'Sa paggamit ng $appName, sumasang-ayon ka sa mga tuntuning ito. Maikli ang mga ito at nasa simpleng salita.';
+  }
+
+  @override
+  String get termsWhatHeading => 'Ano ang app';
+
+  @override
+  String termsWhatBody(String appName) {
+    return 'Tinutulungan ka ng $appName na kumustahin ang sarili araw-araw, magnilay at gumawa ng mga ehersisyong nakapagpapakalma. Hindi ito medikal na pangangalaga, therapy o serbisyo para sa krisis, at hindi ito nagda-diagnose o gumagamot ng anuman. Kung nasa panganib ka, gamitin ang tulong sa krisis sa pahinang Tulong o tumawag sa lokal na emergency number.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Sino ang puwedeng gumamit';
+
+  @override
+  String get termsWhoBody =>
+      'Dapat ay 18 taong gulang ka o higit pa. Panatilihing pribado ang iyong password; ikaw ang may pananagutan sa nangyayari sa iyong account.';
+
+  @override
+  String get termsContentHeading => 'Ang iyong nilalaman';
+
+  @override
+  String get termsContentBody =>
+      'Ang inilalagay mo ay nananatiling sa iyo. Pinapayagan mo kaming itago ito para lang mapatakbo ang app para sa iyo, gaya ng paliwanag sa Patakaran sa Privacy.';
+
+  @override
+  String get termsFairHeading => 'Patas na paggamit';
+
+  @override
+  String get termsFairBody =>
+      'Huwag abusuhin ang app, subukang pasukin ang data ng iba o guluhin kung paano ito gumagana. Maaari naming isara ang account na gumagawa nito.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'Ang With Me Plus ay opsyonal na subscription na binibili sa Google Play. Ipinapakita ang presyo bago ka bumili. Nagre-renew ito bawat buwan o taon hanggang kanselahin mo ito sa Google Play, at puwede mo itong kanselahin anumang oras. Sinusunod ng mga refund ang mga patakaran ng Google Play. Hindi kailangan ng subscription para sa mga libreng subok.';
+
+  @override
+  String get termsNoPromiseHeading => 'Walang garantiya';
+
+  @override
+  String get termsNoPromiseBody =>
+      'Sinisikap naming gumana nang tama ang app, pero ibinibigay ito kung ano ito, at hindi namin maipapangako na lagi itong available o walang mali. Hangga\'t pinapayagan ng batas, hindi kami mananagot sa mga pagkalugi mula sa paggamit ng app.';
+
+  @override
+  String get termsChangesHeading => 'Mga pagbabago at pagtigil';
+
+  @override
+  String get termsChangesBody =>
+      'Maaari naming i-update ang app at ang mga tuntuning ito; ipinapakita ng petsa sa itaas ang pinakabagong bersyon. Puwede kang tumigil sa paggamit ng app at burahin ang iyong account anumang oras.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'Kung nasa panganib ka o iniisip mong saktan ang sarili, tumawag o mag-text sa 988 (Suicide & Crisis Lifeline), o tumawag sa 911.';
+
+  @override
+  String get accountReadLegal =>
+      'Basahin ang Mga Tuntunin at Patakaran sa Privacy';
 
   @override
   String get menuTitle => 'Menu';
@@ -2006,6 +2170,14 @@ class AppLocalizationsFil extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Simulan ang check-in ngayong araw';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Baguhin ang check-in ngayong araw';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Pinupunan ang kahapon: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Check-in ngayong araw';
 
   @override
@@ -2618,11 +2790,11 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Hindi mabura ang iyong account.';
 
   @override
-  String get accountPlusActive => 'May Companion Plus ka';
+  String get accountPlusActive => 'May With Me Plus ka';
 
   @override
   String get accountPlusStarted =>
-      'Naka-on na ang Companion Plus. Walang kinuhang bayad.';
+      'Naka-on na ang With Me Plus. Walang kinuhang bayad.';
 
   @override
   String get exerciseMeditationTitle => 'Ginagabayang Meditasyon';
@@ -2631,7 +2803,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · katahimikan sa gubat';
 
   @override
-  String get exerciseMeditationLocked => 'Naka-lock. Bahagi ng Companion Plus.';
+  String get exerciseMeditationLocked => 'Naka-lock. Bahagi ng With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

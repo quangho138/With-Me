@@ -321,7 +321,170 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'براہِ کرم اپنی مقامی ہنگامی سروسز یا کسی بحران ہیلپ لائن سے رابطہ کریں۔';
+      'اگر آپ خطرے میں ہیں یا خود کو نقصان پہنچانے کا سوچ رہے ہیں تو اپنے مقامی ایمرجنسی نمبر پر کال کریں۔ اپنے ملک کی مفت بحرانی ہیلپ لائن findahelpline.com پر تلاش کر سکتے ہیں۔';
+
+  @override
+  String legalUpdated(String date) {
+    return 'آخری تازہ کاری: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'یہ صفحہ آپ کی سہولت کے لیے ترجمہ کیا گیا ہے۔ اگر ترجمے میں فرق ہو تو انگریزی نسخہ لاگو ہوگا۔';
+
+  @override
+  String legalContact(String email) {
+    return 'سوالات یا اپنا ڈیٹا حذف کرانے کی درخواست: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'پرائیویسی پالیسی پڑھیں';
+
+  @override
+  String get legalReadTerms => 'استعمال کی شرائط پڑھیں';
+
+  @override
+  String get privacyTitle => 'پرائیویسی پالیسی';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName ایک ویل بیئنگ ساتھی ایپ ہے جسے HR Vision Consulting چلاتی ہے۔ یہ صفحہ آسان الفاظ میں بتاتا ہے کہ ایپ کیا محفوظ کرتی ہے، کہاں اور اسے کون دیکھ سکتا ہے۔';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'ایپ کیا محفوظ کرتی ہے';
+
+  @override
+  String get privacyKeepsBody =>
+      'آپ کی روزانہ چیک اِن (موڈ، تناؤ اور وہ جوابات جو آپ چنتے یا لکھتے ہیں)، آپ کے چنے ہوئے جرنل سوالات، مکمل کی گئی مشقیں، استعمال کی گئی مفت آزمائشیں اور آپ کی سیٹنگز، جیسے زبان اور متن کا سائز۔ اکاؤنٹ ہو تو آپ کا نام اور ای میل پتہ بھی۔';
+
+  @override
+  String get privacyWhereHeading => 'کہاں محفوظ ہوتا ہے';
+
+  @override
+  String get privacyWhereBody =>
+      'اکاؤنٹ کے بغیر سب کچھ صرف اسی فون پر رہتا ہے۔ اکاؤنٹ کے ساتھ یہ آپ کے آن لائن اکاؤنٹ میں بھی محفوظ ہوتا ہے تاکہ نئے فون پر بھی ساتھ رہے۔ آن لائن اکاؤنٹ Supabase، ایک ڈیٹا بیس سروس، امریکہ کے سرورز پر رکھتی ہے۔ اگر آپ Google سے سائن اِن کریں تو Google آپ کا نام اور ای میل ہمارے ساتھ شیئر کرتا ہے۔ ہم آپ کا پاس ورڈ کبھی نہیں دیکھتے۔';
+
+  @override
+  String get privacyWhoHeading => 'اسے کون دیکھ سکتا ہے';
+
+  @override
+  String get privacyWhoBody =>
+      'صرف آپ۔ ایپ استعمال کرنے والے دوسرے لوگ آپ کا ڈیٹا کبھی نہیں دیکھ سکتے، اور آپ کا آجر آپ کا ذاتی ڈیٹا کبھی نہیں دیکھتا، چاہے آپ کے دفتر نے یہ ایپ تجویز کی ہو۔ ایپ چلانے والے لوگ اسے چالو رکھنے کے لیے ڈیٹا بیس تک پہنچ سکتے ہیں، لیکن وہ کسی کا ڈیٹا نہیں دیکھتے جب تک آپ کسی مسئلے میں مدد نہ مانگیں یا قانون اس کا تقاضا نہ کرے۔';
+
+  @override
+  String get privacyNeverHeading => 'ہم کبھی کیا نہیں کرتے';
+
+  @override
+  String get privacyNeverBody =>
+      'کوئی اشتہار نہیں۔ ہم آپ کا ڈیٹا نہ بیچتے ہیں نہ اشتہار دینے والوں کے ساتھ شیئر کرتے ہیں۔ ایپ میں کوئی ٹریکنگ یا اینالیٹکس ٹول نہیں۔';
+
+  @override
+  String get privacyDownloadsHeading => 'آواز اور ڈاؤن لوڈز';
+
+  @override
+  String get privacyDownloadsBody =>
+      'کچھ گائیڈڈ مراقبہ کی ریکارڈنگز پہلی بار کھولنے پر ہمارے اسٹوریج سے ڈاؤن لوڈ ہوتی ہیں؛ اس میں کوئی ذاتی ڈیٹا نہیں بھیجا جاتا۔ بلند آواز سے پڑھنا آپ کے فون کی اپنی آواز استعمال کرتا ہے۔';
+
+  @override
+  String get privacyPaymentsHeading => 'ادائیگیاں';
+
+  @override
+  String get privacyPaymentsBody =>
+      'اگر آپ With Me Plus خریدیں تو ادائیگی Google Play سنبھالتا ہے اور ہم آپ کے کارڈ کی تفصیلات کبھی نہیں دیکھتے۔ ہم صرف یہ رکھتے ہیں کہ آپ کے اکاؤنٹ میں With Me Plus ہے یا نہیں اور کب تک۔';
+
+  @override
+  String get privacyChoicesHeading => 'آپ کے اختیارات';
+
+  @override
+  String get privacyChoicesBody =>
+      'سیٹنگز میں "میرا ڈیٹا ایکسپورٹ کریں" ہے جو آپ کو ہر چیز کی کاپی دیتا ہے، اور "میرا اکاؤنٹ حذف کریں" ہے جو آپ کا آن لائن اکاؤنٹ اور اس فون پر موجود سب کچھ حذف کر دیتا ہے۔ لاگ آؤٹ کرنے سے آپ کا ڈیٹا اس فون سے ہٹ جاتا ہے؛ یہ آپ کے اکاؤنٹ میں تب تک رہتا ہے جب تک آپ اسے حذف نہ کریں۔ آپ ای میل کے ذریعے بھی ہمیں ڈیٹا حذف کرنے کا کہہ سکتے ہیں۔';
+
+  @override
+  String get privacySafeHeading => 'حفاظت';
+
+  @override
+  String get privacySafeBody =>
+      'ڈیٹا ایک خفیہ (انکرپٹڈ) کنکشن سے جاتا ہے، اور ہر شخص صرف اپنے ڈیٹا تک پہنچ سکتا ہے۔ کوئی نظام مکمل محفوظ نہیں، اس لیے ہم صرف وہی رکھتے ہیں جس کی ایپ کو ضرورت ہے۔';
+
+  @override
+  String get privacyAgeHeading => 'عمر';
+
+  @override
+  String get privacyAgeBody =>
+      'یہ ایپ 18 سال یا اس سے زیادہ عمر کے بالغوں کے لیے ہے۔';
+
+  @override
+  String get privacyChangesHeading => 'تبدیلیاں';
+
+  @override
+  String get privacyChangesBody =>
+      'اگر یہ پالیسی بدلے تو ہم یہ صفحہ اور اوپر کی تاریخ اپ ڈیٹ کرتے ہیں۔';
+
+  @override
+  String get termsTitle => 'استعمال کی شرائط';
+
+  @override
+  String termsIntro(String appName) {
+    return '$appName استعمال کر کے آپ ان شرائط سے اتفاق کرتے ہیں۔ یہ مختصر اور آسان الفاظ میں ہیں۔';
+  }
+
+  @override
+  String get termsWhatHeading => 'یہ ایپ کیا ہے';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName آپ کو ہر دن اپنا حال جانچنے، سوچنے اور سکون دینے والی مشقیں کرنے میں مدد دیتی ہے۔ یہ طبی دیکھ بھال، تھراپی یا بحران کی سروس نہیں، اور کسی چیز کی تشخیص یا علاج نہیں کرتی۔ اگر آپ خطرے میں ہیں تو مدد کے صفحے پر بحران کی مدد استعمال کریں یا اپنے مقامی ایمرجنسی نمبر پر کال کریں۔';
+  }
+
+  @override
+  String get termsWhoHeading => 'کون استعمال کر سکتا ہے';
+
+  @override
+  String get termsWhoBody =>
+      'آپ کی عمر 18 سال یا اس سے زیادہ ہونی چاہیے۔ اپنا پاس ورڈ خفیہ رکھیں؛ آپ اپنے اکاؤنٹ میں ہونے والی ہر چیز کے ذمہ دار ہیں۔';
+
+  @override
+  String get termsContentHeading => 'آپ کا مواد';
+
+  @override
+  String get termsContentBody =>
+      'جو آپ درج کرتے ہیں وہ آپ ہی کا رہتا ہے۔ آپ ہمیں اسے صرف آپ کے لیے ایپ چلانے کی خاطر محفوظ کرنے کی اجازت دیتے ہیں، جیسا کہ پرائیویسی پالیسی میں بتایا گیا ہے۔';
+
+  @override
+  String get termsFairHeading => 'مناسب استعمال';
+
+  @override
+  String get termsFairBody =>
+      'ایپ کا غلط استعمال نہ کریں، دوسروں کے ڈیٹا تک پہنچنے یا اس کے کام میں خلل ڈالنے کی کوشش نہ کریں۔ ہم ایسا کرنے والا اکاؤنٹ بند کر سکتے ہیں۔';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus ایک اختیاری سبسکرپشن ہے جو Google Play سے خریدی جاتی ہے۔ قیمت خریدنے سے پہلے دکھائی جاتی ہے۔ یہ ہر مہینے یا ہر سال تجدید ہوتی ہے جب تک آپ اسے Google Play میں منسوخ نہ کریں، اور آپ کسی بھی وقت منسوخ کر سکتے ہیں۔ رقم کی واپسی Google Play کے قواعد کے مطابق ہوتی ہے۔ مفت آزمائشوں کے لیے سبسکرپشن ضروری نہیں۔';
+
+  @override
+  String get termsNoPromiseHeading => 'کوئی ضمانت نہیں';
+
+  @override
+  String get termsNoPromiseBody =>
+      'ہم ایپ کو درست چلانے کی کوشش کرتے ہیں، لیکن یہ جیسی ہے ویسی فراہم کی جاتی ہے، اور ہم وعدہ نہیں کر سکتے کہ یہ ہمیشہ دستیاب یا غلطیوں سے پاک رہے گی۔ جہاں تک قانون اجازت دے، ایپ کے استعمال سے ہونے والے نقصان کی ذمہ داری ہم پر نہیں۔';
+
+  @override
+  String get termsChangesHeading => 'تبدیلیاں اور استعمال ختم کرنا';
+
+  @override
+  String get termsChangesBody =>
+      'ہم ایپ اور ان شرائط کو اپ ڈیٹ کر سکتے ہیں؛ اوپر کی تاریخ تازہ ترین نسخہ دکھاتی ہے۔ آپ کسی بھی وقت ایپ کا استعمال چھوڑ کر اپنا اکاؤنٹ حذف کر سکتے ہیں۔';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'اگر آپ خطرے میں ہیں یا خود کو نقصان پہنچانے کا سوچ رہے ہیں تو 988 (Suicide & Crisis Lifeline) پر کال یا ٹیکسٹ کریں، یا 911 پر کال کریں۔';
+
+  @override
+  String get accountReadLegal => 'شرائط اور پرائیویسی پالیسی پڑھیں';
 
   @override
   String get menuTitle => 'مینو';
@@ -1987,6 +2150,14 @@ class AppLocalizationsUr extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'آج کا چیک اِن شروع کریں';
 
   @override
+  String get dashChangeTodaysCheckIn => 'آج کا چیک اِن بدلیں';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'کل کی چیک اِن بھر رہے ہیں: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'آج کا چیک اِن';
 
   @override
@@ -2589,11 +2760,11 @@ class AppLocalizationsUr extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'آپ کا اکاؤنٹ حذف نہیں ہو سکا۔';
 
   @override
-  String get accountPlusActive => 'آپ کے پاس Companion Plus ہے';
+  String get accountPlusActive => 'آپ کے پاس With Me Plus ہے';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus آن ہے۔ کوئی ادائیگی نہیں لی گئی۔';
+      'With Me Plus آن ہے۔ کوئی ادائیگی نہیں لی گئی۔';
 
   @override
   String get exerciseMeditationTitle => 'رہنمائی والا مراقبہ';
@@ -2602,7 +2773,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 منٹ · جنگل میں سکون';
 
   @override
-  String get exerciseMeditationLocked => 'لاک ہے۔ Companion Plus کا حصہ۔';
+  String get exerciseMeditationLocked => 'لاک ہے۔ With Me Plus کا حصہ۔';
 
   @override
   String get exerciseMeditationIntro =>

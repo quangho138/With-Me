@@ -308,7 +308,163 @@ class AppLocalizationsZh extends AppLocalizations {
   String get helpCrisisQuestion => '如果我正处于危机中，该怎么办？';
 
   @override
-  String get helpCrisisAnswer => '请联系当地的紧急服务或心理危机热线。';
+  String get helpCrisisAnswer =>
+      '如果你身处危险或有伤害自己的念头，请拨打当地紧急电话。你可以在 findahelpline.com 找到你所在国家的免费危机热线。';
+
+  @override
+  String legalUpdated(String date) {
+    return '最后更新：$date';
+  }
+
+  @override
+  String get legalEnglishCounts => '本页面经过翻译以方便阅读。如译文与英文有出入，以英文版本为准。';
+
+  @override
+  String legalContact(String email) {
+    return '如有问题或想删除你的数据，请联系：$email';
+  }
+
+  @override
+  String get legalReadPrivacy => '阅读隐私政策';
+
+  @override
+  String get legalReadTerms => '阅读使用条款';
+
+  @override
+  String get privacyTitle => '隐私政策';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName 是由 HR Vision Consulting 运营的身心健康陪伴应用。本页面用简单的话说明应用保存什么、保存在哪里以及谁能看到。';
+  }
+
+  @override
+  String get privacyKeepsHeading => '应用保存什么';
+
+  @override
+  String get privacyKeepsBody =>
+      '你的每日打卡（心情、压力以及你选择或写下的回答）、你选择的日记问题、你完成的练习、你使用过的免费试用，以及你的设置，例如语言和文字大小。如果有账户，还包括你的名字和电子邮件地址。';
+
+  @override
+  String get privacyWhereHeading => '保存在哪里';
+
+  @override
+  String get privacyWhereBody =>
+      '没有账户时，所有内容只保存在这部手机上。有账户时，也会保存在你的在线账户中，换新手机时可以带过去。在线账户由数据库服务 Supabase 托管，服务器位于美国。如果你用 Google 登录，Google 会把你的名字和电子邮件地址提供给我们。我们永远看不到你的密码。';
+
+  @override
+  String get privacyWhoHeading => '谁能看到';
+
+  @override
+  String get privacyWhoBody =>
+      '只有你。其他使用本应用的人永远看不到你的数据，你的雇主也永远看不到你的个人数据，即使是你的工作单位推荐了这个应用。运营应用的人员为了维持运行可以访问数据库，但除非你请求帮助解决问题或法律要求，他们不会查看任何人的数据。';
+
+  @override
+  String get privacyNeverHeading => '我们绝不会做的事';
+
+  @override
+  String get privacyNeverBody => '没有广告。我们不出售你的数据，也不与广告商分享。应用中没有任何跟踪或分析工具。';
+
+  @override
+  String get privacyDownloadsHeading => '语音与下载';
+
+  @override
+  String get privacyDownloadsBody =>
+      '部分引导冥想录音会在你第一次打开时从我们的存储中下载；这不会发送任何个人数据。朗读功能使用手机自带的语音。';
+
+  @override
+  String get privacyPaymentsHeading => '付款';
+
+  @override
+  String get privacyPaymentsBody =>
+      '如果你购买 With Me Plus，付款由 Google Play 处理，我们永远看不到你的银行卡信息。我们只保存你的账户是否拥有 With Me Plus 以及有效期。';
+
+  @override
+  String get privacyChoicesHeading => '你的选择';
+
+  @override
+  String get privacyChoicesBody =>
+      '“设置”里有“导出我的数据”，可以得到所有内容的副本；还有“删除我的账户”，会删除你的在线账户和这部手机上的所有内容。退出登录会从这部手机上移除你的数据；在你删除账户之前，数据仍保留在账户中。你也可以发邮件请我们删除你的数据。';
+
+  @override
+  String get privacySafeHeading => '安全保护';
+
+  @override
+  String get privacySafeBody =>
+      '数据通过加密连接传输，每个人只能访问自己的数据。没有任何系统是绝对安全的，所以我们只保存应用需要的内容。';
+
+  @override
+  String get privacyAgeHeading => '年龄';
+
+  @override
+  String get privacyAgeBody => '本应用面向 18 岁及以上的成年人。';
+
+  @override
+  String get privacyChangesHeading => '变更';
+
+  @override
+  String get privacyChangesBody => '如果本政策有变更，我们会更新此页面和顶部的日期。';
+
+  @override
+  String get termsTitle => '使用条款';
+
+  @override
+  String termsIntro(String appName) {
+    return '使用 $appName 即表示你同意这些条款。条款简短，用词简单。';
+  }
+
+  @override
+  String get termsWhatHeading => '应用是什么';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName 帮助你每天关注自己的状态、进行反思并做放松练习。它不是医疗服务、心理治疗或危机服务，也不做任何诊断或治疗。如果你身处危险，请使用“帮助”页面中的危机求助信息，或拨打当地紧急电话。';
+  }
+
+  @override
+  String get termsWhoHeading => '谁可以使用';
+
+  @override
+  String get termsWhoBody => '你必须年满 18 岁。请妥善保管密码；你需要对自己账户中发生的事情负责。';
+
+  @override
+  String get termsContentHeading => '你的内容';
+
+  @override
+  String get termsContentBody => '你输入的内容仍然属于你。你允许我们保存这些内容，仅用于为你提供应用服务，具体见隐私政策。';
+
+  @override
+  String get termsFairHeading => '合理使用';
+
+  @override
+  String get termsFairBody => '请勿滥用应用、试图获取他人数据或干扰其运行。我们可能会关闭有此类行为的账户。';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus 是通过 Google Play 购买的可选订阅。购买前会显示价格。订阅会按月或按年自动续订，直到你在 Google Play 中取消，你可以随时取消。退款遵循 Google Play 的规则。免费试用不需要订阅。';
+
+  @override
+  String get termsNoPromiseHeading => '不作保证';
+
+  @override
+  String get termsNoPromiseBody =>
+      '我们努力保持应用正常、准确地运行，但应用按现状提供，我们无法保证它始终可用或没有错误。在法律允许的范围内，我们不对使用应用造成的损失负责。';
+
+  @override
+  String get termsChangesHeading => '变更与停止使用';
+
+  @override
+  String get termsChangesBody => '我们可能会更新应用和这些条款；顶部的日期显示最新版本。你可以随时停止使用应用并删除账户。';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      '如果你身处危险或有伤害自己的念头，请拨打或发短信至 988（Suicide & Crisis Lifeline），或拨打 911。';
+
+  @override
+  String get accountReadLegal => '阅读条款和隐私政策';
 
   @override
   String get menuTitle => '菜单';
@@ -1895,6 +2051,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashStartTodaysCheckIn => '开始今天的打卡';
 
   @override
+  String get dashChangeTodaysCheckIn => '修改今天的打卡';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '正在补填昨天：$date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '今天的打卡';
 
   @override
@@ -2470,10 +2634,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsDeleteAccountFailed => '无法删除你的账户。';
 
   @override
-  String get accountPlusActive => '你已开通 Companion Plus';
+  String get accountPlusActive => '你已开通 With Me Plus';
 
   @override
-  String get accountPlusStarted => 'Companion Plus 已开通，未收取任何费用。';
+  String get accountPlusStarted => 'With Me Plus 已开通，未收取任何费用。';
 
   @override
   String get exerciseMeditationTitle => '引导冥想';
@@ -2482,7 +2646,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 分钟 · 林间宁静';
 
   @override
-  String get exerciseMeditationLocked => '已锁定。属于 Companion Plus。';
+  String get exerciseMeditationLocked => '已锁定。属于 With Me Plus。';
 
   @override
   String get exerciseMeditationIntro => '在森林里安静五分钟。跟着文字走，或闭上眼睛聆听。';
@@ -6980,7 +7144,165 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get helpCrisisQuestion => '如果我正處於危機中，該怎麼辦？';
 
   @override
-  String get helpCrisisAnswer => '請聯絡當地的緊急服務或心理危機專線。';
+  String get helpCrisisAnswer =>
+      '如果你身處危險或有傷害自己的念頭，請撥打當地緊急電話。你可以在 findahelpline.com 找到你所在國家的免費危機專線。';
+
+  @override
+  String legalUpdated(String date) {
+    return '最後更新：$date';
+  }
+
+  @override
+  String get legalEnglishCounts => '本頁面經過翻譯以方便閱讀。如譯文與英文有出入，以英文版本為準。';
+
+  @override
+  String legalContact(String email) {
+    return '如有問題或想刪除你的資料，請聯絡：$email';
+  }
+
+  @override
+  String get legalReadPrivacy => '閱讀隱私權政策';
+
+  @override
+  String get legalReadTerms => '閱讀使用條款';
+
+  @override
+  String get privacyTitle => '隱私權政策';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName 是由 HR Vision Consulting 營運的身心健康陪伴應用程式。本頁面用簡單的話說明應用程式保存什麼、保存在哪裡以及誰能看到。';
+  }
+
+  @override
+  String get privacyKeepsHeading => '應用程式保存什麼';
+
+  @override
+  String get privacyKeepsBody =>
+      '你的每日打卡（心情、壓力以及你選擇或寫下的回答）、你選擇的日記問題、你完成的練習、你使用過的免費試用，以及你的設定，例如語言和文字大小。如果有帳戶，還包括你的名字和電子郵件地址。';
+
+  @override
+  String get privacyWhereHeading => '保存在哪裡';
+
+  @override
+  String get privacyWhereBody =>
+      '沒有帳戶時，所有內容只保存在這支手機上。有帳戶時，也會保存在你的線上帳戶中，換新手機時可以帶過去。線上帳戶由資料庫服務 Supabase 代管，伺服器位於美國。如果你用 Google 登入，Google 會把你的名字和電子郵件地址提供給我們。我們永遠看不到你的密碼。';
+
+  @override
+  String get privacyWhoHeading => '誰能看到';
+
+  @override
+  String get privacyWhoBody =>
+      '只有你。其他使用本應用程式的人永遠看不到你的資料，你的雇主也永遠看不到你的個人資料，即使是你的工作單位推薦了這個應用程式。營運應用程式的人員為了維持運作可以存取資料庫，但除非你請求協助處理問題或法律要求，他們不會查看任何人的資料。';
+
+  @override
+  String get privacyNeverHeading => '我們絕不會做的事';
+
+  @override
+  String get privacyNeverBody => '沒有廣告。我們不出售你的資料，也不與廣告商分享。應用程式中沒有任何追蹤或分析工具。';
+
+  @override
+  String get privacyDownloadsHeading => '語音與下載';
+
+  @override
+  String get privacyDownloadsBody =>
+      '部分引導冥想錄音會在你第一次開啟時從我們的儲存空間下載；這不會傳送任何個人資料。朗讀功能使用手機內建的語音。';
+
+  @override
+  String get privacyPaymentsHeading => '付款';
+
+  @override
+  String get privacyPaymentsBody =>
+      '如果你購買 With Me Plus，付款由 Google Play 處理，我們永遠看不到你的卡片資料。我們只保存你的帳戶是否擁有 With Me Plus 以及有效期限。';
+
+  @override
+  String get privacyChoicesHeading => '你的選擇';
+
+  @override
+  String get privacyChoicesBody =>
+      '「設定」裡有「匯出我的資料」，可以取得所有內容的副本；還有「刪除我的帳戶」，會刪除你的線上帳戶和這支手機上的所有內容。登出會從這支手機上移除你的資料；在你刪除帳戶之前，資料仍保留在帳戶中。你也可以寄電子郵件請我們刪除你的資料。';
+
+  @override
+  String get privacySafeHeading => '安全保護';
+
+  @override
+  String get privacySafeBody =>
+      '資料透過加密連線傳輸，每個人只能存取自己的資料。沒有任何系統是絕對安全的，所以我們只保存應用程式需要的內容。';
+
+  @override
+  String get privacyAgeHeading => '年齡';
+
+  @override
+  String get privacyAgeBody => '本應用程式適用於 18 歲以上的成年人。';
+
+  @override
+  String get privacyChangesHeading => '變更';
+
+  @override
+  String get privacyChangesBody => '如果本政策有變更，我們會更新此頁面和頂部的日期。';
+
+  @override
+  String get termsTitle => '使用條款';
+
+  @override
+  String termsIntro(String appName) {
+    return '使用 $appName 即表示你同意這些條款。條款簡短，用詞簡單。';
+  }
+
+  @override
+  String get termsWhatHeading => '應用程式是什麼';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName 幫助你每天關注自己的狀態、進行反思並做放鬆練習。它不是醫療服務、心理治療或危機服務，也不做任何診斷或治療。如果你身處危險，請使用「幫助」頁面中的危機求助資訊，或撥打當地緊急電話。';
+  }
+
+  @override
+  String get termsWhoHeading => '誰可以使用';
+
+  @override
+  String get termsWhoBody => '你必須年滿 18 歲。請妥善保管密碼；你需要對自己帳戶中發生的事情負責。';
+
+  @override
+  String get termsContentHeading => '你的內容';
+
+  @override
+  String get termsContentBody =>
+      '你輸入的內容仍然屬於你。你允許我們保存這些內容，僅用於為你提供應用程式服務，詳見隱私權政策。';
+
+  @override
+  String get termsFairHeading => '合理使用';
+
+  @override
+  String get termsFairBody => '請勿濫用應用程式、試圖取得他人資料或干擾其運作。我們可能會關閉有此類行為的帳戶。';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus 是透過 Google Play 購買的選用訂閱。購買前會顯示價格。訂閱會按月或按年自動續訂，直到你在 Google Play 中取消，你可以隨時取消。退款遵循 Google Play 的規則。免費試用不需要訂閱。';
+
+  @override
+  String get termsNoPromiseHeading => '不作保證';
+
+  @override
+  String get termsNoPromiseBody =>
+      '我們努力讓應用程式正常、正確地運作，但應用程式依現況提供，我們無法保證它始終可用或沒有錯誤。在法律允許的範圍內，我們不對使用應用程式造成的損失負責。';
+
+  @override
+  String get termsChangesHeading => '變更與停止使用';
+
+  @override
+  String get termsChangesBody =>
+      '我們可能會更新應用程式和這些條款；頂部的日期顯示最新版本。你可以隨時停止使用應用程式並刪除帳戶。';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      '如果你身處危險或有傷害自己的念頭，請撥打或傳簡訊至 988（Suicide & Crisis Lifeline），或撥打 911。';
+
+  @override
+  String get accountReadLegal => '閱讀條款和隱私權政策';
 
   @override
   String get menuTitle => '選單';
@@ -8567,6 +8889,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashStartTodaysCheckIn => '開始今天的打卡';
 
   @override
+  String get dashChangeTodaysCheckIn => '修改今天的打卡';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return '正在補填昨天：$date';
+  }
+
+  @override
   String get dashTodaysCheckIn => '今天的打卡';
 
   @override
@@ -9142,10 +9472,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsDeleteAccountFailed => '無法刪除你的帳戶。';
 
   @override
-  String get accountPlusActive => '你已開通 Companion Plus';
+  String get accountPlusActive => '你已開通 With Me Plus';
 
   @override
-  String get accountPlusStarted => 'Companion Plus 已開通，未收取任何費用。';
+  String get accountPlusStarted => 'With Me Plus 已開通，未收取任何費用。';
 
   @override
   String get exerciseMeditationTitle => '引導冥想';
@@ -9154,7 +9484,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get exerciseMeditationSubtitle => '5 分鐘 · 林間寧靜';
 
   @override
-  String get exerciseMeditationLocked => '已鎖定。屬於 Companion Plus。';
+  String get exerciseMeditationLocked => '已鎖定。屬於 With Me Plus。';
 
   @override
   String get exerciseMeditationIntro => '在森林裡安靜五分鐘。跟著文字走，或閉上眼睛聆聽。';

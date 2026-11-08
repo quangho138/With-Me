@@ -321,7 +321,170 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'कृपया तुमच्या स्थानिक आपत्कालीन सेवांशी किंवा संकट हेल्पलाइनशी संपर्क साधा.';
+      'तुम्ही धोक्यात असल्यास किंवा स्वतःला इजा करण्याचा विचार करत असल्यास तुमच्या स्थानिक आपत्कालीन क्रमांकावर कॉल करा. तुमच्या देशातील मोफत संकट हेल्पलाइन findahelpline.com वर शोधू शकता.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'शेवटचे अपडेट: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'हे पान तुमच्या सोयीसाठी भाषांतरित केले आहे. भाषांतरात फरक असल्यास इंग्रजी आवृत्ती लागू होईल.';
+
+  @override
+  String legalContact(String email) {
+    return 'प्रश्न किंवा तुमचा डेटा हटवण्याची विनंती: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'गोपनीयता धोरण वाचा';
+
+  @override
+  String get legalReadTerms => 'वापराच्या अटी वाचा';
+
+  @override
+  String get privacyTitle => 'गोपनीयता धोरण';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName हे HR Vision Consulting चालवत असलेले वेलबीइंग सोबती ॲप आहे. ॲप काय ठेवते, कुठे ठेवते आणि ते कोण पाहू शकते हे हे पान सोप्या शब्दांत सांगते.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'ॲप काय ठेवते';
+
+  @override
+  String get privacyKeepsBody =>
+      'तुमचे रोजचे चेक-इन (मूड, ताण आणि तुम्ही निवडलेली किंवा लिहिलेली उत्तरे), तुम्ही निवडलेले जर्नल प्रश्न, तुम्ही पूर्ण केलेले व्यायाम, वापरलेले मोफत ट्राय आणि भाषा व मजकुराचा आकार यांसारख्या सेटिंग्ज. खाते असल्यास तुमचे नाव आणि ईमेल पत्ताही.';
+
+  @override
+  String get privacyWhereHeading => 'ते कुठे ठेवले जाते';
+
+  @override
+  String get privacyWhereBody =>
+      'खात्याशिवाय सर्व काही फक्त याच फोनवर राहते. खाते असल्यास ते तुमच्या ऑनलाइन खात्यातही ठेवले जाते, म्हणजे नव्या फोनवरही तुमच्यासोबत राहते. ऑनलाइन खाते Supabase ही डेटाबेस सेवा अमेरिकेतील सर्व्हरवर ठेवते. तुम्ही Google ने साइन इन केल्यास Google तुमचे नाव आणि ईमेल पत्ता आमच्याशी शेअर करते. आम्ही तुमचा पासवर्ड कधीच पाहत नाही.';
+
+  @override
+  String get privacyWhoHeading => 'ते कोण पाहू शकते';
+
+  @override
+  String get privacyWhoBody =>
+      'फक्त तुम्ही. ॲपचे इतर वापरकर्ते तुमचा डेटा कधीच पाहू शकत नाहीत, आणि तुमच्या कामाच्या ठिकाणी ॲप सुचवले असले तरी तुमचा नियोक्ता तुमचा वैयक्तिक डेटा कधीच पाहत नाही. ॲप चालवणारे लोक ते चालू ठेवण्यासाठी डेटाबेसपर्यंत पोहोचू शकतात, पण तुम्ही एखाद्या समस्येसाठी मदत मागितल्याशिवाय किंवा कायद्याने आवश्यक असल्याशिवाय ते कोणाचाही डेटा पाहत नाहीत.';
+
+  @override
+  String get privacyNeverHeading => 'आम्ही कधीच काय करत नाही';
+
+  @override
+  String get privacyNeverBody =>
+      'जाहिराती नाहीत. आम्ही तुमचा डेटा विकत नाही किंवा जाहिरातदारांशी शेअर करत नाही. ॲपमध्ये ट्रॅकिंग किंवा ॲनालिटिक्स साधने नाहीत.';
+
+  @override
+  String get privacyDownloadsHeading => 'आवाज आणि डाउनलोड';
+
+  @override
+  String get privacyDownloadsBody =>
+      'काही मार्गदर्शित ध्यानाची रेकॉर्डिंग पहिल्यांदा उघडल्यावर आमच्या स्टोरेजमधून डाउनलोड होतात; यात कोणताही वैयक्तिक डेटा पाठवला जात नाही. मोठ्याने वाचन तुमच्या फोनचा स्वतःचा आवाज वापरते.';
+
+  @override
+  String get privacyPaymentsHeading => 'पेमेंट';
+
+  @override
+  String get privacyPaymentsBody =>
+      'तुम्ही With Me Plus विकत घेतल्यास पेमेंट Google Play हाताळते आणि आम्ही तुमच्या कार्डचे तपशील कधीच पाहत नाही. तुमच्या खात्यात With Me Plus आहे का आणि कधीपर्यंत, एवढेच आम्ही ठेवतो.';
+
+  @override
+  String get privacyChoicesHeading => 'तुमचे पर्याय';
+
+  @override
+  String get privacyChoicesBody =>
+      'सेटिंग्जमध्ये "माझा डेटा एक्सपोर्ट करा" आहे, जे तुम्हाला सर्व गोष्टींची प्रत देते, आणि "माझे खाते हटवा" आहे, जे तुमचे ऑनलाइन खाते आणि या फोनवरील सर्व काही हटवते. लॉग आउट केल्यावर तुमचा डेटा या फोनवरून काढला जातो; तुम्ही खाते हटवेपर्यंत तो खात्यात राहतो. तुम्ही ईमेलद्वारेही आम्हाला डेटा हटवायला सांगू शकता.';
+
+  @override
+  String get privacySafeHeading => 'सुरक्षितता';
+
+  @override
+  String get privacySafeBody =>
+      'डेटा एन्क्रिप्टेड कनेक्शनमधून जातो, आणि प्रत्येक व्यक्ती फक्त स्वतःच्या डेटापर्यंत पोहोचू शकते. कोणतीही यंत्रणा पूर्णपणे सुरक्षित नसते, म्हणून ॲपला जे लागते तेवढेच आम्ही ठेवतो.';
+
+  @override
+  String get privacyAgeHeading => 'वय';
+
+  @override
+  String get privacyAgeBody =>
+      'हे ॲप 18 वर्षे आणि त्याहून अधिक वयाच्या प्रौढांसाठी आहे.';
+
+  @override
+  String get privacyChangesHeading => 'बदल';
+
+  @override
+  String get privacyChangesBody =>
+      'हे धोरण बदलल्यास आम्ही हे पान आणि वरची तारीख अपडेट करतो.';
+
+  @override
+  String get termsTitle => 'वापराच्या अटी';
+
+  @override
+  String termsIntro(String appName) {
+    return '$appName वापरून तुम्ही या अटी मान्य करता. त्या थोडक्यात आणि सोप्या शब्दांत आहेत.';
+  }
+
+  @override
+  String get termsWhatHeading => 'हे ॲप काय आहे';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName तुम्हाला रोज स्वतःची विचारपूस करायला, विचार करायला आणि शांत करणारे व्यायाम करायला मदत करते. हे वैद्यकीय उपचार, थेरपी किंवा संकट सेवा नाही, आणि ते कशाचेही निदान किंवा उपचार करत नाही. तुम्ही धोक्यात असल्यास मदत पानावरील संकट मदत वापरा किंवा तुमच्या स्थानिक आपत्कालीन क्रमांकावर कॉल करा.';
+  }
+
+  @override
+  String get termsWhoHeading => 'कोण वापरू शकते';
+
+  @override
+  String get termsWhoBody =>
+      'तुमचे वय 18 वर्षे किंवा अधिक असले पाहिजे. तुमचा पासवर्ड गुप्त ठेवा; तुमच्या खात्यात जे घडते त्याची जबाबदारी तुमची आहे.';
+
+  @override
+  String get termsContentHeading => 'तुमची माहिती';
+
+  @override
+  String get termsContentBody =>
+      'तुम्ही जे लिहिता ते तुमचेच राहते. गोपनीयता धोरणात सांगितल्याप्रमाणे, फक्त तुमच्यासाठी ॲप चालवण्यासाठी ते ठेवण्याची परवानगी तुम्ही आम्हाला देता.';
+
+  @override
+  String get termsFairHeading => 'योग्य वापर';
+
+  @override
+  String get termsFairBody =>
+      'ॲपचा गैरवापर करू नका, इतरांच्या डेटापर्यंत पोहोचण्याचा किंवा त्याच्या कामात अडथळा आणण्याचा प्रयत्न करू नका. असे करणारे खाते आम्ही बंद करू शकतो.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus ही Google Play मधून विकत घेतली जाणारी ऐच्छिक सदस्यता आहे. विकत घेण्यापूर्वी किंमत दाखवली जाते. तुम्ही Google Play मध्ये रद्द करेपर्यंत ती दर महिन्याला किंवा दर वर्षी नूतनीकृत होते, आणि तुम्ही ती कधीही रद्द करू शकता. परतावे Google Play च्या नियमांनुसार होतात. मोफत ट्रायसाठी सदस्यता लागत नाही.';
+
+  @override
+  String get termsNoPromiseHeading => 'कोणतीही हमी नाही';
+
+  @override
+  String get termsNoPromiseBody =>
+      'ॲप नीट चालावे यासाठी आम्ही प्रयत्न करतो, पण ते जसे आहे तसे दिले जाते, आणि ते नेहमी उपलब्ध किंवा चुकांविना असेल असे आम्ही वचन देऊ शकत नाही. कायद्याने परवानगी दिलेल्या मर्यादेत, ॲप वापरल्यामुळे होणाऱ्या नुकसानीची जबाबदारी आमची नाही.';
+
+  @override
+  String get termsChangesHeading => 'बदल आणि वापर थांबवणे';
+
+  @override
+  String get termsChangesBody =>
+      'आम्ही ॲप आणि या अटी अपडेट करू शकतो; वरची तारीख नवीनतम आवृत्ती दाखवते. तुम्ही कधीही ॲप वापरणे थांबवून तुमचे खाते हटवू शकता.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'तुम्ही धोक्यात असल्यास किंवा स्वतःला इजा करण्याचा विचार करत असल्यास 988 (Suicide & Crisis Lifeline) वर कॉल किंवा मेसेज करा, किंवा 911 वर कॉल करा.';
+
+  @override
+  String get accountReadLegal => 'अटी आणि गोपनीयता धोरण वाचा';
 
   @override
   String get menuTitle => 'मेनू';
@@ -1990,6 +2153,14 @@ class AppLocalizationsMr extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'आजचे चेक-इन सुरू करा';
 
   @override
+  String get dashChangeTodaysCheckIn => 'आजचे चेक-इन बदला';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'कालचे भरत आहात: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'आजचे चेक-इन';
 
   @override
@@ -2592,11 +2763,11 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'तुमचे खाते हटवता आले नाही.';
 
   @override
-  String get accountPlusActive => 'तुमच्याकडे Companion Plus आहे';
+  String get accountPlusActive => 'तुमच्याकडे With Me Plus आहे';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus सुरू आहे. कोणतेही पैसे घेतले गेले नाहीत.';
+      'With Me Plus सुरू आहे. कोणतेही पैसे घेतले गेले नाहीत.';
 
   @override
   String get exerciseMeditationTitle => 'मार्गदर्शित ध्यान';
@@ -2605,7 +2776,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '५ मिनिटे · जंगलातली शांतता';
 
   @override
-  String get exerciseMeditationLocked => 'लॉक आहे. Companion Plus चा भाग.';
+  String get exerciseMeditationLocked => 'लॉक आहे. With Me Plus चा भाग.';
 
   @override
   String get exerciseMeditationIntro =>

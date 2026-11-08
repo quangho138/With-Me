@@ -320,7 +320,170 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Silakan hubungi layanan darurat setempat atau layanan bantuan krisis.';
+      'Jika kamu dalam bahaya atau berpikir untuk menyakiti diri sendiri, hubungi nomor darurat setempat. Kamu bisa menemukan layanan krisis gratis di negaramu di findahelpline.com.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Terakhir diperbarui: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'Halaman ini diterjemahkan agar mudah dibaca. Jika terjemahan berbeda, yang berlaku adalah versi bahasa Inggris.';
+
+  @override
+  String legalContact(String email) {
+    return 'Pertanyaan atau permintaan menghapus datamu: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Baca Kebijakan Privasi';
+
+  @override
+  String get legalReadTerms => 'Baca Ketentuan Penggunaan';
+
+  @override
+  String get privacyTitle => 'Kebijakan Privasi';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName adalah aplikasi pendamping kesejahteraan yang dijalankan oleh HR Vision Consulting. Halaman ini menjelaskan dengan kata-kata sederhana apa yang disimpan aplikasi, di mana, dan siapa yang bisa melihatnya.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'Yang disimpan aplikasi';
+
+  @override
+  String get privacyKeepsBody =>
+      'Check-in harianmu (suasana hati, stres, dan jawaban yang kamu pilih atau tulis), pertanyaan jurnal yang kamu pilih, latihan yang kamu selesaikan, percobaan gratis yang kamu pakai, dan pengaturanmu seperti bahasa dan ukuran teks. Jika punya akun, juga nama dan alamat emailmu.';
+
+  @override
+  String get privacyWhereHeading => 'Di mana disimpan';
+
+  @override
+  String get privacyWhereBody =>
+      'Tanpa akun, semuanya hanya ada di ponsel ini. Dengan akun, data juga disimpan di akun onlinemu agar bisa ikut ke ponsel baru. Akun online disimpan oleh Supabase, layanan basis data, di server di Amerika Serikat. Jika kamu masuk dengan Google, Google membagikan nama dan alamat emailmu kepada kami. Kami tidak pernah melihat kata sandimu.';
+
+  @override
+  String get privacyWhoHeading => 'Siapa yang bisa melihat';
+
+  @override
+  String get privacyWhoBody =>
+      'Hanya kamu. Pengguna lain tidak pernah bisa melihat datamu, dan pemberi kerjamu tidak pernah melihat data pribadimu, meskipun tempat kerjamu yang menyarankan aplikasi ini. Orang yang menjalankan aplikasi bisa mengakses basis data agar tetap berjalan, tetapi mereka tidak melihat data siapa pun kecuali kamu meminta bantuan untuk suatu masalah atau hukum mewajibkannya.';
+
+  @override
+  String get privacyNeverHeading => 'Yang tidak pernah kami lakukan';
+
+  @override
+  String get privacyNeverBody =>
+      'Tanpa iklan. Kami tidak menjual datamu atau membagikannya kepada pengiklan. Aplikasi tidak memiliki alat pelacakan atau analitik.';
+
+  @override
+  String get privacyDownloadsHeading => 'Suara dan unduhan';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Beberapa rekaman meditasi terpandu diunduh dari penyimpanan kami saat pertama kali kamu membukanya; ini tidak mengirim data pribadi. Fitur baca keras memakai suara bawaan ponselmu.';
+
+  @override
+  String get privacyPaymentsHeading => 'Pembayaran';
+
+  @override
+  String get privacyPaymentsBody =>
+      'Jika kamu membeli With Me Plus, Google Play yang mengurus pembayaran dan kami tidak pernah melihat detail kartumu. Kami hanya menyimpan apakah akunmu punya With Me Plus dan sampai kapan.';
+
+  @override
+  String get privacyChoicesHeading => 'Pilihanmu';
+
+  @override
+  String get privacyChoicesBody =>
+      'Di Pengaturan ada "Ekspor dataku" yang memberimu salinan semuanya, dan "Hapus akunku" yang menghapus akun onlinemu dan semua yang ada di ponsel ini. Keluar dari akun menghapus datamu dari ponsel ini; data tetap ada di akunmu sampai kamu menghapusnya. Kamu juga bisa meminta kami lewat email untuk menghapus datamu.';
+
+  @override
+  String get privacySafeHeading => 'Menjaga keamanan';
+
+  @override
+  String get privacySafeBody =>
+      'Data dikirim lewat koneksi terenkripsi, dan setiap orang hanya bisa mengakses datanya sendiri. Tidak ada sistem yang benar-benar aman, jadi kami hanya menyimpan yang dibutuhkan aplikasi.';
+
+  @override
+  String get privacyAgeHeading => 'Usia';
+
+  @override
+  String get privacyAgeBody =>
+      'Aplikasi ini ditujukan untuk orang dewasa berusia 18 tahun ke atas.';
+
+  @override
+  String get privacyChangesHeading => 'Perubahan';
+
+  @override
+  String get privacyChangesBody =>
+      'Jika kebijakan ini berubah, kami memperbarui halaman ini dan tanggal di bagian atas.';
+
+  @override
+  String get termsTitle => 'Ketentuan Penggunaan';
+
+  @override
+  String termsIntro(String appName) {
+    return 'Dengan menggunakan $appName, kamu menyetujui ketentuan ini. Ketentuannya singkat dan ditulis dengan kata-kata sederhana.';
+  }
+
+  @override
+  String get termsWhatHeading => 'Apa itu aplikasi ini';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName membantumu memeriksa diri setiap hari, merenung, dan melakukan latihan menenangkan. Aplikasi ini bukan layanan medis, terapi, atau layanan krisis, dan tidak mendiagnosis atau mengobati apa pun. Jika kamu dalam bahaya, gunakan bantuan krisis di halaman Bantuan atau hubungi nomor darurat setempat.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Siapa yang boleh memakai';
+
+  @override
+  String get termsWhoBody =>
+      'Kamu harus berusia 18 tahun atau lebih. Jaga kerahasiaan kata sandimu; kamu bertanggung jawab atas apa yang terjadi di akunmu.';
+
+  @override
+  String get termsContentHeading => 'Kontenmu';
+
+  @override
+  String get termsContentBody =>
+      'Apa yang kamu masukkan tetap milikmu. Kamu mengizinkan kami menyimpannya hanya untuk menjalankan aplikasi bagimu, seperti dijelaskan dalam Kebijakan Privasi.';
+
+  @override
+  String get termsFairHeading => 'Penggunaan yang wajar';
+
+  @override
+  String get termsFairBody =>
+      'Jangan menyalahgunakan aplikasi, mencoba mengakses data orang lain, atau mengganggu cara kerjanya. Kami bisa menutup akun yang melakukannya.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus adalah langganan opsional yang dibeli lewat Google Play. Harga ditampilkan sebelum kamu membeli. Langganan diperpanjang setiap bulan atau tahun sampai kamu membatalkannya di Google Play, dan kamu bisa membatalkan kapan saja. Pengembalian dana mengikuti aturan Google Play. Percobaan gratis tidak memerlukan langganan.';
+
+  @override
+  String get termsNoPromiseHeading => 'Tanpa jaminan';
+
+  @override
+  String get termsNoPromiseBody =>
+      'Kami berupaya agar aplikasi berjalan dengan baik, tetapi aplikasi disediakan apa adanya dan kami tidak bisa menjanjikan aplikasi selalu tersedia atau bebas dari kesalahan. Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian akibat penggunaan aplikasi.';
+
+  @override
+  String get termsChangesHeading => 'Perubahan dan berhenti';
+
+  @override
+  String get termsChangesBody =>
+      'Kami dapat memperbarui aplikasi dan ketentuan ini; tanggal di bagian atas menunjukkan versi terbaru. Kamu bisa berhenti memakai aplikasi dan menghapus akunmu kapan saja.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'Jika kamu dalam bahaya atau berpikir untuk menyakiti diri sendiri, telepon atau kirim SMS ke 988 (Suicide & Crisis Lifeline), atau telepon 911.';
+
+  @override
+  String get accountReadLegal => 'Baca Ketentuan dan Kebijakan Privasi';
 
   @override
   String get menuTitle => 'Menu';
@@ -1986,6 +2149,14 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Mulai check-in hari ini';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Ubah check-in hari ini';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Mengisi untuk kemarin: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Check-in hari ini';
 
   @override
@@ -2591,11 +2762,11 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Tidak bisa menghapus akunmu.';
 
   @override
-  String get accountPlusActive => 'Kamu punya Companion Plus';
+  String get accountPlusActive => 'Kamu punya With Me Plus';
 
   @override
   String get accountPlusStarted =>
-      'Companion Plus aktif. Tidak ada pembayaran yang diambil.';
+      'With Me Plus aktif. Tidak ada pembayaran yang diambil.';
 
   @override
   String get exerciseMeditationTitle => 'Meditasi Terpandu';
@@ -2604,8 +2775,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 mnt · tenang di hutan';
 
   @override
-  String get exerciseMeditationLocked =>
-      'Terkunci. Bagian dari Companion Plus.';
+  String get exerciseMeditationLocked => 'Terkunci. Bagian dari With Me Plus.';
 
   @override
   String get exerciseMeditationIntro =>

@@ -9,6 +9,7 @@ import '../Components/ScenicScaffold.dart';
 import '../Components/WithMeControls.dart';
 import '../Mascot/RealMascot.dart';
 import 'HomeScreen.dart';
+import 'LegalScreen.dart';
 import 'LoginScreen.dart';
 
 /// `image2.png` — "Create your account".
@@ -151,6 +152,26 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
             _TermsCheck(
               value: _agreed,
               onChanged: (v) => setState(() => _agreed = v),
+            ),
+            // What they agree to, one tap away (plan item 4).
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton(
+                key: const ValueKey('signup-read-legal'),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const LegalScreen(page: LegalPage.terms),
+                  ),
+                ),
+                child: Text(
+                  context.l10n.accountReadLegal,
+                  style: kScenicBody.copyWith(
+                    fontSize: 14,
+                    color: ScenicColors.pillBottom,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

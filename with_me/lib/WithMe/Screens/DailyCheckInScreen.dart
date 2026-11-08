@@ -192,6 +192,23 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen>
   /// The day the answers are loaded from and saved to.
   late final DateTime _day = widget.day ?? Today.now();
 
+  /// True when filling in an earlier day (yesterday, D12). The questions
+  /// keep the PO's words ("today"), so a line above them says which day the
+  /// answers are for (TO FIX 2).
+  late final bool _earlierDay = dayKey(_day) != dayKey(Today.now());
+
+  /// "Saturday 7 November", in the reader's language when the phone has
+  /// its date names, otherwise English.
+  String _dayName(BuildContext context) {
+    final locale = Localizations.maybeLocaleOf(context) == null
+        ? null
+        : dateLocale(context);
+    return DateFormat(
+      'EEEE d MMMM',
+      locale != null && DateFormat.localeExists(locale) ? locale : null,
+    ).format(_day);
+  }
+
   /// Set once the check-in is finished, so leaving afterwards does not save
   /// the answers a second time.
   bool _finished = false;
@@ -532,26 +549,44 @@ class _DailyCheckInScreenState extends State<DailyCheckInScreen>
                     id: _ScenicSlot.content,
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: side),
-                      child: AnimatedSwitcher(
-                        duration: WithMeMotion.medium,
-                        layoutBuilder: (current, previous) => Stack(
-                          alignment: Alignment.topCenter,
-                          children: [...previous, ?current],
-                        ),
-                        transitionBuilder: (child, animation) => FadeTransition(
-                          opacity: animation,
-                          child: SlideTransition(
-                            position: Tween<Offset>(
-                              begin: Offset(_forward ? 0.08 : -0.08, 0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (_earlierDay)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Center(
+                                child: _EarlierDayNote(
+                                  context.l10n.checkinForEarlierDay(
+                                    _dayName(context),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          AnimatedSwitcher(
+                            duration: WithMeMotion.medium,
+                            layoutBuilder: (current, previous) => Stack(
+                              alignment: Alignment.topCenter,
+                              children: [...previous, ?current],
+                            ),
+                            transitionBuilder: (child, animation) =>
+                                FadeTransition(
+                                  opacity: animation,
+                                  child: SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: Offset(_forward ? 0.08 : -0.08, 0),
+                                      end: Offset.zero,
+                                    ).animate(animation),
+                                    child: child,
+                                  ),
+                                ),
+                            child: KeyedSubtree(
+                              key: ValueKey(_index),
+                              child: _scenicContent(),
+                            ),
                           ),
-                        ),
-                        child: KeyedSubtree(
-                          key: ValueKey(_index),
-                          child: _scenicContent(),
-                        ),
+                        ],
                       ),
                     ),
                   ),
@@ -1857,6 +1892,29 @@ class _Line extends StatelessWidget {
         color: ScenicColors.pillBottom,
       ),
       text: text,
+    ),
+  );
+}
+
+/// A small line above the questions when the answers are for an earlier
+/// day: "For yesterday, Saturday 7 November".
+class _EarlierDayNote extends StatelessWidget {
+  const _EarlierDayNote(this.text);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    key: const ValueKey('checkin-earlier-day'),
+    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+    decoration: BoxDecoration(
+      color: ScenicColors.bubble.withValues(alpha: 0.92),
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Text(
+      text,
+      textAlign: TextAlign.center,
+      style: _bubbleBody.copyWith(fontSize: 15, fontWeight: FontWeight.w700),
     ),
   );
 }

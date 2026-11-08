@@ -319,7 +319,169 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get helpCrisisAnswer =>
-      'Lütfen yerel acil durum hizmetlerine ya da bir kriz destek hattına başvur.';
+      'Tehlikedeysen veya kendine zarar vermeyi düşünüyorsan yerel acil durum numarasını ara. Ülkendeki ücretsiz bir kriz hattını findahelpline.com adresinde bulabilirsin.';
+
+  @override
+  String legalUpdated(String date) {
+    return 'Son güncelleme: $date';
+  }
+
+  @override
+  String get legalEnglishCounts =>
+      'Bu sayfa kolaylık olsun diye çevrilmiştir. Çeviri farklıysa İngilizce sürüm geçerlidir.';
+
+  @override
+  String legalContact(String email) {
+    return 'Sorular veya verilerini sildirme isteği: $email';
+  }
+
+  @override
+  String get legalReadPrivacy => 'Gizlilik Politikasını oku';
+
+  @override
+  String get legalReadTerms => 'Kullanım Koşullarını oku';
+
+  @override
+  String get privacyTitle => 'Gizlilik Politikası';
+
+  @override
+  String privacyIntro(String appName) {
+    return '$appName, HR Vision Consulting tarafından işletilen bir iyi oluş uygulamasıdır. Bu sayfa, uygulamanın neyi, nerede sakladığını ve kimin görebileceğini sade bir dille açıklar.';
+  }
+
+  @override
+  String get privacyKeepsHeading => 'Uygulamanın sakladıkları';
+
+  @override
+  String get privacyKeepsBody =>
+      'Günlük kayıtların (ruh hâli, stres ve seçtiğin ya da yazdığın cevaplar), seçtiğin günlük soruları, bitirdiğin egzersizler, kullandığın ücretsiz denemeler ve dil ile metin boyutu gibi ayarların. Hesabın varsa adın ve e-posta adresin de.';
+
+  @override
+  String get privacyWhereHeading => 'Nerede saklanır';
+
+  @override
+  String get privacyWhereBody =>
+      'Hesap olmadan her şey yalnızca bu telefonda kalır. Hesapla, yeni bir telefona seninle gelebilmesi için çevrim içi hesabında da saklanır. Çevrim içi hesap, bir veritabanı hizmeti olan Supabase tarafından ABD\'deki sunucularda barındırılır. Google ile giriş yaparsan Google adını ve e-posta adresini bizimle paylaşır. Şifreni asla görmeyiz.';
+
+  @override
+  String get privacyWhoHeading => 'Kimler görebilir';
+
+  @override
+  String get privacyWhoBody =>
+      'Yalnızca sen. Uygulamayı kullanan diğer kişiler verilerini asla göremez; iş yerin uygulamayı önermiş olsa bile işvereni kişisel verilerini asla görmez. Uygulamayı yürütenler çalışmaya devam etmesi için veritabanına erişebilir, ama bir sorun için yardım istemedikçe ya da yasa gerektirmedikçe kimsenin verilerine bakmazlar.';
+
+  @override
+  String get privacyNeverHeading => 'Asla yapmadıklarımız';
+
+  @override
+  String get privacyNeverBody =>
+      'Reklam yok. Verilerini satmayız ve reklamcılarla paylaşmayız. Uygulamada izleme veya analiz aracı yoktur.';
+
+  @override
+  String get privacyDownloadsHeading => 'Ses ve indirmeler';
+
+  @override
+  String get privacyDownloadsBody =>
+      'Bazı rehberli meditasyon kayıtları ilk açtığında depomuzdan indirilir; bu sırada kişisel veri gönderilmez. Sesli okuma, telefonunun kendi sesini kullanır.';
+
+  @override
+  String get privacyPaymentsHeading => 'Ödemeler';
+
+  @override
+  String get privacyPaymentsBody =>
+      'With Me Plus satın alırsan ödemeyi Google Play yapar ve kart bilgilerini asla görmeyiz. Yalnızca hesabında With Me Plus olup olmadığını ve ne zamana kadar geçerli olduğunu saklarız.';
+
+  @override
+  String get privacyChoicesHeading => 'Seçeneklerin';
+
+  @override
+  String get privacyChoicesBody =>
+      'Ayarlar\'da her şeyin bir kopyasını veren "Verilerimi dışa aktar" ve çevrim içi hesabını ve bu telefondaki her şeyi silen "Hesabımı sil" vardır. Çıkış yapmak verilerini bu telefondan kaldırır; hesabını silene kadar hesabında kalır. Verilerini silmemizi e-postayla da isteyebilirsin.';
+
+  @override
+  String get privacySafeHeading => 'Güvenlik';
+
+  @override
+  String get privacySafeBody =>
+      'Veriler şifreli bir bağlantıyla taşınır ve herkes yalnızca kendi verilerine erişebilir. Hiçbir sistem tamamen güvenli değildir, bu yüzden yalnızca uygulamanın ihtiyaç duyduğunu saklarız.';
+
+  @override
+  String get privacyAgeHeading => 'Yaş';
+
+  @override
+  String get privacyAgeBody => 'Uygulama 18 yaş ve üzeri yetişkinler içindir.';
+
+  @override
+  String get privacyChangesHeading => 'Değişiklikler';
+
+  @override
+  String get privacyChangesBody =>
+      'Bu politika değişirse bu sayfayı ve üstteki tarihi güncelleriz.';
+
+  @override
+  String get termsTitle => 'Kullanım Koşulları';
+
+  @override
+  String termsIntro(String appName) {
+    return '$appName uygulamasını kullanarak bu koşulları kabul edersin. Kısa ve sade bir dille yazılmıştır.';
+  }
+
+  @override
+  String get termsWhatHeading => 'Uygulama nedir';
+
+  @override
+  String termsWhatBody(String appName) {
+    return '$appName, her gün kendini yoklamana, düşünmene ve sakinleştirici egzersizler yapmana yardım eder. Tıbbi bakım, terapi ya da kriz hizmeti değildir; hiçbir şeyi teşhis etmez veya tedavi etmez. Tehlikedeysen Yardım sayfasındaki kriz desteğini kullan ya da yerel acil durum numarasını ara.';
+  }
+
+  @override
+  String get termsWhoHeading => 'Kimler kullanabilir';
+
+  @override
+  String get termsWhoBody =>
+      '18 yaşında veya daha büyük olmalısın. Şifreni gizli tut; hesabında olanlardan sen sorumlusun.';
+
+  @override
+  String get termsContentHeading => 'İçeriğin';
+
+  @override
+  String get termsContentBody =>
+      'Girdiğin her şey senin olarak kalır. Gizlilik Politikası\'nda açıklandığı gibi, bunu yalnızca uygulamayı senin için çalıştırmak amacıyla saklamamıza izin verirsin.';
+
+  @override
+  String get termsFairHeading => 'Adil kullanım';
+
+  @override
+  String get termsFairBody =>
+      'Uygulamayı kötüye kullanma, başkalarının verilerine ulaşmaya veya işleyişini bozmaya çalışma. Bunu yapan bir hesabı kapatabiliriz.';
+
+  @override
+  String get termsPlusHeading => 'With Me Plus';
+
+  @override
+  String get termsPlusBody =>
+      'With Me Plus, Google Play üzerinden satın alınan isteğe bağlı bir aboneliktir. Fiyat satın almadan önce gösterilir. Google Play\'de iptal edene kadar her ay veya her yıl yenilenir ve istediğin zaman iptal edebilirsin. İadeler Google Play kurallarına göre yapılır. Ücretsiz denemeler için abonelik gerekmez.';
+
+  @override
+  String get termsNoPromiseHeading => 'Garanti yok';
+
+  @override
+  String get termsNoPromiseBody =>
+      'Uygulamanın doğru çalışması için uğraşıyoruz, ancak olduğu gibi sunulur ve her zaman erişilebilir ya da hatasız olacağına söz veremeyiz. Yasanın izin verdiği ölçüde, uygulamanın kullanımından doğan kayıplardan sorumlu değiliz.';
+
+  @override
+  String get termsChangesHeading => 'Değişiklikler ve sona erme';
+
+  @override
+  String get termsChangesBody =>
+      'Uygulamayı ve bu koşulları güncelleyebiliriz; üstteki tarih en son sürümü gösterir. Uygulamayı kullanmayı istediğin zaman bırakıp hesabını silebilirsin.';
+
+  @override
+  String get helpCrisisAnswerUs =>
+      'Tehlikedeysen veya kendine zarar vermeyi düşünüyorsan 988\'i (Suicide & Crisis Lifeline) ara ya da mesaj at, veya 911\'i ara.';
+
+  @override
+  String get accountReadLegal => 'Koşulları ve Gizlilik Politikasını oku';
 
   @override
   String get menuTitle => 'Menü';
@@ -1979,6 +2141,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashStartTodaysCheckIn => 'Bugünkü durum kaydını başlat';
 
   @override
+  String get dashChangeTodaysCheckIn => 'Bugünkü durum kaydını değiştir';
+
+  @override
+  String checkinForEarlierDay(String date) {
+    return 'Dün için dolduruyorsun: $date';
+  }
+
+  @override
   String get dashTodaysCheckIn => 'Bugünkü durum kaydı';
 
   @override
@@ -2581,10 +2751,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsDeleteAccountFailed => 'Hesabın silinemedi.';
 
   @override
-  String get accountPlusActive => 'Companion Plus’ın var';
+  String get accountPlusActive => 'With Me Plus’ın var';
 
   @override
-  String get accountPlusStarted => 'Companion Plus açık. Hiç ödeme alınmadı.';
+  String get accountPlusStarted => 'With Me Plus açık. Hiç ödeme alınmadı.';
 
   @override
   String get exerciseMeditationTitle => 'Rehberli Meditasyon';
@@ -2593,7 +2763,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 dk · ormanda huzur';
 
   @override
-  String get exerciseMeditationLocked => 'Kilitli. Companion Plus’a dahil.';
+  String get exerciseMeditationLocked => 'Kilitli. With Me Plus’a dahil.';
 
   @override
   String get exerciseMeditationIntro =>

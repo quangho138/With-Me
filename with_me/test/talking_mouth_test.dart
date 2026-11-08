@@ -481,7 +481,7 @@ void main() {
       await install();
       await open(tester, readAloud: false);
       expect(clips.played, isEmpty);
-      tester.state(find.byType(DailyCheckInScreen)).setState(() {});
+      tester.element(find.byType(DailyCheckInScreen)).markNeedsBuild();
       await settle(tester);
       expect(talking(tester), isFalse);
       expect(anyMouth('heart'), findsNothing);
