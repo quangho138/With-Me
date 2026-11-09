@@ -8,10 +8,9 @@
 -- existed a changed app could call it and get Plus for free.
 --
 -- After this, only the server's own code (later the Google Play check, an
--- Edge Function using the service role) writes plus_access. Plus given by
--- test purchases (source = 'test', made-up test accounts only) is removed
--- too, so nobody keeps free Plus from the test.
+-- Edge Function using the service role) writes plus_access. Plus already
+-- given by test purchases (source = 'test', made-up test accounts only)
+-- stays until its own end date, for development (Quang, 9 Nov 2026).
 
 drop function if exists public.test_buy_plus(text);
 drop function if exists public.cancel_test_plus();
-delete from public.plus_access where source = 'test';
