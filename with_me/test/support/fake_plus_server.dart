@@ -15,9 +15,12 @@ class FakePlusServer implements PlusServer {
   /// Set to make every call fail, as with no internet.
   bool offline = false;
 
-  /// When set, status answers only after this completes, like a slow
-  /// network (the PR #43 laptop check found a log out race this way).
-  Future<void>? slow;
+  /// When set, the next status question waits for this before answering,
+  /// like a slow network (the PR #43 laptop check found a log out race).
+  Future<void>? holdNext;
+
+  /// How many status questions arrived.
+  int asked = 0;
 
   PlusPlan? plan;
   DateTime? until;
@@ -46,7 +49,9 @@ class FakePlusServer implements PlusServer {
             until: until,
             test: test,
           );
-    final wait = slow;
+    asked++;
+    final wait = holdNext;
+    holdNext = null;
     if (wait != null) await wait;
     return answer;
   }
