@@ -730,23 +730,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get accountStartPlus => 'Simulan ang Plus';
 
   @override
-  String get plusTestSheetTitle => 'Test na pagbili';
-
-  @override
-  String get plusTestNoCharge =>
-      'Test na bersyon, walang bayad. Walang babayaran at hindi kailangan ng card.';
-
-  @override
-  String get plusTestConfirm => 'Kumpirmahin ang test na pagbili';
-
-  @override
-  String get plusTestCancel => 'Kanselahin ang test na plan';
-
-  @override
-  String get plusTestCancelled =>
-      'Nakansela ang test na plan. Bumalik ka sa libreng bersyon.';
-
-  @override
   String get plusNeedsAccount =>
       'Kailangan ng With Me Plus ng account, para sumama ito sa iyo sa bagong telepono.';
 

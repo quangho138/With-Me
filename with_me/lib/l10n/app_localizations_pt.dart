@@ -727,23 +727,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get accountStartPlus => 'Assinar o Plus';
 
   @override
-  String get plusTestSheetTitle => 'Compra de teste';
-
-  @override
-  String get plusTestNoCharge =>
-      'Versão de teste, sem cobrança. Nada é pago e não precisa de cartão.';
-
-  @override
-  String get plusTestConfirm => 'Confirmar compra de teste';
-
-  @override
-  String get plusTestCancel => 'Cancelar plano de teste';
-
-  @override
-  String get plusTestCancelled =>
-      'Plano de teste cancelado. Você voltou para a versão grátis.';
-
-  @override
   String get plusNeedsAccount =>
       'O With Me Plus precisa de uma conta, para acompanhar você em um celular novo.';
 

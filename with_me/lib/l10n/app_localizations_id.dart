@@ -725,23 +725,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountStartPlus => 'Mulai Plus';
 
   @override
-  String get plusTestSheetTitle => 'Pembelian uji coba';
-
-  @override
-  String get plusTestNoCharge =>
-      'Versi uji coba, gratis. Tidak ada yang dibayar dan tidak perlu kartu.';
-
-  @override
-  String get plusTestConfirm => 'Konfirmasi pembelian uji coba';
-
-  @override
-  String get plusTestCancel => 'Batalkan paket uji coba';
-
-  @override
-  String get plusTestCancelled =>
-      'Paket uji coba dibatalkan. Kamu kembali ke versi gratis.';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus memerlukan akun, agar tetap bersamamu di ponsel baru.';
 

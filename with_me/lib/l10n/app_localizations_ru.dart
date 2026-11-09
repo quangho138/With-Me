@@ -733,23 +733,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get accountStartPlus => 'Оформить Plus';
 
   @override
-  String get plusTestSheetTitle => 'Тестовая покупка';
-
-  @override
-  String get plusTestNoCharge =>
-      'Тестовая версия, бесплатно. Ничего не оплачивается, карта не нужна.';
-
-  @override
-  String get plusTestConfirm => 'Подтвердить тестовую покупку';
-
-  @override
-  String get plusTestCancel => 'Отменить тестовый план';
-
-  @override
-  String get plusTestCancelled =>
-      'Тестовый план отменён. Вы снова на бесплатной версии.';
-
-  @override
   String get plusNeedsAccount =>
       'Для With Me Plus нужен аккаунт, чтобы подписка осталась с вами на новом телефоне.';
 

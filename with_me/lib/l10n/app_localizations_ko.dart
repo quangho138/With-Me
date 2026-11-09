@@ -708,21 +708,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get accountStartPlus => 'Plus 시작하기';
 
   @override
-  String get plusTestSheetTitle => '테스트 구매';
-
-  @override
-  String get plusTestNoCharge => '테스트 버전이라 요금이 없어요. 결제도 카드도 필요 없어요.';
-
-  @override
-  String get plusTestConfirm => '테스트 구매 확인';
-
-  @override
-  String get plusTestCancel => '테스트 플랜 취소';
-
-  @override
-  String get plusTestCancelled => '테스트 플랜이 취소됐어요. 무료 버전으로 돌아왔어요.';
-
-  @override
   String get plusNeedsAccount => 'With Me Plus는 계정이 있어야 새 휴대폰에서도 계속 쓸 수 있어요.';
 
   @override

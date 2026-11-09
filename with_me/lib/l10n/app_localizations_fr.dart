@@ -732,23 +732,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get accountStartPlus => 'Passer à Plus';
 
   @override
-  String get plusTestSheetTitle => 'Achat test';
-
-  @override
-  String get plusTestNoCharge =>
-      'Version de test, gratuite. Rien n\'est payé et aucune carte n\'est nécessaire.';
-
-  @override
-  String get plusTestConfirm => 'Confirmer l\'achat test';
-
-  @override
-  String get plusTestCancel => 'Annuler le forfait test';
-
-  @override
-  String get plusTestCancelled =>
-      'Forfait test annulé. Tu es revenu à la version gratuite.';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus a besoin d\'un compte, pour te suivre sur un nouveau téléphone.';
 

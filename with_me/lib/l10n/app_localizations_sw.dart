@@ -728,23 +728,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get accountStartPlus => 'Anza Plus';
 
   @override
-  String get plusTestSheetTitle => 'Ununuzi wa majaribio';
-
-  @override
-  String get plusTestNoCharge =>
-      'Toleo la majaribio, bila malipo. Hakuna kinacholipwa na kadi haihitajiki.';
-
-  @override
-  String get plusTestConfirm => 'Thibitisha ununuzi wa majaribio';
-
-  @override
-  String get plusTestCancel => 'Ghairi mpango wa majaribio';
-
-  @override
-  String get plusTestCancelled =>
-      'Mpango wa majaribio umeghairiwa. Umerudi kwenye toleo la bure.';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus inahitaji akaunti, ili ibaki nawe kwenye simu mpya.';
 

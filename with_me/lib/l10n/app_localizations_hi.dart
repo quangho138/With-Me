@@ -724,23 +724,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get accountStartPlus => 'Plus शुरू करें';
 
   @override
-  String get plusTestSheetTitle => 'टेस्ट ख़रीदारी';
-
-  @override
-  String get plusTestNoCharge =>
-      'टेस्ट संस्करण, कोई शुल्क नहीं। कुछ नहीं चुकाना है और कार्ड की ज़रूरत नहीं।';
-
-  @override
-  String get plusTestConfirm => 'टेस्ट ख़रीदारी पक्की करें';
-
-  @override
-  String get plusTestCancel => 'टेस्ट प्लान रद्द करें';
-
-  @override
-  String get plusTestCancelled =>
-      'टेस्ट प्लान रद्द हो गया। आप फिर से मुफ़्त संस्करण पर हैं।';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus के लिए खाता चाहिए, ताकि यह नए फ़ोन पर भी आपके साथ रहे।';
 

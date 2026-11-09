@@ -982,26 +982,6 @@
   "@accountStartPlus": {
     "description": "Button to start the paid 'With Me Plus' plan."
   },
-  "plusTestSheetTitle": "Test purchase",
-  "@plusTestSheetTitle": {
-    "description": "Title of the test checkout sheet (test builds only)."
-  },
-  "plusTestNoCharge": "Test version, no charge. Nothing is paid and no card is needed.",
-  "@plusTestNoCharge": {
-    "description": "Test checkout: makes clear nothing is paid."
-  },
-  "plusTestConfirm": "Confirm test purchase",
-  "@plusTestConfirm": {
-    "description": "Test checkout button that confirms the test purchase."
-  },
-  "plusTestCancel": "Cancel test plan",
-  "@plusTestCancel": {
-    "description": "Membership page, test builds: ends the test plan."
-  },
-  "plusTestCancelled": "Test plan cancelled. You are back on the free version.",
-  "@plusTestCancelled": {
-    "description": "Message after the test plan is cancelled."
-  },
   "plusNeedsAccount": "With Me Plus needs an account, so it stays with you on a new phone.",
   "@plusNeedsAccount": {
     "description": "Message when a guest taps Start Plus. With Me Plus is a name."
