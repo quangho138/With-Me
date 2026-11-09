@@ -724,6 +724,39 @@ class AppLocalizationsTe extends AppLocalizations {
   String get accountStartPlus => 'Plus ప్రారంభించండి';
 
   @override
+  String get plusTestSheetTitle => 'పరీక్ష కొనుగోలు';
+
+  @override
+  String get plusTestNoCharge =>
+      'పరీక్ష వెర్షన్, ఛార్జీ లేదు. ఏమీ చెల్లించనక్కర్లేదు, కార్డ్ అవసరం లేదు.';
+
+  @override
+  String get plusTestConfirm => 'పరీక్ష కొనుగోలును నిర్ధారించండి';
+
+  @override
+  String get plusTestCancel => 'పరీక్ష ప్లాన్ రద్దు చేయండి';
+
+  @override
+  String get plusTestCancelled =>
+      'పరీక్ష ప్లాన్ రద్దయింది. మీరు మళ్లీ ఉచిత వెర్షన్‌లో ఉన్నారు.';
+
+  @override
+  String get plusNeedsAccount =>
+      'With Me Plus కు ఖాతా అవసరం, అప్పుడే కొత్త ఫోన్‌లో కూడా అది మీతో ఉంటుంది.';
+
+  @override
+  String get plusNotAvailable => 'With Me Plus ఇంకా కొనలేరు.';
+
+  @override
+  String plusActiveUntil(String date) {
+    return '$date వరకు సక్రియంగా ఉంటుంది';
+  }
+
+  @override
+  String get plusCouldNotReach =>
+      'మీ ఖాతాను చేరుకోలేకపోయాం. కనెక్షన్ చూసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
   String get accountPaymentsNotWired =>
       'చెల్లింపులు ఈ UI వెర్షన్‌లో ఇంకా అనుసంధానించబడలేదు.';
 

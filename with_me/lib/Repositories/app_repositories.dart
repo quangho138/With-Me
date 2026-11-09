@@ -3,6 +3,7 @@ import 'exercise_repository.dart';
 import 'export_service.dart';
 import 'reminder_service.dart';
 import 'online_auth.dart';
+import 'plus_server.dart';
 import 'reflection_repository.dart';
 import 'settings_repository.dart';
 import 'sync_service.dart';
@@ -37,6 +38,9 @@ class AppRepositories {
     checkIns: checkIns,
     exercises: exercises,
   );
+
+  /// The account's With Me Plus, kept by the server (plus_access).
+  static PlusServer plus = SupabasePlusServer();
 
   /// Keeps the phone and the account in step (stage 3, step 2c).
   static SyncService sync = SyncService(

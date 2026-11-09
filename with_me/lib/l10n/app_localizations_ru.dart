@@ -733,6 +733,39 @@ class AppLocalizationsRu extends AppLocalizations {
   String get accountStartPlus => 'Оформить Plus';
 
   @override
+  String get plusTestSheetTitle => 'Тестовая покупка';
+
+  @override
+  String get plusTestNoCharge =>
+      'Тестовая версия, бесплатно. Ничего не оплачивается, карта не нужна.';
+
+  @override
+  String get plusTestConfirm => 'Подтвердить тестовую покупку';
+
+  @override
+  String get plusTestCancel => 'Отменить тестовый план';
+
+  @override
+  String get plusTestCancelled =>
+      'Тестовый план отменён. Вы снова на бесплатной версии.';
+
+  @override
+  String get plusNeedsAccount =>
+      'Для With Me Plus нужен аккаунт, чтобы подписка осталась с вами на новом телефоне.';
+
+  @override
+  String get plusNotAvailable => 'Купить With Me Plus пока нельзя.';
+
+  @override
+  String plusActiveUntil(String date) {
+    return 'Действует до $date';
+  }
+
+  @override
+  String get plusCouldNotReach =>
+      'Не удалось связаться с вашим аккаунтом. Проверьте подключение и попробуйте снова.';
+
+  @override
   String get accountPaymentsNotWired =>
       'Оплата пока не подключена в этой версии интерфейса.';
 

@@ -2,21 +2,35 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart' show DateFormat;
+
+import '../../Repositories/app_repositories.dart';
+import '../../Repositories/plus_server.dart';
+import '../../Repositories/user_repository.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Settings/CompanionPlus.dart';
 import '../Theme/WithMeTheme.dart';
+import 'KeepDataScreen.dart';
 
 /// `image43.png` — Membership, as With Me Plus: the badge and name, what
 /// Plus adds, and the yearly ($39.99) and monthly ($3.99) plans to pick
 /// from, grown to fill the screen.
 ///
-/// **No payments yet.** There is no payment integration in the project, so
-/// picking a plan charges nothing: "Start Plus" turns Companion Plus on for
-/// this device (see [CompanionPlus]). Flagged in `docs/WITH_ME_SPEC_V1.md`.
+/// **Payments** (claude/payments-and-release-plan.md): the account's Plus
+/// is kept by the server. Test builds (WITHME_PAYMENTS=test) offer the test
+/// checkout, marked "Test version, no charge"; other builds say buying is
+/// not available yet, until Google Play payments are built (stage B).
+/// Guests are asked to keep their data in an account first.
 class MembershipScreen extends StatefulWidget {
-  const MembershipScreen({super.key, this.usedUp});
+  const MembershipScreen({super.key, this.usedUp, bool? testCheckout})
+    : testCheckout = testCheckout ?? CompanionPlus.testCheckout;
+
+  /// Offer the test checkout (tests can set it; the app takes the build
+  /// switch).
+  final bool testCheckout;
 
   static const String route = '/membership';
 
@@ -31,6 +45,75 @@ class MembershipScreen extends StatefulWidget {
 class _MembershipScreenState extends State<MembershipScreen> {
   /// The picked plan: yearly to start, as it costs less.
   bool _yearly = true;
+
+  PlusPlan get _plan => _yearly ? PlusPlan.yearly : PlusPlan.monthly;
+
+  void _say(String text, {SnackBarAction? action}) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(text), action: action));
+  }
+
+  /// "Start Plus": an account first, then the checkout this build has.
+  Future<void> _start() async {
+    final l = context.l10n;
+    if (await AppRepositories.users.session() != SessionKind.account) {
+      _say(
+        l.plusNeedsAccount,
+        action: SnackBarAction(
+          label: l.menuKeepData,
+          onPressed: () => Navigator.of(
+            context,
+          ).push(MaterialPageRoute(builder: (_) => const KeepDataScreen())),
+        ),
+      );
+      return;
+    }
+    if (!widget.testCheckout) {
+      // Google Play payments come in stage B of the plan.
+      _say(l.plusNotAvailable);
+      return;
+    }
+    if (!mounted) return;
+    final confirmed = await showModalBottomSheet<bool>(
+      context: context,
+      backgroundColor: ScenicColors.bubble,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (_) => _TestCheckout(yearly: _yearly),
+    );
+    if (confirmed != true) return;
+    try {
+      await CompanionPlus.instance.testBuy(_plan);
+      _say(l.accountPlusStarted);
+    } catch (_) {
+      _say(l.plusCouldNotReach);
+    }
+  }
+
+  Future<void> _cancelTest() async {
+    final l = context.l10n;
+    try {
+      await CompanionPlus.instance.cancelTest();
+      _say(l.plusTestCancelled);
+    } catch (_) {
+      _say(l.plusCouldNotReach);
+    }
+  }
+
+  static String _date(BuildContext context, DateTime day) {
+    final locale = dateLocale(context);
+    try {
+      if (DateFormat.localeExists(locale)) {
+        return DateFormat.yMMMMd(locale).format(day);
+      }
+    } catch (_) {
+      // Date names for this language were not loaded.
+    }
+    return DateFormat.yMMMMd('en').format(day);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +134,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
         label: plus ? l.accountPlusActive : l.accountStartPlus,
         height: 58,
         // Already on: nothing to start.
-        onPressed: plus
-            ? null
-            : () async {
-                await CompanionPlus.instance.set(true);
-                if (!context.mounted) return;
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(SnackBar(content: Text(l.accountPlusStarted)));
-              },
+        onPressed: plus ? null : _start,
       ),
       // The card fills the screen: its type and spacing scale with the
       // room, up on a tall phone and a little down on a short one, so it
@@ -156,6 +231,27 @@ class _MembershipScreenState extends State<MembershipScreen> {
           k: k,
           onTap: () => setState(() => _yearly = false),
         ),
+        if (CompanionPlus.instance.status case final s?
+            when s.active && s.until != null) ...[
+          SizedBox(height: 10 * gap),
+          Text(
+            l.plusActiveUntil(_date(context, s.until!)),
+            key: const ValueKey('plus-active-until'),
+            textAlign: TextAlign.center,
+            style: kScenicBody.copyWith(
+              fontSize: 14 * k,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          if (s.test && widget.testCheckout)
+            Center(
+              child: TextButton(
+                key: const ValueKey('plus-cancel-test'),
+                onPressed: _cancelTest,
+                child: Text(l.plusTestCancel),
+              ),
+            ),
+        ],
         SizedBox(height: 10 * gap),
         Text(
           l.accountMembershipFootnote,
@@ -346,6 +442,62 @@ class _PlanOption extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// The test checkout: what would be bought, clearly marked as a test that
+/// costs nothing. Answers true when confirmed. Test builds only.
+class _TestCheckout extends StatelessWidget {
+  const _TestCheckout({required this.yearly});
+
+  final bool yearly;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 18, 20, 16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ScenicHeading(l.plusTestSheetTitle, size: 22),
+            const SizedBox(height: 12),
+            Text(
+              '${l.membershipPlusName}: '
+              '${yearly ? l.membershipYearly : l.membershipMonthly}, '
+              '${yearly ? l.membershipYearlyPrice : l.membershipMonthlyPrice}',
+              textAlign: TextAlign.center,
+              style: kScenicBody.copyWith(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              key: const ValueKey('plus-test-note'),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFCE7C8),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Text(
+                l.plusTestNoCharge,
+                textAlign: TextAlign.center,
+                style: kScenicBody.copyWith(fontSize: 15),
+              ),
+            ),
+            const SizedBox(height: 16),
+            ScenicPill(
+              label: l.plusTestConfirm,
+              height: 54,
+              onPressed: () => Navigator.of(context).pop(true),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

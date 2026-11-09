@@ -111,6 +111,14 @@ Future<void> main() async {
   // fails), no Plus. Free tries are read again when a sync brings the
   // account's or a log out removes them.
   FreeTries.changes.addListener(() => unawaited(FreeUses.instance.load()));
+  // With Me Plus comes from the account (plus_access): asked again after
+  // every sync, and after a log in, log out or deleted account.
+  SyncService.synced.addListener(
+    () => unawaited(CompanionPlus.instance.refresh()),
+  );
+  FreeTries.changes.addListener(
+    () => unawaited(CompanionPlus.instance.refresh()),
+  );
   try {
     await Future.wait([
       CompanionPlus.instance.load(),

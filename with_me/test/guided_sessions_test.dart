@@ -164,7 +164,7 @@ void main() {
   late _Exercises exercises;
   setUp(() {
     store = _MemorySettings();
-    CompanionPlus.instance = CompanionPlus(settings: store);
+    CompanionPlus.instance = CompanionPlus(settings: store, devTools: true);
     FreeUses.instance = FreeUses(settings: store);
     checkIns = _CheckIns('Work');
     exercises = _Exercises();
