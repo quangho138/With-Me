@@ -64,6 +64,12 @@ class CompanionPlus extends ValueNotifier<bool> {
 
   bool _devOn = false;
 
+  /// Counts the questions sent to the server. Only the answer to the newest
+  /// one counts: an older answer that arrives late is dropped. (PR #43
+  /// laptop check: log out syncs first, that sync asked about Plus while
+  /// still signed in, and its late "yes" turned Plus back on for the guest.)
+  int _asked = 0;
+
   /// Reads what the phone kept: the developer switch, and the account's
   /// Plus until its end date. Unreadable means no Plus.
   Future<void> load() async {
@@ -88,16 +94,18 @@ class CompanionPlus extends ValueNotifier<bool> {
   /// answer. A guest, or nobody, has none. When the server cannot be
   /// reached, what the phone kept stands.
   Future<void> refresh() async {
+    final ask = ++_asked;
     try {
       if (await _people.session() != SessionKind.account) {
-        await _forget();
+        if (ask == _asked) await _forget();
         return;
       }
       final answer = await _online.status();
+      if (ask != _asked) return; // a newer question was sent meanwhile
       await _keep(answer);
     } catch (e) {
       debugPrint('Could not ask about With Me Plus: $e');
-      await load();
+      if (ask == _asked) await load();
     }
   }
 
@@ -105,13 +113,17 @@ class CompanionPlus extends ValueNotifier<bool> {
   /// when the server cannot be reached, so the page can say so.
   Future<void> testBuy(PlusPlan plan) async {
     await _online.testBuy(plan);
-    await _keep(await _online.status());
+    final ask = ++_asked;
+    final answer = await _online.status();
+    if (ask == _asked) await _keep(answer);
   }
 
   /// Ends a test plan now.
   Future<void> cancelTest() async {
     await _online.cancelTest();
-    await _keep(await _online.status());
+    final ask = ++_asked;
+    final answer = await _online.status();
+    if (ask == _asked) await _keep(answer);
   }
 
   /// Developer builds: turns Plus on or off for this phone only.
