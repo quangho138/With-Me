@@ -22,6 +22,11 @@ jobs:
           channel: stable
           cache: true
 
+      # The tests use this machine's SQLite on Linux (see hooks in
+      # pubspec.yaml): the downloaded copy kept failing its check on 9 Nov.
+      - name: SQLite for the tests
+        run: sudo apt-get install -y libsqlite3-dev
+
       - name: Get packages
         run: flutter pub get
 
