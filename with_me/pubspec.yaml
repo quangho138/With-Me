@@ -78,6 +78,20 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
+# The sqlite3 package (used by the tests through sqflite_common_ffi)
+# normally downloads a ready-made SQLite library. On 9 Nov 2026 that
+# download kept failing its fingerprint check on GitHub's Linux machines,
+# so on Linux the tests use the machine's own SQLite instead (the checks
+# file installs libsqlite3-dev). Windows and macOS still download as
+# before. A Linux developer needs libsqlite3-dev too. Phones are not
+# affected: the app uses sqflite, which uses the phone's SQLite.
+hooks:
+  user_defines:
+    sqlite3:
+      source:
+        linux: system
+        default: sqlite3
+
 flutter:
   # Builds AppLocalizations from lib/l10n/*.arb (see l10n.yaml).
   generate: true
