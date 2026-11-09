@@ -48,7 +48,9 @@ void main() {
   late _MemorySettings store;
   setUp(() {
     store = _MemorySettings();
-    CompanionPlus.instance = CompanionPlus(settings: store);
+    // The developer switch stands in for a bought plan here; buying is in
+    // test/plus_checkout_test.dart.
+    CompanionPlus.instance = CompanionPlus(settings: store, devTools: true);
     FreeUses.instance = FreeUses(settings: store);
   });
 
@@ -78,11 +80,11 @@ void main() {
   });
 
   group('Companion Plus', () {
-    test('is off until turned on, and stays on', () async {
+    test('the developer switch is off until turned on, and stays on', () async {
       await CompanionPlus.instance.load();
       expect(CompanionPlus.instance.value, isFalse);
       await CompanionPlus.instance.set(true);
-      final again = CompanionPlus(settings: store);
+      final again = CompanionPlus(settings: store, devTools: true);
       await again.load();
       expect(again.value, isTrue);
     });
@@ -123,10 +125,6 @@ void main() {
         await t.pump();
         expect(picked('monthly'), isTrue);
         expect(picked('yearly'), isFalse);
-        await t.tap(find.text('Start Plus').first, warnIfMissed: false);
-        await t.pump();
-        expect(CompanionPlus.instance.value, isTrue);
-        expect(find.text('You have With Me Plus'), findsWidgets);
         await t.pumpWidget(const SizedBox());
       },
     );
@@ -198,10 +196,11 @@ void main() {
         findsOneWidget,
       );
 
-      await t.tap(find.text('Start Plus').first, warnIfMissed: false);
+      // Buying is tested in plus_checkout_test.dart; here the developer
+      // switch stands in for a bought plan.
+      await CompanionPlus.instance.set(true);
       await t.pump();
       final page = t.element(find.byType(MembershipScreen));
-      ScaffoldMessenger.of(page).removeCurrentSnackBar();
       Navigator.of(page).pop();
       await t.pumpAndSettle();
       expect(

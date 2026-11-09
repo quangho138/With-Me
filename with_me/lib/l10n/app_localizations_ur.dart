@@ -728,6 +728,39 @@ class AppLocalizationsUr extends AppLocalizations {
   String get accountStartPlus => 'Plus شروع کریں';
 
   @override
+  String get plusTestSheetTitle => 'ٹیسٹ خریداری';
+
+  @override
+  String get plusTestNoCharge =>
+      'ٹیسٹ ورژن، کوئی فیس نہیں۔ کچھ ادا نہیں کرنا اور کارڈ کی ضرورت نہیں۔';
+
+  @override
+  String get plusTestConfirm => 'ٹیسٹ خریداری کی تصدیق کریں';
+
+  @override
+  String get plusTestCancel => 'ٹیسٹ پلان منسوخ کریں';
+
+  @override
+  String get plusTestCancelled =>
+      'ٹیسٹ پلان منسوخ ہو گیا۔ آپ دوبارہ مفت ورژن پر ہیں۔';
+
+  @override
+  String get plusNeedsAccount =>
+      'With Me Plus کے لیے اکاؤنٹ ضروری ہے، تاکہ یہ نئے فون پر بھی آپ کے ساتھ رہے۔';
+
+  @override
+  String get plusNotAvailable => 'With Me Plus ابھی خریدا نہیں جا سکتا۔';
+
+  @override
+  String plusActiveUntil(String date) {
+    return '$date تک فعال';
+  }
+
+  @override
+  String get plusCouldNotReach =>
+      'آپ کے اکاؤنٹ تک رسائی نہیں ہو سکی۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔';
+
+  @override
   String get accountPaymentsNotWired =>
       'ادائیگیاں ابھی اس UI ورژن میں منسلک نہیں ہیں۔';
 
