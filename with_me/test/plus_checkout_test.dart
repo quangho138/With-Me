@@ -161,11 +161,13 @@ void main() {
           DateTime.now().add(const Duration(days: 30)),
         );
         final hold = Completer<void>();
-        server.slow = hold.future;
-        final before = CompanionPlus.instance
-            .refresh(); // asked while signed in
+        server.holdNext = hold.future;
+        // Asked while signed in; its answer is held back.
+        final before = CompanionPlus.instance.refresh();
+        while (server.asked == 0) {
+          await Future<void>.delayed(Duration.zero);
+        }
 
-        server.slow = null;
         await users.signOut();
         await CompanionPlus.instance.refresh(); // asked after log out
         expect(CompanionPlus.instance.value, isFalse);
