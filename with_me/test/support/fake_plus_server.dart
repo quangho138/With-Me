@@ -15,6 +15,10 @@ class FakePlusServer implements PlusServer {
   /// Set to make every call fail, as with no internet.
   bool offline = false;
 
+  /// When set, status answers only after this completes, like a slow
+  /// network (the PR #43 laptop check found a log out race this way).
+  Future<void>? slow;
+
   PlusPlan? plan;
   DateTime? until;
   bool test = false;
@@ -33,13 +37,18 @@ class FakePlusServer implements PlusServer {
   @override
   Future<PlusStatus> status() async {
     _check();
-    if (until == null) return PlusStatus.none;
-    return PlusStatus(
-      active: until!.isAfter(now()),
-      plan: plan,
-      until: until,
-      test: test,
-    );
+    // What the server knew when the question arrived.
+    final answer = until == null
+        ? PlusStatus.none
+        : PlusStatus(
+            active: until!.isAfter(now()),
+            plan: plan,
+            until: until,
+            test: test,
+          );
+    final wait = slow;
+    if (wait != null) await wait;
+    return answer;
   }
 
   @override

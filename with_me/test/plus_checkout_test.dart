@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
@@ -146,6 +148,34 @@ void main() {
       expect(CompanionPlus.instance.value, isFalse);
       expect(await settings.readString(CompanionPlus.untilKey), isNull);
     });
+
+    test(
+      'an old answer arriving after log out does not bring Plus back',
+      () async {
+        // PR #43 laptop check: log out syncs first, the sync asks about Plus,
+        // and that answer (from while signed in) came back after log out had
+        // already turned Plus off.
+        await signUp();
+        server.realPurchase(
+          PlusPlan.monthly,
+          DateTime.now().add(const Duration(days: 30)),
+        );
+        final hold = Completer<void>();
+        server.slow = hold.future;
+        final before = CompanionPlus.instance
+            .refresh(); // asked while signed in
+
+        server.slow = null;
+        await users.signOut();
+        await CompanionPlus.instance.refresh(); // asked after log out
+        expect(CompanionPlus.instance.value, isFalse);
+
+        hold.complete(); // the old answer arrives last
+        await before;
+        expect(CompanionPlus.instance.value, isFalse);
+        expect(await settings.readString(CompanionPlus.untilKey), isNull);
+      },
+    );
 
     test('the developer switch does nothing in normal builds', () async {
       await CompanionPlus.instance.set(true);
