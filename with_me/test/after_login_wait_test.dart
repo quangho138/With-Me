@@ -62,13 +62,16 @@ void main() {
     await db.close();
   });
 
+  /// Lets the real (in-memory) database answer and the screen move on,
+  /// as on a phone: real waits, then frames with time passing.
   Future<void> idle(WidgetTester tester) async {
     for (var i = 0; i < 8; i++) {
       await tester.runAsync(
         () => Future<void>.delayed(const Duration(milliseconds: 40)),
       );
-      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 100));
     }
+    await settle(tester);
   }
 
   /// The phone's own Back button.
@@ -137,9 +140,20 @@ void main() {
 
     // The phone's Back button and the page's back arrow change nothing.
     await phoneBack(tester);
+    await idle(tester);
+    expect(
+      find.byType(WithMeLoginScreen),
+      findsOneWidget,
+      reason: 'the phone Back button closed the login page',
+    );
+    expect(find.byKey(const ValueKey('after-login-wait')), findsOneWidget);
     await tester.tap(find.byType(ScenicBack).first, warnIfMissed: false);
     await idle(tester);
-    expect(find.text('Welcome back'), findsWidgets);
+    expect(
+      find.byType(WithMeLoginScreen),
+      findsOneWidget,
+      reason: 'the back arrow closed the login page',
+    );
     expect(find.text('Open login'), findsNothing);
     // Tapping Log in again does not start a second login.
     await tester.tap(find.text('Log in').first, warnIfMissed: false);
