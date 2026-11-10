@@ -412,7 +412,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'In den Einstellungen gibt es "Meine Daten exportieren", das dir eine Kopie von allem gibt, und "Mein Konto löschen", das dein Online-Konto und alles auf diesem Handy löscht. Beim Abmelden werden deine Daten von diesem Handy entfernt; sie bleiben in deinem Konto, bis du es löschst. Du kannst uns auch per E-Mail bitten, deine Daten zu löschen.';
+      'In den Einstellungen gibt es \"Meine Daten exportieren\", das dir eine Kopie von allem gibt, und \"Mein Konto löschen\", das dein Online-Konto und alles auf diesem Handy löscht. Beim Abmelden werden deine Daten von diesem Handy entfernt; sie bleiben in deinem Konto, bis du es löschst. Du kannst uns auch per E-Mail bitten, deine Daten zu löschen.';
 
   @override
   String get privacySafeHeading => 'Sicherheit';

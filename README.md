@@ -91,6 +91,10 @@ Build switches (add to `flutter run` or `flutter build`; store builds use none o
 | `--dart-define=WITHME_DEV=true` | A small "Plus on / Plus off" switch at the top right of "Choose an exercise", to try the meditation with and without With Me Plus on this phone only. |
 | `--dart-define=WITHME_DEMO=true` | Adds a sample week of made-up check-ins for a demo. Never sign up in a demo build: the sample days would go into the account. |
 
+## Build it for Google Play
+
+See [docs/RELEASE.md](docs/RELEASE.md): the upload key (never in the repo), the version number, and `flutter build appbundle --release`.
+
 ## Test it
 
 ```

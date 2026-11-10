@@ -412,7 +412,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Em Configurações há "Exportar meus dados", que dá uma cópia de tudo, e "Excluir minha conta", que apaga sua conta online e tudo neste celular. Ao sair, seus dados são removidos deste celular; eles continuam na sua conta até você excluí-la. Você também pode pedir por e-mail que apaguemos seus dados.';
+      'Em Configurações há \"Exportar meus dados\", que dá uma cópia de tudo, e \"Excluir minha conta\", que apaga sua conta online e tudo neste celular. Ao sair, seus dados são removidos deste celular; eles continuam na sua conta até você excluí-la. Você também pode pedir por e-mail que apaguemos seus dados.';
 
   @override
   String get privacySafeHeading => 'Segurança';

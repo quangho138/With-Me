@@ -412,7 +412,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Sa Mga Setting ay may "I-export ang aking data", na nagbibigay sa iyo ng kopya ng lahat, at "Burahin ang aking account", na nagbubura ng iyong online account at lahat ng nasa teleponong ito. Ang pag-log out ay nag-aalis ng iyong data sa teleponong ito; nananatili ito sa iyong account hanggang burahin mo ito. Maaari mo rin kaming hilingin sa email na burahin ang iyong data.';
+      'Sa Mga Setting ay may \"I-export ang aking data\", na nagbibigay sa iyo ng kopya ng lahat, at \"Burahin ang aking account\", na nagbubura ng iyong online account at lahat ng nasa teleponong ito. Ang pag-log out ay nag-aalis ng iyong data sa teleponong ito; nananatili ito sa iyong account hanggang burahin mo ito. Maaari mo rin kaming hilingin sa email na burahin ang iyong data.';
 
   @override
   String get privacySafeHeading => 'Pagpapanatiling ligtas';

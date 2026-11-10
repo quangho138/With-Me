@@ -410,7 +410,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Ayarlar\'da her şeyin bir kopyasını veren "Verilerimi dışa aktar" ve çevrim içi hesabını ve bu telefondaki her şeyi silen "Hesabımı sil" vardır. Çıkış yapmak verilerini bu telefondan kaldırır; hesabını silene kadar hesabında kalır. Verilerini silmemizi e-postayla da isteyebilirsin.';
+      'Ayarlar\'da her şeyin bir kopyasını veren \"Verilerimi dışa aktar\" ve çevrim içi hesabını ve bu telefondaki her şeyi silen \"Hesabımı sil\" vardır. Çıkış yapmak verilerini bu telefondan kaldırır; hesabını silene kadar hesabında kalır. Verilerini silmemizi e-postayla da isteyebilirsin.';
 
   @override
   String get privacySafeHeading => 'Güvenlik';

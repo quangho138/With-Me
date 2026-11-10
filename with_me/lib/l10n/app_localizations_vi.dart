@@ -411,7 +411,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Trong Cài đặt có "Xuất dữ liệu của tôi" để lấy một bản sao mọi thứ, và "Xóa tài khoản của tôi" để xóa tài khoản trực tuyến cùng mọi thứ trên điện thoại này. Khi đăng xuất, dữ liệu được gỡ khỏi điện thoại này; nó vẫn nằm trong tài khoản của bạn cho đến khi bạn xóa. Bạn cũng có thể gửi email nhờ chúng tôi xóa dữ liệu.';
+      'Trong Cài đặt có \"Xuất dữ liệu của tôi\" để lấy một bản sao mọi thứ, và \"Xóa tài khoản của tôi\" để xóa tài khoản trực tuyến cùng mọi thứ trên điện thoại này. Khi đăng xuất, dữ liệu được gỡ khỏi điện thoại này; nó vẫn nằm trong tài khoản của bạn cho đến khi bạn xóa. Bạn cũng có thể gửi email nhờ chúng tôi xóa dữ liệu.';
 
   @override
   String get privacySafeHeading => 'Giữ an toàn';

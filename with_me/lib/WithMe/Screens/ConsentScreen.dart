@@ -43,7 +43,7 @@ class _ConsentScreenState extends State<ConsentScreen> {
   Future<void> _continue() async {
     setState(() => _saving = true);
     try {
-      await HealthConsent.instance.agree(LegalScreen.updated);
+      await HealthConsent.instance.agree();
     } catch (_) {
       if (!mounted) return;
       setState(() => _saving = false);

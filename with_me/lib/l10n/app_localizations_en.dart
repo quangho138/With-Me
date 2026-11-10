@@ -410,7 +410,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Settings has "Export my data", which gives you a copy of everything, and "Delete my account", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.';
+      'Settings has \"Export my data\", which gives you a copy of everything, and \"Delete my account\", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.';
 
   @override
   String get privacySafeHeading => 'Keeping it safe';
