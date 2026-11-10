@@ -351,7 +351,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get consentAgree => 'Tôi đồng ý';
 
   @override
-  String get consentNotSaved => 'Không lưu được câu trả lời của bạn. Vui lòng thử lại.';
+  String get consentNotSaved =>
+      'Không lưu được câu trả lời của bạn. Vui lòng thử lại.';
 
   @override
   String get legalReadTerms => 'Đọc Điều khoản sử dụng';

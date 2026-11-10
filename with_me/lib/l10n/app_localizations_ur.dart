@@ -352,7 +352,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get consentAgree => 'میں متفق ہوں';
 
   @override
-  String get consentNotSaved => 'آپ کا جواب محفوظ نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔';
+  String get consentNotSaved =>
+      'آپ کا جواب محفوظ نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔';
 
   @override
   String get legalReadTerms => 'استعمال کی شرائط پڑھیں';

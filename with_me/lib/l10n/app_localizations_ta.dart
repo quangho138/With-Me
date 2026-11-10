@@ -352,7 +352,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get consentAgree => 'நான் ஒப்புக்கொள்கிறேன்';
 
   @override
-  String get consentNotSaved => 'உங்கள் பதிலைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+  String get consentNotSaved =>
+      'உங்கள் பதிலைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
 
   @override
   String get legalReadTerms => 'பயன்பாட்டு விதிமுறைகளைப் படிக்கவும்';

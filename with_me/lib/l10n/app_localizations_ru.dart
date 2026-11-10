@@ -352,7 +352,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get consentAgree => 'Я согласен(на)';
 
   @override
-  String get consentNotSaved => 'Не удалось сохранить ваш ответ. Попробуйте ещё раз.';
+  String get consentNotSaved =>
+      'Не удалось сохранить ваш ответ. Попробуйте ещё раз.';
 
   @override
   String get legalReadTerms => 'Читать Условия использования';

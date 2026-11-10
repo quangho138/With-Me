@@ -353,7 +353,8 @@ class AppLocalizationsSw extends AppLocalizations {
   String get consentAgree => 'Ninakubali';
 
   @override
-  String get consentNotSaved => 'Jibu lako halikuweza kuhifadhiwa. Tafadhali jaribu tena.';
+  String get consentNotSaved =>
+      'Jibu lako halikuweza kuhifadhiwa. Tafadhali jaribu tena.';
 
   @override
   String get legalReadTerms => 'Soma Masharti ya Matumizi';

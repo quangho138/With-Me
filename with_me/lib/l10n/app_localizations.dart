@@ -824,7 +824,7 @@ abstract class AppLocalizations {
   /// Privacy Policy: export and delete. Use the same wording as the Settings rows "Export my data" and "Delete my account".
   ///
   /// In en, this message translates to:
-  /// **'Settings has "Export my data", which gives you a copy of everything, and "Delete my account", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.'**
+  /// **'Settings has \"Export my data\", which gives you a copy of everything, and \"Delete my account\", which deletes your online account and everything on this phone. Logging out removes your data from this phone; it stays in your account until you delete it. You can also ask us by email to delete your data.'**
   String get privacyChoicesBody;
 
   /// Privacy Policy section heading.
@@ -1372,11 +1372,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start Plus'**
   String get accountStartPlus;
-
-
-
-
-
 
   /// Message when a guest taps Start Plus. With Me Plus is a name.
   ///
