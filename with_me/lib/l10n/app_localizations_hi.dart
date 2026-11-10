@@ -351,7 +351,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get consentAgree => 'मैं सहमत हूँ';
 
   @override
-  String get consentNotSaved => 'आपका जवाब सहेजा नहीं जा सका। कृपया फिर कोशिश करें।';
+  String get consentNotSaved =>
+      'आपका जवाब सहेजा नहीं जा सका। कृपया फिर कोशिश करें।';
 
   @override
   String get legalReadTerms => 'उपयोग की शर्तें पढ़ें';

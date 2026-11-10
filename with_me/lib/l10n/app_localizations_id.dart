@@ -351,7 +351,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get consentAgree => 'Saya setuju';
 
   @override
-  String get consentNotSaved => 'Jawaban Anda tidak bisa disimpan. Silakan coba lagi.';
+  String get consentNotSaved =>
+      'Jawaban Anda tidak bisa disimpan. Silakan coba lagi.';
 
   @override
   String get legalReadTerms => 'Baca Ketentuan Penggunaan';
