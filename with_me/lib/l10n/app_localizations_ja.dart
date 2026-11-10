@@ -334,6 +334,20 @@ class AppLocalizationsJa extends AppLocalizations {
   String get legalReadPrivacy => 'プライバシーポリシーを読む';
 
   @override
+  String get consentTitle => 'はじめる前に';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle は、あなたをサポートするために、気分・ストレス・心身の状態についての回答をこのスマートフォンに保存します。アカウントを作成した場合は、アカウントにも保存します。見られるのはあなただけです。';
+  }
+
+  @override
+  String get consentAgree => '同意します';
+
+  @override
+  String get consentNotSaved => '回答を保存できませんでした。もう一度お試しください。';
+
+  @override
   String get legalReadTerms => '利用規約を読む';
 
   @override

@@ -4,6 +4,7 @@ import '../../Repositories/app_repositories.dart';
 import '../../Repositories/user_repository.dart';
 import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
+import '../Screens/ConsentScreen.dart';
 import 'ScenicKit.dart';
 
 /// "Continue with Google", used on the Welcome page and on the guest's
@@ -13,6 +14,9 @@ import 'ScenicKit.dart';
 /// deep link and finishes the login (main.dart, OutsideLoginListener). For a
 /// guest, their saved data stays and becomes the account's, the same as an
 /// email sign-up (UserRepository.completeOutsideLogin).
+///
+/// Asks for the health data consent first, if this phone has none yet
+/// ([ConsentScreen.ensure]).
 class ContinueWithGoogleButton extends StatelessWidget {
   const ContinueWithGoogleButton({super.key});
 
@@ -28,6 +32,8 @@ class ContinueWithGoogleButton extends StatelessWidget {
         child: CustomPaint(painter: GoogleG()),
       ),
       onPressed: () async {
+        if (!await ConsentScreen.ensure(context)) return;
+        if (!context.mounted) return;
         try {
           await AppRepositories.users.startGoogleSignIn();
         } on AccountException catch (e) {

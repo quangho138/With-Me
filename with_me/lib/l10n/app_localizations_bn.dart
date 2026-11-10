@@ -340,6 +340,20 @@ class AppLocalizationsBn extends AppLocalizations {
   String get legalReadPrivacy => 'গোপনীয়তা নীতি পড়ুন';
 
   @override
+  String get consentTitle => 'শুরু করার আগে';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle আপনাকে সাহায্য করার জন্য আপনার মেজাজ, মানসিক চাপ আর ভালো থাকা নিয়ে দেওয়া উত্তরগুলো এই ফোনে রাখে, আর অ্যাকাউন্ট খুললে আপনার অ্যাকাউন্টেও রাখে। শুধু আপনিই এগুলো দেখতে পারেন।';
+  }
+
+  @override
+  String get consentAgree => 'আমি সম্মত';
+
+  @override
+  String get consentNotSaved => 'আপনার উত্তর সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
   String get legalReadTerms => 'ব্যবহারের শর্তাবলি পড়ুন';
 
   @override

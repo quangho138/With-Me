@@ -701,6 +701,30 @@ abstract class AppLocalizations {
   /// **'Read the Privacy Policy'**
   String get legalReadPrivacy;
 
+  /// Title of the consent page shown after tapping any button on the Welcome page.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you start'**
+  String get consentTitle;
+
+  /// Consent page: what the app saves, where, and who can see it. The person agrees to this before using the app.
+  ///
+  /// In en, this message translates to:
+  /// **'{appTitle} saves your mood, stress and wellbeing answers on this phone, and in your account if you make one, so it can help you. Only you can see them.'**
+  String consentBody(String appTitle);
+
+  /// Consent page: the label of the box the person ticks to agree.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree'**
+  String get consentAgree;
+
+  /// Consent page: message when the answer could not be saved on the phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save your answer. Please try again.'**
+  String get consentNotSaved;
+
   /// Button at the end of the Privacy Policy: opens the Terms of Use.
   ///
   /// In en, this message translates to:

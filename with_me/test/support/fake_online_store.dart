@@ -14,6 +14,10 @@ class FakeServer {
 
   /// Each user's used free tries: exercise to used_at (free_tries).
   final Map<String, Map<String, String>> freeTries = {};
+
+  /// Each user's health data consent: agreed_at and policy_updated
+  /// (health_consents). The first one stays.
+  final Map<String, Map<String, String>> consents = {};
   var _clock = 0;
 
   /// The server's clock: always moves forward.
@@ -159,4 +163,12 @@ class FakeOnlineStore implements OnlineStore {
   @override
   Future<List<String>> freeTries() async =>
       (server.freeTries[_me] ?? {}).keys.toList();
+
+  @override
+  Future<void> saveHealthConsent(String agreedAt, String policyUpdated) async {
+    server.consents.putIfAbsent(
+      _me,
+      () => {'agreed_at': agreedAt, 'policy_updated': policyUpdated},
+    );
+  }
 }

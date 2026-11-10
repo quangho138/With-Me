@@ -333,6 +333,20 @@ class AppLocalizationsKo extends AppLocalizations {
   String get legalReadPrivacy => '개인정보 처리방침 읽기';
 
   @override
+  String get consentTitle => '시작하기 전에';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle는 도움을 드리기 위해 기분, 스트레스, 웰빙에 대한 답변을 이 휴대폰에 저장하며, 계정을 만들면 계정에도 저장합니다. 본인만 볼 수 있습니다.';
+  }
+
+  @override
+  String get consentAgree => '동의합니다';
+
+  @override
+  String get consentNotSaved => '답변을 저장하지 못했습니다. 다시 시도해 주세요.';
+
+  @override
   String get legalReadTerms => '이용약관 읽기';
 
   @override

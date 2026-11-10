@@ -341,6 +341,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get legalReadPrivacy => 'Читать Политику конфиденциальности';
 
   @override
+  String get consentTitle => 'Прежде чем начать';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle сохраняет ваши ответы о настроении, стрессе и самочувствии на этом телефоне, а также в вашем аккаунте, если вы его создадите, чтобы помогать вам. Видеть их можете только вы.';
+  }
+
+  @override
+  String get consentAgree => 'Я согласен(на)';
+
+  @override
+  String get consentNotSaved => 'Не удалось сохранить ваш ответ. Попробуйте ещё раз.';
+
+  @override
   String get legalReadTerms => 'Читать Условия использования';
 
   @override

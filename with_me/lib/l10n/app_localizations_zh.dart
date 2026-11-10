@@ -328,6 +328,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get legalReadPrivacy => '阅读隐私政策';
 
   @override
+  String get consentTitle => '开始之前';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle 会把你关于心情、压力和身心状态的回答保存在这部手机上；如果你创建账户，也会保存在账户里，这样才能帮到你。只有你能看到这些内容。';
+  }
+
+  @override
+  String get consentAgree => '我同意';
+
+  @override
+  String get consentNotSaved => '无法保存你的回答，请再试一次。';
+
+  @override
   String get legalReadTerms => '阅读使用条款';
 
   @override
@@ -7147,6 +7161,20 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get legalReadPrivacy => '閱讀隱私權政策';
+
+  @override
+  String get consentTitle => '開始之前';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle 會把你關於心情、壓力和身心狀態的回答保存在這支手機上；如果你建立帳戶，也會保存在帳戶裡，這樣才能幫到你。只有你能看到這些內容。';
+  }
+
+  @override
+  String get consentAgree => '我同意';
+
+  @override
+  String get consentNotSaved => '無法保存你的回答，請再試一次。';
 
   @override
   String get legalReadTerms => '閱讀使用條款';

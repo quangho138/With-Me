@@ -341,6 +341,20 @@ class AppLocalizationsTa extends AppLocalizations {
   String get legalReadPrivacy => 'தனியுரிமைக் கொள்கையைப் படிக்கவும்';
 
   @override
+  String get consentTitle => 'தொடங்குவதற்கு முன்';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle உங்களுக்கு உதவுவதற்காக, உங்கள் மனநிலை, மன அழுத்தம் மற்றும் நலன் பற்றிய பதில்களை இந்தத் தொலைபேசியில் சேமிக்கிறது; நீங்கள் கணக்கு உருவாக்கினால் உங்கள் கணக்கிலும் சேமிக்கிறது. அவற்றை நீங்கள் மட்டுமே பார்க்க முடியும்.';
+  }
+
+  @override
+  String get consentAgree => 'நான் ஒப்புக்கொள்கிறேன்';
+
+  @override
+  String get consentNotSaved => 'உங்கள் பதிலைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
   String get legalReadTerms => 'பயன்பாட்டு விதிமுறைகளைப் படிக்கவும்';
 
   @override

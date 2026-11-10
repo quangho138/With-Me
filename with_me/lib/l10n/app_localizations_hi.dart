@@ -340,6 +340,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get legalReadPrivacy => 'प्राइवेसी पॉलिसी पढ़ें';
 
   @override
+  String get consentTitle => 'शुरू करने से पहले';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle आपकी मदद करने के लिए आपके मूड, तनाव और सेहत से जुड़े जवाब इस फ़ोन में सहेजता है, और अगर आप खाता बनाते हैं तो आपके खाते में भी। इन्हें सिर्फ़ आप देख सकते हैं।';
+  }
+
+  @override
+  String get consentAgree => 'मैं सहमत हूँ';
+
+  @override
+  String get consentNotSaved => 'आपका जवाब सहेजा नहीं जा सका। कृपया फिर कोशिश करें।';
+
+  @override
   String get legalReadTerms => 'उपयोग की शर्तें पढ़ें';
 
   @override

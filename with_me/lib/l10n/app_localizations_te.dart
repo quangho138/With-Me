@@ -341,6 +341,20 @@ class AppLocalizationsTe extends AppLocalizations {
   String get legalReadPrivacy => 'గోప్యతా విధానం చదవండి';
 
   @override
+  String get consentTitle => 'ప్రారంభించే ముందు';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle మీకు సహాయం చేయడానికి మీ మూడ్, ఒత్తిడి మరియు శ్రేయస్సు గురించిన సమాధానాలను ఈ ఫోన్‌లో సేవ్ చేస్తుంది; మీరు ఖాతా సృష్టిస్తే మీ ఖాతాలో కూడా సేవ్ చేస్తుంది. వాటిని మీరు మాత్రమే చూడగలరు.';
+  }
+
+  @override
+  String get consentAgree => 'నేను అంగీకరిస్తున్నాను';
+
+  @override
+  String get consentNotSaved => 'మీ సమాధానాన్ని సేవ్ చేయలేకపోయాం. దయచేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
   String get legalReadTerms => 'వినియోగ నిబంధనలు చదవండి';
 
   @override

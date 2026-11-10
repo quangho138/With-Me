@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../Database/LocalDatabase.dart';
 import 'check_in_repository.dart';
 import 'free_tries.dart';
+import 'health_consent.dart';
 import 'journal_prompts.dart';
 import 'online_auth.dart';
 import 'reflection_repository.dart';
@@ -63,6 +64,10 @@ abstract class OnlineStore {
 
   /// The exercises whose free try the account has used.
   Future<List<String>> freeTries();
+
+  /// Saves the health data consent ([agreedAt], and the Privacy Policy
+  /// date as 2026-11-08); a consent already online is kept as it is.
+  Future<void> saveHealthConsent(String agreedAt, String policyUpdated);
 }
 
 /// The real one: the Supabase tables and functions in supabase/migrations.
@@ -135,6 +140,13 @@ class SupabaseOnlineStore implements OnlineStore {
     for (final row in await _db.from('free_tries').select('exercise'))
       row['exercise'] as String,
   ];
+
+  @override
+  Future<void> saveHealthConsent(String agreedAt, String policyUpdated) =>
+      _db.rpc<void>(
+        'save_health_consent',
+        params: {'agreed_at': agreedAt, 'policy_updated': policyUpdated},
+      );
 }
 
 /// What recent syncs did, for the line in Settings: when the phone last
@@ -292,6 +304,7 @@ class SyncService {
       // Last, so a problem here never holds back check-ins or the journal.
       await _uploadFreeTries();
       await _downloadFreeTries();
+      await _uploadConsent();
       synced.value++;
       return SyncOutcome.done;
     } catch (e) {
@@ -358,6 +371,30 @@ class SyncService {
       }
     });
     CheckInRepository.saves.value++;
+  }
+
+  // --- Health data consent --------------------------------------------
+
+  /// Saves the "I agree" kept on this phone to the account, once.
+  Future<void> _uploadConsent() async {
+    final db = await _open();
+    final rows = await db.query(
+      'app_settings',
+      where: 'key GLOB ?',
+      whereArgs: ['${HealthConsent.prefix}*'],
+    );
+    final kept = {
+      for (final row in rows) row['key'] as String: row['value'] as String?,
+    };
+    final at = kept[HealthConsent.atKey];
+    final policy = kept[HealthConsent.policyKey];
+    if (at == null || policy == null) return;
+    if (kept[HealthConsent.sentKey] == 'true') return;
+    await _online.saveHealthConsent(at, policy);
+    await db.insert('app_settings', {
+      'key': HealthConsent.sentKey,
+      'value': 'true',
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   // --- Free tries ------------------------------------------------------

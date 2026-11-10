@@ -342,6 +342,20 @@ class AppLocalizationsSw extends AppLocalizations {
   String get legalReadPrivacy => 'Soma Sera ya Faragha';
 
   @override
+  String get consentTitle => 'Kabla ya kuanza';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle huhifadhi majibu yako kuhusu hisia, msongo na ustawi wako kwenye simu hii, na kwenye akaunti yako ukifungua moja, ili iweze kukusaidia. Ni wewe tu unayeweza kuyaona.';
+  }
+
+  @override
+  String get consentAgree => 'Ninakubali';
+
+  @override
+  String get consentNotSaved => 'Jibu lako halikuweza kuhifadhiwa. Tafadhali jaribu tena.';
+
+  @override
   String get legalReadTerms => 'Soma Masharti ya Matumizi';
 
   @override

@@ -491,6 +491,27 @@
   "@legalReadPrivacy": {
     "description": "Button at the end of the Terms of Use: opens the Privacy Policy."
   },
+  "consentTitle": "Before you start",
+  "@consentTitle": {
+    "description": "Title of the consent page shown after tapping any button on the Welcome page."
+  },
+  "consentBody": "{appTitle} saves your mood, stress and wellbeing answers on this phone, and in your account if you make one, so it can help you. Only you can see them.",
+  "@consentBody": {
+    "description": "Consent page: what the app saves, where, and who can see it. The person agrees to this before using the app.",
+    "placeholders": {
+      "appTitle": {
+        "type": "String"
+      }
+    }
+  },
+  "consentAgree": "I agree",
+  "@consentAgree": {
+    "description": "Consent page: the label of the box the person ticks to agree."
+  },
+  "consentNotSaved": "Could not save your answer. Please try again.",
+  "@consentNotSaved": {
+    "description": "Consent page: message when the answer could not be saved on the phone."
+  },
   "legalReadTerms": "Read the Terms of Use",
   "@legalReadTerms": {
     "description": "Button at the end of the Privacy Policy: opens the Terms of Use."
