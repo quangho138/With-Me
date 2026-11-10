@@ -340,6 +340,20 @@ class AppLocalizationsId extends AppLocalizations {
   String get legalReadPrivacy => 'Baca Kebijakan Privasi';
 
   @override
+  String get consentTitle => 'Sebelum mulai';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle menyimpan jawaban Anda tentang suasana hati, stres, dan kesejahteraan di ponsel ini, dan di akun Anda jika Anda membuatnya, agar bisa membantu Anda. Hanya Anda yang bisa melihatnya.';
+  }
+
+  @override
+  String get consentAgree => 'Saya setuju';
+
+  @override
+  String get consentNotSaved => 'Jawaban Anda tidak bisa disimpan. Silakan coba lagi.';
+
+  @override
   String get legalReadTerms => 'Baca Ketentuan Penggunaan';
 
   @override

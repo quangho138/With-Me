@@ -8,6 +8,7 @@ import '../Components/GoogleButton.dart';
 import '../Components/ScenicKit.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
+import 'ConsentScreen.dart';
 import 'CreateAccountScreen.dart';
 import 'HomeScreen.dart';
 import 'LoginScreen.dart';
@@ -16,6 +17,8 @@ import 'LoginScreen.dart';
 ///
 /// Painted beach full-bleed; the "With Me" wordmark with its leaf sprout and
 /// hibiscus; the companion waving; Sign Up, Login and Continue with Google.
+/// Every button asks for the health data consent first, once
+/// ([ConsentScreen.ensure]; Quang, 9 Nov 2026).
 /// Vertical positions are fractions of the screen height, read off the
 /// reference, so the composition holds on any phone.
 class WelcomeScreen extends StatelessWidget {
@@ -134,22 +137,30 @@ class WelcomeScreen extends StatelessWidget {
                       ScenicPill(
                         label: l.accountSignUp,
                         height: 56,
-                        onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const CreateAccountScreen(),
-                          ),
-                        ),
+                        onPressed: () async {
+                          if (!await ConsentScreen.ensure(context)) return;
+                          if (!context.mounted) return;
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const CreateAccountScreen(),
+                            ),
+                          );
+                        },
                       ),
                       const SizedBox(height: 10),
                       ScenicPill(
                         label: l.accountLogin,
                         light: true,
                         height: 50,
-                        onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const WithMeLoginScreen(),
-                          ),
-                        ),
+                        onPressed: () async {
+                          if (!await ConsentScreen.ensure(context)) return;
+                          if (!context.mounted) return;
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const WithMeLoginScreen(),
+                            ),
+                          );
+                        },
                       ),
                       const SizedBox(height: 10),
                       const ContinueWithGoogleButton(),
@@ -210,6 +221,7 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
   }
 
   Future<void> _start() async {
+    if (!await ConsentScreen.ensure(context)) return;
     var started = false;
     try {
       started = await AppRepositories.users.startAsGuest();

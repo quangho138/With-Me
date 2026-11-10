@@ -341,6 +341,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get legalReadPrivacy => 'Leer la Política de privacidad';
 
   @override
+  String get consentTitle => 'Antes de empezar';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle guarda tus respuestas sobre tu ánimo, estrés y bienestar en este teléfono, y en tu cuenta si creas una, para poder ayudarte. Solo tú puedes verlas.';
+  }
+
+  @override
+  String get consentAgree => 'Acepto';
+
+  @override
+  String get consentNotSaved => 'No se pudo guardar tu respuesta. Inténtalo de nuevo.';
+
+  @override
   String get legalReadTerms => 'Leer los Términos de uso';
 
   @override

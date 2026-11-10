@@ -339,6 +339,20 @@ class AppLocalizationsTr extends AppLocalizations {
   String get legalReadPrivacy => 'Gizlilik Politikasını oku';
 
   @override
+  String get consentTitle => 'Başlamadan önce';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle, size yardımcı olabilmek için ruh hali, stres ve esenlik yanıtlarınızı bu telefonda ve bir hesap oluşturursanız hesabınızda saklar. Bunları yalnızca siz görebilirsiniz.';
+  }
+
+  @override
+  String get consentAgree => 'Kabul ediyorum';
+
+  @override
+  String get consentNotSaved => 'Yanıtınız kaydedilemedi. Lütfen tekrar deneyin.';
+
+  @override
   String get legalReadTerms => 'Kullanım Koşullarını oku';
 
   @override

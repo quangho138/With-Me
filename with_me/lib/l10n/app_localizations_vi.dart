@@ -340,6 +340,20 @@ class AppLocalizationsVi extends AppLocalizations {
   String get legalReadPrivacy => 'Đọc Chính sách quyền riêng tư';
 
   @override
+  String get consentTitle => 'Trước khi bắt đầu';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle lưu các câu trả lời về tâm trạng, căng thẳng và sức khỏe tinh thần của bạn trên điện thoại này, và trong tài khoản nếu bạn tạo, để có thể giúp bạn. Chỉ bạn mới xem được.';
+  }
+
+  @override
+  String get consentAgree => 'Tôi đồng ý';
+
+  @override
+  String get consentNotSaved => 'Không lưu được câu trả lời của bạn. Vui lòng thử lại.';
+
+  @override
   String get legalReadTerms => 'Đọc Điều khoản sử dụng';
 
   @override

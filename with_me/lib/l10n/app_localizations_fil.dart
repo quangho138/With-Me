@@ -341,6 +341,20 @@ class AppLocalizationsFil extends AppLocalizations {
   String get legalReadPrivacy => 'Basahin ang Patakaran sa Privacy';
 
   @override
+  String get consentTitle => 'Bago ka magsimula';
+
+  @override
+  String consentBody(String appTitle) {
+    return 'Sine-save ng $appTitle ang mga sagot mo tungkol sa iyong mood, stress at kapakanan sa teleponong ito, at sa iyong account kung gagawa ka, para matulungan ka nito. Ikaw lang ang makakakita nito.';
+  }
+
+  @override
+  String get consentAgree => 'Sumasang-ayon ako';
+
+  @override
+  String get consentNotSaved => 'Hindi na-save ang sagot mo. Pakisubukan ulit.';
+
+  @override
   String get legalReadTerms => 'Basahin ang Mga Tuntunin ng Paggamit';
 
   @override

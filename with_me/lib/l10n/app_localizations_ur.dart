@@ -341,6 +341,20 @@ class AppLocalizationsUr extends AppLocalizations {
   String get legalReadPrivacy => 'پرائیویسی پالیسی پڑھیں';
 
   @override
+  String get consentTitle => 'شروع کرنے سے پہلے';
+
+  @override
+  String consentBody(String appTitle) {
+    return '$appTitle آپ کی مدد کے لیے آپ کے موڈ، ذہنی دباؤ اور صحت و سکون سے متعلق جوابات اس فون میں محفوظ کرتا ہے، اور اگر آپ اکاؤنٹ بنائیں تو آپ کے اکاؤنٹ میں بھی۔ انہیں صرف آپ دیکھ سکتے ہیں۔';
+  }
+
+  @override
+  String get consentAgree => 'میں متفق ہوں';
+
+  @override
+  String get consentNotSaved => 'آپ کا جواب محفوظ نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔';
+
+  @override
   String get legalReadTerms => 'استعمال کی شرائط پڑھیں';
 
   @override

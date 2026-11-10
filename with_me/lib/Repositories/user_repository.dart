@@ -3,6 +3,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../Database/LocalDatabase.dart';
 import 'free_tries.dart';
+import 'health_consent.dart';
 import 'ids.dart';
 import 'online_auth.dart';
 
@@ -346,6 +347,12 @@ class AppUserRepository implements UserRepository {
       whereArgs: ['${FreeTries.prefix}*'],
     );
     FreeTries.changes.value++;
+    // The consent was this person's: the next one is asked again.
+    await db.delete(
+      'app_settings',
+      where: 'key GLOB ?',
+      whereArgs: ['${HealthConsent.prefix}*'],
+    );
     _names.userNameNotifier.value = null;
     await _auth.signOut();
   }
