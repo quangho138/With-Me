@@ -351,7 +351,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get consentAgree => 'আমি সম্মত';
 
   @override
-  String get consentNotSaved => 'আপনার উত্তর সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।';
+  String get consentNotSaved =>
+      'আপনার উত্তর সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।';
 
   @override
   String get legalReadTerms => 'ব্যবহারের শর্তাবলি পড়ুন';

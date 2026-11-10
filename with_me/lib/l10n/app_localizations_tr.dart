@@ -350,7 +350,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get consentAgree => 'Kabul ediyorum';
 
   @override
-  String get consentNotSaved => 'Yanıtınız kaydedilemedi. Lütfen tekrar deneyin.';
+  String get consentNotSaved =>
+      'Yanıtınız kaydedilemedi. Lütfen tekrar deneyin.';
 
   @override
   String get legalReadTerms => 'Kullanım Koşullarını oku';

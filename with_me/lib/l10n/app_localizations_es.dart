@@ -352,7 +352,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get consentAgree => 'Acepto';
 
   @override
-  String get consentNotSaved => 'No se pudo guardar tu respuesta. Inténtalo de nuevo.';
+  String get consentNotSaved =>
+      'No se pudo guardar tu respuesta. Inténtalo de nuevo.';
 
   @override
   String get legalReadTerms => 'Leer los Términos de uso';

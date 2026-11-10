@@ -352,7 +352,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get consentAgree => 'मी सहमत आहे';
 
   @override
-  String get consentNotSaved => 'तुमचे उत्तर साठवता आले नाही. कृपया पुन्हा प्रयत्न करा.';
+  String get consentNotSaved =>
+      'तुमचे उत्तर साठवता आले नाही. कृपया पुन्हा प्रयत्न करा.';
 
   @override
   String get legalReadTerms => 'वापराच्या अटी वाचा';
