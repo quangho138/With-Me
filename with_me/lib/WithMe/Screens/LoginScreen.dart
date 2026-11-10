@@ -59,9 +59,10 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
     }
 
     if (!mounted) return;
-    setState(() => _busy = false);
-    // Add-or-discard question if needed, sync, then Home.
+    // Still busy: the button stays off and Back does nothing until the
+    // add-or-discard question (if needed) is answered and Home opens.
     await continueAfterLogin(context);
+    if (mounted) setState(() => _busy = false);
   }
 
   void _say(String message) => ScaffoldMessenger.of(
@@ -73,43 +74,48 @@ class _WithMeLoginScreenState extends State<WithMeLoginScreen> {
     // Carries on from the welcome: the same beach, the same pills, and the
     // companion thinking it over below the form.
     final l = context.l10n;
-    return ScenicScaffold(
-      title: l.accountWelcomeBack,
-      onBack: () => Navigator.of(context).pop(),
-      mascot: RealPose.think,
-      mascotMax: 0.32,
-      action: ScenicPill(
-        label: l.accountLogIn,
-        height: 58,
-        onPressed: _busy ? null : _login,
-      ),
-      footnote: ScenicFootnote(
-        l.accountForgotPassword,
-        onTap: () => Navigator.of(
-          context,
-        ).push(MaterialPageRoute(builder: (_) => const ResetPasswordScreen())),
-      ),
-      child: ScenicPanel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            WithMeField(
-              label: l.accountEmail,
-              controller: _email,
-              hint: l.accountEmailHint,
-              keyboardType: TextInputType.emailAddress,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-            const SizedBox(height: 14),
-            WithMeField(
-              label: l.accountPassword,
-              controller: _password,
-              obscure: true,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-          ],
+    // While busy, the phone's Back button and the back arrow do nothing,
+    // so the login is never left half done (Quang, 10 Nov 2026).
+    return PopScope(
+      canPop: !_busy,
+      child: ScenicScaffold(
+        title: l.accountWelcomeBack,
+        onBack: () => Navigator.of(context).maybePop(),
+        mascot: RealPose.think,
+        mascotMax: 0.32,
+        action: ScenicPill(
+          label: l.accountLogIn,
+          height: 58,
+          onPressed: _busy ? null : _login,
+        ),
+        footnote: ScenicFootnote(
+          l.accountForgotPassword,
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => const ResetPasswordScreen()),
+          ),
+        ),
+        child: ScenicPanel(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              WithMeField(
+                label: l.accountEmail,
+                controller: _email,
+                hint: l.accountEmailHint,
+                keyboardType: TextInputType.emailAddress,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+              const SizedBox(height: 14),
+              WithMeField(
+                label: l.accountPassword,
+                controller: _password,
+                obscure: true,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+            ],
+          ),
         ),
       ),
     );
