@@ -411,7 +411,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Di Pengaturan ada "Ekspor dataku" yang memberimu salinan semuanya, dan "Hapus akunku" yang menghapus akun onlinemu dan semua yang ada di ponsel ini. Keluar dari akun menghapus datamu dari ponsel ini; data tetap ada di akunmu sampai kamu menghapusnya. Kamu juga bisa meminta kami lewat email untuk menghapus datamu.';
+      'Di Pengaturan ada \"Ekspor dataku\" yang memberimu salinan semuanya, dan \"Hapus akunku\" yang menghapus akun onlinemu dan semua yang ada di ponsel ini. Keluar dari akun menghapus datamu dari ponsel ini; data tetap ada di akunmu sampai kamu menghapusnya. Kamu juga bisa meminta kami lewat email untuk menghapus datamu.';
 
   @override
   String get privacySafeHeading => 'Menjaga keamanan';

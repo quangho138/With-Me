@@ -169,9 +169,7 @@ void main() {
   });
 
   testWidgets('someone who agreed is not asked again', (tester) async {
-    await tester.runAsync(
-      () => HealthConsent.instance.agree(DateTime(2026, 11, 8)),
-    );
+    await tester.runAsync(() => HealthConsent.instance.agree());
     await open(tester, const WelcomeScreen());
     await tapLabel(tester, 'Login');
     await idle(tester);

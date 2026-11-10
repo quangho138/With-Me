@@ -413,7 +413,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Kwenye Mipangilio kuna "Hamisha data yangu", inayokupa nakala ya kila kitu, na "Futa akaunti yangu", inayofuta akaunti yako ya mtandaoni na kila kitu kwenye simu hii. Kutoka kwenye akaunti kunaondoa data yako kwenye simu hii; inabaki kwenye akaunti yako hadi uifute. Unaweza pia kutuomba kwa barua pepe tufute data yako.';
+      'Kwenye Mipangilio kuna \"Hamisha data yangu\", inayokupa nakala ya kila kitu, na \"Futa akaunti yangu\", inayofuta akaunti yako ya mtandaoni na kila kitu kwenye simu hii. Kutoka kwenye akaunti kunaondoa data yako kwenye simu hii; inabaki kwenye akaunti yako hadi uifute. Unaweza pia kutuomba kwa barua pepe tufute data yako.';
 
   @override
   String get privacySafeHeading => 'Kuilinda';

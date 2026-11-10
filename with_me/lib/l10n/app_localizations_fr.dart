@@ -412,7 +412,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'Les Réglages proposent "Exporter mes données", qui te donne une copie de tout, et "Supprimer mon compte", qui supprime ton compte en ligne et tout ce qui est sur ce téléphone. La déconnexion retire tes données de ce téléphone ; elles restent dans ton compte jusqu\'à ce que tu le supprimes. Tu peux aussi nous demander par e-mail de supprimer tes données.';
+      'Les Réglages proposent \"Exporter mes données\", qui te donne une copie de tout, et \"Supprimer mon compte\", qui supprime ton compte en ligne et tout ce qui est sur ce téléphone. La déconnexion retire tes données de ce téléphone ; elles restent dans ton compte jusqu\'à ce que tu le supprimes. Tu peux aussi nous demander par e-mail de supprimer tes données.';
 
   @override
   String get privacySafeHeading => 'Sécurité';

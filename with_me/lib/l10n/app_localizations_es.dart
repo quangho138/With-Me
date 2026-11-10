@@ -412,7 +412,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get privacyChoicesBody =>
-      'En Configuración está "Exportar mis datos", que te da una copia de todo, y "Eliminar mi cuenta", que borra tu cuenta en línea y todo lo que hay en este teléfono. Al cerrar sesión, tus datos se quitan de este teléfono; siguen en tu cuenta hasta que la elimines. También puedes pedirnos por correo que borremos tus datos.';
+      'En Configuración está \"Exportar mis datos\", que te da una copia de todo, y \"Eliminar mi cuenta\", que borra tu cuenta en línea y todo lo que hay en este teléfono. Al cerrar sesión, tus datos se quitan de este teléfono; siguen en tu cuenta hasta que la elimines. También puedes pedirnos por correo que borremos tus datos.';
 
   @override
   String get privacySafeHeading => 'Cómo lo protegemos';

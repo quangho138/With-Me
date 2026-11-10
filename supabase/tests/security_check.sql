@@ -51,7 +51,6 @@ insert into public.exercise_sessions (id, completed_at, exercise)
 insert into public.journal_entries (day, who, what)
   values ('2026-10-01', 'Who did I lean on today?', 'What went better than expected?');
 insert into public.free_tries (exercise) values ('body_scan');
-select public.save_health_consent(now(), '2026-11-08');
 reset role;
 
 -- Now act as user A.
@@ -237,34 +236,6 @@ begin
   end;
 end $$;
 
--- 7e. Health consent: A saves their own, once, and can never change it.
-select public.save_health_consent('2026-11-10T10:00:00Z', '2026-11-08');
--- Saving it again (as the app may) keeps the first answer.
-select public.save_health_consent('2026-12-01T10:00:00Z', '2026-11-08');
-do $$ begin
-  if (select count(*) from public.health_consents) <> 1
-     or (select agreed_at from public.health_consents)
-        <> '2026-11-10T10:00:00Z'::timestamptz
-  then raise exception 'FAILED: A should see exactly their own first consent';
-  end if;
-  begin
-    insert into public.health_consents (user_id, policy_updated)
-      values ('00000000-0000-4000-a000-00000000000b', '2026-11-08');
-    raise exception 'FAILED: A saved a consent as B';
-  exception when insufficient_privilege then null;
-  end;
-  begin
-    update public.health_consents set agreed_at = now();
-    raise exception 'FAILED: A changed their consent';
-  exception when insufficient_privilege then null;
-  end;
-  begin
-    delete from public.health_consents;
-    raise exception 'FAILED: A removed their consent';
-  exception when insufficient_privilege then null;
-  end;
-end $$;
-
 -- 7c. With Me Plus: only the server writes it.
 do $$ begin
   if (public.plus_status() ->> 'active')::boolean then
@@ -305,6 +276,8 @@ begin
   if to_regprocedure('public.test_buy_plus(text)') is not null
      or to_regprocedure('public.cancel_test_plus()') is not null
   then raise exception 'FAILED: the test checkout is still on the server'; end if;
+  if to_regclass('public.health_consents') is not null
+  then raise exception 'FAILED: the consent table is still on the server'; end if;
 end $$;
 reset role;
 
@@ -342,16 +315,6 @@ do $$ begin
   exception when insufficient_privilege then null;
   end;
   begin
-    perform 1 from public.health_consents;
-    raise exception 'FAILED: a signed-out visitor can read consents';
-  exception when insufficient_privilege then null;
-  end;
-  begin
-    perform public.save_health_consent(now(), '2026-11-08');
-    raise exception 'FAILED: a signed-out visitor can save a consent';
-  exception when insufficient_privilege then null;
-  end;
-  begin
     perform 1 from public.plus_access;
     raise exception 'FAILED: a signed-out visitor can read Plus';
   exception when insufficient_privilege then null;
@@ -379,8 +342,6 @@ do $$ begin
      or exists (select 1 from public.free_tries
                 where user_id = '00000000-0000-4000-a000-00000000000a')
      or exists (select 1 from public.plus_access
-                where user_id = '00000000-0000-4000-a000-00000000000a')
-     or exists (select 1 from public.health_consents
                 where user_id = '00000000-0000-4000-a000-00000000000a')
   then raise exception 'FAILED: delete my account left A behind'; end if;
   if not exists (select 1 from auth.users
@@ -413,8 +374,6 @@ do $$ begin
      or exists (select 1 from public.free_tries
                 where user_id = '00000000-0000-4000-a000-00000000000b')
      or exists (select 1 from public.plus_access
-                where user_id = '00000000-0000-4000-a000-00000000000b')
-     or exists (select 1 from public.health_consents
                 where user_id = '00000000-0000-4000-a000-00000000000b')
   then raise exception 'FAILED: deleting B left rows behind'; end if;
 end $$;
