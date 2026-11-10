@@ -2575,14 +2575,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseAddBreathing => 'Tambah pernapasan';
 
   @override
-  String get exerciseSaveFavourite => 'Simpan favorit';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name tersimpan.';
-  }
-
-  @override
   String get exerciseVolume => 'Volume';
 
   @override

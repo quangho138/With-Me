@@ -2582,14 +2582,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get exerciseAddBreathing => 'Ongeza kupumua';
 
   @override
-  String get exerciseSaveFavourite => 'Hifadhi kipendwa';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name imehifadhiwa.';
-  }
-
-  @override
   String get exerciseVolume => 'Kiwango cha sauti';
 
   @override

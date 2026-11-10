@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 मिनिटे · 4-4-4-4 फोकस",
   "exerciseSoundscapeFireSubtitle": "तडतडणारी लाकडे · 40 मिनिटांचा लूप",
   "exerciseAddBreathing": "श्वासाचा व्यायाम जोडा",
-  "exerciseSaveFavourite": "आवडीमध्ये सेव्ह करा",
-  "exerciseSoundscapeSaved": "सेव्ह केले: {name}.",
   "exerciseVolume": "आवाजाची पातळी",
   "exerciseTimerMinutes": "टायमर · {minutes} मिनिटे",
   "exerciseControlScaleLabel": "गोष्टी तुम्हाला किती तुमच्या नियंत्रणात वाटतात, 1 ते 5",

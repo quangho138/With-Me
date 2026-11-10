@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4分鐘 · 4-4-4-4專注",
   "exerciseSoundscapeFireSubtitle": "木柴噼啪 · 40分鐘循環",
   "exerciseAddBreathing": "加入呼吸練習",
-  "exerciseSaveFavourite": "收藏",
-  "exerciseSoundscapeSaved": "已收藏{name}。",
   "exerciseVolume": "音量",
   "exerciseTimerMinutes": "定時 · {minutes}分鐘",
   "exerciseControlScaleLabel": "你的掌控感，1到5",

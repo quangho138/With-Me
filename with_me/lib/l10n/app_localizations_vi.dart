@@ -2572,14 +2572,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exerciseAddBreathing => 'Thêm bài thở';
 
   @override
-  String get exerciseSaveFavourite => 'Lưu yêu thích';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return 'Đã lưu $name.';
-  }
-
-  @override
   String get exerciseVolume => 'Âm lượng';
 
   @override

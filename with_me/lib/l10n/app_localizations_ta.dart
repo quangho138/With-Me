@@ -2611,14 +2611,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get exerciseAddBreathing => 'சுவாசப் பயிற்சியைச் சேர்';
 
   @override
-  String get exerciseSaveFavourite => 'பிடித்ததாகச் சேமி';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name சேமிக்கப்பட்டது.';
-  }
-
-  @override
   String get exerciseVolume => 'ஒலியளவு';
 
   @override

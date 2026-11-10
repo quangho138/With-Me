@@ -2563,14 +2563,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exerciseAddBreathing => 'Nefes ekle';
 
   @override
-  String get exerciseSaveFavourite => 'Favorilere kaydet';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name kaydedildi.';
-  }
-
-  @override
   String get exerciseVolume => 'Ses düzeyi';
 
   @override

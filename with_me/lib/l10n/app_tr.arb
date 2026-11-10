@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 dk · 4-4-4-4 odak",
   "exerciseSoundscapeFireSubtitle": "Çıtırdayan odunlar · 40 dk döngü",
   "exerciseAddBreathing": "Nefes ekle",
-  "exerciseSaveFavourite": "Favorilere kaydet",
-  "exerciseSoundscapeSaved": "{name} kaydedildi.",
   "exerciseVolume": "Ses düzeyi",
   "exerciseTimerMinutes": "Zamanlayıcı · {minutes} dk",
   "exerciseControlScaleLabel": "Kendini ne kadar kontrol sahibi hissettiğin, 1’den 5’e",

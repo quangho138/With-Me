@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 min · 4-4-4-4 na pokus",
   "exerciseSoundscapeFireSubtitle": "Lumalagitik na kahoy · 40 min na loop",
   "exerciseAddBreathing": "Magdagdag ng paghinga",
-  "exerciseSaveFavourite": "I-save sa paborito",
-  "exerciseSoundscapeSaved": "Na-save ang {name}.",
   "exerciseVolume": "Lakas ng tunog",
   "exerciseTimerMinutes": "Timer · {minutes} min",
   "exerciseControlScaleLabel": "Gaano mo nararamdamang may kontrol ka, 1 hanggang 5",

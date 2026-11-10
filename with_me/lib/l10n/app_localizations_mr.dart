@@ -2576,14 +2576,6 @@ class AppLocalizationsMr extends AppLocalizations {
   String get exerciseAddBreathing => 'श्वासाचा व्यायाम जोडा';
 
   @override
-  String get exerciseSaveFavourite => 'आवडीमध्ये सेव्ह करा';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return 'सेव्ह केले: $name.';
-  }
-
-  @override
   String get exerciseVolume => 'आवाजाची पातळी';
 
   @override

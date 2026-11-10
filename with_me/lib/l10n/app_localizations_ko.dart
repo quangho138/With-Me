@@ -2480,14 +2480,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exerciseAddBreathing => '호흡 추가';
 
   @override
-  String get exerciseSaveFavourite => '즐겨찾기에 저장';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name 저장 완료.';
-  }
-
-  @override
   String get exerciseVolume => '음량';
 
   @override

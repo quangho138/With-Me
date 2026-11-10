@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 دقائق · تركيز 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "حطب يطقطق · تكرار كل 40 دقيقة",
   "exerciseAddBreathing": "إضافة تنفّس",
-  "exerciseSaveFavourite": "حفظ في المفضلة",
-  "exerciseSoundscapeSaved": "تم حفظ «{name}».",
   "exerciseVolume": "مستوى الصوت",
   "exerciseTimerMinutes": "المؤقت · {minutes} دقيقة",
   "exerciseControlScaleLabel": "مدى شعورك بالسيطرة، من 1 إلى 5",

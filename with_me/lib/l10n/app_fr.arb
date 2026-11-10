@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 min · concentration 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Bûches qui crépitent · boucle de 40 min",
   "exerciseAddBreathing": "Ajouter la respiration",
-  "exerciseSaveFavourite": "Ajouter aux favoris",
-  "exerciseSoundscapeSaved": "Ajouté aux favoris : {name}.",
   "exerciseVolume": "Volume",
   "exerciseTimerMinutes": "Minuteur · {minutes} min",
   "exerciseControlScaleLabel": "Ta maîtrise de la situation, de 1 à 5",

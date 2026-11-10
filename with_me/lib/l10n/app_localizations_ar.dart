@@ -2616,14 +2616,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exerciseAddBreathing => 'إضافة تنفّس';
 
   @override
-  String get exerciseSaveFavourite => 'حفظ في المفضلة';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return 'تم حفظ «$name».';
-  }
-
-  @override
   String get exerciseVolume => 'مستوى الصوت';
 
   @override

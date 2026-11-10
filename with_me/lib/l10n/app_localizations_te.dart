@@ -2584,14 +2584,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get exerciseAddBreathing => 'శ్వాస వ్యాయామం జోడించండి';
 
   @override
-  String get exerciseSaveFavourite => 'ఇష్టమైనదిగా సేవ్ చేయండి';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name సేవ్ అయింది.';
-  }
-
-  @override
   String get exerciseVolume => 'వాల్యూమ్';
 
   @override

@@ -154,35 +154,17 @@ class _SoundscapeScreenState extends State<SoundscapeScreen> {
                   total: _clock(widget.totalSeconds),
                 ),
                 const SizedBox(height: WithMeSpace.md),
-                Row(
-                  children: [
-                    Expanded(
-                      child: WithMeButton(
-                        label: l.exerciseAddBreathing,
-                        filled: false,
-                        height: 48,
-                        onPressed: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const BeforeWeStartScreen(),
-                          ),
-                        ),
-                      ),
+                // "Save favourite" was removed on 10 Nov 2026: it said
+                // "saved" and saved nothing.
+                WithMeButton(
+                  label: l.exerciseAddBreathing,
+                  filled: false,
+                  height: 48,
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const BeforeWeStartScreen(),
                     ),
-                    const SizedBox(width: WithMeSpace.md),
-                    Expanded(
-                      child: WithMeButton(
-                        label: l.exerciseSaveFavourite,
-                        filled: false,
-                        height: 48,
-                        onPressed: () =>
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(l.exerciseSoundscapeSaved(name)),
-                              ),
-                            ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 const Spacer(),
                 WithMeButton(

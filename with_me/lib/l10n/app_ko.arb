@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4분 · 4-4-4-4 집중",
   "exerciseSoundscapeFireSubtitle": "타닥이는 장작 · 40분 반복",
   "exerciseAddBreathing": "호흡 추가",
-  "exerciseSaveFavourite": "즐겨찾기에 저장",
-  "exerciseSoundscapeSaved": "{name} 저장 완료.",
   "exerciseVolume": "음량",
   "exerciseTimerMinutes": "타이머 · {minutes}분",
   "exerciseControlScaleLabel": "얼마나 잘 조절하고 있다고 느끼는지, 1~5",
