@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 நிமி · 4-4-4-4 கவனம்",
   "exerciseSoundscapeFireSubtitle": "வெடிக்கும் விறகுகள் · 40 நிமிட லூப்",
   "exerciseAddBreathing": "சுவாசப் பயிற்சியைச் சேர்",
-  "exerciseSaveFavourite": "பிடித்ததாகச் சேமி",
-  "exerciseSoundscapeSaved": "{name} சேமிக்கப்பட்டது.",
   "exerciseVolume": "ஒலியளவு",
   "exerciseTimerMinutes": "டைமர் · {minutes} நிமி",
   "exerciseControlScaleLabel": "விஷயங்கள் எந்த அளவு உங்கள் கட்டுப்பாட்டில் இருப்பதாக உணர்கிறீர்கள், 1 முதல் 5",

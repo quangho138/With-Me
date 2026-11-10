@@ -2600,14 +2600,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get exerciseAddBreathing => 'Magdagdag ng paghinga';
 
   @override
-  String get exerciseSaveFavourite => 'I-save sa paborito';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return 'Na-save ang $name.';
-  }
-
-  @override
   String get exerciseVolume => 'Lakas ng tunog';
 
   @override

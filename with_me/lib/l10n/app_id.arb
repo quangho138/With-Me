@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 mnt · fokus 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Kayu bakar berderak · berulang 40 mnt",
   "exerciseAddBreathing": "Tambah pernapasan",
-  "exerciseSaveFavourite": "Simpan favorit",
-  "exerciseSoundscapeSaved": "{name} tersimpan.",
   "exerciseVolume": "Volume",
   "exerciseTimerMinutes": "Timer · {minutes} mnt",
   "exerciseControlScaleLabel": "Seberapa besar kendali yang kamu rasakan, 1 sampai 5",

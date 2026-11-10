@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "Dak 4 · umakini 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Kuni zinazotatarika · mzunguko wa dak 40",
   "exerciseAddBreathing": "Ongeza kupumua",
-  "exerciseSaveFavourite": "Hifadhi kipendwa",
-  "exerciseSoundscapeSaved": "{name} imehifadhiwa.",
   "exerciseVolume": "Kiwango cha sauti",
   "exerciseTimerMinutes": "Kipima muda · dak {minutes}",
   "exerciseControlScaleLabel": "Unahisi kuwa na udhibiti kiasi gani, 1 hadi 5",

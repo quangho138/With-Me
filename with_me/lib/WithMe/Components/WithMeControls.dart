@@ -50,7 +50,10 @@ class OptionRow extends StatelessWidget {
 
   final String label;
   final bool selected;
-  final VoidCallback onTap;
+
+  /// What a tap does. Null for a row that only shows something (the
+  /// promises on the Remember page): it then does not react to taps.
+  final VoidCallback? onTap;
 
   /// Category colour of the leading dot. Omit for a row with no dot.
   final Color? dot;
@@ -70,7 +73,7 @@ class OptionRow extends StatelessWidget {
     final height = subtitle == null ? kOptionRowHeight : kDetailRowHeight;
 
     return GestureDetector(
-      onTap: withTap(onTap),
+      onTap: onTap == null ? null : withTap(onTap!),
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: WithMeMotion.fast,

@@ -4426,17 +4426,7 @@ abstract class AppLocalizations {
   /// **'Add breathing'**
   String get exerciseAddBreathing;
 
-  /// Soundscape player button: save this soundscape as a favourite.
-  ///
-  /// In en, this message translates to:
-  /// **'Save favourite'**
-  String get exerciseSaveFavourite;
 
-  /// Brief confirmation after saving a soundscape as a favourite. {name} is the soundscape, such as Fire.
-  ///
-  /// In en, this message translates to:
-  /// **'{name} saved.'**
-  String exerciseSoundscapeSaved(String name);
 
   /// Label on the soundscape player.
   ///

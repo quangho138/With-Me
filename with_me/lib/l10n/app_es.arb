@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 min · concentración 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Leña que crepita · 40 min en bucle",
   "exerciseAddBreathing": "Agregar respiración",
-  "exerciseSaveFavourite": "Guardar favorito",
-  "exerciseSoundscapeSaved": "{name} guardado.",
   "exerciseVolume": "Volumen",
   "exerciseTimerMinutes": "Temporizador · {minutes} min",
   "exerciseControlScaleLabel": "Cuánto control sientes, del 1 al 5",

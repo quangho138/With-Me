@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 Min. · Fokus 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Knisternde Holzscheite · 40 Min. in Schleife",
   "exerciseAddBreathing": "Atmung hinzufügen",
-  "exerciseSaveFavourite": "Als Favorit speichern",
-  "exerciseSoundscapeSaved": "{name} gespeichert.",
   "exerciseVolume": "Lautstärke",
   "exerciseTimerMinutes": "Timer · {minutes} Min.",
   "exerciseControlScaleLabel": "Wie viel Kontrolle du spürst, 1 bis 5",

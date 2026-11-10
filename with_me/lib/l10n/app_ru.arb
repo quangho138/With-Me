@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 мин · фокус 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Треск поленьев · цикл 40 мин",
   "exerciseAddBreathing": "Добавить дыхание",
-  "exerciseSaveFavourite": "В избранное",
-  "exerciseSoundscapeSaved": "«{name}» сохранено.",
   "exerciseVolume": "Громкость",
   "exerciseTimerMinutes": "Таймер · {minutes} мин",
   "exerciseControlScaleLabel": "Насколько ты владеешь ситуацией, от 1 до 5",

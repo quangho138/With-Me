@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4分 · 4-4-4-4 集中",
   "exerciseSoundscapeFireSubtitle": "薪のはぜる音 · 40分ループ",
   "exerciseAddBreathing": "呼吸を追加",
-  "exerciseSaveFavourite": "お気に入りに保存",
-  "exerciseSoundscapeSaved": "{name}を保存しました。",
   "exerciseVolume": "音量",
   "exerciseTimerMinutes": "タイマー · {minutes}分",
   "exerciseControlScaleLabel": "どのくらいコントロールできていると感じるか（1～5）",

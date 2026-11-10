@@ -2619,14 +2619,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exerciseAddBreathing => 'Добавить дыхание';
 
   @override
-  String get exerciseSaveFavourite => 'В избранное';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '«$name» сохранено.';
-  }
-
-  @override
   String get exerciseVolume => 'Громкость';
 
   @override

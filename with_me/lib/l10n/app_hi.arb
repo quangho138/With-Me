@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 मिनट · 4-4-4-4 फ़ोकस",
   "exerciseSoundscapeFireSubtitle": "चटकती लकड़ियाँ · 40 मिनट का लूप",
   "exerciseAddBreathing": "साँस का अभ्यास जोड़ें",
-  "exerciseSaveFavourite": "पसंदीदा में सेव करें",
-  "exerciseSoundscapeSaved": "सेव किया गया: {name}।",
   "exerciseVolume": "वॉल्यूम",
   "exerciseTimerMinutes": "टाइमर · {minutes} मिनट",
   "exerciseControlScaleLabel": "चीज़ें आपको कितनी अपने बस में लगती हैं, 1 से 5",

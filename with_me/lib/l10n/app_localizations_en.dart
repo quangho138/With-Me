@@ -2559,14 +2559,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get exerciseAddBreathing => 'Add breathing';
 
   @override
-  String get exerciseSaveFavourite => 'Save favourite';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name saved.';
-  }
-
-  @override
   String get exerciseVolume => 'Volume';
 
   @override

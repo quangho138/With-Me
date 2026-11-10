@@ -2561,14 +2561,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get exerciseAddBreathing => 'শ্বাসের অনুশীলন যোগ করুন';
 
   @override
-  String get exerciseSaveFavourite => 'প্রিয়তে সেভ করুন';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$name সেভ হয়েছে।';
-  }
-
-  @override
   String get exerciseVolume => 'ভলিউম';
 
   @override

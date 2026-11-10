@@ -2483,14 +2483,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get exerciseAddBreathing => '呼吸を追加';
 
   @override
-  String get exerciseSaveFavourite => 'お気に入りに保存';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '$nameを保存しました。';
-  }
-
-  @override
   String get exerciseVolume => '音量';
 
   @override

@@ -19,14 +19,15 @@ import '../Speech/SpeechService.dart';
 import '../Theme/WithMeTheme.dart';
 import 'MembershipScreen.dart';
 
-/// A five-minute guided meditation in the forest, part of Companion Plus;
+/// A five-minute guided meditation in the forest, part of With Me Plus;
 /// without Plus, each start uses one of its free uses (see [FreeUses]).
 ///
 /// Five steps of one minute each, on one clock (a [BreathSession] with one
 /// "breath" per step). The companion reads each step aloud as it starts,
 /// in its recorded voice, when Read aloud is on. Once started it is a
 /// [SessionStage]: the step at the top, the breathing circle with a ring
-/// counting the minute down, and the words as captions. A placeholder until the real meditation is written.
+/// counting the minute down, and the words as captions. This is the real
+/// meditation, not a stand-in (Quang, 10 Nov 2026).
 class MeditationScreen extends StatefulWidget {
   const MeditationScreen({super.key});
 

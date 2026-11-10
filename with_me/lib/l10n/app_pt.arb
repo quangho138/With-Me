@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 min · foco 4-4-4-4",
   "exerciseSoundscapeFireSubtitle": "Lenha estalando · loop de 40 min",
   "exerciseAddBreathing": "Adicionar respiração",
-  "exerciseSaveFavourite": "Salvar nos favoritos",
-  "exerciseSoundscapeSaved": "Salvo nos favoritos: {name}.",
   "exerciseVolume": "Volume",
   "exerciseTimerMinutes": "Timer · {minutes} min",
   "exerciseControlScaleLabel": "O quanto você sente que está no controle, de 1 a 5",

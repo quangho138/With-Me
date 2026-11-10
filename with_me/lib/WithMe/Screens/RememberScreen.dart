@@ -10,7 +10,7 @@ import '../Theme/WithMeTheme.dart';
 /// `image39.png` — "Remember...".
 ///
 /// The five promises, in the accent script at the top and as dotted rows
-/// below. This is the companion's statement of what it is and is not, so the
+/// below. The rows only show the promises; they do not react to taps. This is the companion's statement of what it is and is not, so the
 /// disclaimer at the foot is part of the screen, not decoration.
 class RememberScreen extends StatelessWidget {
   const RememberScreen({super.key});
@@ -53,7 +53,7 @@ class RememberScreen extends StatelessWidget {
               label: promises[i].$1,
               dot: promises[i].$2,
               selected: false,
-              onTap: () {},
+              onTap: null,
             ),
           ],
           const SizedBox(height: WithMeSpace.xl),

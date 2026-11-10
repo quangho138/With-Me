@@ -713,8 +713,6 @@
   "exerciseRestFocusSubtitle": "4 মিনিট · 4-4-4-4 মনোযোগ",
   "exerciseSoundscapeFireSubtitle": "চিটপিট করা কাঠ · 40 মিনিটের লুপ",
   "exerciseAddBreathing": "শ্বাসের অনুশীলন যোগ করুন",
-  "exerciseSaveFavourite": "প্রিয়তে সেভ করুন",
-  "exerciseSoundscapeSaved": "{name} সেভ হয়েছে।",
   "exerciseVolume": "ভলিউম",
   "exerciseTimerMinutes": "টাইমার · {minutes} মিনিট",
   "exerciseControlScaleLabel": "সবকিছু কতটা আপনার নিয়ন্ত্রণে মনে হচ্ছে, 1 থেকে 5",

@@ -3484,19 +3484,6 @@
   "@exerciseAddBreathing": {
     "description": "Soundscape player button: add a breathing exercise on top of the sound."
   },
-  "exerciseSaveFavourite": "Save favourite",
-  "@exerciseSaveFavourite": {
-    "description": "Soundscape player button: save this soundscape as a favourite."
-  },
-  "exerciseSoundscapeSaved": "{name} saved.",
-  "@exerciseSoundscapeSaved": {
-    "description": "Brief confirmation after saving a soundscape as a favourite. {name} is the soundscape, such as Fire.",
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "exerciseVolume": "Volume",
   "@exerciseVolume": {
     "description": "Label on the soundscape player."

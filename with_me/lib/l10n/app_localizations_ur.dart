@@ -2571,14 +2571,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get exerciseAddBreathing => 'سانس کی مشق شامل کریں';
 
   @override
-  String get exerciseSaveFavourite => 'پسندیدہ میں محفوظ کریں';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return 'محفوظ کیا گیا: $name۔';
-  }
-
-  @override
   String get exerciseVolume => 'والیوم';
 
   @override

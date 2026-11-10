@@ -2462,14 +2462,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exerciseAddBreathing => '加入呼吸练习';
 
   @override
-  String get exerciseSaveFavourite => '收藏';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '已收藏$name。';
-  }
-
-  @override
   String get exerciseVolume => '音量';
 
   @override
@@ -9297,14 +9289,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get exerciseAddBreathing => '加入呼吸練習';
-
-  @override
-  String get exerciseSaveFavourite => '收藏';
-
-  @override
-  String exerciseSoundscapeSaved(String name) {
-    return '已收藏$name。';
-  }
 
   @override
   String get exerciseVolume => '音量';
