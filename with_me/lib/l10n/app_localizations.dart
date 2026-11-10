@@ -1349,35 +1349,10 @@ abstract class AppLocalizations {
   /// **'Start Plus'**
   String get accountStartPlus;
 
-  /// Title of the test checkout sheet (test builds only).
-  ///
-  /// In en, this message translates to:
-  /// **'Test purchase'**
-  String get plusTestSheetTitle;
 
-  /// Test checkout: makes clear nothing is paid.
-  ///
-  /// In en, this message translates to:
-  /// **'Test version, no charge. Nothing is paid and no card is needed.'**
-  String get plusTestNoCharge;
 
-  /// Test checkout button that confirms the test purchase.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm test purchase'**
-  String get plusTestConfirm;
 
-  /// Membership page, test builds: ends the test plan.
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel test plan'**
-  String get plusTestCancel;
 
-  /// Message after the test plan is cancelled.
-  ///
-  /// In en, this message translates to:
-  /// **'Test plan cancelled. You are back on the free version.'**
-  String get plusTestCancelled;
 
   /// Message when a guest taps Start Plus. With Me Plus is a name.
   ///

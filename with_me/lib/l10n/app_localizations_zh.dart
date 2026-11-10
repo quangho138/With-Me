@@ -694,21 +694,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get accountStartPlus => '开通Plus';
 
   @override
-  String get plusTestSheetTitle => '测试购买';
-
-  @override
-  String get plusTestNoCharge => '测试版本，不收费。无需付款，也不需要银行卡。';
-
-  @override
-  String get plusTestConfirm => '确认测试购买';
-
-  @override
-  String get plusTestCancel => '取消测试方案';
-
-  @override
-  String get plusTestCancelled => '测试方案已取消。你已回到免费版本。';
-
-  @override
   String get plusNeedsAccount => 'With Me Plus 需要账户，这样换新手机时也能继续使用。';
 
   @override
@@ -7530,21 +7515,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountStartPlus => '開通Plus';
-
-  @override
-  String get plusTestSheetTitle => '測試購買';
-
-  @override
-  String get plusTestNoCharge => '測試版本，不收費。無需付款，也不需要卡片。';
-
-  @override
-  String get plusTestConfirm => '確認測試購買';
-
-  @override
-  String get plusTestCancel => '取消測試方案';
-
-  @override
-  String get plusTestCancelled => '測試方案已取消。你已回到免費版本。';
 
   @override
   String get plusNeedsAccount => 'With Me Plus 需要帳戶，這樣換新手機時也能繼續使用。';

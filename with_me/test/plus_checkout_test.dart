@@ -19,8 +19,8 @@ import 'support/fake_plus_server.dart';
 
 /// With Me Plus is kept by the server (plan stage A, Quang 8 Nov 2026):
 /// the phone asks and keeps the answer for offline use; guests never have
-/// it; only the test checkout (test builds) or, later, Google Play gives
-/// it. Made-up accounts only.
+/// it; only the server gives it (Google Play in stage B). The test checkout
+/// was removed on 9 Nov 2026. Made-up accounts only.
 void main() {
   late Database db;
   late FakePlusServer server;
@@ -185,41 +185,12 @@ void main() {
     });
   });
 
-  group('test checkout', () {
-    test('gives the real plan length, and cancelling ends it', () async {
-      await signUp();
-      await CompanionPlus.instance.testBuy(PlusPlan.monthly);
-      final s = CompanionPlus.instance.status!;
-      expect(CompanionPlus.instance.value, isTrue);
-      expect(s.test, isTrue);
-      final days = s.until!.difference(DateTime.now()).inDays;
-      expect(days, inInclusiveRange(27, 31));
-
-      await CompanionPlus.instance.cancelTest();
-      expect(CompanionPlus.instance.value, isFalse);
-    });
-
-    test('never replaces a real purchase that is running', () async {
-      await signUp();
-      final ends = DateTime.now().add(const Duration(days: 200));
-      server.realPurchase(PlusPlan.yearly, ends);
-      await CompanionPlus.instance.testBuy(PlusPlan.monthly);
-      await CompanionPlus.instance.cancelTest();
-      expect(CompanionPlus.instance.value, isTrue);
-      expect(CompanionPlus.instance.status?.test, isFalse);
-      expect(CompanionPlus.instance.status?.until, ends);
-    });
-  });
-
   group('membership page', () {
-    Future<void> open(WidgetTester t, {required bool testCheckout}) async {
+    Future<void> open(WidgetTester t) async {
       usePhone(t, const Size(390, 844));
       addTearDown(t.view.reset);
       await t.pumpWidget(
-        MaterialApp(
-          theme: buildWithMeTheme(),
-          home: MembershipScreen(testCheckout: testCheckout),
-        ),
+        MaterialApp(theme: buildWithMeTheme(), home: const MembershipScreen()),
       );
       await settle(t);
     }
@@ -238,7 +209,7 @@ void main() {
       t,
     ) async {
       await t.runAsync(() => users.startAsGuest());
-      await open(t, testCheckout: true);
+      await open(t);
       await tapLabel(t, 'Start Plus');
       await idle(t);
       expect(
@@ -247,50 +218,32 @@ void main() {
         ),
         findsOneWidget,
       );
-      expect(find.text('Test purchase'), findsNothing);
     });
 
-    testWidgets('a store build without payments says not yet', (t) async {
+    testWidgets('an account is told buying is not available yet', (t) async {
       await t.runAsync(signUp);
-      await open(t, testCheckout: false);
+      await open(t);
       await tapLabel(t, 'Start Plus');
       await idle(t);
       expect(
         find.text('Buying With Me Plus is not available yet.'),
         findsOneWidget,
       );
-      expect(find.text('Test purchase'), findsNothing);
       expect(CompanionPlus.instance.value, isFalse);
     });
 
-    testWidgets('a test build buys, shows the end date, and can cancel', (
-      t,
-    ) async {
-      await t.runAsync(signUp);
-      await open(t, testCheckout: true);
-      await tapLabel(t, 'Start Plus');
-      await idle(t);
-      expect(find.text('Test purchase'), findsWidgets);
-      expect(find.byKey(const ValueKey('plus-test-note')), findsOneWidget);
-      expect(
-        find.text(
-          'Test version, no charge. Nothing is paid and no card is needed.',
-        ),
-        findsOneWidget,
-      );
-
-      await tapLabel(t, 'Confirm test purchase');
-      await idle(t);
+    testWidgets('a running purchase shows its end date', (t) async {
+      await t.runAsync(() async {
+        await signUp();
+        server.realPurchase(
+          PlusPlan.yearly,
+          DateTime.now().add(const Duration(days: 200)),
+        );
+        await CompanionPlus.instance.refresh();
+      });
+      await open(t);
       expect(CompanionPlus.instance.value, isTrue);
-      expect(server.test, isTrue);
-      expect(server.plan, PlusPlan.yearly, reason: 'yearly is picked first');
       expect(find.byKey(const ValueKey('plus-active-until')), findsOneWidget);
-
-      await t.ensureVisible(find.byKey(const ValueKey('plus-cancel-test')));
-      await t.pump();
-      await t.tap(find.byKey(const ValueKey('plus-cancel-test')));
-      await idle(t);
-      expect(CompanionPlus.instance.value, isFalse);
     });
   });
 }

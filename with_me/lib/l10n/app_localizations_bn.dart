@@ -724,23 +724,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get accountStartPlus => 'Plus শুরু করুন';
 
   @override
-  String get plusTestSheetTitle => 'টেস্ট কেনাকাটা';
-
-  @override
-  String get plusTestNoCharge =>
-      'টেস্ট সংস্করণ, কোনো খরচ নেই। কিছু দিতে হবে না, কার্ডও লাগবে না।';
-
-  @override
-  String get plusTestConfirm => 'টেস্ট কেনাকাটা নিশ্চিত করুন';
-
-  @override
-  String get plusTestCancel => 'টেস্ট প্ল্যান বাতিল করুন';
-
-  @override
-  String get plusTestCancelled =>
-      'টেস্ট প্ল্যান বাতিল হয়েছে। আপনি আবার ফ্রি সংস্করণে।';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus-এর জন্য অ্যাকাউন্ট লাগে, যাতে নতুন ফোনেও এটি আপনার সঙ্গে থাকে।';
 

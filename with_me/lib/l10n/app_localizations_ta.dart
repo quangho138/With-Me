@@ -730,23 +730,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get accountStartPlus => 'Plus-ஐத் தொடங்கு';
 
   @override
-  String get plusTestSheetTitle => 'சோதனை வாங்குதல்';
-
-  @override
-  String get plusTestNoCharge =>
-      'சோதனைப் பதிப்பு, கட்டணம் இல்லை. எதுவும் செலுத்த வேண்டாம், கார்டும் தேவையில்லை.';
-
-  @override
-  String get plusTestConfirm => 'சோதனை வாங்குதலை உறுதிசெய்';
-
-  @override
-  String get plusTestCancel => 'சோதனைத் திட்டத்தை ரத்துசெய்';
-
-  @override
-  String get plusTestCancelled =>
-      'சோதனைத் திட்டம் ரத்துசெய்யப்பட்டது. மீண்டும் இலவசப் பதிப்பில் உள்ளீர்கள்.';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus க்கு கணக்கு தேவை, அப்போதுதான் புதிய போனிலும் அது உங்களுடன் இருக்கும்.';
 

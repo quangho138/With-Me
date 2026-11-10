@@ -725,22 +725,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get accountStartPlus => 'Bắt đầu Plus';
 
   @override
-  String get plusTestSheetTitle => 'Mua thử';
-
-  @override
-  String get plusTestNoCharge =>
-      'Bản thử nghiệm, không tính phí. Không phải trả tiền và không cần thẻ.';
-
-  @override
-  String get plusTestConfirm => 'Xác nhận mua thử';
-
-  @override
-  String get plusTestCancel => 'Hủy gói thử';
-
-  @override
-  String get plusTestCancelled => 'Đã hủy gói thử. Bạn quay lại bản miễn phí.';
-
-  @override
   String get plusNeedsAccount =>
       'With Me Plus cần có tài khoản để đi theo bạn sang điện thoại mới.';
 

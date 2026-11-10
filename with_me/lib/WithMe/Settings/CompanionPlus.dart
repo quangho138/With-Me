@@ -34,12 +34,6 @@ class CompanionPlus extends ValueNotifier<bool> {
   /// builds leave it out, so people using the app never see the switch.
   static const bool devTools = bool.fromEnvironment('WITHME_DEV');
 
-  /// True in builds made with `--dart-define=WITHME_PAYMENTS=test`: the
-  /// membership page offers the test checkout ("Test version, no charge").
-  /// Store builds leave it out. Removed before the public release.
-  static const bool testCheckout =
-      String.fromEnvironment('WITHME_PAYMENTS') == 'test';
-
   /// The developer switch, kept in app_settings (developer builds only).
   static const String settingKey = 'companion_plus';
 
@@ -47,7 +41,6 @@ class CompanionPlus extends ValueNotifier<bool> {
   /// out with the account's other data.
   static const String untilKey = 'plus_until';
   static const String planKey = 'plus_plan';
-  static const String testKey = 'plus_test';
 
   final SettingsRepository? _settings;
   final UserRepository? _users;
@@ -82,7 +75,6 @@ class CompanionPlus extends ValueNotifier<bool> {
               active: until.isAfter(DateTime.now()),
               plan: PlusPlan.fromId(await _store.readString(planKey)),
               until: until,
-              test: await _store.readBool(testKey) ?? false,
             );
       _publish();
     } catch (e) {
@@ -109,23 +101,6 @@ class CompanionPlus extends ValueNotifier<bool> {
     }
   }
 
-  /// The test checkout: [plan] for its real length, no money moves. Throws
-  /// when the server cannot be reached, so the page can say so.
-  Future<void> testBuy(PlusPlan plan) async {
-    await _online.testBuy(plan);
-    final ask = ++_asked;
-    final answer = await _online.status();
-    if (ask == _asked) await _keep(answer);
-  }
-
-  /// Ends a test plan now.
-  Future<void> cancelTest() async {
-    await _online.cancelTest();
-    final ask = ++_asked;
-    final answer = await _online.status();
-    if (ask == _asked) await _keep(answer);
-  }
-
   /// Developer builds: turns Plus on or off for this phone only.
   Future<void> set(bool on) async {
     if (!_dev) return;
@@ -147,7 +122,6 @@ class CompanionPlus extends ValueNotifier<bool> {
     }
     await _store.writeString(untilKey, answer.until!.toUtc().toIso8601String());
     await _store.writeString(planKey, answer.plan?.id ?? '');
-    await _store.writeBool(testKey, answer.test);
   }
 
   Future<void> _forget() async {
@@ -157,7 +131,7 @@ class CompanionPlus extends ValueNotifier<bool> {
   }
 
   Future<void> _forgetKept() async {
-    for (final key in [untilKey, planKey, testKey]) {
+    for (final key in [untilKey, planKey]) {
       await _store.remove(key);
     }
   }
