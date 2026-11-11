@@ -166,13 +166,13 @@ void main() {
     await idle(tester);
     expect(
       find.text("Keep this phone's check-ins and journal?"),
-      findsOneWidget,
+      findsWidgets, // headings draw their text twice
     );
     await phoneBack(tester);
     await idle(tester);
     expect(
       find.text("Keep this phone's check-ins and journal?"),
-      findsOneWidget,
+      findsWidgets, // headings draw their text twice
     );
     expect(sync.discarded, isFalse);
 
