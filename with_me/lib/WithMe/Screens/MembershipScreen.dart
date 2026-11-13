@@ -82,6 +82,7 @@ class _MembershipScreenState extends State<MembershipScreen> {
       CheckoutNews.notYours => l.plusOtherAccount,
       CheckoutNews.checkLater => l.plusCheckLater,
       CheckoutNews.nothingFound => l.plusNothingToRestore,
+      CheckoutNews.unavailable => l.plusNotAvailable,
     });
   }
 

@@ -30,6 +30,9 @@ enum CheckoutNews {
 
   /// Restore purchases found With Me Plus and it is on again.
   restored,
+
+  /// No Google Play on this phone, so nothing can be bought or restored.
+  unavailable,
 }
 
 /// Buying With Me Plus through Google Play (plan: payments-and-release-plan
@@ -118,6 +121,10 @@ class PlusCheckout {
     start();
     _restoredSeen = 0;
     _restoredActive = false;
+    if (!await store.available()) {
+      _news.add(CheckoutNews.unavailable);
+      return;
+    }
     try {
       await store.restore();
       // Google sends what it found on [PlayStore.purchases]; give it a

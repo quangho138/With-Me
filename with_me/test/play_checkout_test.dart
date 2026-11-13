@@ -196,6 +196,15 @@ void main() {
       },
     );
 
+    test('restore by hand with no store says so', () async {
+      await signUp();
+      store.isAvailable = false;
+      await checkout.restoreByHand();
+      await flush();
+      expect(news, [CheckoutNews.unavailable]);
+      expect(store.restores, 0);
+    });
+
     test('restore by hand says what it found', () async {
       await signUp();
       await checkout.restoreByHand();
