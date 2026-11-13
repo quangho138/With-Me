@@ -58,93 +58,98 @@ class _ConsentScreenState extends State<ConsentScreen> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return ScenicScaffold(
-      title: l.consentTitle,
-      onBack: () => Navigator.of(context).pop(false),
-      softBackground: true,
-      action: ScenicPill(
-        key: const ValueKey('consent-continue'),
-        label: l.commonContinue,
-        height: 58,
-        onPressed: _agreed && !_saving ? _continue : null,
-      ),
-      child: ScenicPanel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              l.consentBody(l.appTitle),
-              style: kScenicBody.copyWith(fontSize: 17, height: 1.45),
-            ),
-            const SizedBox(height: 18),
-            Semantics(
-              checked: _agreed,
-              child: GestureDetector(
-                key: const ValueKey('consent-agree'),
-                onTap: () => setState(() => _agreed = !_agreed),
-                behavior: HitTestBehavior.opaque,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 180),
-                        width: 28,
-                        height: 28,
-                        decoration: BoxDecoration(
-                          color: _agreed
-                              ? ScenicColors.pillBottom
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: ScenicColors.pillBottom,
-                            width: 1.8,
+    // While busy, Back does nothing, so it is never left half done.
+    return PopScope(
+      canPop: !_saving,
+      child: ScenicScaffold(
+        title: l.consentTitle,
+        onBack: () => Navigator.of(context).maybePop(false),
+        softBackground: true,
+        action: ScenicPill(
+          key: const ValueKey('consent-continue'),
+          label: l.commonContinue,
+          height: 58,
+          onPressed: _agreed && !_saving ? _continue : null,
+        ),
+        child: ScenicPanel(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                l.consentBody(l.appTitle),
+                style: kScenicBody.copyWith(fontSize: 17, height: 1.45),
+              ),
+              const SizedBox(height: 18),
+              Semantics(
+                checked: _agreed,
+                child: GestureDetector(
+                  key: const ValueKey('consent-agree'),
+                  onTap: () => setState(() => _agreed = !_agreed),
+                  behavior: HitTestBehavior.opaque,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 180),
+                          width: 28,
+                          height: 28,
+                          decoration: BoxDecoration(
+                            color: _agreed
+                                ? ScenicColors.pillBottom
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: ScenicColors.pillBottom,
+                              width: 1.8,
+                            ),
+                          ),
+                          child: _agreed
+                              ? const Icon(
+                                  Icons.check_rounded,
+                                  size: 20,
+                                  color: Colors.white,
+                                )
+                              : null,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            l.consentAgree,
+                            style: kScenicBody.copyWith(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
                         ),
-                        child: _agreed
-                            ? const Icon(
-                                Icons.check_rounded,
-                                size: 20,
-                                color: Colors.white,
-                              )
-                            : null,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          l.consentAgree,
-                          style: kScenicBody.copyWith(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: TextButton(
-                key: const ValueKey('consent-read-privacy'),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const LegalScreen(page: LegalPage.privacy),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(
+                  key: const ValueKey('consent-read-privacy'),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          const LegalScreen(page: LegalPage.privacy),
+                    ),
                   ),
-                ),
-                child: Text(
-                  l.legalReadPrivacy,
-                  style: kScenicBody.copyWith(
-                    fontSize: 15,
-                    color: ScenicColors.pillBottom,
-                    decoration: TextDecoration.underline,
+                  child: Text(
+                    l.legalReadPrivacy,
+                    style: kScenicBody.copyWith(
+                      fontSize: 15,
+                      color: ScenicColors.pillBottom,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

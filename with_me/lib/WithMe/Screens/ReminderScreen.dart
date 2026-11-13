@@ -39,6 +39,10 @@ class ReminderScreen extends StatefulWidget {
 class _ReminderScreenState extends State<ReminderScreen> {
   int _choice = 1;
   bool _everyDay = true;
+
+  /// While saving, the button is off: a second tap would close the page
+  /// under this one.
+  bool _saving = false;
   ClockTime? _custom;
 
   /// The person's daily check-in time, for Tomorrow morning.
@@ -115,6 +119,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
     }
     final reminders = AppRepositories.reminders;
     final at = _when(Today.now());
+    setState(() => _saving = true);
     var allowed = false;
     try {
       if (_everyDay) {
@@ -129,6 +134,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
       allowed = false;
     }
     if (!mounted) return;
+    setState(() => _saving = false);
     messenger.showSnackBar(
       SnackBar(
         content: Text(
@@ -152,7 +158,10 @@ class _ReminderScreenState extends State<ReminderScreen> {
     ];
     return WithMeScaffold(
       lockup: false,
-      action: WithMeButton(label: l.dashReminderSave, onPressed: _save),
+      action: WithMeButton(
+        label: l.dashReminderSave,
+        onPressed: _saving ? null : _save,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

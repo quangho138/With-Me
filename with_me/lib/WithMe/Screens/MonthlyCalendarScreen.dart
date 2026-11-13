@@ -75,7 +75,21 @@ class _MonthlyCalendarScreenState extends State<MonthlyCalendarScreen> {
         _marks.containsKey(now.day);
   }
 
+  /// True while the check-in is open: a quick second tap does not open it
+  /// twice.
+  bool _opening = false;
+
   Future<void> _openCheckIn(int step) async {
+    if (_opening) return;
+    _opening = true;
+    try {
+      await _openCheckInNow(step);
+    } finally {
+      _opening = false;
+    }
+  }
+
+  Future<void> _openCheckInNow(int step) async {
     await Navigator.of(context).push(
       MaterialPageRoute(
         // Opened from the Daily Log, the companion says each page's line.

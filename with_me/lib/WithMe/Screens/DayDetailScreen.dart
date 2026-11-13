@@ -92,7 +92,21 @@ class _DayDetailScreenState extends State<DayDetailScreen> {
 
   /// Yesterday's check-in, opened for filling in or changing. Read aloud
   /// stays off: the recorded lines speak of today.
+  /// True while the check-in is open: a quick second tap does not open it
+  /// twice.
+  bool _opening = false;
+
   Future<void> _fillInYesterday() async {
+    if (_opening) return;
+    _opening = true;
+    try {
+      await _fillInYesterdayNow();
+    } finally {
+      _opening = false;
+    }
+  }
+
+  Future<void> _fillInYesterdayNow() async {
     await Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => DailyCheckInScreen(day: widget.date)),
     );

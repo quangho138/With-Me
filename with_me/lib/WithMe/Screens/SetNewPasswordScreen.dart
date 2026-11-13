@@ -65,41 +65,46 @@ class _SetNewPasswordScreenState extends State<SetNewPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return ScenicScaffold(
-      title: l.accountSetPasswordTitle,
-      mascot: RealPose.think,
-      mascotMax: 0.28,
-      action: ScenicPill(
-        label: l.accountSetPasswordSave,
-        height: 58,
-        onPressed: _busy ? null : _save,
-      ),
-      child: ScenicPanel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              l.accountSetPasswordExplainer,
-              textAlign: TextAlign.center,
-              style: kScenicBody,
-            ),
-            const SizedBox(height: 14),
-            WithMeField(
-              label: l.accountNewPassword,
-              controller: _password,
-              obscure: true,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-            const SizedBox(height: 14),
-            WithMeField(
-              label: l.accountRepeatPassword,
-              controller: _again,
-              obscure: true,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-          ],
+    // While busy, the phone's Back button and the back arrow do nothing,
+    // so the login is never left half done (Quang, 10 Nov 2026).
+    return PopScope(
+      canPop: !_busy,
+      child: ScenicScaffold(
+        title: l.accountSetPasswordTitle,
+        mascot: RealPose.think,
+        mascotMax: 0.28,
+        action: ScenicPill(
+          label: l.accountSetPasswordSave,
+          height: 58,
+          onPressed: _busy ? null : _save,
+        ),
+        child: ScenicPanel(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                l.accountSetPasswordExplainer,
+                textAlign: TextAlign.center,
+                style: kScenicBody,
+              ),
+              const SizedBox(height: 14),
+              WithMeField(
+                label: l.accountNewPassword,
+                controller: _password,
+                obscure: true,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+              const SizedBox(height: 14),
+              WithMeField(
+                label: l.accountRepeatPassword,
+                controller: _again,
+                obscure: true,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+            ],
+          ),
         ),
       ),
     );

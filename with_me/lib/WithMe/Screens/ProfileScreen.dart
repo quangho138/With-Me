@@ -50,6 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   /// password Profile can change.
   bool _account = false;
   bool _canChange = false;
+  bool _saving = false;
 
   @override
   void initState() {
@@ -213,6 +214,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _save() async {
+    if (_saving) return;
+    setState(() => _saving = true);
     var saved = true;
     try {
       await AppRepositories.users.saveDisplayName(_name.text.trim());
@@ -225,6 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       saved = false;
     }
     if (!mounted) return;
+    setState(() => _saving = false);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -240,142 +244,147 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return ScenicScaffold(
-      title: l.accountProfileTitle,
-      onBack: () => Navigator.of(context).pop(),
-      softBackground: true,
-      action: ScenicPill(
-        label: l.accountSaveChanges,
-        height: 58,
-        onPressed: _save,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ScenicPanel(
-            child: Row(
-              children: [
-                const ScenicMarker(
-                  color: ScenicColors.pillBottom,
-                  icon: Icons.person_rounded,
-                  size: 56,
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ScenicHeading(
-                        _name.text.isEmpty ? l.accountProfileYou : _name.text,
-                        size: 22,
-                        textAlign: TextAlign.start,
-                      ),
-                      const SizedBox(height: 2),
-                      Text(_sinceLine(l), style: kScenicBody),
-                    ],
+    // While saving, the button is off and Back does nothing, so a second
+    // tap cannot close the page under this one.
+    return PopScope(
+      canPop: !_saving,
+      child: ScenicScaffold(
+        title: l.accountProfileTitle,
+        onBack: () => Navigator.of(context).maybePop(),
+        softBackground: true,
+        action: ScenicPill(
+          label: l.accountSaveChanges,
+          height: 58,
+          onPressed: _saving ? null : _save,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ScenicPanel(
+              child: Row(
+                children: [
+                  const ScenicMarker(
+                    color: ScenicColors.pillBottom,
+                    icon: Icons.person_rounded,
+                    size: 56,
                   ),
-                ),
-              ],
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ScenicHeading(
+                          _name.text.isEmpty ? l.accountProfileYou : _name.text,
+                          size: 22,
+                          textAlign: TextAlign.start,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(_sinceLine(l), style: kScenicBody),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          ScenicPanel(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                WithMeField(
-                  label: l.accountName,
-                  controller: _name,
-                  fill: Colors.white,
-                  border: kScenicFieldRing,
-                ),
-                const SizedBox(height: 14),
-                // The account's email, shown and not typed.
-                AbsorbPointer(
-                  key: const ValueKey('profile-email'),
-                  child: WithMeField(
-                    label: l.accountEmail,
-                    controller: _email,
-                    hint: _account ? null : l.accountNoAccountEmail,
+            const SizedBox(height: 12),
+            ScenicPanel(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  WithMeField(
+                    label: l.accountName,
+                    controller: _name,
                     fill: Colors.white,
                     border: kScenicFieldRing,
                   ),
-                ),
-                if (_account && _canChange)
-                  Wrap(
-                    alignment: WrapAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: _changeEmail,
-                        child: Text(
-                          l.accountChangeEmail,
-                          style: kScenicBody.copyWith(
-                            fontWeight: FontWeight.w800,
-                            color: ScenicColors.pillBottom,
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: _changePassword,
-                        child: Text(
-                          l.accountChangePassword,
-                          style: kScenicBody.copyWith(
-                            fontWeight: FontWeight.w800,
-                            color: ScenicColors.pillBottom,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                else if (_account)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(l.accountGoogleManaged, style: kScenicBody),
-                  ),
-                const SizedBox(height: 14),
-                // The PO's field; tapping it opens the clock.
-                GestureDetector(
-                  key: const ValueKey('check-in-time'),
-                  behavior: HitTestBehavior.opaque,
-                  onTap: _pickCheckInTime,
-                  child: AbsorbPointer(
+                  const SizedBox(height: 14),
+                  // The account's email, shown and not typed.
+                  AbsorbPointer(
+                    key: const ValueKey('profile-email'),
                     child: WithMeField(
-                      label: l.accountCheckInTime,
-                      controller: _checkInTime,
+                      label: l.accountEmail,
+                      controller: _email,
+                      hint: _account ? null : l.accountNoAccountEmail,
                       fill: Colors.white,
                       border: kScenicFieldRing,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          ScenicPanel(
-            padding: const EdgeInsets.all(12),
-            child: Row(
-              children: [
-                Expanded(
-                  child: ScenicStatTile(
-                    value: '$_checkIns',
-                    label: l.accountStatCheckIns(_checkIns),
-                    icon: Icons.favorite_rounded,
-                    iconColor: const Color(0xFFD2557F),
+                  if (_account && _canChange)
+                    Wrap(
+                      alignment: WrapAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: _changeEmail,
+                          child: Text(
+                            l.accountChangeEmail,
+                            style: kScenicBody.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: ScenicColors.pillBottom,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: _changePassword,
+                          child: Text(
+                            l.accountChangePassword,
+                            style: kScenicBody.copyWith(
+                              fontWeight: FontWeight.w800,
+                              color: ScenicColors.pillBottom,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  else if (_account)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(l.accountGoogleManaged, style: kScenicBody),
+                    ),
+                  const SizedBox(height: 14),
+                  // The PO's field; tapping it opens the clock.
+                  GestureDetector(
+                    key: const ValueKey('check-in-time'),
+                    behavior: HitTestBehavior.opaque,
+                    onTap: _pickCheckInTime,
+                    child: AbsorbPointer(
+                      child: WithMeField(
+                        label: l.accountCheckInTime,
+                        controller: _checkInTime,
+                        fill: Colors.white,
+                        border: kScenicFieldRing,
+                      ),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ScenicStatTile(
-                    value: '$_exercises',
-                    label: l.accountStatExercises(_exercises),
-                    icon: Icons.spa_rounded,
-                    iconColor: const Color(0xFF3E9C8C),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 12),
+            ScenicPanel(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ScenicStatTile(
+                      value: '$_checkIns',
+                      label: l.accountStatCheckIns(_checkIns),
+                      icon: Icons.favorite_rounded,
+                      iconColor: const Color(0xFFD2557F),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ScenicStatTile(
+                      value: '$_exercises',
+                      label: l.accountStatExercises(_exercises),
+                      icon: Icons.spa_rounded,
+                      iconColor: const Color(0xFF3E9C8C),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -462,59 +471,63 @@ class _AccountDialogState extends State<_AccountDialog> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return AlertDialog(
-      backgroundColor: ScenicColors.bubble,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      title: ScenicHeading(widget.title, size: 21),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (widget.note != null) ...[
-              Text(widget.note!, style: kScenicBody),
-              const SizedBox(height: 12),
+    // While saving, tapping outside or Back does not close the window.
+    return PopScope(
+      canPop: !_busy,
+      child: AlertDialog(
+        backgroundColor: ScenicColors.bubble,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        title: ScenicHeading(widget.title, size: 21),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (widget.note != null) ...[
+                Text(widget.note!, style: kScenicBody),
+                const SizedBox(height: 12),
+              ],
+              for (var i = 0; i < widget.fields.length; i++) ...[
+                WithMeField(
+                  key: ValueKey('profile-field-$i'),
+                  label: widget.fields[i].label,
+                  controller: _controllers[i],
+                  obscure: widget.fields[i].obscure,
+                  keyboardType: widget.fields[i].keyboardType,
+                  fill: Colors.white,
+                  border: kScenicFieldRing,
+                ),
+                const SizedBox(height: 12),
+              ],
+              if (_problem != null)
+                Text(
+                  _problem!,
+                  style: kScenicBody.copyWith(color: WithMeColors.danger),
+                ),
             ],
-            for (var i = 0; i < widget.fields.length; i++) ...[
-              WithMeField(
-                key: ValueKey('profile-field-$i'),
-                label: widget.fields[i].label,
-                controller: _controllers[i],
-                obscure: widget.fields[i].obscure,
-                keyboardType: widget.fields[i].keyboardType,
-                fill: Colors.white,
-                border: kScenicFieldRing,
-              ),
-              const SizedBox(height: 12),
-            ],
-            if (_problem != null)
-              Text(
-                _problem!,
-                style: kScenicBody.copyWith(color: WithMeColors.danger),
-              ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: _busy ? null : () => Navigator.of(context).pop(false),
-          child: Text(
-            l.commonCancel,
-            style: kScenicBody.copyWith(fontSize: 16),
           ),
         ),
-        TextButton(
-          key: const ValueKey('profile-dialog-save'),
-          onPressed: _busy ? null : _save,
-          child: Text(
-            l.commonSave,
-            style: kScenicBody.copyWith(
-              fontSize: 16,
-              fontWeight: FontWeight.w800,
+        actions: [
+          TextButton(
+            onPressed: _busy ? null : () => Navigator.of(context).pop(false),
+            child: Text(
+              l.commonCancel,
+              style: kScenicBody.copyWith(fontSize: 16),
             ),
           ),
-        ),
-      ],
+          TextButton(
+            key: const ValueKey('profile-dialog-save'),
+            onPressed: _busy ? null : _save,
+            child: Text(
+              l.commonSave,
+              style: kScenicBody.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
