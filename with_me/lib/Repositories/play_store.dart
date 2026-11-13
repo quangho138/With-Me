@@ -91,8 +91,7 @@ class GooglePlayStore implements PlayStore {
       return false;
     }
     try {
-      // Never wait for ever: no answer means no store.
-      return await _iap.isAvailable().timeout(const Duration(seconds: 5));
+      return await _iap.isAvailable();
     } catch (e) {
       debugPrint('Google Play billing is not available: $e');
       return false;
