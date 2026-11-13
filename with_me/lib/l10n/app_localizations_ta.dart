@@ -761,6 +761,42 @@ class AppLocalizationsTa extends AppLocalizations {
       'உங்கள் கணக்கை அணுக முடியவில்லை. இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.';
 
   @override
+  String get plusRestore => 'வாங்கியவற்றை மீட்டமை';
+
+  @override
+  String get plusNothingToRestore => 'இந்த Google கணக்கில் With Me Plus வாங்கியது எதுவும் கிடைக்கவில்லை.';
+
+  @override
+  String get plusPending => 'உங்கள் கட்டணம் Google-இல் காத்திருக்கிறது. அது முடிந்ததும் With Me Plus தொடங்கும்.';
+
+  @override
+  String get plusBuyFailed => 'வாங்குதல் முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get plusOtherAccount => 'இந்த வாங்குதல் வேறொரு With Me கணக்கைச் சேர்ந்தது. அதைப் பயன்படுத்த அந்தக் கணக்கில் உள்நுழையவும்.';
+
+  @override
+  String get plusCheckLater => 'உங்கள் வாங்குதல் Google-இல் பாதுகாப்பாக உள்ளது. ஆப் உங்கள் கணக்கை அடைந்ததும் With Me Plus இயங்கும்.';
+
+  @override
+  String get plusStarted => 'With Me Plus இயக்கப்பட்டது. நன்றி!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/ஆண்டு';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/மாதம்';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/மாதம் · ஆண்டுக்கு ஒருமுறை கட்டணம்';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'கட்டணங்கள் இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
 
@@ -2728,10 +2764,6 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'உங்களிடம் With Me Plus உள்ளது';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus இயக்கப்பட்டது. எந்தக் கட்டணமும் எடுக்கப்படவில்லை.';
 
   @override
   String get exerciseMeditationTitle => 'வழிகாட்டப்பட்ட தியானம்';

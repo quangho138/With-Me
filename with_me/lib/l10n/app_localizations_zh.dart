@@ -722,6 +722,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get plusCouldNotReach => '无法连接到你的账户。请检查网络后重试。';
 
   @override
+  String get plusRestore => '恢复购买';
+
+  @override
+  String get plusNothingToRestore => '此 Google 账号下没有找到 With Me Plus 的购买记录。';
+
+  @override
+  String get plusPending => '你的付款正在等待 Google 处理。付款完成后，With Me Plus 就会开启。';
+
+  @override
+  String get plusBuyFailed => '购买未完成，请再试一次。';
+
+  @override
+  String get plusOtherAccount => '这笔购买属于另一个 With Me 账号。请登录那个账号来使用。';
+
+  @override
+  String get plusCheckLater => '你的购买已由 Google 妥善保存。应用连上你的账号后，With Me Plus 就会开启。';
+
+  @override
+  String get plusStarted => 'With Me Plus 已开启，谢谢你！';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/年';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/月';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/月 · 按年付费';
+  }
+
+  @override
   String get accountPaymentsNotWired => '支付功能在此版本界面中尚未接入。';
 
   @override
@@ -2565,9 +2601,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get accountPlusActive => '你已开通 With Me Plus';
-
-  @override
-  String get accountPlusStarted => 'With Me Plus 已开通，未收取任何费用。';
 
   @override
   String get exerciseMeditationTitle => '引导冥想';
@@ -7490,6 +7523,42 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get plusCouldNotReach => '無法連線到你的帳戶。請檢查網路後再試一次。';
 
   @override
+  String get plusRestore => '恢復購買';
+
+  @override
+  String get plusNothingToRestore => '此 Google 帳戶下沒有找到 With Me Plus 的購買紀錄。';
+
+  @override
+  String get plusPending => '你的付款正在等待 Google 處理。付款完成後，With Me Plus 就會開啟。';
+
+  @override
+  String get plusBuyFailed => '購買未完成，請再試一次。';
+
+  @override
+  String get plusOtherAccount => '這筆購買屬於另一個 With Me 帳戶。請登入那個帳戶來使用。';
+
+  @override
+  String get plusCheckLater => '你的購買已由 Google 妥善保存。應用程式連上你的帳戶後，With Me Plus 就會開啟。';
+
+  @override
+  String get plusStarted => 'With Me Plus 已開啟，謝謝你！';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/年';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/月';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/月 · 按年付費';
+  }
+
+  @override
   String get accountPaymentsNotWired => '支付功能在此版本介面中尚未接入。';
 
   @override
@@ -9333,9 +9402,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountPlusActive => '你已開通 With Me Plus';
-
-  @override
-  String get accountPlusStarted => 'With Me Plus 已開通，未收取任何費用。';
 
   @override
   String get exerciseMeditationTitle => '引導冥想';

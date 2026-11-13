@@ -43,6 +43,42 @@ class PlusStatus {
 abstract class PlusServer {
   /// Does the signed-in account have Plus?
   Future<PlusStatus> status();
+
+  /// The signed-in account's id, given to Google with a purchase so the
+  /// server only turns Plus on for the account that paid. Null when nobody
+  /// is signed in.
+  String? get accountId;
+
+  /// Sends a Google Play purchase to the server (the verify_purchase
+  /// function), which checks it with Google and writes plus_access. Throws
+  /// when the server cannot be reached.
+  Future<PlayCheck> verify(String purchaseToken);
+}
+
+/// What the server made of a Google Play purchase.
+enum PlayCheck {
+  /// Plus is on.
+  active,
+
+  /// Google still waits for the payment.
+  pending,
+
+  /// Paid for once, over now (expired, refunded, on hold).
+  ended,
+
+  /// Bought by another With Me account.
+  notYours,
+
+  /// Not With Me Plus, or Google does not know it.
+  unknown;
+
+  static PlayCheck fromStatus(Object? status) => switch (status) {
+    'active' => active,
+    'pending' => pending,
+    'ended' => ended,
+    'not_yours' => notYours,
+    _ => unknown,
+  };
 }
 
 class SupabasePlusServer implements PlusServer {
@@ -54,5 +90,18 @@ class SupabasePlusServer implements PlusServer {
     return answer is Map<String, dynamic>
         ? PlusStatus.fromJson(answer)
         : PlusStatus.none;
+  }
+
+  @override
+  String? get accountId => _db.auth.currentUser?.id;
+
+  @override
+  Future<PlayCheck> verify(String purchaseToken) async {
+    final answer = await _db.functions.invoke(
+      'verify_purchase',
+      body: {'purchase_token': purchaseToken},
+    );
+    final data = answer.data;
+    return PlayCheck.fromStatus(data is Map ? data['status'] : null);
   }
 }

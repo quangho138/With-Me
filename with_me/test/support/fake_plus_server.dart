@@ -33,6 +33,27 @@ class FakePlusServer implements PlusServer {
     if (offline) throw StateError('offline');
   }
 
+  /// The signed-in account, as the real server reads it from the session.
+  @override
+  String? accountId = 'account-a';
+
+  /// The purchases sent to the server, and what it answers for each token
+  /// (the real one asks Google): set [verdicts] to choose. By default a
+  /// token turns on monthly Plus for a month.
+  final List<String> verified = [];
+  final Map<String, PlayCheck> verdicts = {};
+
+  @override
+  Future<PlayCheck> verify(String purchaseToken) async {
+    _check();
+    verified.add(purchaseToken);
+    final verdict = verdicts[purchaseToken] ?? PlayCheck.active;
+    if (verdict == PlayCheck.active) {
+      realPurchase(PlusPlan.monthly, now().add(const Duration(days: 30)));
+    }
+    return verdict;
+  }
+
   @override
   Future<PlusStatus> status() async {
     _check();

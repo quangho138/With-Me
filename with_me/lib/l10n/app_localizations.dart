@@ -1397,6 +1397,66 @@ abstract class AppLocalizations {
   /// **'Could not reach your account. Check your connection and try again.'**
   String get plusCouldNotReach;
 
+  /// Membership page: button that asks Google Play for purchases made before (new phone, reinstall).
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get plusRestore;
+
+  /// Membership page: after Restore purchases, when Google Play has no With Me Plus purchase for this Google account.
+  ///
+  /// In en, this message translates to:
+  /// **'No With Me Plus purchase was found for this Google account.'**
+  String get plusNothingToRestore;
+
+  /// Membership page: the payment is waiting (for example cash or bank payment); Plus starts once Google confirms it.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment is waiting for Google. With Me Plus starts once it goes through.'**
+  String get plusPending;
+
+  /// Membership page: the Google Play purchase did not finish.
+  ///
+  /// In en, this message translates to:
+  /// **'The purchase did not finish. Please try again.'**
+  String get plusBuyFailed;
+
+  /// Membership page: the Google Play purchase was made while logged in to a different With Me account.
+  ///
+  /// In en, this message translates to:
+  /// **'This purchase belongs to another With Me account. Log in to that account to use it.'**
+  String get plusOtherAccount;
+
+  /// Membership page: the purchase is paid with Google but the app could not reach the server yet; it is checked again later.
+  ///
+  /// In en, this message translates to:
+  /// **'Your purchase is safe with Google. With Me Plus turns on when the app can reach your account.'**
+  String get plusCheckLater;
+
+  /// Membership page: shown after a successful purchase.
+  ///
+  /// In en, this message translates to:
+  /// **'With Me Plus is on. Thank you!'**
+  String get plusStarted;
+
+  /// Yearly plan price; {price} is the price from Google Play in the person's currency, for example $39.99.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}/year'**
+  String membershipPricePerYear(String price);
+
+  /// Monthly plan price; {price} is the price from Google Play in the person's currency, for example $3.99.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}/month'**
+  String membershipPricePerMonth(String price);
+
+  /// Under the yearly plan; {price} is the yearly price divided by 12, for example $3.33.
+  ///
+  /// In en, this message translates to:
+  /// **'{price}/mo · billed yearly'**
+  String membershipYearlyPerMonth(String price);
+
   /// Notice that payments are not built yet.
   ///
   /// In en, this message translates to:
@@ -4628,11 +4688,6 @@ abstract class AppLocalizations {
   /// **'You have With Me Plus'**
   String get accountPlusActive;
 
-  /// Shown after 'Start Plus'. There is no billing yet, so nothing was charged.
-  ///
-  /// In en, this message translates to:
-  /// **'With Me Plus is on. No payment was taken.'**
-  String get accountPlusStarted;
 
   /// Name of the guided meditation on 'Choose an exercise' and title of its screen.
   ///

@@ -10,6 +10,7 @@ exclude:
   - BACKEND.md
   - EXERCISES.md
   - GRADED_CORE.md
+  - PAYMENTS.md
   - RELEASE.md
   - REVIEW.md
   - THIRD_PARTY_AND_REFERENCES.md

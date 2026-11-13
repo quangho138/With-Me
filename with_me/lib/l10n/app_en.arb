@@ -1024,6 +1024,61 @@
   "@plusCouldNotReach": {
     "description": "Message when the account could not be reached."
   },
+  "plusRestore": "Restore purchases",
+  "@plusRestore": {
+    "description": "Membership page: button that asks Google Play for purchases made before (new phone, reinstall)."
+  },
+  "plusNothingToRestore": "No With Me Plus purchase was found for this Google account.",
+  "@plusNothingToRestore": {
+    "description": "Membership page: after Restore purchases, when Google Play has no With Me Plus purchase for this Google account."
+  },
+  "plusPending": "Your payment is waiting for Google. With Me Plus starts once it goes through.",
+  "@plusPending": {
+    "description": "Membership page: the payment is waiting (for example cash or bank payment); Plus starts once Google confirms it."
+  },
+  "plusBuyFailed": "The purchase did not finish. Please try again.",
+  "@plusBuyFailed": {
+    "description": "Membership page: the Google Play purchase did not finish."
+  },
+  "plusOtherAccount": "This purchase belongs to another With Me account. Log in to that account to use it.",
+  "@plusOtherAccount": {
+    "description": "Membership page: the Google Play purchase was made while logged in to a different With Me account."
+  },
+  "plusCheckLater": "Your purchase is safe with Google. With Me Plus turns on when the app can reach your account.",
+  "@plusCheckLater": {
+    "description": "Membership page: the purchase is paid with Google but the app could not reach the server yet; it is checked again later."
+  },
+  "plusStarted": "With Me Plus is on. Thank you!",
+  "@plusStarted": {
+    "description": "Membership page: shown after a successful purchase."
+  },
+  "membershipPricePerYear": "{price}/year",
+  "@membershipPricePerYear": {
+    "description": "Yearly plan price; {price} is the price from Google Play in the person's currency, for example $39.99.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "membershipPricePerMonth": "{price}/month",
+  "@membershipPricePerMonth": {
+    "description": "Monthly plan price; {price} is the price from Google Play in the person's currency, for example $3.99.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "membershipYearlyPerMonth": "{price}/mo · billed yearly",
+  "@membershipYearlyPerMonth": {
+    "description": "Under the yearly plan; {price} is the yearly price divided by 12, for example $3.33.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
   "accountPaymentsNotWired": "Payments are not connected in this UI pass.",
   "@accountPaymentsNotWired": {
     "description": "Notice that payments are not built yet."
@@ -3545,10 +3600,6 @@
   "accountPlusActive": "You have With Me Plus",
   "@accountPlusActive": {
     "description": "Membership button once With Me Plus is on."
-  },
-  "accountPlusStarted": "With Me Plus is on. No payment was taken.",
-  "@accountPlusStarted": {
-    "description": "Shown after 'Start Plus'. There is no billing yet, so nothing was charged."
   },
   "exerciseMeditationTitle": "Guided Meditation",
   "@exerciseMeditationTitle": {

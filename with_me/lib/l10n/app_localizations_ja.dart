@@ -738,6 +738,42 @@ class AppLocalizationsJa extends AppLocalizations {
   String get plusCouldNotReach => 'アカウントに接続できませんでした。接続を確認してもう一度お試しください。';
 
   @override
+  String get plusRestore => '購入を復元';
+
+  @override
+  String get plusNothingToRestore => 'この Google アカウントでは With Me Plus の購入が見つかりませんでした。';
+
+  @override
+  String get plusPending => 'お支払いは Google で処理待ちです。完了すると With Me Plus が始まります。';
+
+  @override
+  String get plusBuyFailed => '購入が完了しませんでした。もう一度お試しください。';
+
+  @override
+  String get plusOtherAccount => 'この購入は別の With Me アカウントのものです。そのアカウントにログインしてご利用ください。';
+
+  @override
+  String get plusCheckLater => '購入は Google に安全に保存されています。アプリがアカウントに接続できたら With Me Plus がオンになります。';
+
+  @override
+  String get plusStarted => 'With Me Plus がオンになりました。ありがとうございます！';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/年';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/月';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/月 · 年払い';
+  }
+
+  @override
   String get accountPaymentsNotWired => 'お支払いは、このバージョンではまだつながっていません。';
 
   @override
@@ -2590,9 +2626,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'With Me Plus をご利用中です';
-
-  @override
-  String get accountPlusStarted => 'With Me Plus がオンになりました。お支払いは発生していません。';
 
   @override
   String get exerciseMeditationTitle => 'ガイド付き瞑想';

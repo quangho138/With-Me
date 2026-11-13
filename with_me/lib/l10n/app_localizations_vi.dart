@@ -756,6 +756,42 @@ class AppLocalizationsVi extends AppLocalizations {
       'Không kết nối được với tài khoản. Hãy kiểm tra mạng và thử lại.';
 
   @override
+  String get plusRestore => 'Khôi phục giao dịch mua';
+
+  @override
+  String get plusNothingToRestore => 'Không tìm thấy giao dịch mua With Me Plus nào cho tài khoản Google này.';
+
+  @override
+  String get plusPending => 'Thanh toán của bạn đang chờ Google xử lý. With Me Plus sẽ bắt đầu khi thanh toán hoàn tất.';
+
+  @override
+  String get plusBuyFailed => 'Giao dịch mua chưa hoàn tất. Vui lòng thử lại.';
+
+  @override
+  String get plusOtherAccount => 'Giao dịch mua này thuộc về một tài khoản With Me khác. Hãy đăng nhập vào tài khoản đó để sử dụng.';
+
+  @override
+  String get plusCheckLater => 'Giao dịch mua của bạn đã được Google lưu lại. With Me Plus sẽ bật khi ứng dụng kết nối được với tài khoản của bạn.';
+
+  @override
+  String get plusStarted => 'With Me Plus đã bật. Cảm ơn bạn!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/năm';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/tháng';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/tháng · thanh toán theo năm';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Thanh toán chưa được kết nối trong bản giao diện này.';
 
@@ -2686,10 +2722,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'Bạn đang có With Me Plus';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus đã bật. Không có khoản thanh toán nào.';
 
   @override
   String get exerciseMeditationTitle => 'Thiền có hướng dẫn';

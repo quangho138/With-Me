@@ -3,6 +3,7 @@ import 'exercise_repository.dart';
 import 'export_service.dart';
 import 'reminder_service.dart';
 import 'online_auth.dart';
+import 'play_store.dart';
 import 'plus_server.dart';
 import 'reflection_repository.dart';
 import 'settings_repository.dart';
@@ -41,6 +42,9 @@ class AppRepositories {
 
   /// The account's With Me Plus, kept by the server (plus_access).
   static PlusServer plus = SupabasePlusServer();
+
+  /// Google Play billing, to buy With Me Plus (stage B of the payments plan).
+  static PlayStore playStore = GooglePlayStore();
 
   /// Keeps the phone and the account in step (stage 3, step 2c).
   static SyncService sync = SyncService(

@@ -755,6 +755,42 @@ class AppLocalizationsBn extends AppLocalizations {
       'আপনার অ্যাকাউন্টে পৌঁছানো গেল না। সংযোগ দেখে আবার চেষ্টা করুন।';
 
   @override
+  String get plusRestore => 'কেনাকাটা ফিরিয়ে আনুন';
+
+  @override
+  String get plusNothingToRestore => 'এই Google অ্যাকাউন্টে With Me Plus-এর কোনো কেনাকাটা পাওয়া যায়নি।';
+
+  @override
+  String get plusPending => 'আপনার পেমেন্ট Google-এর অপেক্ষায় আছে। পেমেন্ট সম্পন্ন হলেই With Me Plus শুরু হবে।';
+
+  @override
+  String get plusBuyFailed => 'কেনাকাটা সম্পন্ন হয়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get plusOtherAccount => 'এই কেনাকাটা অন্য একটি With Me অ্যাকাউন্টের। ব্যবহার করতে সেই অ্যাকাউন্টে লগ ইন করুন।';
+
+  @override
+  String get plusCheckLater => 'আপনার কেনাকাটা Google-এর কাছে নিরাপদে আছে। অ্যাপটি আপনার অ্যাকাউন্টে পৌঁছাতে পারলেই With Me Plus চালু হবে।';
+
+  @override
+  String get plusStarted => 'With Me Plus চালু হয়েছে। ধন্যবাদ!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/বছর';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/মাস';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/মাস · বার্ষিক বিল';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'পেমেন্ট এই UI সংস্করণে এখনও যুক্ত হয়নি।';
 
@@ -2677,10 +2713,6 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'আপনার With Me Plus আছে';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus চালু হয়েছে। কোনো টাকা নেওয়া হয়নি।';
 
   @override
   String get exerciseMeditationTitle => 'নির্দেশিত মেডিটেশন';

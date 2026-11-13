@@ -760,6 +760,42 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi maabot ang iyong account. Tingnan ang iyong koneksyon at subukan ulit.';
 
   @override
+  String get plusRestore => 'I-restore ang mga binili';
+
+  @override
+  String get plusNothingToRestore => 'Walang nakitang binili na With Me Plus para sa Google account na ito.';
+
+  @override
+  String get plusPending => 'Naghihintay pa sa Google ang bayad mo. Magsisimula ang With Me Plus kapag natapos ito.';
+
+  @override
+  String get plusBuyFailed => 'Hindi natapos ang pagbili. Pakisubukan ulit.';
+
+  @override
+  String get plusOtherAccount => 'Ang binili na ito ay para sa ibang With Me account. Mag-log in sa account na iyon para magamit ito.';
+
+  @override
+  String get plusCheckLater => 'Ligtas sa Google ang binili mo. Bubuksan ang With Me Plus kapag naabot na ng app ang account mo.';
+
+  @override
+  String get plusStarted => 'Bukas na ang With Me Plus. Salamat!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/taon';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/buwan';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/buwan · sinisingil taun-taon';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Hindi pa naikokonekta ang mga bayad sa bersyong ito ng UI.';
 
@@ -2715,10 +2751,6 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'May With Me Plus ka';
-
-  @override
-  String get accountPlusStarted =>
-      'Naka-on na ang With Me Plus. Walang kinuhang bayad.';
 
   @override
   String get exerciseMeditationTitle => 'Ginagabayang Meditasyon';
