@@ -19,28 +19,33 @@ Future<bool?> showScenicChoice(
   return showDialog<bool>(
     context: context,
     barrierDismissible: dismissible,
-    builder: (context) => AlertDialog(
-      backgroundColor: ScenicColors.bubble,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      title: ScenicHeading(title, size: 21),
-      content: Text(body, style: kScenicBody),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(false),
-          child: Text(no, style: kScenicBody.copyWith(fontSize: 16)),
-        ),
-        TextButton(
-          onPressed: () => Navigator.of(context).pop(true),
-          child: Text(
-            yes,
-            style: kScenicBody.copyWith(
-              fontSize: 16,
-              color: yesIsDanger ? WithMeColors.danger : null,
-              fontWeight: FontWeight.w800,
+    // Not dismissible means the phone's Back button cannot close it either
+    // (it used to, and that counted as no answer).
+    builder: (context) => PopScope(
+      canPop: dismissible,
+      child: AlertDialog(
+        backgroundColor: ScenicColors.bubble,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        title: ScenicHeading(title, size: 21),
+        content: Text(body, style: kScenicBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(no, style: kScenicBody.copyWith(fontSize: 16)),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(
+              yes,
+              style: kScenicBody.copyWith(
+                fontSize: 16,
+                color: yesIsDanger ? WithMeColors.danger : null,
+                fontWeight: FontWeight.w800,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     ),
   );
 }

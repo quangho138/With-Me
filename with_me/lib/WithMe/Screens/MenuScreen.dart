@@ -6,6 +6,7 @@ import '../../l10n/l10n.dart';
 import '../Components/ScenicChoice.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/WaitLayer.dart';
 import '../Theme/WithMeTheme.dart';
 import 'AboutScreen.dart';
 import 'HelpScreen.dart';
@@ -163,35 +164,41 @@ class _AccountRowState extends State<_AccountRow> {
     );
     if (sure != true || !mounted) return;
 
-    // Upload anything still waiting first.
-    final sync = AppRepositories.sync;
-    await sync.syncNow();
-    var waiting = false;
-    try {
-      waiting = await sync.hasPendingChanges();
-    } catch (_) {}
-    if (waiting && mounted) {
-      final anyway = await showScenicChoice(
-        context,
-        title: context.l10n.menuNotSavedTitle,
-        body: context.l10n.menuNotSavedBody,
-        yes: context.l10n.menuLogOutAnyway,
-        no: context.l10n.menuStayLoggedIn,
-        yesIsDanger: true,
-      );
-      if (anyway != true) return;
-    }
-    if (!mounted) return;
+    // Nothing can be tapped and Back does nothing until it is done, so the
+    // person never stays on a screen that is already logged out.
+    final out = await WaitLayer.over(context, () async {
+      // Upload anything still waiting first.
+      final sync = AppRepositories.sync;
+      await sync.syncNow();
+      var waiting = false;
+      try {
+        waiting = await sync.hasPendingChanges();
+      } catch (_) {}
+      if (waiting && mounted) {
+        final anyway = await showScenicChoice(
+          context,
+          title: context.l10n.menuNotSavedTitle,
+          body: context.l10n.menuNotSavedBody,
+          yes: context.l10n.menuLogOutAnyway,
+          no: context.l10n.menuStayLoggedIn,
+          yesIsDanger: true,
+        );
+        if (anyway != true) return false;
+      }
+      if (!mounted) return false;
 
-    try {
-      await AppRepositories.users.signOut();
-    } catch (_) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(context.l10n.menuLogOutFailed)));
-      return;
-    }
+      try {
+        await AppRepositories.users.signOut();
+      } catch (_) {
+        if (!mounted) return false;
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(context.l10n.menuLogOutFailed)));
+        return false;
+      }
+      return true;
+    });
+    if (!out) return;
     if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (_) => const WelcomeScreen()),
@@ -216,7 +223,7 @@ class _AccountRowState extends State<_AccountRow> {
       label: context.l10n.menuLogOut,
       icon: Icons.logout_rounded,
       danger: true,
-      onTap: _logOut,
+      onTap: () => OneAtATime.run(#logOut, _logOut),
     );
   }
 }

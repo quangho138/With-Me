@@ -104,76 +104,80 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   @override
   Widget build(BuildContext context) {
     final l = context.l10n;
-    return ScenicScaffold(
-      title: l.accountCreateTitle,
-      onBack: () => Navigator.of(context).pop(),
-      mascot: RealPose.think,
-      mascotMax: 0.28,
-      action: ScenicPill(
-        label: l.accountCreateAccount,
-        height: 58,
-        onPressed: _busy ? null : _create,
-      ),
-      footnote: ScenicFootnote(
-        l.accountAlreadyWithUs,
-        onTap: () => Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
+    // While busy, Back does nothing, so it is never left half done.
+    return PopScope(
+      canPop: !_busy,
+      child: ScenicScaffold(
+        title: l.accountCreateTitle,
+        onBack: () => Navigator.of(context).maybePop(),
+        mascot: RealPose.think,
+        mascotMax: 0.28,
+        action: ScenicPill(
+          label: l.accountCreateAccount,
+          height: 58,
+          onPressed: _busy ? null : _create,
         ),
-      ),
-      child: ScenicPanel(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            WithMeField(
-              label: l.accountName,
-              controller: _name,
-              hint: l.accountNameHint,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-            const SizedBox(height: 14),
-            WithMeField(
-              label: l.accountEmail,
-              controller: _email,
-              hint: l.accountEmailHint,
-              keyboardType: TextInputType.emailAddress,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-            const SizedBox(height: 14),
-            WithMeField(
-              label: l.accountPassword,
-              controller: _password,
-              obscure: true,
-              fill: Colors.white,
-              border: kScenicFieldRing,
-            ),
-            const SizedBox(height: 16),
-            _TermsCheck(
-              value: _agreed,
-              onChanged: (v) => setState(() => _agreed = v),
-            ),
-            // What they agree to, one tap away (plan item 4).
-            Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: TextButton(
-                key: const ValueKey('signup-read-legal'),
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => const LegalScreen(page: LegalPage.terms),
+        footnote: ScenicFootnote(
+          l.accountAlreadyWithUs,
+          onTap: () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const WithMeLoginScreen()),
+          ),
+        ),
+        child: ScenicPanel(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              WithMeField(
+                label: l.accountName,
+                controller: _name,
+                hint: l.accountNameHint,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+              const SizedBox(height: 14),
+              WithMeField(
+                label: l.accountEmail,
+                controller: _email,
+                hint: l.accountEmailHint,
+                keyboardType: TextInputType.emailAddress,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+              const SizedBox(height: 14),
+              WithMeField(
+                label: l.accountPassword,
+                controller: _password,
+                obscure: true,
+                fill: Colors.white,
+                border: kScenicFieldRing,
+              ),
+              const SizedBox(height: 16),
+              _TermsCheck(
+                value: _agreed,
+                onChanged: (v) => setState(() => _agreed = v),
+              ),
+              // What they agree to, one tap away (plan item 4).
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(
+                  key: const ValueKey('signup-read-legal'),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => const LegalScreen(page: LegalPage.terms),
+                    ),
                   ),
-                ),
-                child: Text(
-                  context.l10n.accountReadLegal,
-                  style: kScenicBody.copyWith(
-                    fontSize: 14,
-                    color: ScenicColors.pillBottom,
-                    decoration: TextDecoration.underline,
+                  child: Text(
+                    context.l10n.accountReadLegal,
+                    style: kScenicBody.copyWith(
+                      fontSize: 14,
+                      color: ScenicColors.pillBottom,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
