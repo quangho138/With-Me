@@ -2217,29 +2217,6 @@ class AppLocalizationsHi extends AppLocalizations {
       'रेटिंग अभी सेव नहीं होतीं, इसलिए यहाँ उपलब्ध उपाय दिखते हैं, न कि वे कितने कारगर रहे।';
 
   @override
-  String get dashRememberTitle => 'याद रखें...';
-
-  @override
-  String get dashPromiseNotAlone => 'आपके साथ कोई है।';
-
-  @override
-  String get dashPromiseListen => 'मैं सुनने के लिए यहाँ हूँ।';
-
-  @override
-  String get dashPromiseUnderstand => 'मुझे आपकी बात समझ आती है।';
-
-  @override
-  String get dashPromiseNextStep => 'मेरी मदद से अगला क़दम उठाइए।';
-
-  @override
-  String get dashPromiseGotThis => 'आपसे यह हो जाएगा!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle एक साथी है, पेशेवर देखभाल का विकल्प नहीं।';
-  }
-
-  @override
   String get dashReminderTitle => 'नियमित बने रहें';
 
   @override
@@ -2536,46 +2513,6 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get exerciseSighSubtitle =>
       'गहरी साँस अंदर · छोटी साँस अंदर · साँस बाहर';
-
-  @override
-  String get exerciseRestTitle => 'मन को आराम दें';
-
-  @override
-  String get exerciseRestIntro =>
-      'लंबे गाइडेड अभ्यास, उस समय के लिए जब आपके पास कुछ मिनट हों।';
-
-  @override
-  String get exerciseRestDestressTitle => 'अपने दिन का तनाव कम करें';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 मिनट · काम के बाद सुकून';
-
-  @override
-  String get exerciseRestSleepTitle => 'अपनी नींद आसान बनाएँ';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 मिनट · 4-7-8 साँस';
-
-  @override
-  String get exerciseRestFocusTitle => 'अपना ध्यान मज़बूत करें';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 मिनट · 4-4-4-4 फ़ोकस';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'चटकती लकड़ियाँ · 40 मिनट का लूप';
-
-  @override
-  String get exerciseAddBreathing => 'साँस का अभ्यास जोड़ें';
-
-  @override
-  String get exerciseVolume => 'वॉल्यूम';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'टाइमर · $minutes मिनट';
-  }
 
   @override
   String get exerciseControlScaleLabel =>

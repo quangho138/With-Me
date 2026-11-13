@@ -3767,47 +3767,12 @@ abstract class AppLocalizations {
   /// **'Ratings are not stored yet, so this shows the actions on offer rather than how they have gone.'**
   String get dashRatingsNotStored;
 
-  /// Title of the companion's promises screen, in a handwritten-style font.
-  ///
-  /// In en, this message translates to:
-  /// **'Remember...'**
-  String get dashRememberTitle;
 
-  /// One of the companion's five promises to the user. Warm.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'re not alone.'**
-  String get dashPromiseNotAlone;
 
-  /// One of the companion's five promises. 'I' is the companion.
-  ///
-  /// In en, this message translates to:
-  /// **'I listen.'**
-  String get dashPromiseListen;
 
-  /// One of the companion's five promises. 'I' is the companion.
-  ///
-  /// In en, this message translates to:
-  /// **'I understand.'**
-  String get dashPromiseUnderstand;
 
-  /// One of the companion's five promises. 'I' is the companion.
-  ///
-  /// In en, this message translates to:
-  /// **'I help you take the next step.'**
-  String get dashPromiseNextStep;
 
-  /// One of the companion's five promises. Encouraging.
-  ///
-  /// In en, this message translates to:
-  /// **'You\'ve got this!'**
-  String get dashPromiseGotThis;
 
-  /// Important disclaimer at the foot of the promises screen. appTitle is the app's name.
-  ///
-  /// In en, this message translates to:
-  /// **'{appTitle} is a companion, not a substitute for professional care.'**
-  String dashRememberDisclaimer(String appTitle);
 
   /// Title of the reminder screen.
   ///
@@ -4361,79 +4326,19 @@ abstract class AppLocalizations {
   /// **'Deep inhale · quick inhale · exhale'**
   String get exerciseSighSubtitle;
 
-  /// Title of the screen listing longer guided exercises.
-  ///
-  /// In en, this message translates to:
-  /// **'Rest your mind'**
-  String get exerciseRestTitle;
-
-  /// Line under the 'Rest your mind' title.
-  ///
-  /// In en, this message translates to:
-  /// **'Longer guided exercises, for when you have a few minutes.'**
-  String get exerciseRestIntro;
-
-  /// Longer guided exercise on 'Rest your mind': a soundscape to unwind. Sentence case.
-  ///
-  /// In en, this message translates to:
-  /// **'Destress your day'**
-  String get exerciseRestDestressTitle;
-
-  /// Length and purpose under 'Destress your day'.
-  ///
-  /// In en, this message translates to:
-  /// **'5 min · unwind after work'**
-  String get exerciseRestDestressSubtitle;
-
-  /// Longer guided exercise on 'Rest your mind', for falling asleep. Sentence case.
-  ///
-  /// In en, this message translates to:
-  /// **'Ease your sleep'**
-  String get exerciseRestSleepTitle;
-
-  /// Length and breathing pattern under 'Ease your sleep'.
-  ///
-  /// In en, this message translates to:
-  /// **'8 min · 4-7-8 breathing'**
-  String get exerciseRestSleepSubtitle;
-
-  /// Longer guided exercise on 'Rest your mind', for focus. Sentence case.
-  ///
-  /// In en, this message translates to:
-  /// **'Strengthen your focus'**
-  String get exerciseRestFocusTitle;
-
-  /// Length and breathing pattern under 'Strengthen your focus'.
-  ///
-  /// In en, this message translates to:
-  /// **'4 min · 4-4-4-4 focus'**
-  String get exerciseRestFocusSubtitle;
-
-  /// Line under 'Fire' on the soundscape player: what it sounds like and how long the loop is.
-  ///
-  /// In en, this message translates to:
-  /// **'Crackling logs · 40 min loop'**
-  String get exerciseSoundscapeFireSubtitle;
-
-  /// Soundscape player button: add a breathing exercise on top of the sound.
-  ///
-  /// In en, this message translates to:
-  /// **'Add breathing'**
-  String get exerciseAddBreathing;
 
 
 
-  /// Label on the soundscape player.
-  ///
-  /// In en, this message translates to:
-  /// **'Volume'**
-  String get exerciseVolume;
 
-  /// Soundscape player: the sleep timer and its length in minutes.
-  ///
-  /// In en, this message translates to:
-  /// **'Timer · {minutes} min'**
-  String exerciseTimerMinutes(int minutes);
+
+
+
+
+
+
+
+
+
 
   /// Screen-reader label of the check-in's 1-to-5 dial for how in control the person feels.
   ///

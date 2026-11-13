@@ -2140,29 +2140,6 @@ class AppLocalizationsJa extends AppLocalizations {
       '評価はまだ保存されていないため、ここでは結果ではなく、選べる行動を表示しています。';
 
   @override
-  String get dashRememberTitle => '忘れないで...';
-
-  @override
-  String get dashPromiseNotAlone => 'ひとりではありませんよ。';
-
-  @override
-  String get dashPromiseListen => '話を聞きますよ。';
-
-  @override
-  String get dashPromiseUnderstand => 'わかりますよ。';
-
-  @override
-  String get dashPromiseNextStep => '次の一歩を踏み出すお手伝いをします。';
-
-  @override
-  String get dashPromiseGotThis => 'あなたならできます！';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitleは寄り添うパートナーであり、専門家によるケアの代わりにはなりません。';
-  }
-
-  @override
   String get dashReminderTitle => '続けるために';
 
   @override
@@ -2451,44 +2428,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => '深く吸う · すばやく1回吸う · 吐く';
-
-  @override
-  String get exerciseRestTitle => '心を休める';
-
-  @override
-  String get exerciseRestIntro => '数分あるときのための、長めのガイド付きエクササイズ。';
-
-  @override
-  String get exerciseRestDestressTitle => '一日のストレスをほぐす';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5分 · 仕事のあとにひと息';
-
-  @override
-  String get exerciseRestSleepTitle => '心地よい眠りへ';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8分 · 4-7-8 呼吸';
-
-  @override
-  String get exerciseRestFocusTitle => '集中力を高める';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4分 · 4-4-4-4 集中';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle => '薪のはぜる音 · 40分ループ';
-
-  @override
-  String get exerciseAddBreathing => '呼吸を追加';
-
-  @override
-  String get exerciseVolume => '音量';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'タイマー · $minutes分';
-  }
 
   @override
   String get exerciseControlScaleLabel => 'どのくらいコントロールできていると感じるか（1～5）';

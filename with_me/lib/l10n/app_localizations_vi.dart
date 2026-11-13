@@ -2221,29 +2221,6 @@ class AppLocalizationsVi extends AppLocalizations {
       'Đánh giá chưa được lưu, nên phần này hiển thị các hành động có sẵn thay vì mức độ hiệu quả của chúng.';
 
   @override
-  String get dashRememberTitle => 'Hãy nhớ...';
-
-  @override
-  String get dashPromiseNotAlone => 'Bạn không một mình.';
-
-  @override
-  String get dashPromiseListen => 'Mình lắng nghe.';
-
-  @override
-  String get dashPromiseUnderstand => 'Mình thấu hiểu.';
-
-  @override
-  String get dashPromiseNextStep => 'Mình giúp bạn đi bước tiếp theo.';
-
-  @override
-  String get dashPromiseGotThis => 'Bạn làm được mà!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle là người bạn đồng hành, không thay thế cho sự chăm sóc chuyên nghiệp.';
-  }
-
-  @override
   String get dashReminderTitle => 'Giữ nhịp đều đặn';
 
   @override
@@ -2538,46 +2515,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => 'Hít sâu · hít nhanh · thở ra';
-
-  @override
-  String get exerciseRestTitle => 'Thư giãn tâm trí';
-
-  @override
-  String get exerciseRestIntro =>
-      'Các bài tập có hướng dẫn dài hơn, cho lúc bạn có vài phút.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Giải tỏa căng thẳng';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 phút · thư giãn sau giờ làm';
-
-  @override
-  String get exerciseRestSleepTitle => 'Ngủ ngon hơn';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 phút · thở 4-7-8';
-
-  @override
-  String get exerciseRestFocusTitle => 'Tăng cường tập trung';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 phút · tập trung 4-4-4-4';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'Củi cháy lách tách · lặp lại 40 phút';
-
-  @override
-  String get exerciseAddBreathing => 'Thêm bài thở';
-
-  @override
-  String get exerciseVolume => 'Âm lượng';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Hẹn giờ · $minutes phút';
-  }
 
   @override
   String get exerciseControlScaleLabel => 'Mức bạn làm chủ được, từ 1 đến 5';

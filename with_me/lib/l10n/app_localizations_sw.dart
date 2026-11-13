@@ -2227,29 +2227,6 @@ class AppLocalizationsSw extends AppLocalizations {
       'Ukadiriaji bado haujahifadhiwa, kwa hiyo hii inaonyesha vitendo vinavyopatikana badala ya jinsi vilivyokwenda.';
 
   @override
-  String get dashRememberTitle => 'Kumbuka...';
-
-  @override
-  String get dashPromiseNotAlone => 'Hauko peke yako.';
-
-  @override
-  String get dashPromiseListen => 'Ninasikiliza.';
-
-  @override
-  String get dashPromiseUnderstand => 'Ninaelewa.';
-
-  @override
-  String get dashPromiseNextStep => 'Ninakusaidia kupiga hatua inayofuata.';
-
-  @override
-  String get dashPromiseGotThis => 'Unaweza!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle ni mwenzi, si mbadala wa huduma ya kitaalamu.';
-  }
-
-  @override
   String get dashReminderTitle => 'Endelea Kufuatilia';
 
   @override
@@ -2548,46 +2525,6 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get exerciseSighSubtitle =>
       'Pumzi ya kina · moja ya haraka · toa pumzi';
-
-  @override
-  String get exerciseRestTitle => 'Pumzisha akili yako';
-
-  @override
-  String get exerciseRestIntro =>
-      'Mazoezi marefu yanayoongozwa, kwa wakati ambapo una dakika chache.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Punguza msongo wa siku yako';
-
-  @override
-  String get exerciseRestDestressSubtitle => 'Dak 5 · pumzika baada ya kazi';
-
-  @override
-  String get exerciseRestSleepTitle => 'Pata usingizi kwa urahisi';
-
-  @override
-  String get exerciseRestSleepSubtitle => 'Dak 8 · kupumua 4-7-8';
-
-  @override
-  String get exerciseRestFocusTitle => 'Imarisha umakini wako';
-
-  @override
-  String get exerciseRestFocusSubtitle => 'Dak 4 · umakini 4-4-4-4';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'Kuni zinazotatarika · mzunguko wa dak 40';
-
-  @override
-  String get exerciseAddBreathing => 'Ongeza kupumua';
-
-  @override
-  String get exerciseVolume => 'Kiwango cha sauti';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Kipima muda · dak $minutes';
-  }
 
   @override
   String get exerciseControlScaleLabel =>

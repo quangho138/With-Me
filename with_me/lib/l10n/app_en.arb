@@ -2999,39 +2999,6 @@
   "@dashRatingsNotStored": {
     "description": "Note under the actions list."
   },
-  "dashRememberTitle": "Remember...",
-  "@dashRememberTitle": {
-    "description": "Title of the companion's promises screen, in a handwritten-style font."
-  },
-  "dashPromiseNotAlone": "You're not alone.",
-  "@dashPromiseNotAlone": {
-    "description": "One of the companion's five promises to the user. Warm."
-  },
-  "dashPromiseListen": "I listen.",
-  "@dashPromiseListen": {
-    "description": "One of the companion's five promises. 'I' is the companion."
-  },
-  "dashPromiseUnderstand": "I understand.",
-  "@dashPromiseUnderstand": {
-    "description": "One of the companion's five promises. 'I' is the companion."
-  },
-  "dashPromiseNextStep": "I help you take the next step.",
-  "@dashPromiseNextStep": {
-    "description": "One of the companion's five promises. 'I' is the companion."
-  },
-  "dashPromiseGotThis": "You've got this!",
-  "@dashPromiseGotThis": {
-    "description": "One of the companion's five promises. Encouraging."
-  },
-  "dashRememberDisclaimer": "{appTitle} is a companion, not a substitute for professional care.",
-  "@dashRememberDisclaimer": {
-    "description": "Important disclaimer at the foot of the promises screen. appTitle is the app's name.",
-    "placeholders": {
-      "appTitle": {
-        "type": "String"
-      }
-    }
-  },
   "dashReminderTitle": "Stay on Track",
   "@dashReminderTitle": {
     "description": "Title of the reminder screen."
@@ -3443,59 +3410,6 @@
   "exerciseSighSubtitle": "Deep inhale · quick inhale · exhale",
   "@exerciseSighSubtitle": {
     "description": "Description under 'Physiological Sigh' on 'Choose an exercise'."
-  },
-  "exerciseRestTitle": "Rest your mind",
-  "@exerciseRestTitle": {
-    "description": "Title of the screen listing longer guided exercises."
-  },
-  "exerciseRestIntro": "Longer guided exercises, for when you have a few minutes.",
-  "@exerciseRestIntro": {
-    "description": "Line under the 'Rest your mind' title."
-  },
-  "exerciseRestDestressTitle": "Destress your day",
-  "@exerciseRestDestressTitle": {
-    "description": "Longer guided exercise on 'Rest your mind': a soundscape to unwind. Sentence case."
-  },
-  "exerciseRestDestressSubtitle": "5 min · unwind after work",
-  "@exerciseRestDestressSubtitle": {
-    "description": "Length and purpose under 'Destress your day'."
-  },
-  "exerciseRestSleepTitle": "Ease your sleep",
-  "@exerciseRestSleepTitle": {
-    "description": "Longer guided exercise on 'Rest your mind', for falling asleep. Sentence case."
-  },
-  "exerciseRestSleepSubtitle": "8 min · 4-7-8 breathing",
-  "@exerciseRestSleepSubtitle": {
-    "description": "Length and breathing pattern under 'Ease your sleep'."
-  },
-  "exerciseRestFocusTitle": "Strengthen your focus",
-  "@exerciseRestFocusTitle": {
-    "description": "Longer guided exercise on 'Rest your mind', for focus. Sentence case."
-  },
-  "exerciseRestFocusSubtitle": "4 min · 4-4-4-4 focus",
-  "@exerciseRestFocusSubtitle": {
-    "description": "Length and breathing pattern under 'Strengthen your focus'."
-  },
-  "exerciseSoundscapeFireSubtitle": "Crackling logs · 40 min loop",
-  "@exerciseSoundscapeFireSubtitle": {
-    "description": "Line under 'Fire' on the soundscape player: what it sounds like and how long the loop is."
-  },
-  "exerciseAddBreathing": "Add breathing",
-  "@exerciseAddBreathing": {
-    "description": "Soundscape player button: add a breathing exercise on top of the sound."
-  },
-  "exerciseVolume": "Volume",
-  "@exerciseVolume": {
-    "description": "Label on the soundscape player."
-  },
-  "exerciseTimerMinutes": "Timer · {minutes} min",
-  "@exerciseTimerMinutes": {
-    "description": "Soundscape player: the sleep timer and its length in minutes.",
-    "placeholders": {
-      "minutes": {
-        "type": "int"
-      }
-    }
   },
   "exerciseControlScaleLabel": "How in control you feel, 1 to 5",
   "@exerciseControlScaleLabel": {

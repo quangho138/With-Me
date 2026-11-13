@@ -2228,30 +2228,6 @@ class AppLocalizationsTe extends AppLocalizations {
       'రేటింగ్‌లు ఇంకా సేవ్ కావడం లేదు, కాబట్టి ఇవి ఎంత బాగా పనిచేశాయో కాకుండా, అందుబాటులో ఉన్న చర్యలను ఇది చూపుతుంది.';
 
   @override
-  String get dashRememberTitle => 'గుర్తుంచుకోండి...';
-
-  @override
-  String get dashPromiseNotAlone => 'మీరు ఒంటరి కాదు.';
-
-  @override
-  String get dashPromiseListen => 'నేను వింటాను.';
-
-  @override
-  String get dashPromiseUnderstand => 'నేను అర్థం చేసుకుంటాను.';
-
-  @override
-  String get dashPromiseNextStep =>
-      'తదుపరి అడుగు వేయడానికి నేను సహాయం చేస్తాను.';
-
-  @override
-  String get dashPromiseGotThis => 'మీరు ఇది చేయగలరు!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle ఒక తోడు, వృత్తిపరమైన సంరక్షణకు ప్రత్యామ్నాయం కాదు.';
-  }
-
-  @override
   String get dashReminderTitle => 'క్రమం తప్పకండి';
 
   @override
@@ -2550,46 +2526,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => 'లోతైన శ్వాస · చిన్న శ్వాస · నిశ్వాసం';
-
-  @override
-  String get exerciseRestTitle => 'మీ మనసుకు విశ్రాంతి ఇవ్వండి';
-
-  @override
-  String get exerciseRestIntro =>
-      'మీకు కొన్ని నిమిషాలు ఉన్నప్పుడు చేయడానికి, ఎక్కువ నిడివి గల గైడెడ్ వ్యాయామాలు.';
-
-  @override
-  String get exerciseRestDestressTitle => 'మీ రోజు ఒత్తిడి తగ్గించుకోండి';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 నిమి · పని తర్వాత సేదతీరండి';
-
-  @override
-  String get exerciseRestSleepTitle => 'హాయిగా నిద్రపోండి';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 నిమి · 4-7-8 శ్వాస';
-
-  @override
-  String get exerciseRestFocusTitle => 'మీ ఏకాగ్రతను బలపరచుకోండి';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 నిమి · 4-4-4-4 ఏకాగ్రత';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'చిటపటలాడే కట్టెలు · 40 నిమిషాల లూప్';
-
-  @override
-  String get exerciseAddBreathing => 'శ్వాస వ్యాయామం జోడించండి';
-
-  @override
-  String get exerciseVolume => 'వాల్యూమ్';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'టైమర్ · $minutes నిమి';
-  }
 
   @override
   String get exerciseControlScaleLabel =>

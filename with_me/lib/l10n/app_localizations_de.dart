@@ -2245,29 +2245,6 @@ class AppLocalizationsDe extends AppLocalizations {
       'Bewertungen werden noch nicht gespeichert. Daher siehst du hier die angebotenen Maßnahmen und nicht, wie gut sie bei dir gewirkt haben.';
 
   @override
-  String get dashRememberTitle => 'Denk daran …';
-
-  @override
-  String get dashPromiseNotAlone => 'Du bist nicht allein.';
-
-  @override
-  String get dashPromiseListen => 'Ich höre dir zu.';
-
-  @override
-  String get dashPromiseUnderstand => 'Ich verstehe dich.';
-
-  @override
-  String get dashPromiseNextStep => 'Ich helfe dir beim nächsten Schritt.';
-
-  @override
-  String get dashPromiseGotThis => 'Du schaffst das!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle ist eine Begleitung, kein Ersatz für professionelle Hilfe.';
-  }
-
-  @override
   String get dashReminderTitle => 'Dranbleiben';
 
   @override
@@ -2565,47 +2542,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => 'Tief einatmen · einmal kurz · ausatmen';
-
-  @override
-  String get exerciseRestTitle => 'Ruhe für den Kopf';
-
-  @override
-  String get exerciseRestIntro =>
-      'Längere geführte Übungen, wenn du ein paar Minuten Zeit hast.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Entspannt durch den Tag';
-
-  @override
-  String get exerciseRestDestressSubtitle =>
-      '5 Min. · nach der Arbeit abschalten';
-
-  @override
-  String get exerciseRestSleepTitle => 'Besser einschlafen';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 Min. · Atmung 4-7-8';
-
-  @override
-  String get exerciseRestFocusTitle => 'Stärke deinen Fokus';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 Min. · Fokus 4-4-4-4';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'Knisternde Holzscheite · 40 Min. in Schleife';
-
-  @override
-  String get exerciseAddBreathing => 'Atmung hinzufügen';
-
-  @override
-  String get exerciseVolume => 'Lautstärke';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Timer · $minutes Min.';
-  }
 
   @override
   String get exerciseControlScaleLabel =>

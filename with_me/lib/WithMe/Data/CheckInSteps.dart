@@ -264,13 +264,6 @@ const List<(String, String, Color)> kExercises = [
   ),
 ];
 
-/// The longer guided set (`image26.png`).
-const List<(String, String, Color)> kRestExercises = [
-  ('Destress your day', '5 min · unwind after work', WithMeColors.coral),
-  ('Ease your sleep', '8 min · 4-7-8 breathing', WithMeColors.mint),
-  ('Strengthen your focus', '4 min · 4-4-4-4 focus', WithMeColors.peach),
-];
-
 /// The longest a written "Other" answer may be, in characters. Answers are
 /// one line and trimmed; blank or whitespace-only text counts as no answer.
 const int kOtherMaxLength = 100;

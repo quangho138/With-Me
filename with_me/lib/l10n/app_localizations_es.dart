@@ -2232,29 +2232,6 @@ class AppLocalizationsEs extends AppLocalizations {
       'Las calificaciones todavía no se guardan, así que aquí ves las acciones disponibles y no cómo te han funcionado.';
 
   @override
-  String get dashRememberTitle => 'Recuerda...';
-
-  @override
-  String get dashPromiseNotAlone => 'Estoy aquí contigo.';
-
-  @override
-  String get dashPromiseListen => 'Te escucho.';
-
-  @override
-  String get dashPromiseUnderstand => 'Te entiendo.';
-
-  @override
-  String get dashPromiseNextStep => 'Te ayudo a dar el siguiente paso.';
-
-  @override
-  String get dashPromiseGotThis => '¡Tú puedes!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle es una compañía, no un sustituto de la atención profesional.';
-  }
-
-  @override
   String get dashReminderTitle => 'Sigue adelante';
 
   @override
@@ -2551,47 +2528,6 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get exerciseSighSubtitle =>
       'Inhalación profunda · una rápida · exhalación';
-
-  @override
-  String get exerciseRestTitle => 'Descansa tu mente';
-
-  @override
-  String get exerciseRestIntro =>
-      'Ejercicios guiados más largos, para cuando tienes unos minutos.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Libera el estrés del día';
-
-  @override
-  String get exerciseRestDestressSubtitle =>
-      '5 min · relájate después del trabajo';
-
-  @override
-  String get exerciseRestSleepTitle => 'Duerme mejor';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 min · respiración 4-7-8';
-
-  @override
-  String get exerciseRestFocusTitle => 'Fortalece tu concentración';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 min · concentración 4-4-4-4';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'Leña que crepita · 40 min en bucle';
-
-  @override
-  String get exerciseAddBreathing => 'Agregar respiración';
-
-  @override
-  String get exerciseVolume => 'Volumen';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Temporizador · $minutes min';
-  }
 
   @override
   String get exerciseControlScaleLabel => 'Cuánto control sientes, del 1 al 5';

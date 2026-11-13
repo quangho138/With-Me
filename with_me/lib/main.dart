@@ -36,12 +36,9 @@ import 'WithMe/Screens/NotificationsScreen.dart';
 import 'WithMe/Screens/OutsideLogin.dart';
 import 'WithMe/Screens/ProfileScreen.dart';
 import 'WithMe/Screens/ProgressScreen.dart';
-import 'WithMe/Screens/RememberScreen.dart';
 import 'WithMe/Screens/ReminderScreen.dart';
 import 'WithMe/Screens/ResetPasswordScreen.dart';
-import 'WithMe/Screens/RestYourMindScreen.dart';
 import 'WithMe/Screens/SettingsScreen.dart';
-import 'WithMe/Screens/SoundscapeScreen.dart';
 import 'WithMe/Screens/StrategiesActionsScreen.dart';
 import 'WithMe/Screens/TriggersSignsScreen.dart';
 import 'WithMe/Screens/WelcomeScreen.dart';
@@ -266,10 +263,8 @@ class WithMeApp extends StatelessWidget {
 
         // Exercises — image25 to image31
         ExerciseChooseScreen.route: (_) => const ExerciseChooseScreen(),
-        RestYourMindScreen.route: (_) => const RestYourMindScreen(),
         BeforeWeStartScreen.route: (_) => const BeforeWeStartScreen(),
         BreathingScreen.route: (_) => const BreathingScreen(),
-        SoundscapeScreen.route: (_) => const SoundscapeScreen(),
 
         // Dashboard — image32 to image39
         DashboardScreen.route: (_) => const DashboardScreen(),
@@ -278,7 +273,6 @@ class WithMeApp extends StatelessWidget {
         YourDayScreen.route: (_) => const YourDayScreen(),
         ProgressScreen.route: (_) => const ProgressScreen(),
         ReminderScreen.route: (_) => const ReminderScreen(),
-        RememberScreen.route: (_) => const RememberScreen(),
 
         // Menu and settings — image40 to image45
         MenuScreen.route: (_) => const MenuScreen(),

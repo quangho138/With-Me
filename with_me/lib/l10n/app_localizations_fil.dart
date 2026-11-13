@@ -2239,30 +2239,6 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi pa naiimbak ang mga rating, kaya ipinapakita nito ang mga aksyong maaaring piliin sa halip na kung paano ang naging resulta ng mga ito.';
 
   @override
-  String get dashRememberTitle => 'Tandaan...';
-
-  @override
-  String get dashPromiseNotAlone => 'Hindi ka nag-iisa.';
-
-  @override
-  String get dashPromiseListen => 'Nakikinig ako.';
-
-  @override
-  String get dashPromiseUnderstand => 'Naiintindihan kita.';
-
-  @override
-  String get dashPromiseNextStep =>
-      'Tinutulungan kitang gawin ang susunod na hakbang.';
-
-  @override
-  String get dashPromiseGotThis => 'Kaya mo ito!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return 'Ang $appTitle ay isang kasama, hindi kapalit ng propesyonal na pangangalaga.';
-  }
-
-  @override
   String get dashReminderTitle => 'Tuloy-tuloy Lang';
 
   @override
@@ -2565,47 +2541,6 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get exerciseSighSubtitle =>
       'Malalim na langhap · isang mabilis · buga';
-
-  @override
-  String get exerciseRestTitle => 'Ipahinga ang isip mo';
-
-  @override
-  String get exerciseRestIntro =>
-      'Mas mahahabang ginagabayang ehersisyo, para kapag may ilang minuto ka.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Bawasan ang stress sa araw mo';
-
-  @override
-  String get exerciseRestDestressSubtitle =>
-      '5 min · mag-relax pagkatapos ng trabaho';
-
-  @override
-  String get exerciseRestSleepTitle => 'Padaliin ang iyong tulog';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 min · 4-7-8 na paghinga';
-
-  @override
-  String get exerciseRestFocusTitle => 'Patalasin ang iyong pokus';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 min · 4-4-4-4 na pokus';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'Lumalagitik na kahoy · 40 min na loop';
-
-  @override
-  String get exerciseAddBreathing => 'Magdagdag ng paghinga';
-
-  @override
-  String get exerciseVolume => 'Lakas ng tunog';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Timer · $minutes min';
-  }
 
   @override
   String get exerciseControlScaleLabel =>
