@@ -73,3 +73,16 @@ jobs:
           echo "Largest 15 files:"
           find assets -type f -printf '%s\t%p\n' | sort -nr | head -15 \
             | awk -F'\t' '{printf "%8.1f KB  %s\n", $1/1024, $2}'
+
+  # The server's purchase rules (supabase/functions/verify_purchase).
+  server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Purchase rules
+        run: deno test supabase/functions/verify_purchase/decide_test.ts
+      - name: Server function types
+        run: deno check supabase/functions/verify_purchase/index.ts

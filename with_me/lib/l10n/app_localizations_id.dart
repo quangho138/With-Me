@@ -756,6 +756,42 @@ class AppLocalizationsId extends AppLocalizations {
       'Tidak dapat menjangkau akunmu. Periksa koneksimu lalu coba lagi.';
 
   @override
+  String get plusRestore => 'Pulihkan pembelian';
+
+  @override
+  String get plusNothingToRestore => 'Tidak ada pembelian With Me Plus untuk akun Google ini.';
+
+  @override
+  String get plusPending => 'Pembayaran Anda masih menunggu Google. With Me Plus dimulai setelah pembayaran selesai.';
+
+  @override
+  String get plusBuyFailed => 'Pembelian tidak selesai. Silakan coba lagi.';
+
+  @override
+  String get plusOtherAccount => 'Pembelian ini milik akun With Me lain. Masuk ke akun itu untuk menggunakannya.';
+
+  @override
+  String get plusCheckLater => 'Pembelian Anda aman di Google. With Me Plus aktif setelah aplikasi bisa terhubung ke akun Anda.';
+
+  @override
+  String get plusStarted => 'With Me Plus sudah aktif. Terima kasih!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/tahun';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/bulan';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/bulan · ditagih tahunan';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Pembayaran belum terhubung di versi ini.';
 
@@ -2689,10 +2725,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'Kamu punya With Me Plus';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus aktif. Tidak ada pembayaran yang diambil.';
 
   @override
   String get exerciseMeditationTitle => 'Meditasi Terpandu';

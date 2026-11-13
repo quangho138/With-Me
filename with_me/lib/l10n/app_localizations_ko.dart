@@ -736,6 +736,42 @@ class AppLocalizationsKo extends AppLocalizations {
   String get plusCouldNotReach => '계정에 연결할 수 없어요. 연결 상태를 확인하고 다시 시도해 주세요.';
 
   @override
+  String get plusRestore => '구매 복원';
+
+  @override
+  String get plusNothingToRestore => '이 Google 계정에서 With Me Plus 구매 내역을 찾지 못했습니다.';
+
+  @override
+  String get plusPending => '결제가 Google에서 대기 중입니다. 결제가 완료되면 With Me Plus가 시작됩니다.';
+
+  @override
+  String get plusBuyFailed => '구매가 완료되지 않았습니다. 다시 시도해 주세요.';
+
+  @override
+  String get plusOtherAccount => '이 구매는 다른 With Me 계정의 것입니다. 사용하려면 해당 계정으로 로그인하세요.';
+
+  @override
+  String get plusCheckLater => '구매 내역은 Google에 안전하게 보관되어 있습니다. 앱이 계정에 연결되면 With Me Plus가 켜집니다.';
+
+  @override
+  String get plusStarted => 'With Me Plus가 켜졌습니다. 감사합니다!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/년';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/월';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/월 · 연간 결제';
+  }
+
+  @override
   String get accountPaymentsNotWired => '결제는 이번 버전에서 아직 연결되지 않았어요.';
 
   @override
@@ -2587,9 +2623,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'With Me Plus를 이용 중이에요';
-
-  @override
-  String get accountPlusStarted => 'With Me Plus가 켜졌어요. 결제된 금액은 없어요.';
 
   @override
   String get exerciseMeditationTitle => '가이드 명상';

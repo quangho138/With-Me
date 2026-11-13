@@ -59,6 +59,10 @@ dependencies:
   flutter_local_notifications: ^22.3.3
   timezone: ^0.11.0
   flutter_timezone: ^5.1.1
+  # With Me Plus is bought through Google Play (stage B of the payments
+  # plan). The Android part is named too, to read each plan's base plan id.
+  in_app_purchase: ^3.2.0
+  in_app_purchase_android: ^0.4.0
 
 dev_dependencies:
   flutter_test:

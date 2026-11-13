@@ -765,6 +765,42 @@ class AppLocalizationsDe extends AppLocalizations {
       'Dein Konto ist nicht erreichbar. Prüfe deine Verbindung und versuch es noch einmal.';
 
   @override
+  String get plusRestore => 'Käufe wiederherstellen';
+
+  @override
+  String get plusNothingToRestore => 'Für dieses Google-Konto wurde kein Kauf von With Me Plus gefunden.';
+
+  @override
+  String get plusPending => 'Deine Zahlung wartet auf Google. With Me Plus startet, sobald sie durch ist.';
+
+  @override
+  String get plusBuyFailed => 'Der Kauf wurde nicht abgeschlossen. Bitte versuche es noch einmal.';
+
+  @override
+  String get plusOtherAccount => 'Dieser Kauf gehört zu einem anderen With-Me-Konto. Melde dich in diesem Konto an, um ihn zu nutzen.';
+
+  @override
+  String get plusCheckLater => 'Dein Kauf ist bei Google sicher. With Me Plus wird aktiviert, sobald die App dein Konto erreicht.';
+
+  @override
+  String get plusStarted => 'With Me Plus ist aktiv. Danke!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/Jahr';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/Monat';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/Monat · jährlich abgerechnet';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Zahlungen sind in dieser Version noch nicht angebunden.';
 
@@ -2719,10 +2755,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'Du hast With Me Plus';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus ist an. Es wurde nichts bezahlt.';
 
   @override
   String get exerciseMeditationTitle => 'Geführte Meditation';

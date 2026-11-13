@@ -755,6 +755,42 @@ class AppLocalizationsTe extends AppLocalizations {
       'మీ ఖాతాను చేరుకోలేకపోయాం. కనెక్షన్ చూసి మళ్లీ ప్రయత్నించండి.';
 
   @override
+  String get plusRestore => 'కొనుగోళ్లను పునరుద్ధరించు';
+
+  @override
+  String get plusNothingToRestore => 'ఈ Google ఖాతాలో With Me Plus కొనుగోలు ఏదీ కనిపించలేదు.';
+
+  @override
+  String get plusPending => 'మీ చెల్లింపు Google వద్ద వేచి ఉంది. అది పూర్తవగానే With Me Plus మొదలవుతుంది.';
+
+  @override
+  String get plusBuyFailed => 'కొనుగోలు పూర్తి కాలేదు. దయచేసి మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get plusOtherAccount => 'ఈ కొనుగోలు వేరే With Me ఖాతాది. దాన్ని ఉపయోగించడానికి ఆ ఖాతాలోకి లాగిన్ అవ్వండి.';
+
+  @override
+  String get plusCheckLater => 'మీ కొనుగోలు Google వద్ద సురక్షితంగా ఉంది. యాప్ మీ ఖాతాను చేరుకోగానే With Me Plus ఆన్ అవుతుంది.';
+
+  @override
+  String get plusStarted => 'With Me Plus ఆన్ అయింది. ధన్యవాదాలు!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/సంవత్సరం';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/నెల';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/నెల · సంవత్సరానికి ఒకసారి బిల్లు';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'చెల్లింపులు ఈ UI వెర్షన్‌లో ఇంకా అనుసంధానించబడలేదు.';
 
@@ -2701,10 +2737,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'మీకు With Me Plus ఉంది';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus ఆన్ అయింది. ఎలాంటి చెల్లింపు తీసుకోలేదు.';
 
   @override
   String get exerciseMeditationTitle => 'గైడెడ్ ధ్యానం';

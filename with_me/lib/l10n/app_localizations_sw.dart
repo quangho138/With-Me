@@ -759,6 +759,42 @@ class AppLocalizationsSw extends AppLocalizations {
       'Imeshindwa kufikia akaunti yako. Angalia muunganisho wako kisha ujaribu tena.';
 
   @override
+  String get plusRestore => 'Rejesha ununuzi';
+
+  @override
+  String get plusNothingToRestore => 'Hakuna ununuzi wa With Me Plus uliopatikana kwa akaunti hii ya Google.';
+
+  @override
+  String get plusPending => 'Malipo yako yanasubiri Google. With Me Plus itaanza mara yatakapokamilika.';
+
+  @override
+  String get plusBuyFailed => 'Ununuzi haukukamilika. Tafadhali jaribu tena.';
+
+  @override
+  String get plusOtherAccount => 'Ununuzi huu ni wa akaunti nyingine ya With Me. Ingia kwenye akaunti hiyo ili kuutumia.';
+
+  @override
+  String get plusCheckLater => 'Ununuzi wako uko salama kwa Google. With Me Plus itawashwa programu itakapofikia akaunti yako.';
+
+  @override
+  String get plusStarted => 'With Me Plus imewashwa. Asante!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/mwaka';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/mwezi';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/mwezi · hulipwa kila mwaka';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Malipo bado hayajaunganishwa katika toleo hili la kiolesura.';
 
@@ -2700,10 +2736,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'Una With Me Plus';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus imewashwa. Hakuna malipo yaliyochukuliwa.';
 
   @override
   String get exerciseMeditationTitle => 'Tahajudi ya Kuongozwa';

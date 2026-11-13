@@ -43,6 +43,7 @@ import 'WithMe/Screens/StrategiesActionsScreen.dart';
 import 'WithMe/Screens/TriggersSignsScreen.dart';
 import 'WithMe/Screens/WelcomeScreen.dart';
 import 'WithMe/Settings/CompanionPlus.dart';
+import 'WithMe/Settings/PlusCheckout.dart';
 import 'WithMe/Settings/FreeUses.dart';
 import 'WithMe/Screens/YourDayScreen.dart';
 import 'WithMe/Speech/SpeechService.dart';
@@ -116,6 +117,12 @@ Future<void> main() async {
   FreeTries.changes.addListener(
     () => unawaited(CompanionPlus.instance.refresh()),
   );
+  // Google Play purchases (stage B, option A): listened to from the start,
+  // and asked for again on every app start and every log in or out.
+  PlusCheckout.instance.start();
+  FreeTries.changes.addListener(
+    () => unawaited(PlusCheckout.instance.recheck()),
+  );
   try {
     await Future.wait([
       CompanionPlus.instance.load(),
@@ -124,6 +131,7 @@ Future<void> main() async {
   } catch (e) {
     debugPrint('Membership settings not loaded yet: $e');
   }
+  unawaited(PlusCheckout.instance.recheck());
 
   // The language picked in Settings, read before the first screen so it
   // never opens in the wrong language. Until it is read (or if it fails),

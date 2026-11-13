@@ -764,6 +764,42 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось связаться с вашим аккаунтом. Проверьте подключение и попробуйте снова.';
 
   @override
+  String get plusRestore => 'Восстановить покупки';
+
+  @override
+  String get plusNothingToRestore => 'Для этого аккаунта Google не найдено покупок With Me Plus.';
+
+  @override
+  String get plusPending => 'Ваш платёж ожидает подтверждения Google. With Me Plus включится, как только он пройдёт.';
+
+  @override
+  String get plusBuyFailed => 'Покупка не завершилась. Попробуйте ещё раз.';
+
+  @override
+  String get plusOtherAccount => 'Эта покупка принадлежит другому аккаунту With Me. Войдите в тот аккаунт, чтобы ею пользоваться.';
+
+  @override
+  String get plusCheckLater => 'Ваша покупка надёжно сохранена в Google. With Me Plus включится, когда приложение сможет связаться с вашим аккаунтом.';
+
+  @override
+  String get plusStarted => 'With Me Plus включён. Спасибо!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/год';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/месяц';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/месяц · оплата за год';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Оплата пока не подключена в этой версии интерфейса.';
 
@@ -2735,9 +2771,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'У тебя With Me Plus';
-
-  @override
-  String get accountPlusStarted => 'With Me Plus включён. Оплата не списана.';
 
   @override
   String get exerciseMeditationTitle => 'Медитация с сопровождением';

@@ -759,6 +759,42 @@ class AppLocalizationsUr extends AppLocalizations {
       'آپ کے اکاؤنٹ تک رسائی نہیں ہو سکی۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔';
 
   @override
+  String get plusRestore => 'خریداری بحال کریں';
+
+  @override
+  String get plusNothingToRestore => 'اس Google اکاؤنٹ میں With Me Plus کی کوئی خریداری نہیں ملی۔';
+
+  @override
+  String get plusPending => 'آپ کی ادائیگی Google کے پاس زیرِ التوا ہے۔ ادائیگی مکمل ہوتے ہی With Me Plus شروع ہو جائے گا۔';
+
+  @override
+  String get plusBuyFailed => 'خریداری مکمل نہیں ہوئی۔ براہ کرم دوبارہ کوشش کریں۔';
+
+  @override
+  String get plusOtherAccount => 'یہ خریداری کسی دوسرے With Me اکاؤنٹ کی ہے۔ اسے استعمال کرنے کے لیے اسی اکاؤنٹ میں لاگ ان کریں۔';
+
+  @override
+  String get plusCheckLater => 'آپ کی خریداری Google کے پاس محفوظ ہے۔ ایپ آپ کے اکاؤنٹ تک پہنچتے ہی With Me Plus آن ہو جائے گا۔';
+
+  @override
+  String get plusStarted => 'With Me Plus آن ہو گیا۔ شکریہ!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price سالانہ';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price ماہانہ';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price ماہانہ · سالانہ بل';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'ادائیگیاں ابھی اس UI ورژن میں منسلک نہیں ہیں۔';
 
@@ -2689,10 +2725,6 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'آپ کے پاس With Me Plus ہے';
-
-  @override
-  String get accountPlusStarted =>
-      'With Me Plus آن ہے۔ کوئی ادائیگی نہیں لی گئی۔';
 
   @override
   String get exerciseMeditationTitle => 'رہنمائی والا مراقبہ';

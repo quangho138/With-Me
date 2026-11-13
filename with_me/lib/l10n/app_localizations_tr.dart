@@ -751,6 +751,42 @@ class AppLocalizationsTr extends AppLocalizations {
       'Hesabına ulaşılamadı. Bağlantını kontrol edip tekrar dene.';
 
   @override
+  String get plusRestore => 'Satın alımları geri yükle';
+
+  @override
+  String get plusNothingToRestore => 'Bu Google hesabı için With Me Plus satın alımı bulunamadı.';
+
+  @override
+  String get plusPending => 'Ödemeniz Google\'da bekliyor. Ödeme tamamlanınca With Me Plus başlar.';
+
+  @override
+  String get plusBuyFailed => 'Satın alma tamamlanmadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get plusOtherAccount => 'Bu satın alım başka bir With Me hesabına ait. Kullanmak için o hesaba giriş yapın.';
+
+  @override
+  String get plusCheckLater => 'Satın alımınız Google\'da güvende. Uygulama hesabınıza ulaşabildiğinde With Me Plus açılır.';
+
+  @override
+  String get plusStarted => 'With Me Plus açık. Teşekkürler!';
+
+  @override
+  String membershipPricePerYear(String price) {
+    return '$price/yıl';
+  }
+
+  @override
+  String membershipPricePerMonth(String price) {
+    return '$price/ay';
+  }
+
+  @override
+  String membershipYearlyPerMonth(String price) {
+    return '$price/ay · yıllık faturalandırılır';
+  }
+
+  @override
   String get accountPaymentsNotWired =>
       'Ödemeler bu sürümde henüz bağlı değil.';
 
@@ -2679,9 +2715,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get accountPlusActive => 'With Me Plus’ın var';
-
-  @override
-  String get accountPlusStarted => 'With Me Plus açık. Hiç ödeme alınmadı.';
 
   @override
   String get exerciseMeditationTitle => 'Rehberli Meditasyon';
