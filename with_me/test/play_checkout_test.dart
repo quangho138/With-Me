@@ -74,6 +74,8 @@ void main() {
     PlusCheckout.instance = checkout;
     news = [];
     checkout.news.listen(news.add);
+    // As main() does at app start.
+    checkout.start();
   });
 
   tearDown(() async {
@@ -197,11 +199,13 @@ void main() {
     test('restore by hand says what it found', () async {
       await signUp();
       await checkout.restoreByHand();
+      await flush();
       expect(news, [CheckoutNews.nothingFound]);
 
       news.clear();
       store.owned = ['t9'];
       await checkout.restoreByHand();
+      await flush();
       expect(CompanionPlus.instance.value, isTrue);
       expect(news, [CheckoutNews.restored]);
     });

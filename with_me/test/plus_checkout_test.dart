@@ -6,6 +6,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'package:with_me/Database/LocalDatabase.dart';
 import 'package:with_me/Repositories/app_repositories.dart';
+import 'package:with_me/Repositories/play_store.dart';
 import 'package:with_me/Repositories/plus_server.dart';
 import 'package:with_me/Repositories/settings_repository.dart';
 import 'package:with_me/Repositories/user_repository.dart';
@@ -29,6 +30,7 @@ void main() {
   final realUsers = AppRepositories.users;
   final realSettings = AppRepositories.settings;
   final realPlus = AppRepositories.plus;
+  final realStore = AppRepositories.playStore;
   final realInstance = CompanionPlus.instance;
 
   setUpAll(() async {
@@ -55,6 +57,8 @@ void main() {
     AppRepositories.users = users;
     AppRepositories.settings = settings;
     AppRepositories.plus = server;
+    // No Google Play on this test phone (play_checkout_test.dart has one).
+    AppRepositories.playStore = const NoPlayStore();
     CompanionPlus.instance = CompanionPlus(
       settings: settings,
       users: users,
@@ -67,6 +71,7 @@ void main() {
     AppRepositories.users = realUsers;
     AppRepositories.settings = realSettings;
     AppRepositories.plus = realPlus;
+    AppRepositories.playStore = realStore;
     CompanionPlus.instance = realInstance;
     await db.close();
   });

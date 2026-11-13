@@ -73,9 +73,11 @@ class FakePlayStore implements PlayStore {
     if (owned.isEmpty) return;
     _updates.add([
       for (final t in owned)
+        // Not yet finished with Google, as after an offline purchase.
         PlayPurchase(
           state: PlayPurchaseState.restored,
           token: t,
+          needsFinish: true,
           finish: () async => finished.add(t),
         ),
     ]);
