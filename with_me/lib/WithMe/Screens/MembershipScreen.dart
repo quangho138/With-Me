@@ -106,9 +106,15 @@ class _MembershipScreenState extends State<MembershipScreen> {
 
   void _say(String text, {SnackBarAction? action}) {
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(text), action: action));
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.hideCurrentSnackBar();
+    // A message with a button would otherwise stay until tapped, and it
+    // followed the person to the next page, covering its buttons (PR #53
+    // laptop check: the Log in button). It goes away by itself like any
+    // other message.
+    messenger.showSnackBar(
+      SnackBar(content: Text(text), action: action, persist: false),
+    );
   }
 
   /// "Start Plus": an account first, then Google Play's payment. One tap
