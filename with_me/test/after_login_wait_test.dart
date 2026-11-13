@@ -132,7 +132,7 @@ void main() {
 
     expect(sync.asked, 1);
     expect(
-      find.byKey(const ValueKey('after-login-wait')),
+      find.byKey(const ValueKey('wait-layer')),
       findsOneWidget,
       reason: 'a wait layer covers the screen',
     );
@@ -146,7 +146,7 @@ void main() {
       findsOneWidget,
       reason: 'the phone Back button closed the login page',
     );
-    expect(find.byKey(const ValueKey('after-login-wait')), findsOneWidget);
+    expect(find.byKey(const ValueKey('wait-layer')), findsOneWidget);
     await tester.tap(find.byType(ScenicBack).first, warnIfMissed: false);
     await idle(tester);
     expect(
@@ -180,7 +180,7 @@ void main() {
     await idle(tester);
     expect(sync.discarded, isTrue);
     expect(find.byType(WithMeHomeScreen), findsOneWidget);
-    expect(find.byKey(const ValueKey('after-login-wait')), findsNothing);
+    expect(find.byKey(const ValueKey('wait-layer')), findsNothing);
   });
 
   testWidgets('with nothing to ask, the app goes straight Home', (
@@ -191,7 +191,7 @@ void main() {
     await idle(tester);
     expect(find.text("Keep this phone's check-ins and journal?"), findsNothing);
     expect(find.byType(WithMeHomeScreen), findsOneWidget);
-    expect(find.byKey(const ValueKey('after-login-wait')), findsNothing);
+    expect(find.byKey(const ValueKey('wait-layer')), findsNothing);
   });
 
   testWidgets('a wrong password gives the button back', (tester) async {
@@ -229,7 +229,7 @@ void main() {
     );
     await tester.tap(find.text('Back from Google'));
     await idle(tester);
-    expect(find.byKey(const ValueKey('after-login-wait')), findsOneWidget);
+    expect(find.byKey(const ValueKey('wait-layer')), findsOneWidget);
     await tester.tap(find.text('Back from Google'), warnIfMissed: false);
     await idle(tester);
     expect(sync.asked, 1, reason: 'the page under the wait layer is covered');

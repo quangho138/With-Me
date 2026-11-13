@@ -6,6 +6,7 @@ import '../../Repositories/app_repositories.dart';
 import '../../l10n/l10n.dart';
 import '../Components/GoogleButton.dart';
 import '../Components/ScenicKit.dart';
+import '../Components/WaitLayer.dart';
 import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
 import 'ConsentScreen.dart';
@@ -137,7 +138,9 @@ class WelcomeScreen extends StatelessWidget {
                       ScenicPill(
                         label: l.accountSignUp,
                         height: 56,
-                        onPressed: () async {
+                        // One Welcome button at a time: a quick double tap
+                        // does not open two pages.
+                        onPressed: () => OneAtATime.run(#welcome, () async {
                           if (!await ConsentScreen.ensure(context)) return;
                           if (!context.mounted) return;
                           Navigator.of(context).push(
@@ -145,14 +148,14 @@ class WelcomeScreen extends StatelessWidget {
                               builder: (_) => const CreateAccountScreen(),
                             ),
                           );
-                        },
+                        }),
                       ),
                       const SizedBox(height: 10),
                       ScenicPill(
                         label: l.accountLogin,
                         light: true,
                         height: 50,
-                        onPressed: () async {
+                        onPressed: () => OneAtATime.run(#welcome, () async {
                           if (!await ConsentScreen.ensure(context)) return;
                           if (!context.mounted) return;
                           Navigator.of(context).push(
@@ -160,7 +163,7 @@ class WelcomeScreen extends StatelessWidget {
                               builder: (_) => const WithMeLoginScreen(),
                             ),
                           );
-                        },
+                        }),
                       ),
                       const SizedBox(height: 10),
                       const ContinueWithGoogleButton(),
@@ -220,11 +223,15 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
         .catchError((_) {});
   }
 
-  Future<void> _start() async {
+  Future<void> _start() => OneAtATime.run(#welcome, () async {
     if (!await ConsentScreen.ensure(context)) return;
+    if (!mounted) return;
     var started = false;
     try {
-      started = await AppRepositories.users.startAsGuest();
+      started = await WaitLayer.over(
+        context,
+        AppRepositories.users.startAsGuest,
+      );
     } catch (_) {
       // Falls through to the message below.
     }
@@ -239,7 +246,7 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
       MaterialPageRoute(builder: (_) => const WithMeHomeScreen()),
       (_) => false,
     );
-  }
+  });
 
   @override
   Widget build(BuildContext context) {

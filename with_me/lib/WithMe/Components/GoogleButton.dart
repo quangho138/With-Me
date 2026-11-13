@@ -6,6 +6,7 @@ import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Screens/ConsentScreen.dart';
 import 'ScenicKit.dart';
+import 'WaitLayer.dart';
 
 /// "Continue with Google", used on the Welcome page and on the guest's
 /// "Keep your data in an account" page.
@@ -31,7 +32,9 @@ class ContinueWithGoogleButton extends StatelessWidget {
         height: 22,
         child: CustomPaint(painter: GoogleG()),
       ),
-      onPressed: () async {
+      // With the Welcome buttons: one at a time, so a double tap does not
+      // open Google's page twice.
+      onPressed: () => OneAtATime.run(#welcome, () async {
         if (!await ConsentScreen.ensure(context)) return;
         if (!context.mounted) return;
         try {
@@ -47,7 +50,7 @@ class ContinueWithGoogleButton extends StatelessWidget {
             SnackBar(content: Text(AccountProblem.unknown.text(context.l10n))),
           );
         }
-      },
+      }),
     );
   }
 }

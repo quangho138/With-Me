@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicChoice.dart';
+import '../Components/WaitLayer.dart';
 import 'HomeScreen.dart';
 
 /// What happens after any login (password, email link, Google, new
@@ -22,7 +23,7 @@ import 'HomeScreen.dart';
 Future<void> continueAfterLogin(BuildContext context) async {
   final sync = AppRepositories.sync;
   final navigator = Navigator.of(context);
-  final wait = _WaitRoute(context);
+  final wait = WaitLayer(context);
   unawaited(navigator.push(wait));
   try {
     var needsChoice = false;
@@ -61,21 +62,4 @@ Future<void> continueAfterLogin(BuildContext context) async {
     MaterialPageRoute(builder: (_) => const WithMeHomeScreen()),
     (_) => false,
   );
-}
-
-/// A see-through layer with a small spinner that takes every tap and
-/// ignores the phone's Back button.
-class _WaitRoute extends DialogRoute<void> {
-  _WaitRoute(BuildContext context)
-    : super(
-        context: context,
-        barrierDismissible: false,
-        barrierColor: Colors.black26,
-        builder: (_) => const PopScope(
-          canPop: false,
-          child: Center(
-            child: CircularProgressIndicator(key: ValueKey('after-login-wait')),
-          ),
-        ),
-      );
 }

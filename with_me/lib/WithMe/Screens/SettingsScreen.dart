@@ -12,6 +12,7 @@ import '../../l10n/account_problems.dart';
 import '../../l10n/l10n.dart';
 import '../Components/ScenicKit.dart';
 import '../Components/ScenicScaffold.dart';
+import '../Components/WaitLayer.dart';
 import '../Components/WithMeCharts.dart' show dateLocale;
 import '../Data/Today.dart';
 import '../Locale/AppLanguage.dart';
@@ -163,26 +164,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   /// Backend (stage 3, 2d): "Export my data" as one JSON file, handed to
   /// the phone's share menu (in the browser it downloads).
-  Future<void> _export() async {
-    // With an account, catch up with the account first. Offline is fine:
-    // the export is made from what is on the phone.
-    await AppRepositories.sync.syncNow();
-    try {
-      final json = await AppRepositories.export.exportJson();
-      await Share.shareXFiles([
-        XFile.fromData(
-          utf8.encode(json),
-          name: ExportService.fileName(DateTime.now()),
-          mimeType: 'application/json',
-        ),
-      ], subject: 'My With Me data');
-    } catch (_) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.settingsExportFailed)),
-      );
-    }
-  }
+  /// Under a wait layer: nothing can be tapped until the share sheet
+  /// opens, so the export is never made twice.
+  Future<void> _export() => OneAtATime.run(#export, () async {
+    await WaitLayer.over(context, () async {
+      // With an account, catch up with the account first. Offline is fine:
+      // the export is made from what is on the phone.
+      await AppRepositories.sync.syncNow();
+      try {
+        final json = await AppRepositories.export.exportJson();
+        await Share.shareXFiles([
+          XFile.fromData(
+            utf8.encode(json),
+            name: ExportService.fileName(DateTime.now()),
+            mimeType: 'application/json',
+          ),
+        ], subject: 'My With Me data');
+      } catch (_) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.settingsExportFailed)),
+        );
+      }
+    });
+  });
 
   Future<void> _deleteAccount() async {
     final confirmed = await showDialog<bool>(
@@ -220,9 +225,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       },
     );
 
-    if (confirmed != true) return;
+    if (confirmed != true || !mounted) return;
     try {
-      await AppRepositories.users.deleteAccountAndData();
+      // Nothing can be tapped and Back does nothing until it is done, so
+      // the person never lands on a screen of an account that is gone.
+      await WaitLayer.over(context, AppRepositories.users.deleteAccountAndData);
       // The saved Read aloud and language settings went with everything
       // else, so the app goes back to the phone's own language.
       SpeechService.instance.forgetSetting();
@@ -411,7 +418,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             label: l.settingsDeleteAccount,
             icon: Icons.delete_rounded,
             danger: true,
-            onTap: _deleteAccount,
+            onTap: () => OneAtATime.run(#deleteAccount, _deleteAccount),
           ),
         ],
       ),

@@ -138,7 +138,21 @@ class _GuidedPrepScreenState extends State<GuidedPrepScreen> {
     _getVoice();
   }
 
+  /// True from the first tap on Begin: a second tap does nothing, so the
+  /// player never opens twice and a free try is never counted twice.
+  bool _starting = false;
+
   Future<void> _begin() async {
+    if (_starting) return;
+    _starting = true;
+    try {
+      await _open();
+    } finally {
+      if (mounted) _starting = false;
+    }
+  }
+
+  Future<void> _open() async {
     final script = _script;
     final plus = script.plus;
     final navigator = Navigator.of(context);
