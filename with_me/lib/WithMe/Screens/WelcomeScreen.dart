@@ -148,7 +148,7 @@ class WelcomeScreen extends StatelessWidget {
                               builder: (_) => const CreateAccountScreen(),
                             ),
                           );
-                        }),
+                        }, context: context),
                       ),
                       const SizedBox(height: 10),
                       ScenicPill(
@@ -163,7 +163,7 @@ class WelcomeScreen extends StatelessWidget {
                               builder: (_) => const WithMeLoginScreen(),
                             ),
                           );
-                        }),
+                        }, context: context),
                       ),
                       const SizedBox(height: 10),
                       const ContinueWithGoogleButton(),
@@ -246,7 +246,7 @@ class _StartWithoutAccountState extends State<_StartWithoutAccount> {
       MaterialPageRoute(builder: (_) => const WithMeHomeScreen()),
       (_) => false,
     );
-  });
+  }, context: context);
 
   @override
   Widget build(BuildContext context) {

@@ -50,7 +50,7 @@ class ContinueWithGoogleButton extends StatelessWidget {
             SnackBar(content: Text(AccountProblem.unknown.text(context.l10n))),
           );
         }
-      }),
+      }, context: context),
     );
   }
 }

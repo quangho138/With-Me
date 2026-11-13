@@ -43,21 +43,43 @@ class WaitLayer extends DialogRoute<void> {
 /// Lets only one action with the same key run at a time: a second tap while
 /// the first is still working does nothing. For buttons whose action opens
 /// a page or a sign-in, where a quick double tap would open it twice.
+///
+/// Pass the button's [BuildContext] when the action waits for another page
+/// (the consent page): if that page goes away without an answer, the
+/// action is let go as soon as its page is gone, so the buttons never stay
+/// dead.
 class OneAtATime {
   OneAtATime._();
 
-  static final Set<Object> _running = {};
+  static final Map<Object, _Running> _running = {};
 
   /// True while an action with [key] runs.
-  static bool running(Object key) => _running.contains(key);
+  static bool running(Object key) => _running[key]?.live ?? false;
 
   /// Runs [action] unless one with [key] is already running.
-  static Future<void> run(Object key, Future<void> Function() action) async {
-    if (!_running.add(key)) return;
+  static Future<void> run(
+    Object key,
+    Future<void> Function() action, {
+    BuildContext? context,
+  }) async {
+    if (running(key)) return;
+    final mine = _Running(context == null ? null : ModalRoute.of(context));
+    _running[key] = mine;
     try {
       await action();
     } finally {
-      _running.remove(key);
+      if (identical(_running[key], mine)) _running.remove(key);
     }
   }
+}
+
+class _Running {
+  _Running(this.page);
+
+  /// The page the button was on, or null.
+  final Route<dynamic>? page;
+
+  /// Still holding the key: always without a page; with a page, only while
+  /// that page is still open.
+  bool get live => page == null || page!.isActive;
 }
