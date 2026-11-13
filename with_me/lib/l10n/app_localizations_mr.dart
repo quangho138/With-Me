@@ -2223,29 +2223,6 @@ class AppLocalizationsMr extends AppLocalizations {
       'रेटिंग अजून साठवले जात नाहीत, म्हणून इथे उपलब्ध उपाय दिसतात, ते किती उपयोगी ठरले ते नाही.';
 
   @override
-  String get dashRememberTitle => 'लक्षात ठेवा...';
-
-  @override
-  String get dashPromiseNotAlone => 'कुणीतरी तुमच्यासोबत आहे.';
-
-  @override
-  String get dashPromiseListen => 'मी ऐकण्यासाठी इथे आहे.';
-
-  @override
-  String get dashPromiseUnderstand => 'मला तुमचे म्हणणे समजते.';
-
-  @override
-  String get dashPromiseNextStep => 'माझ्या मदतीने पुढचे पाऊल उचला.';
-
-  @override
-  String get dashPromiseGotThis => 'तुम्ही हे करू शकता!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle एक सोबती आहे, व्यावसायिक आरोग्यसेवेचा पर्याय नाही.';
-  }
-
-  @override
   String get dashReminderTitle => 'नियमित राहा';
 
   @override
@@ -2542,46 +2519,6 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get exerciseSighSubtitle =>
       'खोल श्वास आत · छोटा श्वास आत · श्वास बाहेर';
-
-  @override
-  String get exerciseRestTitle => 'मनाला विश्रांती द्या';
-
-  @override
-  String get exerciseRestIntro =>
-      'मार्गदर्शित दीर्घ व्यायाम, तुमच्याकडे काही मिनिटे असतील तेव्हासाठी.';
-
-  @override
-  String get exerciseRestDestressTitle => 'तुमच्या दिवसाचा ताण कमी करा';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 मिनिटे · कामानंतर निवांतपणा';
-
-  @override
-  String get exerciseRestSleepTitle => 'तुमची झोप सुखकर करा';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 मिनिटे · 4-7-8 श्वसन';
-
-  @override
-  String get exerciseRestFocusTitle => 'तुमचे लक्ष मजबूत करा';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 मिनिटे · 4-4-4-4 फोकस';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'तडतडणारी लाकडे · 40 मिनिटांचा लूप';
-
-  @override
-  String get exerciseAddBreathing => 'श्वासाचा व्यायाम जोडा';
-
-  @override
-  String get exerciseVolume => 'आवाजाची पातळी';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'टायमर · $minutes मिनिटे';
-  }
 
   @override
   String get exerciseControlScaleLabel =>

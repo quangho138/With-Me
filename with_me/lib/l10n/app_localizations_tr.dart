@@ -2211,29 +2211,6 @@ class AppLocalizationsTr extends AppLocalizations {
       'Puanlar henüz saklanmıyor; bu yüzden burada eylemlerin sende nasıl işe yaradığı değil, sunulan eylemler görünüyor.';
 
   @override
-  String get dashRememberTitle => 'Unutma...';
-
-  @override
-  String get dashPromiseNotAlone => 'Yalnız değilsin.';
-
-  @override
-  String get dashPromiseListen => 'Seni dinliyorum.';
-
-  @override
-  String get dashPromiseUnderstand => 'Seni anlıyorum.';
-
-  @override
-  String get dashPromiseNextStep => 'Bir sonraki adımı atmana yardım ediyorum.';
-
-  @override
-  String get dashPromiseGotThis => 'Bunu başarabilirsin!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle bir yol arkadaşıdır, profesyonel desteğin yerini tutmaz.';
-  }
-
-  @override
   String get dashReminderTitle => 'Yolunda Kal';
 
   @override
@@ -2529,46 +2506,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => 'Derin nefes · kısa nefes · nefes ver';
-
-  @override
-  String get exerciseRestTitle => 'Zihnini dinlendir';
-
-  @override
-  String get exerciseRestIntro =>
-      'Birkaç dakikan olduğunda daha uzun rehberli egzersizler.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Günün stresini at';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 dk · işten sonra gevşe';
-
-  @override
-  String get exerciseRestSleepTitle => 'Kolay uykuya dal';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 dk · 4-7-8 nefes';
-
-  @override
-  String get exerciseRestFocusTitle => 'Odağını güçlendir';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 dk · 4-4-4-4 odak';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle =>
-      'Çıtırdayan odunlar · 40 dk döngü';
-
-  @override
-  String get exerciseAddBreathing => 'Nefes ekle';
-
-  @override
-  String get exerciseVolume => 'Ses düzeyi';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Zamanlayıcı · $minutes dk';
-  }
 
   @override
   String get exerciseControlScaleLabel =>

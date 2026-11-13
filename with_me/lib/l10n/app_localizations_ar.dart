@@ -2268,29 +2268,6 @@ class AppLocalizationsAr extends AppLocalizations {
       'التقييمات لا تُحفظ بعد، لذا يعرض هذا الإجراءات المتاحة بدلًا من مدى نجاحها.';
 
   @override
-  String get dashRememberTitle => 'للتذكير...';
-
-  @override
-  String get dashPromiseNotAlone => 'لست وحدك.';
-
-  @override
-  String get dashPromiseListen => 'أنا أصغي.';
-
-  @override
-  String get dashPromiseUnderstand => 'أنا أفهم.';
-
-  @override
-  String get dashPromiseNextStep => 'أساعدك على اتخاذ الخطوة التالية.';
-
-  @override
-  String get dashPromiseGotThis => 'بإمكانك فعلها!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle رفيق، وليس بديلًا عن الرعاية المتخصصة.';
-  }
-
-  @override
   String get dashReminderTitle => 'الاستمرار على المسار';
 
   @override
@@ -2583,45 +2560,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => 'شهيق عميق · شهيق سريع · زفير';
-
-  @override
-  String get exerciseRestTitle => 'راحة للذهن';
-
-  @override
-  String get exerciseRestIntro =>
-      'تمارين موجَّهة أطول، حين تتوفر لديك بضع دقائق.';
-
-  @override
-  String get exerciseRestDestressTitle => 'تخفيف توتر يومك';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 دقائق · للاسترخاء بعد العمل';
-
-  @override
-  String get exerciseRestSleepTitle => 'نوم أهدأ';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 دقائق · تنفّس 4-7-8';
-
-  @override
-  String get exerciseRestFocusTitle => 'تقوية التركيز';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 دقائق · تركيز 4-4-4-4';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle => 'حطب يطقطق · تكرار كل 40 دقيقة';
-
-  @override
-  String get exerciseAddBreathing => 'إضافة تنفّس';
-
-  @override
-  String get exerciseVolume => 'مستوى الصوت';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'المؤقت · $minutes دقيقة';
-  }
 
   @override
   String get exerciseControlScaleLabel => 'مدى شعورك بالسيطرة، من 1 إلى 5';

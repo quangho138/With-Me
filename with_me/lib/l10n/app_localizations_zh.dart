@@ -2119,29 +2119,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashRatingsNotStored => '评分尚未保存，所以这里显示的是可选的行动，而不是它们的效果。';
 
   @override
-  String get dashRememberTitle => '记住……';
-
-  @override
-  String get dashPromiseNotAlone => '你不是一个人。';
-
-  @override
-  String get dashPromiseListen => '我在倾听。';
-
-  @override
-  String get dashPromiseUnderstand => '我理解你。';
-
-  @override
-  String get dashPromiseNextStep => '我帮你迈出下一步。';
-
-  @override
-  String get dashPromiseGotThis => '你一定可以的！';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle是陪伴者，不能替代专业照护。';
-  }
-
-  @override
   String get dashReminderTitle => '保持节奏';
 
   @override
@@ -2430,44 +2407,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => '深吸气 · 快速吸气 · 呼气';
-
-  @override
-  String get exerciseRestTitle => '放松心灵';
-
-  @override
-  String get exerciseRestIntro => '更长的引导练习，适合你有几分钟空闲的时候。';
-
-  @override
-  String get exerciseRestDestressTitle => '为今天减压';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5分钟 · 下班后放松';
-
-  @override
-  String get exerciseRestSleepTitle => '轻松入眠';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8分钟 · 4-7-8呼吸';
-
-  @override
-  String get exerciseRestFocusTitle => '增强专注力';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4分钟 · 4-4-4-4专注';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle => '木柴噼啪 · 40分钟循环';
-
-  @override
-  String get exerciseAddBreathing => '加入呼吸练习';
-
-  @override
-  String get exerciseVolume => '音量';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return '定时 · $minutes分钟';
-  }
 
   @override
   String get exerciseControlScaleLabel => '你的掌控感，1到5';
@@ -8948,29 +8887,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashRatingsNotStored => '評分尚未儲存，所以這裡顯示的是可選的行動，而不是它們的效果。';
 
   @override
-  String get dashRememberTitle => '記住……';
-
-  @override
-  String get dashPromiseNotAlone => '你不是一個人。';
-
-  @override
-  String get dashPromiseListen => '我在傾聽。';
-
-  @override
-  String get dashPromiseUnderstand => '我理解你。';
-
-  @override
-  String get dashPromiseNextStep => '我幫你邁出下一步。';
-
-  @override
-  String get dashPromiseGotThis => '你一定可以的！';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle是陪伴者，不能替代專業照護。';
-  }
-
-  @override
   String get dashReminderTitle => '保持節奏';
 
   @override
@@ -9259,44 +9175,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get exerciseSighSubtitle => '深吸氣 · 快速吸氣 · 呼氣';
-
-  @override
-  String get exerciseRestTitle => '放鬆心靈';
-
-  @override
-  String get exerciseRestIntro => '更長的引導練習，適合你有幾分鐘空閒的時候。';
-
-  @override
-  String get exerciseRestDestressTitle => '為今天減壓';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5分鐘 · 下班後放松';
-
-  @override
-  String get exerciseRestSleepTitle => '輕鬆入眠';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8分鐘 · 4-7-8呼吸';
-
-  @override
-  String get exerciseRestFocusTitle => '增強專注力';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4分鐘 · 4-4-4-4專注';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle => '木柴噼啪 · 40分鐘循環';
-
-  @override
-  String get exerciseAddBreathing => '加入呼吸練習';
-
-  @override
-  String get exerciseVolume => '音量';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return '定時 · $minutes分鐘';
-  }
 
   @override
   String get exerciseControlScaleLabel => '你的掌控感，1到5';

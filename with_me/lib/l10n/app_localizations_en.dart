@@ -2210,29 +2210,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Ratings are not stored yet, so this shows the actions on offer rather than how they have gone.';
 
   @override
-  String get dashRememberTitle => 'Remember...';
-
-  @override
-  String get dashPromiseNotAlone => 'You\'re not alone.';
-
-  @override
-  String get dashPromiseListen => 'I listen.';
-
-  @override
-  String get dashPromiseUnderstand => 'I understand.';
-
-  @override
-  String get dashPromiseNextStep => 'I help you take the next step.';
-
-  @override
-  String get dashPromiseGotThis => 'You\'ve got this!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle is a companion, not a substitute for professional care.';
-  }
-
-  @override
   String get dashReminderTitle => 'Stay on Track';
 
   @override
@@ -2526,45 +2503,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => 'Deep inhale · quick inhale · exhale';
-
-  @override
-  String get exerciseRestTitle => 'Rest your mind';
-
-  @override
-  String get exerciseRestIntro =>
-      'Longer guided exercises, for when you have a few minutes.';
-
-  @override
-  String get exerciseRestDestressTitle => 'Destress your day';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5 min · unwind after work';
-
-  @override
-  String get exerciseRestSleepTitle => 'Ease your sleep';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8 min · 4-7-8 breathing';
-
-  @override
-  String get exerciseRestFocusTitle => 'Strengthen your focus';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4 min · 4-4-4-4 focus';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle => 'Crackling logs · 40 min loop';
-
-  @override
-  String get exerciseAddBreathing => 'Add breathing';
-
-  @override
-  String get exerciseVolume => 'Volume';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return 'Timer · $minutes min';
-  }
 
   @override
   String get exerciseControlScaleLabel => 'How in control you feel, 1 to 5';

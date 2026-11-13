@@ -29,12 +29,9 @@ import 'package:with_me/WithMe/Screens/MonthlyCalendarScreen.dart';
 import 'package:with_me/WithMe/Screens/NotificationsScreen.dart';
 import 'package:with_me/WithMe/Screens/ProfileScreen.dart';
 import 'package:with_me/WithMe/Screens/ProgressScreen.dart';
-import 'package:with_me/WithMe/Screens/RememberScreen.dart';
 import 'package:with_me/WithMe/Screens/ReminderScreen.dart';
 import 'package:with_me/WithMe/Screens/ResetPasswordScreen.dart';
-import 'package:with_me/WithMe/Screens/RestYourMindScreen.dart';
 import 'package:with_me/WithMe/Screens/SettingsScreen.dart';
-import 'package:with_me/WithMe/Screens/SoundscapeScreen.dart';
 import 'package:with_me/WithMe/Screens/StrategiesActionsScreen.dart';
 import 'package:with_me/WithMe/Screens/TriggersSignsScreen.dart';
 import 'package:with_me/WithMe/Screens/WelcomeScreen.dart';
@@ -136,13 +133,11 @@ final Map<String, Widget Function()> _screens = {
       const DailyCheckInScreen(initialStep: DailyCheckInScreen.signsPage - 1),
   'intention-to-change': () => const DailyCheckInScreen(initialStep: 8),
   'image25-exercise-choose': () => const ExerciseChooseScreen(),
-  'image26-rest-your-mind': () => const RestYourMindScreen(),
   'image27-breathing-478': () => const BreathingScreen(),
   'image28-box-breathing-info': () => const BoxBreathingInfoScreen(),
   'image29-breathing-4444': () =>
       const BreathingScreen(pattern: BreathPattern.box),
   'image30-before-we-start': () => const BeforeWeStartScreen(),
-  'image31-soundscape': () => const SoundscapeScreen(),
   'image32-insights': () => const DashboardScreen(),
   'image33-triggers-and-signs': () => const TriggersSignsScreen(),
   'image34-strategies-and-actions': () => const StrategiesActionsScreen(),
@@ -153,7 +148,6 @@ final Map<String, Widget Function()> _screens = {
   'image36-your-day': () => const YourDayScreen(),
   'image37-progress': () => const ProgressScreen(),
   'image38-reminder': () => const ReminderScreen(),
-  'image39-remember': () => const RememberScreen(),
   'image40-menu': () => const MenuScreen(),
   'image41-settings': () => const SettingsScreen(),
   'image42-notifications': () => const NotificationsScreen(),

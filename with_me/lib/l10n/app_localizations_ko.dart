@@ -2137,29 +2137,6 @@ class AppLocalizationsKo extends AppLocalizations {
       '평가는 아직 저장되지 않아서, 여기에는 효과 대신 고를 수 있는 행동을 보여 드려요.';
 
   @override
-  String get dashRememberTitle => '기억해 주세요...';
-
-  @override
-  String get dashPromiseNotAlone => '혼자가 아니에요.';
-
-  @override
-  String get dashPromiseListen => '제가 들어 줄게요.';
-
-  @override
-  String get dashPromiseUnderstand => '제가 이해해요.';
-
-  @override
-  String get dashPromiseNextStep => '다음 걸음을 내딛도록 도와드릴게요.';
-
-  @override
-  String get dashPromiseGotThis => '충분히 할 수 있어요!';
-
-  @override
-  String dashRememberDisclaimer(String appTitle) {
-    return '$appTitle는 곁을 지키는 동반자이며, 전문적인 돌봄을 대신할 수 없어요.';
-  }
-
-  @override
   String get dashReminderTitle => '꾸준히 이어 가기';
 
   @override
@@ -2448,44 +2425,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get exerciseSighSubtitle => '깊게 들이쉬기 · 짧게 한 번 · 내쉬기';
-
-  @override
-  String get exerciseRestTitle => '마음 쉬어 가기';
-
-  @override
-  String get exerciseRestIntro => '몇 분 여유가 있을 때 하는, 조금 더 긴 안내 연습이에요.';
-
-  @override
-  String get exerciseRestDestressTitle => '하루의 스트레스 풀기';
-
-  @override
-  String get exerciseRestDestressSubtitle => '5분 · 퇴근 후 긴장 풀기';
-
-  @override
-  String get exerciseRestSleepTitle => '편안한 잠으로';
-
-  @override
-  String get exerciseRestSleepSubtitle => '8분 · 4-7-8 호흡';
-
-  @override
-  String get exerciseRestFocusTitle => '집중력 키우기';
-
-  @override
-  String get exerciseRestFocusSubtitle => '4분 · 4-4-4-4 집중';
-
-  @override
-  String get exerciseSoundscapeFireSubtitle => '타닥이는 장작 · 40분 반복';
-
-  @override
-  String get exerciseAddBreathing => '호흡 추가';
-
-  @override
-  String get exerciseVolume => '음량';
-
-  @override
-  String exerciseTimerMinutes(int minutes) {
-    return '타이머 · $minutes분';
-  }
 
   @override
   String get exerciseControlScaleLabel => '얼마나 잘 조절하고 있다고 느끼는지, 1~5';
