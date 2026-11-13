@@ -10,16 +10,39 @@
 // docs or chat):
 //   GOOGLE_PLAY_SERVICE_ACCOUNT  the Google service account's JSON key,
 //                                with access to this app's orders.
-// Set by Supabase itself: SUPABASE_URL, SUPABASE_ANON_KEY,
-// SUPABASE_SERVICE_ROLE_KEY.
+// Set by Supabase itself: SUPABASE_URL and the project's keys (the new
+// SUPABASE_PUBLISHABLE_KEYS and SUPABASE_SECRET_KEYS, or the older
+// SUPABASE_ANON_KEY and SUPABASE_SERVICE_ROLE_KEY, which Supabase is
+// retiring by the end of 2026).
 //
-// Deploy (from the repo folder, Supabase CLI): see docs/PAYMENTS.md.
+// Deploy with "Verify JWT" off (--no-verify-jwt): Supabase's built-in check
+// only understands the older keys. This code checks the signed-in person
+// itself (auth.getUser below), so nobody else can use it.
+// Steps: docs/PAYMENTS.md.
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { decide, type GoogleSubscription, PRODUCT_ID } from "./decide.ts";
 
 const PACKAGE = "com.withme.companion";
 const PLAY = "https://androidpublisher.googleapis.com/androidpublisher/v3";
+
+/** A project key: the new kind ([name] holds JSON keyed by key name,
+ * "default" first), or the older single key in [legacy]. */
+function projectKey(name: string, legacy: string): string {
+  const keys = Deno.env.get(name);
+  if (keys) {
+    try {
+      const parsed = JSON.parse(keys) as Record<string, string>;
+      const key = parsed["default"] ?? Object.values(parsed)[0];
+      if (key) return key;
+    } catch {
+      // Not JSON: fall back to the older key.
+    }
+  }
+  const old = Deno.env.get(legacy);
+  if (!old) throw new Error(`Neither ${name} nor ${legacy} is set`);
+  return old;
+}
 
 function reply(body: Record<string, unknown>, status = 200): Response {
   return new Response(JSON.stringify(body), {
@@ -88,11 +111,15 @@ Deno.serve(async (req) => {
   // Who is asking: the signed-in With Me account (Supabase checks the
   // token before this code runs; this reads whose it is).
   const url = Deno.env.get("SUPABASE_URL")!;
-  const asUser = createClient(url, Deno.env.get("SUPABASE_ANON_KEY")!, {
-    global: {
-      headers: { Authorization: req.headers.get("Authorization") ?? "" },
+  const asUser = createClient(
+    url,
+    projectKey("SUPABASE_PUBLISHABLE_KEYS", "SUPABASE_ANON_KEY"),
+    {
+      global: {
+        headers: { Authorization: req.headers.get("Authorization") ?? "" },
+      },
     },
-  });
+  );
   const { data: who } = await asUser.auth.getUser();
   const userId = who.user?.id;
   if (!userId) return reply({ error: "not_signed_in" }, 401);
@@ -132,7 +159,10 @@ Deno.serve(async (req) => {
   const sub = (await res.json()) as GoogleSubscription;
   const decision = decide(sub, userId, new Date());
 
-  const db = createClient(url, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const db = createClient(
+    url,
+    projectKey("SUPABASE_SECRET_KEYS", "SUPABASE_SERVICE_ROLE_KEY"),
+  );
 
   if (decision.kind === "active") {
     if (decision.acknowledge) {

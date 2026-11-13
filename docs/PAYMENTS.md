@@ -42,12 +42,14 @@ IDs cannot be changed after they are created. The code reads them in `with_me/li
 
 ### 3. Supabase (Quang, or the PO)
 1. Supabase dashboard, Edge Functions, Secrets: add `GOOGLE_PLAY_SERVICE_ACCOUNT`, and paste the whole JSON key as its value. Then delete the downloaded file, or keep it only in a password manager.
-2. Deploy the function from the repo folder with the Supabase CLI (installed once with `npm install -g supabase`, or see supabase.com/docs/guides/cli):
+2. Deploy the function from the repo folder with the Supabase CLI. With Node.js installed, `npx` runs the CLI without installing it:
    ```
-   supabase login
-   supabase functions deploy verify_purchase --project-ref mgahvsbczqcihatdrbyj
+   npx supabase login
+   npx supabase functions deploy verify_purchase --project-ref mgahvsbczqcihatdrbyj --no-verify-jwt
    ```
-   Keep "Verify JWT" on (the default): only signed-in people can call it.
+   `login` opens the browser once to sign in to Supabase; nothing is typed into the terminal. `--no-verify-jwt` is needed because Supabase's built-in check only understands its older keys; the function checks the signed-in person itself, so only signed-in people can use it.
+   Deploying again later (after a code change) is the same second command.
+   The function can be deployed before the Google key is set: until then it answers that Google is not available, and the app keeps the purchase to try again.
 3. No database migration is needed: the function writes the existing `plus_access` table.
 
 ## Testing
