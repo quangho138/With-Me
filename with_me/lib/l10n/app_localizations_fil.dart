@@ -78,6 +78,9 @@ class AppLocalizationsFil extends AppLocalizations {
       'Buburahin nito ang iyong account at lahat ng nasa loob nito: ang iyong mga check-in, ehersisyo, pagninilay at pangalan, online at sa teleponong ito. Hindi na ito maibabalik.';
 
   @override
+  String get settingsDeletePlusNote => 'Hindi kinakansela ng pag-delete ng account ang With Me Plus. Kanselahin muna ito sa Google Play (Mga pagbabayad at subscription), o sisingilin ka pa rin.';
+
+  @override
   String get settingsDeleteFailed =>
       'Hindi nabura ang iyong data. Subukan ulit.';
 

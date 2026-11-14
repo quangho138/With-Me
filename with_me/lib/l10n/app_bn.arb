@@ -22,6 +22,7 @@
   "settingsExport": "এক্সপোর্ট",
   "settingsDeleteAccount": "আমার অ্যাকাউন্ট মুছুন",
   "settingsDeleteAccountBody": "এতে আপনার অ্যাকাউন্ট এবং তার ভেতরের সবকিছু মুছে যাবে: আপনার চেক-ইন, ব্যায়াম, ভাবনা ও নাম, অনলাইনে এবং এই ফোনে। এটি আর ফেরানো যাবে না।",
+  "settingsDeletePlusNote": "অ্যাকাউন্ট মুছলে With Me Plus বাতিল হয় না। আগে Google Play-তে (পেমেন্ট ও সাবস্ক্রিপশন) বাতিল করুন, নইলে টাকা কাটা চলতে থাকবে।",
   "settingsDeleteFailed": "আপনার ডেটা মোছা যায়নি। আবার চেষ্টা করুন।",
   "settingsVoiceTitle": "কণ্ঠ",
   "settingsVoiceTryIt": "শুনে দেখুন",

@@ -22,6 +22,7 @@
   "settingsExport": "Ekspor",
   "settingsDeleteAccount": "Hapus akunku",
   "settingsDeleteAccountBody": "Ini akan menghapus akunmu dan semua isinya: check-in, latihan, refleksi, dan namamu, secara online dan di ponsel ini. Tindakan ini tidak bisa dibatalkan.",
+  "settingsDeletePlusNote": "Menghapus akun tidak membatalkan With Me Plus. Batalkan dulu di Google Play (Pembayaran & langganan), atau Anda tetap akan ditagih.",
   "settingsDeleteFailed": "Datamu tidak bisa dihapus. Coba lagi.",
   "settingsVoiceTitle": "Suara",
   "settingsVoiceTryIt": "Coba",

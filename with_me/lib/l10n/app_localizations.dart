@@ -269,6 +269,12 @@ abstract class AppLocalizations {
   /// **'This deletes your account and everything in it: your check-ins, exercises, journal and name, online and on this phone. It cannot be undone.'**
   String get settingsDeleteAccountBody;
 
+  /// Delete account confirmation, shown only to people with With Me Plus: deleting the account does not stop the Google Play subscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Deleting your account does not cancel With Me Plus. Cancel it in Google Play first (Payments & subscriptions), or you will still be charged.'**
+  String get settingsDeletePlusNote;
+
   /// Error after deleting the account failed; nothing was deleted.
   ///
   /// In en, this message translates to:

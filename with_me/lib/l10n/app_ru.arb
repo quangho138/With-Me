@@ -22,6 +22,7 @@
   "settingsExport": "Экспорт",
   "settingsDeleteAccount": "Удалить мой аккаунт",
   "settingsDeleteAccountBody": "Это удалит твой аккаунт и всё, что в нём есть: чек-ины, упражнения, размышления и имя, в сети и на этом телефоне. Это нельзя отменить.",
+  "settingsDeletePlusNote": "Удаление аккаунта не отменяет With Me Plus. Сначала отмените подписку в Google Play (Платежи и подписки), иначе оплата продолжит списываться.",
   "settingsDeleteFailed": "Не удалось удалить данные. Попробуй ещё раз.",
   "settingsVoiceTitle": "Голос",
   "settingsVoiceTryIt": "Послушать",

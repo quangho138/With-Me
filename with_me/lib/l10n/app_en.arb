@@ -94,6 +94,10 @@
   "@settingsDeleteAccountBody": {
     "description": "Body of the dialog that confirms deleting the account. Plain and calm, but clear it is permanent."
   },
+  "settingsDeletePlusNote": "Deleting your account does not cancel With Me Plus. Cancel it in Google Play first (Payments & subscriptions), or you will still be charged.",
+  "@settingsDeletePlusNote": {
+    "description": "Delete account confirmation, shown only to people with With Me Plus: deleting the account does not stop the Google Play subscription."
+  },
   "settingsDeleteFailed": "Couldn't delete your data. Try again.",
   "@settingsDeleteFailed": {
     "description": "Error after deleting the account failed; nothing was deleted."

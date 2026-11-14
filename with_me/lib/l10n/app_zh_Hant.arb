@@ -22,6 +22,7 @@
   "settingsExport": "匯出",
   "settingsDeleteAccount": "刪除我的帳戶",
   "settingsDeleteAccountBody": "這會刪除你的帳戶及其中的所有內容：你的打卡記錄、練習、反思記錄和名字，包括線上和這支手機上的。此操作無法撤銷。",
+  "settingsDeletePlusNote": "刪除帳戶不會取消 With Me Plus。請先在 Google Play 中取消（付款與訂閱），否則仍會繼續收費。",
   "settingsDeleteFailed": "無法刪除你的資料。請再試一次。",
   "settingsVoiceTitle": "語音",
   "settingsVoiceTryIt": "試聽",

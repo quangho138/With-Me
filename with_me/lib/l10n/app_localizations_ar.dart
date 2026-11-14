@@ -78,6 +78,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'سيؤدي هذا إلى حذف حسابك وكل ما فيه: تسجيلات حالتك وتمارينك وتأملاتك واسمك، عبر الإنترنت وعلى هذا الهاتف. لا يمكن التراجع عن ذلك.';
 
   @override
+  String get settingsDeletePlusNote => 'حذف حسابك لا يلغي With Me Plus. ألغِه أولًا في Google Play (الدفعات والاشتراكات)، وإلا فستستمر الرسوم.';
+
+  @override
   String get settingsDeleteFailed =>
       'تعذّر حذف بياناتك. يُرجى المحاولة مرة أخرى.';
 

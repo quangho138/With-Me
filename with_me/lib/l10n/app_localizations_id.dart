@@ -78,6 +78,9 @@ class AppLocalizationsId extends AppLocalizations {
       'Ini akan menghapus akunmu dan semua isinya: check-in, latihan, refleksi, dan namamu, secara online dan di ponsel ini. Tindakan ini tidak bisa dibatalkan.';
 
   @override
+  String get settingsDeletePlusNote => 'Menghapus akun tidak membatalkan With Me Plus. Batalkan dulu di Google Play (Pembayaran & langganan), atau Anda tetap akan ditagih.';
+
+  @override
   String get settingsDeleteFailed => 'Datamu tidak bisa dihapus. Coba lagi.';
 
   @override

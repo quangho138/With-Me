@@ -78,6 +78,9 @@ class AppLocalizationsZh extends AppLocalizations {
       '这会删除你的账户及其中的所有内容：你的打卡记录、练习、反思记录和名字，包括线上和这部手机上的。此操作无法撤销。';
 
   @override
+  String get settingsDeletePlusNote => '删除账号不会取消 With Me Plus。请先在 Google Play 中取消（付款和订阅），否则仍会继续扣费。';
+
+  @override
   String get settingsDeleteFailed => '无法删除你的数据。请再试一次。';
 
   @override
@@ -6875,6 +6878,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   @override
   String get settingsDeleteAccountBody =>
       '這會刪除你的帳戶及其中的所有內容：你的打卡記錄、練習、反思記錄和名字，包括線上和這支手機上的。此操作無法撤銷。';
+
+  @override
+  String get settingsDeletePlusNote => '刪除帳戶不會取消 With Me Plus。請先在 Google Play 中取消（付款與訂閱），否則仍會繼續收費。';
 
   @override
   String get settingsDeleteFailed => '無法刪除你的資料。請再試一次。';

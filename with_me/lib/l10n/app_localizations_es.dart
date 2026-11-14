@@ -78,6 +78,9 @@ class AppLocalizationsEs extends AppLocalizations {
       'Esto elimina tu cuenta y todo lo que contiene: tus registros, ejercicios, reflexiones y nombre, en línea y en este teléfono. No se puede deshacer.';
 
   @override
+  String get settingsDeletePlusNote => 'Eliminar tu cuenta no cancela With Me Plus. Cancélalo primero en Google Play (Pagos y suscripciones) o se te seguirá cobrando.';
+
+  @override
   String get settingsDeleteFailed =>
       'No se pudieron eliminar tus datos. Inténtalo de nuevo.';
 

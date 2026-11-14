@@ -61,8 +61,10 @@ dependencies:
   flutter_timezone: ^5.1.1
   # With Me Plus is bought through Google Play (stage B of the payments
   # plan). The Android part is named too, to read each plan's base plan id.
-  in_app_purchase: ^3.2.0
-  in_app_purchase_android: ^0.4.0
+  # in_app_purchase_android 0.5.5 uses Google Play Billing Library 9.1;
+  # Google Play requires 8 or later for new apps and updates.
+  in_app_purchase: ^3.3.0
+  in_app_purchase_android: ^0.5.5
 
 dev_dependencies:
   flutter_test:

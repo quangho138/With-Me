@@ -78,6 +78,9 @@ class AppLocalizationsMr extends AppLocalizations {
       'यामुळे तुमचे खाते आणि त्यातील सर्व काही हटवले जाईल: तुमचे चेक-इन, व्यायाम, चिंतन आणि नाव, ऑनलाइन आणि या फोनवरही. हे परत करता येणार नाही.';
 
   @override
+  String get settingsDeletePlusNote => 'खाते हटवल्याने With Me Plus रद्द होत नाही. आधी Google Play मध्ये (पेमेंट आणि सदस्यता) ते रद्द करा, नाहीतर शुल्क लागत राहील.';
+
+  @override
   String get settingsDeleteFailed =>
       'तुमचा डेटा हटवता आला नाही. पुन्हा प्रयत्न करा.';
 

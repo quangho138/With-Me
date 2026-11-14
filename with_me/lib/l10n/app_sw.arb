@@ -22,6 +22,7 @@
   "settingsExport": "Kuhamisha data",
   "settingsDeleteAccount": "Futa akaunti yangu",
   "settingsDeleteAccountBody": "Hii itafuta akaunti yako na kila kitu ndani yake: tathmini zako, mazoezi, tafakari na jina lako, mtandaoni na kwenye simu hii. Haiwezi kutenduliwa.",
+  "settingsDeletePlusNote": "Kufuta akaunti yako hakusitishi With Me Plus. Isitishe kwanza kwenye Google Play (Malipo na usajili), la sivyo utaendelea kutozwa.",
   "settingsDeleteFailed": "Imeshindikana kufuta data yako. Jaribu tena.",
   "settingsVoiceTitle": "Sauti",
   "settingsVoiceTryIt": "Jaribu",

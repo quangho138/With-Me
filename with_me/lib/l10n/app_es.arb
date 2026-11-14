@@ -22,6 +22,7 @@
   "settingsExport": "Exportar",
   "settingsDeleteAccount": "Eliminar mi cuenta",
   "settingsDeleteAccountBody": "Esto elimina tu cuenta y todo lo que contiene: tus registros, ejercicios, reflexiones y nombre, en línea y en este teléfono. No se puede deshacer.",
+  "settingsDeletePlusNote": "Eliminar tu cuenta no cancela With Me Plus. Cancélalo primero en Google Play (Pagos y suscripciones) o se te seguirá cobrando.",
   "settingsDeleteFailed": "No se pudieron eliminar tus datos. Inténtalo de nuevo.",
   "settingsVoiceTitle": "Voz",
   "settingsVoiceTryIt": "Probar",

@@ -78,6 +78,9 @@ class AppLocalizationsJa extends AppLocalizations {
       'アカウントとその中のすべて（チェックイン、エクササイズ、ふり返り、名前）が、オンラインとこのスマホの両方から削除されます。元に戻すことはできません。';
 
   @override
+  String get settingsDeletePlusNote => 'アカウントを削除しても With Me Plus は解約されません。先に Google Play（お支払いと定期購入）で解約してください。解約しないと請求が続きます。';
+
+  @override
   String get settingsDeleteFailed => 'データを削除できませんでした。もう一度お試しください。';
 
   @override

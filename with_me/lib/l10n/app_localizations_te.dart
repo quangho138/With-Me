@@ -78,6 +78,9 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఇది మీ ఖాతాను, అందులోని ప్రతిదాన్నీ తొలగిస్తుంది: మీ చెక్-ఇన్‌లు, వ్యాయామాలు, ఆత్మపరిశీలనలు, మీ పేరు, ఆన్‌లైన్‌లోనూ ఈ ఫోన్‌లోనూ. దీన్ని రద్దు చేయడం సాధ్యం కాదు.';
 
   @override
+  String get settingsDeletePlusNote => 'ఖాతాను తొలగిస్తే With Me Plus రద్దు కాదు. ముందుగా Google Playలో (చెల్లింపులు & సబ్‌స్క్రిప్షన్‌లు) రద్దు చేయండి, లేకపోతే ఛార్జీలు కొనసాగుతాయి.';
+
+  @override
   String get settingsDeleteFailed =>
       'మీ డేటాను తొలగించడం కుదరలేదు. మళ్లీ ప్రయత్నించండి.';
 

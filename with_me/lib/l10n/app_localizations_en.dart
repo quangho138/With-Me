@@ -78,6 +78,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'This deletes your account and everything in it: your check-ins, exercises, journal and name, online and on this phone. It cannot be undone.';
 
   @override
+  String get settingsDeletePlusNote => 'Deleting your account does not cancel With Me Plus. Cancel it in Google Play first (Payments & subscriptions), or you will still be charged.';
+
+  @override
   String get settingsDeleteFailed => 'Couldn\'t delete your data. Try again.';
 
   @override
