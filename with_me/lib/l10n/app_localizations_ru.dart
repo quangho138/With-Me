@@ -78,6 +78,9 @@ class AppLocalizationsRu extends AppLocalizations {
       'Это удалит твой аккаунт и всё, что в нём есть: чек-ины, упражнения, размышления и имя, в сети и на этом телефоне. Это нельзя отменить.';
 
   @override
+  String get settingsDeletePlusNote => 'Удаление аккаунта не отменяет With Me Plus. Сначала отмените подписку в Google Play (Платежи и подписки), иначе оплата продолжит списываться.';
+
+  @override
   String get settingsDeleteFailed =>
       'Не удалось удалить данные. Попробуй ещё раз.';
 

@@ -78,6 +78,9 @@ class AppLocalizationsKo extends AppLocalizations {
       '계정과 그 안의 모든 것(체크인, 운동, 돌아보기 기록, 이름)이 온라인과 이 휴대폰에서 모두 삭제돼요. 되돌릴 수 없어요.';
 
   @override
+  String get settingsDeletePlusNote => '계정을 삭제해도 With Me Plus는 해지되지 않습니다. 먼저 Google Play(결제 및 정기 결제)에서 해지하세요. 그렇지 않으면 계속 요금이 청구됩니다.';
+
+  @override
   String get settingsDeleteFailed => '데이터를 삭제하지 못했어요. 다시 시도해 주세요.';
 
   @override

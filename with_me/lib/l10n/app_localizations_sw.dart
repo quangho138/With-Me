@@ -78,6 +78,9 @@ class AppLocalizationsSw extends AppLocalizations {
       'Hii itafuta akaunti yako na kila kitu ndani yake: tathmini zako, mazoezi, tafakari na jina lako, mtandaoni na kwenye simu hii. Haiwezi kutenduliwa.';
 
   @override
+  String get settingsDeletePlusNote => 'Kufuta akaunti yako hakusitishi With Me Plus. Isitishe kwanza kwenye Google Play (Malipo na usajili), la sivyo utaendelea kutozwa.';
+
+  @override
   String get settingsDeleteFailed =>
       'Imeshindikana kufuta data yako. Jaribu tena.';
 

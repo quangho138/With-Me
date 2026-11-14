@@ -78,6 +78,9 @@ class AppLocalizationsPt extends AppLocalizations {
       'Isso exclui sua conta e tudo o que há nela: seus check-ins, exercícios, reflexões e nome, on-line e neste celular. Não dá para desfazer.';
 
   @override
+  String get settingsDeletePlusNote => 'Excluir sua conta não cancela o With Me Plus. Cancele primeiro no Google Play (Pagamentos e assinaturas) ou você continuará sendo cobrado.';
+
+  @override
   String get settingsDeleteFailed =>
       'Não foi possível excluir seus dados. Tente de novo.';
 

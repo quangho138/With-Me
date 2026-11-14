@@ -78,6 +78,9 @@ class AppLocalizationsBn extends AppLocalizations {
       'এতে আপনার অ্যাকাউন্ট এবং তার ভেতরের সবকিছু মুছে যাবে: আপনার চেক-ইন, ব্যায়াম, ভাবনা ও নাম, অনলাইনে এবং এই ফোনে। এটি আর ফেরানো যাবে না।';
 
   @override
+  String get settingsDeletePlusNote => 'অ্যাকাউন্ট মুছলে With Me Plus বাতিল হয় না। আগে Google Play-তে (পেমেন্ট ও সাবস্ক্রিপশন) বাতিল করুন, নইলে টাকা কাটা চলতে থাকবে।';
+
+  @override
   String get settingsDeleteFailed =>
       'আপনার ডেটা মোছা যায়নি। আবার চেষ্টা করুন।';
 

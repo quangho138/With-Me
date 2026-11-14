@@ -78,6 +78,9 @@ class AppLocalizationsTr extends AppLocalizations {
       'Bu işlem hesabını ve içindeki her şeyi siler: durum kayıtların, egzersizlerin, öz değerlendirmelerin ve adın, hem çevrimiçi hem de bu telefonda. Geri alınamaz.';
 
   @override
+  String get settingsDeletePlusNote => 'Hesabınızı silmek With Me Plus\'ı iptal etmez. Önce Google Play\'den (Ödemeler ve abonelikler) iptal edin, yoksa ücretlendirilmeye devam edersiniz.';
+
+  @override
   String get settingsDeleteFailed => 'Verilerin silinemedi. Tekrar dene.';
 
   @override

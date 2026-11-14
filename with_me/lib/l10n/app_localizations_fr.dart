@@ -78,6 +78,9 @@ class AppLocalizationsFr extends AppLocalizations {
       'Cela supprime ton compte et tout ce qu\'il contient : tes bilans, exercices, réflexions et ton nom, en ligne et sur ce téléphone. C\'est définitif.';
 
   @override
+  String get settingsDeletePlusNote => 'Supprimer votre compte n\'annule pas With Me Plus. Annulez-le d\'abord dans Google Play (Paiements et abonnements), sinon vous serez toujours facturé.';
+
+  @override
   String get settingsDeleteFailed =>
       'Impossible de supprimer tes données. Réessaie.';
 

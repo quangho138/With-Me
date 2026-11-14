@@ -200,7 +200,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
             borderRadius: BorderRadius.circular(24),
           ),
           title: ScenicHeading(l.settingsDeleteAccount, size: 21),
-          content: Text(l.settingsDeleteAccountBody, style: kScenicBody),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(l.settingsDeleteAccountBody, style: kScenicBody),
+              // Deleting the account does not stop Google Play from
+              // charging; only the person can cancel there (13 Nov 2026).
+              if (CompanionPlus.instance.status != null) ...[
+                const SizedBox(height: 12),
+                Text(
+                  l.settingsDeletePlusNote,
+                  key: const ValueKey('delete-plus-note'),
+                  style: kScenicBody.copyWith(fontWeight: FontWeight.w700),
+                ),
+              ],
+            ],
+          ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),

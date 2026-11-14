@@ -78,6 +78,9 @@ class AppLocalizationsDe extends AppLocalizations {
       'Dadurch werden dein Konto und alles darin gelöscht: deine Check-ins, Übungen, Reflexionen und dein Name, online und auf diesem Handy. Das kann nicht rückgängig gemacht werden.';
 
   @override
+  String get settingsDeletePlusNote => 'Das Löschen deines Kontos kündigt With Me Plus nicht. Kündige es zuerst in Google Play (Zahlungen & Abos), sonst wird weiter abgebucht.';
+
+  @override
   String get settingsDeleteFailed =>
       'Deine Daten konnten nicht gelöscht werden. Versuch es noch einmal.';
 

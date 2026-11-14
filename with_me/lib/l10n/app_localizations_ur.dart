@@ -78,6 +78,9 @@ class AppLocalizationsUr extends AppLocalizations {
       'اس سے آپ کا اکاؤنٹ اور اس میں موجود سب کچھ حذف ہو جائے گا: آپ کے چیک اِن، مشقیں، غور و فکر اور نام، آن لائن بھی اور اس فون پر بھی۔ اسے واپس نہیں کیا جا سکتا۔';
 
   @override
+  String get settingsDeletePlusNote => 'اکاؤنٹ حذف کرنے سے With Me Plus منسوخ نہیں ہوتا۔ پہلے Google Play میں (ادائیگیاں اور سبسکرپشنز) اسے منسوخ کریں، ورنہ چارجز جاری رہیں گے۔';
+
+  @override
   String get settingsDeleteFailed =>
       'آپ کا ڈیٹا حذف نہیں ہو سکا۔ دوبارہ کوشش کریں۔';
 

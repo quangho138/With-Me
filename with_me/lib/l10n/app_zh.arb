@@ -22,6 +22,7 @@
   "settingsExport": "导出",
   "settingsDeleteAccount": "删除我的账户",
   "settingsDeleteAccountBody": "这会删除你的账户及其中的所有内容：你的打卡记录、练习、反思记录和名字，包括线上和这部手机上的。此操作无法撤销。",
+  "settingsDeletePlusNote": "删除账号不会取消 With Me Plus。请先在 Google Play 中取消（付款和订阅），否则仍会继续扣费。",
   "settingsDeleteFailed": "无法删除你的数据。请再试一次。",
   "settingsVoiceTitle": "语音",
   "settingsVoiceTryIt": "试听",

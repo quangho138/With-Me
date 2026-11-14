@@ -22,6 +22,7 @@
   "settingsExport": "التصدير",
   "settingsDeleteAccount": "حذف حسابي",
   "settingsDeleteAccountBody": "سيؤدي هذا إلى حذف حسابك وكل ما فيه: تسجيلات حالتك وتمارينك وتأملاتك واسمك، عبر الإنترنت وعلى هذا الهاتف. لا يمكن التراجع عن ذلك.",
+  "settingsDeletePlusNote": "حذف حسابك لا يلغي With Me Plus. ألغِه أولًا في Google Play (الدفعات والاشتراكات)، وإلا فستستمر الرسوم.",
   "settingsDeleteFailed": "تعذّر حذف بياناتك. يُرجى المحاولة مرة أخرى.",
   "settingsVoiceTitle": "الصوت",
   "settingsVoiceTryIt": "تجربة",

@@ -78,6 +78,9 @@ class AppLocalizationsVi extends AppLocalizations {
       'Thao tác này sẽ xóa tài khoản của bạn và mọi thứ trong đó: các lần ghi nhận, bài tập, suy ngẫm và tên của bạn, trên mạng và trên điện thoại này. Không thể hoàn tác.';
 
   @override
+  String get settingsDeletePlusNote => 'Xóa tài khoản không hủy With Me Plus. Hãy hủy trong Google Play trước (Thanh toán và gói thuê bao), nếu không bạn vẫn sẽ bị tính phí.';
+
+  @override
   String get settingsDeleteFailed =>
       'Không thể xóa dữ liệu của bạn. Hãy thử lại.';
 
