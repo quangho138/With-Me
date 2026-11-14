@@ -393,18 +393,18 @@ packages:
     dependency: "direct main"
     description:
       name: in_app_purchase
-      sha256: ad59b45d998868b8ace0f606e09b348ffd888952a3cf8ff9f7956aaf4844e6e2
+      sha256: d8317ec2ed6fe33199957d67ee67e08a4fd4871ef93b91d7611d8ee560892afc
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.4"
+    version: "3.3.1"
   in_app_purchase_android:
     dependency: "direct main"
     description:
       name: in_app_purchase_android
-      sha256: "518b48a385dfc1aa278080472969c6cee0c3d41ef8b9511b0071dd015473ecf1"
+      sha256: b76ab601573f8a848e72d015496257235066ba3479bef6300482239f417e0d72
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0+11"
+    version: "0.5.5"
   in_app_purchase_platform_interface:
     dependency: transitive
     description:
