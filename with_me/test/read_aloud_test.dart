@@ -123,7 +123,7 @@ void main() {
   const greetingSpoken = "Hi! I'm here with you. How are you feeling today?";
   const recording = DailyCheckInScreen.greetingRecording;
 
-  /// The English recording that plays for [clip]: Adrian's voice, under
+  /// The English recording that plays for [clip]: Alex's voice, under
   /// audio/voice/en/.
   String en(String clip) => clip.replaceFirst('audio/', 'audio/voice/en/');
   final greeting = en(recording);

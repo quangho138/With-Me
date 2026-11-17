@@ -50,7 +50,7 @@ If every voice sounds robotic, the phone may only have the basic voices installe
 
 ## Recorded greeting (2026-10-09)
 
-The greeting no longer uses text-to-speech. It plays Adrian's recording, with_me/assets/audio/greeting.mp3 (4.2 s, made with fish.audio).
+The greeting no longer uses text-to-speech. It plays Alex's recording, with_me/assets/audio/greeting.mp3 (4.2 s, made with fish.audio).
 
 - It plays only after "Start today's check-in" on the Daily Log. Tapping the greeting's row in the Daily Log list is silent, and so is coming back to the greeting from a later page.
 - The Read aloud switch still turns it off.
@@ -62,7 +62,7 @@ The greeting no longer uses text-to-speech. It plays Adrian's recording, with_me
 
 ## Every check-in page recorded (2026-10-09, later)
 
-Adrian recorded a line for each page. They are in with_me/assets/audio/checkin/, and greeting.mp3 is now page1.mp3.
+Alex recorded a line for each page. They are in with_me/assets/audio/checkin/, and greeting.mp3 is now page1.mp3.
 
 | Page | File |
 |---|---|
@@ -76,9 +76,9 @@ Adrian recorded a line for each page. They are in with_me/assets/audio/checkin/,
 | 8 How stress is showing up | page8_body, page8_feelings, page8_mind or page8_behavior, whichever was picked on page 7 |
 | 9 Intention to change | page9.mp3 |
 | 10 Strategies and actions | page10.mp3 |
-| 11 Strategy details | none (silent, by Adrian's choice) |
+| 11 Strategy details | none (silent, by Alex's choice) |
 
-When the lines play (Adrian's answers):
+When the lines play (Alex's answers):
 - When the check-in is opened from the Daily Log, the line for the page it opens on plays. This covers both "Start today's check-in" and any row in the list. A row for page 6 or page 8 opens one page earlier, so that earlier page's line plays.
 - Each page reached with Continue plays its line. The previous line stops first.
 - Going Back is quiet: the line of the page being left stops, and the page returned to does not play again.
@@ -90,19 +90,19 @@ Suite: 214 passed, 4 skipped.
 
 ## Talking mouth (2026-10-12)
 
-While a page's recording plays, the companion's mouth moves through three shapes: closed (its own smile), slightly open, and wider open. The shapes change on an uneven, repeating rhythm of short "syllables" and pauses (RealMascot.mouthAt). Each page keeps its own waiting pose: hugging the heart on the greeting, hand on chin on pages 2, 3 and 5, and sitting on the others. Adrian chose this on 2026-10-12.
+While a page's recording plays, the companion's mouth moves through three shapes: closed (its own smile), slightly open, and wider open. The shapes change on an uneven, repeating rhythm of short "syllables" and pauses (RealMascot.mouthAt). Each page keeps its own waiting pose: hugging the heart on the greeting, hand on chin on pages 2, 3 and 5, and sitting on the others. Alex chose this on 2026-10-12.
 
 - **Art:** the open mouths are overlays: tool/prepare_mouth_frames.py paints out the smile and draws the open mouth in the same ink. The files are assets/v2/app/mascot_{heart,think,idle}_mouth_{mid,wide}.webp. They only cover the mouth, so blinking carries on and the pose art is unchanged. The answer poses (happy, sad, smirk, excited) never get a mouth overlay.
 - **Tied to playback:** NarrationMouth (lib/WithMe/Speech) follows the id that SpeechService.play() returned. The mouth moves only while the playback state reports that line as playing. It starts when the audio actually starts and stops when the audio ends or is stopped. There is no timer of its own.
 - **First entry only:** the mouth follows a line only when the page plays one, which happens on entry from the Daily Log or with Continue. Going Back, rebuilding, or returning from Settings leaves it still.
 - **Answers take priority:** every answer on every page goes through _touch, which calls NarrationMouth.hush(). The mouth stops at once, the answer's reaction pose shows, and for the rest of that line the mouth stays still. The audio carries on as before, and its finishing does not change the pose.
 - **Leaving:** the page stops its line, and the NarrationMouth is disposed with the page, which removes its listener.
-- **Tests:** test/talking_mouth_test.dart (11) covers every behaviour Adrian listed.
+- **Tests:** test/talking_mouth_test.dart (11) covers every behaviour Alex listed.
 - **Preview:** talking-mouth-preview.gif shows the mouth cycling in all three poses.
 
 ### Nine mouth shapes that follow the voice (2026-10-12, later)
 
-Adrian asked for more mouth shapes, and he chose to have the mouth follow each recording.
+Alex asked for more mouth shapes, and chose to have the mouth follow each recording.
 
 - **Shapes:** MouthShape in RealMascot.dart. Closed (the pose's own smile), M/B/P, slightly open, wider open, Ah, Ee, Oh, Oo and F/V. tool/prepare_mouth_frames.py draws the 8 open shapes for each of the heart, think and idle poses (24 overlays, about 190 KB in total). The painted-over patch is now blurred, so no trace of the old smile shows.
 - **Timing:** tool/make_mouth_timelines.py measures each recording's loudness 30 times a second. It closes the mouth in pauses and uses small, wider or widest shapes as the voice gets louder. It moves to a new shape on each syllable, and every other syllable after a pause starts with pressed lips. The output is lib/WithMe/Speech/MouthTimelines.dart, with one character per 1/30 s for each recording. Run the script again after changing a recording.
@@ -143,7 +143,7 @@ read-aloud-voice/pose-before-after.png.
 
 ## Home welcome (2026-10-12, evening)
 
-Adrian's recording (assets/audio/home/welcome_back.mp3, "Welcome back, Maya,
+Alex's recording (assets/audio/home/welcome_back.mp3, "Welcome back, Maya,
 what would you like to do?", Maya being the example name) plays on Home the
 first time it opens in each run of the app, with Read aloud on. The waving
 companion keeps waving and talks: the wave body has the same 8 mouth
@@ -168,9 +168,9 @@ an Android emulator (Google Play or Google APIs image) or phone:
 
 If it's silent, check the media volume.
 
-## Adrian's own voice (2026-10-18)
+## Alex's own voice (2026-10-18)
 
-The English lines are now in Adrian's own voice. He recorded a 9-second reference through free CapCut voice filters, and tool/make_voice_lines.py had Chatterbox Multilingual read all 17 lines in that voice, into with_me/assets/audio/voice/en/. Each clip was checked against its line with speech recognition; three were made again and four trimmed where the model added stray sounds after the last word. The mouth timelines were rebuilt from the new clips.
+The English lines are now in Alex's own voice. Alex recorded a 9-second reference through free CapCut voice filters, and tool/make_voice_lines.py had Chatterbox Multilingual read all 17 lines in that voice, into with_me/assets/audio/voice/en/. Each clip was checked against its line with speech recognition; three were made again and four trimmed where the model added stray sounds after the last word. The mouth timelines were rebuilt from the new clips.
 
 The fish.audio recordings no longer ship with the app, and were removed from the repository on 2026-10-22.
 

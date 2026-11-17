@@ -21,7 +21,7 @@ import 'MonthlyCalendarScreen.dart';
 /// the room below them.
 ///
 /// The first time Home opens after the app starts, the companion says
-/// Adrian's recorded welcome, mouth moving with it (Read aloud on). Any
+/// Alex's recorded welcome, mouth moving with it (Read aloud on). Any
 /// shortcut or the menu stops it; coming back to Home does not say it again.
 class WithMeHomeScreen extends StatefulWidget {
   const WithMeHomeScreen({super.key});

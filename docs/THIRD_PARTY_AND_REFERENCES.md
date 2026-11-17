@@ -214,13 +214,13 @@ few of those are used only by the tests.
 | `assets/video/forest.mp4` | https://mixkit.co/free-stock-video/sunlight-through-tall-trees-in-a-forest-520/ | Mixkit Stock Video Free License | Cleared, condition |
 | `assets/video/rain.mp4` | https://mixkit.co/free-stock-video/raining-in-a-cloud-forest-full-of-tall-trees-22728/ | Mixkit Stock Video Free License | Cleared, condition |
 | `assets/video/fire.mp4` | https://mixkit.co/free-stock-video/vertical-video-of-blazing-flames-flow-upwards-in-slow-motion-52289/ | Mixkit Stock Video Free License | Cleared, condition |
-| `assets/video/creek.mp4` (Guided Meditation) | https://mixkit.co/free-stock-video/a-picturesque-small-creek-with-calm-waters-and-steam-illuminated-51594/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
-| `assets/video/lake.mp4` (Anxiety SOS) | https://mixkit.co/free-stock-video/night-sky-with-stars-at-a-calm-lake-time-lapse-1704/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
-| `assets/video/clouds.mp4` (Body Scan) | https://mixkit.co/free-stock-video/small-clouds-moving-in-the-sky-1646/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
-| `assets/video/river.mp4` (Muscle Relaxation) | https://mixkit.co/free-stock-video/river-passing-through-a-forest-full-of-trees-51447/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
-| `assets/video/fireplace.mp4` (Home sessions) | https://mixkit.co/free-stock-video/wood-burning-in-a-fireplace-1242/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
-| `assets/video/snow.mp4` (School sessions) | https://mixkit.co/free-stock-video/snow-falling-in-a-pine-forest-3352/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
-| `assets/video/meadow.mp4` (Social sessions) | https://mixkit.co/free-stock-video/countryside-meadow-4075/ | Mixkit Stock Video Free License | Cleared, condition (checked by Adrian on 2026-10-23, added 2026-11-04) |
+| `assets/video/creek.mp4` (Guided Meditation) | https://mixkit.co/free-stock-video/a-picturesque-small-creek-with-calm-waters-and-steam-illuminated-51594/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
+| `assets/video/lake.mp4` (Anxiety SOS) | https://mixkit.co/free-stock-video/night-sky-with-stars-at-a-calm-lake-time-lapse-1704/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
+| `assets/video/clouds.mp4` (Body Scan) | https://mixkit.co/free-stock-video/small-clouds-moving-in-the-sky-1646/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
+| `assets/video/river.mp4` (Muscle Relaxation) | https://mixkit.co/free-stock-video/river-passing-through-a-forest-full-of-trees-51447/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
+| `assets/video/fireplace.mp4` (Home sessions) | https://mixkit.co/free-stock-video/wood-burning-in-a-fireplace-1242/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
+| `assets/video/snow.mp4` (School sessions) | https://mixkit.co/free-stock-video/snow-falling-in-a-pine-forest-3352/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
+| `assets/video/meadow.mp4` (Social sessions) | https://mixkit.co/free-stock-video/countryside-meadow-4075/ | Mixkit Stock Video Free License | Cleared, condition (checked by Alex on 2026-10-23, added 2026-11-04) |
 | `assets/audio/waves.m4a` (sea waves ambience) | https://mixkit.co/free-sound-effects/download/1189/ | Mixkit Sound Effects Free License | Cleared, condition |
 | `assets/audio/birds.m4a` (windy humming forest with birds) | https://mixkit.co/free-sound-effects/download/1238/ | Mixkit Sound Effects Free License | Cleared, condition |
 | `assets/audio/forest.m4a` (quiet forest ambience) | https://mixkit.co/free-sound-effects/download/1220/ | Mixkit Sound Effects Free License | Cleared, condition |
@@ -250,8 +250,8 @@ An older list of Mixkit clips the app no longer uses (`tool/media-source/sources
 | Item | How it was made | Rights | Status |
 |---|---|---|---|
 | `assets/audio/sigh-breath.wav` | Synthesised from filtered noise by `tool/make_sigh_breath.py`; no recording used (`assets/audio/SIGH-CREDITS.md`). Rebuilt on 2026-10-22 for the one-quick-inhale sigh. | Team's own | Cleared |
-| Voice lines, `assets/audio/voice/<lang>/` (17 clips × 13 languages) | Chatterbox Multilingual read each line in the voice of a 9-second reference that Adrian recorded of himself (kept privately by the team, not in the repository), made by `tool/make_voice_lines.py` | The voice is Adrian's own, used with his consent (he asked for it). Chatterbox output is under MIT (see 5). Every clip carries Resemble AI's inaudible PerTh watermark, which marks it as AI-generated. | Cleared |
-| The reference recording itself | Adrian's voice through CapCut's free voice filters | Adrian's own voice. CapCut's terms grant CapCut a broad licence to content made in the app, and its built-in effects come under its own materials terms. These terms are disputed in the press and were not read directly. | **Open, low risk**: confirm CapCut's terms allow its voice effects in a commercial product, or re-record the reference without CapCut and regenerate the lines with `tool/make_voice_lines.py`. Keep the reference out of any public repository, because anyone could clone the voice from it. |
+| Voice lines, `assets/audio/voice/<lang>/` (17 clips × 13 languages) | Chatterbox Multilingual read each line in the voice of a 9-second reference that Alex recorded of their own voice (kept privately by the team, not in the repository), made by `tool/make_voice_lines.py` | The voice is Alex's own, used with Alex's consent (Alex asked for it). Chatterbox output is under MIT (see 5). Every clip carries Resemble AI's inaudible PerTh watermark, which marks it as AI-generated. | Cleared |
+| The reference recording itself | Alex's voice through CapCut's free voice filters | Alex's own voice. CapCut's terms grant CapCut a broad licence to content made in the app, and its built-in effects come under its own materials terms. These terms are disputed in the press and were not read directly. | **Open, low risk**: confirm CapCut's terms allow its voice effects in a commercial product, or re-record the reference without CapCut and regenerate the lines with `tool/make_voice_lines.py`. Keep the reference out of any public repository, because anyone could clone the voice from it. |
 
 ### 4.4 Text
 
@@ -268,7 +268,7 @@ An older list of Mixkit clips the app no longer uses (`tool/media-source/sources
 
 | Item | Why it is there | Status |
 |---|---|---|
-| The first English voice, made by Adrian with fish.audio | It was replaced by Adrian's own voice on 2026-10-18 and kept as a backup. fish.audio's free plan is reported not to allow commercial use, and its terms could not be reached to confirm. | **Removed** on 2026-10-22: the clips are no longer in the app or the repository. |
+| The first English voice, made by Alex with fish.audio | It was replaced by Alex's own voice on 2026-10-18 and kept as a backup. fish.audio's free plan is reported not to allow commercial use, and its terms could not be reached to confirm. | **Removed** on 2026-10-22: the clips are no longer in the app or the repository. |
 | `docs/design_v2/reference.webp` | The product owner's design board, which the V2 screens follow | Internal; confirm with the product owner before the repository is made public. (The `checkin_screenshots/` folder, which held more of their screenshots, was removed on 2026-10-22.) |
 
 ## 5. AI models and services
@@ -342,10 +342,10 @@ What we worked inside, and what the app does with data:
 - **Read aloud** uses recordings bundled with the app, or the phone's
   on-device voice. Online voices are skipped on purpose, so the user's
   check-in text never leaves the phone.
-- **The only personal data in the project is Adrian's voice**: the reference
+- **The only personal data in the project is Alex's voice**: the reference
   recording and the clips made from it. It was processed by Chatterbox on
   the development machine, not uploaded to a voice service. CapCut processed
-  the original recording on Adrian's device.
+  the original recording on Alex's device.
 - **AI assistants** saw the project's code, documents and the demo data,
   never real users' data.
 - **Developer builds** (`--dart-define=WITHME_DEV=true`) add a switch that
@@ -363,9 +363,9 @@ What we worked inside, and what the app does with data:
   can hurt, especially in the crisis and disclaimer lines. Before release,
   each language's key lines (the crisis, disclaimer and meditation lines
   first) should be checked by a native speaker. Until then they are drafts.
-- **Cloned voice.** The voice is Adrian's own, used at his request. It is
+- **Cloned voice.** The voice is Alex's own, used at Alex's request. It is
   watermarked as AI-generated. Two risks need managing: the reference
-  recording lets anyone clone his voice, so it stays out of public places;
+  recording lets anyone clone Alex's voice, so it stays out of public places;
   and users should be told the companion's voice is synthetic (suggested
   line for About: "The companion's voice is generated by AI from a team
   member's recording").
@@ -396,7 +396,7 @@ What we worked inside, and what the app does with data:
 3. (Done 2026-11-04: the stock Flutter app icons were replaced.)
 4. Get written confirmation from the product owner that the mascot design may be used.
 5. Check CapCut's terms for its voice effects, or re-record the reference without CapCut.
-6. (Done 2026-10-22: the fish.audio clips and Adrian's voice reference were removed from the repository. If the repository was already pushed, they must also be removed from its history.)
+6. (Done 2026-10-22: the fish.audio clips and Alex's voice reference were removed from the repository. If the repository was already pushed, they must also be removed from its history.)
 7. Have native speakers review the translations, starting with the crisis and disclaimer lines.
 8. Confirm the Supabase project's region, accept Supabase's data processing terms, and write the privacy policy.
 9. Set up the Google OAuth consent screen with the app's name and privacy policy link.

@@ -48,7 +48,7 @@ import 'YourDayScreen.dart';
 /// (lib/Repositories), which owns the tables and the date format.
 ///
 /// Opened from the Daily Log ([readAloud]), the companion says each page's
-/// line when Read aloud is on, from Adrian's recordings ([recordingFor])
+/// line when Read aloud is on, from Alex's recordings ([recordingFor])
 /// rather than text-to-speech: the page it opens on, then each page reached
 /// with Continue. Going back to a page, or returning from Settings, does
 /// not repeat it. Leaving a page stops its line; answering on it does not.

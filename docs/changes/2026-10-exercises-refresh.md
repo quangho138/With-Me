@@ -29,7 +29,7 @@
 
 **Sounds**
 - Stretches of up to 45 s, with softened highs and a crossfaded loop seam.
-- Kept quiet, so they stay in the background behind the breathing guide. Lowered twice on 2026-10-16 after Adrian listened:
+- Kept quiet, so they stay in the background behind the breathing guide. Lowered twice on 2026-10-16 after Alex listened:
 
   | Sound | Loudness | Change from the first version |
   |---|---|---|
