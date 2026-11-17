@@ -24,7 +24,7 @@ app plays MP3 files from `with_me/assets/audio/voice/<code>/`. If a
 language has no folder, the phone's own voice reads the lines instead, so
 this part can be skipped.
 
-The current voice is Adrian's. Chatterbox Multilingual (free, MIT licence,
+The current voice is Alex's. Chatterbox Multilingual (free, MIT licence,
 runs on your own computer, nothing to sign up for) reads each line in that
 voice from a 9-second reference recording. The recording is not in the
 repository, because anyone could clone the voice from it: ask the team for

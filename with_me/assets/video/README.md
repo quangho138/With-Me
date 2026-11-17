@@ -17,7 +17,7 @@ These silent MP4 clips are full-screen backgrounds for the breathing exercises a
 | Snow (Study Overwhelm) | [Snow falling in a pine forest](https://mixkit.co/free-stock-video/snow-falling-in-a-pine-forest-3352/) | 1080x1920, 10 s |
 | Meadow (Social Worries) | [Countryside meadow](https://mixkit.co/free-stock-video/countryside-meadow-4075/) | 1920x1080, 23 s |
 
-The scenes were chosen by Adrian on 2026-10-16. The guided-session scenes were chosen by Adrian and checked for the Free License on 2026-10-23; Deadline Pressure keeps Waves.
+The scenes were chosen by Alex on 2026-10-16. The guided-session scenes were chosen by Alex and checked for the Free License on 2026-10-23; Deadline Pressure keeps Waves.
 
 `tool/make_nature_videos.sh` re-encodes the originals:
 - H.264 at 720p, kept portrait for Fire and Snow.

@@ -258,7 +258,7 @@ class SpeechService {
   /// audio/checkin/page1.mp3) to play in [locale], or null when that
   /// language has none and the device's voice reads the line.
   ///
-  /// Every line is generated in Adrian's voice by tool/make_voice_lines.py
+  /// Every line is generated in Alex's voice by tool/make_voice_lines.py
   /// and lives under `audio/voice/<language>/`. A recording counts once it
   /// has a mouth timeline, which tool/make_mouth_timelines.py writes for
   /// every clip it finds.

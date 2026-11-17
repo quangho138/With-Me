@@ -15,7 +15,7 @@ across the whole of each phase:
 
 The track starts and ends on silence, so the loop has no click.
 
-Chosen by Adrian on 2026-10-16. It replaces the earlier CC0 recording
+Chosen by Alex on 2026-10-16. It replaces the earlier CC0 recording
 (freesound rrehl 717167), which only sounded for about a second of each
 4 s inhale and 8 s exhale. On 2026-10-22 the exercise changed from two quick
 inhales to one, and the track was rebuilt to match.
