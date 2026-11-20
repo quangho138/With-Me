@@ -35,7 +35,6 @@ import 'WithMe/Screens/MonthlyCalendarScreen.dart';
 import 'WithMe/Screens/NotificationsScreen.dart';
 import 'WithMe/Screens/OutsideLogin.dart';
 import 'WithMe/Screens/ProfileScreen.dart';
-import 'WithMe/Screens/ProgressScreen.dart';
 import 'WithMe/Screens/ReminderScreen.dart';
 import 'WithMe/Screens/ResetPasswordScreen.dart';
 import 'WithMe/Screens/SettingsScreen.dart';
@@ -279,7 +278,6 @@ class WithMeApp extends StatelessWidget {
         TriggersSignsScreen.route: (_) => const TriggersSignsScreen(),
         StrategiesActionsScreen.route: (_) => const StrategiesActionsScreen(),
         YourDayScreen.route: (_) => const YourDayScreen(),
-        ProgressScreen.route: (_) => const ProgressScreen(),
         ReminderScreen.route: (_) => const ReminderScreen(),
 
         // Menu and settings — image40 to image45

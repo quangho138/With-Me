@@ -28,7 +28,6 @@ import 'package:with_me/WithMe/Screens/MenuScreen.dart';
 import 'package:with_me/WithMe/Screens/MonthlyCalendarScreen.dart';
 import 'package:with_me/WithMe/Screens/NotificationsScreen.dart';
 import 'package:with_me/WithMe/Screens/ProfileScreen.dart';
-import 'package:with_me/WithMe/Screens/ProgressScreen.dart';
 import 'package:with_me/WithMe/Screens/ReminderScreen.dart';
 import 'package:with_me/WithMe/Screens/ResetPasswordScreen.dart';
 import 'package:with_me/WithMe/Screens/SettingsScreen.dart';
@@ -146,7 +145,6 @@ final Map<String, Widget Function()> _screens = {
   'image35-day-detail': () =>
       DayDetailScreen(date: DateTime.now().subtract(const Duration(days: 1))),
   'image36-your-day': () => const YourDayScreen(),
-  'image37-progress': () => const ProgressScreen(),
   'image38-reminder': () => const ReminderScreen(),
   'image40-menu': () => const MenuScreen(),
   'image41-settings': () => const SettingsScreen(),
