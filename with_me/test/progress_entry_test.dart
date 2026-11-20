@@ -3,20 +3,20 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:with_me/WithMe/Components/WithMeControls.dart';
 import 'package:with_me/WithMe/Screens/DashboardScreen.dart';
-import 'package:with_me/WithMe/Screens/ProgressScreen.dart';
 import 'package:with_me/WithMe/Theme/WithMeTheme.dart';
 
 import 'support/check_in_walk.dart';
 
-/// The way into Progress (feature F lives there): the Dashboard links to
-/// it, and its bottom bar shows real icons, not placeholder squares.
+/// Your Progress was removed (20 Nov 2026, the team's call): it was still
+/// in the old look, so nothing may lead to it. The bottom bar it used
+/// still shows real icons, not placeholder squares.
 void main() {
   setUpAll(() async {
     await loadFonts();
     stubPlatformChannels();
   });
 
-  testWidgets('the Dashboard opens Your Progress', (tester) async {
+  testWidgets('the Dashboard has no way into Your Progress', (tester) async {
     usePhone(tester, const Size(390, 844));
     addTearDown(tester.view.reset);
     recordCheckIns();
@@ -24,12 +24,8 @@ void main() {
       MaterialApp(theme: buildWithMeTheme(), home: const DashboardScreen()),
     );
     await settle(tester);
-    final link = find.byKey(const ValueKey('dashboard-progress'));
-    await tester.ensureVisible(link);
-    await tester.tap(link);
-    await settle(tester);
-    await settle(tester);
-    expect(find.byType(ProgressScreen), findsOneWidget);
+    expect(find.byKey(const ValueKey('dashboard-progress')), findsNothing);
+    expect(find.byIcon(Icons.insights_rounded), findsNothing);
   });
 
   testWidgets('the bottom bar shows an icon for each place', (tester) async {

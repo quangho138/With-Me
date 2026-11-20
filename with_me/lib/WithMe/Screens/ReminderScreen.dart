@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import '../../Repositories/app_repositories.dart';
 import '../../Repositories/phone_notifications.dart';
 import '../../l10n/l10n.dart';
-import '../Components/WithMeCards.dart';
-import '../Components/WithMeControls.dart';
-import '../Components/WithMeScaffold.dart';
+import '../Components/ScenicKit.dart';
+import '../Components/ScenicScaffold.dart';
 import '../Data/Today.dart';
 import '../Data/notice_times.dart';
-import '../Mascot/MascotExpression.dart';
-import '../Mascot/WithMeAvatar.dart';
+import '../Mascot/RealMascot.dart';
 import '../Theme/WithMeTheme.dart';
 
 /// `image38.png` - "Stay on Track", opened from Your day after a check-in.
@@ -23,6 +21,10 @@ import '../Theme/WithMeTheme.dart';
 /// With Every day on, that time becomes the daily check-in reminder
 /// (feature E); off, it is one reminder only. Save asks the phone for
 /// permission first.
+///
+/// Drawn in the V2 look, like Your day and the Dashboard it is opened
+/// from: the painted sunset, a cream panel of choice tiles with coloured
+/// markers, the companion, and the teal pill.
 class ReminderScreen extends StatefulWidget {
   const ReminderScreen({super.key, this.phone});
 
@@ -151,55 +153,149 @@ class _ReminderScreenState extends State<ReminderScreen> {
     final clock = MaterialLocalizations.of(context);
     String shown(ClockTime t) =>
         clock.formatTimeOfDay(TimeOfDay(hour: t.hour, minute: t.minute));
-    final choices = <(String, String?)>[
-      (l.dashReminderLaterToday, null),
-      (l.dashReminderTomorrowMorning, shown(_tomorrowMorning)),
-      (l.dashReminderCustomTime, _custom == null ? null : shown(_custom!)),
+    final choices = <(String, String?, IconData, Color)>[
+      (
+        l.dashReminderLaterToday,
+        null,
+        Icons.schedule_rounded,
+        const Color(0xFFE59A2F),
+      ),
+      (
+        l.dashReminderTomorrowMorning,
+        shown(_tomorrowMorning),
+        Icons.wb_sunny_rounded,
+        const Color(0xFF3F7FD9),
+      ),
+      (
+        l.dashReminderCustomTime,
+        _custom == null ? null : shown(_custom!),
+        Icons.edit_calendar_rounded,
+        const Color(0xFF8A5BD6),
+      ),
     ];
-    return WithMeScaffold(
-      lockup: false,
-      action: WithMeButton(
+    return ScenicScaffold(
+      title: l.dashReminderTitle,
+      mascot: RealPose.happy,
+      mascotMax: 0.28,
+      action: ScenicPill(
+        key: const ValueKey('reminder-save'),
         label: l.dashReminderSave,
+        height: 58,
         onPressed: _saving ? null : _save,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: WithMeSpace.xl),
-          WithMeCard(
+          ScenicPanel(
+            padding: const EdgeInsets.fromLTRB(14, 16, 14, 14),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(l.dashReminderTitle, style: WithMeText.title),
-                const SizedBox(height: WithMeSpace.sm),
                 Text(
                   l.dashReminderSubtitle,
                   textAlign: TextAlign.center,
-                  style: WithMeText.body,
+                  style: kScenicBody.copyWith(fontSize: 15.5),
                 ),
+                const SizedBox(height: 14),
+                for (var i = 0; i < choices.length; i++) ...[
+                  if (i > 0) const SizedBox(height: 10),
+                  _ChoiceTile(
+                    key: ValueKey('reminder-choice-$i'),
+                    label: choices[i].$1,
+                    time: choices[i].$2,
+                    icon: choices[i].$3,
+                    color: choices[i].$4,
+                    selected: _choice == i,
+                    onTap: i == 2
+                        ? _pickCustom
+                        : () => setState(() => _choice = i),
+                  ),
+                ],
               ],
             ),
           ),
-          const SizedBox(height: WithMeSpace.lg),
-          for (var i = 0; i < choices.length; i++) ...[
-            if (i > 0) const SizedBox(height: WithMeSpace.md),
-            OptionRow(
-              label: choices[i].$1,
-              trailing: choices[i].$2,
-              selected: _choice == i,
-              onTap: i == 2 ? _pickCustom : () => setState(() => _choice = i),
-            ),
-          ],
-          const SizedBox(height: WithMeSpace.md),
-          ToggleRow(
+          const SizedBox(height: 12),
+          ScenicToggleRow(
             label: l.dashReminderEveryDay,
+            icon: Icons.repeat_rounded,
+            iconColor: const Color(0xFF3AA37A),
             value: _everyDay,
             onChanged: (v) => setState(() => _everyDay = v),
           ),
-          const SizedBox(height: WithMeSpace.xl),
-          const Center(
-            child: WithMeAvatar(size: 101, expression: MascotExpression.happy),
-          ),
         ],
+      ),
+    );
+  }
+}
+
+/// One timing choice, drawn like the Dashboard's cards: a coloured marker,
+/// the label with its time under it, and a tick when picked.
+class _ChoiceTile extends StatelessWidget {
+  const _ChoiceTile({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.selected,
+    required this.onTap,
+    this.time,
+  });
+
+  final String label;
+  final String? time;
+  final IconData icon;
+  final Color color;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return ScenicTile(
+      label: time == null ? label : '$label, $time',
+      selected: selected,
+      onTap: onTap,
+      answer: true,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(14, 12, 10, 12),
+        child: Row(
+          children: [
+            ScenicMarker(color: color, icon: icon, size: 42),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: kScenicBody.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  if (time != null) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      time!,
+                      style: kScenicBody.copyWith(
+                        fontSize: 15,
+                        color: ScenicColors.ink.withValues(alpha: 0.75),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            AnimatedOpacity(
+              opacity: selected ? 1 : 0,
+              duration: WithMeMotion.fast,
+              child: const Icon(
+                Icons.check_circle_rounded,
+                color: ScenicColors.pillBottom,
+                size: 28,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

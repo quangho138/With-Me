@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:with_me/Repositories/app_repositories.dart';
 import 'package:with_me/Repositories/reminder_service.dart';
-import 'package:with_me/WithMe/Components/WithMeControls.dart';
+import 'package:with_me/WithMe/Components/ScenicScaffold.dart';
 import 'package:with_me/WithMe/Data/Today.dart';
 import 'package:with_me/WithMe/Data/notice_times.dart';
 import 'package:with_me/WithMe/Screens/NotificationsScreen.dart';
@@ -211,7 +211,7 @@ void main() {
     ) async {
       await open(tester, const ReminderScreen(phone: true));
       await choose(tester, en.dashReminderLaterToday);
-      final every = find.byType(ToggleRow);
+      final every = find.byType(ScenicToggleRow);
       await tester.ensureVisible(every);
       await tester.tap(
         find.descendant(of: every, matching: find.byType(Switch)),
