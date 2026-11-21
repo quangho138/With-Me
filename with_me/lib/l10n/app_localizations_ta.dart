@@ -24,11 +24,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get settingsTitle => 'அமைப்புகள்';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
-  }
-
-  @override
   String get settingsHaptics => 'அதிர்வு';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get settingsExportData => 'எனது தரவை ஏற்றுமதி செய்';
-
-  @override
-  String get settingsExport => 'ஏற்றுமதி';
 
   @override
   String get settingsDeleteAccount => 'எனது கணக்கை நீக்கு';
@@ -557,10 +549,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get menuAboutTerms => 'விதிமுறைகள் & தனியுரிமைக் கொள்கை';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'விதிமுறைகள் இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
-
-  @override
   String get accountAiCompanion => 'உங்கள் நலவாழ்வுத் துணை';
 
   @override
@@ -574,10 +562,6 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Google மூலம் தொடர்க';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Google உள்நுழைவு இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
 
   @override
   String get accountStartWithoutAccount => 'கணக்கு இல்லாமல் தொடங்குக';
@@ -597,14 +581,6 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'கடவுச்சொல்லை மறந்துவிட்டீர்களா?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'இந்தச் சாதனத்தில் உங்கள் கணக்கைப் படிக்க முடியவில்லை.';
-
-  @override
-  String get accountLoginMismatch =>
-      'அந்த மின்னஞ்சலும் கடவுச்சொல்லும் பொருந்தவில்லை.';
 
   @override
   String get accountEmail => 'மின்னஞ்சல்';
@@ -628,9 +604,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get accountCreateAccount => 'கணக்கை உருவாக்கு';
 
   @override
-  String get accountCreateAnAccount => 'ஒரு கணக்கை உருவாக்குங்கள்';
-
-  @override
   String get accountAlreadyWithUs => 'ஏற்கனவே கணக்கு உள்ளதா? உள்நுழையவும்';
 
   @override
@@ -648,10 +621,6 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'இந்த ஃபோனில் ஏற்கனவே ஒரு கணக்கு உள்ளது. அதற்குப் பதிலாக உள்நுழையவும்.';
-
-  @override
-  String get accountSaveFailed =>
-      'இந்தச் சாதனத்தில் உங்கள் கணக்கைச் சேமிக்க முடியவில்லை.';
 
   @override
   String get accountResetTitle => 'உங்கள் கடவுச்சொல்லை மீட்டமையுங்கள்';
@@ -760,10 +729,6 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'உங்கள் கணக்கை அணுக முடியவில்லை. இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.';
-
-  @override
   String get plusRestore => 'வாங்கியவற்றை மீட்டமை';
 
   @override
@@ -798,10 +763,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/மாதம் · ஆண்டுக்கு ஒருமுறை கட்டணம்';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'கட்டணங்கள் இந்த UI பதிப்பில் இன்னும் இணைக்கப்படவில்லை.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1034,15 +995,6 @@ class AppLocalizationsTa extends AppLocalizations {
       'இது எவ்வளவு பயனுள்ளது என மதிப்பிடுங்கள்';
 
   @override
-  String get checkinAddCustom => '+ சொந்த உத்தி & செயலைச் சேர்';
-
-  @override
-  String get checkinCustomDialogTitle => 'சொந்த உத்தி\n& செயலைச் சேர்';
-
-  @override
-  String get checkinCustomStrategyHint => 'சொந்த உத்தி';
-
-  @override
   String get checkinCustomActionHint => 'சொந்தச் செயல்';
 
   @override
@@ -1095,10 +1047,6 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'இந்தச் சுயசிந்தனையை இந்தச் சாதனத்தில் சேமிக்க முடியவில்லை.';
-
-  @override
-  String get checkinReflectSaved =>
-      'சுயசிந்தனை சேமிக்கப்பட்டது. நன்றாகச் செய்தீர்கள்.';
 
   @override
   String get checkinOptAngry => 'கோபம்';
@@ -2159,63 +2107,6 @@ class AppLocalizationsTa extends AppLocalizations {
       'With Me-இல் உங்கள் வாரம் பார்க்கத் தயாராக உள்ளது.';
 
   @override
-  String get dashProgressTitle => 'உங்கள் முன்னேற்றம்';
-
-  @override
-  String get dashProgressTabWeek => 'வாரம்';
-
-  @override
-  String get dashProgressTabMonth => 'மாதம்';
-
-  @override
-  String get dashProgressTabYear => 'ஆண்டு';
-
-  @override
-  String get dashProgressStressLevel => 'மன அழுத்த அளவு';
-
-  @override
-  String get dashProgressMood => 'மனநிலை';
-
-  @override
-  String get dashProgressNotEnoughData => 'போதிய தரவு இல்லை';
-
-  @override
-  String get dashProgressCheckInsWeek => 'செக்-இன்கள்\nஇந்த வாரம்';
-
-  @override
-  String get dashProgressCheckInsMonth => 'செக்-இன்கள்\nஇந்த மாதம்';
-
-  @override
-  String get dashProgressCheckInsYear => 'செக்-இன்கள்\nஇந்த ஆண்டு';
-
-  @override
-  String get dashProgressGettingStarted => 'தொடக்க நிலை';
-
-  @override
-  String get dashProgressKeepGoing => 'தொடர்ந்து செல்லுங்கள்!';
-
-  @override
-  String get dashTrendBetter => 'சிறந்த வாரம்';
-
-  @override
-  String get dashTrendSteady => 'நிலையான வாரம்';
-
-  @override
-  String get dashTrendHarder => 'கடினமான வாரம்';
-
-  @override
-  String get dashTrendCaption => 'கடந்த வாரத்துடன் ஒப்பிட்டு';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'இன்றைய திட்டம்: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention =>
-      'இன்று இன்னும் நோக்கம் எதுவும் அமைக்கப்படவில்லை.';
-
-  @override
   String get dashDailyLogTitle => 'தினசரி பதிவு';
 
   @override
@@ -2308,9 +2199,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'நாளை காலை';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'நீங்கள் விரும்பும் நேரம்';
 
   @override
@@ -2389,45 +2277,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '$seconds விநாடிகள் அசையாமல் இருங்கள்';
   }
-
-  @override
-  String get exerciseComplete => 'நிறைவு';
-
-  @override
-  String get exerciseSceneWaves => 'கடற்கரையில்';
-
-  @override
-  String get exerciseSceneBirds => 'அமைதியான காலை';
-
-  @override
-  String get exerciseSceneForest => 'மரங்களுக்கு நடுவே';
-
-  @override
-  String get exerciseSceneRain => 'மழையின் கீழ்';
-
-  @override
-  String get exerciseSceneFire => 'நெருப்பின் அருகே';
-
-  @override
-  String get exerciseSceneNone => 'அமைதியின் ஒரு கணம்';
-
-  @override
-  String get exerciseSceneDetailWaves => 'மென்மையான அலைகள் · இதமான கரை';
-
-  @override
-  String get exerciseSceneDetailBirds => 'பறவைகளின் பாடல் · காட்டுக் கூடு';
-
-  @override
-  String get exerciseSceneDetailForest => 'சலசலக்கும் இலைகள் · மென்காற்று';
-
-  @override
-  String get exerciseSceneDetailRain => 'பெய்யும் மழை · ஓடும் நீர்';
-
-  @override
-  String get exerciseSceneDetailFire => 'வெடிக்கும் கனல் · மாலை வானம்';
-
-  @override
-  String get exerciseSceneDetailNone => 'நீங்களும் உங்கள் மூச்சும் மட்டும்';
 
   @override
   String get exerciseBreatheAgain => 'மீண்டும் சுவாசியுங்கள்';
@@ -2775,10 +2624,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 நிமி · காட்டில் அமைதி';
 
   @override
-  String get exerciseMeditationLocked =>
-      'பூட்டப்பட்டுள்ளது. With Me Plus-இன் பகுதி.';
-
-  @override
   String get exerciseMeditationIntro =>
       'காட்டில் ஐந்து அமைதியான நிமிடங்கள். சொற்களைப் பின்தொடருங்கள், அல்லது கண்களை மூடிக் கேளுங்கள்.';
 
@@ -2925,9 +2770,6 @@ class AppLocalizationsTa extends AppLocalizations {
   String get membershipSave => '16% சேமிப்பு';
 
   @override
-  String get meditateTitle => 'தியானம்';
-
-  @override
   String get meditateSubtitle => 'மன அழுத்தம் எங்கிருந்து வந்தாலும் அமைதி';
 
   @override
@@ -2941,17 +2783,6 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get meditateByArea => 'மன அழுத்தப் பகுதி வாரியாக';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count அமர்வுகள்',
-      one: '1 அமர்வு',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'உங்கள் செக்-இனிலிருந்து';
@@ -3087,9 +2918,6 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get stepReturn => 'திரும்புதல்';
-
-  @override
-  String get stepSettle => 'அமைதியாகட்டும்';
 
   @override
   String get stepHeadFace => 'தலை மற்றும் முகம்';

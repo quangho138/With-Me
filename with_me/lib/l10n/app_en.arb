@@ -20,16 +20,6 @@
   "@settingsTitle": {
     "description": "Title of the Settings screen, and its row in the menu."
   },
-  "settingsNotWired": "{feature} is not wired up in this UI pass.",
-  "@settingsNotWired": {
-    "description": "Short notice when a feature that is not built yet is tapped. {feature} is that feature's name, e.g. 'Text size'.",
-    "placeholders": {
-      "feature": {
-        "type": "String",
-        "example": "Text size"
-      }
-    }
-  },
   "settingsHaptics": "Haptics",
   "@settingsHaptics": {
     "description": "Settings toggle: vibration feedback on or off."
@@ -81,10 +71,6 @@
   "settingsExportData": "Export my data",
   "@settingsExportData": {
     "description": "Settings row to save a copy of the person's data."
-  },
-  "settingsExport": "Export",
-  "@settingsExport": {
-    "description": "Short name of the export feature, used in the 'not wired up' notice."
   },
   "settingsDeleteAccount": "Delete my account",
   "@settingsDeleteAccount": {
@@ -774,10 +760,6 @@
   "@menuAboutTerms": {
     "description": "Row on the About screen that opens the terms and privacy policy."
   },
-  "menuAboutTermsNotWired": "Terms are not wired up in this UI pass.",
-  "@menuAboutTermsNotWired": {
-    "description": "Notice that the terms page is not built yet."
-  },
   "accountAiCompanion": "Your Wellbeing Companion",
   "@accountAiCompanion": {
     "description": "Subtitle under the app's name on the welcome and About screens."
@@ -797,10 +779,6 @@
   "accountContinueWithGoogle": "Continue with Google",
   "@accountContinueWithGoogle": {
     "description": "Welcome screen button to sign in with a Google account."
-  },
-  "accountGoogleNotWired": "Google sign-in is not wired up in this UI pass.",
-  "@accountGoogleNotWired": {
-    "description": "Notice that Google sign-in is not built yet."
   },
   "accountStartWithoutAccount": "Start without an account",
   "@accountStartWithoutAccount": {
@@ -825,14 +803,6 @@
   "accountForgotPassword": "Forgot your password?",
   "@accountForgotPassword": {
     "description": "Link on the log-in screen to reset the password."
-  },
-  "accountLoginReadFailed": "Couldn't read your account on this device.",
-  "@accountLoginReadFailed": {
-    "description": "Error when the account on the phone could not be read while logging in."
-  },
-  "accountLoginMismatch": "That email and password do not match.",
-  "@accountLoginMismatch": {
-    "description": "Error when the email or password is wrong."
   },
   "accountEmail": "Email",
   "@accountEmail": {
@@ -862,10 +832,6 @@
   "@accountCreateAccount": {
     "description": "Button on the sign-up screen that creates the account."
   },
-  "accountCreateAnAccount": "Create an account",
-  "@accountCreateAnAccount": {
-    "description": "Menu row for someone using the app without an account; their saved data comes along."
-  },
   "accountAlreadyWithUs": "Already with us? Log in",
   "@accountAlreadyWithUs": {
     "description": "Link on the sign-up screen for someone who already has an account."
@@ -891,10 +857,6 @@
   "accountAlreadyOnPhone": "This phone already has an account. Log in instead.",
   "@accountAlreadyOnPhone": {
     "description": "Error on sign-up: only one account per phone."
-  },
-  "accountSaveFailed": "Couldn't save your account on this device.",
-  "@accountSaveFailed": {
-    "description": "Error when the new account could not be saved."
   },
   "accountResetTitle": "Reset your password",
   "@accountResetTitle": {
@@ -1024,10 +986,6 @@
       }
     }
   },
-  "plusCouldNotReach": "Could not reach your account. Check your connection and try again.",
-  "@plusCouldNotReach": {
-    "description": "Message when the account could not be reached."
-  },
   "plusRestore": "Restore purchases",
   "@plusRestore": {
     "description": "Membership page: button that asks Google Play for purchases made before (new phone, reinstall)."
@@ -1082,10 +1040,6 @@
         "type": "String"
       }
     }
-  },
-  "accountPaymentsNotWired": "Payments are not connected in this UI pass.",
-  "@accountPaymentsNotWired": {
-    "description": "Notice that payments are not built yet."
   },
   "accountMembershipFootnote": "Cancel any time. Your logs stay yours either way.",
   "@accountMembershipFootnote": {
@@ -1365,18 +1319,6 @@
   "@checkinRateEffectiveness": {
     "description": "Daily check-in, instruction above five stars: how well the chosen strategy works for the person."
   },
-  "checkinAddCustom": "+ Add custom strategy & action",
-  "@checkinAddCustom": {
-    "description": "Daily check-in, tappable link that opens a dialog to type a strategy and action of their own. Keep the leading +."
-  },
-  "checkinCustomDialogTitle": "Add custom strategy\n& action",
-  "@checkinCustomDialogTitle": {
-    "description": "Title of the dialog for typing a custom strategy and action. Keep the line break."
-  },
-  "checkinCustomStrategyHint": "Custom strategy",
-  "@checkinCustomStrategyHint": {
-    "description": "Hint inside the dialog field for typing a strategy of their own."
-  },
   "checkinCustomActionHint": "Custom action",
   "@checkinCustomActionHint": {
     "description": "Hint inside the dialog field for typing an action of their own."
@@ -1454,10 +1396,6 @@
   "checkinReflectSaveFailed": "Couldn't save this reflection on this device.",
   "@checkinReflectSaveFailed": {
     "description": "Check In (self-reflection) page: brief message when the reflection could not be stored. Calm."
-  },
-  "checkinReflectSaved": "Reflection saved. Well done.",
-  "@checkinReflectSaved": {
-    "description": "Check In (self-reflection) page: brief message after saving. Warm, encouraging."
   },
   "checkinOptAngry": "Angry",
   "@checkinOptAngry": {
@@ -2883,83 +2821,6 @@
   "@noticeWeeklyBody": {
     "description": "Phone notification, Sundays: the weekly insights are ready. Others may see the lock screen: never mention mood, stress or feelings."
   },
-  "dashProgressTitle": "Your Progress",
-  "@dashProgressTitle": {
-    "description": "Title of the progress screen."
-  },
-  "dashProgressTabWeek": "Week",
-  "@dashProgressTabWeek": {
-    "description": "Tab: show this week."
-  },
-  "dashProgressTabMonth": "Month",
-  "@dashProgressTabMonth": {
-    "description": "Tab: show this month."
-  },
-  "dashProgressTabYear": "Year",
-  "@dashProgressTabYear": {
-    "description": "Tab: show this year."
-  },
-  "dashProgressStressLevel": "Stress level",
-  "@dashProgressStressLevel": {
-    "description": "Title of a small stress chart."
-  },
-  "dashProgressMood": "Mood",
-  "@dashProgressMood": {
-    "description": "Title of a small mood chart."
-  },
-  "dashProgressNotEnoughData": "Not enough data",
-  "@dashProgressNotEnoughData": {
-    "description": "Shown in a small chart that has too few points to draw."
-  },
-  "dashProgressCheckInsWeek": "check-ins\nthis week",
-  "@dashProgressCheckInsWeek": {
-    "description": "Caption under the number of check-ins this week. Keep the line break."
-  },
-  "dashProgressCheckInsMonth": "check-ins\nthis month",
-  "@dashProgressCheckInsMonth": {
-    "description": "Caption under the number of check-ins this month. Keep the line break."
-  },
-  "dashProgressCheckInsYear": "check-ins\nthis year",
-  "@dashProgressCheckInsYear": {
-    "description": "Caption under the number of check-ins this year. Keep the line break."
-  },
-  "dashProgressGettingStarted": "Getting started",
-  "@dashProgressGettingStarted": {
-    "description": "Stat tile text before the user has checked in a few times."
-  },
-  "dashProgressKeepGoing": "Keep going!",
-  "@dashProgressKeepGoing": {
-    "description": "Encouraging caption on a stat tile."
-  },
-  "dashTrendBetter": "Better week",
-  "@dashTrendBetter": {
-    "description": "Progress tile, large: this week's mood is higher than last week's. Short, kind, no judgement."
-  },
-  "dashTrendSteady": "Steady week",
-  "@dashTrendSteady": {
-    "description": "Progress tile, large: this week's mood is about the same as last week's."
-  },
-  "dashTrendHarder": "Harder week",
-  "@dashTrendHarder": {
-    "description": "Progress tile, large: this week's mood is lower than last week's. Gentle: a harder week, never a failure."
-  },
-  "dashTrendCaption": "Mood compared with last week",
-  "@dashTrendCaption": {
-    "description": "Progress tile, small, under Better week / Steady week / Harder week."
-  },
-  "dashProgressPlan": "Today's plan: {plan}",
-  "@dashProgressPlan": {
-    "description": "Progress screen: the action picked in today's check-in. {plan} is shown in bold, e.g. 'Walking'.",
-    "placeholders": {
-      "plan": {
-        "type": "String"
-      }
-    }
-  },
-  "dashProgressNoIntention": "No intention set today yet.",
-  "@dashProgressNoIntention": {
-    "description": "Shown when the user has not set an intention today."
-  },
   "dashDailyLogTitle": "Daily Log",
   "@dashDailyLogTitle": {
     "description": "Title of the monthly calendar screen."
@@ -3073,10 +2934,6 @@
   "dashReminderTomorrowMorning": "Tomorrow morning",
   "@dashReminderTomorrowMorning": {
     "description": "Reminder timing choice."
-  },
-  "dashReminderTomorrowTime": "8:00",
-  "@dashReminderTomorrowTime": {
-    "description": "The time shown beside 'Tomorrow morning' (8 in the morning). Write it as times are written in your language."
   },
   "dashReminderCustomTime": "Custom time",
   "@dashReminderCustomTime": {
@@ -3193,58 +3050,6 @@
         "type": "int"
       }
     }
-  },
-  "exerciseComplete": "Complete",
-  "@exerciseComplete": {
-    "description": "Phase label once a breathing session has finished."
-  },
-  "exerciseSceneWaves": "By the ocean",
-  "@exerciseSceneWaves": {
-    "description": "Name of the calming scene behind the breathing exercise when the Waves sound is chosen."
-  },
-  "exerciseSceneBirds": "A quiet morning",
-  "@exerciseSceneBirds": {
-    "description": "Name of the calming scene when the Birds sound is chosen."
-  },
-  "exerciseSceneForest": "Among the trees",
-  "@exerciseSceneForest": {
-    "description": "Name of the calming scene when the Forest sound is chosen."
-  },
-  "exerciseSceneRain": "Under the rain",
-  "@exerciseSceneRain": {
-    "description": "Name of the calming scene when the Rain sound is chosen."
-  },
-  "exerciseSceneFire": "Beside the fire",
-  "@exerciseSceneFire": {
-    "description": "Name of the calming scene when the Fire sound is chosen."
-  },
-  "exerciseSceneNone": "A moment of stillness",
-  "@exerciseSceneNone": {
-    "description": "Name of the calming scene when no sound is chosen."
-  },
-  "exerciseSceneDetailWaves": "Soft tides · warm shore",
-  "@exerciseSceneDetailWaves": {
-    "description": "Short, poetic line under the Waves scene name; two phrases separated by a middle dot."
-  },
-  "exerciseSceneDetailBirds": "Birdsong · woodland nest",
-  "@exerciseSceneDetailBirds": {
-    "description": "Short, poetic line under the Birds scene name."
-  },
-  "exerciseSceneDetailForest": "Rustling leaves · gentle wind",
-  "@exerciseSceneDetailForest": {
-    "description": "Short, poetic line under the Forest scene name."
-  },
-  "exerciseSceneDetailRain": "Falling rain · flowing water",
-  "@exerciseSceneDetailRain": {
-    "description": "Short, poetic line under the Rain scene name."
-  },
-  "exerciseSceneDetailFire": "Crackling embers · evening sky",
-  "@exerciseSceneDetailFire": {
-    "description": "Short, poetic line under the Fire scene name."
-  },
-  "exerciseSceneDetailNone": "Just you and your breath",
-  "@exerciseSceneDetailNone": {
-    "description": "Short, gentle line when no sound is chosen."
   },
   "exerciseBreatheAgain": "Breathe again",
   "@exerciseBreatheAgain": {
@@ -3613,10 +3418,6 @@
   "@exerciseMeditationSubtitle": {
     "description": "Description under 'Guided Meditation' on 'Choose an exercise'."
   },
-  "exerciseMeditationLocked": "Locked. Part of With Me Plus.",
-  "@exerciseMeditationLocked": {
-    "description": "Read by screen readers after the meditation's tile when it is locked."
-  },
   "exerciseMeditationIntro": "Five quiet minutes in the forest. Follow the words, or close your eyes and listen.",
   "@exerciseMeditationIntro": {
     "description": "Shown on the meditation screen before it starts."
@@ -3796,10 +3597,6 @@
   "@membershipSave": {
     "description": "Membership page: badge on the yearly plan, against paying monthly for a year."
   },
-  "meditateTitle": "Meditate",
-  "@meditateTitle": {
-    "description": "Title of the Freeform Meditation screen."
-  },
   "meditateSubtitle": "Calm for wherever stress comes from",
   "@meditateSubtitle": {
     "description": "Under the Meditate title."
@@ -3819,15 +3616,6 @@
   "meditateByArea": "By stress area",
   "@meditateByArea": {
     "description": "Heading above the Home, Work, School and Social cards."
-  },
-  "meditateSessions": "{count, plural, =1{1 session} other{{count} sessions}}",
-  "@meditateSessions": {
-    "description": "How many meditations a stress area has.",
-    "placeholders": {
-      "count": {
-        "type": "int"
-      }
-    }
   },
   "meditateSuggested": "From your check-in",
   "@meditateSuggested": {
@@ -4001,10 +3789,6 @@
   },
   "stepReturn": "Return",
   "@stepReturn": {
-    "description": "Step title in a guided session."
-  },
-  "stepSettle": "Let it settle",
-  "@stepSettle": {
     "description": "Step title in a guided session."
   },
   "stepHeadFace": "Head and face",

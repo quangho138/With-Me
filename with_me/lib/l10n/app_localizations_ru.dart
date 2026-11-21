@@ -24,11 +24,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get settingsTitle => 'Настройки';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature: пока не подключено в этой версии интерфейса.';
-  }
-
-  @override
   String get settingsHaptics => 'Вибрация';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Экспорт моих данных';
-
-  @override
-  String get settingsExport => 'Экспорт';
 
   @override
   String get settingsDeleteAccount => 'Удалить мой аккаунт';
@@ -556,10 +548,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get menuAboutTerms => 'Условия и политика конфиденциальности';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Условия пока не подключены в этой версии интерфейса.';
-
-  @override
   String get accountAiCompanion => 'Твой спутник для хорошего самочувствия';
 
   @override
@@ -573,10 +561,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Продолжить с Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Вход через Google пока не подключён в этой версии интерфейса.';
 
   @override
   String get accountStartWithoutAccount => 'Начать без аккаунта';
@@ -596,13 +580,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Не помнишь пароль?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'Не удалось прочитать аккаунт на этом устройстве.';
-
-  @override
-  String get accountLoginMismatch => 'Эл. почта и пароль не совпадают.';
 
   @override
   String get accountEmail => 'Эл. почта';
@@ -626,9 +603,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get accountCreateAccount => 'Создать аккаунт';
 
   @override
-  String get accountCreateAnAccount => 'Создать аккаунт';
-
-  @override
   String get accountAlreadyWithUs => 'Уже с нами? Войти';
 
   @override
@@ -645,10 +619,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'На этом телефоне уже есть аккаунт. Лучше войди в него.';
-
-  @override
-  String get accountSaveFailed =>
-      'Не удалось сохранить аккаунт на этом устройстве.';
 
   @override
   String get accountResetTitle => 'Сброс пароля';
@@ -763,10 +733,6 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Не удалось связаться с вашим аккаунтом. Проверьте подключение и попробуйте снова.';
-
-  @override
   String get plusRestore => 'Восстановить покупки';
 
   @override
@@ -801,10 +767,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/месяц · оплата за год';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Оплата пока не подключена в этой версии интерфейса.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1026,15 +988,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get checkinRateEffectiveness => 'Оцени, насколько это помогает';
 
   @override
-  String get checkinAddCustom => '+ Добавить свою стратегию и действие';
-
-  @override
-  String get checkinCustomDialogTitle => 'Своя стратегия\nи действие';
-
-  @override
-  String get checkinCustomStrategyHint => 'Своя стратегия';
-
-  @override
   String get checkinCustomActionHint => 'Своё действие';
 
   @override
@@ -1087,9 +1040,6 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Не удалось сохранить это размышление на устройстве.';
-
-  @override
-  String get checkinReflectSaved => 'Размышление сохранено. Отличная работа.';
 
   @override
   String get checkinOptAngry => 'Злость';
@@ -2171,62 +2121,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get noticeWeeklyBody => 'Твоя неделя в With Me готова к просмотру.';
 
   @override
-  String get dashProgressTitle => 'Твой прогресс';
-
-  @override
-  String get dashProgressTabWeek => 'Неделя';
-
-  @override
-  String get dashProgressTabMonth => 'Месяц';
-
-  @override
-  String get dashProgressTabYear => 'Год';
-
-  @override
-  String get dashProgressStressLevel => 'Уровень стресса';
-
-  @override
-  String get dashProgressMood => 'Настроение';
-
-  @override
-  String get dashProgressNotEnoughData => 'Мало данных';
-
-  @override
-  String get dashProgressCheckInsWeek => 'чек-ины\nза неделю';
-
-  @override
-  String get dashProgressCheckInsMonth => 'чек-ины\nза месяц';
-
-  @override
-  String get dashProgressCheckInsYear => 'чек-ины\nза год';
-
-  @override
-  String get dashProgressGettingStarted => 'Начало пути';
-
-  @override
-  String get dashProgressKeepGoing => 'Продолжай!';
-
-  @override
-  String get dashTrendBetter => 'Неделя лучше';
-
-  @override
-  String get dashTrendSteady => 'Ровная неделя';
-
-  @override
-  String get dashTrendHarder => 'Неделя труднее';
-
-  @override
-  String get dashTrendCaption => 'По сравнению с прошлой неделей';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'План на сегодня: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'Намерение на сегодня ещё не выбрано.';
-
-  @override
   String get dashDailyLogTitle => 'Дневник';
 
   @override
@@ -2320,9 +2214,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Завтра утром';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'Своё время';
 
   @override
@@ -2401,45 +2292,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Покой · $seconds с';
   }
-
-  @override
-  String get exerciseComplete => 'Готово';
-
-  @override
-  String get exerciseSceneWaves => 'У океана';
-
-  @override
-  String get exerciseSceneBirds => 'Тихое утро';
-
-  @override
-  String get exerciseSceneForest => 'Среди деревьев';
-
-  @override
-  String get exerciseSceneRain => 'Под дождём';
-
-  @override
-  String get exerciseSceneFire => 'У огня';
-
-  @override
-  String get exerciseSceneNone => 'Минута тишины';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Мягкий прилив · тёплый берег';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Пение птиц · лесное гнездо';
-
-  @override
-  String get exerciseSceneDetailForest => 'Шелест листвы · лёгкий ветер';
-
-  @override
-  String get exerciseSceneDetailRain => 'Шум дождя · журчание воды';
-
-  @override
-  String get exerciseSceneDetailFire => 'Треск углей · вечернее небо';
-
-  @override
-  String get exerciseSceneDetailNone => 'Только ты и твоё дыхание';
 
   @override
   String get exerciseBreatheAgain => 'Подышать ещё';
@@ -2782,9 +2634,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 мин · покой в лесу';
 
   @override
-  String get exerciseMeditationLocked => 'Закрыто. Входит в With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Пять спокойных минут в лесу. Следи за словами или закрой глаза и слушай.';
 
@@ -2931,9 +2780,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get membershipSave => 'Экономия 16%';
 
   @override
-  String get meditateTitle => 'Медитация';
-
-  @override
   String get meditateSubtitle => 'Спокойствие, откуда бы ни пришёл стресс';
 
   @override
@@ -2947,19 +2793,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get meditateByArea => 'По источнику стресса';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count сеанса',
-      many: '$count сеансов',
-      few: '$count сеанса',
-      one: '$count сеанс',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'По твоей сегодняшней отметке';
@@ -3089,9 +2922,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get stepReturn => 'Возвращение';
-
-  @override
-  String get stepSettle => 'Пусть уляжется';
 
   @override
   String get stepHeadFace => 'Голова и лицо';

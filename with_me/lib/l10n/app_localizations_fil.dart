@@ -24,11 +24,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get settingsTitle => 'Mga Setting';
 
   @override
-  String settingsNotWired(String feature) {
-    return 'Hindi pa naikokonekta ang $feature sa bersyong ito ng UI.';
-  }
-
-  @override
   String get settingsHaptics => 'Pag-vibrate';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get settingsExportData => 'I-export ang aking data';
-
-  @override
-  String get settingsExport => 'Pag-export';
 
   @override
   String get settingsDeleteAccount => 'Burahin ang aking account';
@@ -556,10 +548,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get menuAboutTerms => 'Mga Tuntunin at Patakaran sa Privacy';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Hindi pa naikokonekta ang Mga Tuntunin sa bersyong ito ng UI.';
-
-  @override
   String get accountAiCompanion => 'Ang Iyong Kasama sa Kagalingan';
 
   @override
@@ -573,10 +561,6 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Magpatuloy gamit ang Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Hindi pa naikokonekta ang pag-sign in gamit ang Google sa bersyong ito ng UI.';
 
   @override
   String get accountStartWithoutAccount => 'Magsimula nang walang account';
@@ -596,14 +580,6 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Nakalimutan ang password?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'Hindi mabasa ang iyong account sa device na ito.';
-
-  @override
-  String get accountLoginMismatch =>
-      'Hindi magkatugma ang email at password na iyan.';
 
   @override
   String get accountEmail => 'Email';
@@ -627,9 +603,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get accountCreateAccount => 'Gumawa ng account';
 
   @override
-  String get accountCreateAnAccount => 'Gumawa ng account';
-
-  @override
   String get accountAlreadyWithUs => 'Kasama ka na namin? Mag-log in';
 
   @override
@@ -648,10 +621,6 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'May account na sa teleponong ito. Mag-log in na lang.';
-
-  @override
-  String get accountSaveFailed =>
-      'Hindi ma-save ang iyong account sa device na ito.';
 
   @override
   String get accountResetTitle => 'I-reset ang iyong password';
@@ -759,10 +728,6 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Hindi maabot ang iyong account. Tingnan ang iyong koneksyon at subukan ulit.';
-
-  @override
   String get plusRestore => 'I-restore ang mga binili';
 
   @override
@@ -797,10 +762,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/buwan · sinisingil taun-taon';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Hindi pa naikokonekta ang mga bayad sa bersyong ito ng UI.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1029,17 +990,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get checkinRateEffectiveness => 'Pumili ng antas ng bisa';
 
   @override
-  String get checkinAddCustom =>
-      '+ Magdagdag ng sariling estratehiya at aksyon';
-
-  @override
-  String get checkinCustomDialogTitle =>
-      'Magdagdag ng sariling\nestratehiya at aksyon';
-
-  @override
-  String get checkinCustomStrategyHint => 'Sariling estratehiya';
-
-  @override
   String get checkinCustomActionHint => 'Sariling aksyon';
 
   @override
@@ -1092,9 +1042,6 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Hindi ma-save ang pagninilay na ito sa device na ito.';
-
-  @override
-  String get checkinReflectSaved => 'Na-save ang pagninilay. Magaling.';
 
   @override
   String get checkinOptAngry => 'Galit';
@@ -2143,63 +2090,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get noticeWeeklyBody => 'Handa nang tingnan ang linggo mo sa With Me.';
 
   @override
-  String get dashProgressTitle => 'Ang Iyong Progreso';
-
-  @override
-  String get dashProgressTabWeek => 'Linggo';
-
-  @override
-  String get dashProgressTabMonth => 'Buwan';
-
-  @override
-  String get dashProgressTabYear => 'Taon';
-
-  @override
-  String get dashProgressStressLevel => 'Antas ng stress';
-
-  @override
-  String get dashProgressMood => 'Pakiramdam';
-
-  @override
-  String get dashProgressNotEnoughData => 'Kulang ang data';
-
-  @override
-  String get dashProgressCheckInsWeek => 'check-in\nngayong linggo';
-
-  @override
-  String get dashProgressCheckInsMonth => 'check-in\nngayong buwan';
-
-  @override
-  String get dashProgressCheckInsYear => 'check-in\nngayong taon';
-
-  @override
-  String get dashProgressGettingStarted => 'Nagsisimula pa lang';
-
-  @override
-  String get dashProgressKeepGoing => 'Ituloy mo lang!';
-
-  @override
-  String get dashTrendBetter => 'Mas magaang linggo';
-
-  @override
-  String get dashTrendSteady => 'Panatag na linggo';
-
-  @override
-  String get dashTrendHarder => 'Mas mabigat na linggo';
-
-  @override
-  String get dashTrendCaption => 'Kumpara sa nakaraang linggo';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Plano ngayon: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention =>
-      'Wala ka pang itinakdang hangarin ngayong araw.';
-
-  @override
   String get dashDailyLogTitle => 'Talaarawan';
 
   @override
@@ -2291,9 +2181,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Bukas ng umaga';
 
   @override
-  String get dashReminderTomorrowTime => '8:00 AM';
-
-  @override
   String get dashReminderCustomTime => 'Ibang oras';
 
   @override
@@ -2372,48 +2259,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Huminto nang $seconds segundo';
   }
-
-  @override
-  String get exerciseComplete => 'Tapos na';
-
-  @override
-  String get exerciseSceneWaves => 'Sa tabing-dagat';
-
-  @override
-  String get exerciseSceneBirds => 'Isang tahimik na umaga';
-
-  @override
-  String get exerciseSceneForest => 'Sa gitna ng mga puno';
-
-  @override
-  String get exerciseSceneRain => 'Sa ilalim ng ulan';
-
-  @override
-  String get exerciseSceneFire => 'Sa tabi ng apoy';
-
-  @override
-  String get exerciseSceneNone => 'Isang sandali ng katahimikan';
-
-  @override
-  String get exerciseSceneDetailWaves =>
-      'Banayad na alon · mainit na dalampasigan';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Huni ng ibon · pugad sa kakahuyan';
-
-  @override
-  String get exerciseSceneDetailForest =>
-      'Kaluskos ng dahon · banayad na hangin';
-
-  @override
-  String get exerciseSceneDetailRain => 'Patak ng ulan · umaagos na tubig';
-
-  @override
-  String get exerciseSceneDetailFire =>
-      'Lagitik ng baga · langit sa dapithapon';
-
-  @override
-  String get exerciseSceneDetailNone => 'Ikaw at ang iyong hininga lang';
 
   @override
   String get exerciseBreatheAgain => 'Huminga ulit';
@@ -2762,9 +2607,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · katahimikan sa gubat';
 
   @override
-  String get exerciseMeditationLocked => 'Naka-lock. Bahagi ng With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Limang tahimik na minuto sa gubat. Sundan ang mga salita, o ipikit ang mga mata at makinig.';
 
@@ -2910,9 +2752,6 @@ class AppLocalizationsFil extends AppLocalizations {
   String get membershipSave => 'Makatipid ng 16%';
 
   @override
-  String get meditateTitle => 'Mag-meditate';
-
-  @override
   String get meditateSubtitle => 'Kalmado, saan man galing ang stress';
 
   @override
@@ -2926,17 +2765,6 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Ayon sa pinagmumulan ng stress';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count session',
-      one: '1 session',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Mula sa check-in mo ngayon';
@@ -3065,9 +2893,6 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get stepReturn => 'Pagbalik';
-
-  @override
-  String get stepSettle => 'Hayaang humupa';
 
   @override
   String get stepHeadFace => 'Ulo at mukha';

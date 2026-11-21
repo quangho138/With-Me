@@ -221,9 +221,6 @@ List<String> detailLabels(Map<String, dynamic>? row) {
   ];
 }
 
-/// All slices have zero value: nothing to draw.
-bool isEmptyChart(List<Slice> slices) => slices.every((s) => s.value <= 0);
-
 /// Distinct colours for the choices on a page's detail pies: the offered
 /// options take them in order, written answers the ones after.
 const List<Color> kChoiceColors = [

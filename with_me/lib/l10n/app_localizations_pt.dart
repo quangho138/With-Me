@@ -24,11 +24,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settingsTitle => 'Configurações';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature ainda não está ligado nesta versão da interface.';
-  }
-
-  @override
   String get settingsHaptics => 'Vibração';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Exportar meus dados';
-
-  @override
-  String get settingsExport => 'Exportação';
 
   @override
   String get settingsDeleteAccount => 'Excluir minha conta';
@@ -555,10 +547,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get menuAboutTerms => 'Termos e Política de Privacidade';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Os termos ainda não estão ligados nesta versão da interface.';
-
-  @override
   String get accountAiCompanion => 'Seu companheiro de bem-estar';
 
   @override
@@ -572,10 +560,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Continuar com o Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'O login com o Google ainda não está ligado nesta versão da interface.';
 
   @override
   String get accountStartWithoutAccount => 'Começar sem conta';
@@ -594,13 +578,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Esqueceu a senha?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'Não foi possível ler sua conta neste aparelho.';
-
-  @override
-  String get accountLoginMismatch => 'O e-mail e a senha não conferem.';
 
   @override
   String get accountEmail => 'E-mail';
@@ -624,9 +601,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get accountCreateAccount => 'Criar conta';
 
   @override
-  String get accountCreateAnAccount => 'Criar uma conta';
-
-  @override
   String get accountAlreadyWithUs => 'Já tem conta? Entre';
 
   @override
@@ -643,10 +617,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'Este celular já tem uma conta. Entre nela.';
-
-  @override
-  String get accountSaveFailed =>
-      'Não foi possível salvar sua conta neste aparelho.';
 
   @override
   String get accountResetTitle => 'Redefina sua senha';
@@ -757,10 +727,6 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Não foi possível acessar sua conta. Verifique sua conexão e tente de novo.';
-
-  @override
   String get plusRestore => 'Restaurar compras';
 
   @override
@@ -795,10 +761,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/mês · cobrado anualmente';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Os pagamentos ainda não estão conectados nesta versão da interface.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1025,16 +987,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get checkinRateEffectiveness => 'Avalie o quanto funciona';
 
   @override
-  String get checkinAddCustom => '+ Adicionar estratégia e ação próprias';
-
-  @override
-  String get checkinCustomDialogTitle =>
-      'Adicionar estratégia\ne ação próprias';
-
-  @override
-  String get checkinCustomStrategyHint => 'Sua estratégia';
-
-  @override
   String get checkinCustomActionHint => 'Sua ação';
 
   @override
@@ -1087,9 +1039,6 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Não foi possível salvar esta reflexão neste aparelho.';
-
-  @override
-  String get checkinReflectSaved => 'Reflexão salva. Muito bem!';
 
   @override
   String get checkinOptAngry => 'Com raiva';
@@ -2135,62 +2084,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get noticeWeeklyBody => 'Sua semana no With Me está pronta para ver.';
 
   @override
-  String get dashProgressTitle => 'Seu progresso';
-
-  @override
-  String get dashProgressTabWeek => 'Semana';
-
-  @override
-  String get dashProgressTabMonth => 'Mês';
-
-  @override
-  String get dashProgressTabYear => 'Ano';
-
-  @override
-  String get dashProgressStressLevel => 'Nível de estresse';
-
-  @override
-  String get dashProgressMood => 'Humor';
-
-  @override
-  String get dashProgressNotEnoughData => 'Dados insuficientes';
-
-  @override
-  String get dashProgressCheckInsWeek => 'check-ins\nnesta semana';
-
-  @override
-  String get dashProgressCheckInsMonth => 'check-ins\nneste mês';
-
-  @override
-  String get dashProgressCheckInsYear => 'check-ins\nneste ano';
-
-  @override
-  String get dashProgressGettingStarted => 'Começando';
-
-  @override
-  String get dashProgressKeepGoing => 'Continue assim!';
-
-  @override
-  String get dashTrendBetter => 'Semana melhor';
-
-  @override
-  String get dashTrendSteady => 'Semana estável';
-
-  @override
-  String get dashTrendHarder => 'Semana mais difícil';
-
-  @override
-  String get dashTrendCaption => 'Comparada com a semana passada';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Plano de hoje: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'Nenhuma intenção definida hoje ainda.';
-
-  @override
   String get dashDailyLogTitle => 'Registro diário';
 
   @override
@@ -2283,9 +2176,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Amanhã de manhã';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'Outro horário';
 
   @override
@@ -2364,45 +2254,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Pausa de $seconds segundos';
   }
-
-  @override
-  String get exerciseComplete => 'Concluído';
-
-  @override
-  String get exerciseSceneWaves => 'À beira-mar';
-
-  @override
-  String get exerciseSceneBirds => 'Uma manhã tranquila';
-
-  @override
-  String get exerciseSceneForest => 'Entre as árvores';
-
-  @override
-  String get exerciseSceneRain => 'Debaixo da chuva';
-
-  @override
-  String get exerciseSceneFire => 'Perto do fogo';
-
-  @override
-  String get exerciseSceneNone => 'Um momento de quietude';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Marés suaves · praia morna';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Canto dos pássaros · ninho no bosque';
-
-  @override
-  String get exerciseSceneDetailForest => 'Folhas farfalhando · vento suave';
-
-  @override
-  String get exerciseSceneDetailRain => 'Chuva caindo · água correndo';
-
-  @override
-  String get exerciseSceneDetailFire => 'Brasas estalando · céu do entardecer';
-
-  @override
-  String get exerciseSceneDetailNone => 'Só você e sua respiração';
 
   @override
   String get exerciseBreatheAgain => 'Respirar de novo';
@@ -2749,9 +2600,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · calma na floresta';
 
   @override
-  String get exerciseMeditationLocked => 'Bloqueado. Parte do With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Cinco minutos tranquilos na floresta. Acompanhe as palavras, ou feche os olhos e ouça.';
 
@@ -2896,9 +2744,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get membershipSave => 'Economize 16%';
 
   @override
-  String get meditateTitle => 'Meditar';
-
-  @override
   String get meditateSubtitle => 'Calma, venha o estresse de onde vier';
 
   @override
@@ -2912,17 +2757,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Por área de estresse';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count sessões',
-      one: '1 sessão',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Do seu check-in de hoje';
@@ -3057,9 +2891,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get stepReturn => 'Voltar';
-
-  @override
-  String get stepSettle => 'Deixar assentar';
 
   @override
   String get stepHeadFace => 'Cabeça e rosto';

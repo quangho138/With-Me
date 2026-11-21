@@ -24,11 +24,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsTitle => 'Configuración';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature todavía no está disponible en esta versión.';
-  }
-
-  @override
   String get settingsHaptics => 'Vibración';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Exportar mis datos';
-
-  @override
-  String get settingsExport => 'Exportar';
 
   @override
   String get settingsDeleteAccount => 'Eliminar mi cuenta';
@@ -558,10 +550,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get menuAboutTerms => 'Términos y Política de privacidad';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Los términos todavía no están disponibles en esta versión.';
-
-  @override
   String get accountAiCompanion => 'Tu compañero de bienestar';
 
   @override
@@ -575,10 +563,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Continuar con Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'El inicio de sesión con Google todavía no está disponible en esta versión.';
 
   @override
   String get accountStartWithoutAccount => 'Empezar sin cuenta';
@@ -598,13 +582,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountForgotPassword => '¿Olvidaste tu contraseña?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'No se pudo leer tu cuenta en este dispositivo.';
-
-  @override
-  String get accountLoginMismatch => 'El correo y la contraseña no coinciden.';
 
   @override
   String get accountEmail => 'Correo electrónico';
@@ -628,9 +605,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get accountCreateAccount => 'Crear cuenta';
 
   @override
-  String get accountCreateAnAccount => 'Crear una cuenta';
-
-  @override
   String get accountAlreadyWithUs => '¿Ya tienes cuenta? Inicia sesión';
 
   @override
@@ -648,10 +622,6 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'Este teléfono ya tiene una cuenta. Mejor inicia sesión.';
-
-  @override
-  String get accountSaveFailed =>
-      'No se pudo guardar tu cuenta en este dispositivo.';
 
   @override
   String get accountResetTitle => 'Restablece tu contraseña';
@@ -762,10 +732,6 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'No se pudo conectar con tu cuenta. Revisa tu conexión e inténtalo de nuevo.';
-
-  @override
   String get plusRestore => 'Restaurar compras';
 
   @override
@@ -800,10 +766,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/mes · facturado al año';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Los pagos todavía no están conectados en esta versión.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1029,15 +991,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get checkinRateEffectiveness => 'Califica qué tan efectiva es';
 
   @override
-  String get checkinAddCustom => '+ Agregar estrategia y acción propias';
-
-  @override
-  String get checkinCustomDialogTitle => 'Agregar estrategia\ny acción propias';
-
-  @override
-  String get checkinCustomStrategyHint => 'Estrategia propia';
-
-  @override
   String get checkinCustomActionHint => 'Acción propia';
 
   @override
@@ -1090,9 +1043,6 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'No se pudo guardar esta reflexión en este dispositivo.';
-
-  @override
-  String get checkinReflectSaved => 'Reflexión guardada. Bien hecho.';
 
   @override
   String get checkinOptAngry => 'Enojo';
@@ -2135,63 +2085,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noticeWeeklyBody => 'Tu semana en With Me está lista para ver.';
 
   @override
-  String get dashProgressTitle => 'Tu progreso';
-
-  @override
-  String get dashProgressTabWeek => 'Semana';
-
-  @override
-  String get dashProgressTabMonth => 'Mes';
-
-  @override
-  String get dashProgressTabYear => 'Año';
-
-  @override
-  String get dashProgressStressLevel => 'Nivel de estrés';
-
-  @override
-  String get dashProgressMood => 'Ánimo';
-
-  @override
-  String get dashProgressNotEnoughData => 'Faltan datos';
-
-  @override
-  String get dashProgressCheckInsWeek => 'registros\nesta semana';
-
-  @override
-  String get dashProgressCheckInsMonth => 'registros\neste mes';
-
-  @override
-  String get dashProgressCheckInsYear => 'registros\neste año';
-
-  @override
-  String get dashProgressGettingStarted => 'Empezando';
-
-  @override
-  String get dashProgressKeepGoing => '¡Sigue así!';
-
-  @override
-  String get dashTrendBetter => 'Mejor semana';
-
-  @override
-  String get dashTrendSteady => 'Semana estable';
-
-  @override
-  String get dashTrendHarder => 'Semana más difícil';
-
-  @override
-  String get dashTrendCaption => 'Comparada con la semana pasada';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Plan de hoy: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention =>
-      'Todavía no hay una intención para hoy.';
-
-  @override
   String get dashDailyLogTitle => 'Registro diario';
 
   @override
@@ -2284,9 +2177,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Mañana por la mañana';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'Otra hora';
 
   @override
@@ -2365,45 +2255,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Pausa $seconds segundos';
   }
-
-  @override
-  String get exerciseComplete => 'Completado';
-
-  @override
-  String get exerciseSceneWaves => 'Junto al mar';
-
-  @override
-  String get exerciseSceneBirds => 'Una mañana tranquila';
-
-  @override
-  String get exerciseSceneForest => 'Entre los árboles';
-
-  @override
-  String get exerciseSceneRain => 'Bajo la lluvia';
-
-  @override
-  String get exerciseSceneFire => 'Junto al fuego';
-
-  @override
-  String get exerciseSceneNone => 'Un momento de calma';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Mareas suaves · orilla cálida';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Canto de aves · nido en el bosque';
-
-  @override
-  String get exerciseSceneDetailForest => 'Hojas que susurran · viento suave';
-
-  @override
-  String get exerciseSceneDetailRain => 'Lluvia que cae · agua que fluye';
-
-  @override
-  String get exerciseSceneDetailFire => 'Brasas que crepitan · cielo de tarde';
-
-  @override
-  String get exerciseSceneDetailNone => 'Solo tú y tu respiración';
 
   @override
   String get exerciseBreatheAgain => 'Respirar otra vez';
@@ -2747,9 +2598,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 min · calma en el bosque';
 
   @override
-  String get exerciseMeditationLocked => 'Bloqueado. Parte de With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Cinco minutos tranquilos en el bosque. Sigue las palabras, o cierra los ojos y escucha.';
 
@@ -2895,9 +2743,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get membershipSave => 'Ahorra 16%';
 
   @override
-  String get meditateTitle => 'Meditar';
-
-  @override
   String get meditateSubtitle => 'Calma, venga de donde venga el estrés';
 
   @override
@@ -2911,17 +2756,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Por área de estrés';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count sesiones',
-      one: '1 sesión',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Según tu registro de hoy';
@@ -3056,9 +2890,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get stepReturn => 'Volver';
-
-  @override
-  String get stepSettle => 'Dejar que se asiente';
 
   @override
   String get stepHeadFace => 'Cabeza y cara';
