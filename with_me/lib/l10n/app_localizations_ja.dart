@@ -24,11 +24,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsTitle => '設定';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$featureは、このバージョンではまだ使えません。';
-  }
-
-  @override
   String get settingsHaptics => 'バイブレーション';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsExportData => 'データをエクスポート';
-
-  @override
-  String get settingsExport => 'エクスポート';
 
   @override
   String get settingsDeleteAccount => 'アカウントを削除';
@@ -545,9 +537,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get menuAboutTerms => '利用規約とプライバシーポリシー';
 
   @override
-  String get menuAboutTermsNotWired => '利用規約は、このバージョンではまだ使えません。';
-
-  @override
   String get accountAiCompanion => 'あなたのウェルビーイングの相棒';
 
   @override
@@ -561,9 +550,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Googleで続ける';
-
-  @override
-  String get accountGoogleNotWired => 'Googleでのログインは、このバージョンではまだ使えません。';
 
   @override
   String get accountStartWithoutAccount => 'アカウントなしで始める';
@@ -582,12 +568,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'パスワードをお忘れですか？';
-
-  @override
-  String get accountLoginReadFailed => 'この端末のアカウントを読み込めませんでした。';
-
-  @override
-  String get accountLoginMismatch => 'メールアドレスとパスワードが一致しません。';
 
   @override
   String get accountEmail => 'メールアドレス';
@@ -611,9 +591,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get accountCreateAccount => 'アカウントを作成';
 
   @override
-  String get accountCreateAnAccount => 'アカウントを作成';
-
-  @override
   String get accountAlreadyWithUs => 'アカウントをお持ちの方はログイン';
 
   @override
@@ -629,9 +606,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get accountAlreadyOnPhone => 'この端末にはすでにアカウントがあります。ログインしてください。';
-
-  @override
-  String get accountSaveFailed => 'この端末にアカウントを保存できませんでした。';
 
   @override
   String get accountResetTitle => 'パスワードの再設定';
@@ -738,9 +712,6 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach => 'アカウントに接続できませんでした。接続を確認してもう一度お試しください。';
-
-  @override
   String get plusRestore => '購入を復元';
 
   @override
@@ -775,9 +746,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/月 · 年払い';
   }
-
-  @override
-  String get accountPaymentsNotWired => 'お支払いは、このバージョンではまだつながっていません。';
 
   @override
   String get accountMembershipFootnote => 'いつでも解約できます。どちらでも、記録はあなたのものです。';
@@ -979,15 +947,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get checkinRateEffectiveness => '効果を評価してください';
 
   @override
-  String get checkinAddCustom => '+ 自分の対処法と行動を追加';
-
-  @override
-  String get checkinCustomDialogTitle => '自分の対処法と\n行動を追加';
-
-  @override
-  String get checkinCustomStrategyHint => '自分の対処法';
-
-  @override
   String get checkinCustomActionHint => '自分の行動';
 
   @override
@@ -1037,9 +996,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get checkinReflectSaveFailed => 'このふり返りを端末に保存できませんでした。';
-
-  @override
-  String get checkinReflectSaved => 'ふり返りを保存しました。よくがんばりましたね。';
 
   @override
   String get checkinOptAngry => '怒り';
@@ -2047,62 +2003,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get noticeWeeklyBody => 'With Meでの1週間をふり返れます。';
 
   @override
-  String get dashProgressTitle => 'あなたのあゆみ';
-
-  @override
-  String get dashProgressTabWeek => '週';
-
-  @override
-  String get dashProgressTabMonth => '月';
-
-  @override
-  String get dashProgressTabYear => '年';
-
-  @override
-  String get dashProgressStressLevel => 'ストレスレベル';
-
-  @override
-  String get dashProgressMood => '気分';
-
-  @override
-  String get dashProgressNotEnoughData => 'データが足りません';
-
-  @override
-  String get dashProgressCheckInsWeek => '今週の\nチェックイン';
-
-  @override
-  String get dashProgressCheckInsMonth => '今月の\nチェックイン';
-
-  @override
-  String get dashProgressCheckInsYear => '今年の\nチェックイン';
-
-  @override
-  String get dashProgressGettingStarted => 'はじめの一歩';
-
-  @override
-  String get dashProgressKeepGoing => 'その調子！';
-
-  @override
-  String get dashTrendBetter => 'よい1週間';
-
-  @override
-  String get dashTrendSteady => 'おだやかな1週間';
-
-  @override
-  String get dashTrendHarder => '大変な1週間';
-
-  @override
-  String get dashTrendCaption => '先週とくらべて';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return '今日のプラン：$plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => '今日の心がけはまだ決まっていません。';
-
-  @override
   String get dashDailyLogTitle => '毎日の記録';
 
   @override
@@ -2191,9 +2091,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get dashReminderTomorrowMorning => '明日の朝';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => '時刻を指定';
 
   @override
@@ -2272,45 +2169,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '$seconds秒そのまま';
   }
-
-  @override
-  String get exerciseComplete => '完了';
-
-  @override
-  String get exerciseSceneWaves => '海辺で';
-
-  @override
-  String get exerciseSceneBirds => '静かな朝';
-
-  @override
-  String get exerciseSceneForest => '木々に囲まれて';
-
-  @override
-  String get exerciseSceneRain => '雨の中で';
-
-  @override
-  String get exerciseSceneFire => '焚き火のそばで';
-
-  @override
-  String get exerciseSceneNone => '静けさのひととき';
-
-  @override
-  String get exerciseSceneDetailWaves => 'やさしい波 · あたたかな浜辺';
-
-  @override
-  String get exerciseSceneDetailBirds => '鳥のさえずり · 森の巣';
-
-  @override
-  String get exerciseSceneDetailForest => '葉ずれの音 · やさしい風';
-
-  @override
-  String get exerciseSceneDetailRain => '降る雨 · 流れる水';
-
-  @override
-  String get exerciseSceneDetailFire => 'はぜる残り火 · 夕暮れの空';
-
-  @override
-  String get exerciseSceneDetailNone => 'あなたと、あなたの呼吸だけ';
 
   @override
   String get exerciseBreatheAgain => 'もう一度呼吸する';
@@ -2637,9 +2495,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5分 · 森で心を落ち着ける';
 
   @override
-  String get exerciseMeditationLocked => 'ロック中。With Me Plus に含まれます。';
-
-  @override
   String get exerciseMeditationIntro => '森の中の静かな5分間。言葉をたどるか、目を閉じて耳を傾けましょう。';
 
   @override
@@ -2770,9 +2625,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get membershipSave => '16%お得';
 
   @override
-  String get meditateTitle => '瞑想する';
-
-  @override
   String get meditateSubtitle => 'ストレスがどこから来ても、心を落ち着けて';
 
   @override
@@ -2786,16 +2638,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get meditateByArea => 'ストレスの場面別';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$countセッション',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => '今日のチェックインより';
@@ -2919,9 +2761,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get stepReturn => '戻る';
-
-  @override
-  String get stepSettle => '落ち着かせる';
 
   @override
   String get stepHeadFace => '頭と顔';

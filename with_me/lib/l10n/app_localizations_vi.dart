@@ -24,11 +24,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsTitle => 'Cài đặt';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature chưa được kết nối trong bản giao diện này.';
-  }
-
-  @override
   String get settingsHaptics => 'Rung phản hồi';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Xuất dữ liệu của tôi';
-
-  @override
-  String get settingsExport => 'Xuất dữ liệu';
 
   @override
   String get settingsDeleteAccount => 'Xóa tài khoản của tôi';
@@ -555,10 +547,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get menuAboutTerms => 'Điều khoản & Chính sách quyền riêng tư';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Trang điều khoản chưa được kết nối trong bản giao diện này.';
-
-  @override
   String get accountAiCompanion => 'Người bạn đồng hành vì sức khỏe tinh thần';
 
   @override
@@ -572,10 +560,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Tiếp tục với Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Đăng nhập bằng Google chưa được kết nối trong bản giao diện này.';
 
   @override
   String get accountStartWithoutAccount => 'Bắt đầu mà không cần tài khoản';
@@ -595,13 +579,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Quên mật khẩu?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'Không thể đọc tài khoản của bạn trên thiết bị này.';
-
-  @override
-  String get accountLoginMismatch => 'Email và mật khẩu không khớp.';
 
   @override
   String get accountEmail => 'Địa chỉ email';
@@ -625,9 +602,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get accountCreateAccount => 'Tạo tài khoản';
 
   @override
-  String get accountCreateAnAccount => 'Tạo một tài khoản';
-
-  @override
   String get accountAlreadyWithUs => 'Đã có tài khoản? Đăng nhập';
 
   @override
@@ -644,10 +618,6 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'Điện thoại này đã có tài khoản. Hãy đăng nhập.';
-
-  @override
-  String get accountSaveFailed =>
-      'Không thể lưu tài khoản của bạn trên thiết bị này.';
 
   @override
   String get accountResetTitle => 'Đặt lại mật khẩu';
@@ -755,10 +725,6 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Không kết nối được với tài khoản. Hãy kiểm tra mạng và thử lại.';
-
-  @override
   String get plusRestore => 'Khôi phục giao dịch mua';
 
   @override
@@ -793,10 +759,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/tháng · thanh toán theo năm';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Thanh toán chưa được kết nối trong bản giao diện này.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1023,15 +985,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get checkinRateEffectiveness => 'Chọn mức độ hiệu quả';
 
   @override
-  String get checkinAddCustom => '+ Thêm chiến lược & hành động riêng';
-
-  @override
-  String get checkinCustomDialogTitle => 'Thêm chiến lược\n& hành động riêng';
-
-  @override
-  String get checkinCustomStrategyHint => 'Chiến lược riêng';
-
-  @override
   String get checkinCustomActionHint => 'Hành động riêng';
 
   @override
@@ -1084,9 +1037,6 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Không thể lưu suy ngẫm này trên thiết bị này.';
-
-  @override
-  String get checkinReflectSaved => 'Đã lưu suy ngẫm. Bạn làm tốt lắm.';
 
   @override
   String get checkinOptAngry => 'Giận dữ';
@@ -2126,62 +2076,6 @@ class AppLocalizationsVi extends AppLocalizations {
       'Tuần của bạn trong With Me đã sẵn sàng để xem.';
 
   @override
-  String get dashProgressTitle => 'Tiến trình của bạn';
-
-  @override
-  String get dashProgressTabWeek => 'Tuần';
-
-  @override
-  String get dashProgressTabMonth => 'Tháng';
-
-  @override
-  String get dashProgressTabYear => 'Năm';
-
-  @override
-  String get dashProgressStressLevel => 'Mức độ căng thẳng';
-
-  @override
-  String get dashProgressMood => 'Tâm trạng';
-
-  @override
-  String get dashProgressNotEnoughData => 'Chưa đủ dữ liệu';
-
-  @override
-  String get dashProgressCheckInsWeek => 'lần ghi nhận\ntuần này';
-
-  @override
-  String get dashProgressCheckInsMonth => 'lần ghi nhận\ntháng này';
-
-  @override
-  String get dashProgressCheckInsYear => 'lần ghi nhận\nnăm nay';
-
-  @override
-  String get dashProgressGettingStarted => 'Mới bắt đầu';
-
-  @override
-  String get dashProgressKeepGoing => 'Cứ tiếp tục nhé!';
-
-  @override
-  String get dashTrendBetter => 'Tuần tốt hơn';
-
-  @override
-  String get dashTrendSteady => 'Tuần ổn định';
-
-  @override
-  String get dashTrendHarder => 'Tuần vất vả hơn';
-
-  @override
-  String get dashTrendCaption => 'So với tuần trước';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Kế hoạch hôm nay: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'Hôm nay bạn chưa đặt ý định nào.';
-
-  @override
   String get dashDailyLogTitle => 'Nhật ký hằng ngày';
 
   @override
@@ -2272,9 +2166,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Sáng mai';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'Giờ tùy chọn';
 
   @override
@@ -2353,45 +2244,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Lặng yên $seconds giây';
   }
-
-  @override
-  String get exerciseComplete => 'Hoàn thành';
-
-  @override
-  String get exerciseSceneWaves => 'Bên bờ biển';
-
-  @override
-  String get exerciseSceneBirds => 'Một buổi sáng yên bình';
-
-  @override
-  String get exerciseSceneForest => 'Giữa rừng cây';
-
-  @override
-  String get exerciseSceneRain => 'Dưới cơn mưa';
-
-  @override
-  String get exerciseSceneFire => 'Bên bếp lửa';
-
-  @override
-  String get exerciseSceneNone => 'Một khoảnh khắc tĩnh lặng';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Sóng dịu dàng · bờ cát ấm';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Tiếng chim hót · tổ giữa rừng';
-
-  @override
-  String get exerciseSceneDetailForest => 'Lá xào xạc · gió nhẹ nhàng';
-
-  @override
-  String get exerciseSceneDetailRain => 'Mưa rơi · nước chảy';
-
-  @override
-  String get exerciseSceneDetailFire => 'Than hồng lách tách · trời chiều';
-
-  @override
-  String get exerciseSceneDetailNone => 'Chỉ có bạn và hơi thở';
 
   @override
   String get exerciseBreatheAgain => 'Thở thêm lần nữa';
@@ -2733,9 +2585,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 phút · bình yên trong rừng';
 
   @override
-  String get exerciseMeditationLocked => 'Đã khóa. Thuộc With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Năm phút yên tĩnh trong rừng. Đọc theo lời hướng dẫn, hoặc nhắm mắt và lắng nghe.';
 
@@ -2879,9 +2728,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get membershipSave => 'Tiết kiệm 16%';
 
   @override
-  String get meditateTitle => 'Thiền';
-
-  @override
   String get meditateSubtitle => 'Bình yên, dù căng thẳng đến từ đâu';
 
   @override
@@ -2895,16 +2741,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Theo nguồn căng thẳng';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count buổi',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Từ lần ghi nhận hôm nay';
@@ -3033,9 +2869,6 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get stepReturn => 'Trở về';
-
-  @override
-  String get stepSettle => 'Để mọi thứ lắng xuống';
 
   @override
   String get stepHeadFace => 'Đầu và mặt';

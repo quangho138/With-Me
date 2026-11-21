@@ -24,11 +24,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsTitle => 'सेटिंग्स';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature अभी इस UI वर्ज़न में उपलब्ध नहीं है।';
-  }
-
-  @override
   String get settingsHaptics => 'वाइब्रेशन';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsExportData => 'मेरा डेटा एक्सपोर्ट करें';
-
-  @override
-  String get settingsExport => 'एक्सपोर्ट';
 
   @override
   String get settingsDeleteAccount => 'मेरा खाता हटाएँ';
@@ -555,10 +547,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get menuAboutTerms => 'नियम और गोपनीयता नीति';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'नियम अभी इस UI वर्ज़न में उपलब्ध नहीं हैं।';
-
-  @override
   String get accountAiCompanion => 'आपका वेलबीइंग साथी';
 
   @override
@@ -572,10 +560,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Google के साथ जारी रखें';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Google साइन-इन अभी इस UI वर्ज़न में उपलब्ध नहीं है।';
 
   @override
   String get accountStartWithoutAccount => 'बिना खाते के शुरू करें';
@@ -595,13 +579,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'पासवर्ड याद नहीं?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'इस डिवाइस पर आपका खाता पढ़ा नहीं जा सका।';
-
-  @override
-  String get accountLoginMismatch => 'यह ईमेल और पासवर्ड मेल नहीं खाते।';
 
   @override
   String get accountEmail => 'ईमेल';
@@ -625,9 +602,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get accountCreateAccount => 'खाता बनाएँ';
 
   @override
-  String get accountCreateAnAccount => 'एक खाता बनाएँ';
-
-  @override
   String get accountAlreadyWithUs => 'पहले से खाता है? लॉग इन करें';
 
   @override
@@ -644,9 +618,6 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'इस फ़ोन पर पहले से एक खाता है। उसकी जगह लॉग इन करें।';
-
-  @override
-  String get accountSaveFailed => 'इस डिवाइस पर आपका खाता सेव नहीं हो सका।';
 
   @override
   String get accountResetTitle => 'अपना पासवर्ड रीसेट करें';
@@ -754,10 +725,6 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'आपके खाते तक नहीं पहुँच सके। कनेक्शन जाँचें और फिर कोशिश करें।';
-
-  @override
   String get plusRestore => 'ख़रीदारी वापस लाएँ';
 
   @override
@@ -792,10 +759,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/माह · सालाना बिल';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'भुगतान अभी इस UI वर्ज़न में जुड़े नहीं हैं।';
 
   @override
   String get accountMembershipFootnote =>
@@ -1019,15 +982,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get checkinRateEffectiveness => 'यह कितना असरदार है, रेटिंग चुनें';
 
   @override
-  String get checkinAddCustom => '+ अपनी रणनीति और उपाय जोड़ें';
-
-  @override
-  String get checkinCustomDialogTitle => 'अपनी रणनीति\nऔर उपाय जोड़ें';
-
-  @override
-  String get checkinCustomStrategyHint => 'अपनी रणनीति';
-
-  @override
   String get checkinCustomActionHint => 'अपना उपाय';
 
   @override
@@ -1079,9 +1033,6 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'यह चिंतन इस डिवाइस पर सेव नहीं हो सका।';
-
-  @override
-  String get checkinReflectSaved => 'चिंतन सेव हो गया। बहुत बढ़िया।';
 
   @override
   String get checkinOptAngry => 'गुस्सा';
@@ -2121,62 +2072,6 @@ class AppLocalizationsHi extends AppLocalizations {
       'With Me में आपका हफ़्ता देखने के लिए तैयार है।';
 
   @override
-  String get dashProgressTitle => 'आपकी प्रगति';
-
-  @override
-  String get dashProgressTabWeek => 'हफ़्ता';
-
-  @override
-  String get dashProgressTabMonth => 'महीना';
-
-  @override
-  String get dashProgressTabYear => 'साल';
-
-  @override
-  String get dashProgressStressLevel => 'तनाव का स्तर';
-
-  @override
-  String get dashProgressMood => 'मूड';
-
-  @override
-  String get dashProgressNotEnoughData => 'पर्याप्त डेटा नहीं';
-
-  @override
-  String get dashProgressCheckInsWeek => 'चेक-इन\nइस हफ़्ते';
-
-  @override
-  String get dashProgressCheckInsMonth => 'चेक-इन\nइस महीने';
-
-  @override
-  String get dashProgressCheckInsYear => 'चेक-इन\nइस साल';
-
-  @override
-  String get dashProgressGettingStarted => 'शुरुआत हो रही है';
-
-  @override
-  String get dashProgressKeepGoing => 'लगे रहिए!';
-
-  @override
-  String get dashTrendBetter => 'बेहतर हफ़्ता';
-
-  @override
-  String get dashTrendSteady => 'स्थिर हफ़्ता';
-
-  @override
-  String get dashTrendHarder => 'मुश्किल हफ़्ता';
-
-  @override
-  String get dashTrendCaption => 'पिछले हफ़्ते की तुलना में';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'आज की योजना: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'आज अभी कोई इरादा तय नहीं हुआ।';
-
-  @override
   String get dashDailyLogTitle => 'दैनिक लॉग';
 
   @override
@@ -2269,9 +2164,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'कल सुबह';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'अपना समय';
 
   @override
@@ -2350,45 +2242,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '$seconds सेकंड ठहरें';
   }
-
-  @override
-  String get exerciseComplete => 'पूरा हुआ';
-
-  @override
-  String get exerciseSceneWaves => 'समुद्र के किनारे';
-
-  @override
-  String get exerciseSceneBirds => 'एक शांत सुबह';
-
-  @override
-  String get exerciseSceneForest => 'पेड़ों के बीच';
-
-  @override
-  String get exerciseSceneRain => 'बारिश में';
-
-  @override
-  String get exerciseSceneFire => 'आग के पास';
-
-  @override
-  String get exerciseSceneNone => 'ठहराव का एक पल';
-
-  @override
-  String get exerciseSceneDetailWaves => 'हल्की लहरें · गुनगुना किनारा';
-
-  @override
-  String get exerciseSceneDetailBirds => 'चिड़ियों की चहचहाहट · जंगल का घोंसला';
-
-  @override
-  String get exerciseSceneDetailForest => 'सरसराते पत्ते · धीमी हवा';
-
-  @override
-  String get exerciseSceneDetailRain => 'गिरती बारिश · बहता पानी';
-
-  @override
-  String get exerciseSceneDetailFire => 'चटकते अंगारे · शाम का आसमान';
-
-  @override
-  String get exerciseSceneDetailNone => 'बस आप और आपकी साँस';
 
   @override
   String get exerciseBreatheAgain => 'फिर से साँस लें';
@@ -2731,9 +2584,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 मिनट · जंगल में सुकून';
 
   @override
-  String get exerciseMeditationLocked => 'लॉक है। With Me Plus का हिस्सा।';
-
-  @override
   String get exerciseMeditationIntro =>
       'जंगल में पाँच शांत मिनट। शब्दों के साथ चलें, या आँखें बंद करके सुनें।';
 
@@ -2878,9 +2728,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get membershipSave => '16% बचाएँ';
 
   @override
-  String get meditateTitle => 'मेडिटेट करें';
-
-  @override
   String get meditateSubtitle => 'तनाव कहीं से भी आए, सुकून यहाँ है';
 
   @override
@@ -2894,17 +2741,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get meditateByArea => 'तनाव की जगह के हिसाब से';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count सेशन',
-      one: '1 सेशन',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'आज के चेक-इन से';
@@ -3031,9 +2867,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get stepReturn => 'लौटना';
-
-  @override
-  String get stepSettle => 'ठहरने दें';
 
   @override
   String get stepHeadFace => 'सिर और चेहरा';

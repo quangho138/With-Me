@@ -24,11 +24,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settingsTitle => 'الإعدادات';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature: غير مفعّل بعد في هذه النسخة من الواجهة.';
-  }
-
-  @override
   String get settingsHaptics => 'الاهتزاز';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settingsExportData => 'تصدير بياناتي';
-
-  @override
-  String get settingsExport => 'التصدير';
 
   @override
   String get settingsDeleteAccount => 'حذف حسابي';
@@ -551,10 +543,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get menuAboutTerms => 'الشروط وسياسة الخصوصية';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'الشروط غير مفعّلة بعد في هذه النسخة من الواجهة.';
-
-  @override
   String get accountAiCompanion => 'رفيقك للعافية';
 
   @override
@@ -568,10 +556,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'المتابعة باستخدام Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'تسجيل الدخول عبر Google غير مفعّل بعد في هذه النسخة من الواجهة.';
 
   @override
   String get accountStartWithoutAccount => 'البدء بدون حساب';
@@ -590,13 +574,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'نسيت كلمة المرور؟';
-
-  @override
-  String get accountLoginReadFailed => 'تعذّرت قراءة حسابك على هذا الجهاز.';
-
-  @override
-  String get accountLoginMismatch =>
-      'البريد الإلكتروني وكلمة المرور غير متطابقين.';
 
   @override
   String get accountEmail => 'البريد الإلكتروني';
@@ -620,9 +597,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get accountCreateAccount => 'إنشاء الحساب';
 
   @override
-  String get accountCreateAnAccount => 'إنشاء حساب';
-
-  @override
   String get accountAlreadyWithUs => 'لديك حساب بالفعل؟ تسجيل الدخول';
 
   @override
@@ -640,9 +614,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'يوجد حساب على هذا الهاتف بالفعل. يمكنك تسجيل الدخول بدلًا من ذلك.';
-
-  @override
-  String get accountSaveFailed => 'تعذّر حفظ حسابك على هذا الجهاز.';
 
   @override
   String get accountResetTitle => 'إعادة تعيين كلمة المرور';
@@ -760,10 +731,6 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'تعذّر الوصول إلى حسابك. تحقق من الاتصال وحاول مرة أخرى.';
-
-  @override
   String get plusRestore => 'استعادة المشتريات';
 
   @override
@@ -798,10 +765,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price شهريًا · يُدفع سنويًا';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'المدفوعات غير متصلة بعد في هذه النسخة من الواجهة.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1018,15 +981,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get checkinRateEffectiveness => 'تقييم مدى الفعالية';
 
   @override
-  String get checkinAddCustom => '+ إضافة استراتيجية وإجراء خاصّين بك';
-
-  @override
-  String get checkinCustomDialogTitle => 'إضافة استراتيجية\nوإجراء خاصّين بك';
-
-  @override
-  String get checkinCustomStrategyHint => 'استراتيجية خاصة';
-
-  @override
   String get checkinCustomActionHint => 'إجراء خاص';
 
   @override
@@ -1078,9 +1032,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get checkinReflectSaveFailed => 'تعذّر حفظ هذا التأمل على هذا الجهاز.';
-
-  @override
-  String get checkinReflectSaved => 'تم حفظ التأمل. أحسنت صنعًا.';
 
   @override
   String get checkinOptAngry => 'غضب';
@@ -2168,62 +2119,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noticeWeeklyBody => 'أسبوعك في With Me جاهز لتلقي نظرة عليه.';
 
   @override
-  String get dashProgressTitle => 'تقدّمك';
-
-  @override
-  String get dashProgressTabWeek => 'أسبوع';
-
-  @override
-  String get dashProgressTabMonth => 'شهر';
-
-  @override
-  String get dashProgressTabYear => 'سنة';
-
-  @override
-  String get dashProgressStressLevel => 'مستوى التوتر';
-
-  @override
-  String get dashProgressMood => 'المزاج';
-
-  @override
-  String get dashProgressNotEnoughData => 'بيانات غير كافية';
-
-  @override
-  String get dashProgressCheckInsWeek => 'تسجيلات الحالة\nهذا الأسبوع';
-
-  @override
-  String get dashProgressCheckInsMonth => 'تسجيلات الحالة\nهذا الشهر';
-
-  @override
-  String get dashProgressCheckInsYear => 'تسجيلات الحالة\nهذه السنة';
-
-  @override
-  String get dashProgressGettingStarted => 'البداية';
-
-  @override
-  String get dashProgressKeepGoing => 'إلى الأمام!';
-
-  @override
-  String get dashTrendBetter => 'أسبوع أفضل';
-
-  @override
-  String get dashTrendSteady => 'أسبوع مستقر';
-
-  @override
-  String get dashTrendHarder => 'أسبوع أصعب';
-
-  @override
-  String get dashTrendCaption => 'مقارنةً بالأسبوع الماضي';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'خطة اليوم: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'لم تُحدَّد نية لليوم بعد.';
-
-  @override
   String get dashDailyLogTitle => 'اليوميات';
 
   @override
@@ -2319,9 +2214,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'صباح الغد';
 
   @override
-  String get dashReminderTomorrowTime => '8:00 ص';
-
-  @override
   String get dashReminderCustomTime => 'وقت مخصص';
 
   @override
@@ -2400,45 +2292,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'سكون لمدة $seconds ثوانٍ';
   }
-
-  @override
-  String get exerciseComplete => 'اكتمل';
-
-  @override
-  String get exerciseSceneWaves => 'على شاطئ المحيط';
-
-  @override
-  String get exerciseSceneBirds => 'صباح هادئ';
-
-  @override
-  String get exerciseSceneForest => 'بين الأشجار';
-
-  @override
-  String get exerciseSceneRain => 'تحت المطر';
-
-  @override
-  String get exerciseSceneFire => 'بجانب النار';
-
-  @override
-  String get exerciseSceneNone => 'لحظة سكون';
-
-  @override
-  String get exerciseSceneDetailWaves => 'مدّ هادئ · شاطئ دافئ';
-
-  @override
-  String get exerciseSceneDetailBirds => 'تغريد الطيور · عشّ في الغابة';
-
-  @override
-  String get exerciseSceneDetailForest => 'حفيف الأوراق · نسيم لطيف';
-
-  @override
-  String get exerciseSceneDetailRain => 'مطر يتساقط · ماء جارٍ';
-
-  @override
-  String get exerciseSceneDetailFire => 'جمر يطقطق · سماء المساء';
-
-  @override
-  String get exerciseSceneDetailNone => 'أنت وأنفاسك فقط';
 
   @override
   String get exerciseBreatheAgain => 'التنفّس من جديد';
@@ -2778,9 +2631,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 دقائق · هدوء في الغابة';
 
   @override
-  String get exerciseMeditationLocked => 'مقفل. جزء من With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'خمس دقائق هادئة في الغابة. يمكنك اتّباع الكلمات، أو إغماض العينين والاستماع.';
 
@@ -2925,9 +2775,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get membershipSave => 'وفّر 16%';
 
   @override
-  String get meditateTitle => 'تأمّل';
-
-  @override
   String get meditateSubtitle => 'هدوء أينما كان مصدر الضغط';
 
   @override
@@ -2941,18 +2788,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get meditateByArea => 'حسب مصدر الضغط';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count جلسات',
-      two: 'جلستان',
-      one: 'جلسة واحدة',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'من تسجيل اليوم';
@@ -3085,9 +2920,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get stepReturn => 'العودة';
-
-  @override
-  String get stepSettle => 'ليهدأ كل شيء';
 
   @override
   String get stepHeadFace => 'الرأس والوجه';

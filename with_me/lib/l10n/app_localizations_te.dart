@@ -24,11 +24,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get settingsTitle => 'సెట్టింగ్‌లు';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature ఈ UI వెర్షన్‌లో ఇంకా అందుబాటులో లేదు.';
-  }
-
-  @override
   String get settingsHaptics => 'వైబ్రేషన్';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get settingsExportData => 'నా డేటాను ఎగుమతి చేయండి';
-
-  @override
-  String get settingsExport => 'ఎగుమతి';
 
   @override
   String get settingsDeleteAccount => 'నా ఖాతాను తొలగించండి';
@@ -556,10 +548,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get menuAboutTerms => 'నిబంధనలు & గోప్యతా విధానం';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'నిబంధనలు ఈ UI వెర్షన్‌లో ఇంకా అందుబాటులో లేవు.';
-
-  @override
   String get accountAiCompanion => 'మీ శ్రేయస్సు సహచరుడు';
 
   @override
@@ -573,10 +561,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Google తో కొనసాగించండి';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Google సైన్-ఇన్ ఈ UI వెర్షన్‌లో ఇంకా అందుబాటులో లేదు.';
 
   @override
   String get accountStartWithoutAccount => 'ఖాతా లేకుండా ప్రారంభించండి';
@@ -596,12 +580,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'పాస్‌వర్డ్ మర్చిపోయారా?';
-
-  @override
-  String get accountLoginReadFailed => 'ఈ పరికరంలో మీ ఖాతాను చదవడం కుదరలేదు.';
-
-  @override
-  String get accountLoginMismatch => 'ఆ ఈమెయిల్, పాస్‌వర్డ్ సరిపోలడం లేదు.';
 
   @override
   String get accountEmail => 'ఈమెయిల్';
@@ -625,9 +603,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get accountCreateAccount => 'ఖాతా సృష్టించండి';
 
   @override
-  String get accountCreateAnAccount => 'ఒక ఖాతా సృష్టించండి';
-
-  @override
   String get accountAlreadyWithUs => 'ఇప్పటికే ఖాతా ఉందా? లాగిన్ చేయండి';
 
   @override
@@ -644,9 +619,6 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'ఈ ఫోన్‌లో ఇప్పటికే ఒక ఖాతా ఉంది. బదులుగా లాగిన్ చేయండి.';
-
-  @override
-  String get accountSaveFailed => 'ఈ పరికరంలో మీ ఖాతాను సేవ్ చేయడం కుదరలేదు.';
 
   @override
   String get accountResetTitle => 'మీ పాస్‌వర్డ్‌ను రీసెట్ చేయండి';
@@ -754,10 +726,6 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'మీ ఖాతాను చేరుకోలేకపోయాం. కనెక్షన్ చూసి మళ్లీ ప్రయత్నించండి.';
-
-  @override
   String get plusRestore => 'కొనుగోళ్లను పునరుద్ధరించు';
 
   @override
@@ -792,10 +760,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/నెల · సంవత్సరానికి ఒకసారి బిల్లు';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'చెల్లింపులు ఈ UI వెర్షన్‌లో ఇంకా అనుసంధానించబడలేదు.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1022,15 +986,6 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఇది ఎంత ప్రభావవంతంగా ఉందో రేటింగ్ ఇవ్వండి';
 
   @override
-  String get checkinAddCustom => '+ సొంత వ్యూహం & చర్య జోడించండి';
-
-  @override
-  String get checkinCustomDialogTitle => 'సొంత వ్యూహం\n& చర్య జోడించండి';
-
-  @override
-  String get checkinCustomStrategyHint => 'సొంత వ్యూహం';
-
-  @override
   String get checkinCustomActionHint => 'సొంత చర్య';
 
   @override
@@ -1083,9 +1038,6 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'ఈ ఆత్మపరిశీలనను ఈ పరికరంలో సేవ్ చేయడం కుదరలేదు.';
-
-  @override
-  String get checkinReflectSaved => 'ఆత్మపరిశీలన సేవ్ అయింది. చాలా బాగుంది.';
 
   @override
   String get checkinOptAngry => 'కోపం';
@@ -2132,62 +2084,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get noticeWeeklyBody => 'With Meలో మీ వారం చూడటానికి సిద్ధంగా ఉంది.';
 
   @override
-  String get dashProgressTitle => 'మీ పురోగతి';
-
-  @override
-  String get dashProgressTabWeek => 'వారం';
-
-  @override
-  String get dashProgressTabMonth => 'నెల';
-
-  @override
-  String get dashProgressTabYear => 'సంవత్సరం';
-
-  @override
-  String get dashProgressStressLevel => 'ఒత్తిడి స్థాయి';
-
-  @override
-  String get dashProgressMood => 'మూడ్';
-
-  @override
-  String get dashProgressNotEnoughData => 'తగినంత డేటా లేదు';
-
-  @override
-  String get dashProgressCheckInsWeek => 'చెక్-ఇన్‌లు\nఈ వారం';
-
-  @override
-  String get dashProgressCheckInsMonth => 'చెక్-ఇన్‌లు\nఈ నెల';
-
-  @override
-  String get dashProgressCheckInsYear => 'చెక్-ఇన్‌లు\nఈ సంవత్సరం';
-
-  @override
-  String get dashProgressGettingStarted => 'ప్రారంభ దశ';
-
-  @override
-  String get dashProgressKeepGoing => 'ఇలాగే కొనసాగండి!';
-
-  @override
-  String get dashTrendBetter => 'మెరుగైన వారం';
-
-  @override
-  String get dashTrendSteady => 'స్థిరమైన వారం';
-
-  @override
-  String get dashTrendHarder => 'కష్టమైన వారం';
-
-  @override
-  String get dashTrendCaption => 'గత వారంతో పోలిస్తే';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'ఈ రోజు ప్లాన్: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'ఈ రోజు ఇంకా సంకల్పం పెట్టుకోలేదు.';
-
-  @override
   String get dashDailyLogTitle => 'రోజువారీ లాగ్';
 
   @override
@@ -2280,9 +2176,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'రేపు ఉదయం';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'మీకు నచ్చిన సమయం';
 
   @override
@@ -2361,46 +2254,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '$seconds సెకన్లు నిశ్చలంగా ఉండండి';
   }
-
-  @override
-  String get exerciseComplete => 'పూర్తయింది';
-
-  @override
-  String get exerciseSceneWaves => 'సముద్రం ఒడ్డున';
-
-  @override
-  String get exerciseSceneBirds => 'ఒక ప్రశాంతమైన ఉదయం';
-
-  @override
-  String get exerciseSceneForest => 'చెట్ల మధ్య';
-
-  @override
-  String get exerciseSceneRain => 'వర్షంలో';
-
-  @override
-  String get exerciseSceneFire => 'మంట పక్కన';
-
-  @override
-  String get exerciseSceneNone => 'నిశ్చలమైన ఒక క్షణం';
-
-  @override
-  String get exerciseSceneDetailWaves => 'మెల్లని అలలు · వెచ్చని తీరం';
-
-  @override
-  String get exerciseSceneDetailBirds => 'పక్షుల కిలకిలలు · అడవిలో గూడు';
-
-  @override
-  String get exerciseSceneDetailForest => 'గలగలలాడే ఆకులు · మెల్లని గాలి';
-
-  @override
-  String get exerciseSceneDetailRain => 'కురిసే వాన · ప్రవహించే నీరు';
-
-  @override
-  String get exerciseSceneDetailFire =>
-      'చిటపటలాడే నిప్పుకణికలు · సాయంత్రపు ఆకాశం';
-
-  @override
-  String get exerciseSceneDetailNone => 'మీరు, మీ శ్వాస మాత్రమే';
 
   @override
   String get exerciseBreatheAgain => 'మళ్లీ శ్వాస తీసుకోండి';
@@ -2748,9 +2601,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 నిమి · అడవిలో ప్రశాంతత';
 
   @override
-  String get exerciseMeditationLocked => 'లాక్ అయింది. With Me Plus లో భాగం.';
-
-  @override
   String get exerciseMeditationIntro =>
       'అడవిలో ఐదు ప్రశాంత నిమిషాలు. మాటలను అనుసరించండి, లేదా కళ్లు మూసుకుని వినండి.';
 
@@ -2895,9 +2745,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get membershipSave => '16% ఆదా';
 
   @override
-  String get meditateTitle => 'ధ్యానం';
-
-  @override
   String get meditateSubtitle => 'ఒత్తిడి ఎక్కడి నుండి వచ్చినా ప్రశాంతత';
 
   @override
@@ -2911,17 +2758,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get meditateByArea => 'ఒత్తిడి ప్రాంతం ప్రకారం';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count సెషన్‌లు',
-      one: '1 సెషన్',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'మీ చెక్-ఇన్ నుండి';
@@ -3056,9 +2892,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get stepReturn => 'తిరిగి రావడం';
-
-  @override
-  String get stepSettle => 'స్థిరపడనివ్వండి';
 
   @override
   String get stepHeadFace => 'తల మరియు ముఖం';

@@ -24,11 +24,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsTitle => 'Pengaturan';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature belum tersedia di versi ini.';
-  }
-
-  @override
   String get settingsHaptics => 'Getaran';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Ekspor dataku';
-
-  @override
-  String get settingsExport => 'Ekspor';
 
   @override
   String get settingsDeleteAccount => 'Hapus akunku';
@@ -555,9 +547,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get menuAboutTerms => 'Ketentuan & Kebijakan Privasi';
 
   @override
-  String get menuAboutTermsNotWired => 'Ketentuan belum tersedia di versi ini.';
-
-  @override
   String get accountAiCompanion => 'Teman Kesejahteraanmu';
 
   @override
@@ -571,10 +560,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Lanjutkan dengan Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Masuk dengan Google belum tersedia di versi ini.';
 
   @override
   String get accountStartWithoutAccount => 'Mulai tanpa akun';
@@ -594,13 +579,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Lupa kata sandi?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'Akunmu di perangkat ini tidak bisa dibaca.';
-
-  @override
-  String get accountLoginMismatch => 'Email dan kata sandi itu tidak cocok.';
 
   @override
   String get accountEmail => 'Email';
@@ -624,9 +602,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get accountCreateAccount => 'Buat akun';
 
   @override
-  String get accountCreateAnAccount => 'Buat akun';
-
-  @override
   String get accountAlreadyWithUs => 'Sudah punya akun? Masuk';
 
   @override
@@ -643,10 +618,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'Ponsel ini sudah punya akun. Masuk saja.';
-
-  @override
-  String get accountSaveFailed =>
-      'Akunmu tidak bisa disimpan di perangkat ini.';
 
   @override
   String get accountResetTitle => 'Atur ulang kata sandimu';
@@ -755,10 +726,6 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Tidak dapat menjangkau akunmu. Periksa koneksimu lalu coba lagi.';
-
-  @override
   String get plusRestore => 'Pulihkan pembelian';
 
   @override
@@ -793,10 +760,6 @@ class AppLocalizationsId extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/bulan · ditagih tahunan';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Pembayaran belum terhubung di versi ini.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1022,15 +985,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get checkinRateEffectiveness => 'Beri nilai efektivitasnya';
 
   @override
-  String get checkinAddCustom => '+ Tambah strategi & tindakan sendiri';
-
-  @override
-  String get checkinCustomDialogTitle => 'Tambah strategi\n& tindakan sendiri';
-
-  @override
-  String get checkinCustomStrategyHint => 'Strategi sendiri';
-
-  @override
   String get checkinCustomActionHint => 'Tindakan sendiri';
 
   @override
@@ -1083,9 +1037,6 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Refleksi ini tidak bisa disimpan di perangkat ini.';
-
-  @override
-  String get checkinReflectSaved => 'Refleksi tersimpan. Bagus sekali.';
 
   @override
   String get checkinOptAngry => 'Marah';
@@ -2123,63 +2074,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get noticeWeeklyBody => 'Minggumu di With Me siap dilihat.';
 
   @override
-  String get dashProgressTitle => 'Perkembanganmu';
-
-  @override
-  String get dashProgressTabWeek => 'Minggu';
-
-  @override
-  String get dashProgressTabMonth => 'Bulan';
-
-  @override
-  String get dashProgressTabYear => 'Tahun';
-
-  @override
-  String get dashProgressStressLevel => 'Tingkat stres';
-
-  @override
-  String get dashProgressMood => 'Suasana hati';
-
-  @override
-  String get dashProgressNotEnoughData => 'Data belum cukup';
-
-  @override
-  String get dashProgressCheckInsWeek => 'check-in\nminggu ini';
-
-  @override
-  String get dashProgressCheckInsMonth => 'check-in\nbulan ini';
-
-  @override
-  String get dashProgressCheckInsYear => 'check-in\ntahun ini';
-
-  @override
-  String get dashProgressGettingStarted => 'Baru memulai';
-
-  @override
-  String get dashProgressKeepGoing => 'Terus semangat!';
-
-  @override
-  String get dashTrendBetter => 'Minggu lebih baik';
-
-  @override
-  String get dashTrendSteady => 'Minggu stabil';
-
-  @override
-  String get dashTrendHarder => 'Minggu lebih berat';
-
-  @override
-  String get dashTrendCaption => 'Dibanding minggu lalu';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Rencana hari ini: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention =>
-      'Belum ada niat yang ditetapkan hari ini.';
-
-  @override
   String get dashDailyLogTitle => 'Catatan Harian';
 
   @override
@@ -2271,9 +2165,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Besok pagi';
 
   @override
-  String get dashReminderTomorrowTime => '08.00';
-
-  @override
   String get dashReminderCustomTime => 'Atur waktu sendiri';
 
   @override
@@ -2352,45 +2243,6 @@ class AppLocalizationsId extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Diam $seconds detik';
   }
-
-  @override
-  String get exerciseComplete => 'Selesai';
-
-  @override
-  String get exerciseSceneWaves => 'Di tepi laut';
-
-  @override
-  String get exerciseSceneBirds => 'Pagi yang tenang';
-
-  @override
-  String get exerciseSceneForest => 'Di antara pepohonan';
-
-  @override
-  String get exerciseSceneRain => 'Di bawah hujan';
-
-  @override
-  String get exerciseSceneFire => 'Di samping api unggun';
-
-  @override
-  String get exerciseSceneNone => 'Sejenak dalam keheningan';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Ombak lembut · pantai hangat';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Kicau burung · sarang di hutan';
-
-  @override
-  String get exerciseSceneDetailForest => 'Daun berdesir · angin sepoi';
-
-  @override
-  String get exerciseSceneDetailRain => 'Hujan turun · air mengalir';
-
-  @override
-  String get exerciseSceneDetailFire => 'Bara berderak · langit senja';
-
-  @override
-  String get exerciseSceneDetailNone => 'Hanya kamu dan napasmu';
 
   @override
   String get exerciseBreatheAgain => 'Bernapas lagi';
@@ -2736,9 +2588,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 mnt · tenang di hutan';
 
   @override
-  String get exerciseMeditationLocked => 'Terkunci. Bagian dari With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Lima menit tenang di hutan. Ikuti kata-katanya, atau pejamkan mata dan dengarkan.';
 
@@ -2883,9 +2732,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get membershipSave => 'Hemat 16%';
 
   @override
-  String get meditateTitle => 'Meditasi';
-
-  @override
   String get meditateSubtitle => 'Tenang, dari mana pun stres datang';
 
   @override
@@ -2899,16 +2745,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Menurut sumber stres';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count sesi',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Dari check-in hari ini';
@@ -3036,9 +2872,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get stepReturn => 'Kembali';
-
-  @override
-  String get stepSettle => 'Biarkan mengendap';
 
   @override
   String get stepHeadFace => 'Kepala dan wajah';

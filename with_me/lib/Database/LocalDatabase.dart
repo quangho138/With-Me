@@ -440,12 +440,6 @@ class DatabaseHelper {
     return null;
   }
 
-  Future<void> deleteUserName() async {
-    final db = await database;
-    await db.delete('user');
-    userNameNotifier.value = null; // notify listeners immediately
-  }
-
   // Reflection methods remain unchanged
   // --- Keep your existing reflection methods as-is ---
   Future<int> insertReflection({
@@ -466,20 +460,6 @@ class DatabaseHelper {
       'date': date.toIso8601String(),
       'createdAt': DateTime.now().toIso8601String(),
     }, conflictAlgorithm: ConflictAlgorithm.replace);
-  }
-
-  Future<int> clearReflections() async {
-    final db = await database;
-    return await db.delete('reflections');
-  }
-
-  /// "Delete my account" in Settings. The dialog promises to clear
-  /// everything on this device, so this empties every table, not only
-  /// reflections and the name (which is all it used to do).
-  Future<void> deleteAllData() async {
-    final db = await database;
-    await wipeAllTables(db);
-    userNameNotifier.value = null;
   }
 
   /// Every table that holds user data. Add new tables here; a test fails if
@@ -535,16 +515,6 @@ class DatabaseHelper {
     );
   }
 
-  Future<int> deleteReflectionsByDate(DateTime date) async {
-    final db = await database;
-    String isoDate = date.toIso8601String().substring(0, 10);
-    return await db.delete(
-      'reflections',
-      where: 'date LIKE ?',
-      whereArgs: ['$isoDate%'],
-    );
-  }
-
   // Sign-up and sign-in live in lib/Repositories/user_repository.dart.
 
   // Mood Selection
@@ -557,29 +527,6 @@ class DatabaseHelper {
     }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  // Get mood for a specific date
-  Future<String?> getMood(DateTime date) async {
-    final db = await database;
-    String isoDate = date.toIso8601String().substring(0, 10);
-    final result = await db.query(
-      'moods',
-      where: 'date = ?',
-      whereArgs: [isoDate],
-      limit: 1,
-    );
-    return result.isNotEmpty ? result.first['mood'] as String : null;
-  }
-
-  // Delete mood for a date
-  Future<void> deleteMood(DateTime date) async {
-    final db = await database;
-    await db.delete(
-      'moods',
-      where: 'date LIKE ?',
-      whereArgs: [date.toIso8601String().substring(0, 10) + '%'],
-    );
-  }
-
   // Control Gauge
   Future<int> insertControlGauge(DateTime date, int level) async {
     final db = await database;
@@ -588,32 +535,6 @@ class DatabaseHelper {
       'date': isoDate,
       'level': level,
     }, conflictAlgorithm: ConflictAlgorithm.replace);
-  }
-
-  Future<int?> getControlGauge(DateTime date) async {
-    final db = await database;
-    String isoDate = date.toIso8601String().substring(0, 10);
-    final result = await db.query(
-      'control_gauge',
-      where: 'date = ?',
-      whereArgs: [isoDate],
-      limit: 1,
-    );
-    if (result.isNotEmpty) {
-      return result.first['level'] as int;
-    }
-    return null;
-  }
-
-  // Delete control gauge value for a date
-  Future<int> deleteControlGauge(DateTime date) async {
-    final db = await database;
-    String isoDate = date.toIso8601String().substring(0, 10);
-    return await db.delete(
-      'control_gauge',
-      where: 'date LIKE ?',
-      whereArgs: ['$isoDate%'],
-    );
   }
 
   // Stressor activity
@@ -642,27 +563,6 @@ class DatabaseHelper {
       limit: 1,
     );
     return result.isNotEmpty ? result.first : null;
-  }
-
-  // Update detail for stressor
-  Future<void> updateStressorDetail(DateTime date, String detail) async {
-    final db = await database;
-    await db.update(
-      'stressors',
-      {'detail': detail},
-      where: 'date LIKE ?',
-      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
-    );
-  }
-
-  // Delete stressor entry
-  Future<int> deleteStressor(DateTime date) async {
-    final db = await database;
-    return await db.delete(
-      'stressors',
-      where: 'date LIKE ?',
-      whereArgs: ['${date.toIso8601String().substring(0, 10)}%'],
-    );
   }
 
   // --- Range reads ---------------------------------------------------------

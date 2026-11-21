@@ -24,11 +24,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get settingsTitle => 'Mipangilio';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature bado haijaunganishwa katika toleo hili la kiolesura.';
-  }
-
-  @override
   String get settingsHaptics => 'Mtetemo';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Hamisha data yangu';
-
-  @override
-  String get settingsExport => 'Kuhamisha data';
 
   @override
   String get settingsDeleteAccount => 'Futa akaunti yangu';
@@ -557,10 +549,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get menuAboutTerms => 'Masharti na Sera ya Faragha';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Masharti bado hayajaunganishwa katika toleo hili la kiolesura.';
-
-  @override
   String get accountAiCompanion => 'Mwenzako wa Ustawi';
 
   @override
@@ -574,10 +562,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Endelea na Google';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Kuingia kwa Google bado hakujaunganishwa katika toleo hili la kiolesura.';
 
   @override
   String get accountStartWithoutAccount => 'Anza bila akaunti';
@@ -596,13 +580,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Umesahau nenosiri lako?';
-
-  @override
-  String get accountLoginReadFailed =>
-      'Imeshindikana kusoma akaunti yako kwenye kifaa hiki.';
-
-  @override
-  String get accountLoginMismatch => 'Barua pepe na nenosiri hilo havilingani.';
 
   @override
   String get accountEmail => 'Barua pepe';
@@ -626,9 +603,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get accountCreateAccount => 'Fungua akaunti';
 
   @override
-  String get accountCreateAnAccount => 'Fungua akaunti';
-
-  @override
   String get accountAlreadyWithUs => 'Tayari uko nasi? Ingia';
 
   @override
@@ -645,10 +619,6 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'Simu hii tayari ina akaunti. Ingia badala yake.';
-
-  @override
-  String get accountSaveFailed =>
-      'Imeshindikana kuhifadhi akaunti yako kwenye kifaa hiki.';
 
   @override
   String get accountResetTitle => 'Weka upya nenosiri lako';
@@ -758,10 +728,6 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Imeshindwa kufikia akaunti yako. Angalia muunganisho wako kisha ujaribu tena.';
-
-  @override
   String get plusRestore => 'Rejesha ununuzi';
 
   @override
@@ -796,10 +762,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/mwezi · hulipwa kila mwaka';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Malipo bado hayajaunganishwa katika toleo hili la kiolesura.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1023,15 +985,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get checkinRateEffectiveness => 'Chagua kiwango cha ufanisi';
 
   @override
-  String get checkinAddCustom => '+ Ongeza mkakati na kitendo chako';
-
-  @override
-  String get checkinCustomDialogTitle => 'Ongeza mkakati\nna kitendo chako';
-
-  @override
-  String get checkinCustomStrategyHint => 'Mkakati wako';
-
-  @override
   String get checkinCustomActionHint => 'Kitendo chako';
 
   @override
@@ -1084,9 +1037,6 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Imeshindikana kuhifadhi tafakari hii kwenye kifaa hiki.';
-
-  @override
-  String get checkinReflectSaved => 'Tafakari imehifadhiwa. Hongera.';
 
   @override
   String get checkinOptAngry => 'Hasira';
@@ -2132,62 +2082,6 @@ class AppLocalizationsSw extends AppLocalizations {
       'Wiki yako katika With Me iko tayari kutazamwa.';
 
   @override
-  String get dashProgressTitle => 'Maendeleo Yako';
-
-  @override
-  String get dashProgressTabWeek => 'Wiki';
-
-  @override
-  String get dashProgressTabMonth => 'Mwezi';
-
-  @override
-  String get dashProgressTabYear => 'Mwaka';
-
-  @override
-  String get dashProgressStressLevel => 'Kiwango cha msongo';
-
-  @override
-  String get dashProgressMood => 'Hali';
-
-  @override
-  String get dashProgressNotEnoughData => 'Data haitoshi';
-
-  @override
-  String get dashProgressCheckInsWeek => 'tathmini\nwiki hii';
-
-  @override
-  String get dashProgressCheckInsMonth => 'tathmini\nmwezi huu';
-
-  @override
-  String get dashProgressCheckInsYear => 'tathmini\nmwaka huu';
-
-  @override
-  String get dashProgressGettingStarted => 'Tunaanza';
-
-  @override
-  String get dashProgressKeepGoing => 'Endelea hivyo!';
-
-  @override
-  String get dashTrendBetter => 'Wiki bora zaidi';
-
-  @override
-  String get dashTrendSteady => 'Wiki tulivu';
-
-  @override
-  String get dashTrendHarder => 'Wiki ngumu zaidi';
-
-  @override
-  String get dashTrendCaption => 'Ikilinganishwa na wiki iliyopita';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Mpango wa leo: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'Bado hujaweka nia leo.';
-
-  @override
   String get dashDailyLogTitle => 'Daftari la Kila Siku';
 
   @override
@@ -2278,9 +2172,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Kesho asubuhi';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => 'Chagua muda';
 
   @override
@@ -2359,47 +2250,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return 'Tulia sekunde $seconds';
   }
-
-  @override
-  String get exerciseComplete => 'Imekamilika';
-
-  @override
-  String get exerciseSceneWaves => 'Kando ya bahari';
-
-  @override
-  String get exerciseSceneBirds => 'Asubuhi tulivu';
-
-  @override
-  String get exerciseSceneForest => 'Katikati ya miti';
-
-  @override
-  String get exerciseSceneRain => 'Chini ya mvua';
-
-  @override
-  String get exerciseSceneFire => 'Kando ya moto';
-
-  @override
-  String get exerciseSceneNone => 'Wakati wa utulivu';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Mawimbi laini · ufuo wenye joto';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Nyimbo za ndege · kiota msituni';
-
-  @override
-  String get exerciseSceneDetailForest =>
-      'Majani yanayochakacha · upepo mwanana';
-
-  @override
-  String get exerciseSceneDetailRain =>
-      'Mvua inayonyesha · maji yanayotiririka';
-
-  @override
-  String get exerciseSceneDetailFire => 'Makaa yanayotatarika · anga la jioni';
-
-  @override
-  String get exerciseSceneDetailNone => 'Wewe na pumzi yako tu';
 
   @override
   String get exerciseBreatheAgain => 'Pumua tena';
@@ -2747,9 +2597,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get exerciseMeditationSubtitle => 'Dak 5 · utulivu msituni';
 
   @override
-  String get exerciseMeditationLocked => 'Imefungwa. Sehemu ya With Me Plus.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Dakika tano za utulivu msituni. Fuata maneno, au funga macho na usikilize.';
 
@@ -2895,9 +2742,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get membershipSave => 'Okoa 16%';
 
   @override
-  String get meditateTitle => 'Tahajudi';
-
-  @override
   String get meditateSubtitle => 'Utulivu, popote msongo unapotoka';
 
   @override
@@ -2911,17 +2755,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Kwa chanzo cha msongo';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'Vipindi $count',
-      one: 'Kipindi 1',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Kutoka kwenye kujitathmini kwako leo';
@@ -3050,9 +2883,6 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get stepReturn => 'Kurudi';
-
-  @override
-  String get stepSettle => 'Acha kitulie';
 
   @override
   String get stepHeadFace => 'Kichwa na uso';
