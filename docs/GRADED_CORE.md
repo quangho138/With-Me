@@ -203,12 +203,14 @@ E9. On a real phone, by hand (Sprint 5 walkthrough): on an Android emulator, a d
 
 Changed 31 October, before any F code (Quang: stay with the PO's design and what a user is comfortable with). The first version added a new dashboard card with three facts. The PO's design already has the place for this: the Progress screen (image37) has a trend tile and a "Today's intention" line, and her Notifications screen has a "Weekly insight summary" switch. Today the tile says "Positive trend" whenever there are 3 or more check-ins, even after a harder week, and the line shows the sample "feel calmer · 1 exercise done" to everyone. Feature F makes those parts true instead of adding a screen. Two facts of the first version are dropped: the highest stress weekday and the most common stress source. Her design has no place for the first, and her Stress Levels page already shows where stress comes from.
 
-What it is, on the PO's Progress screen:
+Changed 20 November, after F was built and measured (Quang and Alex): the team removed the Progress screen from the dashboard (PR #60), so the trend tile and the intention line are gone. F stays as the comparison itself and the rule it feeds: the weekly summary notice (E3) is sent only when there are enough check-ins to compare. F4 checked the words of the tile and the line; with no words left on screen it was removed with them (21 November). F1 to F3 and F5 are unchanged. The results recorded for F before this change still describe the code that was measured then.
+
+What it was, on the PO's Progress screen (until 20 November):
 - The trend tile compares this week's mood with last week's, in plain words: "Better week", "Steady week" or "Harder week", under it "Mood compared with last week". Without enough check-ins it says "Getting started" and "Keep going!", as the design does.
 - The intention line shows the action picked in today's check-in ("Today's plan: Walking"), or that none is set yet. No sample text.
 - The weekly summary notice (feature E, E3) is sent only when the comparison has enough check-ins.
 
-How it is built: one pure function takes saved moods and today's date and returns better, steady, harder or not enough. The screen and the weekly summary both use it.
+How it is built: one pure function takes saved moods and today's date and returns better, steady, harder or not enough. The weekly summary uses it (and the screen did, until 20 November).
 
 Definitions:
 - "This week" is today and the 6 calendar days before it; "last week" is the 7 calendar days before those. Counted on calendar dates, never by subtracting hours.
@@ -226,7 +228,7 @@ F2. Random check. 1,000 random made-up mood sets. Each result is compared with a
 
 F3. Calendar safe. The two 7-day windows hold the right dates across a month end, a year end (31 Dec to 1 Jan), a leap day (29 Feb 2028) and both 2026 US daylight saving changes (8 Mar and 1 Nov). Pass: all.
 
-F4. The words. Every sentence the tile and the line can show, in all 22 languages, is checked against a list of words that must not appear (in English: diagnose, disorder, depression, anxiety, symptom, should, must, and their translations). Pass: none found.
+F4. The words. Removed 21 November with the tile and the line it checked (see the note above).
 
 F5. Uses a fixed clock. The function takes today as an input (Today.now() on screens), so tests fix the date. Pass: checked in code review.
 
