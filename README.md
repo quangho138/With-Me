@@ -149,45 +149,48 @@ With Me grew out of an earlier FIU capstone app for stress and anxiety managemen
 
 The course encourages declared AI use. Parts of this project were written with AI assistants (Claude) and reviewed and tested by the team. Each change records what the AI did, what was kept, what was checked, and what it got wrong.
 
-##Outside Credited Sources
-1. What it is: Flutter SDK · Kind: Library or package · License: BSD 2 or 3 clause · Where it came from: github.com/flutter/flutter · How you used it: The framework the whole app is built on
+## Outside Credited Sources
+# Third-party pieces used in With Me
 
-2. What it is: in_app_purchase · Kind: Library or package · License: BSD 2 or 3 clause · Where it came from: pub.dev/packages/in_app_purchase · How you used it: Buying With Me Plus through Google Play
+Everything the app is built on or ships with that our team didn't write by hand, plus our own work for completeness.
 
-3. What it is: flutter_local_notifications · Kind: Library or package · License: BSD 2 or 3 clause · Where it came from: pub.dev/packages/flutter_local_notifications · How you used it: Daily check-in reminders
+## Code libraries
 
-4. What it is: supabase_flutter · Kind: Library or package · License: MIT · Where it came from: pub.dev/packages/supabase_flutter · How you used it: Accounts, sync and Google sign-in
+| # | What it is | Kind | License | Where it came from | How we used it |
+|---|---|---|---|---|---|
+| 1 | Flutter SDK | Library or package | BSD 2 or 3 clause | [github.com/flutter/flutter](https://github.com/flutter/flutter) | The framework the whole app is built on |
+| 2 | in_app_purchase | Library or package | BSD 2 or 3 clause | [pub.dev/packages/in_app_purchase](https://pub.dev/packages/in_app_purchase) | Buying With Me Plus through Google Play |
+| 3 | flutter_local_notifications | Library or package | BSD 2 or 3 clause | [pub.dev/packages/flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) | Daily check-in reminders |
+| 4 | supabase_flutter | Library or package | MIT | [pub.dev/packages/supabase_flutter](https://pub.dev/packages/supabase_flutter) | Accounts, sync and Google sign-in |
+| 5 | sqflite | Library or package | BSD 2 or 3 clause | [pub.dev/packages/sqflite](https://pub.dev/packages/sqflite) | Saves check-ins on the phone |
+| 6 | audioplayers | Library or package | MIT | [pub.dev/packages/audioplayers](https://pub.dev/packages/audioplayers) | Plays nature sounds and the companion's voice |
+| 7 | video_player | Library or package | BSD 2 or 3 clause | [pub.dev/packages/video_player](https://pub.dev/packages/video_player) | Nature videos behind the exercises |
+| 8 | flutter_tts | Library or package | MIT | [pub.dev/packages/flutter_tts](https://pub.dev/packages/flutter_tts) | Phone voice for languages without recordings |
+| 9 | table_calendar | Library or package | Apache 2.0 | [pub.dev/packages/table_calendar](https://pub.dev/packages/table_calendar) | The Daily Log calendar |
+| 10 | share_plus | Library or package | BSD 2 or 3 clause | [pub.dev/packages/share_plus](https://pub.dev/packages/share_plus) | "Export my data" |
 
-5. What it is: sqflite · Kind: Library or package · License: BSD 2 or 3 clause · Where it came from: pub.dev/packages/sqflite · How you used it: Saves check-ins on the phone
+## Media
 
-6. What it is: audioplayers · Kind: Library or package · License: MIT · Where it came from: pub.dev/packages/audioplayers · How you used it: Plays nature sounds and the companion’s voice
+| # | What it is | Kind | License | Where it came from | How we used it |
+|---|---|---|---|---|---|
+| 11 | Mixkit nature videos (12 clips) | Image, icon or font | A service's terms of use (Mixkit Stock Video Free License) | [mixkit.co](https://mixkit.co) | Scenes behind the breathing exercises and meditations |
+| 12 | Mixkit nature sounds (5) | Image, icon or font | A service's terms of use (Mixkit Sound Effects Free License) | [mixkit.co](https://mixkit.co) | Waves, birds, forest, rain and fire background sounds |
+| 13 | Mascot, backgrounds and app icon | Image, icon or font | Owned by our sponsor or Product Owner | Made with OpenAI image generation from the Product Owner's design | Buddy the companion and the screen art |
+| 14 | Meditation scripts | Template or starter | Owned by our sponsor or Product Owner | Written by our Product Owner using AI | The text the guided meditation sessions follow |
 
-7. What it is: video_player · Kind: Library or package · License: BSD 2 or 3 clause · Where it came from: pub.dev/packages/video_player · How you used it: Nature videos behind the exercises
+## AI models and services
 
-8. What it is: flutter_tts · Kind: Library or package · License: MIT · Where it came from: pub.dev/packages/flutter_tts · How you used it: Phone voice for languages without recordings
+| # | What it is | Kind | License | Where it came from | How we used it |
+|---|---|---|---|---|---|
+| 15 | Chatterbox Multilingual (Resemble AI) | Library or package | MIT | [github.com/resemble-ai/chatterbox](https://github.com/resemble-ai/chatterbox) | Made the companion's voice lines in 13 languages from Alex's voice |
+| 16 | Whisper (via faster-whisper) | Library or package | MIT | [github.com/openai/whisper](https://github.com/openai/whisper) | Checked that each voice clip said the right line |
+| 17 | Claude (Anthropic) | API or cloud service | A service's terms of use | [claude.ai](https://claude.ai) | Wrote most of the app's code, tests, docs and translations from our instructions; the team reviewed, tested and approved each change |
+| 18 | Supabase | API or cloud service | A service's terms of use | [supabase.com](https://supabase.com) | Hosts accounts, synced data, voice downloads and the purchase check |
+| 19 | Google Play Billing | API or cloud service | A service's terms of use | [play.google.com/console](https://play.google.com/console) | Takes payment for With Me Plus |
 
-9. What it is: table_calendar · Kind: Library or package · License: Apache 2.0 · Where it came from: pub.dev/packages/table_calendar · How you used it: The Daily Log calendar
+## Our own work
 
-10. What it is: share_plus · Kind: Library or package · License: BSD 2 or 3 clause · Where it came from: pub.dev/packages/share_plus · How you used it: “Export my data”
-
-11. What it is: Mixkit nature videos (12 clips) · Kind: Image, icon or font · License: A service’s terms of use · Where it came from: mixkit.co · How you used it: Scenes behind the breathing exercises and meditations
-
-12. What it is: Mixkit nature sounds (5) · Kind: Image, icon or font · License: A service’s terms of use · Where it came from: mixkit.co · How you used it: Waves, birds, forest, rain and fire background sounds
-
-13. What it is: Mascot, backgrounds and app icon · Kind: Image, icon or font · License: Owned by our sponsor or Product Owner · Where it came from: Made with OpenAI image generation from the product owner’s design · How you used it: Buddy the companion and the screen art
-
-14. What it is: Meditation scripts · Kind: Template or starter · License: Owned by our sponsor or Product Owner (or “I don’t know yet”, see below) · Where it came from: Our professor’s script library · How you used it: The guided meditation sessions
-
-15. What it is: Chatterbox Multilingual (Resemble AI) · Kind: Library or package · License: MIT · Where it came from: github.com/resemble-ai/chatterbox · How you used it: Made the companion’s voice lines in 13 languages from Alex’s voice
-
-16. What it is: Whisper (via faster-whisper) · Kind: Library or package · License: MIT · Where it came from: github.com/openai/whisper · How you used it: Checked that each voice clip said the right line
-
-17. What it is: Claude (Anthropic) · Kind: API or cloud service · License: A service’s terms of use · Where it came from: claude.ai · How you used it: Wrote most of the app’s code, tests, docs and translations, following our instructions. The team reviewed, tested and approved each change.
-
-18. What it is: Supabase · Kind: API or cloud service · License: A service’s terms of use · Where it came from: supabase.com · How you used it: Hosts accounts, synced data, voice downloads and the purchase check
-
-19. What it is: Google Play Billing · Kind: API or cloud service · License: A service’s terms of use · Where it came from: play.google.com/console · How you used it: Takes payment for With Me Plus
-
-20. What it is: With Me app code · Kind: Library or package · License: Written by our team · Where it came from: github.com/quangho138/With-Me · How you used it: The app itself. Much of the code was generated by Claude from our instructions. We designed the features, directed every change, and reviewed and tested the code.
-
-21. What it is: Sigh breath, soft tap and soft chime sounds · Kind: Image, icon or font · License: Written by our team · Where it came from: Made by our own scripts, no recordings · How you used it: Exercise and button sounds
+| # | What it is | Kind | License | Where it came from | How we used it |
+|---|---|---|---|---|---|
+| 20 | With Me app code | Library or package | Written by our team | [github.com/quangho138/With-Me](https://github.com/quangho138/With-Me) | The app itself. Much of the code was generated by Claude from our instructions; we designed the features, directed every change, and reviewed and tested the code |
+| 21 | Sigh breath, soft tap and soft chime sounds | Image, icon or font | Written by our team | Made by our own scripts, no recordings | Exercise and button sounds |
