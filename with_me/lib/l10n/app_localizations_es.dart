@@ -542,8 +542,8 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Las meditaciones guiadas se basan en guiones del Prof. $name, usados con permiso.';
+  String menuAboutScriptsBy(String name) {
+    return 'Los guiones de las meditaciones guiadas los escribió $name para With Me, con ayuda de IA.';
   }
 
   @override

@@ -537,8 +537,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Rehberli meditasyonlar Prof. $name tarafından yazılan metinlere dayanır ve izinle kullanılır.';
+  String menuAboutScriptsBy(String name) {
+    return 'Rehberli meditasyon metinlerini With Me için $name, yapay zekâ yardımıyla yazdı.';
   }
 
   @override

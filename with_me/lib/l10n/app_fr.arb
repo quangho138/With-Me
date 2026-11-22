@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Version {version} · Fait avec soin",
   "menuAboutStory": "{appName} est né pour les moments entre deux rendez-vous, quand le stress arrive et que tu as besoin de quelque chose de stable à tes côtés. Il prend de tes nouvelles, t'aide à nommer ce qui se passe et te propose un petit pas suivant.",
   "menuAboutDisclaimer": "{appName} ne pose pas de diagnostic, ne soigne pas et ne remplace pas un suivi professionnel.",
-  "menuAboutScripts": "Les méditations guidées reposent sur des textes du professeur {name}, utilisés avec autorisation.",
+  "menuAboutScriptsBy": "Les textes des méditations guidées ont été écrits pour With Me par {name}, avec l'aide de l'IA.",
   "menuAboutTerms": "Conditions et politique de confidentialité",
   "accountAiCompanion": "Ton compagnon bien-être",
   "accountTagline": "Là. Avec toi.",

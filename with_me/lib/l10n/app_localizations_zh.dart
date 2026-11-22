@@ -518,8 +518,8 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return '引导冥想基于 $name 教授撰写的脚本，经许可使用。';
+  String menuAboutScriptsBy(String name) {
+    return '引导冥想的脚本由 $name 在 AI 的帮助下为 With Me 撰写。';
   }
 
   @override
@@ -7161,8 +7161,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return '引導冥想以 $name 教授撰寫的腳本為基礎，經許可使用。';
+  String menuAboutScriptsBy(String name) {
+    return '引導冥想的腳本由 $name 在 AI 的協助下為 With Me 撰寫。';
   }
 
   @override

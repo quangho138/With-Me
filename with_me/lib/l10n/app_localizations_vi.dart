@@ -539,8 +539,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Các bài thiền có hướng dẫn dựa trên kịch bản của GS. $name, được sử dụng khi có sự cho phép.';
+  String menuAboutScriptsBy(String name) {
+    return 'Các kịch bản thiền có hướng dẫn được $name viết cho With Me, với sự trợ giúp của AI.';
   }
 
   @override

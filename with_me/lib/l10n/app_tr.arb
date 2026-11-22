@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Sürüm {version} · Özenle hazırlandı",
   "menuAboutStory": "{appName}, randevular arasındaki o anlar için yapıldı: stres geldiğinde ve yanında sağlam bir şeye ihtiyaç duyduğunda. Nasıl olduğunu sorar, olan biteni adlandırmana yardım eder ve küçük bir sonraki adım önerir.",
   "menuAboutDisclaimer": "{appName} teşhis koymaz, tedavi etmez ve profesyonel desteğin yerini tutmaz.",
-  "menuAboutScripts": "Rehberli meditasyonlar Prof. {name} tarafından yazılan metinlere dayanır ve izinle kullanılır.",
+  "menuAboutScriptsBy": "Rehberli meditasyon metinlerini With Me için {name}, yapay zekâ yardımıyla yazdı.",
   "menuAboutTerms": "Koşullar ve Gizlilik Politikası",
   "accountAiCompanion": "İyi Oluş Arkadaşın",
   "accountTagline": "Burada. Seninle.",

@@ -1039,11 +1039,12 @@ abstract class AppLocalizations {
   /// **'{appName} does not diagnose or treat, and is not a substitute for professional care.'**
   String menuAboutDisclaimer(String appName);
 
-  /// About page: credit for the guided meditation scripts. {name} is the professor's name, kept as written.
+
+  /// About page: credit for the guided meditation scripts. {name} is the product owner's name, kept as written.
   ///
   /// In en, this message translates to:
-  /// **'The guided meditations are based on scripts by Prof. {name}, used with permission.'**
-  String menuAboutScripts(String name);
+  /// **'The guided meditation scripts were written for With Me by {name}, with help from AI.'**
+  String menuAboutScriptsBy(String name);
 
   /// Row on the About screen that opens the terms and privacy policy.
   ///

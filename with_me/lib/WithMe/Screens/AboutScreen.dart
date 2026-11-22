@@ -14,9 +14,9 @@ class WithMeAboutScreen extends StatelessWidget {
 
   static const String route = '/about';
 
-  /// Who wrote the guided meditation scripts (see
-  /// docs/THIRD_PARTY_AND_REFERENCES.md).
-  static const String scriptsAuthor = 'Seyedmasoud Sadjadi';
+  /// Who wrote the guided meditation scripts: the product owner, with help
+  /// from AI (Alex, 22 Nov; see docs/THIRD_PARTY_AND_REFERENCES.md).
+  static const String scriptsAuthor = 'Liane Sangollo';
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class WithMeAboutScreen extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    l.menuAboutScripts(scriptsAuthor),
+                    l.menuAboutScriptsBy(scriptsAuthor),
                     key: const ValueKey('about-scripts'),
                     style: kScenicBody.copyWith(fontSize: 16, height: 1.45),
                   ),

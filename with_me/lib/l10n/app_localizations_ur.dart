@@ -540,8 +540,8 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'رہنمائی والے مراقبے پروفیسر $name کے اسکرپٹس پر مبنی ہیں، اجازت سے استعمال کیے گئے ہیں۔';
+  String menuAboutScriptsBy(String name) {
+    return 'رہنمائی والے مراقبے کے اسکرپٹ $name نے AI کی مدد سے With Me کے لیے لکھے ہیں۔';
   }
 
   @override

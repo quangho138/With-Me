@@ -150,7 +150,7 @@
   "menuAboutFootnote": "버전 {version} · 정성을 담아 만들었어요",
   "menuAboutStory": "{appName}은 약속과 약속 사이의 순간, 스트레스가 찾아와 곁에 든든한 무언가가 필요할 때를 위해 만들어졌어요. 안부를 묻고, 지금 일어나는 일에 이름을 붙이도록 돕고, 작은 다음 걸음을 제안해요.",
   "menuAboutDisclaimer": "{appName}는 진단이나 치료를 하지 않으며, 전문적인 돌봄을 대신할 수 없어요.",
-  "menuAboutScripts": "가이드 명상은 {name} 교수의 대본을 바탕으로 하며, 허락을 받아 사용했어요.",
+  "menuAboutScriptsBy": "가이드 명상 대본은 {name}님이 AI의 도움을 받아 With Me를 위해 썼습니다.",
   "menuAboutTerms": "이용약관 및 개인정보 처리방침",
   "accountAiCompanion": "당신의 웰빙 동반자",
   "accountTagline": "여기, 당신 곁에.",

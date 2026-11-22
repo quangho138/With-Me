@@ -540,8 +540,8 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'గైడెడ్ ధ్యానాలు ప్రొఫెసర్ $name గారి స్క్రిప్ట్‌ల ఆధారంగా ఉన్నాయి, అనుమతితో ఉపయోగిస్తున్నాం.';
+  String menuAboutScriptsBy(String name) {
+    return 'మార్గదర్శక ధ్యాన స్క్రిప్ట్‌లను With Me కోసం $name AI సహాయంతో రాశారు.';
   }
 
   @override

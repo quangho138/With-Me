@@ -535,8 +535,8 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'تستند جلسات التأمل الموجّه إلى نصوص للأستاذ الدكتور $name، وتُستخدم بإذن.';
+  String menuAboutScriptsBy(String name) {
+    return 'كتبت $name نصوص التأمل الموجّه لتطبيق With Me بمساعدة الذكاء الاصطناعي.';
   }
 
   @override

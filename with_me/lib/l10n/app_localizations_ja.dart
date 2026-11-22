@@ -529,8 +529,8 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'ガイド付き瞑想は$name教授の台本をもとにしており、許可を得て使用しています。';
+  String menuAboutScriptsBy(String name) {
+    return 'ガイド付き瞑想の台本は、$nameがAIの助けを借りてWith Meのために書きました。';
   }
 
   @override

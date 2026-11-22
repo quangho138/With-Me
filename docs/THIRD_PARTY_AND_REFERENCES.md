@@ -261,7 +261,7 @@ An older list of Mixkit clips the app no longer uses (`tool/media-source/sources
 | 21 translations (`app_<lang>.arb`) | Written by Claude (Anthropic), checked by a script for keys, placeholders and plural structure, and screen-checked. Not yet checked by native speakers. | Cleared for rights. Accuracy: see Ethics. |
 | Traditional Chinese (`app_zh_Hant.arb`) | Converted from the Simplified Chinese file with OpenCC (s2twp), then hand-corrected | Cleared |
 | Example check-ins in the demo account (`lib/Database/DemoAccount.dart`, user "Maya") | Invented by the team for the demo; no real person | Cleared |
-| Guided sessions by stress area, Anxiety SOS, Body Scan and Muscle Relaxation (`lib/WithMe/Exercise/GuidedScripts.dart`) | Based on the 24-script meditation library of Prof. Seyedmasoud Sadjadi (FIU), the course professor. Translated into the other languages by machine. | Used with his permission (confirmed by the team, 3 Nov 2026). Credited on the About page (`menuAboutScripts`). | Cleared |
+| Guided sessions by stress area, Anxiety SOS, Body Scan and Muscle Relaxation (`lib/WithMe/Exercise/GuidedScripts.dart`) | Written by our product owner, Liane Sangollo (HR Vision Consulting), with help from AI. Translated into the other languages by machine. | Hers to use; written for this app (confirmed by Alex, 22 Nov 2026; earlier notes named the course professor by mistake). Credited on the About page (`menuAboutScriptsBy`). | Cleared |
 | Guided meditation (`MeditationScreen.dart`, its five steps in every language) | Placeholder written by the team with Claude until the real meditation is supplied; general relaxation prompts, not taken from any book or recording | Cleared |
 
 ### 4.5 Kept in the repository but not shipped

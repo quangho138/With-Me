@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Phiên bản {version} · Được tạo bằng cả tấm lòng",
   "menuAboutStory": "{appName} được tạo ra cho những khoảnh khắc giữa các cuộc hẹn, khi căng thẳng ập đến và bạn cần một điều gì đó vững vàng bên cạnh. Ứng dụng hỏi thăm bạn, giúp bạn gọi tên điều đang xảy ra và gợi ý một bước nhỏ tiếp theo.",
   "menuAboutDisclaimer": "{appName} không chẩn đoán hay điều trị, và không thay thế cho sự chăm sóc chuyên nghiệp.",
-  "menuAboutScripts": "Các bài thiền có hướng dẫn dựa trên kịch bản của GS. {name}, được sử dụng khi có sự cho phép.",
+  "menuAboutScriptsBy": "Các kịch bản thiền có hướng dẫn được {name} viết cho With Me, với sự trợ giúp của AI.",
   "menuAboutTerms": "Điều khoản & Chính sách quyền riêng tư",
   "accountAiCompanion": "Người bạn đồng hành vì sức khỏe tinh thần",
   "accountTagline": "Ở đây. Cùng bạn.",

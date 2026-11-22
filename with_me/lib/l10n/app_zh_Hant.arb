@@ -150,7 +150,7 @@
   "menuAboutFootnote": "版本 {version} · 用心打造",
   "menuAboutStory": "{appName} 為兩次預約之間的那些時刻而生：當壓力來臨，你需要身邊有一份穩定。它會問問你的近況，幫你說出正在發生的事，並給出一個小小的下一步。",
   "menuAboutDisclaimer": "{appName}不提供診斷或治療，也不能替代專業照護。",
-  "menuAboutScripts": "引導冥想以 {name} 教授撰寫的腳本為基礎，經許可使用。",
+  "menuAboutScriptsBy": "引導冥想的腳本由 {name} 在 AI 的協助下為 With Me 撰寫。",
   "menuAboutTerms": "條款與隱私政策",
   "accountAiCompanion": "你的身心健康夥伴",
   "accountTagline": "在這裡。陪著你。",
