@@ -24,11 +24,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsTitle => 'Ayarlar';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature bu sürümde henüz kullanılamıyor.';
-  }
-
-  @override
   String get settingsHaptics => 'Titreşim';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settingsExportData => 'Verilerimi dışa aktar';
-
-  @override
-  String get settingsExport => 'Dışa aktarma';
 
   @override
   String get settingsDeleteAccount => 'Hesabımı sil';
@@ -553,10 +545,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get menuAboutTerms => 'Koşullar ve Gizlilik Politikası';
 
   @override
-  String get menuAboutTermsNotWired =>
-      'Koşullar bu sürümde henüz kullanılamıyor.';
-
-  @override
   String get accountAiCompanion => 'İyi Oluş Arkadaşın';
 
   @override
@@ -570,10 +558,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Google ile devam et';
-
-  @override
-  String get accountGoogleNotWired =>
-      'Google ile giriş bu sürümde henüz kullanılamıyor.';
 
   @override
   String get accountStartWithoutAccount => 'Hesapsız başla';
@@ -592,12 +576,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get accountForgotPassword => 'Şifreni mi unuttun?';
-
-  @override
-  String get accountLoginReadFailed => 'Bu cihazdaki hesabın okunamadı.';
-
-  @override
-  String get accountLoginMismatch => 'E-posta ve şifre eşleşmiyor.';
 
   @override
   String get accountEmail => 'E-posta';
@@ -621,9 +599,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get accountCreateAccount => 'Hesap oluştur';
 
   @override
-  String get accountCreateAnAccount => 'Bir hesap oluştur';
-
-  @override
   String get accountAlreadyWithUs => 'Zaten bizimle misin? Giriş yap';
 
   @override
@@ -640,9 +615,6 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get accountAlreadyOnPhone =>
       'Bu telefonda zaten bir hesap var. Bunun yerine giriş yap.';
-
-  @override
-  String get accountSaveFailed => 'Hesabın bu cihaza kaydedilemedi.';
 
   @override
   String get accountResetTitle => 'Şifreni sıfırla';
@@ -750,10 +722,6 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach =>
-      'Hesabına ulaşılamadı. Bağlantını kontrol edip tekrar dene.';
-
-  @override
   String get plusRestore => 'Satın alımları geri yükle';
 
   @override
@@ -788,10 +756,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/ay · yıllık faturalandırılır';
   }
-
-  @override
-  String get accountPaymentsNotWired =>
-      'Ödemeler bu sürümde henüz bağlı değil.';
 
   @override
   String get accountMembershipFootnote =>
@@ -1013,15 +977,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get checkinRateEffectiveness => 'Ne kadar etkili olduğunu puanla';
 
   @override
-  String get checkinAddCustom => '+ Kendi strateji ve eylemini ekle';
-
-  @override
-  String get checkinCustomDialogTitle => 'Kendi strateji ve\neylemini ekle';
-
-  @override
-  String get checkinCustomStrategyHint => 'Kendi stratejin';
-
-  @override
   String get checkinCustomActionHint => 'Kendi eylemin';
 
   @override
@@ -1074,9 +1029,6 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get checkinReflectSaveFailed =>
       'Bu öz değerlendirme bu cihaza kaydedilemedi.';
-
-  @override
-  String get checkinReflectSaved => 'Öz değerlendirme kaydedildi. Çok güzel.';
 
   @override
   String get checkinOptAngry => 'Öfke';
@@ -2116,62 +2068,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get noticeWeeklyBody => 'With Me\'deki haftan bakmaya hazır.';
 
   @override
-  String get dashProgressTitle => 'İlerlemen';
-
-  @override
-  String get dashProgressTabWeek => 'Hafta';
-
-  @override
-  String get dashProgressTabMonth => 'Ay';
-
-  @override
-  String get dashProgressTabYear => 'Yıl';
-
-  @override
-  String get dashProgressStressLevel => 'Stres seviyesi';
-
-  @override
-  String get dashProgressMood => 'Ruh hâli';
-
-  @override
-  String get dashProgressNotEnoughData => 'Yeterli veri yok';
-
-  @override
-  String get dashProgressCheckInsWeek => 'bu haftaki\ndurum kaydı';
-
-  @override
-  String get dashProgressCheckInsMonth => 'bu ayki\ndurum kaydı';
-
-  @override
-  String get dashProgressCheckInsYear => 'bu yılki\ndurum kaydı';
-
-  @override
-  String get dashProgressGettingStarted => 'Yeni başlıyorsun';
-
-  @override
-  String get dashProgressKeepGoing => 'Böyle devam!';
-
-  @override
-  String get dashTrendBetter => 'Daha iyi bir hafta';
-
-  @override
-  String get dashTrendSteady => 'Dengeli bir hafta';
-
-  @override
-  String get dashTrendHarder => 'Daha zor bir hafta';
-
-  @override
-  String get dashTrendCaption => 'Geçen haftaya göre';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return 'Bugünün planı: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => 'Bugün için henüz niyet belirlenmedi.';
-
-  @override
   String get dashDailyLogTitle => 'Günlük Kayıt';
 
   @override
@@ -2263,9 +2159,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashReminderTomorrowMorning => 'Yarın sabah';
 
   @override
-  String get dashReminderTomorrowTime => '08:00';
-
-  @override
   String get dashReminderCustomTime => 'Özel saat';
 
   @override
@@ -2344,45 +2237,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '$seconds saniye bekle';
   }
-
-  @override
-  String get exerciseComplete => 'Tamamlandı';
-
-  @override
-  String get exerciseSceneWaves => 'Deniz kenarında';
-
-  @override
-  String get exerciseSceneBirds => 'Sakin bir sabah';
-
-  @override
-  String get exerciseSceneForest => 'Ağaçların arasında';
-
-  @override
-  String get exerciseSceneRain => 'Yağmurun altında';
-
-  @override
-  String get exerciseSceneFire => 'Ateşin başında';
-
-  @override
-  String get exerciseSceneNone => 'Bir dinginlik anı';
-
-  @override
-  String get exerciseSceneDetailWaves => 'Yumuşak dalgalar · sıcak kıyı';
-
-  @override
-  String get exerciseSceneDetailBirds => 'Kuş sesleri · ormandaki yuva';
-
-  @override
-  String get exerciseSceneDetailForest => 'Hışırdayan yapraklar · hafif rüzgâr';
-
-  @override
-  String get exerciseSceneDetailRain => 'Yağan yağmur · akan su';
-
-  @override
-  String get exerciseSceneDetailFire => 'Çıtırdayan közler · akşam göğü';
-
-  @override
-  String get exerciseSceneDetailNone => 'Sadece sen ve nefesin';
 
   @override
   String get exerciseBreatheAgain => 'Yeniden nefes al';
@@ -2726,9 +2580,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 dk · ormanda huzur';
 
   @override
-  String get exerciseMeditationLocked => 'Kilitli. With Me Plus’a dahil.';
-
-  @override
   String get exerciseMeditationIntro =>
       'Ormanda beş sakin dakika. Sözleri takip et ya da gözlerini kapatıp dinle.';
 
@@ -2872,9 +2723,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get membershipSave => '%16 tasarruf';
 
   @override
-  String get meditateTitle => 'Meditasyon';
-
-  @override
   String get meditateSubtitle => 'Stres nereden gelirse gelsin, sakinlik';
 
   @override
@@ -2888,17 +2736,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get meditateByArea => 'Stres alanına göre';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count seans',
-      one: '1 seans',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => 'Bugünkü check-in\'inden';
@@ -3026,9 +2863,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get stepReturn => 'Dönüş';
-
-  @override
-  String get stepSettle => 'Yerine oturt';
 
   @override
   String get stepHeadFace => 'Baş ve yüz';

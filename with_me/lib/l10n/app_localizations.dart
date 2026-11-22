@@ -167,11 +167,6 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settingsTitle;
 
-  /// Short notice when a feature that is not built yet is tapped. {feature} is that feature's name, e.g. 'Text size'.
-  ///
-  /// In en, this message translates to:
-  /// **'{feature} is not wired up in this UI pass.'**
-  String settingsNotWired(String feature);
 
   /// Settings toggle: vibration feedback on or off.
   ///
@@ -251,11 +246,6 @@ abstract class AppLocalizations {
   /// **'Export my data'**
   String get settingsExportData;
 
-  /// Short name of the export feature, used in the 'not wired up' notice.
-  ///
-  /// In en, this message translates to:
-  /// **'Export'**
-  String get settingsExport;
 
   /// Settings row and dialog title for deleting the account and all its data. Destructive. Also quoted in a Help answer.
   ///
@@ -1061,11 +1051,6 @@ abstract class AppLocalizations {
   /// **'Terms & Privacy Policy'**
   String get menuAboutTerms;
 
-  /// Notice that the terms page is not built yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Terms are not wired up in this UI pass.'**
-  String get menuAboutTermsNotWired;
 
   /// Subtitle under the app's name on the welcome and About screens.
   ///
@@ -1097,11 +1082,6 @@ abstract class AppLocalizations {
   /// **'Continue with Google'**
   String get accountContinueWithGoogle;
 
-  /// Notice that Google sign-in is not built yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Google sign-in is not wired up in this UI pass.'**
-  String get accountGoogleNotWired;
 
   /// Welcome screen link to use the app without signing up; everything stays on the phone.
   ///
@@ -1139,17 +1119,7 @@ abstract class AppLocalizations {
   /// **'Forgot your password?'**
   String get accountForgotPassword;
 
-  /// Error when the account on the phone could not be read while logging in.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t read your account on this device.'**
-  String get accountLoginReadFailed;
 
-  /// Error when the email or password is wrong.
-  ///
-  /// In en, this message translates to:
-  /// **'That email and password do not match.'**
-  String get accountLoginMismatch;
 
   /// Label of an email address field.
   ///
@@ -1193,11 +1163,6 @@ abstract class AppLocalizations {
   /// **'Create account'**
   String get accountCreateAccount;
 
-  /// Menu row for someone using the app without an account; their saved data comes along.
-  ///
-  /// In en, this message translates to:
-  /// **'Create an account'**
-  String get accountCreateAnAccount;
 
   /// Link on the sign-up screen for someone who already has an account.
   ///
@@ -1229,11 +1194,6 @@ abstract class AppLocalizations {
   /// **'This phone already has an account. Log in instead.'**
   String get accountAlreadyOnPhone;
 
-  /// Error when the new account could not be saved.
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t save your account on this device.'**
-  String get accountSaveFailed;
 
   /// Title of the reset-password screen.
   ///
@@ -1397,11 +1357,6 @@ abstract class AppLocalizations {
   /// **'Active until {date}'**
   String plusActiveUntil(String date);
 
-  /// Message when the account could not be reached.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not reach your account. Check your connection and try again.'**
-  String get plusCouldNotReach;
 
   /// Membership page: button that asks Google Play for purchases made before (new phone, reinstall).
   ///
@@ -1463,11 +1418,6 @@ abstract class AppLocalizations {
   /// **'{price}/mo · billed yearly'**
   String membershipYearlyPerMonth(String price);
 
-  /// Notice that payments are not built yet.
-  ///
-  /// In en, this message translates to:
-  /// **'Payments are not connected in this UI pass.'**
-  String get accountPaymentsNotWired;
 
   /// Reassurance at the bottom of the membership screen.
   ///
@@ -1847,23 +1797,8 @@ abstract class AppLocalizations {
   /// **'Pick a rate of effectiveness'**
   String get checkinRateEffectiveness;
 
-  /// Daily check-in, tappable link that opens a dialog to type a strategy and action of their own. Keep the leading +.
-  ///
-  /// In en, this message translates to:
-  /// **'+ Add custom strategy & action'**
-  String get checkinAddCustom;
 
-  /// Title of the dialog for typing a custom strategy and action. Keep the line break.
-  ///
-  /// In en, this message translates to:
-  /// **'Add custom strategy\n& action'**
-  String get checkinCustomDialogTitle;
 
-  /// Hint inside the dialog field for typing a strategy of their own.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom strategy'**
-  String get checkinCustomStrategyHint;
 
   /// Hint inside the dialog field for typing an action of their own.
   ///
@@ -1955,11 +1890,6 @@ abstract class AppLocalizations {
   /// **'Couldn\'t save this reflection on this device.'**
   String get checkinReflectSaveFailed;
 
-  /// Check In (self-reflection) page: brief message after saving. Warm, encouraging.
-  ///
-  /// In en, this message translates to:
-  /// **'Reflection saved. Well done.'**
-  String get checkinReflectSaved;
 
   /// A feeling: one of the five faces on the check-in's first page, and an emotion the person can pick as a sign of stress. Saved answer shown on the daily log and dashboard. One word.
   ///
@@ -3593,113 +3523,23 @@ abstract class AppLocalizations {
   /// **'Your week in With Me is ready to look at.'**
   String get noticeWeeklyBody;
 
-  /// Title of the progress screen.
-  ///
-  /// In en, this message translates to:
-  /// **'Your Progress'**
-  String get dashProgressTitle;
 
-  /// Tab: show this week.
-  ///
-  /// In en, this message translates to:
-  /// **'Week'**
-  String get dashProgressTabWeek;
 
-  /// Tab: show this month.
-  ///
-  /// In en, this message translates to:
-  /// **'Month'**
-  String get dashProgressTabMonth;
 
-  /// Tab: show this year.
-  ///
-  /// In en, this message translates to:
-  /// **'Year'**
-  String get dashProgressTabYear;
 
-  /// Title of a small stress chart.
-  ///
-  /// In en, this message translates to:
-  /// **'Stress level'**
-  String get dashProgressStressLevel;
 
-  /// Title of a small mood chart.
-  ///
-  /// In en, this message translates to:
-  /// **'Mood'**
-  String get dashProgressMood;
 
-  /// Shown in a small chart that has too few points to draw.
-  ///
-  /// In en, this message translates to:
-  /// **'Not enough data'**
-  String get dashProgressNotEnoughData;
 
-  /// Caption under the number of check-ins this week. Keep the line break.
-  ///
-  /// In en, this message translates to:
-  /// **'check-ins\nthis week'**
-  String get dashProgressCheckInsWeek;
 
-  /// Caption under the number of check-ins this month. Keep the line break.
-  ///
-  /// In en, this message translates to:
-  /// **'check-ins\nthis month'**
-  String get dashProgressCheckInsMonth;
 
-  /// Caption under the number of check-ins this year. Keep the line break.
-  ///
-  /// In en, this message translates to:
-  /// **'check-ins\nthis year'**
-  String get dashProgressCheckInsYear;
 
-  /// Stat tile text before the user has checked in a few times.
-  ///
-  /// In en, this message translates to:
-  /// **'Getting started'**
-  String get dashProgressGettingStarted;
 
-  /// Encouraging caption on a stat tile.
-  ///
-  /// In en, this message translates to:
-  /// **'Keep going!'**
-  String get dashProgressKeepGoing;
 
-  /// Progress tile, large: this week's mood is higher than last week's. Short, kind, no judgement.
-  ///
-  /// In en, this message translates to:
-  /// **'Better week'**
-  String get dashTrendBetter;
 
-  /// Progress tile, large: this week's mood is about the same as last week's.
-  ///
-  /// In en, this message translates to:
-  /// **'Steady week'**
-  String get dashTrendSteady;
 
-  /// Progress tile, large: this week's mood is lower than last week's. Gentle: a harder week, never a failure.
-  ///
-  /// In en, this message translates to:
-  /// **'Harder week'**
-  String get dashTrendHarder;
 
-  /// Progress tile, small, under Better week / Steady week / Harder week.
-  ///
-  /// In en, this message translates to:
-  /// **'Mood compared with last week'**
-  String get dashTrendCaption;
 
-  /// Progress screen: the action picked in today's check-in. {plan} is shown in bold, e.g. 'Walking'.
-  ///
-  /// In en, this message translates to:
-  /// **'Today\'s plan: {plan}'**
-  String dashProgressPlan(String plan);
 
-  /// Shown when the user has not set an intention today.
-  ///
-  /// In en, this message translates to:
-  /// **'No intention set today yet.'**
-  String get dashProgressNoIntention;
 
   /// Title of the monthly calendar screen.
   ///
@@ -3864,11 +3704,6 @@ abstract class AppLocalizations {
   /// **'Tomorrow morning'**
   String get dashReminderTomorrowMorning;
 
-  /// The time shown beside 'Tomorrow morning' (8 in the morning). Write it as times are written in your language.
-  ///
-  /// In en, this message translates to:
-  /// **'8:00'**
-  String get dashReminderTomorrowTime;
 
   /// Reminder timing choice: the user picks a time.
   ///
@@ -4014,83 +3849,18 @@ abstract class AppLocalizations {
   /// **'Still {seconds} seconds'**
   String exerciseStillSeconds(int seconds);
 
-  /// Phase label once a breathing session has finished.
-  ///
-  /// In en, this message translates to:
-  /// **'Complete'**
-  String get exerciseComplete;
 
-  /// Name of the calming scene behind the breathing exercise when the Waves sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'By the ocean'**
-  String get exerciseSceneWaves;
 
-  /// Name of the calming scene when the Birds sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'A quiet morning'**
-  String get exerciseSceneBirds;
 
-  /// Name of the calming scene when the Forest sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'Among the trees'**
-  String get exerciseSceneForest;
 
-  /// Name of the calming scene when the Rain sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'Under the rain'**
-  String get exerciseSceneRain;
 
-  /// Name of the calming scene when the Fire sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'Beside the fire'**
-  String get exerciseSceneFire;
 
-  /// Name of the calming scene when no sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'A moment of stillness'**
-  String get exerciseSceneNone;
 
-  /// Short, poetic line under the Waves scene name; two phrases separated by a middle dot.
-  ///
-  /// In en, this message translates to:
-  /// **'Soft tides · warm shore'**
-  String get exerciseSceneDetailWaves;
 
-  /// Short, poetic line under the Birds scene name.
-  ///
-  /// In en, this message translates to:
-  /// **'Birdsong · woodland nest'**
-  String get exerciseSceneDetailBirds;
 
-  /// Short, poetic line under the Forest scene name.
-  ///
-  /// In en, this message translates to:
-  /// **'Rustling leaves · gentle wind'**
-  String get exerciseSceneDetailForest;
 
-  /// Short, poetic line under the Rain scene name.
-  ///
-  /// In en, this message translates to:
-  /// **'Falling rain · flowing water'**
-  String get exerciseSceneDetailRain;
 
-  /// Short, poetic line under the Fire scene name.
-  ///
-  /// In en, this message translates to:
-  /// **'Crackling embers · evening sky'**
-  String get exerciseSceneDetailFire;
 
-  /// Short, gentle line when no sound is chosen.
-  ///
-  /// In en, this message translates to:
-  /// **'Just you and your breath'**
-  String get exerciseSceneDetailNone;
 
   /// Main button after a breathing session ends: start another session.
   ///
@@ -4707,11 +4477,6 @@ abstract class AppLocalizations {
   /// **'5 min · calm in the forest'**
   String get exerciseMeditationSubtitle;
 
-  /// Read by screen readers after the meditation's tile when it is locked.
-  ///
-  /// In en, this message translates to:
-  /// **'Locked. Part of With Me Plus.'**
-  String get exerciseMeditationLocked;
 
   /// Shown on the meditation screen before it starts.
   ///
@@ -4947,11 +4712,6 @@ abstract class AppLocalizations {
   /// **'Save 16%'**
   String get membershipSave;
 
-  /// Title of the Freeform Meditation screen.
-  ///
-  /// In en, this message translates to:
-  /// **'Meditate'**
-  String get meditateTitle;
 
   /// Under the Meditate title.
   ///
@@ -4983,11 +4743,6 @@ abstract class AppLocalizations {
   /// **'By stress area'**
   String get meditateByArea;
 
-  /// How many meditations a stress area has.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{1 session} other{{count} sessions}}'**
-  String meditateSessions(int count);
 
   /// Marks the stress area picked in today's check-in.
   ///
@@ -5205,11 +4960,6 @@ abstract class AppLocalizations {
   /// **'Return'**
   String get stepReturn;
 
-  /// Step title in a guided session.
-  ///
-  /// In en, this message translates to:
-  /// **'Let it settle'**
-  String get stepSettle;
 
   /// Step title in a guided session.
   ///

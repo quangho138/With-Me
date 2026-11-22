@@ -24,11 +24,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsTitle => '设置';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature在此版本界面中尚未接入。';
-  }
-
-  @override
   String get settingsHaptics => '触感反馈';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsExportData => '导出我的数据';
-
-  @override
-  String get settingsExport => '导出';
 
   @override
   String get settingsDeleteAccount => '删除我的账户';
@@ -534,9 +526,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get menuAboutTerms => '条款与隐私政策';
 
   @override
-  String get menuAboutTermsNotWired => '条款页面在此版本界面中尚未接入。';
-
-  @override
   String get accountAiCompanion => '你的身心健康伙伴';
 
   @override
@@ -550,9 +539,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => '使用Google继续';
-
-  @override
-  String get accountGoogleNotWired => 'Google登录在此版本界面中尚未接入。';
 
   @override
   String get accountStartWithoutAccount => '不注册，直接开始';
@@ -571,12 +557,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get accountForgotPassword => '忘记密码？';
-
-  @override
-  String get accountLoginReadFailed => '无法读取此设备上的账户。';
-
-  @override
-  String get accountLoginMismatch => '邮箱和密码不匹配。';
 
   @override
   String get accountEmail => '邮箱';
@@ -600,9 +580,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get accountCreateAccount => '创建账户';
 
   @override
-  String get accountCreateAnAccount => '创建一个账户';
-
-  @override
   String get accountAlreadyWithUs => '已有账户？登录';
 
   @override
@@ -618,9 +595,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get accountAlreadyOnPhone => '此手机已有账户。请直接登录。';
-
-  @override
-  String get accountSaveFailed => '无法在此设备上保存你的账户。';
 
   @override
   String get accountResetTitle => '重置密码';
@@ -722,9 +696,6 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach => '无法连接到你的账户。请检查网络后重试。';
-
-  @override
   String get plusRestore => '恢复购买';
 
   @override
@@ -759,9 +730,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/月 · 按年付费';
   }
-
-  @override
-  String get accountPaymentsNotWired => '支付功能在此版本界面中尚未接入。';
 
   @override
   String get accountMembershipFootnote => '随时可以取消。无论如何，你的记录都属于你。';
@@ -959,15 +927,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get checkinRateEffectiveness => '为效果打个分';
 
   @override
-  String get checkinAddCustom => '+ 添加自定义策略和行动';
-
-  @override
-  String get checkinCustomDialogTitle => '添加自定义\n策略和行动';
-
-  @override
-  String get checkinCustomStrategyHint => '自定义策略';
-
-  @override
   String get checkinCustomActionHint => '自定义行动';
 
   @override
@@ -1017,9 +976,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get checkinReflectSaveFailed => '无法在此设备上保存这次反思。';
-
-  @override
-  String get checkinReflectSaved => '反思已保存。做得很好。';
 
   @override
   String get checkinOptAngry => '生气';
@@ -2027,62 +1983,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noticeWeeklyBody => '你在 With Me 的这一周可以查看了。';
 
   @override
-  String get dashProgressTitle => '你的进展';
-
-  @override
-  String get dashProgressTabWeek => '周';
-
-  @override
-  String get dashProgressTabMonth => '月';
-
-  @override
-  String get dashProgressTabYear => '年';
-
-  @override
-  String get dashProgressStressLevel => '压力水平';
-
-  @override
-  String get dashProgressMood => '心情';
-
-  @override
-  String get dashProgressNotEnoughData => '数据不足';
-
-  @override
-  String get dashProgressCheckInsWeek => '本周\n打卡次数';
-
-  @override
-  String get dashProgressCheckInsMonth => '本月\n打卡次数';
-
-  @override
-  String get dashProgressCheckInsYear => '今年\n打卡次数';
-
-  @override
-  String get dashProgressGettingStarted => '刚刚起步';
-
-  @override
-  String get dashProgressKeepGoing => '继续加油！';
-
-  @override
-  String get dashTrendBetter => '更好的一周';
-
-  @override
-  String get dashTrendSteady => '平稳的一周';
-
-  @override
-  String get dashTrendHarder => '更难的一周';
-
-  @override
-  String get dashTrendCaption => '与上周相比';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return '今天的计划：$plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => '今天还没有设定目标。';
-
-  @override
   String get dashDailyLogTitle => '每日记录';
 
   @override
@@ -2170,9 +2070,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get dashReminderTomorrowMorning => '明天早上';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => '自定义时间';
 
   @override
@@ -2251,45 +2148,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '静止$seconds秒';
   }
-
-  @override
-  String get exerciseComplete => '完成';
-
-  @override
-  String get exerciseSceneWaves => '在海边';
-
-  @override
-  String get exerciseSceneBirds => '宁静的清晨';
-
-  @override
-  String get exerciseSceneForest => '在树林间';
-
-  @override
-  String get exerciseSceneRain => '在雨中';
-
-  @override
-  String get exerciseSceneFire => '在炉火旁';
-
-  @override
-  String get exerciseSceneNone => '片刻宁静';
-
-  @override
-  String get exerciseSceneDetailWaves => '轻柔潮汐 · 温暖海岸';
-
-  @override
-  String get exerciseSceneDetailBirds => '鸟鸣声声 · 林间小巢';
-
-  @override
-  String get exerciseSceneDetailForest => '树叶沙沙 · 微风轻拂';
-
-  @override
-  String get exerciseSceneDetailRain => '雨声淅沥 · 流水潺潺';
-
-  @override
-  String get exerciseSceneDetailFire => '余烬噼啪 · 暮色天空';
-
-  @override
-  String get exerciseSceneDetailNone => '只有你和你的呼吸';
 
   @override
   String get exerciseBreatheAgain => '再来一次';
@@ -2612,9 +2470,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5 分钟 · 林间宁静';
 
   @override
-  String get exerciseMeditationLocked => '已锁定。属于 With Me Plus。';
-
-  @override
   String get exerciseMeditationIntro => '在森林里安静五分钟。跟着文字走，或闭上眼睛聆听。';
 
   @override
@@ -2745,9 +2600,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get membershipSave => '省 16%';
 
   @override
-  String get meditateTitle => '冥想';
-
-  @override
   String get meditateSubtitle => '无论压力从何而来，都能找回平静';
 
   @override
@@ -2761,16 +2613,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get meditateByArea => '按压力来源';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count节',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => '来自今天的签到';
@@ -2891,9 +2733,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get stepReturn => '回来';
-
-  @override
-  String get stepSettle => '慢慢沉淀';
 
   @override
   String get stepHeadFace => '头部和面部';
@@ -6826,11 +6665,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsTitle => '設定';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature在此版本介面中尚未接入。';
-  }
-
-  @override
   String get settingsHaptics => '觸感反饋';
 
   @override
@@ -6868,9 +6702,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsExportData => '匯出我的資料';
-
-  @override
-  String get settingsExport => '匯出';
 
   @override
   String get settingsDeleteAccount => '刪除我的帳戶';
@@ -7338,9 +7169,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get menuAboutTerms => '條款與隱私政策';
 
   @override
-  String get menuAboutTermsNotWired => '條款頁面在此版本介面中尚未接入。';
-
-  @override
   String get accountAiCompanion => '你的身心健康夥伴';
 
   @override
@@ -7354,9 +7182,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountContinueWithGoogle => '使用Google繼續';
-
-  @override
-  String get accountGoogleNotWired => 'Google登入在此版本介面中尚未接入。';
 
   @override
   String get accountStartWithoutAccount => '不註冊，直接開始';
@@ -7375,12 +7200,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountForgotPassword => '忘記密碼？';
-
-  @override
-  String get accountLoginReadFailed => '無法讀取此裝置上的帳戶。';
-
-  @override
-  String get accountLoginMismatch => '電子郵件和密碼不匹配。';
 
   @override
   String get accountEmail => '電子郵件';
@@ -7404,9 +7223,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get accountCreateAccount => '建立帳戶';
 
   @override
-  String get accountCreateAnAccount => '建立一個帳戶';
-
-  @override
   String get accountAlreadyWithUs => '已有帳戶？登入';
 
   @override
@@ -7422,9 +7238,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get accountAlreadyOnPhone => '此手機已有帳戶。請直接登入。';
-
-  @override
-  String get accountSaveFailed => '無法在此裝置上儲存你的帳戶。';
 
   @override
   String get accountResetTitle => '重置密碼';
@@ -7526,9 +7339,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get plusCouldNotReach => '無法連線到你的帳戶。請檢查網路後再試一次。';
-
-  @override
   String get plusRestore => '恢復購買';
 
   @override
@@ -7563,9 +7373,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String membershipYearlyPerMonth(String price) {
     return '$price/月 · 按年付費';
   }
-
-  @override
-  String get accountPaymentsNotWired => '支付功能在此版本介面中尚未接入。';
 
   @override
   String get accountMembershipFootnote => '隨時可以取消。無論如何，你的記錄都屬於你。';
@@ -7763,15 +7570,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get checkinRateEffectiveness => '為效果打個分';
 
   @override
-  String get checkinAddCustom => '+ 新增自定義策略和行動';
-
-  @override
-  String get checkinCustomDialogTitle => '新增自定義\n策略和行動';
-
-  @override
-  String get checkinCustomStrategyHint => '自定義策略';
-
-  @override
   String get checkinCustomActionHint => '自定義行動';
 
   @override
@@ -7821,9 +7619,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get checkinReflectSaveFailed => '無法在此裝置上儲存這次反思。';
-
-  @override
-  String get checkinReflectSaved => '反思已儲存。做得很好。';
 
   @override
   String get checkinOptAngry => '生氣';
@@ -8831,62 +8626,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get noticeWeeklyBody => '你在 With Me 的這一週可以查看了。';
 
   @override
-  String get dashProgressTitle => '你的進展';
-
-  @override
-  String get dashProgressTabWeek => '周';
-
-  @override
-  String get dashProgressTabMonth => '月';
-
-  @override
-  String get dashProgressTabYear => '年';
-
-  @override
-  String get dashProgressStressLevel => '壓力水平';
-
-  @override
-  String get dashProgressMood => '心情';
-
-  @override
-  String get dashProgressNotEnoughData => '資料不足';
-
-  @override
-  String get dashProgressCheckInsWeek => '本週\n打卡次數';
-
-  @override
-  String get dashProgressCheckInsMonth => '本月\n打卡次數';
-
-  @override
-  String get dashProgressCheckInsYear => '今年\n打卡次數';
-
-  @override
-  String get dashProgressGettingStarted => '剛剛起步';
-
-  @override
-  String get dashProgressKeepGoing => '繼續加油！';
-
-  @override
-  String get dashTrendBetter => '更好的一週';
-
-  @override
-  String get dashTrendSteady => '平穩的一週';
-
-  @override
-  String get dashTrendHarder => '更難的一週';
-
-  @override
-  String get dashTrendCaption => '與上週相比';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return '今天的計畫：$plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => '今天還沒有設定目標。';
-
-  @override
   String get dashDailyLogTitle => '每日記錄';
 
   @override
@@ -8974,9 +8713,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get dashReminderTomorrowMorning => '明天早上';
 
   @override
-  String get dashReminderTomorrowTime => '8:00';
-
-  @override
   String get dashReminderCustomTime => '自定義時間';
 
   @override
@@ -9055,45 +8791,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String exerciseStillSeconds(int seconds) {
     return '靜止$seconds秒';
   }
-
-  @override
-  String get exerciseComplete => '完成';
-
-  @override
-  String get exerciseSceneWaves => '在海邊';
-
-  @override
-  String get exerciseSceneBirds => '寧靜的清晨';
-
-  @override
-  String get exerciseSceneForest => '在樹林間';
-
-  @override
-  String get exerciseSceneRain => '在雨中';
-
-  @override
-  String get exerciseSceneFire => '在爐火旁';
-
-  @override
-  String get exerciseSceneNone => '片刻寧靜';
-
-  @override
-  String get exerciseSceneDetailWaves => '輕柔潮汐 · 溫暖海岸';
-
-  @override
-  String get exerciseSceneDetailBirds => '鳥鳴聲聲 · 林間小巢';
-
-  @override
-  String get exerciseSceneDetailForest => '樹葉沙沙 · 微風輕拂';
-
-  @override
-  String get exerciseSceneDetailRain => '雨聲淅瀝 · 流水潺潺';
-
-  @override
-  String get exerciseSceneDetailFire => '餘燼噼啪 · 暮色天空';
-
-  @override
-  String get exerciseSceneDetailNone => '只有你和你的呼吸';
 
   @override
   String get exerciseBreatheAgain => '再來一次';
@@ -9416,9 +9113,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get exerciseMeditationSubtitle => '5 分鐘 · 林間寧靜';
 
   @override
-  String get exerciseMeditationLocked => '已鎖定。屬於 With Me Plus。';
-
-  @override
   String get exerciseMeditationIntro => '在森林裡安靜五分鐘。跟著文字走，或閉上眼睛聆聽。';
 
   @override
@@ -9549,9 +9243,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get membershipSave => '省 16%';
 
   @override
-  String get meditateTitle => '冥想';
-
-  @override
   String get meditateSubtitle => '無論壓力從何而來，都能找回平靜';
 
   @override
@@ -9565,16 +9256,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get meditateByArea => '按壓力來源';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count節',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => '來自今天的簽到';
@@ -9695,9 +9376,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get stepReturn => '回來';
-
-  @override
-  String get stepSettle => '慢慢沉澱';
 
   @override
   String get stepHeadFace => '頭部和麵部';

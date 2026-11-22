@@ -24,11 +24,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsTitle => '설정';
 
   @override
-  String settingsNotWired(String feature) {
-    return '$feature 기능은 이번 버전에서 아직 연결되지 않았어요.';
-  }
-
-  @override
   String get settingsHaptics => '진동';
 
   @override
@@ -66,9 +61,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settingsExportData => '내 데이터 내보내기';
-
-  @override
-  String get settingsExport => '내보내기';
 
   @override
   String get settingsDeleteAccount => '내 계정 삭제';
@@ -544,9 +536,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get menuAboutTerms => '이용약관 및 개인정보 처리방침';
 
   @override
-  String get menuAboutTermsNotWired => '이용약관은 이번 버전에서 아직 연결되지 않았어요.';
-
-  @override
   String get accountAiCompanion => '당신의 웰빙 동반자';
 
   @override
@@ -560,9 +549,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get accountContinueWithGoogle => 'Google로 계속하기';
-
-  @override
-  String get accountGoogleNotWired => 'Google 로그인은 이번 버전에서 아직 연결되지 않았어요.';
 
   @override
   String get accountStartWithoutAccount => '계정 없이 시작하기';
@@ -581,12 +567,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get accountForgotPassword => '비밀번호를 잊으셨나요?';
-
-  @override
-  String get accountLoginReadFailed => '이 기기에서 계정을 읽지 못했어요.';
-
-  @override
-  String get accountLoginMismatch => '이메일과 비밀번호가 일치하지 않아요.';
 
   @override
   String get accountEmail => '이메일';
@@ -610,9 +590,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get accountCreateAccount => '계정 만들기';
 
   @override
-  String get accountCreateAnAccount => '계정 만들기';
-
-  @override
   String get accountAlreadyWithUs => '이미 계정이 있나요? 로그인';
 
   @override
@@ -628,9 +605,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get accountAlreadyOnPhone => '이 휴대폰에는 이미 계정이 있어요. 로그인해 주세요.';
-
-  @override
-  String get accountSaveFailed => '이 기기에 계정을 저장하지 못했어요.';
 
   @override
   String get accountResetTitle => '비밀번호 재설정';
@@ -736,9 +710,6 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get plusCouldNotReach => '계정에 연결할 수 없어요. 연결 상태를 확인하고 다시 시도해 주세요.';
-
-  @override
   String get plusRestore => '구매 복원';
 
   @override
@@ -773,9 +744,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String membershipYearlyPerMonth(String price) {
     return '$price/월 · 연간 결제';
   }
-
-  @override
-  String get accountPaymentsNotWired => '결제는 이번 버전에서 아직 연결되지 않았어요.';
 
   @override
   String get accountMembershipFootnote =>
@@ -976,15 +944,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get checkinRateEffectiveness => '효과를 평가해 주세요';
 
   @override
-  String get checkinAddCustom => '+ 나만의 전략과 행동 추가';
-
-  @override
-  String get checkinCustomDialogTitle => '나만의 전략과\n행동 추가';
-
-  @override
-  String get checkinCustomStrategyHint => '나만의 전략';
-
-  @override
   String get checkinCustomActionHint => '나만의 행동';
 
   @override
@@ -1034,9 +993,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get checkinReflectSaveFailed => '이 돌아보기를 기기에 저장하지 못했어요.';
-
-  @override
-  String get checkinReflectSaved => '돌아보기를 저장했어요. 잘했어요.';
 
   @override
   String get checkinOptAngry => '화남';
@@ -2044,62 +2000,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get noticeWeeklyBody => 'With Me에서 보낸 한 주를 볼 수 있어요.';
 
   @override
-  String get dashProgressTitle => '나의 성장';
-
-  @override
-  String get dashProgressTabWeek => '주간';
-
-  @override
-  String get dashProgressTabMonth => '월간';
-
-  @override
-  String get dashProgressTabYear => '연간';
-
-  @override
-  String get dashProgressStressLevel => '스트레스 수준';
-
-  @override
-  String get dashProgressMood => '기분';
-
-  @override
-  String get dashProgressNotEnoughData => '데이터가 부족해요';
-
-  @override
-  String get dashProgressCheckInsWeek => '이번 주\n체크인';
-
-  @override
-  String get dashProgressCheckInsMonth => '이번 달\n체크인';
-
-  @override
-  String get dashProgressCheckInsYear => '올해\n체크인';
-
-  @override
-  String get dashProgressGettingStarted => '첫걸음';
-
-  @override
-  String get dashProgressKeepGoing => '이대로 계속!';
-
-  @override
-  String get dashTrendBetter => '더 나은 한 주';
-
-  @override
-  String get dashTrendSteady => '평온한 한 주';
-
-  @override
-  String get dashTrendHarder => '더 힘든 한 주';
-
-  @override
-  String get dashTrendCaption => '지난주와 비교';
-
-  @override
-  String dashProgressPlan(String plan) {
-    return '오늘의 계획: $plan';
-  }
-
-  @override
-  String get dashProgressNoIntention => '오늘의 다짐을 아직 정하지 않았어요.';
-
-  @override
   String get dashDailyLogTitle => '하루 기록';
 
   @override
@@ -2188,9 +2088,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get dashReminderTomorrowMorning => '내일 아침';
 
   @override
-  String get dashReminderTomorrowTime => '오전 8:00';
-
-  @override
   String get dashReminderCustomTime => '시간 지정';
 
   @override
@@ -2269,45 +2166,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String exerciseStillSeconds(int seconds) {
     return '$seconds초 머무르기';
   }
-
-  @override
-  String get exerciseComplete => '완료';
-
-  @override
-  String get exerciseSceneWaves => '바닷가에서';
-
-  @override
-  String get exerciseSceneBirds => '고요한 아침';
-
-  @override
-  String get exerciseSceneForest => '나무들 사이에서';
-
-  @override
-  String get exerciseSceneRain => '빗속에서';
-
-  @override
-  String get exerciseSceneFire => '모닥불 곁에서';
-
-  @override
-  String get exerciseSceneNone => '고요한 순간';
-
-  @override
-  String get exerciseSceneDetailWaves => '잔잔한 물결 · 따스한 해변';
-
-  @override
-  String get exerciseSceneDetailBirds => '새소리 · 숲속 둥지';
-
-  @override
-  String get exerciseSceneDetailForest => '바스락이는 나뭇잎 · 부드러운 바람';
-
-  @override
-  String get exerciseSceneDetailRain => '내리는 비 · 흐르는 물';
-
-  @override
-  String get exerciseSceneDetailFire => '타닥이는 불씨 · 저녁 하늘';
-
-  @override
-  String get exerciseSceneDetailNone => '나와 나의 호흡만';
 
   @override
   String get exerciseBreatheAgain => '다시 호흡하기';
@@ -2634,9 +2492,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get exerciseMeditationSubtitle => '5분 · 숲속의 고요';
 
   @override
-  String get exerciseMeditationLocked => '잠김. With Me Plus에 포함돼요.';
-
-  @override
   String get exerciseMeditationIntro =>
       '숲속에서 보내는 조용한 5분. 글을 따라가거나, 눈을 감고 귀 기울여 보세요.';
 
@@ -2769,9 +2624,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get membershipSave => '16% 절약';
 
   @override
-  String get meditateTitle => '명상하기';
-
-  @override
   String get meditateSubtitle => '스트레스가 어디서 오든, 마음의 평온을';
 
   @override
@@ -2785,16 +2637,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get meditateByArea => '스트레스 영역별';
-
-  @override
-  String meditateSessions(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '세션 $count개',
-    );
-    return '$_temp0';
-  }
 
   @override
   String get meditateSuggested => '오늘 체크인에서';
@@ -2919,9 +2761,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get stepReturn => '돌아오기';
-
-  @override
-  String get stepSettle => '가라앉히기';
 
   @override
   String get stepHeadFace => '머리와 얼굴';
