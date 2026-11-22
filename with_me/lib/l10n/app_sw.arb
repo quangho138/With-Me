@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Toleo {version} · Imeundwa kwa upendo",
   "menuAboutStory": "{appName} kimetengenezwa kwa ajili ya nyakati kati ya miadi, msongo unapokuja na unahitaji kitu imara kando yako. Kinakuuliza hali yako, kinakusaidia kutaja kinachoendelea, na kinapendekeza hatua moja ndogo inayofuata.",
   "menuAboutDisclaimer": "{appName} haitoi utambuzi wala matibabu, na si mbadala wa huduma ya kitaalamu.",
-  "menuAboutScripts": "Tafakari zinazoongozwa zimetokana na maandiko ya Prof. {name}, yametumika kwa ruhusa.",
+  "menuAboutScriptsBy": "Maandishi ya tafakari zinazoongozwa yaliandikwa kwa ajili ya With Me na {name}, kwa msaada wa AI.",
   "menuAboutTerms": "Masharti na Sera ya Faragha",
   "accountAiCompanion": "Mwenzako wa Ustawi",
   "accountTagline": "Hapa. Pamoja nawe.",

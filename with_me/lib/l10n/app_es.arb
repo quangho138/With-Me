@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Versión {version} · Hecha con cariño",
   "menuAboutStory": "{appName} nació para los momentos entre cita y cita, cuando llega el estrés y necesitas algo estable a tu lado. Te pregunta cómo estás, te ayuda a ponerle nombre a lo que pasa y te ofrece un pequeño siguiente paso.",
   "menuAboutDisclaimer": "{appName} no diagnostica ni trata, y no sustituye la atención profesional.",
-  "menuAboutScripts": "Las meditaciones guiadas se basan en guiones del Prof. {name}, usados con permiso.",
+  "menuAboutScriptsBy": "Los guiones de las meditaciones guiadas los escribió {name} para With Me, con ayuda de IA.",
   "menuAboutTerms": "Términos y Política de privacidad",
   "accountAiCompanion": "Tu compañero de bienestar",
   "accountTagline": "Aquí. Contigo.",

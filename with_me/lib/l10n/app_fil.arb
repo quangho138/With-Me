@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Bersyon {version} · Ginawa nang may malasakit",
   "menuAboutStory": "Ginawa ang {appName} para sa mga sandali sa pagitan ng mga appointment, kapag dumarating ang stress at kailangan mo ng isang bagay na matatag sa tabi mo. Kinukumusta ka nito, tinutulungan kang pangalanan ang nangyayari, at nag-aalok ng isang maliit na susunod na hakbang.",
   "menuAboutDisclaimer": "Ang {appName} ay hindi nagda-diagnose o gumagamot, at hindi ito kapalit ng propesyonal na pangangalaga.",
-  "menuAboutScripts": "Ang mga guided meditation ay batay sa mga script ni Prof. {name}, ginamit nang may pahintulot.",
+  "menuAboutScriptsBy": "Ang mga script ng guided meditation ay isinulat para sa With Me ni {name}, sa tulong ng AI.",
   "menuAboutTerms": "Mga Tuntunin at Patakaran sa Privacy",
   "accountAiCompanion": "Ang Iyong Kasama sa Kagalingan",
   "accountTagline": "Nandito. Kasama mo.",

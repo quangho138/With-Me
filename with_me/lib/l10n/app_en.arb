@@ -747,9 +747,9 @@
       }
     }
   },
-  "menuAboutScripts": "The guided meditations are based on scripts by Prof. {name}, used with permission.",
-  "@menuAboutScripts": {
-    "description": "About page: credit for the guided meditation scripts. {name} is the professor's name, kept as written.",
+  "menuAboutScriptsBy": "The guided meditation scripts were written for With Me by {name}, with help from AI.",
+  "@menuAboutScriptsBy": {
+    "description": "About page: credit for the guided meditation scripts. {name} is the product owner's name, kept as written.",
     "placeholders": {
       "name": {
         "type": "String"

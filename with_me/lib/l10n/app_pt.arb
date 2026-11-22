@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Versão {version} · Feito com carinho",
   "menuAboutStory": "O {appName} foi feito para os momentos entre um compromisso e outro, quando o estresse chega e você precisa de algo estável ao seu lado. Ele pergunta como você está, ajuda a dar nome ao que está acontecendo e sugere um pequeno próximo passo.",
   "menuAboutDisclaimer": "O {appName} não faz diagnóstico nem tratamento e não substitui o cuidado profissional.",
-  "menuAboutScripts": "As meditações guiadas se baseiam em roteiros do Prof. {name}, usados com permissão.",
+  "menuAboutScriptsBy": "Os roteiros das meditações guiadas foram escritos para o With Me por {name}, com ajuda de IA.",
   "menuAboutTerms": "Termos e Política de Privacidade",
   "accountAiCompanion": "Seu companheiro de bem-estar",
   "accountTagline": "Aqui. Com você.",

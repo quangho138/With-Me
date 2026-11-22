@@ -539,8 +539,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'निर्देशित ध्यान प्रो. $name की स्क्रिप्ट पर आधारित हैं, अनुमति से उपयोग किए गए।';
+  String menuAboutScriptsBy(String name) {
+    return 'निर्देशित ध्यान की स्क्रिप्ट With Me के लिए $name ने AI की मदद से लिखी हैं।';
   }
 
   @override

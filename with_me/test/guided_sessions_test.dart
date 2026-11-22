@@ -229,7 +229,7 @@ void main() {
         GuidedScripts.deadlinePressure.clip(7),
         'audio/meditate/deadline/07.mp3',
       );
-      // The professor's five steps, word for word.
+      // The script's five steps, word for word.
       final en = AppLocalizationsEn();
       expect(GuidedScripts.deadlinePressure.steps.map((s) => s.title(en)), [
         'Arrive',

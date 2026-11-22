@@ -6,8 +6,8 @@ import '../Settings/FreeUses.dart';
 
 /// Every guided session.
 abstract final class GuidedScripts {
-  /// Work: Deadline Pressure, the professor's hypnotic meditation script,
-  /// word for word.
+  /// Work: Deadline Pressure, the product owner's meditation script, word
+  /// for word.
   static final GuidedScript deadlinePressure = GuidedScript(
     id: 'meditation_deadline',
     folder: 'meditate/deadline',

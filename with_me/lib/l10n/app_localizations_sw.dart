@@ -541,8 +541,8 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Tafakari zinazoongozwa zimetokana na maandiko ya Prof. $name, yametumika kwa ruhusa.';
+  String menuAboutScriptsBy(String name) {
+    return 'Maandishi ya tafakari zinazoongozwa yaliandikwa kwa ajili ya With Me na $name, kwa msaada wa AI.';
   }
 
   @override

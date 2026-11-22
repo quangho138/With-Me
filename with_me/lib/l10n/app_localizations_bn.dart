@@ -539,8 +539,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'নির্দেশিত মেডিটেশনগুলো অধ্যাপক $name-এর লেখা স্ক্রিপ্টের ওপর ভিত্তি করে তৈরি, অনুমতি নিয়ে ব্যবহৃত।';
+  String menuAboutScriptsBy(String name) {
+    return 'নির্দেশিত মেডিটেশনের স্ক্রিপ্টগুলো With Me-এর জন্য লিখেছেন $name, এআই-এর সাহায্যে।';
   }
 
   @override

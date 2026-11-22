@@ -540,8 +540,8 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Медитации с сопровождением основаны на сценариях профессора $name и используются с разрешения.';
+  String menuAboutScriptsBy(String name) {
+    return 'Тексты медитаций с сопровождением написала для With Me $name с помощью ИИ.';
   }
 
   @override

@@ -528,8 +528,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return '가이드 명상은 $name 교수의 대본을 바탕으로 하며, 허락을 받아 사용했어요.';
+  String menuAboutScriptsBy(String name) {
+    return '가이드 명상 대본은 $name님이 AI의 도움을 받아 With Me를 위해 썼습니다.';
   }
 
   @override

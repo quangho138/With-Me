@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Versi {version} · Dibuat dengan penuh perhatian",
   "menuAboutStory": "{appName} dibuat untuk saat-saat di antara janji temu, ketika stres datang dan kamu butuh sesuatu yang tenang di sisimu. Ia menanyakan kabarmu, membantumu menamai apa yang sedang terjadi, dan menawarkan satu langkah kecil berikutnya.",
   "menuAboutDisclaimer": "{appName} tidak mendiagnosis atau mengobati, dan bukan pengganti layanan profesional.",
-  "menuAboutScripts": "Meditasi terpandu ini didasarkan pada naskah karya Prof. {name}, digunakan dengan izin.",
+  "menuAboutScriptsBy": "Naskah meditasi terpandu ditulis untuk With Me oleh {name}, dengan bantuan AI.",
   "menuAboutTerms": "Ketentuan & Kebijakan Privasi",
   "accountAiCompanion": "Teman Kesejahteraanmu",
   "accountTagline": "Di sini. Bersamamu.",

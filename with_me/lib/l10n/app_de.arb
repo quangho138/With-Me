@@ -150,7 +150,7 @@
   "menuAboutFootnote": "Version {version} · Mit Sorgfalt gemacht",
   "menuAboutStory": "{appName} ist für die Momente zwischen Terminen gemacht, wenn Stress kommt und du etwas Beständiges an deiner Seite brauchst. Es fragt, wie es dir geht, hilft dir zu benennen, was gerade passiert, und schlägt einen kleinen nächsten Schritt vor.",
   "menuAboutDisclaimer": "{appName} stellt keine Diagnosen, behandelt nicht und ist kein Ersatz für professionelle Hilfe.",
-  "menuAboutScripts": "Die geführten Meditationen beruhen auf Skripten von Prof. {name} und werden mit Erlaubnis verwendet.",
+  "menuAboutScriptsBy": "Die Texte der geführten Meditationen hat {name} mit Hilfe von KI für With Me geschrieben.",
   "menuAboutTerms": "Nutzungsbedingungen & Datenschutz",
   "accountAiCompanion": "Dein Wohlfühl-Begleiter",
   "accountTagline": "Hier. Bei dir.",

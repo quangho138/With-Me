@@ -539,8 +539,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Meditasi terpandu ini didasarkan pada naskah karya Prof. $name, digunakan dengan izin.';
+  String menuAboutScriptsBy(String name) {
+    return 'Naskah meditasi terpandu ditulis untuk With Me oleh $name, dengan bantuan AI.';
   }
 
   @override

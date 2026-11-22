@@ -540,8 +540,8 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'मार्गदर्शित ध्यान प्रा. $name यांच्या संहितांवर आधारित आहेत, परवानगीने वापरल्या आहेत.';
+  String menuAboutScriptsBy(String name) {
+    return 'मार्गदर्शित ध्यानाच्या संहिता $name यांनी AI च्या मदतीने With Me साठी लिहिल्या आहेत.';
   }
 
   @override

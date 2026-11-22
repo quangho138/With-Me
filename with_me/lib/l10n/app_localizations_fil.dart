@@ -540,8 +540,8 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'Ang mga guided meditation ay batay sa mga script ni Prof. $name, ginamit nang may pahintulot.';
+  String menuAboutScriptsBy(String name) {
+    return 'Ang mga script ng guided meditation ay isinulat para sa With Me ni $name, sa tulong ng AI.';
   }
 
   @override

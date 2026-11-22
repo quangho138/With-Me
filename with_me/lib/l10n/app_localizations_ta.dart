@@ -541,8 +541,8 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String menuAboutScripts(String name) {
-    return 'வழிகாட்டப்பட்ட தியானங்கள் பேராசிரியர் $name அவர்களின் உரைகளை அடிப்படையாகக் கொண்டவை, அனுமதியுடன் பயன்படுத்தப்படுகின்றன.';
+  String menuAboutScriptsBy(String name) {
+    return 'வழிகாட்டப்பட்ட தியானத்தின் உரைகளை With Me-க்காக $name AI உதவியுடன் எழுதினார்.';
   }
 
   @override

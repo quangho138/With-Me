@@ -150,7 +150,7 @@
   "menuAboutFootnote": "バージョン {version} · 心をこめて作りました",
   "menuAboutStory": "{appName} は、予定と予定のあいだ、ストレスを感じて何か安定したものがそばにほしいときのために作られました。あなたの様子をたずね、いま起きていることに名前をつける手伝いをし、小さな次の一歩を提案します。",
   "menuAboutDisclaimer": "{appName}は診断や治療を行うものではなく、専門家によるケアの代わりにはなりません。",
-  "menuAboutScripts": "ガイド付き瞑想は{name}教授の台本をもとにしており、許可を得て使用しています。",
+  "menuAboutScriptsBy": "ガイド付き瞑想の台本は、{name}がAIの助けを借りてWith Meのために書きました。",
   "menuAboutTerms": "利用規約とプライバシーポリシー",
   "accountAiCompanion": "あなたのウェルビーイングの相棒",
   "accountTagline": "ここに。あなたのそばに。",
